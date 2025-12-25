@@ -21,7 +21,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 
 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/raulmermans/raul-portfolio.git
 cd raul-portfolio
 ```
 
@@ -84,4 +84,3 @@ This project can be deployed on:
 ## License
 
 MIT
-
