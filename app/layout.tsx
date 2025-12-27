@@ -1,17 +1,34 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
 import '../styles/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const bebasNeue = Bebas_Neue({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-display',
+})
+
+const dmSans = DM_Sans({
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-body',
+})
+
+const spaceMono = Space_Mono({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-mono',
+})
 
 export const metadata: Metadata = {
-  title: 'Raul Portfolio',
-  description: 'Personal portfolio website showcasing projects and skills',
-  keywords: ['portfolio', 'developer', 'web development'],
-  authors: [{ name: 'Raul' }],
+  title: 'Raúl Mermans — Visual Storyteller',
+  description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
+  keywords: ['photography', 'brand identity', 'AI creatives', 'visual storytelling', 'Spain'],
+  authors: [{ name: 'Raúl Mermans' }],
   openGraph: {
-    title: 'Raul Portfolio',
-    description: 'Personal portfolio website',
+    title: 'Raúl Mermans — Visual Storyteller',
+    description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
     type: 'website',
   },
 }
@@ -23,7 +40,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
+        <div className="grain" aria-hidden="true"></div>
+        {children}
+      </body>
     </html>
   )
 }
