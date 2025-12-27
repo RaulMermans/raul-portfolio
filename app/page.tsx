@@ -9,6 +9,7 @@ import About from '@/components/About'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
 import CustomCursor from '@/components/CustomCursor'
+import BackToTop from '@/components/BackToTop'
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -16,7 +17,8 @@ export default function Home() {
 
   useEffect(() => {
     const sections = document.querySelectorAll('section')
-    const total = sections.length
+    const footer = document.querySelector('.footer')
+    const total = sections.length + 1 // +1 for footer
 
     const updateProgress = () => {
       const scrollTop = window.scrollY
@@ -30,6 +32,12 @@ export default function Home() {
           current = i + 1
         }
       })
+
+      // Check if footer is in view
+      if (footer && footer.getBoundingClientRect().top <= window.innerHeight / 2) {
+        current = total
+      }
+
       setCurrentSection(current)
     }
 
@@ -54,9 +62,11 @@ export default function Home() {
 
       <Footer />
 
-      <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-center gap-3 opacity-0 animate-[fadeIn_0.8s_ease-out_1.4s_forwards]">
+      <BackToTop />
+
+      <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-center gap-3 opacity-0 animate-[fadeIn_0.8s_ease-out_1.4s_forwards] hidden md:flex">
         <span className="font-mono text-xs text-ink-muted [writing-mode:vertical-rl]">
-          {String(currentSection).padStart(2, '0')}/{String(6).padStart(2, '0')}
+          {String(currentSection).padStart(2, '0')}/{String(7).padStart(2, '0')}
         </span>
         <div className="w-0.5 h-[60px] bg-cream-dark rounded-sm overflow-hidden">
           <div
