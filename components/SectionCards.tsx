@@ -18,7 +18,7 @@ const sections = [
     index: '02',
     title: 'Photography',
     description: 'Places, faces, quiet moments. From Moroccan medinas to intimate portraits — images that stay with you.',
-    href: '/projects/photography',
+    href: '/photography',
     image: 'https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=1920&q=85',
   },
   {

@@ -78,7 +78,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="mb-3">
-                <Link href="/projects/photography" className="text-sm text-white/60 transition-colors duration-300 hover:text-cream">
+                <Link href="/photography" className="text-sm text-white/60 transition-colors duration-300 hover:text-cream">
                   Photography
                 </Link>
               </li>

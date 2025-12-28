@@ -3,7 +3,7 @@
 ## 📸 Adding Your Photos
 
 ### Step 1: Open the File
-Edit: `/app/projects/photography/page.tsx`
+Edit: `/app/photography/page.tsx`
 
 ### Step 2: Find the Categories Object
 Look for the `categories` object at the top of the file (around line 13-50).
