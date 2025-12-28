@@ -64,15 +64,12 @@ export default function Home() {
 
       <BackToTop />
 
-      <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-center gap-3 opacity-0 animate-[fadeIn_0.8s_ease-out_1.4s_forwards] hidden md:flex">
-        <span className="font-mono text-xs text-ink-muted [writing-mode:vertical-rl]">
+      <div className="ui ui__progress" aria-hidden="true">
+        <span className="ui__progress-text" id="progress-text">
           {String(currentSection).padStart(2, '0')}/{String(8).padStart(2, '0')}
         </span>
-        <div className="w-0.5 h-[60px] bg-cream-dark rounded-sm overflow-hidden">
-          <div
-            className="w-full bg-ink transition-[height] duration-300 ease-out"
-            style={{ height: `${scrollProgress}%` }}
-          ></div>
+        <div className="ui__progress-bar">
+          <div className="ui__progress-fill" id="progress" style={{ height: `${scrollProgress}%` }}></div>
         </div>
       </div>
     </>
