@@ -46,16 +46,19 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 
 ```
 raul-portfolio/
-├── app/                    # Next.js App Router
-│   ├── api/               # API routes (backend)
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Home page
+├── app/                    # Next.js App Router (pages & API routes)
 ├── components/            # React components
 ├── lib/                   # Utility functions
-├── public/                # Static assets
-├── styles/                # Global styles
-└── types/                 # TypeScript type definitions
+├── public/                # Static assets (images, fonts)
+├── styles/                # Global CSS styles
+├── types/                 # TypeScript type definitions
+├── docs/                  # Documentation & references
+│   ├── reference/         # HTML mockups
+│   └── guides/           # Setup & deployment guides
+└── [config files]         # Configuration files
 ```
+
+📖 **See [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) for detailed structure**
 
 ## Available Scripts
 
