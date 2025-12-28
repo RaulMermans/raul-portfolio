@@ -42,26 +42,59 @@ export default function Home() {
     }
 
     // Reveal animation observer for all .reveal elements
-    const revealElements = document.querySelectorAll('.reveal')
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
-    )
+    const setupRevealObserver = () => {
+      const revealElements = document.querySelectorAll('.reveal:not(.visible)')
+      
+      if (revealElements.length === 0) return
 
-    revealElements.forEach((el) => revealObserver.observe(el))
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible')
+              revealObserver.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.1, rootMargin: '0px' }
+      )
 
-    window.addEventListener('scroll', updateProgress, { passive: true })
+      revealElements.forEach((el) => {
+        // Check if already in viewport
+        const rect = el.getBoundingClientRect()
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
+        if (isVisible) {
+          el.classList.add('visible')
+        } else {
+          revealObserver.observe(el)
+        }
+      })
+    }
+
+    // Run immediately and after a short delay to catch late-rendered elements
+    setupRevealObserver()
+    setTimeout(setupRevealObserver, 100)
+    setTimeout(setupRevealObserver, 500)
+
+    const handleScroll = () => {
+      updateProgress()
+      // Check for reveals on scroll
+      const revealElements = document.querySelectorAll('.reveal:not(.visible)')
+      revealElements.forEach((el) => {
+        const rect = el.getBoundingClientRect()
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
+        if (isVisible) {
+          el.classList.add('visible')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     updateProgress()
+    handleScroll() // Check immediately
 
     return () => {
-      window.removeEventListener('scroll', updateProgress)
-      revealElements.forEach((el) => revealObserver.unobserve(el))
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
