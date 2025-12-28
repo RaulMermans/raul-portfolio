@@ -673,6 +673,8 @@ section {
   filter: blur(120px);
   will-change: transform;
   transition: transform 0.5s ease-out;
+  transform: translateZ(0); /* GPU acceleration */
+  contain: layout style paint; /* Optimize rendering */
 }
 
 .hero__orb--main {
@@ -833,12 +835,17 @@ section {
   background: var(--ink);
   min-height: 100vh;
   min-height: 100svh;
+  content-visibility: auto; /* Optimize rendering for off-screen sections */
+  contain-intrinsic-size: auto 100vh;
 }
 
 .section-card__bg {
   position: absolute;
   inset: 0;
   filter: brightness(0.5) saturate(0.85);
+  will-change: transform;
+  transform: translateZ(0); /* GPU acceleration */
+  contain: layout style paint; /* Optimize rendering */
   transform: scale(1.05);
   transition: filter 1.2s var(--ease), transform 12s var(--ease);
 }

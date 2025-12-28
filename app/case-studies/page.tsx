@@ -118,7 +118,7 @@ export default function CaseStudiesPage() {
 
   useEffect(() => {
     const handleResize = () => positionTrack(currentIndex)
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize, { passive: true })
     return () => window.removeEventListener('resize', handleResize)
   }, [currentIndex])
 

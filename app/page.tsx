@@ -20,26 +20,42 @@ export default function Home() {
     const footer = document.querySelector('.footer')
     const total = sections.length + 1 // +1 for footer
 
+    // Cache viewport height to avoid repeated calculations
+    let viewportHeight = window.innerHeight
+    
     const updateProgress = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const docHeight = document.documentElement.scrollHeight - viewportHeight
       const percentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
       setScrollProgress(percentage)
 
+      const viewportCenter = viewportHeight / 2
       let current = 1
-      sections.forEach((section, i) => {
-        if (section.getBoundingClientRect().top <= window.innerHeight / 2) {
+      
+      // Use for loop for better performance
+      for (let i = 0; i < sections.length; i++) {
+        const rect = sections[i].getBoundingClientRect()
+        if (rect.top <= viewportCenter) {
           current = i + 1
         }
-      })
+      }
 
       // Check if footer is in view
-      if (footer && footer.getBoundingClientRect().top <= window.innerHeight / 2) {
-        current = total
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect()
+        if (footerRect.top <= viewportCenter) {
+          current = total
+        }
       }
 
       setCurrentSection(current)
     }
+    
+    // Update viewport height on resize (debounced)
+    const handleResize = () => {
+      viewportHeight = window.innerHeight
+    }
+    window.addEventListener('resize', handleResize, { passive: true })
 
     // Reveal animation observer for all .reveal elements
     let revealObserver: IntersectionObserver | null = null
@@ -86,17 +102,28 @@ export default function Home() {
       setTimeout(setupRevealObserver, 500)
     })
 
+    // Throttled scroll handler for better performance
+    let ticking = false
     const handleScroll = () => {
-      updateProgress()
-      // Check for reveals on scroll
-      const revealElements = document.querySelectorAll('.reveal:not(.visible)')
-      revealElements.forEach((el) => {
-        const rect = el.getBoundingClientRect()
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
-        if (isVisible) {
-          el.classList.add('visible')
-        }
-      })
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateProgress()
+          // Check for reveals on scroll (only check visible ones)
+          const revealElements = document.querySelectorAll('.reveal:not(.visible)')
+          const viewportTop = 0
+          const viewportBottom = viewportHeight
+          
+          for (let i = 0; i < revealElements.length; i++) {
+            const el = revealElements[i] as HTMLElement
+            const rect = el.getBoundingClientRect()
+            if (rect.top < viewportBottom && rect.bottom > viewportTop) {
+              el.classList.add('visible')
+            }
+          }
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -105,6 +132,7 @@ export default function Home() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
       if (revealObserver) {
         revealObserver.disconnect()
       }

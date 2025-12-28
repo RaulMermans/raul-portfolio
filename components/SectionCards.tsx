@@ -35,17 +35,26 @@ export default function SectionCards() {
   const sectionBgsRef = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
+    let ticking = false
+    const viewportHeight = window.innerHeight
+    
     const updateParallax = () => {
-      sectionBgsRef.current.forEach((bg) => {
-        if (!bg) return
-        const section = bg.closest('section')
-        if (!section) return
-        const rect = section.getBoundingClientRect()
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          const scrollProgress = -rect.top / window.innerHeight
-          bg.style.transform = `translateY(${scrollProgress * 40}px) scale(1.05)`
-        }
-      })
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          sectionBgsRef.current.forEach((bg) => {
+            if (!bg) return
+            const section = bg.closest('section')
+            if (!section) return
+            const rect = section.getBoundingClientRect()
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+              const scrollProgress = -rect.top / viewportHeight
+              bg.style.transform = `translateY(${scrollProgress * 40}px) scale(1.05)`
+            }
+          })
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
     window.addEventListener('scroll', updateParallax, { passive: true })

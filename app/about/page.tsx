@@ -53,17 +53,29 @@ export default function AboutPage() {
       }
     })
 
+    let ticking = false
+    const viewportHeight = window.innerHeight
+    
     const handleScroll = () => {
-      updateOnScroll()
-      // Check for reveals on scroll
-      const newRevealElements = document.querySelectorAll('.reveal:not(.visible)')
-      newRevealElements.forEach((el) => {
-        const rect = el.getBoundingClientRect()
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
-        if (isVisible) {
-          el.classList.add('visible')
-        }
-      })
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateOnScroll()
+          // Check for reveals on scroll (optimized)
+          const newRevealElements = document.querySelectorAll('.reveal:not(.visible)')
+          const viewportTop = 0
+          const viewportBottom = viewportHeight
+          
+          for (let i = 0; i < newRevealElements.length; i++) {
+            const el = newRevealElements[i] as HTMLElement
+            const rect = el.getBoundingClientRect()
+            if (rect.top < viewportBottom && rect.bottom > viewportTop) {
+              el.classList.add('visible')
+            }
+          }
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })

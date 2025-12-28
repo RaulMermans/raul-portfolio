@@ -15,24 +15,45 @@ export default function Hero() {
     const isDesktop = window.matchMedia('(hover: hover)').matches
     if (!isDesktop) return
 
+    let ticking = false
+    let cachedRect: DOMRect | null = null
+    
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = hero.getBoundingClientRect()
-      const x = (e.clientX - rect.left) / rect.width - 0.5
-      const y = (e.clientY - rect.top) / rect.height - 0.5
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (!cachedRect) {
+            cachedRect = hero.getBoundingClientRect()
+          }
+          const x = (e.clientX - cachedRect.left) / cachedRect.width - 0.5
+          const y = (e.clientY - cachedRect.top) / cachedRect.height - 0.5
 
-      if (orbMainRef.current) {
-        orbMainRef.current.style.transform = `translate(calc(-50% + ${x * 25}px), calc(-50% + ${y * 25}px))`
-      }
-      if (orbSecondaryRef.current) {
-        orbSecondaryRef.current.style.transform = `translate(${x * 40}px, ${y * 40}px)`
-      }
-      if (orbTertiaryRef.current) {
-        orbTertiaryRef.current.style.transform = `translate(${x * 15}px, ${y * 15}px)`
+          if (orbMainRef.current) {
+            orbMainRef.current.style.transform = `translate(calc(-50% + ${x * 25}px), calc(-50% + ${y * 25}px))`
+          }
+          if (orbSecondaryRef.current) {
+            orbSecondaryRef.current.style.transform = `translate(${x * 40}px, ${y * 40}px)`
+          }
+          if (orbTertiaryRef.current) {
+            orbTertiaryRef.current.style.transform = `translate(${x * 15}px, ${y * 15}px)`
+          }
+          ticking = false
+        })
+        ticking = true
       }
     }
+    
+    // Recalculate rect on resize
+    const handleResize = () => {
+      cachedRect = null
+    }
 
-    hero.addEventListener('mousemove', handleMouseMove)
-    return () => hero.removeEventListener('mousemove', handleMouseMove)
+    hero.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('resize', handleResize, { passive: true })
+    
+    return () => {
+      hero.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const name = 'RAÚL'
