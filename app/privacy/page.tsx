@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <>
+    <div>
       <Header />
       <div className="legal-page">
-      <div className="legal-page__inner">
+        <div className="legal-page__inner">
         <Link href="/" className="legal-page__back">
           ← Back to Home
         </Link>
@@ -156,9 +156,10 @@ export default function PrivacyPolicy() {
             </ul>
           </section>
         </div>
+        </div>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
