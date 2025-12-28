@@ -208,76 +208,75 @@ img {
   transform: translateY(0);
 }
 
-/* Custom cursor - dot and ring */
+/* New Custom Cursor - Reliable Design */
 @media (hover: hover) and (pointer: fine) {
-  .cursor {
+  * {
+    cursor: none !important;
+  }
+
+  .cursor-new {
     position: fixed;
+    top: 0;
+    left: 0;
     pointer-events: none;
     z-index: 10001;
-    opacity: 0;
-    transition: opacity 0.3s var(--ease);
-    mix-blend-mode: difference;
-  }
-
-  .cursor.visible {
     opacity: 1;
+    mix-blend-mode: difference;
+    will-change: opacity;
   }
 
-  .cursor__dot {
+  .cursor-new__dot {
     position: fixed;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: #fff;
     border-radius: 50%;
     top: 0;
     left: 0;
     pointer-events: none;
     will-change: transform;
-    transition: width 0.2s var(--ease), height 0.2s var(--ease);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, width 0.2s var(--ease), height 0.2s var(--ease);
   }
 
-  .cursor__ring {
+  .cursor-new__ring {
     position: fixed;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border: 1.5px solid #fff;
     border-radius: 50%;
     top: 0;
     left: 0;
     pointer-events: none;
     will-change: transform;
-    transition: width 0.2s var(--ease), height 0.2s var(--ease), border-width 0.2s var(--ease);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-width 0.2s var(--ease);
   }
 
-  .cursor.hovering .cursor__dot {
-    width: 12px;
-    height: 12px;
+  /* Hover state - expands ring and dot */
+  .cursor-new.hovering .cursor-new__dot {
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
-  .cursor.hovering .cursor__ring {
-    width: 60px;
-    height: 60px;
+  .cursor-new.hovering .cursor-new__ring {
+    width: 48px;
+    height: 48px;
     border-width: 2px;
   }
 
-  .cursor.clicking .cursor__ring {
-    width: 30px;
-    height: 30px;
+  /* Click state - contracts ring */
+  .cursor-new.clicking .cursor-new__ring {
+    width: 24px;
+    height: 24px;
+    border-width: 2.5px;
   }
 
-  .cursor.clicking .cursor__dot {
-    width: 6px;
-    height: 6px;
-  }
-
-  body,
-  a,
-  button,
-  .service,
-  .section-card,
-  .btn,
-  .link {
-    cursor: none !important;
+  .cursor-new.clicking .cursor-new__dot {
+    transform: translate(-50%, -50%) scale(0.9);
   }
 }
 
