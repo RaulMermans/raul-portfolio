@@ -198,7 +198,7 @@ img {
   padding: var(--space-3) var(--space-5);
   background: var(--ink);
   color: var(--cream);
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-sm);
   transform: translateY(-200%);
   transition: transform var(--transition-base) var(--ease);
@@ -428,7 +428,7 @@ section {
 }
 
 .ui__nav a {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -1279,7 +1279,7 @@ section {
 }
 
 .service__title-small {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
@@ -1309,14 +1309,14 @@ section {
 }
 
 .service__number-large {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   letter-spacing: var(--tracking-tight);
   color: var(--ink);
 }
 
 .service__title-large {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
@@ -1519,7 +1519,7 @@ section {
 }
 
 .footer__logo {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -1535,7 +1535,7 @@ section {
 }
 
 .footer__email {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   color: var(--cream);
