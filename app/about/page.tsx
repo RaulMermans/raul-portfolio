@@ -146,7 +146,7 @@ export default function AboutPage() {
             <p className="connect__social-label reveal reveal-delay-3">Find me online</p>
             <div className="connect__social reveal reveal-delay-3">
               <a
-                href="https://instagram.com/raulmermans"
+                href="https://www.instagram.com/raulmeermans/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"

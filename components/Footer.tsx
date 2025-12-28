@@ -13,7 +13,7 @@ export default function Footer() {
             <a href="mailto:raulmermans@gmail.com" className="footer__email">raulmermans@gmail.com</a>
             
             <div className="footer__social">
-              <a href="https://instagram.com/raulmermans" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+              <a href="https://www.instagram.com/raulmeermans/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
               <a href="https://linkedin.com/in/raulmermans" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LI</a>
               <a href="https://unsplash.com/@raulmermans" target="_blank" rel="noopener noreferrer" aria-label="Unsplash">UN</a>
               <a href="https://twitter.com/raulmermans" target="_blank" rel="noopener noreferrer" aria-label="Twitter">X</a>

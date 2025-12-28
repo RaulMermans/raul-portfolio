@@ -13,7 +13,7 @@ export default function Contact() {
         <a href="mailto:raulmermans@gmail.com" className="btn contact__email reveal reveal-delay-2">raulmermans@gmail.com</a>
         
         <div className="contact__links reveal reveal-delay-2">
-          <a href="https://instagram.com/raulmermans" className="link" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.instagram.com/raulmeermans/" className="link" target="_blank" rel="noopener noreferrer">Instagram</a>
           <a href="https://linkedin.com/in/raulmermans" className="link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://unsplash.com/@raulmermans" className="link" target="_blank" rel="noopener noreferrer">Unsplash</a>
         </div>
