@@ -40,6 +40,12 @@ export default function CustomCursor() {
     mousePos.current = { x: centerX, y: centerY }
     ringPos.current = { x: centerX, y: centerY }
 
+    // Set initial positions immediately
+    if (dotRef.current && ringRef.current) {
+      dotRef.current.style.transform = `translate(${centerX}px, ${centerY}px) translate(-50%, -50%)`
+      ringRef.current.style.transform = `translate(${centerX}px, ${centerY}px) translate(-50%, -50%)`
+    }
+
     // Update cursor position immediately
     const updateCursor = () => {
       if (!cursorRef.current || !dotRef.current || !ringRef.current) return
@@ -56,8 +62,17 @@ export default function CustomCursor() {
       cursorRef.current.style.opacity = isVisible.current ? '1' : '0'
 
       // Update classes
-      cursorRef.current.classList.toggle('hovering', isHovering.current)
-      cursorRef.current.classList.toggle('clicking', isClicking.current)
+      if (isHovering.current) {
+        cursorRef.current.classList.add('hovering')
+      } else {
+        cursorRef.current.classList.remove('hovering')
+      }
+      
+      if (isClicking.current) {
+        cursorRef.current.classList.add('clicking')
+      } else {
+        cursorRef.current.classList.remove('clicking')
+      }
 
       rafId.current = requestAnimationFrame(updateCursor)
     }

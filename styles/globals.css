@@ -219,10 +219,10 @@ img {
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 10001;
-    opacity: 1;
+    z-index: 99999;
+    opacity: 1 !important;
     mix-blend-mode: difference;
-    will-change: opacity;
+    will-change: opacity, transform;
   }
 
   .cursor-new__dot {
@@ -236,7 +236,8 @@ img {
     pointer-events: none;
     will-change: transform;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, width 0.2s var(--ease), height 0.2s var(--ease);
+    transition: width 0.2s var(--ease), height 0.2s var(--ease);
+    z-index: 100000;
   }
 
   .cursor-new__ring {
@@ -253,6 +254,7 @@ img {
     transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 border-width 0.2s var(--ease);
+    z-index: 99999;
   }
 
   /* Hover state - expands ring and dot */
