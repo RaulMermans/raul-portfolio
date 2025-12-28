@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TermsOfService() {
   return (
-    <div>
+    <div className="legal-page-wrapper">
       <Header />
       <div className="legal-page">
         <div className="legal-page__inner">
