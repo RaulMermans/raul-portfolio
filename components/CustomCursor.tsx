@@ -165,6 +165,7 @@ export default function CustomCursor() {
       ref={cursorRef}
       className="cursor-new"
       aria-hidden="true"
+      style={{ display: 'block' }}
     >
       <div ref={ringRef} className="cursor-new__ring" />
       <div ref={dotRef} className="cursor-new__dot" />
