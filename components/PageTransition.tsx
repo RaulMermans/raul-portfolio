@@ -12,8 +12,10 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const [isPending, startTransition] = useTransition()
   const [displayChildren, setDisplayChildren] = useState(children)
   const [isExiting, setIsExiting] = useState(false)
+  const [isEntering, setIsEntering] = useState(false)
   const prevPathnameRef = useRef(pathname)
   const isInitialMount = useRef(true)
+  const transitionTimeoutRef = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
     // Skip transition on initial mount
@@ -26,46 +28,71 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
     // Only transition if pathname actually changed
     if (pathname !== prevPathnameRef.current) {
-      // Start exit animation
-      setIsExiting(true)
-      
-      // Add body class to prevent scrolling during transition
+      // Prevent scrolling during transition
       if (typeof document !== 'undefined') {
         document.body.classList.add('page-transitioning')
+        document.documentElement.style.overflow = 'hidden'
+      }
+
+      // Start exit animation
+      setIsExiting(true)
+      setIsEntering(false)
+      
+      // Clear any existing timeout
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current)
       }
       
-      // Wait for exit animation, then update content
-      const exitTimer = setTimeout(() => {
+      // Wait for exit animation to complete
+      transitionTimeoutRef.current = setTimeout(() => {
         startTransition(() => {
+          // Update content
           setDisplayChildren(children)
           prevPathnameRef.current = pathname
-          setIsExiting(false)
           
-          // Remove body class after a brief delay
+          // Switch to entering state
+          setIsExiting(false)
+          setIsEntering(true)
+          
+          // Allow scrolling again after enter animation
           setTimeout(() => {
             if (typeof document !== 'undefined') {
               document.body.classList.remove('page-transitioning')
+              document.documentElement.style.overflow = ''
             }
+            setIsEntering(false)
             
-            // Scroll to top smoothly
+            // Scroll to top smoothly (but not instantly)
             if (typeof window !== 'undefined' && window.scrollY > 0) {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }
-          }, 50)
+          }, 400) // Match enter animation duration
         })
-      }, 200)
+      }, 300) // Match exit animation duration
 
-      return () => clearTimeout(exitTimer)
+      return () => {
+        if (transitionTimeoutRef.current) {
+          clearTimeout(transitionTimeoutRef.current)
+        }
+      }
     } else {
       // Pathname didn't change but children might have (e.g., state updates)
       setDisplayChildren(children)
     }
   }, [pathname, children, startTransition])
 
+  // Determine transition state
+  const transitionClass = isExiting 
+    ? 'page-transition--exiting' 
+    : isEntering 
+    ? 'page-transition--entering' 
+    : isPending 
+    ? 'page-transition--pending' 
+    : 'page-transition--idle'
+
   return (
-    <div className={`page-transition ${isExiting ? 'page-transition--exiting' : isPending ? 'page-transition--pending' : 'page-transition--entering'}`}>
+    <div className={`page-transition ${transitionClass}`}>
       {displayChildren}
     </div>
   )
 }
-
