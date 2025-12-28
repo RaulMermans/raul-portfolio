@@ -2141,23 +2141,24 @@ section {
   min-height: 100vh;
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  will-change: opacity, transform;
 }
 
 .page-transition--exiting {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
   pointer-events: none;
 }
 
 .page-transition--entering {
-  animation: pageEnter 0.5s var(--ease-out) forwards;
+  animation: pageEnter 0.4s var(--ease-out) forwards;
 }
 
 @keyframes pageEnter {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -2173,4 +2174,13 @@ html {
 /* Prevent flash of unstyled content during transitions */
 body.page-transitioning {
   overflow: hidden;
+}
+
+/* Smooth link transitions */
+a[href^="/"] {
+  transition: opacity 0.2s var(--ease);
+}
+
+a[href^="/"]:hover {
+  opacity: 0.8;
 }
