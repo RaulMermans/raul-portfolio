@@ -2141,24 +2141,29 @@ section {
   min-height: 100vh;
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
   will-change: opacity, transform;
 }
 
 .page-transition--exiting {
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.page-transition--pending {
+  opacity: 0;
   pointer-events: none;
 }
 
 .page-transition--entering {
-  animation: pageEnter 0.4s var(--ease-out) forwards;
+  animation: pageEnter 0.35s var(--ease-out) forwards;
 }
 
 @keyframes pageEnter {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;

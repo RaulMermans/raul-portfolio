@@ -12,12 +12,19 @@ export default function CustomCursor() {
   const mouseY = useRef(0)
   const ringX = useRef(0)
   const ringY = useRef(0)
+  const animationFrameRef = useRef<number>()
 
   useEffect(() => {
     if (typeof window === 'undefined') return
 
     const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-    if (!isDesktop) return
+    if (!isDesktop) {
+      // Hide cursor on non-desktop devices
+      return
+    }
+
+    // Hide default cursor
+    document.body.style.cursor = 'none'
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.current = e.clientX
@@ -31,9 +38,17 @@ export default function CustomCursor() {
       setIsVisible(true)
     }
 
-    const handleMouseLeave = () => setIsVisible(false)
-    const handleMouseDown = () => setIsClicking(true)
-    const handleMouseUp = () => setIsClicking(false)
+    const handleMouseLeave = () => {
+      setIsVisible(false)
+    }
+
+    const handleMouseDown = () => {
+      setIsClicking(true)
+    }
+
+    const handleMouseUp = () => {
+      setIsClicking(false)
+    }
 
     // Animate ring with smooth follow
     const animateRing = () => {
@@ -45,33 +60,61 @@ export default function CustomCursor() {
         ringRef.current.style.top = `${ringY.current}px`
       }
       
-      requestAnimationFrame(animateRing)
+      animationFrameRef.current = requestAnimationFrame(animateRing)
     }
     animateRing()
 
-    const interactiveElements = document.querySelectorAll('a, button, .service')
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeaveEl = () => setIsHovering(false)
+    // Handle interactive elements with event delegation
+    const handleMouseEnter = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('a') ||
+        target.closest('button') ||
+        target.closest('.service') ||
+        target.closest('.section-card') ||
+        target.closest('.btn') ||
+        target.closest('.link')
+      ) {
+        setIsHovering(true)
+      }
+    }
+
+    const handleMouseLeaveEl = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('a') ||
+        target.closest('button') ||
+        target.closest('.service') ||
+        target.closest('.section-card') ||
+        target.closest('.btn') ||
+        target.closest('.link')
+      ) {
+        setIsHovering(false)
+      }
+    }
 
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseleave', handleMouseLeave)
     document.addEventListener('mousedown', handleMouseDown)
     document.addEventListener('mouseup', handleMouseUp)
-
-    interactiveElements.forEach((el) => {
-      el.addEventListener('mouseenter', handleMouseEnter)
-      el.addEventListener('mouseleave', handleMouseLeaveEl)
-    })
+    document.addEventListener('mouseover', handleMouseEnter)
+    document.addEventListener('mouseout', handleMouseLeaveEl)
 
     return () => {
+      document.body.style.cursor = ''
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('mousedown', handleMouseDown)
       document.removeEventListener('mouseup', handleMouseUp)
-      interactiveElements.forEach((el) => {
-        el.removeEventListener('mouseenter', handleMouseEnter)
-        el.removeEventListener('mouseleave', handleMouseLeaveEl)
-      })
+      document.removeEventListener('mouseover', handleMouseEnter)
+      document.removeEventListener('mouseout', handleMouseLeaveEl)
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+      }
     }
   }, [])
 
