@@ -10,6 +10,10 @@ export default function PhotographyLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <div className="photography-layout">
+      {children}
+    </div>
+  )
 }
 

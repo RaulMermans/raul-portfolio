@@ -129,6 +129,18 @@ export default function PhotographyPage() {
 
   const currentCount = categories[activeCategory as keyof typeof categories]?.count || 0
 
+  useEffect(() => {
+    // Set overflow hidden on mount for photography page
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+    
+    return () => {
+      // Restore overflow on unmount
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+    }
+  }, [])
+
   return (
     <>
       <CustomCursor />
