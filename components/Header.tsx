@@ -39,10 +39,10 @@ export default function Header() {
 
       {/* Desktop Nav */}
       <nav className="ui ui__nav" aria-label="Primary navigation">
-        <a href="#work" onClick={(e) => handleNavClick(e, '#case-studies')}>Work</a>
-        <a href="#about" onClick={(e) => handleNavClick(e, '#about')}>About</a>
-        <a href="#services" onClick={(e) => handleNavClick(e, '#services')}>Services</a>
-        <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a>
+        <Link href="/#work" onClick={(e) => handleNavClick(e, '#work')}>Work</Link>
+        <Link href="/about" onClick={(e) => { e.preventDefault(); window.location.href = '/about'; }}>About</Link>
+        <Link href="/#services" onClick={(e) => handleNavClick(e, '#services')}>Services</Link>
+        <Link href="/#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</Link>
       </nav>
 
       {/* Mobile Menu Button */}
@@ -62,15 +62,10 @@ export default function Header() {
         className={`ui__mobile-menu ${isMenuOpen ? 'active' : ''}`}
         aria-label="Mobile navigation"
       >
-        {['#case-studies', '#photography', '#visuals', '#about', '#services', '#contact'].map((href) => (
-          <a
-            key={href}
-            href={href}
-            onClick={(e) => handleNavClick(e, href)}
-          >
-            {href === '#case-studies' ? 'Case Studies' : href.slice(1).charAt(0).toUpperCase() + href.slice(2)}
-          </a>
-        ))}
+        <Link href="/#work" onClick={(e) => handleNavClick(e, '#work')}>Work</Link>
+        <Link href="/about" onClick={(e) => { e.preventDefault(); window.location.href = '/about'; closeMenu(); }}>About</Link>
+        <Link href="/#services" onClick={(e) => handleNavClick(e, '#services')}>Services</Link>
+        <Link href="/#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</Link>
       </nav>
     </>
   )
