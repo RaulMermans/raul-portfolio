@@ -31,6 +31,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
       // Prevent scrolling during transition
       if (typeof document !== 'undefined') {
         document.body.classList.add('page-transitioning')
+        document.documentElement.classList.add('page-transitioning')
         document.documentElement.style.overflow = 'hidden'
       }
 
@@ -58,6 +59,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
           setTimeout(() => {
             if (typeof document !== 'undefined') {
               document.body.classList.remove('page-transitioning')
+              document.documentElement.classList.remove('page-transitioning')
               document.documentElement.style.overflow = ''
             }
             setIsEntering(false)

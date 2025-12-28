@@ -2198,46 +2198,81 @@ section {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
   will-change: opacity, transform;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Exit animation - fade out and slide up slightly */
 .page-transition--exiting {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(-20px) scale(0.98);
   pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Pending state - while content is loading */
 .page-transition--pending {
   opacity: 0;
+  transform: translateY(20px) scale(0.98);
   pointer-events: none;
 }
 
+/* Enter animation - fade in and slide up */
 .page-transition--entering {
-  animation: pageEnter 0.35s var(--ease-out) forwards;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Idle state - normal display */
+.page-transition--idle {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Prevent scrolling during transitions */
+body.page-transitioning {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+html.page-transitioning {
+  overflow: hidden;
+}
+
+/* Smooth transition overlay effect (subtle darkening) */
+.page-transition::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-transition--exiting::before,
+.page-transition--pending::before {
+  opacity: 0.05;
+}
+
+.page-transition--entering::before {
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Smooth scroll restoration */
 html {
   scroll-behavior: smooth;
-}
-
-/* Prevent flash of unstyled content during transitions */
-body.page-transitioning {
-  overflow: hidden;
 }
 
 /* Smooth link transitions */
