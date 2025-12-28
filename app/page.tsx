@@ -42,17 +42,24 @@ export default function Home() {
     }
 
     // Reveal animation observer for all .reveal elements
+    let revealObserver: IntersectionObserver | null = null
+    
     const setupRevealObserver = () => {
+      // Clean up existing observer
+      if (revealObserver) {
+        revealObserver.disconnect()
+      }
+
       const revealElements = document.querySelectorAll('.reveal:not(.visible)')
       
       if (revealElements.length === 0) return
 
-      const revealObserver = new IntersectionObserver(
+      revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible')
-              revealObserver.unobserve(entry.target)
+              revealObserver?.unobserve(entry.target)
             }
           })
         },
@@ -66,15 +73,18 @@ export default function Home() {
         if (isVisible) {
           el.classList.add('visible')
         } else {
-          revealObserver.observe(el)
+          revealObserver?.observe(el)
         }
       })
     }
 
-    // Run immediately and after a short delay to catch late-rendered elements
-    setupRevealObserver()
-    setTimeout(setupRevealObserver, 100)
-    setTimeout(setupRevealObserver, 500)
+    // Run after React hydration
+    requestAnimationFrame(() => {
+      setupRevealObserver()
+      // Also check periodically for dynamically added elements
+      setTimeout(setupRevealObserver, 100)
+      setTimeout(setupRevealObserver, 500)
+    })
 
     const handleScroll = () => {
       updateProgress()
@@ -95,6 +105,9 @@ export default function Home() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      if (revealObserver) {
+        revealObserver.disconnect()
+      }
     }
   }, [])
 
