@@ -229,8 +229,11 @@ img {
     height: 8px;
     background: #fff;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease);
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    will-change: transform;
+    transition: width 0.2s var(--ease), height 0.2s var(--ease);
   }
 
   .cursor__ring {
@@ -239,8 +242,11 @@ img {
     height: 40px;
     border: 1.5px solid #fff;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s var(--ease), height 0.3s var(--ease), border-width 0.3s var(--ease);
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    will-change: transform;
+    transition: width 0.2s var(--ease), height 0.2s var(--ease), border-width 0.2s var(--ease);
   }
 
   .cursor.hovering .cursor__dot {
