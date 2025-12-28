@@ -1705,10 +1705,13 @@ section {
   background: var(--cream);
   /* Disable scroll snap for legal pages */
   scroll-snap-type: none;
+  overflow-x: hidden;
 }
 
 .legal-page-wrapper section {
   scroll-snap-align: unset;
+  min-height: auto;
+  position: static;
 }
 
 .legal-page {
