@@ -43,17 +43,29 @@ export default function Header() {
         className="fixed top-6 right-6 z-[100] flex gap-6 opacity-0 animate-[fadeIn_0.8s_ease-out_1.3s_forwards] hidden md:flex"
         aria-label="Primary navigation"
       >
-        {['#work', '#about', '#services', '#contact'].map((href) => (
-          <a
-            key={href}
-            href={href}
-            onClick={(e) => handleNavClick(e, href)}
-            className="font-mono text-xs tracking-[0.12em] uppercase text-ink-muted px-3 py-2 min-h-[44px] flex items-center relative transition-colors hover:text-ink group"
-          >
-            {href.slice(1).charAt(0).toUpperCase() + href.slice(2)}
-            <span className="absolute bottom-1.5 left-3 right-3 h-px bg-ink scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
-          </a>
-        ))}
+        {['#work', '/case-studies', '#about', '#services', '#contact'].map((href) => {
+          const isExternal = href.startsWith('/')
+          return isExternal ? (
+            <Link
+              key={href}
+              href={href}
+              className="font-mono text-xs tracking-[0.12em] uppercase text-ink-muted px-3 py-2 min-h-[44px] flex items-center relative transition-colors hover:text-ink group"
+            >
+              Case Studies
+              <span className="absolute bottom-1.5 left-3 right-3 h-px bg-ink scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </Link>
+          ) : (
+            <a
+              key={href}
+              href={href}
+              onClick={(e) => handleNavClick(e, href)}
+              className="font-mono text-xs tracking-[0.12em] uppercase text-ink-muted px-3 py-2 min-h-[44px] flex items-center relative transition-colors hover:text-ink group"
+            >
+              {href.slice(1).charAt(0).toUpperCase() + href.slice(2)}
+              <span className="absolute bottom-1.5 left-3 right-3 h-px bg-ink scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            </a>
+          )
+        })}
       </nav>
 
       {/* Mobile Menu Button */}
@@ -87,21 +99,38 @@ export default function Header() {
         }`}
         aria-label="Mobile navigation"
       >
-        {['#work', '#about', '#services', '#contact'].map((href, index) => (
-          <a
-            key={href}
-            href={href}
-            onClick={(e) => handleNavClick(e, href)}
-            className={`font-display text-[clamp(2rem,8vw,3.5rem)] uppercase text-ink transition-all duration-400 ${
-              isMenuOpen
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8'
-            }`}
-            style={{ transitionDelay: isMenuOpen ? `${0.1 + index * 0.05}s` : '0s' }}
-          >
-            {href.slice(1).charAt(0).toUpperCase() + href.slice(2)}
-          </a>
-        ))}
+        {['#work', '/case-studies', '#about', '#services', '#contact'].map((href, index) => {
+          const isExternal = href.startsWith('/')
+          return isExternal ? (
+            <Link
+              key={href}
+              href={href}
+              onClick={closeMenu}
+              className={`font-display text-[clamp(2rem,8vw,3.5rem)] uppercase text-ink transition-all duration-400 ${
+                isMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: isMenuOpen ? `${0.1 + index * 0.05}s` : '0s' }}
+            >
+              Case Studies
+            </Link>
+          ) : (
+            <a
+              key={href}
+              href={href}
+              onClick={(e) => handleNavClick(e, href)}
+              className={`font-display text-[clamp(2rem,8vw,3.5rem)] uppercase text-ink transition-all duration-400 ${
+                isMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: isMenuOpen ? `${0.1 + index * 0.05}s` : '0s' }}
+            >
+              {href.slice(1).charAt(0).toUpperCase() + href.slice(2)}
+            </a>
+          )
+        })}
       </nav>
     </>
   )
