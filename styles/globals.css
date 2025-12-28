@@ -273,8 +273,11 @@ img {
   body,
   a,
   button,
-  .service {
-    cursor: none;
+  .service,
+  .section-card,
+  .btn,
+  .link {
+    cursor: none !important;
   }
 }
 
