@@ -14,9 +14,6 @@
   --gradient-warm: #FFAA88;
   --gradient-rose: #FFB5A0;
   --gradient-soft: #E8D0C8;
-  --font-display: "Bebas Neue", Impact, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-  --font-mono: "Space Mono", monospace;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -73,13 +70,14 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background: var(--cream);
   color: var(--ink);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -378,7 +376,7 @@ img {
 }
 
 .label {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
@@ -681,7 +679,7 @@ section {
 }
 
 .hero__name {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(3rem, 13vw, 11rem);
   line-height: 0.88;
   letter-spacing: var(--tracking-tight);
@@ -719,7 +717,7 @@ section {
 .hero__line:nth-child(2) .hero__letter:nth-child(7) { animation-delay: 0.8s; }
 
 .hero__role {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
@@ -731,7 +729,7 @@ section {
 }
 
 .hero__tagline {
-  font-family: var(--font-body);
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-style: italic;
   color: var(--ink-soft);
@@ -849,7 +847,7 @@ section {
 }
 
 .section-card__title {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(3.5rem, 12vw, 8rem);
   line-height: 0.9;
   letter-spacing: var(--tracking-tight);
@@ -1009,7 +1007,7 @@ section {
 }
 
 .about__headline {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(2rem, 4.5vw, 3rem);
   line-height: 0.95;
   text-transform: uppercase;
@@ -1018,6 +1016,7 @@ section {
 }
 
 .about__text {
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   font-size: var(--text-base);
   line-height: 1.85;
   color: var(--ink-soft);
@@ -1087,7 +1086,7 @@ section {
 }
 
 .contact__headline {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(4rem, 14vw, 10rem);
   line-height: 0.85;
   letter-spacing: var(--tracking-tight);
@@ -1226,7 +1225,7 @@ section {
 }
 
 .services__title {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(3rem, 10vw, 6rem);
   line-height: 0.9;
   letter-spacing: var(--tracking-tight);
