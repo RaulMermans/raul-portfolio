@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Raúl Mermans',
@@ -8,7 +10,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="legal-page">
+    <>
+      <Header />
+      <div className="legal-page">
       <div className="legal-page__inner">
         <Link href="/" className="legal-page__back">
           ← Back to Home
@@ -153,7 +157,8 @@ export default function PrivacyPolicy() {
           </section>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 
