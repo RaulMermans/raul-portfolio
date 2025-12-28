@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import CustomCursor from '@/components/CustomCursor'
 
 // ========================================
 // CASE STUDIES DATA
@@ -127,7 +126,6 @@ export default function CaseStudiesPage() {
 
   return (
     <>
-      <CustomCursor />
       <div className="grain" aria-hidden="true"></div>
 
       {/* Background with crossfade */}

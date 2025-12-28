@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import CustomCursor from '@/components/CustomCursor'
 
 // ========================================
 // PHOTO DATA STRUCTURE
@@ -143,7 +142,6 @@ export default function PhotographyPage() {
 
   return (
     <>
-      <CustomCursor />
       <div className="grain" aria-hidden="true"></div>
 
       {/* Header */}

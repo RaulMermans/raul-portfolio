@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import CustomCursor from '@/components/CustomCursor'
 
 export default function NotFound() {
   const [frameNum, setFrameNum] = useState(0)
@@ -53,7 +52,6 @@ export default function NotFound() {
 
   return (
     <>
-      <CustomCursor />
       
       {/* Film Grain Overlay */}
       <div className="grain" aria-hidden="true"></div>

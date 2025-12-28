@@ -8,7 +8,6 @@ import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
-import CustomCursor from '@/components/CustomCursor'
 import BackToTop from '@/components/BackToTop'
 
 export default function Home() {
@@ -141,7 +140,6 @@ export default function Home() {
 
   return (
     <>
-      <CustomCursor />
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Header />
       

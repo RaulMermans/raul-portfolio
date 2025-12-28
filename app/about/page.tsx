@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import Header from '@/components/Header'
-import CustomCursor from '@/components/CustomCursor'
 import Reveal from '@/components/Reveal'
 
 export default function AboutPage() {
@@ -90,7 +89,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <CustomCursor />
       <Header />
       
       <main>
