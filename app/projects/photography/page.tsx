@@ -4,50 +4,65 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import CustomCursor from '@/components/CustomCursor'
 
+// ========================================
+// PHOTO DATA STRUCTURE
+// ========================================
+// Add your photos here! Each photo needs:
+// - src: image URL or path
+// - alt: description for accessibility
+// - category: 'landscape' or 'architecture' (or add more categories)
+// ========================================
+
+const categories = {
+  landscape: {
+    name: 'Landscape',
+    count: 12,
+    images: [
+      { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop', alt: 'Mountain landscape at dawn' },
+      { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=500&fit=crop', alt: 'Forest valley with morning mist' },
+      { src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=400&fit=crop', alt: 'Waterfall in tropical forest' },
+      { src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=300&fit=crop', alt: 'Lake reflection at sunset' },
+      { src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=600&fit=crop', alt: 'Rolling hills in fog' },
+      { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=500&fit=crop', alt: 'Sunlight through forest trees' },
+      { src: 'https://images.unsplash.com/photo-1518173946687-a4c036bc3c94?w=400&h=600&fit=crop', alt: 'Ocean cliffs at golden hour' },
+      { src: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=500&fit=crop', alt: 'Green meadow with mountains' },
+      { src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop', alt: 'Dramatic mountain peaks' },
+      { src: 'https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?w=400&h=300&fit=crop', alt: 'Autumn forest road' },
+      { src: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400&h=600&fit=crop', alt: 'Pine trees in mist' },
+      { src: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=500&fit=crop', alt: 'Desert dunes at sunset' },
+    ],
+  },
+  architecture: {
+    name: 'Architecture',
+    count: 12,
+    images: [
+      { src: 'https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?w=400&h=600&fit=crop', alt: 'Modern glass building facade' },
+      { src: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=500&fit=crop', alt: 'Brutalist concrete structure' },
+      { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=400&h=400&fit=crop', alt: 'Geometric building patterns' },
+      { src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=300&fit=crop', alt: 'White modern architecture' },
+      { src: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&h=600&fit=crop', alt: 'Classical columns' },
+      { src: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=400&h=500&fit=crop', alt: 'Japanese traditional building' },
+      { src: 'https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?w=400&h=600&fit=crop', alt: 'Urban skyline' },
+      { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=500&fit=crop', alt: 'Minimalist house exterior' },
+      { src: 'https://images.unsplash.com/photo-1481026469463-66327c86e544?w=400&h=400&fit=crop', alt: 'Interior spiral staircase' },
+      { src: 'https://images.unsplash.com/photo-1520355009940-c7f53f1c9ece?w=400&h=300&fit=crop', alt: 'Museum architecture' },
+      { src: 'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=400&h=600&fit=crop', alt: 'Industrial building' },
+      { src: 'https://images.unsplash.com/photo-1485628390555-1a7bd503f9fe?w=400&h=500&fit=crop', alt: 'Bridge architecture' },
+    ],
+  },
+}
+
 export default function PhotographyPage() {
   const [activeCategory, setActiveCategory] = useState('landscape')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [lightboxCategory, setLightboxCategory] = useState('landscape')
   const galleryRef = useRef<HTMLDivElement>(null)
-  const cursorRef = useRef<HTMLDivElement>(null)
+  const lightboxImageRef = useRef<HTMLImageElement>(null)
 
-  const categories = {
-    landscape: {
-      name: 'Landscape',
-      count: 12,
-      images: [
-        { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop', alt: 'Mountain landscape at dawn' },
-        { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=500&fit=crop', alt: 'Forest valley with morning mist' },
-        { src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=400&fit=crop', alt: 'Waterfall in tropical forest' },
-        { src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=300&fit=crop', alt: 'Lake reflection at sunset' },
-        { src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=600&fit=crop', alt: 'Rolling hills in fog' },
-        { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=500&fit=crop', alt: 'Sunlight through forest trees' },
-        { src: 'https://images.unsplash.com/photo-1518173946687-a4c036bc3c94?w=400&h=600&fit=crop', alt: 'Ocean cliffs at golden hour' },
-        { src: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=500&fit=crop', alt: 'Green meadow with mountains' },
-        { src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop', alt: 'Dramatic mountain peaks' },
-        { src: 'https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?w=400&h=300&fit=crop', alt: 'Autumn forest road' },
-        { src: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400&h=600&fit=crop', alt: 'Pine trees in mist' },
-        { src: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=500&fit=crop', alt: 'Desert dunes at sunset' },
-      ],
-    },
-    architecture: {
-      name: 'Architecture',
-      count: 12,
-      images: [
-        { src: 'https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?w=400&h=600&fit=crop', alt: 'Modern glass building facade' },
-        { src: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=500&fit=crop', alt: 'Brutalist concrete structure' },
-        { src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=400&h=400&fit=crop', alt: 'Geometric building patterns' },
-        { src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=300&fit=crop', alt: 'White modern architecture' },
-        { src: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&h=600&fit=crop', alt: 'Classical columns' },
-        { src: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=400&h=500&fit=crop', alt: 'Japanese traditional building' },
-        { src: 'https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?w=400&h=600&fit=crop', alt: 'Urban skyline' },
-        { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=500&fit=crop', alt: 'Minimalist house exterior' },
-        { src: 'https://images.unsplash.com/photo-1481026469463-66327c86e544?w=400&h=400&fit=crop', alt: 'Interior spiral staircase' },
-        { src: 'https://images.unsplash.com/photo-1520355009940-c7f53f1c9ece?w=400&h=300&fit=crop', alt: 'Museum architecture' },
-        { src: 'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=400&h=600&fit=crop', alt: 'Industrial building' },
-        { src: 'https://images.unsplash.com/photo-1485628390555-1a7bd503f9fe?w=400&h=500&fit=crop', alt: 'Bridge architecture' },
-      ],
-    },
-  }
+  // Get all images for current category
+  const currentCategoryImages = categories[lightboxCategory as keyof typeof categories]?.images || []
 
   useEffect(() => {
     // Horizontal scroll with mouse wheel
@@ -55,7 +70,7 @@ export default function PhotographyPage() {
     if (!gallery) return
 
     const handleWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      if (!lightboxOpen && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault()
         gallery.scrollLeft += e.deltaY
       }
@@ -63,12 +78,24 @@ export default function PhotographyPage() {
 
     gallery.addEventListener('wheel', handleWheel, { passive: false })
 
-    // Keyboard navigation
+    // Keyboard navigation (only when lightbox is closed)
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        gallery.scrollBy({ left: 300, behavior: 'smooth' })
-      } else if (e.key === 'ArrowLeft') {
-        gallery.scrollBy({ left: -300, behavior: 'smooth' })
+      if (lightboxOpen) {
+        // Lightbox keyboard controls
+        if (e.key === 'Escape') {
+          closeLightbox()
+        } else if (e.key === 'ArrowLeft') {
+          showPrevImage()
+        } else if (e.key === 'ArrowRight') {
+          showNextImage()
+        }
+      } else {
+        // Gallery keyboard controls
+        if (e.key === 'ArrowRight') {
+          gallery.scrollBy({ left: 300, behavior: 'smooth' })
+        } else if (e.key === 'ArrowLeft') {
+          gallery.scrollBy({ left: -300, behavior: 'smooth' })
+        }
       }
     }
 
@@ -78,7 +105,7 @@ export default function PhotographyPage() {
       gallery.removeEventListener('wheel', handleWheel)
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [lightboxOpen])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -103,6 +130,39 @@ export default function PhotographyPage() {
     closeMenu()
   }
 
+  const openLightbox = (imageIndex: number, category: string) => {
+    setLightboxCategory(category)
+    setLightboxIndex(imageIndex)
+    setLightboxOpen(true)
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = 'hidden'
+    }
+  }
+
+  const closeLightbox = () => {
+    setLightboxOpen(false)
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = ''
+    }
+  }
+
+  const showNextImage = () => {
+    setLightboxIndex((prev) => (prev + 1) % currentCategoryImages.length)
+  }
+
+  const showPrevImage = () => {
+    setLightboxIndex((prev) => (prev - 1 + currentCategoryImages.length) % currentCategoryImages.length)
+  }
+
+  const goToImage = (index: number) => {
+    setLightboxIndex(index)
+  }
+
+  // Get high-res image URL (replace w=400 with w=1200 for lightbox)
+  const getHighResImage = (src: string) => {
+    return src.replace(/w=\d+/, 'w=1200').replace(/h=\d+/, 'h=1200')
+  }
+
   const allImages = [
     ...categories.landscape.images.map((img, i) => ({ ...img, category: 'landscape', index: i })),
     ...categories.architecture.images.map((img, i) => ({ ...img, category: 'architecture', index: i + 12 })),
@@ -119,7 +179,7 @@ export default function PhotographyPage() {
       </a>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center p-6 pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center p-6 pointer-events-none opacity-0 animate-[fadeIn_0.8s_ease-out_0.3s_forwards]">
         <div className="pointer-events-auto">
           <Link
             href="/"
@@ -202,7 +262,8 @@ export default function PhotographyPage() {
               return (
                 <div
                   key={index}
-                  className={`gallery-item relative overflow-hidden transition-all duration-600 ease-out ${
+                  onClick={() => openLightbox(img.index, img.category)}
+                  className={`gallery-item relative overflow-hidden transition-all duration-600 ease-out cursor-pointer ${
                     isActive ? 'active' : ''
                   }`}
                   data-category={img.category}
@@ -215,6 +276,9 @@ export default function PhotographyPage() {
                     alignSelf: getAlignSelf(index),
                     marginTop: getMarginTop(index),
                     marginLeft: getMarginLeft(index),
+                    opacity: 0,
+                    transform: 'translateY(20px)',
+                    animation: `slideUp 0.6s ease-out ${0.1 + (index % 24) * 0.05}s forwards`,
                   }}
                 >
                   <img
@@ -231,6 +295,72 @@ export default function PhotographyPage() {
           </div>
         </div>
       </main>
+
+      {/* Lightbox Modal */}
+      <div
+        className={`lightbox fixed inset-0 z-[9000] bg-[rgba(26,23,20,0.95)] flex flex-col items-center justify-center p-8 pb-[calc(2rem+60px)] opacity-0 invisible transition-all duration-600 ease-out ${
+          lightboxOpen ? 'opacity-100 visible' : ''
+        }`}
+        onClick={closeLightbox}
+        aria-hidden={!lightboxOpen}
+        role="dialog"
+        aria-label="Image viewer"
+      >
+        <button
+          className="lightbox-close absolute top-6 right-6 w-14 h-14 flex items-center justify-center border border-white/20 text-white/60 font-mono text-sm transition-all duration-300 hover:border-white/50 hover:text-cream hover:bg-white/10"
+          onClick={(e) => {
+            e.stopPropagation()
+            closeLightbox()
+          }}
+          aria-label="Close lightbox"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+
+        <img
+          ref={lightboxImageRef}
+          src={getHighResImage(currentCategoryImages[lightboxIndex]?.src || '')}
+          alt={currentCategoryImages[lightboxIndex]?.alt || ''}
+          className="lightbox-image max-w-[90vw] max-h-[75vh] object-contain transform scale-90 opacity-0 transition-all duration-600 ease-out"
+          style={{
+            transform: lightboxOpen ? 'scale(1)' : 'scale(0.9)',
+            opacity: lightboxOpen ? 1 : 0,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        />
+
+        {/* Navigation Dots */}
+        <div className="lightbox-nav absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3">
+          {currentCategoryImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => {
+                e.stopPropagation()
+                goToImage(index)
+              }}
+              className={`lightbox-dot w-2.5 h-2.5 rounded-full border-none p-0 transition-all duration-300 ${
+                index === lightboxIndex
+                  ? 'bg-cream scale-110'
+                  : 'bg-white/25 hover:bg-white/50 hover:scale-120'
+              }`}
+              aria-label={`Go to image ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Counter */}
+        <span className="lightbox-counter absolute bottom-7 left-6 font-mono text-xs tracking-[0.1em] text-white/40">
+          {lightboxIndex + 1} / {currentCategoryImages.length}
+        </span>
+
+        {/* Hint */}
+        <span className="lightbox-hint absolute bottom-7 right-6 font-mono text-xs tracking-[0.1em] uppercase text-white/30 hidden md:block">
+          ESC to close
+        </span>
+      </div>
 
       {/* Category Overlay */}
       <div className="fixed bottom-[calc(2rem+80px)] left-1/2 -translate-x-1/2 text-center z-50 pointer-events-none opacity-0 animate-[slideUp_0.8s_ease-out_0.5s_forwards]">
@@ -252,11 +382,11 @@ export default function PhotographyPage() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`category-btn font-mono text-xs tracking-[0.3em] uppercase min-h-[56px] min-w-[160px] md:min-w-[160px] flex items-center justify-center transition-all duration-300 ${
+              className={`category-btn font-mono text-xs tracking-[0.3em] uppercase min-h-[56px] min-w-[160px] md:min-w-[160px] flex items-center justify-center transition-all duration-300 border ${
                 activeCategory === category
                   ? 'text-ink bg-[rgba(26,23,20,0.04)] border-cream-dark'
                   : 'text-ink-faint border-cream-dark hover:text-ink hover:bg-[rgba(26,23,20,0.02)]'
-              } border ${category === 'architecture' ? 'border-l-0' : ''}`}
+              } ${category === 'architecture' ? 'border-l-0' : ''}`}
             >
               {categories[category as keyof typeof categories].name}
             </button>
@@ -322,4 +452,3 @@ function getMarginLeft(index: number): string {
   const margins = ['0', '0', '0', '0', '0', '0', '2vw', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '-1vw', '0']
   return margins[index] || '0'
 }
-
