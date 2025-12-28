@@ -41,10 +41,28 @@ export default function Home() {
       setCurrentSection(current)
     }
 
+    // Reveal animation observer for all .reveal elements
+    const revealElements = document.querySelectorAll('.reveal')
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    revealElements.forEach((el) => revealObserver.observe(el))
+
     window.addEventListener('scroll', updateProgress, { passive: true })
     updateProgress()
 
-    return () => window.removeEventListener('scroll', updateProgress)
+    return () => {
+      window.removeEventListener('scroll', updateProgress)
+      revealElements.forEach((el) => revealObserver.unobserve(el))
+    }
   }, [])
 
   return (
