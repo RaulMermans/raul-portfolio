@@ -39,15 +39,10 @@ export default function Header() {
 
       {/* Desktop Nav */}
       <nav className="ui ui__nav" aria-label="Primary navigation">
-        {['#work', '#about', '#services', '#contact'].map((href) => (
-          <a
-            key={href}
-            href={href}
-            onClick={(e) => handleNavClick(e, href)}
-          >
-            {href === '#work' ? 'Work' : href.slice(1).charAt(0).toUpperCase() + href.slice(2)}
-          </a>
-        ))}
+        <a href="#work" onClick={(e) => handleNavClick(e, '#case-studies')}>Work</a>
+        <a href="#about" onClick={(e) => handleNavClick(e, '#about')}>About</a>
+        <a href="#services" onClick={(e) => handleNavClick(e, '#services')}>Services</a>
+        <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a>
       </nav>
 
       {/* Mobile Menu Button */}
