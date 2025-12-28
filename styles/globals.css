@@ -854,6 +854,7 @@ section {
   line-height: 0.9;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
+  color: var(--cream);
   max-width: 12ch;
 }
 
@@ -1012,6 +1013,7 @@ section {
   font-size: clamp(2rem, 4.5vw, 3rem);
   line-height: 0.95;
   text-transform: uppercase;
+  color: var(--ink);
   margin-bottom: var(--space-5);
 }
 
@@ -1090,6 +1092,7 @@ section {
   line-height: 0.85;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
+  color: var(--ink);
   margin-bottom: var(--space-7);
 }
 
@@ -1282,6 +1285,7 @@ section {
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
   line-height: 1.1;
+  color: var(--ink);
   transition: opacity var(--transition-base) var(--ease);
 }
 
@@ -1309,6 +1313,7 @@ section {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   letter-spacing: var(--tracking-tight);
+  color: var(--ink);
 }
 
 .service__title-large {
@@ -1316,6 +1321,7 @@ section {
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
+  color: var(--ink);
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
@@ -1518,6 +1524,7 @@ section {
   font-size: clamp(1.5rem, 3vw, 2rem);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+  color: var(--cream);
   margin-bottom: var(--space-4);
 }
 
