@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
 import '../styles/globals.css'
+import PageTransition from '@/components/PageTransition'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -42,7 +43,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
         <div className="grain" aria-hidden="true"></div>
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   )

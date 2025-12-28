@@ -2131,3 +2131,46 @@ section {
     padding: 0.5rem 0.75rem;
   }
 }
+
+/* ========================================
+   PAGE TRANSITIONS
+   ======================================== */
+.page-transition {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.page-transition--exiting {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.page-transition--entering {
+  animation: pageEnter 0.5s var(--ease-out) forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth scroll restoration */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent flash of unstyled content during transitions */
+body.page-transitioning {
+  overflow: hidden;
+}
