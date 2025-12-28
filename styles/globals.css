@@ -507,6 +507,10 @@ section {
   transition: all var(--transition-base) var(--ease);
 }
 
+.ui__menu-btn.on-dark span {
+  background: var(--cream);
+}
+
 .ui__menu-btn.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
