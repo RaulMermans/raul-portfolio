@@ -38,9 +38,6 @@ export default function CustomCursor() {
       setIsVisible(true)
     }
 
-    const handleMouseLeave = () => {
-      setIsVisible(false)
-    }
 
     const handleMouseDown = () => {
       setIsClicking(true)
@@ -97,8 +94,18 @@ export default function CustomCursor() {
       }
     }
 
+    // Keep cursor visible on scroll - only hide when mouse actually leaves window
+    const handleWindowMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0 || e.clientX <= 0 || 
+          e.clientX >= window.innerWidth || 
+          e.clientY >= window.innerHeight) {
+        setIsVisible(false)
+      }
+    }
+
     document.addEventListener('mousemove', handleMouseMove)
-    document.addEventListener('mouseleave', handleMouseLeave)
+    document.addEventListener('mouseleave', handleWindowMouseLeave)
+    document.addEventListener('mouseenter', () => setIsVisible(true))
     document.addEventListener('mousedown', handleMouseDown)
     document.addEventListener('mouseup', handleMouseUp)
     document.addEventListener('mouseover', handleMouseEnter)
@@ -107,7 +114,8 @@ export default function CustomCursor() {
     return () => {
       document.body.style.cursor = ''
       document.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('mouseleave', handleMouseLeave)
+      document.removeEventListener('mouseleave', handleWindowMouseLeave)
+      document.removeEventListener('mouseenter', () => setIsVisible(true))
       document.removeEventListener('mousedown', handleMouseDown)
       document.removeEventListener('mouseup', handleMouseUp)
       document.removeEventListener('mouseover', handleMouseEnter)

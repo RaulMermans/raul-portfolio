@@ -28,10 +28,52 @@ export default function AboutPage() {
       menuBtn.classList.toggle('on-dark', inDarkSection)
     }
 
-    window.addEventListener('scroll', updateOnScroll, { passive: true })
-    updateOnScroll()
+    // Reveal animation observer for all .reveal elements
+    const revealElements = document.querySelectorAll('.reveal:not(.visible)')
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            revealObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px' }
+    )
 
-    return () => window.removeEventListener('scroll', updateOnScroll)
+    revealElements.forEach((el) => {
+      // Check if already in viewport
+      const rect = el.getBoundingClientRect()
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0
+      if (isVisible) {
+        el.classList.add('visible')
+      } else {
+        revealObserver.observe(el)
+      }
+    })
+
+    const handleScroll = () => {
+      updateOnScroll()
+      // Check for reveals on scroll
+      const newRevealElements = document.querySelectorAll('.reveal:not(.visible)')
+      newRevealElements.forEach((el) => {
+        const rect = el.getBoundingClientRect()
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
+        if (isVisible) {
+          el.classList.add('visible')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    updateOnScroll()
+    handleScroll() // Check immediately
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      revealObserver.disconnect()
+    }
   }, [])
 
   return (
