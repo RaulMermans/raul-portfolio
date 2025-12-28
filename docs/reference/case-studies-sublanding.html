@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Case Studies — Raúl Mermans</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --cream: #F5F0EB;
+      --ink: #1A1714;
+      --theme-0: #1A2744;
+      --theme-1: #8B2635;
+      
+      --font-display: "Bebas Neue", Impact, sans-serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+      --font-mono: "Space Mono", monospace;
+      
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+    }
+    
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===========================================
+       BACKGROUND - Simultaneous Crossfade
+       Base layer always visible, top layer fades
+    =========================================== */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+    
+    .bg__layer {
+      position: absolute;
+      inset: 0;
+    }
+    
+    /* Base - always visible */
+    .bg__layer--0 { 
+      background: var(--theme-0); 
+    }
+    
+    /* Top - fades in/out over base */
+    .bg__layer--1 { 
+      background: var(--theme-1); 
+      opacity: 0;
+      transition: opacity 1.2s var(--ease-in-out);
+    }
+
+    /* ===========================================
+       GRAIN
+    =========================================== */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ===========================================
+       CURSOR
+    =========================================== */
+    .cursor {
+      position: fixed;
+      z-index: 10000;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .cursor.visible { opacity: 1; }
+    
+    .cursor__dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .cursor__ring {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1.5px solid rgba(255,255,255,0.7);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s var(--ease-out), height 0.4s var(--ease-out);
+    }
+    
+    .cursor.hover .cursor__ring {
+      width: 70px;
+      height: 70px;
+    }
+    
+    @media (hover: none) { .cursor { display: none; } }
+    @media (hover: hover) { body, a, button { cursor: none; } }
+
+    /* ===========================================
+       HEADER
+    =========================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 3rem;
+    }
+    
+    .header__logo {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+    }
+    
+    .header__logo:hover { opacity: 0.6; }
+    
+    .header__nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .header__nav a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .header__nav a:hover { color: var(--cream); }
+    
+    @media (max-width: 768px) {
+      .header { padding: 1.5rem; }
+      .header__nav { display: none; }
+    }
+
+    /* ===========================================
+       LAYOUT
+    =========================================== */
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
+      height: 100dvh;
+    }
+    
+    @media (max-width: 1024px) {
+      .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50% 50%;
+      }
+    }
+
+    /* ===========================================
+       CONTENT
+    =========================================== */
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem;
+      position: relative;
+    }
+    
+    @media (max-width: 1024px) {
+      .content {
+        padding: 5rem 2rem 2rem;
+        order: 2;
+        justify-content: flex-start;
+      }
+    }
+    
+    .slide {
+      position: absolute;
+      left: 4rem;
+      right: 4rem;
+      opacity: 0;
+      transform: translateY(60px);
+      pointer-events: none;
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    
+    .slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    
+    @media (max-width: 1024px) {
+      .slide { left: 2rem; right: 2rem; }
+    }
+    
+    .slide__title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 11rem);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.1);
+      margin-bottom: 1.25rem;
+    }
+    
+    .slide__tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.25rem;
+    }
+    
+    .slide__desc {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.6);
+      max-width: 40ch;
+      margin-bottom: 2rem;
+    }
+
+    /* ===========================================
+       CTA - Microinteractions
+    =========================================== */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      position: relative;
+      padding: 0.75rem 0;
+    }
+    
+    .cta:hover { color: var(--cream); }
+    
+    /* Animated underline */
+    .cta__line {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 0;
+      background: var(--cream);
+      transition: width 0.5s var(--ease-out);
+    }
+    
+    .cta:hover .cta__line {
+      width: 100%;
+    }
+    
+    /* Text wrapper */
+    .cta__text {
+      position: relative;
+      transition: transform 0.4s var(--ease-out);
+    }
+    
+    .cta:hover .cta__text {
+      transform: translateX(4px);
+    }
+    
+    /* Arrow with loop animation */
+    .cta__arrow {
+      position: relative;
+      width: 24px;
+      height: 12px;
+      overflow: hidden;
+    }
+    
+    .cta__arrow svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 12px;
+      transition: transform 0.4s var(--ease-out);
+    }
+    
+    .cta__arrow svg:last-child {
+      transform: translateX(-24px);
+    }
+    
+    .cta:hover .cta__arrow svg:first-child {
+      transform: translateX(24px);
+    }
+    
+    .cta:hover .cta__arrow svg:last-child {
+      transform: translateX(0);
+    }
+    
+    /* Dot that appears on hover */
+    .cta__dot {
+      position: absolute;
+      left: -16px;
+      top: 50%;
+      width: 4px;
+      height: 4px;
+      background: var(--cream);
+      border-radius: 50%;
+      transform: translateY(-50%) scale(0);
+      transition: transform 0.3s var(--ease-out);
+    }
+    
+    .cta:hover .cta__dot {
+      transform: translateY(-50%) scale(1);
+    }
+
+    /* ===========================================
+       FILMSTRIP
+    =========================================== */
+    .filmstrip {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @media (max-width: 1024px) {
+      .filmstrip { order: 1; }
+    }
+    
+    .filmstrip__track {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      padding: 3rem 0;
+      transition: transform 1s var(--ease-out);
+    }
+    
+    .card {
+      flex-shrink: 0;
+      width: clamp(280px, 28vw, 460px);
+      aspect-ratio: 4/5;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.35);
+      opacity: 0.3;
+      filter: saturate(0.3) brightness(0.6);
+      transition: 
+        transform 1s var(--ease-out),
+        opacity 0.8s var(--ease-in-out),
+        filter 0.8s var(--ease-in-out),
+        box-shadow 0.5s;
+    }
+    
+    .card:nth-child(odd) { transform: rotate(2deg) scale(0.88); }
+    .card:nth-child(even) { transform: rotate(-2deg) scale(0.88); }
+    
+    .card.active {
+      opacity: 1;
+      filter: saturate(1) brightness(1);
+      box-shadow: 0 50px 100px -25px rgba(0,0,0,0.5);
+    }
+    
+    .card.active:nth-child(odd) { transform: rotate(3deg) scale(1); }
+    .card.active:nth-child(even) { transform: rotate(-3deg) scale(1); }
+    
+    .card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .card.active .card__img {
+      animation: slowZoom 20s ease-in-out infinite alternate;
+    }
+    
+    @keyframes slowZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    /* ===========================================
+       DOTS
+    =========================================== */
+    .dots {
+      position: fixed;
+      right: 2.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    
+    .dot {
+      width: 44px;
+      height: 20px;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    
+    .dot__inner {
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      transition: background 0.3s, height 0.4s var(--ease-out);
+    }
+    
+    .dot:hover .dot__inner { background: rgba(255,255,255,0.5); }
+    
+    .dot.active .dot__inner {
+      background: var(--cream);
+      height: 24px;
+    }
+
+    /* ===========================================
+       COUNTER
+    =========================================== */
+    .counter {
+      position: fixed;
+      left: 3rem;
+      bottom: 2.5rem;
+      z-index: 100;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .counter__current {
+      font-size: 1.25rem;
+      color: var(--cream);
+    }
+
+    /* ===========================================
+       SCROLL HINT
+    =========================================== */
+    .scroll-hint {
+      position: fixed;
+      left: 50%;
+      bottom: 2.5rem;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      transition: opacity 0.5s;
+    }
+    
+    .scroll-hint.hidden { opacity: 0; }
+    
+    .scroll-hint__icon {
+      width: 20px;
+      height: 32px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      position: relative;
+    }
+    
+    .scroll-hint__dot {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 3px;
+      height: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 2px;
+      transform: translateX(-50%);
+      animation: scrollDot 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes scrollDot {
+      0%, 100% { top: 6px; opacity: 1; }
+      50% { top: 18px; opacity: 0.3; }
+    }
+    
+    @media (max-width: 768px) {
+      .scroll-hint { display: none; }
+      .counter { left: 1.5rem; bottom: 1.5rem; }
+      .dots { right: 1rem; }
+    }
+
+    /* ===========================================
+       INTRO ANIMATIONS
+    =========================================== */
+    
+    /* Initial states - hidden */
+    .intro-header {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    
+    .intro-title {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    
+    .intro-tag {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .intro-desc {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .intro-cta {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .intro-card {
+      opacity: 0;
+      transform: translateY(100px) scale(0.9);
+    }
+    
+    .intro-dots .dot {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    
+    .intro-counter {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .intro-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    /* Animated states */
+    .animate-in.intro-header {
+      animation: fadeSlideDown 0.8s var(--ease-out) forwards;
+      animation-delay: 0.1s;
+    }
+    
+    .animate-in .intro-title {
+      animation: fadeSlideUp 1s var(--ease-out) forwards;
+      animation-delay: 0.3s;
+    }
+    
+    .animate-in .intro-tag {
+      animation: fadeSlideUp 0.8s var(--ease-out) forwards;
+      animation-delay: 0.5s;
+    }
+    
+    .animate-in .intro-desc {
+      animation: fadeSlideUp 0.8s var(--ease-out) forwards;
+      animation-delay: 0.65s;
+    }
+    
+    .animate-in .intro-cta {
+      animation: fadeSlideUp 0.8s var(--ease-out) forwards;
+      animation-delay: 0.8s;
+    }
+    
+    .animate-in.intro-card:nth-child(1) {
+      animation: cardReveal 1.2s var(--ease-out) forwards;
+      animation-delay: 0.4s;
+    }
+    
+    .animate-in.intro-card:nth-child(2) {
+      animation: cardReveal 1.2s var(--ease-out) forwards;
+      animation-delay: 0.55s;
+    }
+    
+    .animate-in.intro-dots .dot:nth-child(1) {
+      animation: fadeSlideLeft 0.6s var(--ease-out) forwards;
+      animation-delay: 0.9s;
+    }
+    
+    .animate-in.intro-dots .dot:nth-child(2) {
+      animation: fadeSlideLeft 0.6s var(--ease-out) forwards;
+      animation-delay: 1s;
+    }
+    
+    .animate-in.intro-counter {
+      animation: fadeSlideUp 0.6s var(--ease-out) forwards;
+      animation-delay: 1s;
+    }
+    
+    .animate-in.intro-scroll {
+      animation: fadeSlideUp 0.6s var(--ease-out) forwards;
+      animation-delay: 1.2s;
+    }
+    
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeSlideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes cardReveal {
+      from {
+        opacity: 0;
+        transform: translateY(100px) rotate(0deg) scale(0.85);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--card-rotation, 2deg)) scale(var(--card-scale, 0.88));
+      }
+    }
+    
+    /* Card rotation variables for animation end state */
+    .card:nth-child(odd) {
+      --card-rotation: 2deg;
+      --card-scale: 0.88;
+    }
+    
+    .card:nth-child(even) {
+      --card-rotation: -2deg;
+      --card-scale: 0.88;
+    }
+    
+    .card.active:nth-child(odd) {
+      --card-rotation: 3deg;
+      --card-scale: 1;
+    }
+    
+    .card.active:nth-child(even) {
+      --card-rotation: -3deg;
+      --card-scale: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background - Base always visible, top layer fades -->
+  <div class="bg">
+    <div class="bg__layer bg__layer--0"></div>
+    <div class="bg__layer bg__layer--1" id="bgTop"></div>
+  </div>
+  
+  <div class="grain"></div>
+  
+  <!-- Cursor -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing"></div>
+  </div>
+  
+  <!-- Header -->
+  <header class="header intro-header" id="header">
+    <a href="/" class="header__logo">RM</a>
+    <nav class="header__nav">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="/#services">Services</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+  
+  <!-- Main -->
+  <main class="main">
+    <section class="content">
+      <article class="slide active animate-in" data-index="0">
+        <h1 class="slide__title intro-title">AI Sports Campaign</h1>
+        <p class="slide__tag intro-tag">AI-Powered Creatives</p>
+        <p class="slide__desc intro-desc">A groundbreaking visual campaign merging AI-generated imagery with athletic excellence. Pushing the boundaries of sports marketing.</p>
+        <a href="/case-studies/ai-sports" class="cta intro-cta">
+          <span class="cta__dot"></span>
+          <span class="cta__text">Open Case Study</span>
+          <span class="cta__arrow">
+            <svg viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 6H19M14 1L19 6L14 11"/>
+            </svg>
+            <svg viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 6H19M14 1L19 6L14 11"/>
+            </svg>
+          </span>
+          <span class="cta__line"></span>
+        </a>
+      </article>
+      
+      <article class="slide" data-index="1">
+        <h1 class="slide__title">Remoria</h1>
+        <p class="slide__tag">Creative Direction & Brand Aesthetics</p>
+        <p class="slide__desc">A comprehensive brand identity project exploring classical aesthetics and contemporary design. Building visual systems that create lasting impressions.</p>
+        <a href="/case-studies/remoria" class="cta">
+          <span class="cta__dot"></span>
+          <span class="cta__text">Open Case Study</span>
+          <span class="cta__arrow">
+            <svg viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 6H19M14 1L19 6L14 11"/>
+            </svg>
+            <svg viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 6H19M14 1L19 6L14 11"/>
+            </svg>
+          </span>
+          <span class="cta__line"></span>
+        </a>
+      </article>
+    </section>
+    
+    <section class="filmstrip" id="filmstrip">
+      <div class="filmstrip__track" id="track">
+        <article class="card active intro-card" data-index="0">
+          <img class="card__img" src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=900&q=85" alt="AI Sports Campaign" />
+        </article>
+        <article class="card intro-card" data-index="1">
+          <img class="card__img" src="https://cdn.prod.website-files.com/684986ace7f70737d22e9ad4/68ea1426aec5fcea21bea0a9_Remoria.jpg" alt="Remoria" />
+        </article>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Dots -->
+  <nav class="dots intro-dots" id="dotsNav">
+    <button class="dot active" data-index="0"><span class="dot__inner"></span></button>
+    <button class="dot" data-index="1"><span class="dot__inner"></span></button>
+  </nav>
+  
+  <!-- Counter -->
+  <div class="counter intro-counter" id="counterWrap">
+    <span class="counter__current" id="counter">01</span>/02
+  </div>
+  
+  <!-- Scroll hint -->
+  <div class="scroll-hint intro-scroll" id="scrollHint">
+    <div class="scroll-hint__icon">
+      <div class="scroll-hint__dot"></div>
+    </div>
+    <span>Scroll</span>
+  </div>
+
+  <script>
+  (function() {
+    'use strict';
+    
+    // Elements
+    const bgTop = document.getElementById('bgTop');
+    const track = document.getElementById('track');
+    const filmstrip = document.getElementById('filmstrip');
+    const slides = document.querySelectorAll('.slide');
+    const cards = document.querySelectorAll('.card');
+    const dots = document.querySelectorAll('.dot');
+    const counter = document.getElementById('counter');
+    const scrollHint = document.getElementById('scrollHint');
+    const cursor = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    
+    // State
+    let current = 0;
+    let isAnimating = false;
+    let hasScrolled = false;
+    const TOTAL = 2;
+    
+    // Position track
+    function positionTrack(index) {
+      const h = filmstrip.offsetHeight;
+      const cardH = cards[0].offsetHeight;
+      const gap = 48;
+      const offset = (h / 2) - (cardH / 2) - (index * (cardH + gap));
+      track.style.transform = `translateX(-50%) translateY(${offset}px)`;
+    }
+    
+    // Go to slide
+    function goTo(index, direction) {
+      if (isAnimating) return;
+      if (index < 0 || index >= TOTAL) return;
+      if (index === current) return;
+      
+      isAnimating = true;
+      
+      // Hide scroll hint
+      if (!hasScrolled) {
+        hasScrolled = true;
+        scrollHint.classList.add('hidden');
+      }
+      
+      const old = current;
+      
+      // Background - simply toggle top layer opacity
+      // When index is 1, show top layer (theme-1)
+      // When index is 0, hide top layer (reveal theme-0 underneath)
+      bgTop.style.opacity = index === 1 ? '1' : '0';
+      
+      // Slides
+      slides[old].classList.remove('active');
+      slides[index].classList.add('active');
+      
+      // Cards
+      cards[old].classList.remove('active');
+      cards[index].classList.add('active');
+      
+      // Track
+      positionTrack(index);
+      
+      // Dots
+      dots[old].classList.remove('active');
+      dots[index].classList.add('active');
+      
+      // Counter
+      counter.textContent = String(index + 1).padStart(2, '0');
+      
+      current = index;
+      
+      setTimeout(() => { isAnimating = false; }, 1000);
+    }
+    
+    // Scroll
+    let lastScroll = 0;
+    const COOLDOWN = 600;
+    
+    function handleWheel(e) {
+      const now = Date.now();
+      if (now - lastScroll < COOLDOWN) return;
+      if (isAnimating) return;
+      
+      const delta = e.deltaY;
+      
+      if (delta > 20 && current < TOTAL - 1) {
+        lastScroll = now;
+        goTo(current + 1, 'down');
+      } else if (delta < -20 && current > 0) {
+        lastScroll = now;
+        goTo(current - 1, 'up');
+      }
+    }
+    
+    document.addEventListener('wheel', handleWheel, { passive: true });
+    
+    // Touch
+    let touchY = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', (e) => {
+      if (isAnimating) return;
+      const diff = touchY - e.changedTouches[0].clientY;
+      
+      if (diff > 50 && current < TOTAL - 1) {
+        goTo(current + 1, 'down');
+      } else if (diff < -50 && current > 0) {
+        goTo(current - 1, 'up');
+      }
+    }, { passive: true });
+    
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (isAnimating) return;
+      
+      if ((e.key === 'ArrowDown' || e.key === 'ArrowRight') && current < TOTAL - 1) {
+        e.preventDefault();
+        goTo(current + 1, 'down');
+      } else if ((e.key === 'ArrowUp' || e.key === 'ArrowLeft') && current > 0) {
+        e.preventDefault();
+        goTo(current - 1, 'up');
+      }
+    });
+    
+    // Dots
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goTo(i, i > current ? 'down' : 'up');
+      });
+    });
+    
+    // Card clicks
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        if (i === current) {
+          const link = slides[i].querySelector('.cta');
+          if (link) window.location.href = link.href;
+        } else {
+          goTo(i, i > current ? 'down' : 'up');
+        }
+      });
+    });
+    
+    // Cursor
+    if (window.matchMedia('(hover: hover)').matches) {
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      
+      document.addEventListener('mousemove', (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursorDot.style.left = mx + 'px';
+        cursorDot.style.top = my + 'px';
+        cursor.classList.add('visible');
+      });
+      
+      (function loop() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        cursorRing.style.left = rx + 'px';
+        cursorRing.style.top = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+      
+      document.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+      
+      document.querySelectorAll('a, button, .card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    }
+    
+    // Resize
+    window.addEventListener('resize', () => positionTrack(current));
+    
+    // Init
+    positionTrack(0);
+    
+    // Intro animations
+    function triggerIntro() {
+      const header = document.getElementById('header');
+      const dotsNav = document.getElementById('dotsNav');
+      const counterWrap = document.getElementById('counterWrap');
+      const scrollHintEl = document.getElementById('scrollHint');
+      const introCards = document.querySelectorAll('.intro-card');
+      
+      // Trigger animations
+      setTimeout(() => header.classList.add('animate-in'), 50);
+      setTimeout(() => {
+        introCards.forEach(card => card.classList.add('animate-in'));
+      }, 100);
+      setTimeout(() => dotsNav.classList.add('animate-in'), 100);
+      setTimeout(() => counterWrap.classList.add('animate-in'), 100);
+      setTimeout(() => scrollHintEl.classList.add('animate-in'), 100);
+    }
+    
+    // Run intro on load
+    if (document.readyState === 'complete') {
+      triggerIntro();
+    } else {
+      window.addEventListener('load', triggerIntro);
+    }
+    
+  })();
+  </script>
+</body>
+</html>

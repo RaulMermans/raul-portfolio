@@ -493,3 +493,83 @@ img {
     display: none;
   }
 }
+
+/* Case Studies Page Animations */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes scrollDot {
+  0%,
+  100% {
+    top: 6px;
+    opacity: 1;
+  }
+  50% {
+    top: 18px;
+    opacity: 0.3;
+  }
+}
+
+/* CTA Link Styles */
+.cta-link {
+  position: relative;
+}
+
+.cta-arrow {
+  position: relative;
+  width: 24px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.cta-arrow svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 12px;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.cta-arrow svg:last-child {
+  transform: translateX(-24px);
+}
