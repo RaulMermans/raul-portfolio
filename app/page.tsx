@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
-import ProjectSection from '@/components/ProjectSection'
+import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
@@ -54,7 +54,7 @@ export default function Home() {
       
       <main id="main-content">
         <Hero />
-        <ProjectSection />
+        <SectionCards />
         <About />
         <Services />
         <Contact />
@@ -66,7 +66,7 @@ export default function Home() {
 
       <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-center gap-3 opacity-0 animate-[fadeIn_0.8s_ease-out_1.4s_forwards] hidden md:flex">
         <span className="font-mono text-xs text-ink-muted [writing-mode:vertical-rl]">
-          {String(currentSection).padStart(2, '0')}/{String(7).padStart(2, '0')}
+          {String(currentSection).padStart(2, '0')}/{String(8).padStart(2, '0')}
         </span>
         <div className="w-0.5 h-[60px] bg-cream-dark rounded-sm overflow-hidden">
           <div

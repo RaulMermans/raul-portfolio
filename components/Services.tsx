@@ -39,8 +39,13 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="services bg-cream border-t border-ink flex flex-col min-h-screen" aria-labelledby="services-title">
-      <h2 id="services-title" className="visually-hidden">Services</h2>
+    <section id="services" className="services bg-cream flex flex-col min-h-screen relative" aria-labelledby="services-title">
+      <div className="services__header text-center p-8 md:p-16 pt-16 md:pt-16">
+        <h2 id="services-title" className="services__title font-display text-[clamp(3rem,10vw,6rem)] leading-[0.9] tracking-[-0.02em] uppercase text-ink mb-6">
+          Services
+        </h2>
+        <div className="services__line w-full h-px bg-ink"></div>
+      </div>
 
       <div className="services__grid flex flex-1 min-h-0 md:flex-row flex-col">
         {services.map((service) => (
