@@ -27,7 +27,7 @@ const sections = [
     title: 'Visuals',
     description: 'AI art, album covers, and experiments. Digital pieces made for clients, or just because.',
     href: '/visuals',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=85',
+    image: '/images/sections/visuals-bg.webp', // Replace with your custom image
   },
 ]
 
