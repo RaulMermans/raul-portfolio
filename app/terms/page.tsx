@@ -1,14 +1,19 @@
-import type { Metadata } from 'next'
+'use client'
+
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | Raúl Mermans',
-  description: 'Terms of Service for Raúl Mermans portfolio website.',
-}
-
 export default function TermsOfService() {
+  useEffect(() => {
+    // Disable scroll snap on this page
+    document.documentElement.style.scrollSnapType = 'none'
+    return () => {
+      document.documentElement.style.scrollSnapType = ''
+    }
+  }, [])
+
   return (
     <div className="legal-page-wrapper">
       <Header />

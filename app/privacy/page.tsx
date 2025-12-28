@@ -1,14 +1,20 @@
+'use client'
+
+import { useEffect } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | Raúl Mermans',
-  description: 'Privacy Policy for Raúl Mermans portfolio website.',
-}
-
 export default function PrivacyPolicy() {
+  useEffect(() => {
+    // Disable scroll snap on this page
+    document.documentElement.style.scrollSnapType = 'none'
+    return () => {
+      document.documentElement.style.scrollSnapType = ''
+    }
+  }, [])
+
   return (
     <div className="legal-page-wrapper">
       <Header />
