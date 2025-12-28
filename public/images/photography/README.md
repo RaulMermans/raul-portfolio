@@ -38,6 +38,7 @@
 public/images/photography/
 ├── landscape/          ← Put landscape photos here
 ├── architecture/       ← Put architecture photos here
+├── street/             ← Put street photos here
 └── README.md          ← This file
 ```
 
