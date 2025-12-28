@@ -66,7 +66,7 @@ export default function CustomCursor() {
       const target = e.target as HTMLElement
       if (!target) return
       
-      const isInteractive = 
+      const isInteractive = Boolean(
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
         target.closest('a') ||
@@ -77,6 +77,7 @@ export default function CustomCursor() {
         target.closest('.link') ||
         target.closest('[role="button"]') ||
         target.style.cursor === 'pointer'
+      )
       
       setIsHovering(isInteractive)
     }
