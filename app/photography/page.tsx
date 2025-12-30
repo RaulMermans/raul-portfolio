@@ -92,6 +92,8 @@ export default function PhotographyPage() {
   const activeCount = categories[activeCategory]?.count || 0
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const handleKeyDown = (e: KeyboardEvent) => {
       if (lightboxOpen) {
         if (e.key === 'Escape') {
@@ -119,6 +121,8 @@ export default function PhotographyPage() {
   }, [lightboxOpen, currentCategoryImages.length])
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     if (lightboxOpen) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -131,6 +135,8 @@ export default function PhotographyPage() {
 
   // Horizontal scroll on wheel
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const gallery = document.getElementById('gallery')
     if (!gallery) return
 
@@ -147,16 +153,14 @@ export default function PhotographyPage() {
 
   // Set overflow hidden on mount for horizontal scroll
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
-    }
+    if (typeof window === 'undefined') return
+    
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
 
     return () => {
-      if (typeof document !== 'undefined') {
-        document.documentElement.style.overflow = ''
-        document.body.style.overflow = ''
-      }
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
     }
   }, [])
 
