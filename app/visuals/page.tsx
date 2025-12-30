@@ -329,29 +329,46 @@ export default function VisualsPage() {
 
     // Enable horizontal scrolling on desktop/landscape mobile
     if (!isMobile || isLandscapeMobile) {
-      // Set document to allow horizontal scroll
+      // Set document/html to allow horizontal scroll
       document.documentElement.style.overflowY = 'hidden'
       document.documentElement.style.overflowX = 'auto'
       document.documentElement.style.height = '100vh'
       document.documentElement.style.height = '100svh'
       
+      // Set body to allow horizontal scroll
       document.body.style.overflowY = 'hidden'
       document.body.style.overflowX = 'auto'
       document.body.style.height = '100vh'
       document.body.style.height = '100svh'
+      document.body.style.background = 'var(--ink)'
+      document.body.style.color = 'var(--cream)'
       
-      // Ensure main container makes document wider
+      // Ensure main container makes document wider than viewport
       const main = document.getElementById('main')
       if (main) {
         main.style.width = 'max-content'
         main.style.minWidth = '100vw'
       }
+      
+      // Calculate and set proper width based on works-container
+      setTimeout(() => {
+        const worksContainer = document.getElementById('works-container')
+        if (worksContainer && main) {
+          const containerWidth = worksContainer.scrollWidth
+          const viewportWidth = window.innerWidth
+          if (containerWidth > viewportWidth) {
+            main.style.width = `${containerWidth}px`
+          }
+        }
+      }, 100)
     } else {
       // Mobile: normal vertical scroll
       document.documentElement.style.overflowY = 'auto'
       document.documentElement.style.overflowX = 'hidden'
+      document.documentElement.style.height = 'auto'
       document.body.style.overflowY = 'auto'
       document.body.style.overflowX = 'hidden'
+      document.body.style.height = 'auto'
     }
 
     return () => {
@@ -361,6 +378,8 @@ export default function VisualsPage() {
       document.body.style.overflowY = ''
       document.body.style.overflowX = ''
       document.body.style.height = ''
+      document.body.style.background = ''
+      document.body.style.color = ''
       
       const main = document.getElementById('main')
       if (main) {
