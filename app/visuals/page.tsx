@@ -166,6 +166,8 @@ export default function VisualsPage() {
 
   // Horizontal scroll on wheel
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const isMobile = window.matchMedia('(max-width: 768px)').matches
     const isLandscapeMobile = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches
 
@@ -173,6 +175,9 @@ export default function VisualsPage() {
 
     const handleWheel = (e: WheelEvent) => {
       if (exhibitionOpen) return
+      const mobileMenu = document.querySelector('.ui__mobile-menu')
+      if (mobileMenu?.classList.contains('active')) return
+      
       e.preventDefault()
       window.scrollBy({ left: e.deltaY * 2, behavior: 'auto' })
     }
