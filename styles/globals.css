@@ -2424,22 +2424,28 @@ section {
   padding: calc(var(--header-height) + var(--space-8)) var(--section-padding) var(--space-8);
 }
 
-/* Visuals page main container - enable horizontal scroll */
-#main {
-  width: 100%;
+/* Visuals page - enable horizontal document scroll */
+body:has(#main) {
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  width: max-content;
+  min-width: 100vw;
 }
 
-#main::-webkit-scrollbar {
+body:has(#main)::-webkit-scrollbar {
   display: none;
 }
 
-#main {
+body:has(#main) {
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+/* Visuals page main container */
+#main {
+  width: max-content;
+  min-width: 100vw;
+  display: block;
 }
 
 .visuals-page__header {
@@ -3457,7 +3463,8 @@ a[href^="/"]:hover {
   align-items: center;
   height: 100vh;
   height: 100svh;
-  min-width: max-content;
+  width: max-content;
+  min-width: 100vw;
   padding: 0 calc(50vw - 180px);
   gap: var(--space-5);
   position: relative;
