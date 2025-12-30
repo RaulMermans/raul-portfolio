@@ -315,23 +315,26 @@ export default function VisualsPage() {
     }
   }
 
-  // Set overflow hidden on mount for horizontal scroll
+  // Enable horizontal scroll for visuals page
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const isMobile = window.matchMedia('(max-width: 768px)').matches
     const isLandscapeMobile = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches
 
+    // Only hide vertical scroll on desktop, allow horizontal
     if (!isMobile || isLandscapeMobile) {
-      if (typeof document !== 'undefined') {
-        document.documentElement.style.overflow = 'hidden'
-        document.body.style.overflow = 'hidden'
-      }
+      document.documentElement.style.overflowY = 'hidden'
+      document.documentElement.style.overflowX = 'auto'
+      document.body.style.overflowY = 'hidden'
+      document.body.style.overflowX = 'auto'
     }
 
     return () => {
-      if (typeof document !== 'undefined') {
-        document.documentElement.style.overflow = ''
-        document.body.style.overflow = ''
-      }
+      document.documentElement.style.overflowY = ''
+      document.documentElement.style.overflowX = ''
+      document.body.style.overflowY = ''
+      document.body.style.overflowX = ''
     }
   }, [])
 

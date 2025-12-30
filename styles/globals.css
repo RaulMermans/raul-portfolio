@@ -2425,27 +2425,10 @@ section {
 }
 
 /* Visuals page - enable horizontal document scroll */
-body:has(#main) {
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: max-content;
-  min-width: 100vw;
-}
-
-body:has(#main)::-webkit-scrollbar {
-  display: none;
-}
-
-body:has(#main) {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-/* Visuals page main container */
+/* Applied via inline styles in component, but ensure structure supports it */
 #main {
-  width: max-content;
-  min-width: 100vw;
   display: block;
+  width: 100%;
 }
 
 .visuals-page__header {
