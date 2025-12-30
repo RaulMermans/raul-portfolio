@@ -330,6 +330,7 @@ export default function VisualsPage() {
     // Enable horizontal scrolling on desktop/landscape mobile
     if (!isMobile || isLandscapeMobile) {
       // Set document/html to allow horizontal scroll
+      document.documentElement.style.background = 'var(--ink)'
       document.documentElement.style.overflowY = 'hidden'
       document.documentElement.style.overflowX = 'auto'
       document.documentElement.style.height = '100vh'
@@ -363,15 +364,19 @@ export default function VisualsPage() {
       }, 100)
     } else {
       // Mobile: normal vertical scroll
+      document.documentElement.style.background = 'var(--ink)'
       document.documentElement.style.overflowY = 'auto'
       document.documentElement.style.overflowX = 'hidden'
       document.documentElement.style.height = 'auto'
       document.body.style.overflowY = 'auto'
       document.body.style.overflowX = 'hidden'
       document.body.style.height = 'auto'
+      document.body.style.background = 'var(--ink)'
+      document.body.style.color = 'var(--cream)'
     }
 
     return () => {
+      document.documentElement.style.background = ''
       document.documentElement.style.overflowY = ''
       document.documentElement.style.overflowX = ''
       document.documentElement.style.height = ''
