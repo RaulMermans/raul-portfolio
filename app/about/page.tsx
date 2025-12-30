@@ -97,7 +97,7 @@ export default function AboutPage() {
           <div className="bio__inner">
             <div className="bio__image-wrapper reveal">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+                src="/images/about/profile.webp"
                 alt="Raúl Mermans"
                 className="bio__image"
               />

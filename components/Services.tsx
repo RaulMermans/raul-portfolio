@@ -9,7 +9,7 @@ const services = [
     titleShort: 'AI Agents',
     items: ['Custom AI Solutions', 'Automation Workflows', 'Prompt Engineering', 'AI Integration'],
     description: 'Intelligent automation systems that streamline workflows and unlock new possibilities.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80',
+    image: '/images/services/ai-agents.webp',
   },
   {
     number: '00-2',
@@ -17,7 +17,7 @@ const services = [
     titleShort: 'Web Dev',
     items: ['Custom Web Design', 'Frontend Development', 'Performance Optimization', 'CMS Integration'],
     description: 'Modern, performant web experiences crafted with precision.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+    image: '/images/services/web-development.webp',
   },
   {
     number: '00-3',
@@ -25,7 +25,7 @@ const services = [
     titleShort: 'Photography',
     items: ['Brand Photography', 'Visual Storytelling', 'Editorial Shoots', 'Product Photography'],
     description: 'Visual narratives that capture the essence of brands and stories.',
-    image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&q=80',
+    image: '/images/services/photography.webp',
   },
   {
     number: '00-4',
@@ -33,7 +33,7 @@ const services = [
     titleShort: 'Creative Dir',
     items: ['Brand Strategy', 'Visual Identity', 'Art Direction', 'Campaign Concepts'],
     description: 'Strategic creative vision from concept to execution.',
-    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&q=80',
+    image: '/images/services/creative-direction.webp',
   },
 ]
 

@@ -37,7 +37,7 @@ export default function About() {
         <div className="about__image-wrapper">
           <div ref={imageRef} className="about__image" id="about-image">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85"
+              src="/images/about/profile.webp"
               alt="Portrait of Raúl Mermans"
               loading="lazy"
             />

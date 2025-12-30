@@ -173,7 +173,7 @@ export default function VisualsPage() {
                     onError={(e) => {
                       // Fallback to placeholder if image doesn't exist
                       const target = e.target as HTMLImageElement
-                      target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80'
+                      target.src = '/images/placeholders/visuals-fallback.webp'
                     }}
                   />
                 </div>
@@ -205,7 +205,7 @@ export default function VisualsPage() {
             onClick={(e) => e.stopPropagation()}
             onError={(e) => {
               const target = e.target as HTMLImageElement
-              target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80'
+              target.src = '/images/placeholders/visuals-fallback.webp'
             }}
           />
           {currentCategoryImages.length > 1 && (

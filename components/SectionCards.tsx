@@ -11,7 +11,7 @@ const sections = [
     title: 'Case Studies',
     description: 'The stories behind the work. Brand campaigns, creative direction, and the thinking that shaped them.',
     href: '/case-studies',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=85',
+    image: '/images/sections/case-studies-bg.webp',
   },
   {
     id: 'photography',
@@ -19,7 +19,7 @@ const sections = [
     title: 'Photography',
     description: 'Places, faces, quiet moments. From Moroccan medinas to intimate portraits — images that stay with you.',
     href: '/photography',
-    image: 'https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=1920&q=85',
+    image: '/images/sections/photography-bg.webp',
   },
   {
     id: 'visuals',

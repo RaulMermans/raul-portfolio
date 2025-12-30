@@ -22,7 +22,7 @@ const caseStudies = [
     title: 'AI Sports Campaign',
     tag: 'AI-Powered Creatives',
     description: 'A groundbreaking visual campaign merging AI-generated imagery with athletic excellence. Pushing the boundaries of sports marketing.',
-    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=900&q=85',
+    image: '/images/case-studies/ai-sports-campaign.webp',
     href: '/case-studies/ai-sports-campaign',
     theme: 'theme-0', // Dark blue
   },
@@ -31,7 +31,7 @@ const caseStudies = [
     title: 'Remoria',
     tag: 'Creative Direction & Brand Aesthetics',
     description: 'A comprehensive brand identity project exploring classical aesthetics and contemporary design. Building visual systems that create lasting impressions.',
-    image: 'https://cdn.prod.website-files.com/684986ace7f70737d22e9ad4/68ea1426aec5fcea21bea0a9_Remoria.jpg',
+    image: '/images/case-studies/remoria.webp',
     href: '/case-studies/remoria',
     theme: 'theme-1', // Dark red
   },

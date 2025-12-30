@@ -4,6 +4,8 @@ This folder contains background images for the homepage section cards.
 
 ## Current Images
 
+- `case-studies-bg.webp` - Background image for the Case Studies section card
+- `photography-bg.webp` - Background image for the Photography section card
 - `visuals-bg.webp` - Background image for the Visuals section card
 
 ## How to Add/Replace Images
@@ -19,4 +21,3 @@ This folder contains background images for the homepage section cards.
 - Size: At least 1920px wide for desktop displays
 - Aspect ratio: 16:9 or similar landscape orientation
 - File size: Keep under 500KB if possible (Next.js will optimize)
-
