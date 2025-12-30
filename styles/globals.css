@@ -3299,16 +3299,28 @@ a[href^="/"]:hover {
    ======================================== */
 
 .visuals-layout {
+  width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--ink);
   color: var(--cream);
-  overflow-x: hidden;
-  overflow-y: hidden;
+}
+
+/* Visuals page body override - enable horizontal scroll */
+body:has(.visuals-layout) {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  background: var(--ink) !important;
+  color: var(--cream) !important;
 }
 
 @media (max-width: 768px) {
-  .visuals-layout {
-    overflow-y: auto;
+  body:has(.visuals-layout) {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
   }
 }
 
@@ -3440,21 +3452,7 @@ a[href^="/"]:hover {
   }
 }
 
-/* Visuals Layout - Enable horizontal document scroll */
-.visuals-layout {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-}
-
-.visuals-layout body {
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: 100vh;
-  height: 100svh;
-}
-
-/* Main container for visuals page */
+/* Main container for visuals page - makes document wider for horizontal scroll */
 #main {
   width: max-content;
   min-width: 100vw;
