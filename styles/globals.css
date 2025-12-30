@@ -43,6 +43,13 @@
   --border-light: 1px solid var(--cream-dark);
   --border-dark: 1px solid var(--ink);
   --border-faint: 1px solid rgba(255,255,255,0.15);
+  
+  /* Mobile breakpoints */
+  --mobile-xs: 480px;
+  --mobile-sm: 640px;
+  --mobile-md: 768px;
+  --mobile-lg: 1024px;
+  --mobile-xl: 1280px;
 }
 
 * {
@@ -54,6 +61,15 @@
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: y proximity;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,6 +94,15 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9375rem; /* 15px base for better mobile readability */
+    line-height: 1.65;
+  }
 }
 
 a {
@@ -4486,4 +4511,379 @@ a[href^="/"]:hover {
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--ink-faint);
+}
+
+/* ========================================
+   COMPREHENSIVE MOBILE RESPONSIVE STYLES
+   ======================================== */
+
+/* Base Mobile Improvements */
+@media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  * {
+    max-width: 100%;
+  }
+  
+  /* Ensure all images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Fix touch targets - minimum 44px */
+  button,
+  a,
+  .btn,
+  .category-btn,
+  .lightbox__close,
+  .lightbox__dot {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability */
+  p, li {
+    font-size: clamp(0.9375rem, 2.5vw, 1rem);
+    line-height: 1.7;
+  }
+  
+  /* Section padding adjustments */
+  section {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  
+  /* Hero mobile improvements */
+  .hero {
+    padding: var(--space-6) var(--space-4);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  .hero__name {
+    font-size: clamp(2.5rem, 15vw, 4rem) !important;
+  }
+  
+  .hero__role,
+  .hero__tagline {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding: 0 var(--space-4);
+  }
+  
+  /* Section Cards mobile */
+  .section-card {
+    min-height: 60vh;
+    min-height: 60dvh;
+  }
+  
+  .section-card__content {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .section-card__title {
+    font-size: clamp(2rem, 12vw, 3.5rem) !important;
+    max-width: 100%;
+  }
+  
+  .section-card__desc {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    margin-top: var(--space-3);
+    max-width: 100%;
+  }
+  
+  .section-card__index {
+    font-size: clamp(8rem, 40vw, 14rem) !important;
+    top: 40%;
+    right: var(--space-4);
+  }
+  
+  .section-card__view {
+    width: 80px;
+    height: 80px;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    font-size: 0.625rem;
+  }
+  
+  /* About section mobile */
+  .about {
+    padding: var(--space-6) var(--space-4);
+    min-height: auto;
+  }
+  
+  .about__inner {
+    gap: var(--space-5);
+  }
+  
+  .about__image-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .about__headline {
+    font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+  }
+  
+  .about__text {
+    font-size: clamp(0.9375rem, 2.5vw, 1rem);
+  }
+  
+  /* Services mobile */
+  .services {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .services__title {
+    font-size: clamp(2.5rem, 12vw, 4rem) !important;
+  }
+  
+  .service__title-small {
+    font-size: clamp(1rem, 4vw, 1.25rem) !important;
+  }
+  
+  .service__expanded {
+    padding: var(--space-4);
+  }
+  
+  .service__title-large {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+  }
+  
+  .service__items {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+  }
+  
+  /* Contact mobile */
+  .contact {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .contact__headline {
+    font-size: clamp(2rem, 10vw, 3.5rem) !important;
+  }
+  
+  .contact__email {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .contact__links a {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Bio section mobile (About page) */
+  .bio {
+    padding: var(--space-6) var(--space-4);
+    min-height: auto;
+    height: auto;
+  }
+  
+  .bio__inner {
+    padding: var(--space-4);
+    gap: var(--space-5);
+  }
+  
+  .bio__headline {
+    font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+  }
+  
+  .bio__text {
+    font-size: clamp(0.9375rem, 2.5vw, 1rem);
+  }
+  
+  /* Connect section mobile (About page) */
+  .connect {
+    padding: var(--space-6) var(--space-4);
+    min-height: auto;
+    height: auto;
+  }
+  
+  .connect__headline {
+    font-size: clamp(2.5rem, 15vw, 4rem) !important;
+  }
+  
+  .connect__text {
+    font-size: clamp(0.9375rem, 2.5vw, 1rem);
+  }
+  
+  /* Photography page mobile */
+  .gallery {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .gallery__grid {
+    padding: var(--space-5) 0;
+    gap: var(--space-3);
+  }
+  
+  .category-overlay__title {
+    font-size: clamp(2rem, 15vw, 3.5rem) !important;
+  }
+  
+  .category-overlay {
+    bottom: calc(var(--space-4) + 70px);
+  }
+  
+  .bottom-bar {
+    bottom: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - var(--space-8));
+    max-width: 500px;
+  }
+  
+  .category-btn {
+    flex: 1;
+    min-width: auto;
+    padding: var(--space-3) var(--space-2);
+    font-size: clamp(0.625rem, 2vw, 0.75rem);
+  }
+  
+  /* Visuals page mobile */
+  .visuals-page {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .works-container {
+    padding: var(--space-4) 0;
+  }
+  
+  .work-card {
+    min-width: 280px;
+  }
+  
+  /* Case studies mobile */
+  .case-studies-page {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  /* Footer mobile */
+  .footer {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .footer__column {
+    text-align: left;
+  }
+  
+  /* Lightbox mobile */
+  .lightbox {
+    padding: var(--space-4);
+  }
+  
+  .lightbox__image {
+    max-width: 95vw;
+    max-height: 70vh;
+  }
+  
+  .lightbox__close {
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 44px;
+    height: 44px;
+  }
+  
+  .lightbox__nav {
+    bottom: var(--space-5);
+    gap: var(--space-2);
+  }
+  
+  .lightbox__dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* UI elements mobile */
+  .ui__logo {
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+  }
+  
+  /* Buttons mobile */
+  .btn {
+    padding: var(--space-3) var(--space-5);
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+    min-height: 44px;
+  }
+  
+  /* Links mobile */
+  .link {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+    padding: var(--space-2) var(--space-3);
+    min-height: 44px;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  :root {
+    --section-padding: var(--space-5);
+  }
+  
+  .hero__name {
+    font-size: clamp(2rem, 18vw, 3rem) !important;
+  }
+  
+  .section-card__title {
+    font-size: clamp(1.75rem, 15vw, 2.5rem) !important;
+  }
+  
+  .services__title {
+    font-size: clamp(2rem, 15vw, 3rem) !important;
+  }
+  
+  .contact__headline {
+    font-size: clamp(1.75rem, 12vw, 2.5rem) !important;
+  }
+  
+  .category-overlay__title {
+    font-size: clamp(1.75rem, 18vw, 2.5rem) !important;
+  }
+  
+  .gallery__item {
+    width: 100px !important;
+  }
+  
+  .category-btn {
+    padding: var(--space-2) var(--space-2);
+    font-size: 0.625rem;
+  }
+  
+  .bottom-bar {
+    width: calc(100% - var(--space-4));
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: var(--space-5) var(--space-4);
+  }
+  
+  .section-card {
+    min-height: 50vh;
+  }
+  
+  .bio,
+  .connect {
+    min-height: auto;
+    height: auto;
+    padding: var(--space-5) var(--space-4);
+  }
+}
+
+/* Prevent text size adjustment on iOS */
+@media screen and (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
