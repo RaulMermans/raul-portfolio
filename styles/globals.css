@@ -4253,10 +4253,9 @@ a[href^="/"]:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--cream-warm);
+  background: var(--cream);
   position: relative;
   overflow: hidden;
-  padding: var(--section-padding);
 }
 
 .bio__inner {
@@ -4265,6 +4264,7 @@ a[href^="/"]:hover {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: var(--space-7);
+  padding: var(--space-6);
   align-items: center;
 }
 
@@ -4359,11 +4359,10 @@ a[href^="/"]:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: var(--ink);
-  color: var(--cream);
+  background: var(--cream);
+  color: var(--ink);
   position: relative;
   overflow: hidden;
-  padding: var(--section-padding);
 }
 
 .connect__glow {
@@ -4378,7 +4377,7 @@ a[href^="/"]:hover {
     transparent 60%
   );
   filter: blur(120px);
-  opacity: 0.15;
+  opacity: 0.25;
   pointer-events: none;
   top: 50%;
   left: 50%;
@@ -4391,6 +4390,7 @@ a[href^="/"]:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: var(--space-6);
 }
 
 .connect__label {
@@ -4407,13 +4407,13 @@ a[href^="/"]:hover {
   line-height: 0.9;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--ink);
   margin-bottom: var(--space-5);
 }
 
 .connect__text {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--ink-soft);
   max-width: 38ch;
   margin-bottom: var(--space-6);
   line-height: 1.7;
@@ -4426,7 +4426,7 @@ a[href^="/"]:hover {
 .connect__divider {
   width: 1px;
   height: 40px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(to bottom, var(--cream-dark), transparent);
   margin-bottom: var(--space-5);
 }
 
@@ -4435,7 +4435,7 @@ a[href^="/"]:hover {
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--ink-faint);
   margin-bottom: var(--space-4);
 }
 
@@ -4448,21 +4448,21 @@ a[href^="/"]:hover {
 .connect__social a {
   width: 44px;
   height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--cream-dark);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-muted);
   transition: all var(--transition-base) var(--ease);
 }
 
 .connect__social a:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background: rgba(196, 30, 58, 0.08);
+  background: rgba(196, 30, 58, 0.04);
   transform: translateY(-3px);
 }
 
@@ -4472,5 +4472,5 @@ a[href^="/"]:hover {
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--ink-faint);
 }

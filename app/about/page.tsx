@@ -27,62 +27,21 @@ export default function AboutPage() {
       menuBtn.classList.toggle('on-dark', inDarkSection)
     }
 
-    // Reveal animation observer for all .reveal elements
-    const revealElements = document.querySelectorAll('.reveal:not(.visible)')
+    // Reveal animation observer
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible')
-            revealObserver.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px' }
+      { threshold: 0.15 }
     )
 
-    revealElements.forEach((el) => {
-      // Check if already in viewport
-      const rect = el.getBoundingClientRect()
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 0
-      if (isVisible) {
-        el.classList.add('visible')
-      } else {
-        revealObserver.observe(el)
-      }
-    })
-
-    let ticking = false
-    const viewportHeight = window.innerHeight
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          updateOnScroll()
-          // Check for reveals on scroll (optimized)
-          const newRevealElements = document.querySelectorAll('.reveal:not(.visible)')
-          const viewportTop = 0
-          const viewportBottom = viewportHeight
-          
-          for (let i = 0; i < newRevealElements.length; i++) {
-            const el = newRevealElements[i] as HTMLElement
-            const rect = el.getBoundingClientRect()
-            if (rect.top < viewportBottom && rect.bottom > viewportTop) {
-              el.classList.add('visible')
-            }
-          }
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    updateOnScroll()
-    handleScroll() // Check immediately
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
       revealObserver.disconnect()
     }
   }, [])
@@ -106,16 +65,16 @@ export default function AboutPage() {
 
             <div className="bio__content">
               <p className="bio__page-title reveal">About</p>
-              <p className="label bio__label reveal reveal-delay-1">The Story</p>
-              <h1 className="bio__headline reveal reveal-delay-1">
+              <p className="label bio__label reveal reveal--delay-1">The Story</p>
+              <h1 className="bio__headline reveal reveal--delay-1">
                 I make things that feel like something.
               </h1>
 
-              <p className="bio__text reveal reveal-delay-2">
+              <p className="bio__text reveal reveal--delay-2">
                 I&apos;m Raúl — a <span className="bio__highlight">photographer, brand builder, and creative</span> based in Spain. I spend most of my time somewhere between a camera, a screen, and an idea that won&apos;t leave me alone until I make it real.
               </p>
-
-              <p className="bio__text reveal reveal-delay-3">
+              
+              <p className="bio__text reveal reveal--delay-3">
                 My work lives at the crossroads of visuals and meaning. I&apos;m drawn to fashion, culture, and the kind of projects that have a point of view. Lately, I&apos;ve been deep into AI — not to replace the craft, but to push it somewhere new.
               </p>
             </div>
@@ -123,26 +82,26 @@ export default function AboutPage() {
         </section>
 
         {/* CONNECT SECTION */}
-        <section ref={connectSectionRef} className="connect" id="connect">
+        <section className="connect" id="connect">
           <div className="connect__glow" aria-hidden="true"></div>
           <div className="connect__content">
-            <p className="label label--dark connect__label reveal">Let&apos;s Talk</p>
-            <h2 className="connect__headline reveal reveal-delay-1">Say Hello</h2>
-            <p className="connect__text reveal reveal-delay-2">
+            <p className="label connect__label reveal">Let&apos;s Talk</p>
+            <h2 className="connect__headline reveal reveal--delay-1">Say Hello</h2>
+            <p className="connect__text reveal reveal--delay-2">
               Whether it&apos;s a project, a collaboration, or just a conversation — I&apos;m always up for it.
             </p>
 
             <a
               href="mailto:raulmermans@gmail.com"
-              className="btn btn--arrow connect__email reveal reveal-delay-2"
+              className="btn btn--arrow connect__email reveal reveal--delay-2"
             >
               Get in Touch
             </a>
 
-            <div className="connect__divider reveal reveal-delay-3" aria-hidden="true"></div>
+            <div className="connect__divider reveal reveal--delay-3" aria-hidden="true"></div>
 
-            <p className="connect__social-label reveal reveal-delay-3">Find me online</p>
-            <div className="connect__social reveal reveal-delay-3">
+            <p className="connect__social-label reveal reveal--delay-3">Find me online</p>
+            <div className="connect__social reveal reveal--delay-3">
               <a
                 href="https://www.instagram.com/raulmeermans/"
                 target="_blank"
@@ -177,7 +136,7 @@ export default function AboutPage() {
               </a>
             </div>
 
-            <p className="connect__location reveal reveal-delay-3">Madrid, Spain</p>
+            <p className="connect__location reveal reveal--delay-3">Madrid, Spain</p>
           </div>
         </section>
       </main>
