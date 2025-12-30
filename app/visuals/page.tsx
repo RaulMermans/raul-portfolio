@@ -322,19 +322,46 @@ export default function VisualsPage() {
     const isMobile = window.matchMedia('(max-width: 768px)').matches
     const isLandscapeMobile = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches
 
-    // Only hide vertical scroll on desktop, allow horizontal
+    // Enable horizontal scrolling on desktop/landscape mobile
     if (!isMobile || isLandscapeMobile) {
+      // Set document to allow horizontal scroll
       document.documentElement.style.overflowY = 'hidden'
       document.documentElement.style.overflowX = 'auto'
+      document.documentElement.style.height = '100vh'
+      document.documentElement.style.height = '100svh'
+      
       document.body.style.overflowY = 'hidden'
       document.body.style.overflowX = 'auto'
+      document.body.style.height = '100vh'
+      document.body.style.height = '100svh'
+      
+      // Ensure main container makes document wider
+      const main = document.getElementById('main')
+      if (main) {
+        main.style.width = 'max-content'
+        main.style.minWidth = '100vw'
+      }
+    } else {
+      // Mobile: normal vertical scroll
+      document.documentElement.style.overflowY = 'auto'
+      document.documentElement.style.overflowX = 'hidden'
+      document.body.style.overflowY = 'auto'
+      document.body.style.overflowX = 'hidden'
     }
 
     return () => {
       document.documentElement.style.overflowY = ''
       document.documentElement.style.overflowX = ''
+      document.documentElement.style.height = ''
       document.body.style.overflowY = ''
       document.body.style.overflowX = ''
+      document.body.style.height = ''
+      
+      const main = document.getElementById('main')
+      if (main) {
+        main.style.width = ''
+        main.style.minWidth = ''
+      }
     }
   }, [])
 

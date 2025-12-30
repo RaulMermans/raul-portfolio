@@ -1483,7 +1483,7 @@ section {
 
 .service__bracket {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 2.5rem;
   left: 1.25rem;
   width: 20px;
   height: 20px;
@@ -3438,6 +3438,27 @@ a[href^="/"]:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Visuals Layout - Enable horizontal document scroll */
+.visuals-layout {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.visuals-layout body {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100vh;
+  height: 100svh;
+}
+
+/* Main container for visuals page */
+#main {
+  width: max-content;
+  min-width: 100vw;
+  display: block;
 }
 
 /* Horizontal Scroll Container */
