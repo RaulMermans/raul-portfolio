@@ -3253,6 +3253,20 @@ a[href^="/"]:hover {
    VISUALS PAGE (Horizontal Gallery)
    ======================================== */
 
+.visuals-layout {
+  min-height: 100vh;
+  background: var(--ink);
+  color: var(--cream);
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+@media (max-width: 768px) {
+  .visuals-layout {
+    overflow-y: auto;
+  }
+}
+
 /* Background Effects */
 .bg-effects {
   position: fixed;
