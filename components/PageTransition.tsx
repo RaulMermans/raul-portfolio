@@ -7,15 +7,23 @@ interface PageTransitionProps {
   children: React.ReactNode
 }
 
+// Route hierarchy for direction detection
+const routeDepth = (path: string): number => {
+  if (path === '/') return 0
+  return path.split('/').filter(Boolean).length
+}
+
 export default function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname()
   const [isPending, startTransition] = useTransition()
   const [displayChildren, setDisplayChildren] = useState(children)
   const [isExiting, setIsExiting] = useState(false)
   const [isEntering, setIsEntering] = useState(false)
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward')
   const prevPathnameRef = useRef(pathname)
   const isInitialMount = useRef(true)
   const transitionTimeoutRef = useRef<NodeJS.Timeout>()
+  const scrollPositionRef = useRef(0)
 
   useEffect(() => {
     // Skip transition on initial mount
@@ -28,11 +36,22 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
     // Only transition if pathname actually changed
     if (pathname !== prevPathnameRef.current) {
+      // Save scroll position
+      scrollPositionRef.current = window.scrollY
+
+      // Determine direction based on route depth
+      const prevDepth = routeDepth(prevPathnameRef.current)
+      const currentDepth = routeDepth(pathname)
+      const newDirection = currentDepth > prevDepth ? 'forward' : 'backward'
+      setDirection(newDirection)
+
       // Prevent scrolling during transition
       if (typeof document !== 'undefined') {
         document.body.classList.add('page-transitioning')
         document.documentElement.classList.add('page-transitioning')
         document.documentElement.style.overflow = 'hidden'
+        // Save scroll position for body
+        document.body.style.top = `-${scrollPositionRef.current}px`
       }
 
       // Start exit animation
@@ -61,16 +80,23 @@ export default function PageTransition({ children }: PageTransitionProps) {
               document.body.classList.remove('page-transitioning')
               document.documentElement.classList.remove('page-transitioning')
               document.documentElement.style.overflow = ''
+              document.body.style.top = ''
+              
+              // Restore scroll position if needed (for back navigation)
+              if (newDirection === 'backward' && scrollPositionRef.current > 0) {
+                // Small delay to ensure DOM is ready
+                requestAnimationFrame(() => {
+                  window.scrollTo({ top: 0, behavior: 'instant' })
+                })
+              } else {
+                // Scroll to top for forward navigation
+                window.scrollTo({ top: 0, behavior: 'instant' })
+              }
             }
             setIsEntering(false)
-            
-            // Scroll to top smoothly (but not instantly)
-            if (typeof window !== 'undefined' && window.scrollY > 0) {
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }
-          }, 400) // Match enter animation duration
+          }, 500) // Match enter animation duration
         })
-      }, 300) // Match exit animation duration
+      }, 400) // Match exit animation duration
 
       return () => {
         if (transitionTimeoutRef.current) {
@@ -83,18 +109,22 @@ export default function PageTransition({ children }: PageTransitionProps) {
     }
   }, [pathname, children, startTransition])
 
-  // Determine transition state
+  // Determine transition state with direction
   const transitionClass = isExiting 
-    ? 'page-transition--exiting' 
+    ? `page-transition--exiting page-transition--${direction}` 
     : isEntering 
-    ? 'page-transition--entering' 
+    ? `page-transition--entering page-transition--${direction}` 
     : isPending 
-    ? 'page-transition--pending' 
+    ? `page-transition--pending page-transition--${direction}` 
     : 'page-transition--idle'
 
   return (
-    <div className={`page-transition ${transitionClass}`}>
-      {displayChildren}
-    </div>
+    <>
+      <div className={`page-transition ${transitionClass}`}>
+        {displayChildren}
+      </div>
+      {/* Transition overlay */}
+      <div className={`page-transition-overlay ${isExiting || isPending ? 'page-transition-overlay--active' : ''}`} aria-hidden="true"></div>
+    </>
   )
 }

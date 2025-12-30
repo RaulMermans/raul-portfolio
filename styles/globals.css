@@ -2592,39 +2592,77 @@ section {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  will-change: opacity, transform;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform, filter;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(0px);
 }
 
-/* Exit animation - fade out and slide up slightly */
+/* Exit animation - fade out with blur and scale */
 .page-transition--exiting {
   opacity: 0;
-  transform: translateY(-20px) scale(0.98);
+  transform: translateY(-30px) scale(0.96);
+  filter: blur(8px);
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Forward exit (going deeper) - slide right */
+.page-transition--exiting.page-transition--forward {
+  transform: translateX(30px) translateY(-20px) scale(0.96);
+}
+
+/* Backward exit (going back) - slide left */
+.page-transition--exiting.page-transition--backward {
+  transform: translateX(-30px) translateY(-20px) scale(0.96);
 }
 
 /* Pending state - while content is loading */
 .page-transition--pending {
   opacity: 0;
-  transform: translateY(20px) scale(0.98);
+  transform: translateY(30px) scale(0.96);
+  filter: blur(8px);
   pointer-events: none;
 }
 
-/* Enter animation - fade in and slide up */
+/* Forward pending - slide from right */
+.page-transition--pending.page-transition--forward {
+  transform: translateX(30px) translateY(20px) scale(0.96);
+}
+
+/* Backward pending - slide from left */
+.page-transition--pending.page-transition--backward {
+  transform: translateX(-30px) translateY(20px) scale(0.96);
+}
+
+/* Enter animation - fade in with blur removal and scale */
 .page-transition--entering {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(0) translateY(0) scale(1);
+  filter: blur(0px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Forward enter - slide in from right */
+.page-transition--entering.page-transition--forward {
+  animation: pageEnterForward 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Backward enter - slide in from left */
+.page-transition--entering.page-transition--backward {
+  animation: pageEnterBackward 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Idle state - normal display */
 .page-transition--idle {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateX(0) translateY(0) scale(1);
+  filter: blur(0px);
 }
 
 /* Prevent scrolling during transitions */
@@ -2633,15 +2671,16 @@ body.page-transitioning {
   position: fixed;
   width: 100%;
   height: 100%;
+  left: 0;
+  right: 0;
 }
 
 html.page-transitioning {
   overflow: hidden;
 }
 
-/* Smooth transition overlay effect (subtle darkening) */
-.page-transition::before {
-  content: '';
+/* Transition overlay - smooth fade effect */
+.page-transition-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -2650,18 +2689,58 @@ html.page-transitioning {
   background: var(--ink);
   opacity: 0;
   pointer-events: none;
-  z-index: 9998;
+  z-index: 9999;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
 }
 
-.page-transition--exiting::before,
-.page-transition--pending::before {
-  opacity: 0.05;
+.page-transition-overlay--active {
+  opacity: 0.08;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.page-transition--entering::before {
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+/* Keyframe animations for smooth entry */
+@keyframes pageEnterForward {
+  from {
+    opacity: 0;
+    transform: translateX(40px) translateY(20px) scale(0.96);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes pageEnterBackward {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) translateY(20px) scale(0.96);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  .page-transition--exiting,
+  .page-transition--entering,
+  .page-transition--pending {
+    transition: opacity 0.2s ease;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+  
+  .page-transition-overlay {
+    transition: opacity 0.2s ease;
+  }
 }
 
 /* Smooth scroll restoration */
