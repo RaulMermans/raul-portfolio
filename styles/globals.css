@@ -124,15 +124,15 @@ img {
   transform: translateY(0);
 }
 
-.reveal-delay-1 {
+.reveal--delay-1 {
   transition-delay: 0.1s;
 }
 
-.reveal-delay-2 {
+.reveal--delay-2 {
   transition-delay: 0.2s;
 }
 
-.reveal-delay-3 {
+.reveal--delay-3 {
   transition-delay: 0.3s;
 }
 
@@ -310,16 +310,16 @@ img {
   transform: translateX(4px);
 }
 
-/* Dark section button styles */
+/* Connect section button styles (light background) */
 .connect .btn {
-  color: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--ink-soft);
+  border: 1px solid var(--cream-dark);
 }
 
 .connect .btn:hover {
-  color: var(--cream);
+  color: var(--accent);
   border-color: var(--accent);
-  background: rgba(196, 30, 58, 0.08);
+  background: rgba(196, 30, 58, 0.04);
 }
 
 .link {
