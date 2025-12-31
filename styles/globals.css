@@ -99,6 +99,16 @@ body {
   min-height: 100dvh; /* Dynamic viewport height for mobile */
 }
 
+/* Allow horizontal scroll on visuals page - override will be set by JS */
+body.visuals-page {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  width: auto !important;
+  position: relative !important;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 0.9375rem; /* 15px base for better mobile readability */
