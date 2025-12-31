@@ -174,6 +174,7 @@ export default function CaseStudiesPage() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="grain" aria-hidden="true"></div>
 
       <Header />
@@ -276,6 +277,8 @@ export default function CaseStudiesPage() {
         <div className="scroll-hint__line"></div>
         <span>Scroll</span>
       </div>
+
+      <Footer />
     </>
   )
 }

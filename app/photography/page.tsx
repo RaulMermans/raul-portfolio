@@ -106,7 +106,7 @@ export default function PhotographyPage() {
         }
       } else {
         // Horizontal scroll with arrow keys when lightbox is closed
-        const gallery = document.getElementById('gallery')
+        const gallery = document.getElementById('main-content')
         if (!gallery) return
         
         if (e.key === 'ArrowRight') {
@@ -319,6 +319,8 @@ export default function PhotographyPage() {
           <span className="lightbox__hint">ESC to close</span>
         </div>
       )}
+
+      <Footer />
     </>
   )
 }

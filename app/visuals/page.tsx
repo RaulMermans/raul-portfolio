@@ -529,6 +529,7 @@ export default function VisualsPage() {
         <div className="bg-orb bg-orb--3"></div>
       </div>
 
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="light-leak" aria-hidden="true"></div>
       <div className="vignette" aria-hidden="true"></div>
       <div className="scanlines" aria-hidden="true"></div>
@@ -725,6 +726,8 @@ export default function VisualsPage() {
           </div>
         </nav>
       </div>
+
+      <Footer />
     </div>
   )
 }
