@@ -216,9 +216,7 @@ export default function VisualsPage() {
       const scrollLeft = window.scrollX || document.documentElement.scrollLeft
       // Apply subtle parallax (title moves opposite to scroll direction)
       // The title overlay container is fixed, but the text inside moves slightly
-      // Combine the parallax with any existing transform (from animation)
-      // The animation sets translateY(0) after reveal, so we combine with translateX
-      titleTextRef.current.style.transform = `translate(${scrollLeft * -0.15}px, 0)`
+      titleTextRef.current.style.transform = `translateX(${scrollLeft * -0.15}px)`
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -358,39 +356,27 @@ export default function VisualsPage() {
         // Disable scroll-snap for visuals page
         document.documentElement.style.setProperty('scroll-snap-type', 'none', 'important')
         
-        // Set html/body exactly like HTML mockup
-        document.documentElement.style.setProperty('background', 'var(--ink)', 'important')
-        document.documentElement.style.setProperty('overflow-y', 'hidden', 'important')
-        document.documentElement.style.setProperty('overflow-x', 'auto', 'important')
-        document.documentElement.style.setProperty('height', '100vh', 'important')
-        document.documentElement.style.setProperty('height', '100svh', 'important')
+        // Force layout recalculation
+        void worksContainer.offsetWidth
         
-        document.body.style.setProperty('overflow-y', 'hidden', 'important')
-        document.body.style.setProperty('overflow-x', 'auto', 'important')
-        document.body.style.setProperty('height', '100vh', 'important')
-        document.body.style.setProperty('height', '100svh', 'important')
-        document.body.style.setProperty('background', 'var(--ink)', 'important')
-        document.body.style.setProperty('color', 'var(--cream)', 'important')
-        
-        // Get the natural scrollWidth of the works container
-        // This is the actual width needed for all cards + gaps + padding
+        // Get the actual scrollWidth after layout
         const containerScrollWidth = worksContainer.scrollWidth
         const viewportWidth = window.innerWidth
         
-        // The main element should be at least as wide as the container
-        // This ensures horizontal scrolling is enabled
-        const mainWidth = Math.max(containerScrollWidth, viewportWidth + 1)
+        // Ensure main is wide enough to enable horizontal scrolling
+        // Must be wider than viewport
+        const mainWidth = Math.max(containerScrollWidth, viewportWidth + 100)
         
-        // Set main to be wide enough to enable scrolling
+        // Set main width to enable scrolling
         main.style.width = `${mainWidth}px`
         main.style.minWidth = `${mainWidth}px`
         main.style.display = 'block'
         main.style.position = 'relative'
         
-        // Works container should maintain its natural width
+        // Ensure works container doesn't shrink
+        worksContainer.style.flexShrink = '0'
         worksContainer.style.width = 'auto'
         worksContainer.style.minWidth = 'auto'
-        worksContainer.style.flexShrink = '0'
       } else {
         // Mobile: normal vertical scroll
         document.body.classList.remove('visuals-page')

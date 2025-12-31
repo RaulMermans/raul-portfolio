@@ -103,25 +103,29 @@ body {
   min-height: 100dvh; /* Dynamic viewport height for mobile */
 }
 
-/* Allow horizontal scroll on visuals page - override will be set by JS */
-html.visuals-page,
-body.visuals-page {
+/* Allow horizontal scroll on visuals page - matching HTML mockup exactly */
+html.visuals-page {
+  background: var(--ink) !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
   height: 100vh !important;
   height: 100svh !important;
-  width: auto !important;
-  position: relative !important;
   scroll-snap-type: none !important;
 }
 
-html.visuals-page {
-  background: var(--ink) !important;
-}
-
 body.visuals-page {
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.6;
   background: var(--ink) !important;
   color: var(--cream) !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-snap-type: none !important;
 }
 
 @media (max-width: 768px) {
@@ -3516,10 +3520,8 @@ a[href^="/"]:hover {
   z-index: 10 !important;
   pointer-events: none;
   text-align: center;
-  /* Ensure it stays fixed during horizontal scroll - relative to viewport, not document */
+  /* Ensure it stays fixed during horizontal scroll - relative to viewport */
   will-change: transform;
-  /* Escape any parent transforms/containing blocks */
-  contain: layout style paint;
 }
 
 .title-overlay__text {
@@ -3551,6 +3553,8 @@ body.visuals-page #main {
   display: block;
   position: relative;
   overflow: visible !important;
+  min-height: 100vh;
+  min-height: 100svh;
   /* Width will be set by JavaScript based on works-container */
 }
 
@@ -3564,7 +3568,6 @@ body.visuals-page #main {
   gap: var(--space-5);
   position: relative;
   z-index: 5;
-  scroll-snap-type: x proximity;
   /* Width will be calculated by JavaScript to ensure horizontal scroll */
   flex-shrink: 0;
   overflow: visible;
