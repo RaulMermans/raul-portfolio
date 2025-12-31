@@ -132,19 +132,7 @@ body.visuals-page {
 }
 
 /* Visuals layout wrapper - ensure full screen */
-.visuals-layout {
-  height: 100vh !important;
-  height: 100svh !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  max-height: 100vh !important;
-  max-height: 100svh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: visible !important;
-  width: 100% !important;
-  position: relative;
-}
+/* Merged with definition below */
 
 @media (max-width: 768px) {
   html.visuals-page,
@@ -3438,6 +3426,8 @@ a[href^="/"]:hover {
   height: 100svh !important;
   min-height: 100vh !important;
   min-height: 100svh !important;
+  max-height: 100vh !important;
+  max-height: 100svh !important;
   background: var(--ink) !important;
   color: var(--cream) !important;
   position: relative;
