@@ -86,7 +86,7 @@ export default function Services() {
                     width={300}
                     height={225}
                     quality={85}
-                    style={{ objectFit: 'cover' }}
+                    className="service__image-img"
                     loading="lazy"
                   />
                 </div>
