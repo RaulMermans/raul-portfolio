@@ -4528,7 +4528,8 @@ body.visuals-page #main {
   transition: filter var(--transition-slow) var(--ease);
 }
 
-.bio__image-wrapper:hover .bio__image {
+.bio__image-wrapper:hover .bio__image,
+.bio__image-wrapper:hover :global(.bio__image) {
   filter: grayscale(0%) contrast(1);
 }
 

@@ -1,33 +1,14 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
 
 export default function AboutPage() {
-  const connectSectionRef = useRef<HTMLElement>(null)
-
   useEffect(() => {
-    const logo = document.querySelector('.ui__logo')
-    const nav = document.querySelector('.ui__nav')
-    const menuBtn = document.querySelector('.ui__menu-btn')
-    const connectSection = connectSectionRef.current
-
-    if (!connectSection || !logo || !nav || !menuBtn) return
-
-    const updateOnScroll = () => {
-      const scrollTop = window.scrollY
-      const connectTop = connectSection.offsetTop
-      const viewportHeight = window.innerHeight
-
-      const inDarkSection = scrollTop + viewportHeight * 0.1 >= connectTop
-
-      logo.classList.toggle('on-dark', inDarkSection)
-      nav.classList.toggle('on-dark', inDarkSection)
-      menuBtn.classList.toggle('on-dark', inDarkSection)
-    }
+    if (typeof window === 'undefined') return
 
     // Reveal animation observer
     const revealObserver = new IntersectionObserver(
