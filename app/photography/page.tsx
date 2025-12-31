@@ -155,11 +155,16 @@ export default function PhotographyPage() {
   // Set overflow hidden on mount for horizontal scroll
   useEffect(() => {
     if (typeof window === 'undefined') return
-    
+
+    // Disable scroll-snap for normal scrolling
+    document.documentElement.style.scrollSnapType = 'none'
+    document.body.style.overflowY = 'auto'
     document.documentElement.style.overflow = 'hidden'
     document.body.style.overflow = 'hidden'
 
     return () => {
+      document.documentElement.style.scrollSnapType = ''
+      document.body.style.overflowY = ''
       document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
     }

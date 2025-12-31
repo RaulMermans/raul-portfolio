@@ -172,6 +172,17 @@ export default function CaseStudiesPage() {
     updatePositions()
   }, [currentIndex])
 
+  // Disable scroll-snap for normal scrolling
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    document.documentElement.style.scrollSnapType = 'none'
+    document.body.style.overflowY = 'auto'
+    return () => {
+      document.documentElement.style.scrollSnapType = ''
+      document.body.style.overflowY = ''
+    }
+  }, [])
+
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>

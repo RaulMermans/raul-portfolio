@@ -64,7 +64,6 @@
 }
 
 html {
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -72,7 +71,6 @@ html {
 
 @media (max-width: 768px) {
   html {
-    scroll-snap-type: none; /* Fluid scroll on mobile */
     scroll-behavior: smooth;
     font-size: 16px; /* Prevent zoom on iOS */
   }
@@ -460,7 +458,6 @@ img {
 section {
   min-height: 100vh;
   min-height: 100svh;
-  scroll-snap-align: start;
   position: relative;
   overflow: hidden;
 }
@@ -1671,7 +1668,6 @@ section {
 .footer {
   min-height: 100vh;
   min-height: 100svh;
-  scroll-snap-align: start;
   background: var(--ink);
   color: var(--cream);
   display: flex;
@@ -3630,7 +3626,6 @@ body.visuals-page #main {
 }
 
 .work-card {
-  scroll-snap-align: center;
 }
 
 /* Work Cards */
@@ -4492,9 +4487,8 @@ body.visuals-page #main {
    ABOUT PAGE - BIO SECTION
    ======================================== */
 .bio {
-  height: 100vh;
-  height: 100svh;
-  scroll-snap-align: start;
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4597,9 +4591,8 @@ body.visuals-page #main {
    ABOUT PAGE - CONNECT SECTION
    ======================================== */
 .connect {
-  height: 100vh;
-  height: 100svh;
-  scroll-snap-align: start;
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
