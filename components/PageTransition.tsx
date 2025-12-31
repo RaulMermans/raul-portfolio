@@ -45,13 +45,16 @@ export default function PageTransition({ children }: PageTransitionProps) {
       const newDirection = currentDepth > prevDepth ? 'forward' : 'backward'
       setDirection(newDirection)
 
-      // Prevent scrolling during transition
+      // Prevent scrolling during transition (but not on visuals page)
       if (typeof document !== 'undefined') {
-        document.body.classList.add('page-transitioning')
-        document.documentElement.classList.add('page-transitioning')
-        document.documentElement.style.overflow = 'hidden'
-        // Save scroll position for body
-        document.body.style.top = `-${scrollPositionRef.current}px`
+        const isVisualsPage = document.body.classList.contains('visuals-page')
+        if (!isVisualsPage) {
+          document.body.classList.add('page-transitioning')
+          document.documentElement.classList.add('page-transitioning')
+          document.documentElement.style.overflow = 'hidden'
+          // Save scroll position for body
+          document.body.style.top = `-${scrollPositionRef.current}px`
+        }
       }
 
       // Start exit animation
@@ -77,20 +80,23 @@ export default function PageTransition({ children }: PageTransitionProps) {
           // Allow scrolling again after enter animation
           setTimeout(() => {
             if (typeof document !== 'undefined') {
-              document.body.classList.remove('page-transitioning')
-              document.documentElement.classList.remove('page-transitioning')
-              document.documentElement.style.overflow = ''
-              document.body.style.top = ''
-              
-              // Restore scroll position if needed (for back navigation)
-              if (newDirection === 'backward' && scrollPositionRef.current > 0) {
-                // Small delay to ensure DOM is ready
-                requestAnimationFrame(() => {
+              const isVisualsPage = document.body.classList.contains('visuals-page')
+              if (!isVisualsPage) {
+                document.body.classList.remove('page-transitioning')
+                document.documentElement.classList.remove('page-transitioning')
+                document.documentElement.style.overflow = ''
+                document.body.style.top = ''
+                
+                // Restore scroll position if needed (for back navigation)
+                if (newDirection === 'backward' && scrollPositionRef.current > 0) {
+                  // Small delay to ensure DOM is ready
+                  requestAnimationFrame(() => {
+                    window.scrollTo({ top: 0, behavior: 'instant' })
+                  })
+                } else {
+                  // Scroll to top for forward navigation
                   window.scrollTo({ top: 0, behavior: 'instant' })
-                })
-              } else {
-                // Scroll to top for forward navigation
-                window.scrollTo({ top: 0, behavior: 'instant' })
+                }
               }
             }
             setIsEntering(false)

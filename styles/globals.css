@@ -104,6 +104,7 @@ body {
 }
 
 /* Allow horizontal scroll on visuals page - override will be set by JS */
+html.visuals-page,
 body.visuals-page {
   overflow-x: auto !important;
   overflow-y: hidden !important;
@@ -111,9 +112,26 @@ body.visuals-page {
   height: 100svh !important;
   width: auto !important;
   position: relative !important;
+  scroll-snap-type: none !important;
+}
+
+html.visuals-page {
+  background: var(--ink) !important;
+}
+
+body.visuals-page {
+  background: var(--ink) !important;
+  color: var(--cream) !important;
 }
 
 @media (max-width: 768px) {
+  html.visuals-page,
+  body.visuals-page {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+  
   body {
     font-size: 0.9375rem; /* 15px base for better mobile readability */
     line-height: 1.65;
@@ -3486,13 +3504,15 @@ a[href^="/"]:hover {
 
 /* Title Overlay */
 .title-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
   z-index: 10;
   pointer-events: none;
   text-align: center;
+  /* Ensure it stays fixed during horizontal scroll */
+  will-change: transform;
 }
 
 .title-overlay__text {
@@ -3507,6 +3527,8 @@ a[href^="/"]:hover {
   animation: titleReveal 1s var(--ease) 0.5s forwards;
   text-shadow: 0 0 100px rgba(255,181,160,0.1);
   transition: transform 0.1s linear;
+  /* Ensure the text can move independently while overlay stays fixed */
+  display: inline-block;
 }
 
 @keyframes titleReveal {
@@ -3517,9 +3539,11 @@ a[href^="/"]:hover {
 }
 
 /* Main container for visuals page - makes document wider for horizontal scroll */
-#main {
+html.visuals-page #main,
+body.visuals-page #main {
   display: block;
   position: relative;
+  overflow: visible !important;
   /* Width will be set by JavaScript based on works-container */
 }
 
@@ -3536,6 +3560,7 @@ a[href^="/"]:hover {
   scroll-snap-type: x proximity;
   /* Width will be calculated by JavaScript to ensure horizontal scroll */
   flex-shrink: 0;
+  overflow: visible;
 }
 
 .work-card {
