@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
 
 export default function AboutPage() {
@@ -137,8 +136,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   )
 }

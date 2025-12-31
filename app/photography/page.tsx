@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 // ========================================
 // PHOTO DATA STRUCTURE
@@ -324,8 +323,6 @@ export default function PhotographyPage() {
           <span className="lightbox__hint">ESC to close</span>
         </div>
       )}
-
-      <Footer />
     </>
   )
 }

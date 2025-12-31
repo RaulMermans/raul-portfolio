@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 // ========================================
 // CASE STUDIES DATA
@@ -288,8 +287,6 @@ export default function CaseStudiesPage() {
         <div className="scroll-hint__line"></div>
         <span>Scroll</span>
       </div>
-
-      <Footer />
     </>
   )
 }
