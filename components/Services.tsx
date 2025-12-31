@@ -24,7 +24,7 @@ const services = [
     number: '00-3',
     title: 'Photography',
     titleShort: 'Photography',
-    items: ['Brand Photography', 'Visual Storytelling', 'Editorial Shoots', 'Product Photography'],
+    items: ['Brand Photo', 'Visual Story', 'Editorial Shoot', 'Product Photo'],
     description: 'Visual narratives that capture the essence of brands and stories.',
     image: '/images/services/photography.webp',
   },
@@ -79,13 +79,13 @@ export default function Services() {
                     </Link>
                   </div>
                 </div>
-                <div className="service__image" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <div className="service__image">
                   <Image
                     src={service.image}
                     alt={`${service.title} service illustration`}
-                    fill
+                    width={300}
+                    height={225}
                     quality={85}
-                    sizes="(max-width: 768px) 0px, 300px"
                     style={{ objectFit: 'cover' }}
                     loading="lazy"
                   />

@@ -1506,17 +1506,17 @@ section {
   align-self: flex-start;
 }
 
-.service__image img {
+.service__image img,
+.service__image :global(img) {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow) var(--ease), filter 0.6s var(--ease);
-  filter: brightness(0.95);
+  transition: transform var(--transition-slow) var(--ease);
 }
 
-.service:hover .service__image img {
-  transform: scale(1.15);
-  filter: brightness(1.05);
+.service:hover .service__image img,
+.service:hover .service__image :global(img) {
+  transform: scale(1.05);
 }
 
 .service__footer {
