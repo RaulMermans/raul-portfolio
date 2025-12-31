@@ -347,7 +347,7 @@ export default function VisualsPage() {
     document.documentElement.classList.add('visuals-page')
 
     const updateLayout = () => {
-      const main = document.getElementById('main')
+      const main = document.getElementById('main-content')
       const worksContainer = worksContainerRef.current
       
       if (!main || !worksContainer) return
@@ -505,7 +505,7 @@ export default function VisualsPage() {
       document.body.style.removeProperty('background')
       document.body.style.removeProperty('color')
       
-      const main = document.getElementById('main')
+      const main = document.getElementById('main-content')
       if (main) {
         main.style.width = ''
         main.style.minWidth = ''

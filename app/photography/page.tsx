@@ -138,7 +138,7 @@ export default function PhotographyPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     
-    const gallery = document.getElementById('gallery')
+    const gallery = document.getElementById('main-content')
     if (!gallery) return
 
     const handleWheel = (e: WheelEvent) => {
