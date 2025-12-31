@@ -5058,18 +5058,31 @@ body.visuals-page #main {
    CASE STUDIES PAGE (New Design)
    ======================================== */
 
+/* Case Studies Page - Full Screen Layout */
 .case-studies-main {
   height: 100vh !important;
   height: 100svh !important;
   min-height: 100vh !important;
   min-height: 100svh !important;
+  max-height: 100vh !important;
+  max-height: 100svh !important;
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   position: relative;
   overflow: hidden;
   background: var(--cream-light);
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+/* Ensure PageTransition doesn't constrain case studies */
+body:has(.case-studies-main) .page-transition {
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  overflow: visible !important;
 }
 
 @media (max-width: 900px) {
