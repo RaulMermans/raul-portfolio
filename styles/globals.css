@@ -3826,13 +3826,18 @@ body.visuals-page #main {
   transform: translateX(-50%);
   z-index: 100;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
+  justify-content: center;
+  gap: var(--space-2);
   opacity: 0;
   animation: fadeIn 0.8s var(--ease-out) 1.5s forwards;
   transition: opacity 0.5s var(--ease);
+  width: auto;
+  text-align: center;
   /* Ensure it doesn't overlap with back-to-top button */
   padding-bottom: calc(44px + var(--space-2));
+  margin: 0 auto;
 }
 
 .scroll-hint__text {
@@ -3841,14 +3846,18 @@ body.visuals-page #main {
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
+  text-align: center;
+  white-space: nowrap;
 }
 
 .scroll-hint__arrow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   color: rgba(255,255,255,0.3);
   animation: arrowBounce 1.5s ease-in-out infinite;
+  width: 100%;
 }
 
 @keyframes arrowBounce {
@@ -4321,15 +4330,17 @@ body.visuals-page #main {
   .works-container {
     flex-direction: column;
     height: auto;
-    padding: 100px var(--space-5) var(--space-8);
-    gap: var(--space-6);
+    padding: 120px var(--space-6) var(--space-10);
+    gap: var(--space-8);
+    min-height: 100vh;
   }
 
   .work-card {
-    width: calc(100vw - var(--space-5) * 2);
+    width: calc(100vw - var(--space-6) * 2);
     max-width: 400px;
     height: 55vh;
     min-height: 380px;
+    margin: 0 auto;
   }
 
   .work-card__info {
