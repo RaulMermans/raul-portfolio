@@ -645,7 +645,20 @@ section {
   }
   
   html {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: none; /* Fluid scroll on mobile */
+  }
+  
+  /* Reduce animations on mobile for better performance */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Disable parallax on mobile */
+  .hero__orbs,
+  .section-card__bg {
+    transform: none !important;
+    will-change: auto !important;
   }
   
   .ui__logo {
