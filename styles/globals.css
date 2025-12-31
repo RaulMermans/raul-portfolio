@@ -132,8 +132,6 @@ body.visuals-page {
 }
 
 /* Visuals layout wrapper - ensure full screen */
-/* Merged with definition below */
-
 @media (max-width: 768px) {
   html.visuals-page,
   body.visuals-page {
