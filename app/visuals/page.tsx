@@ -356,6 +356,22 @@ export default function VisualsPage() {
         // Disable scroll-snap for visuals page
         document.documentElement.style.setProperty('scroll-snap-type', 'none', 'important')
         
+        // Set html and body for horizontal scroll
+        document.documentElement.style.setProperty('overflow-x', 'auto', 'important')
+        document.documentElement.style.setProperty('overflow-y', 'hidden', 'important')
+        document.documentElement.style.setProperty('height', '100vh', 'important')
+        document.documentElement.style.setProperty('height', '100svh', 'important')
+        document.documentElement.style.setProperty('width', '100%', 'important')
+        document.documentElement.style.setProperty('background', 'var(--cream)', 'important')
+        
+        document.body.style.setProperty('overflow-x', 'auto', 'important')
+        document.body.style.setProperty('overflow-y', 'hidden', 'important')
+        document.body.style.setProperty('height', '100vh', 'important')
+        document.body.style.setProperty('height', '100svh', 'important')
+        document.body.style.setProperty('width', '100%', 'important')
+        document.body.style.setProperty('background', 'var(--cream)', 'important')
+        document.body.style.setProperty('color', 'var(--ink)', 'important')
+        
         // Force layout recalculation to get accurate measurements
         void worksContainer.offsetWidth
         void main.offsetWidth
