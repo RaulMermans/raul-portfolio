@@ -15,6 +15,7 @@ This document explains the organization of the portfolio website repository.
 - `.gitignore` - Git ignore rules
 - `.nvmrc` - Node.js version
 - `netlify.toml` - Netlify deployment config
+- `railway.json` - Railway deployment config
 
 ### Documentation
 - `README.md` - Main project readme
@@ -43,10 +44,30 @@ app/
 │   ├── contact/     # Contact form endpoint
 │   ├── health/      # Health check endpoint
 │   └── projects/    # Projects API endpoint
-├── projects/        # Project detail pages
-│   └── photography/ # Photography gallery page
+├── about/           # About page
+│   ├── layout.tsx   # Page metadata
+│   └── page.tsx     # About page component
+├── case-studies/    # Case studies gallery
+│   ├── layout.tsx   # Page metadata
+│   └── page.tsx     # Case studies page component
+├── photography/     # Photography gallery
+│   ├── layout.tsx   # Page metadata
+│   ├── page.tsx     # Photography page component
+│   └── README.md    # Image upload guide
+├── visuals/         # Visuals gallery
+│   ├── layout.tsx   # Page metadata
+│   └── page.tsx     # Visuals page component
+├── privacy/         # Privacy policy page
+│   ├── layout.tsx   # Page metadata
+│   └── page.tsx     # Privacy policy component
+├── terms/           # Terms of service page
+│   ├── layout.tsx   # Page metadata
+│   └── page.tsx     # Terms component
 ├── layout.tsx       # Root layout
 ├── page.tsx         # Home page
+├── error.tsx        # Error page
+├── global-error.tsx # Global error page
+├── not-found.tsx    # 404 page
 ├── robots.ts        # SEO robots.txt
 └── sitemap.ts       # SEO sitemap
 ```
@@ -73,14 +94,15 @@ components/
 Utility functions:
 ```
 lib/
-└── utils.ts         # Helper functions (cn, formatDate, etc.)
+├── utils.ts         # Helper functions (cn, formatDate, etc.)
+└── performance.ts   # Performance utilities (throttle, debounce, etc.)
 ```
 
 ### `/styles/`
 Global styles:
 ```
 styles/
-└── globals.css      # Global CSS with Tailwind
+└── globals.css      # Global CSS with Tailwind (~5,560 lines)
 ```
 
 ### `/types/`
@@ -95,9 +117,14 @@ Static assets:
 ```
 public/
 └── images/          # Image assets
-    ├── projects/    # Project images
     ├── about/       # About section images
-    └── services/    # Service images
+    ├── case-studies/ # Case study images
+    ├── photography/  # Photography gallery images
+    ├── placeholders/ # Fallback images
+    ├── projects/     # Project images
+    ├── sections/     # Section background images
+    ├── services/     # Service images
+    └── visuals/      # Visuals gallery images
 ```
 
 ### `/docs/`
@@ -105,7 +132,13 @@ Documentation and references:
 ```
 docs/
 ├── reference/       # Design mockups (HTML)
-└── guides/         # Setup and deployment guides
+└── guides/         # Setup, deployment, and image upload guides
+    ├── BUILD_GUIDE.md
+    ├── DEPLOYMENT.md
+    ├── DEPLOYMENT_CHECK.md
+    ├── IMAGE_UPLOAD_INSTRUCTIONS.md
+    ├── SETUP.md
+    └── README.md
 ```
 
 ---
@@ -152,6 +185,7 @@ docs/
 - `.env.local` - Environment variables (gitignored)
 - Temporary files
 - Build artifacts
+- Unused components or dead code
 
 ---
 
@@ -162,4 +196,25 @@ docs/
 3. **Use consistent naming** - Follow the conventions above
 4. **Document structure** - Update this file when structure changes
 5. **Keep root clean** - Only essential config files in root
+6. **Consolidate docs** - Keep all documentation in `/docs/` folder
+7. **Remove console statements** - Clean production code
+8. **Regular cleanup** - Review and remove unused code periodically
 
+## 📊 Current Statistics
+
+- **Total TypeScript/TSX files**: ~39
+- **Components**: 12 active components
+- **Pages**: 8 main pages + API routes
+- **CSS**: ~5,560 lines (optimized with Tailwind)
+- **Documentation**: Organized in `/docs/` folder
+- **Image folders**: 8 organized categories
+
+---
+
+## 🧹 Recent Cleanup (2024)
+
+- ✅ Removed unused `ProjectSection.tsx` component
+- ✅ Removed empty `app/projects/` folder
+- ✅ Consolidated documentation into `/docs/guides/`
+- ✅ Removed console statements from production code
+- ✅ Updated PROJECT_STRUCTURE.md with current state
