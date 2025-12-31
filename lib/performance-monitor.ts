@@ -120,8 +120,11 @@ class PerformanceMonitor {
       const fidObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
           if (entry.entryType === 'first-input') {
-            const fidEntry = entry as PerformanceEventTiming
-            this.recordMetric('FID', fidEntry.processingStart - fidEntry.startTime)
+            // Type guard for PerformanceEventTiming
+            if ('processingStart' in entry && 'startTime' in entry) {
+              const fidEntry = entry as { processingStart: number; startTime: number }
+              this.recordMetric('FID', fidEntry.processingStart - fidEntry.startTime)
+            }
           }
         }
       })
@@ -132,9 +135,13 @@ class PerformanceMonitor {
       let clsValue = 0
       const clsObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (!(entry as LayoutShift).hadRecentInput) {
-            clsValue += (entry as LayoutShift).value
-            this.recordMetric('CLS', clsValue)
+          // Type guard for LayoutShift
+          if ('hadRecentInput' in entry && 'value' in entry) {
+            const layoutShift = entry as { hadRecentInput: boolean; value: number }
+            if (!layoutShift.hadRecentInput) {
+              clsValue += layoutShift.value
+              this.recordMetric('CLS', clsValue)
+            }
           }
         }
       })

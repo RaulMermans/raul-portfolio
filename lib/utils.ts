@@ -15,9 +15,6 @@ export function formatDate(date: Date | string): string {
   }).format(d)
 }
 
-// Validate email
-export function isValidEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
-}
+// Note: isValidEmail is exported from './validation' to avoid duplication
+// Import it from '@/lib/validation' or '@/lib' if needed
 
