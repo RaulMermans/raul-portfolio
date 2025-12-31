@@ -458,8 +458,11 @@ img {
 section {
   min-height: 100vh;
   min-height: 100svh;
+  height: 100vh;
+  height: 100svh;
   position: relative;
   overflow: hidden;
+  scroll-snap-align: start;
 }
 
 /* Mobile: Remove scroll-snap and add performance optimizations */

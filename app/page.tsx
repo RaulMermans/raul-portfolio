@@ -16,6 +16,11 @@ export default function Home() {
   const [currentSection, setCurrentSection] = useState(1)
 
   useEffect(() => {
+    // Enable scroll-snap for homepage
+    if (typeof window !== 'undefined') {
+      document.documentElement.style.scrollSnapType = 'y mandatory'
+      document.body.style.overflowY = 'auto'
+    }
     const sections = document.querySelectorAll('section')
     const footer = document.querySelector('.footer')
     const total = sections.length + 1 // +1 for footer
@@ -135,6 +140,10 @@ export default function Home() {
       window.removeEventListener('resize', handleResize)
       if (revealObserver) {
         revealObserver.disconnect()
+      }
+      // Cleanup scroll-snap on unmount
+      if (typeof window !== 'undefined') {
+        document.documentElement.style.scrollSnapType = ''
       }
     }
   }, [])
