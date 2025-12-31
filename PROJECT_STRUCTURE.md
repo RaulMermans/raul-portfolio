@@ -58,13 +58,15 @@ components/
 ├── Header.tsx       # Navigation header
 ├── Footer.tsx       # Footer section
 ├── Hero.tsx         # Hero section
-├── ProjectSection.tsx # Projects showcase
+├── SectionCards.tsx # Section cards showcase
 ├── About.tsx        # About section
 ├── Services.tsx     # Services section
 ├── Contact.tsx      # Contact section
-├── CustomCursor.tsx # Custom cursor
 ├── BackToTop.tsx    # Back to top button
-└── Reveal.tsx       # Scroll reveal animation
+├── Reveal.tsx       # Scroll reveal animation
+├── PageTransition.tsx # Page transition wrapper
+├── ErrorBoundary.tsx  # Error boundary component
+└── StructuredData.tsx # JSON-LD structured data
 ```
 
 ### `/lib/`

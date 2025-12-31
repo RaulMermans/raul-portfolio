@@ -77,7 +77,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
       
       // Safety timeout to prevent getting stuck (max 2 seconds)
       const safetyTimeout = setTimeout(() => {
-        console.warn('PageTransition: Safety timeout triggered, forcing completion')
+        // Safety timeout triggered, forcing completion
         setIsExiting(false)
         setIsEntering(false)
         if (typeof document !== 'undefined') {
