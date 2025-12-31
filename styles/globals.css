@@ -5315,6 +5315,61 @@ a[href^="/"]:hover {
   }
 }
 
+/* Case Studies Header */
+.case-studies-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+}
+
+.case-studies-header__logo {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.case-studies-header__logo:hover {
+  opacity: 0.6;
+}
+
+.case-studies-header__nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.case-studies-header__nav a {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
+}
+
+.case-studies-header__nav a:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .case-studies-header {
+    padding: 1.5rem;
+  }
+  .case-studies-header__nav {
+    display: none;
+  }
+}
+
 /* Intro Animations */
 .intro-header {
   opacity: 0;
