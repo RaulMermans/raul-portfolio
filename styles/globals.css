@@ -3573,15 +3573,13 @@ a[href^="/"]:hover {
 
 /* Title Overlay */
 .title-overlay {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 5 !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
   pointer-events: none;
   text-align: center;
-  /* Ensure it stays fixed during horizontal scroll - relative to viewport */
-  /* Lower z-index so it's behind header but visible */
   will-change: transform;
 }
 
