@@ -5082,13 +5082,16 @@ body.visuals-page #main {
   width: 100% !important;
 }
 
-/* Ensure PageTransition doesn't constrain case studies */
-body:has(.case-studies-main) .page-transition {
+/* Ensure PageTransition doesn't constrain case studies or visuals */
+body:has(.case-studies-main) .page-transition,
+body:has(.visuals-layout) .page-transition,
+body.visuals-page .page-transition {
   height: 100vh !important;
   height: 100svh !important;
   min-height: 100vh !important;
   min-height: 100svh !important;
   overflow: visible !important;
+  transform: none !important;
 }
 
 @media (max-width: 900px) {

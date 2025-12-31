@@ -518,7 +518,7 @@ export default function VisualsPage() {
   }, [])
 
   return (
-    <>
+    <div className="visuals-layout">
       <div className="grain" aria-hidden="true"></div>
 
       {/* Background Effects */}
