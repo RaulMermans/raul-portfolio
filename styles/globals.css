@@ -14,6 +14,10 @@
   --gradient-warm: #FFAA88;
   --gradient-rose: #FFB5A0;
   --gradient-soft: #E8D0C8;
+  
+  /* Case Studies Project Colors */
+  --color-0: #6B8A9A;
+  --color-1: #9A7B6B;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -4977,5 +4981,430 @@ a[href^="/"]:hover {
   textarea,
   select {
     font-size: 16px !important;
+  }
+}
+
+/* ========================================
+   CASE STUDIES PAGE (New Design)
+   ======================================== */
+
+.case-studies-main {
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream-light);
+}
+
+@media (max-width: 900px) {
+  .case-studies-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+}
+
+/* Content Section (Left) */
+.case-studies-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 4rem 4rem 6rem;
+  position: relative;
+}
+
+@media (max-width: 1200px) {
+  .case-studies-content {
+    padding: 6rem 3rem 3rem 4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .case-studies-content {
+    padding: 7rem 2rem 2rem;
+    order: 2;
+  }
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  left: 6rem;
+  right: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (max-width: 1200px) {
+  .slide {
+    left: 4rem;
+    right: 3rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .slide {
+    left: 2rem;
+    right: 2rem;
+  }
+}
+
+.slide__title {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  transition: color 0.6s var(--ease-out);
+}
+
+.slide__desc {
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin-bottom: 2.5rem;
+}
+
+/* CTA */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.cta:hover {
+  opacity: 0.7;
+}
+
+.cta__arrow {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.cta:hover .cta__arrow {
+  transform: translateX(4px);
+}
+
+/* Carousel Section (Right) */
+.case-studies-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .case-studies-carousel {
+    order: 1;
+    min-height: 50vh;
+  }
+}
+
+.carousel__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cards */
+.card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(280px, 42vw, 500px);
+  aspect-ratio: 4/3;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -15px rgba(0,0,0,0.15);
+  transition: 
+    transform 1s var(--ease-out),
+    opacity 0.8s var(--ease-out),
+    filter 0.8s var(--ease-out);
+  will-change: transform;
+  cursor: pointer;
+}
+
+.card__img-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+/* Colored backing rectangle (behind active card) */
+.card__backing {
+  position: absolute;
+  inset: -15px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translate(15px, 15px);
+  transition: opacity 0.8s var(--ease-out);
+  z-index: -1;
+}
+
+.card.active .card__backing {
+  opacity: 0.25;
+}
+
+/* Card positions */
+.card[data-position="-2"] {
+  transform: translate(-50%, -250%) rotate(-4deg) scale(0.7);
+  opacity: 0;
+  filter: grayscale(100%) brightness(1.1);
+  z-index: 1;
+}
+
+.card[data-position="-1"] {
+  transform: translate(-50%, -145%) rotate(-3deg) scale(0.85);
+  opacity: 0.6;
+  filter: grayscale(100%) brightness(1.05);
+  z-index: 2;
+}
+
+.card[data-position="0"] {
+  transform: translate(-50%, -50%) rotate(-2deg) scale(1);
+  opacity: 1;
+  filter: grayscale(0%) brightness(1);
+  z-index: 4;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.25);
+}
+
+.card[data-position="1"] {
+  transform: translate(-50%, 55%) rotate(-1deg) scale(0.85);
+  opacity: 0.6;
+  filter: grayscale(100%) brightness(1.05);
+  z-index: 2;
+}
+
+.card[data-position="2"] {
+  transform: translate(-50%, 160%) rotate(0deg) scale(0.7);
+  opacity: 0;
+  filter: grayscale(100%) brightness(1.1);
+  z-index: 1;
+}
+
+/* Ken Burns on active */
+.card.active .card__img {
+  animation: slowZoom 25s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+/* Dots Navigation */
+.case-studies-dots {
+  position: fixed;
+  right: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dot__inner {
+  width: 6px;
+  height: 6px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 50%;
+  transition: background 0.3s var(--ease), transform 0.4s var(--ease-out);
+}
+
+.dot:hover .dot__inner {
+  background: rgba(0,0,0,0.4);
+}
+
+.dot.active .dot__inner {
+  transform: scale(1.5);
+  transition: background 0.3s var(--ease), transform 0.4s var(--ease-out);
+}
+
+@media (max-width: 768px) {
+  .case-studies-dots {
+    right: 1rem;
+    gap: 0.6rem;
+  }
+}
+
+/* Scroll Hint */
+.scroll-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.5;
+  transition: opacity 0.5s var(--ease);
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-hint__line {
+  width: 1px;
+  height: 30px;
+  background: var(--ink-soft);
+  animation: scrollPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(0.5);
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-hint {
+    display: none;
+  }
+}
+
+/* Intro Animations */
+.intro-header {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeDown 0.8s var(--ease-out) 0.1s forwards;
+}
+
+.intro-content .slide.active {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s var(--ease-out) 0.3s forwards;
+}
+
+.intro-card[data-position="-1"] {
+  opacity: 0 !important;
+  animation: cardFromTop 1.2s var(--ease-out) 0.4s forwards !important;
+}
+
+.intro-card[data-position="0"] {
+  opacity: 0 !important;
+  animation: cardFromCenter 1.2s var(--ease-out) 0.5s forwards !important;
+}
+
+.intro-card[data-position="1"] {
+  opacity: 0 !important;
+  animation: cardFromBottom 1.2s var(--ease-out) 0.6s forwards !important;
+}
+
+.intro-dots {
+  opacity: 0;
+  animation: fadeIn 0.6s var(--ease-out) 1s forwards;
+}
+
+.intro-scroll {
+  opacity: 0;
+  animation: fadeIn 0.6s var(--ease-out) 1.1s forwards;
+}
+
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardFromTop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -300%) rotate(-5deg) scale(0.6);
+  }
+  to {
+    opacity: 0.6;
+    transform: translate(-50%, -145%) rotate(-3deg) scale(0.85);
+    filter: grayscale(100%) brightness(1.05);
+  }
+}
+
+@keyframes cardFromCenter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 50%) rotate(0deg) scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-2deg) scale(1);
+    filter: grayscale(0%) brightness(1);
+  }
+}
+
+@keyframes cardFromBottom {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 200%) rotate(2deg) scale(0.6);
+  }
+  to {
+    opacity: 0.6;
+    transform: translate(-50%, 55%) rotate(-1deg) scale(0.85);
+    filter: grayscale(100%) brightness(1.05);
   }
 }

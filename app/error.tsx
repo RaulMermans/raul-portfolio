@@ -16,7 +16,6 @@ export default function Error({
 
   return (
     <div className="error-page" style={{
-      minHeight: '100vh',
       minHeight: '100dvh',
       display: 'flex',
       flexDirection: 'column',
