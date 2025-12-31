@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import Header from '@/components/Header'
 
 // ========================================
 // CASE STUDIES DATA
@@ -174,18 +175,7 @@ export default function CaseStudiesPage() {
     <>
       <div className="grain" aria-hidden="true"></div>
 
-      {/* Header */}
-      <header className="case-studies-header intro-header">
-        <Link href="/" className="case-studies-header__logo">
-          RM
-        </Link>
-        <nav className="case-studies-header__nav" aria-label="Primary navigation">
-          <Link href="/#work">Work</Link>
-          <Link href="/about">About</Link>
-          <Link href="/#services">Services</Link>
-          <Link href="/#contact">Contact</Link>
-        </nav>
-      </header>
+      <Header />
 
       {/* Main Layout */}
       <main className="case-studies-main">
