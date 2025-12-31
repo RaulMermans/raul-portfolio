@@ -2762,6 +2762,13 @@ body.visuals-page #main {
 /* Prevent PageTransition transforms from affecting fixed elements on visuals page */
 body.visuals-page .page-transition {
   transform: none !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
 }
 
 /* Exit animation - fade out with blur and scale */
