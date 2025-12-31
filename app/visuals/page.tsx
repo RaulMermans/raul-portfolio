@@ -356,16 +356,23 @@ export default function VisualsPage() {
         // Disable scroll-snap for visuals page
         document.documentElement.style.setProperty('scroll-snap-type', 'none', 'important')
         
-        // Force layout recalculation
+        // Force layout recalculation to get accurate measurements
         void worksContainer.offsetWidth
+        void main.offsetWidth
         
         // Get the actual scrollWidth after layout
+        // This includes all cards, gaps, and padding
         const containerScrollWidth = worksContainer.scrollWidth
         const viewportWidth = window.innerWidth
         
+        // Calculate padding (left + right)
+        const paddingLeft = parseFloat(getComputedStyle(worksContainer).paddingLeft) || 0
+        const paddingRight = parseFloat(getComputedStyle(worksContainer).paddingRight) || 0
+        const totalPadding = paddingLeft + paddingRight
+        
         // Ensure main is wide enough to enable horizontal scrolling
-        // Must be wider than viewport
-        const mainWidth = Math.max(containerScrollWidth, viewportWidth + 100)
+        // Must be wider than viewport to enable scrolling
+        const mainWidth = Math.max(containerScrollWidth + totalPadding, viewportWidth + 200)
         
         // Set main width to enable scrolling
         main.style.width = `${mainWidth}px`
