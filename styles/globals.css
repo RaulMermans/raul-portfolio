@@ -2735,6 +2735,11 @@ section {
   filter: blur(0px);
 }
 
+/* Prevent PageTransition transforms from affecting fixed elements on visuals page */
+body.visuals-page .page-transition {
+  transform: none !important;
+}
+
 /* Exit animation - fade out with blur and scale */
 .page-transition--exiting {
   opacity: 0;
@@ -3508,11 +3513,13 @@ a[href^="/"]:hover {
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  z-index: 10;
+  z-index: 10 !important;
   pointer-events: none;
   text-align: center;
-  /* Ensure it stays fixed during horizontal scroll */
+  /* Ensure it stays fixed during horizontal scroll - relative to viewport, not document */
   will-change: transform;
+  /* Escape any parent transforms/containing blocks */
+  contain: layout style paint;
 }
 
 .title-overlay__text {

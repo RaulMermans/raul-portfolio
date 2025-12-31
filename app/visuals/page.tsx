@@ -215,17 +215,16 @@ export default function VisualsPage() {
       // Get horizontal scroll position
       const scrollLeft = window.scrollX || document.documentElement.scrollLeft
       // Apply subtle parallax (title moves opposite to scroll direction)
-      // The title overlay itself is fixed, but the text inside moves slightly
-      // Preserve any existing transform from animations
-      const baseTransform = titleTextRef.current.style.transform || ''
-      // Only apply translateX for parallax, preserve other transforms
-      titleTextRef.current.style.transform = `translateX(${scrollLeft * -0.15}px)`
+      // The title overlay container is fixed, but the text inside moves slightly
+      // Combine the parallax with any existing transform (from animation)
+      // The animation sets translateY(0) after reveal, so we combine with translateX
+      titleTextRef.current.style.transform = `translate(${scrollLeft * -0.15}px, 0)`
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      // Reset transform on unmount
+      // Reset transform on unmount - let CSS animation handle it
       if (titleTextRef.current) {
         titleTextRef.current.style.transform = ''
       }
