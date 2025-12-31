@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 // ========================================
 // PHOTO DATA STRUCTURE
@@ -199,7 +200,7 @@ export default function PhotographyPage() {
       <Header />
 
       {/* Gallery */}
-      <main className="gallery" id="gallery">
+      <main id="main-content" role="main" className="gallery" id="gallery">
         <div className="gallery__track">
           <div className="gallery__grid">
             {allImages.map((photo, index) => {

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 // ========================================
 // CASE STUDIES DATA
@@ -178,7 +179,7 @@ export default function CaseStudiesPage() {
       <Header />
 
       {/* Main Layout */}
-      <main className="case-studies-main">
+      <main id="main-content" role="main" className="case-studies-main">
         {/* Left: Content */}
         <section className="case-studies-content intro-content">
           {caseStudies.map((study, index) => (

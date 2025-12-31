@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 // ========================================
 // VISUAL WORK DATA
@@ -542,7 +543,7 @@ export default function VisualsPage() {
       </div>
 
       {/* Main Content */}
-      <main id="main" style={{ margin: 0, padding: 0 }}>
+      <main id="main-content" role="main" style={{ margin: 0, padding: 0 }}>
         <div className="works-container" ref={worksContainerRef} id="works-container">
           {works.map((work, index) => (
             <article key={index} className="work-card" data-index={index}>

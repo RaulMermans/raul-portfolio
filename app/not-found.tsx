@@ -52,6 +52,7 @@ export default function NotFound() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       
       {/* Film Grain Overlay */}
       <div className="grain" aria-hidden="true"></div>
@@ -87,7 +88,7 @@ export default function NotFound() {
       </div>
 
       {/* Main Content */}
-      <main ref={pageRef} className="page-404" role="main">
+      <main id="main-content" ref={pageRef} className="page-404" role="main">
         <div className="error-display">
           <div ref={glitchWrapperRef} className="glitch-wrapper" data-text="404">
             <h1 className="error-number">

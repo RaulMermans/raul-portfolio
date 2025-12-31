@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
 
 export default function AboutPage() {
@@ -48,9 +49,11 @@ export default function AboutPage() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <div className="grain" aria-hidden="true"></div>
       <Header />
       
-      <main>
+      <main id="main-content" role="main">
         {/* BIO SECTION */}
         <section className="bio">
           <div className="bio__inner">
@@ -140,6 +143,8 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
+
+      <Footer />
     </>
   )
 }
