@@ -9,6 +9,7 @@ import About from '@/components/About'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
 import BackToTop from '@/components/BackToTop'
+import ErrorBoundary from '@/components/ErrorBoundary'
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -139,11 +140,11 @@ export default function Home() {
   }, [])
 
   return (
-    <>
+    <ErrorBoundary>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Header />
       
-      <main id="main-content">
+      <main id="main-content" role="main">
         <Hero />
         <SectionCards />
         <About />
@@ -163,6 +164,6 @@ export default function Home() {
           <div className="ui__progress-fill" id="progress" style={{ height: `${scrollProgress}%` }}></div>
         </div>
       </div>
-    </>
+    </ErrorBoundary>
   )
 }

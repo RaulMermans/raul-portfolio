@@ -63,7 +63,13 @@ export default function About() {
             </p>
           </div>
           
-          <Link href="/about" className="btn btn--arrow reveal reveal-delay-3">Read More</Link>
+          <Link 
+            href="/about" 
+            className="btn btn--arrow reveal reveal-delay-3"
+            aria-label="Read more about Raúl Mermans"
+          >
+            Read More
+          </Link>
         </div>
       </div>
     </section>

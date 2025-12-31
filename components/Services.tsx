@@ -70,7 +70,11 @@ export default function Services() {
                   </ul>
                   <div className="service__footer">
                     <p className="service__desc">{service.description}</p>
-                    <Link href="#contact" className="btn btn--arrow">
+                    <Link 
+                      href="#contact" 
+                      className="btn btn--arrow"
+                      aria-label="Start a project - navigate to contact section"
+                    >
                       Start a project
                     </Link>
                   </div>
