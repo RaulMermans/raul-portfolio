@@ -102,28 +102,32 @@ body {
   min-height: 100dvh; /* Dynamic viewport height for mobile */
 }
 
-/* Allow horizontal scroll on visuals page - matching HTML mockup exactly */
+/* Allow horizontal scroll on visuals page - matching homepage design system */
 html.visuals-page {
-  background: var(--ink) !important;
+  background: var(--cream) !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
   height: 100vh !important;
   height: 100svh !important;
+  width: 100% !important;
   scroll-snap-type: none !important;
+  scroll-behavior: smooth;
 }
 
 body.visuals-page {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   font-size: var(--text-base);
   line-height: 1.6;
-  background: var(--ink) !important;
-  color: var(--cream) !important;
+  background: var(--cream) !important;
+  color: var(--ink) !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
   height: 100vh !important;
   height: 100svh !important;
+  width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-snap-type: none !important;
