@@ -30,7 +30,7 @@ export default function CaseStudiesPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
-  const cardsRef = useRef<HTMLDivElement[]>([])
+  const cardsRef = useRef<(HTMLElement | null)[]>([])
   const scrollHintRef = useRef<HTMLDivElement>(null)
 
   const TOTAL = caseStudies.length
