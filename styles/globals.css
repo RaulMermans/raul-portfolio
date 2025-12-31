@@ -4834,6 +4834,7 @@ body.visuals-page #main {
   /* About section mobile */
   .about {
     padding: var(--space-6) var(--space-4);
+    height: auto;
     min-height: auto;
   }
   
@@ -4882,6 +4883,8 @@ body.visuals-page #main {
   /* Contact mobile */
   .contact {
     padding: var(--space-6) var(--space-4);
+    height: auto;
+    min-height: auto;
   }
   
   .contact__headline {
