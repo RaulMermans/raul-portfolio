@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
@@ -58,10 +59,16 @@ export default function AboutPage() {
         <section className="bio">
           <div className="bio__inner">
             <div className="bio__image-wrapper reveal">
-              <img
+              <Image
                 src="/images/about/profile.webp"
                 alt="Raúl Mermans"
+                width={800}
+                height={1067}
                 className="bio__image"
+                priority
+                quality={90}
+                sizes="(max-width: 900px) 100vw, 45vw"
+                style={{ objectFit: 'cover' }}
               />
               <div className="bio__image-frame" aria-hidden="true"></div>
             </div>
