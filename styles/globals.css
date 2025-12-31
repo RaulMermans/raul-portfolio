@@ -412,6 +412,18 @@ section {
   overflow: hidden;
 }
 
+/* Mobile: Remove scroll-snap and add performance optimizations */
+@media (max-width: 768px) {
+  section {
+    scroll-snap-align: unset;
+    min-height: auto;
+    padding: 3rem 1rem;
+    /* Performance optimizations for mobile */
+    contain: layout style paint;
+    content-visibility: auto;
+  }
+}
+
 /* UI Elements (Header, Progress, etc.) */
 .ui {
   position: fixed;
@@ -1232,6 +1244,13 @@ section {
     display: none;
   }
   
+  .hero {
+    scroll-snap-align: unset; /* Fluid scroll on mobile */
+    /* Performance: contain layout and paint */
+    contain: layout style paint;
+    content-visibility: auto;
+  }
+  
   .section-card__index {
     font-size: 28vw;
     right: var(--space-4);
@@ -1591,6 +1610,17 @@ section {
   flex-direction: column;
   justify-content: center;
   padding: var(--section-padding);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    scroll-snap-align: unset; /* Fluid scroll on mobile */
+    min-height: auto;
+    padding: 3rem 1rem;
+    /* Performance: contain layout and paint */
+    contain: layout style paint;
+    content-visibility: auto;
+  }
 }
 
 .footer__inner {
