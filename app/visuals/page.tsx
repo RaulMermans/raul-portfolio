@@ -530,7 +530,7 @@ export default function VisualsPage() {
       </div>
 
       {/* Main Content */}
-      <main id="main">
+      <main id="main" style={{ margin: 0, padding: 0 }}>
         <div className="works-container" ref={worksContainerRef} id="works-container">
           {works.map((work, index) => (
             <article key={index} className="work-card" data-index={index}>

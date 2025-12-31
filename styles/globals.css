@@ -123,9 +123,20 @@ body.visuals-page {
   overflow-y: hidden !important;
   height: 100vh !important;
   height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-snap-type: none !important;
+}
+
+/* Visuals layout wrapper - ensure full screen */
+.visuals-layout {
+  height: 100vh !important;
+  height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
 }
 
 @media (max-width: 768px) {
@@ -2526,6 +2537,15 @@ section {
   width: 100%;
 }
 
+/* Visuals page main - full screen */
+html.visuals-page #main,
+body.visuals-page #main {
+  height: 100vh !important;
+  height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .visuals-page__header {
   max-width: 1200px;
   margin: 0 auto var(--space-8);
@@ -3399,18 +3419,17 @@ a[href^="/"]:hover {
    ======================================== */
 
 .visuals-layout {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  background: var(--ink);
-  color: var(--cream);
-}
-
-/* Visuals page - JavaScript will handle overflow, but provide CSS fallback */
-.visuals-layout {
-  /* Ensure layout doesn't interfere with horizontal scroll */
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  background: var(--ink) !important;
+  color: var(--cream) !important;
   position: relative;
-  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
 }
 
 /* Note: Overflow is handled by JavaScript for better control */
@@ -3550,11 +3569,16 @@ a[href^="/"]:hover {
 /* Main container for visuals page - makes document wider for horizontal scroll */
 html.visuals-page #main,
 body.visuals-page #main {
-  display: block;
+  display: block !important;
   position: relative;
   overflow: visible !important;
-  min-height: 100vh;
-  min-height: 100svh;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
   /* Width will be set by JavaScript based on works-container */
 }
 
@@ -3562,8 +3586,8 @@ body.visuals-page #main {
 .works-container {
   display: flex;
   align-items: center;
-  height: 100vh;
-  height: 100svh;
+  height: 100vh !important;
+  height: 100svh !important;
   padding: 0 calc(50vw - 180px);
   gap: var(--space-5);
   position: relative;
@@ -3571,6 +3595,7 @@ body.visuals-page #main {
   /* Width will be calculated by JavaScript to ensure horizontal scroll */
   flex-shrink: 0;
   overflow: visible;
+  margin: 0;
 }
 
 .work-card {
