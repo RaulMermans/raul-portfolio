@@ -374,16 +374,24 @@ export default function VisualsPage() {
         // Must be wider than viewport to enable scrolling
         const mainWidth = Math.max(containerScrollWidth + totalPadding, viewportWidth + 200)
         
-        // Set main width to enable scrolling
+        // Set main width and height to enable scrolling and full screen
         main.style.width = `${mainWidth}px`
         main.style.minWidth = `${mainWidth}px`
+        main.style.height = '100vh'
+        main.style.height = '100svh'
+        main.style.minHeight = '100vh'
+        main.style.minHeight = '100svh'
         main.style.display = 'block'
         main.style.position = 'relative'
+        main.style.margin = '0'
+        main.style.padding = '0'
         
-        // Ensure works container doesn't shrink
+        // Ensure works container doesn't shrink and is full height
         worksContainer.style.flexShrink = '0'
         worksContainer.style.width = 'auto'
         worksContainer.style.minWidth = 'auto'
+        worksContainer.style.height = '100vh'
+        worksContainer.style.height = '100svh'
       } else {
         // Mobile: normal vertical scroll
         document.body.classList.remove('visuals-page')
