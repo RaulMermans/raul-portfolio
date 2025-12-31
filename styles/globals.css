@@ -2827,9 +2827,18 @@ body.visuals-page .page-transition {
 
 /* Idle state - normal display */
 .page-transition--idle {
-  opacity: 1;
-  transform: translateX(0) translateY(0) scale(1);
-  filter: blur(0px);
+  opacity: 1 !important;
+  transform: translateX(0) translateY(0) scale(1) !important;
+  filter: blur(0px) !important;
+  pointer-events: auto !important;
+}
+
+/* Force cleanup of stuck transition states */
+body:not(.page-transitioning) .page-transition {
+  opacity: 1 !important;
+  transform: translateX(0) translateY(0) scale(1) !important;
+  filter: blur(0px) !important;
+  pointer-events: auto !important;
 }
 
 /* Prevent scrolling during transitions */
