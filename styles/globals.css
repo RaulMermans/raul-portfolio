@@ -4427,14 +4427,20 @@ body.visuals-page #main {
 }
 
 @media (max-width: 480px) {
+  .works-container {
+    padding: 100px var(--space-4) var(--space-8);
+    gap: var(--space-6);
+  }
+
   .work-card {
-    width: 100%;
+    width: calc(100vw - var(--space-4) * 2);
     height: 50vh;
-    min-height: 340px;
+    min-height: 350px;
+    margin: 0 auto;
   }
 
   .title-overlay {
-    padding: 70px var(--space-4) var(--space-3);
+    padding: var(--space-6) var(--space-4) var(--space-4);
   }
 
   .title-overlay__text {
