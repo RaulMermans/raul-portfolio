@@ -392,6 +392,10 @@ export default function VisualsPage() {
         worksContainer.style.minWidth = 'auto'
         worksContainer.style.height = '100vh'
         worksContainer.style.height = '100svh'
+        worksContainer.style.minHeight = '100vh'
+        worksContainer.style.minHeight = '100svh'
+        worksContainer.style.maxHeight = '100vh'
+        worksContainer.style.maxHeight = '100svh'
       } else {
         // Mobile: normal vertical scroll
         document.body.classList.remove('visuals-page')

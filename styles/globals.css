@@ -135,9 +135,15 @@ body.visuals-page {
 .visuals-layout {
   height: 100vh !important;
   height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  max-height: 100vh !important;
+  max-height: 100svh !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: visible !important;
+  width: 100% !important;
+  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -3596,6 +3602,8 @@ body.visuals-page #main {
   align-items: center;
   height: 100vh !important;
   height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
   padding: 0 calc(50vw - 180px);
   gap: var(--space-5);
   position: relative;
@@ -3604,6 +3612,7 @@ body.visuals-page #main {
   flex-shrink: 0;
   overflow: visible;
   margin: 0;
+  width: auto;
 }
 
 .work-card {
