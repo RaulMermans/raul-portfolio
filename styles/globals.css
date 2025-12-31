@@ -67,7 +67,8 @@ html {
 
 @media (max-width: 768px) {
   html {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: none; /* Fluid scroll on mobile */
+    scroll-behavior: smooth;
     font-size: 16px; /* Prevent zoom on iOS */
   }
 }
@@ -1513,9 +1514,13 @@ section {
   opacity: 1;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .services {
     min-height: auto;
+    scroll-snap-align: unset; /* Remove snap on mobile */
+    /* Performance: contain layout and paint */
+    contain: layout style paint;
+    content-visibility: auto;
   }
 
   .services__header {
@@ -1524,6 +1529,7 @@ section {
 
   .services__grid {
     flex-direction: column;
+    gap: 0;
   }
 
   .service {
@@ -1532,6 +1538,7 @@ section {
     border-bottom: 1px solid var(--ink);
     padding: 1.5rem 1rem;
     min-height: auto;
+    scroll-snap-align: unset; /* Remove snap on mobile */
   }
 
   .service:last-child {
@@ -1558,9 +1565,9 @@ section {
     gap: 1.25rem;
   }
 
+  /* Hide images on mobile for better performance and cleaner UI */
   .service__image {
-    width: 100%;
-    max-width: 320px;
+    display: none;
   }
 
   .service__bracket {
@@ -1569,6 +1576,7 @@ section {
 
   .service__footer {
     padding-top: 1rem;
+    margin-top: 1.5rem;
   }
 }
 

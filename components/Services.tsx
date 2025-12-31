@@ -75,7 +75,13 @@ export default function Services() {
                   </div>
                 </div>
                 <div className="service__image">
-                  <img src={service.image} alt="" loading="lazy" />
+                  <img 
+                    src={service.image} 
+                    alt="" 
+                    loading="lazy" 
+                    decoding="async"
+                    fetchPriority="low"
+                  />
                 </div>
               </div>
             </div>
