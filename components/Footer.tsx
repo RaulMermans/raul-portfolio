@@ -10,7 +10,13 @@ export default function Footer() {
           <div className="footer__brand">
             <p className="footer__logo">Raúl Mermans</p>
             <p className="footer__tagline">Visual Storyteller crafting photography, brand identity, and AI-powered creatives from Spain.</p>
-            <a href="mailto:raulmermans@gmail.com" className="footer__email">raulmermans@gmail.com</a>
+            <a 
+              href="mailto:raulmermans@gmail.com" 
+              className="footer__email"
+              aria-label="Send email to Raúl Mermans"
+            >
+              raulmermans@gmail.com
+            </a>
             
             <div className="footer__social">
               <a href="https://www.instagram.com/raulmeermans/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
@@ -60,12 +66,22 @@ export default function Footer() {
                 <Link href="/about">About</Link>
               </li>
               <li>
-                <a href="https://promptbase.com/profile/mangerm" target="_blank" rel="noopener noreferrer">
+                <a 
+                  href="https://promptbase.com/profile/mangerm" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="View AI Prompts on PromptBase (opens in new tab)"
+                >
                   AI Prompts
                 </a>
               </li>
               <li>
-                <a href="https://raulmermans.gumroad.com/" target="_blank" rel="noopener noreferrer">
+                <a 
+                  href="https://raulmermans.gumroad.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Visit Gumroad Store (opens in new tab)"
+                >
                   Gumroad Store
                 </a>
               </li>
