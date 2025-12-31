@@ -31,6 +31,15 @@ export default function PageTransition({ children }: PageTransitionProps) {
       isInitialMount.current = false
       prevPathnameRef.current = pathname
       setDisplayChildren(children)
+      // Ensure we're not stuck in a transition state
+      setIsExiting(false)
+      setIsEntering(false)
+      if (typeof document !== 'undefined') {
+        document.body.classList.remove('page-transitioning')
+        document.documentElement.classList.remove('page-transitioning')
+        document.documentElement.style.overflow = ''
+        document.body.style.top = ''
+      }
       return
     }
 
@@ -66,6 +75,19 @@ export default function PageTransition({ children }: PageTransitionProps) {
         clearTimeout(transitionTimeoutRef.current)
       }
       
+      // Safety timeout to prevent getting stuck (max 2 seconds)
+      const safetyTimeout = setTimeout(() => {
+        console.warn('PageTransition: Safety timeout triggered, forcing completion')
+        setIsExiting(false)
+        setIsEntering(false)
+        if (typeof document !== 'undefined') {
+          document.body.classList.remove('page-transitioning')
+          document.documentElement.classList.remove('page-transitioning')
+          document.documentElement.style.overflow = ''
+          document.body.style.top = ''
+        }
+      }, 2000)
+      
       // Wait for exit animation to complete
       transitionTimeoutRef.current = setTimeout(() => {
         startTransition(() => {
@@ -76,6 +98,9 @@ export default function PageTransition({ children }: PageTransitionProps) {
           // Switch to entering state
           setIsExiting(false)
           setIsEntering(true)
+          
+          // Clear safety timeout
+          clearTimeout(safetyTimeout)
           
           // Allow scrolling again after enter animation
           setTimeout(() => {
@@ -108,12 +133,31 @@ export default function PageTransition({ children }: PageTransitionProps) {
         if (transitionTimeoutRef.current) {
           clearTimeout(transitionTimeoutRef.current)
         }
+        clearTimeout(safetyTimeout)
       }
     } else {
       // Pathname didn't change but children might have (e.g., state updates)
       setDisplayChildren(children)
+      // Ensure we're not stuck in transition states
+      setIsExiting(false)
+      setIsEntering(false)
     }
   }, [pathname, children, startTransition])
+  
+  // Cleanup on unmount to prevent stuck states
+  useEffect(() => {
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.body.classList.remove('page-transitioning')
+        document.documentElement.classList.remove('page-transitioning')
+        document.documentElement.style.overflow = ''
+        document.body.style.top = ''
+      }
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current)
+      }
+    }
+  }, [])
 
   // Determine transition state with direction
   const transitionClass = isExiting 
