@@ -405,13 +405,13 @@ export default function VisualsPage() {
         document.documentElement.style.removeProperty('overflow-y')
         document.documentElement.style.removeProperty('overflow-x')
         document.documentElement.style.removeProperty('height')
-        document.documentElement.style.setProperty('background', 'var(--ink)', 'important')
+        document.documentElement.style.setProperty('background', 'var(--cream)', 'important')
         
         document.body.style.removeProperty('overflow-y')
         document.body.style.removeProperty('overflow-x')
         document.body.style.removeProperty('height')
-        document.body.style.setProperty('background', 'var(--ink)', 'important')
-        document.body.style.setProperty('color', 'var(--cream)', 'important')
+        document.body.style.setProperty('background', 'var(--cream)', 'important')
+        document.body.style.setProperty('color', 'var(--ink)', 'important')
         
         main.style.width = '100%'
         main.style.minWidth = 'auto'
