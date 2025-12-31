@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Reveal from './Reveal'
 
 export default function About() {
@@ -35,11 +36,14 @@ export default function About() {
     <section id="about" className="about" aria-labelledby="about-title">
       <div className="about__inner">
         <div className="about__image-wrapper">
-          <div ref={imageRef} className="about__image" id="about-image">
-            <img
+          <div ref={imageRef} className="about__image" id="about-image" style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <Image
               src="/images/about/profile.webp"
               alt="Portrait of Raúl Mermans"
-              loading="lazy"
+              fill
+              quality={90}
+              sizes="(max-width: 768px) 100vw, 380px"
+              style={{ objectFit: 'cover' }}
             />
           </div>
           <div className="about__frame"></div>

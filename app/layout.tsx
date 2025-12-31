@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
+import StructuredData from '@/components/StructuredData'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -22,15 +23,60 @@ const spaceMono = Space_Mono({
   variable: '--font-mono',
 })
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'
+
 export const metadata: Metadata = {
-  title: 'Raúl Mermans — Visual Storyteller',
+  title: {
+    default: 'Raúl Mermans — Visual Storyteller',
+    template: '%s | Raúl Mermans',
+  },
   description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
-  keywords: ['photography', 'brand identity', 'AI creatives', 'visual storytelling', 'Spain'],
-  authors: [{ name: 'Raúl Mermans' }],
+  keywords: ['photography', 'brand identity', 'AI creatives', 'visual storytelling', 'Spain', 'creative director', 'photographer', 'AI art'],
+  authors: [{ name: 'Raúl Mermans', url: baseUrl }],
+  creator: 'Raúl Mermans',
+  publisher: 'Raúl Mermans',
+  metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: baseUrl,
+  },
   openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: baseUrl,
     title: 'Raúl Mermans — Visual Storyteller',
     description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
-    type: 'website',
+    siteName: 'Raúl Mermans Portfolio',
+    images: [
+      {
+        url: `${baseUrl}/images/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Raúl Mermans — Visual Storyteller',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Raúl Mermans — Visual Storyteller',
+    description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
+    creator: '@raulmeermans',
+    images: [`${baseUrl}/images/og-image.jpg`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // Add your verification codes here when available
+    // google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
   },
 }
 
@@ -41,8 +87,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
         <div className="grain" aria-hidden="true"></div>
+        <StructuredData type="Person" />
+        <StructuredData type="WebSite" />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>

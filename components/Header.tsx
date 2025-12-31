@@ -21,14 +21,24 @@ export default function Header() {
   }
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.length > 1) {
+    if (href.length > 1 && href.startsWith('#')) {
       e.preventDefault()
       const target = document.querySelector(href)
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' })
+        // Focus management for accessibility
+        target.setAttribute('tabindex', '-1')
+        ;(target as HTMLElement).focus()
       }
     }
     closeMenu()
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent, href: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handleNavClick(e as any, href)
+    }
   }
 
   return (

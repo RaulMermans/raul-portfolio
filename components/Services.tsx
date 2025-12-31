@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 const services = [
   {
@@ -74,13 +75,15 @@ export default function Services() {
                     </Link>
                   </div>
                 </div>
-                <div className="service__image">
-                  <img 
-                    src={service.image} 
-                    alt="" 
-                    loading="lazy" 
-                    decoding="async"
-                    fetchPriority="low"
+                <div className="service__image" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                  <Image
+                    src={service.image}
+                    alt={`${service.title} service illustration`}
+                    fill
+                    quality={85}
+                    sizes="(max-width: 768px) 0px, 300px"
+                    style={{ objectFit: 'cover' }}
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Reveal from './Reveal'
 
 const sections = [
@@ -77,8 +78,17 @@ export default function SectionCards() {
               if (el) sectionBgsRef.current[idx] = el
             }}
             className="section-card__bg"
+            style={{ position: 'relative', width: '100%', height: '100%' }}
           >
-            <img src={section.image} alt="" loading={idx === 0 ? 'eager' : 'lazy'} />
+            <Image
+              src={section.image}
+              alt={`${section.title} background`}
+              fill
+              priority={idx === 0}
+              quality={85}
+              sizes="100vw"
+              style={{ objectFit: 'cover' }}
+            />
           </div>
           <div className="section-card__overlay"></div>
           <div className="section-card__content">
