@@ -725,8 +725,6 @@ export default function VisualsPage() {
           </div>
         </nav>
       </div>
-
-      <Footer />
     </div>
   )
 }
