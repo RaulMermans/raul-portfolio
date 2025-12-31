@@ -13,6 +13,14 @@ const nextConfig = {
   compress: true,
   // Optimize fonts
   optimizeFonts: true,
+  // Webpack configuration for path aliases
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': require('path').resolve(__dirname),
+    }
+    return config
+  },
   // Enable static exports if needed for static hosting
   // output: 'export',
 }
