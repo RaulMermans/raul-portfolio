@@ -6,6 +6,7 @@
   --cream: #F5F0EB;
   --cream-warm: #EDE6DD;
   --cream-dark: #DDD5C8;
+  --cream-light: #FAF8F5;
   --ink: #1A1714;
   --ink-soft: #3A3530;
   --ink-muted: #6B635A;
@@ -5058,13 +5059,17 @@ body.visuals-page #main {
    ======================================== */
 
 .case-studies-main {
-  height: 100vh;
-  height: 100dvh;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   position: relative;
   overflow: hidden;
   background: var(--cream-light);
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 900px) {
