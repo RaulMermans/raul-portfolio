@@ -5606,6 +5606,106 @@ body.visuals-page .page-transition {
   }
 }
 
+/* Utility Components Styles */
+
+/* Safe Image Component */
+.safe-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.safe-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cream-dark);
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.safe-image-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cream-dark);
+  z-index: 1;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Skeleton Component */
+.skeleton {
+  background-color: var(--cream-dark);
+  animation: pulse 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Error States */
+.error-state {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+.error-state__message {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-md);
+}
+
+.error-state__retry {
+  margin-top: var(--space-4);
+}
+
+/* Loading States */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  min-height: 200px;
+}
+
+.loading-state__spinner {
+  margin-bottom: var(--space-4);
+}
+
+.loading-state__message {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
 @keyframes cardFromBottom {
   from {
     opacity: 0;
