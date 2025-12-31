@@ -4360,8 +4360,9 @@ body.visuals-page #main {
     top: auto;
     left: auto;
     transform: none;
-    padding: 80px var(--space-5) var(--space-4);
+    padding: var(--space-8) var(--space-6) var(--space-6);
     text-align: left;
+    margin-bottom: var(--space-4);
   }
 
   .title-overlay__text {
