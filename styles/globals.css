@@ -3363,38 +3363,14 @@ a[href^="/"]:hover {
   color: var(--cream);
 }
 
-/* Visuals page - override html and body for horizontal scroll */
-html:has(.visuals-layout) {
-  background: var(--ink) !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  height: 100vh !important;
-  height: 100svh !important;
+/* Visuals page - JavaScript will handle overflow, but provide CSS fallback */
+.visuals-layout {
+  /* Ensure layout doesn't interfere with horizontal scroll */
+  position: relative;
+  width: 100%;
 }
 
-body:has(.visuals-layout) {
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  height: 100vh !important;
-  height: 100svh !important;
-  background: var(--ink) !important;
-  color: var(--cream) !important;
-}
-
-@media (max-width: 768px) {
-  html:has(.visuals-layout) {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    height: auto !important;
-    background: var(--ink) !important;
-  }
-  
-  body:has(.visuals-layout) {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    height: auto !important;
-  }
-}
+/* Note: Overflow is handled by JavaScript for better control */
 
 /* Background Effects */
 .bg-effects {
@@ -3526,9 +3502,9 @@ body:has(.visuals-layout) {
 
 /* Main container for visuals page - makes document wider for horizontal scroll */
 #main {
-  width: max-content;
-  min-width: 100vw;
   display: block;
+  position: relative;
+  /* Width will be set by JavaScript based on works-container */
 }
 
 /* Horizontal Scroll Container */
@@ -3537,13 +3513,13 @@ body:has(.visuals-layout) {
   align-items: center;
   height: 100vh;
   height: 100svh;
-  width: max-content;
-  min-width: 100vw;
   padding: 0 calc(50vw - 180px);
   gap: var(--space-5);
   position: relative;
   z-index: 5;
   scroll-snap-type: x proximity;
+  /* Width will be calculated by JavaScript to ensure horizontal scroll */
+  flex-shrink: 0;
 }
 
 .work-card {

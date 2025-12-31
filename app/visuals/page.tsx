@@ -327,69 +327,133 @@ export default function VisualsPage() {
     const isMobile = window.matchMedia('(max-width: 768px)').matches
     const isLandscapeMobile = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches
 
-    // Enable horizontal scrolling on desktop/landscape mobile
-    if (!isMobile || isLandscapeMobile) {
-      // Set document/html to allow horizontal scroll
-      document.documentElement.style.background = 'var(--ink)'
-      document.documentElement.style.overflowY = 'hidden'
-      document.documentElement.style.overflowX = 'auto'
-      document.documentElement.style.height = '100vh'
-      document.documentElement.style.height = '100svh'
-      
-      // Set body to allow horizontal scroll
-      document.body.style.overflowY = 'hidden'
-      document.body.style.overflowX = 'auto'
-      document.body.style.height = '100vh'
-      document.body.style.height = '100svh'
-      document.body.style.background = 'var(--ink)'
-      document.body.style.color = 'var(--cream)'
-      
-      // Ensure main container makes document wider than viewport
+    const updateLayout = () => {
       const main = document.getElementById('main')
-      if (main) {
-        main.style.width = 'max-content'
-        main.style.minWidth = '100vw'
-      }
+      const worksContainer = document.getElementById('works-container')
       
-      // Calculate and set proper width based on works-container
-      setTimeout(() => {
-        const worksContainer = document.getElementById('works-container')
-        if (worksContainer && main) {
-          const containerWidth = worksContainer.scrollWidth
-          const viewportWidth = window.innerWidth
-          if (containerWidth > viewportWidth) {
-            main.style.width = `${containerWidth}px`
-          }
+      if (!main || !worksContainer) return
+
+      // Enable horizontal scrolling on desktop/landscape mobile
+      if (!isMobile || isLandscapeMobile) {
+        // Force horizontal scroll on html and body
+        document.documentElement.style.setProperty('background', 'var(--ink)', 'important')
+        document.documentElement.style.setProperty('overflow-y', 'hidden', 'important')
+        document.documentElement.style.setProperty('overflow-x', 'auto', 'important')
+        document.documentElement.style.setProperty('height', '100vh', 'important')
+        document.documentElement.style.setProperty('width', 'auto', 'important')
+        
+        document.body.style.setProperty('overflow-y', 'hidden', 'important')
+        document.body.style.setProperty('overflow-x', 'auto', 'important')
+        document.body.style.setProperty('height', '100vh', 'important')
+        document.body.style.setProperty('width', 'auto', 'important')
+        document.body.style.setProperty('background', 'var(--ink)', 'important')
+        document.body.style.setProperty('color', 'var(--cream)', 'important')
+        document.body.style.setProperty('position', 'relative', 'important')
+        
+        // Calculate proper width - ensure it's wider than viewport
+        const containerWidth = worksContainer.scrollWidth
+        const viewportWidth = window.innerWidth
+        const padding = parseFloat(getComputedStyle(worksContainer).paddingLeft) * 2 || 0
+        const totalWidth = Math.max(containerWidth + padding, viewportWidth + 1)
+        
+        // Set main width to force horizontal scroll
+        main.style.width = `${totalWidth}px`
+        main.style.minWidth = `${totalWidth}px`
+        main.style.display = 'block'
+        main.style.position = 'relative'
+        
+        // Ensure works-container is wide enough
+        worksContainer.style.width = `${containerWidth}px`
+        worksContainer.style.minWidth = `${containerWidth}px`
+        worksContainer.style.flexShrink = '0'
+      } else {
+        // Mobile: normal vertical scroll
+        document.body.classList.remove('visuals-page')
+        
+        document.documentElement.style.removeProperty('overflow-y')
+        document.documentElement.style.removeProperty('overflow-x')
+        document.documentElement.style.removeProperty('height')
+        document.documentElement.style.removeProperty('width')
+        document.documentElement.style.setProperty('background', 'var(--ink)', 'important')
+        
+        document.body.style.removeProperty('overflow-y')
+        document.body.style.removeProperty('overflow-x')
+        document.body.style.removeProperty('height')
+        document.body.style.removeProperty('width')
+        document.body.style.removeProperty('position')
+        document.body.style.setProperty('background', 'var(--ink)', 'important')
+        document.body.style.setProperty('color', 'var(--cream)', 'important')
+        
+        main.style.width = '100%'
+        main.style.minWidth = 'auto'
+        worksContainer.style.width = 'auto'
+        worksContainer.style.minWidth = 'auto'
+      }
+    }
+
+    // Initial setup
+    updateLayout()
+    
+    // Recalculate on resize
+    const handleResize = () => {
+      updateLayout()
+    }
+    
+    window.addEventListener('resize', handleResize)
+    
+    // Also recalculate after images load
+    const images = document.querySelectorAll('.work-card__image')
+    let loadedCount = 0
+    const totalImages = images.length
+    
+    if (totalImages > 0) {
+      images.forEach((img) => {
+        if ((img as HTMLImageElement).complete) {
+          loadedCount++
+        } else {
+          img.addEventListener('load', () => {
+            loadedCount++
+            if (loadedCount === totalImages) {
+              setTimeout(updateLayout, 100)
+            }
+          })
         }
-      }, 100)
+      })
+      
+      if (loadedCount === totalImages) {
+        setTimeout(updateLayout, 100)
+      }
     } else {
-      // Mobile: normal vertical scroll
-      document.documentElement.style.background = 'var(--ink)'
-      document.documentElement.style.overflowY = 'auto'
-      document.documentElement.style.overflowX = 'hidden'
-      document.documentElement.style.height = 'auto'
-      document.body.style.overflowY = 'auto'
-      document.body.style.overflowX = 'hidden'
-      document.body.style.height = 'auto'
-      document.body.style.background = 'var(--ink)'
-      document.body.style.color = 'var(--cream)'
+      // Fallback if no images
+      setTimeout(updateLayout, 200)
     }
 
     return () => {
-      document.documentElement.style.background = ''
-      document.documentElement.style.overflowY = ''
-      document.documentElement.style.overflowX = ''
-      document.documentElement.style.height = ''
-      document.body.style.overflowY = ''
-      document.body.style.overflowX = ''
-      document.body.style.height = ''
-      document.body.style.background = ''
-      document.body.style.color = ''
+      window.removeEventListener('resize', handleResize)
+      document.body.classList.remove('visuals-page')
+      document.documentElement.style.removeProperty('background')
+      document.documentElement.style.removeProperty('overflow-y')
+      document.documentElement.style.removeProperty('overflow-x')
+      document.documentElement.style.removeProperty('height')
+      document.documentElement.style.removeProperty('width')
+      document.body.style.removeProperty('overflow-y')
+      document.body.style.removeProperty('overflow-x')
+      document.body.style.removeProperty('height')
+      document.body.style.removeProperty('width')
+      document.body.style.removeProperty('background')
+      document.body.style.removeProperty('color')
+      document.body.style.removeProperty('position')
       
       const main = document.getElementById('main')
+      const worksContainer = document.getElementById('works-container')
       if (main) {
         main.style.width = ''
         main.style.minWidth = ''
+      }
+      if (worksContainer) {
+        worksContainer.style.width = ''
+        worksContainer.style.minWidth = ''
+        worksContainer.style.flexShrink = ''
       }
     }
   }, [])
