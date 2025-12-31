@@ -1,16 +1,11 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import Link from 'next/link'
 import Header from '@/components/Header'
 
 // ========================================
 // VISUAL WORK DATA
 // ========================================
-// Update this data structure with your actual visual work
-// Images should be in /public/images/visuals/
-// ========================================
-
 interface VisualWork {
   title: string
   year: string
@@ -157,17 +152,177 @@ export default function VisualsPage() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const worksContainerRef = useRef<HTMLDivElement>(null)
   const titleTextRef = useRef<HTMLSpanElement>(null)
-  const exhibitionViewRef = useRef<HTMLDivElement>(null)
   const touchStartXRef = useRef(0)
   const touchEndXRef = useRef(0)
 
   const currentWork = works[currentIndex]
   const totalWorks = works.length
 
+  // Setup horizontal scroll - matching HTML exactly
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    const isLandscapeMobile = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches
+
+    // Add body class for CSS targeting
+    document.body.classList.add('visuals-page')
+    document.documentElement.classList.add('visuals-page')
+
+    // Setup horizontal scroll for desktop/landscape mobile
+    if (!isMobile || isLandscapeMobile) {
+      // Set html and body styles exactly like HTML
+      document.documentElement.style.background = 'var(--ink)'
+      document.documentElement.style.overflowX = 'auto'
+      document.documentElement.style.overflowY = 'hidden'
+      document.documentElement.style.height = '100vh'
+      document.documentElement.style.setProperty('height', '100svh', 'important')
+      document.documentElement.style.width = '100%'
+
+      document.body.style.background = 'var(--ink)'
+      document.body.style.color = 'var(--cream)'
+      document.body.style.overflowX = 'auto'
+      document.body.style.overflowY = 'hidden'
+      document.body.style.height = '100vh'
+      document.body.style.setProperty('height', '100svh', 'important')
+      document.body.style.width = '100%'
+      document.body.style.margin = '0'
+      document.body.style.padding = '0'
+
+      // Calculate main width for horizontal scroll
+      const updateLayout = () => {
+        const main = document.getElementById('main-content')
+        const worksContainer = worksContainerRef.current
+
+        if (!main || !worksContainer) return
+
+        // Force layout recalculation
+        void worksContainer.offsetWidth
+        void main.offsetWidth
+
+        const containerScrollWidth = worksContainer.scrollWidth
+        const viewportWidth = window.innerWidth
+        const paddingLeft = parseFloat(getComputedStyle(worksContainer).paddingLeft) || 0
+        const paddingRight = parseFloat(getComputedStyle(worksContainer).paddingRight) || 0
+        const totalPadding = paddingLeft + paddingRight
+
+        // Main must be wider than viewport to enable scrolling
+        const mainWidth = Math.max(containerScrollWidth + totalPadding, viewportWidth + 200)
+
+        main.style.width = `${mainWidth}px`
+        main.style.minWidth = `${mainWidth}px`
+        main.style.height = '100vh'
+        main.style.setProperty('height', '100svh', 'important')
+        main.style.minHeight = '100vh'
+        main.style.setProperty('minHeight', '100svh', 'important')
+        main.style.maxHeight = '100vh'
+        main.style.setProperty('maxHeight', '100svh', 'important')
+        main.style.display = 'block'
+        main.style.position = 'relative'
+        main.style.margin = '0'
+        main.style.padding = '0'
+        main.style.overflow = 'visible'
+
+        // Works container
+        worksContainer.style.flexShrink = '0'
+        worksContainer.style.width = 'auto'
+        worksContainer.style.minWidth = 'auto'
+        worksContainer.style.height = '100vh'
+        worksContainer.style.setProperty('height', '100svh', 'important')
+        worksContainer.style.minHeight = '100vh'
+        worksContainer.style.setProperty('minHeight', '100svh', 'important')
+        worksContainer.style.maxHeight = '100vh'
+        worksContainer.style.setProperty('maxHeight', '100svh', 'important')
+      }
+
+      // Initial setup
+      const initLayout = () => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            updateLayout()
+
+            // Wait for images to load
+            const images = document.querySelectorAll('.work-card__image')
+            let loadedCount = 0
+            const totalImages = images.length
+
+            if (totalImages > 0) {
+              const checkAllLoaded = () => {
+                loadedCount++
+                if (loadedCount === totalImages) {
+                  setTimeout(updateLayout, 100)
+                }
+              }
+
+              images.forEach((img) => {
+                const imgEl = img as HTMLImageElement
+                if (imgEl.complete && imgEl.naturalHeight !== 0) {
+                  checkAllLoaded()
+                } else {
+                  imgEl.addEventListener('load', checkAllLoaded, { once: true })
+                  imgEl.addEventListener('error', checkAllLoaded, { once: true })
+                }
+              })
+
+              if (loadedCount === totalImages) {
+                setTimeout(updateLayout, 100)
+              }
+            } else {
+              setTimeout(updateLayout, 200)
+            }
+          })
+        })
+      }
+
+      initLayout()
+
+      // Recalculate on resize
+      let resizeTimeout: NodeJS.Timeout
+      const handleResize = () => {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(() => {
+          updateLayout()
+        }, 150)
+      }
+
+      window.addEventListener('resize', handleResize, { passive: true })
+
+      // ResizeObserver for container changes
+      let resizeObserver: ResizeObserver | null = null
+      if (worksContainerRef.current && 'ResizeObserver' in window) {
+        resizeObserver = new ResizeObserver(() => {
+          updateLayout()
+        })
+        resizeObserver.observe(worksContainerRef.current)
+      }
+
+      return () => {
+        clearTimeout(resizeTimeout)
+        window.removeEventListener('resize', handleResize)
+        if (resizeObserver) {
+          resizeObserver.disconnect()
+        }
+      }
+    } else {
+      // Mobile: normal vertical scroll
+      document.body.classList.remove('visuals-page')
+      document.documentElement.classList.remove('visuals-page')
+      document.documentElement.style.removeProperty('background')
+      document.documentElement.style.removeProperty('overflow-x')
+      document.documentElement.style.removeProperty('overflow-y')
+      document.documentElement.style.removeProperty('height')
+      document.body.style.removeProperty('background')
+      document.body.style.removeProperty('color')
+      document.body.style.removeProperty('overflow-x')
+      document.body.style.removeProperty('overflow-y')
+      document.body.style.removeProperty('height')
+    }
+  }, [])
+
   // Horizontal scroll on wheel
   useEffect(() => {
     if (typeof window === 'undefined') return
-    
+
     const isMobile = window.matchMedia('(max-width: 768px)').matches
     const isLandscapeMobile = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches
 
@@ -177,14 +332,9 @@ export default function VisualsPage() {
       if (exhibitionOpen) return
       const mobileMenu = document.querySelector('.ui__mobile-menu')
       if (mobileMenu?.classList.contains('active')) return
-      
-      // Only prevent default if we're actually on the visuals page with horizontal scroll enabled
-      const isVisualsPage = document.body.classList.contains('visuals-page')
-      if (!isVisualsPage) return
-      
+
       e.preventDefault()
-      // Use smooth scrolling for better UX
-      window.scrollBy({ left: e.deltaY * 1.5, behavior: 'smooth' })
+      window.scrollBy({ left: e.deltaY * 2, behavior: 'auto' })
     }
 
     window.addEventListener('wheel', handleWheel, { passive: false })
@@ -205,24 +355,20 @@ export default function VisualsPage() {
     return () => window.removeEventListener('scroll', updateProgress)
   }, [])
 
-  // Title parallax - subtle movement matching HTML mockup
+  // Title parallax
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches
     if (isMobile || !titleTextRef.current) return
 
     const handleScroll = () => {
       if (!titleTextRef.current) return
-      // Get horizontal scroll position
       const scrollLeft = window.scrollX || document.documentElement.scrollLeft
-      // Apply subtle parallax (title moves opposite to scroll direction)
-      // The title overlay container is fixed, but the text inside moves slightly
       titleTextRef.current.style.transform = `translateX(${scrollLeft * -0.15}px)`
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      // Reset transform on unmount - let CSS animation handle it
       if (titleTextRef.current) {
         titleTextRef.current.style.transform = ''
       }
@@ -334,205 +480,6 @@ export default function VisualsPage() {
     }
   }
 
-  // Enable horizontal scroll for visuals page - matching HTML mockup exactly
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    
-    const isMobile = window.matchMedia('(max-width: 768px)').matches
-    const isLandscapeMobile = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches
-
-    // Add body class for CSS targeting
-    document.body.classList.add('visuals-page')
-    document.documentElement.classList.add('visuals-page')
-
-    const updateLayout = () => {
-      const main = document.getElementById('main-content')
-      const worksContainer = worksContainerRef.current
-      
-      if (!main || !worksContainer) return
-
-      // Enable horizontal scrolling on desktop/landscape mobile (matching HTML)
-      if (!isMobile || isLandscapeMobile) {
-        // Disable scroll-snap for visuals page
-        document.documentElement.style.setProperty('scroll-snap-type', 'none', 'important')
-        
-        // Set html and body for horizontal scroll
-        document.documentElement.style.setProperty('overflow-x', 'auto', 'important')
-        document.documentElement.style.setProperty('overflow-y', 'hidden', 'important')
-        document.documentElement.style.setProperty('height', '100vh', 'important')
-        document.documentElement.style.setProperty('height', '100svh', 'important')
-        document.documentElement.style.setProperty('width', '100%', 'important')
-        document.documentElement.style.setProperty('background', 'var(--cream)', 'important')
-        
-        document.body.style.setProperty('overflow-x', 'auto', 'important')
-        document.body.style.setProperty('overflow-y', 'hidden', 'important')
-        document.body.style.setProperty('height', '100vh', 'important')
-        document.body.style.setProperty('height', '100svh', 'important')
-        document.body.style.setProperty('width', '100%', 'important')
-        document.body.style.setProperty('background', 'var(--cream)', 'important')
-        document.body.style.setProperty('color', 'var(--ink)', 'important')
-        
-        // Force layout recalculation to get accurate measurements
-        void worksContainer.offsetWidth
-        void main.offsetWidth
-        
-        // Get the actual scrollWidth after layout
-        // This includes all cards, gaps, and padding
-        const containerScrollWidth = worksContainer.scrollWidth
-        const viewportWidth = window.innerWidth
-        
-        // Calculate padding (left + right)
-        const paddingLeft = parseFloat(getComputedStyle(worksContainer).paddingLeft) || 0
-        const paddingRight = parseFloat(getComputedStyle(worksContainer).paddingRight) || 0
-        const totalPadding = paddingLeft + paddingRight
-        
-        // Ensure main is wide enough to enable horizontal scrolling
-        // Must be wider than viewport to enable scrolling
-        const mainWidth = Math.max(containerScrollWidth + totalPadding, viewportWidth + 200)
-        
-        // Set main width and height to enable scrolling and full screen
-        main.style.width = `${mainWidth}px`
-        main.style.minWidth = `${mainWidth}px`
-        main.style.height = '100vh'
-        main.style.height = '100svh'
-        main.style.minHeight = '100vh'
-        main.style.minHeight = '100svh'
-        main.style.display = 'block'
-        main.style.position = 'relative'
-        main.style.margin = '0'
-        main.style.padding = '0'
-        
-        // Ensure works container doesn't shrink and is full height
-        worksContainer.style.flexShrink = '0'
-        worksContainer.style.width = 'auto'
-        worksContainer.style.minWidth = 'auto'
-        worksContainer.style.height = '100vh'
-        worksContainer.style.height = '100svh'
-        worksContainer.style.minHeight = '100vh'
-        worksContainer.style.minHeight = '100svh'
-        worksContainer.style.maxHeight = '100vh'
-        worksContainer.style.maxHeight = '100svh'
-      } else {
-        // Mobile: normal vertical scroll
-        document.body.classList.remove('visuals-page')
-        document.documentElement.classList.remove('visuals-page')
-        
-        document.documentElement.style.removeProperty('scroll-snap-type')
-        document.documentElement.style.removeProperty('overflow-y')
-        document.documentElement.style.removeProperty('overflow-x')
-        document.documentElement.style.removeProperty('height')
-        document.documentElement.style.setProperty('background', 'var(--cream)', 'important')
-        
-        document.body.style.removeProperty('overflow-y')
-        document.body.style.removeProperty('overflow-x')
-        document.body.style.removeProperty('height')
-        document.body.style.setProperty('background', 'var(--cream)', 'important')
-        document.body.style.setProperty('color', 'var(--ink)', 'important')
-        
-        main.style.width = '100%'
-        main.style.minWidth = 'auto'
-        worksContainer.style.width = 'auto'
-        worksContainer.style.minWidth = 'auto'
-        worksContainer.style.flexShrink = ''
-      }
-    }
-
-    // Initial setup - wait for DOM and images
-    const initLayout = () => {
-      // Wait for next frame
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          updateLayout()
-          
-          // Wait for images to load, then recalculate
-          const images = document.querySelectorAll('.work-card__image')
-          let loadedCount = 0
-          const totalImages = images.length
-          
-          if (totalImages > 0) {
-            const checkAllLoaded = () => {
-              loadedCount++
-              if (loadedCount === totalImages) {
-                setTimeout(updateLayout, 100)
-              }
-            }
-            
-            images.forEach((img) => {
-              const imgEl = img as HTMLImageElement
-              if (imgEl.complete && imgEl.naturalHeight !== 0) {
-                checkAllLoaded()
-              } else {
-                imgEl.addEventListener('load', checkAllLoaded, { once: true })
-                imgEl.addEventListener('error', checkAllLoaded, { once: true })
-              }
-            })
-            
-            // Fallback if all images are already loaded
-            if (loadedCount === totalImages) {
-              setTimeout(updateLayout, 100)
-            }
-          } else {
-            setTimeout(updateLayout, 200)
-          }
-        })
-      })
-    }
-    
-    initLayout()
-    
-    // Recalculate on resize with debounce
-    let resizeTimeout: NodeJS.Timeout
-    const handleResize = () => {
-      clearTimeout(resizeTimeout)
-      resizeTimeout = setTimeout(() => {
-        updateLayout()
-      }, 150)
-    }
-    
-    window.addEventListener('resize', handleResize, { passive: true })
-    
-    // Use ResizeObserver for container size changes
-    let resizeObserver: ResizeObserver | null = null
-    if (worksContainerRef.current && 'ResizeObserver' in window) {
-      resizeObserver = new ResizeObserver(() => {
-        updateLayout()
-      })
-      resizeObserver.observe(worksContainerRef.current)
-    }
-
-    return () => {
-      clearTimeout(resizeTimeout)
-      window.removeEventListener('resize', handleResize)
-      if (resizeObserver) {
-        resizeObserver.disconnect()
-      }
-      
-      document.body.classList.remove('visuals-page')
-      document.documentElement.classList.remove('visuals-page')
-      document.documentElement.style.removeProperty('scroll-snap-type')
-      document.documentElement.style.removeProperty('background')
-      document.documentElement.style.removeProperty('overflow-y')
-      document.documentElement.style.removeProperty('overflow-x')
-      document.documentElement.style.removeProperty('height')
-      document.body.style.removeProperty('overflow-y')
-      document.body.style.removeProperty('overflow-x')
-      document.body.style.removeProperty('height')
-      document.body.style.removeProperty('background')
-      document.body.style.removeProperty('color')
-      
-      const main = document.getElementById('main-content')
-      if (main) {
-        main.style.width = ''
-        main.style.minWidth = ''
-      }
-      if (worksContainerRef.current) {
-        worksContainerRef.current.style.width = ''
-        worksContainerRef.current.style.minWidth = ''
-        worksContainerRef.current.style.flexShrink = ''
-      }
-    }
-  }, [])
-
   return (
     <div className="visuals-layout">
       <div className="grain" aria-hidden="true"></div>
@@ -610,7 +557,6 @@ export default function VisualsPage() {
       {/* Exhibition Detail View */}
       <div
         className={`exhibition-view ${exhibitionOpen ? 'active' : ''}`}
-        ref={exhibitionViewRef}
         role="dialog"
         aria-modal="true"
         aria-label="Artwork details"

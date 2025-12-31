@@ -102,24 +102,23 @@ body {
   min-height: 100dvh; /* Dynamic viewport height for mobile */
 }
 
-/* Allow horizontal scroll on visuals page - matching homepage design system */
+/* Allow horizontal scroll on visuals page - matching HTML exactly */
 html.visuals-page {
-  background: var(--cream) !important;
+  background: var(--ink) !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
   height: 100vh !important;
   height: 100svh !important;
   width: 100% !important;
   scroll-snap-type: none !important;
-  scroll-behavior: smooth;
 }
 
 body.visuals-page {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   font-size: var(--text-base);
   line-height: 1.6;
-  background: var(--cream) !important;
-  color: var(--ink) !important;
+  background: var(--ink) !important;
+  color: var(--cream) !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
   height: 100vh !important;
@@ -127,7 +126,6 @@ body.visuals-page {
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-snap-type: none !important;
@@ -3467,8 +3465,8 @@ a[href^="/"]:hover {
   min-height: 100svh !important;
   max-height: 100vh !important;
   max-height: 100svh !important;
-  background: var(--cream) !important;
-  color: var(--ink) !important;
+  background: var(--ink) !important;
+  color: var(--cream) !important;
   position: relative;
   margin: 0 !important;
   padding: 0 !important;
@@ -3589,28 +3587,23 @@ a[href^="/"]:hover {
 
 .title-overlay__text {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(18vw, 28vw, 38vw);
-  line-height: 0.82;
-  letter-spacing: -0.03em;
+  font-size: clamp(15vw, 25vw, 35vw);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--cream);
   opacity: 0;
-  transform: translateY(40px) scale(0.95);
-  animation: titleReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-  text-shadow: 
-    0 0 100px rgba(26,23,20,0.15),
-    0 0 50px rgba(26,23,20,0.08),
-    0 4px 20px rgba(0,0,0,0.1);
+  transform: translateY(30px);
+  animation: titleReveal 1s var(--ease) 0.5s forwards;
+  text-shadow: 0 0 100px rgba(255,181,160,0.1);
   transition: transform 0.1s linear;
-  font-weight: 400;
   display: inline-block;
-  /* Matching homepage design system with ink color */
 }
 
 @keyframes titleReveal {
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -3630,49 +3623,38 @@ body.visuals-page #main {
   /* Width will be set by JavaScript based on works-container */
 }
 
-/* Horizontal Scroll Container */
+/* Horizontal Scroll Container - matching HTML exactly */
 .works-container {
   display: flex;
   align-items: center;
-  height: 100vh !important;
-  height: 100svh !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  padding: 0 calc(50vw - 200px);
-  gap: var(--space-6);
+  height: 100vh;
+  height: 100svh;
+  padding: 0 calc(50vw - 180px);
+  gap: var(--space-5);
   position: relative;
   z-index: 5;
-  /* Width will be calculated by JavaScript to ensure horizontal scroll */
   flex-shrink: 0;
   overflow: visible;
   margin: 0;
   width: auto;
-  /* Enhanced spacing for better card presentation */
 }
 
 .work-card {
 }
 
-/* Work Cards */
+/* Work Cards - matching HTML exactly */
 .work-card {
   flex-shrink: 0;
-  width: clamp(300px, 24vw, 400px);
-  height: clamp(480px, 72vh, 720px);
+  width: clamp(280px, 22vw, 380px);
+  height: clamp(450px, 70vh, 700px);
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 4px;
   opacity: 0;
-  transform: translateY(50px) scale(0.92);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 
-    0 25px 50px -12px rgba(0,0,0,0.25),
-    0 0 0 1px rgba(255,255,255,0.05);
-  background: var(--ink-soft);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  /* Enhanced card styling with depth and sophistication */
+  transform: translateY(40px) scale(0.95);
+  transition: transform var(--transition-slow) var(--ease), 
+              box-shadow var(--transition-base) var(--ease),
+              opacity var(--transition-slow) var(--ease);
 }
 
 .work-card.visible {
@@ -3681,12 +3663,8 @@ body.visuals-page #main {
 }
 
 .work-card:hover {
-  transform: translateY(-16px) scale(1.04);
-  box-shadow: 
-    0 50px 100px -20px rgba(0,0,0,0.5),
-    0 0 0 1px rgba(255,255,255,0.15),
-    0 0 60px rgba(255,181,160,0.1);
-  /* Enhanced hover with dramatic lift and glow */
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
 }
 
 .work-card:nth-child(1) { transition-delay: 0.6s; }
@@ -3702,100 +3680,62 @@ body.visuals-page #main {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: var(--cream-dark);
+  background: var(--ink-soft);
 }
 
 .work-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(20%) contrast(1.05) saturate(0.9) brightness(1);
-  transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 12s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, filter;
-  /* Matching homepage aesthetic with lighter filters */
+  filter: grayscale(20%) contrast(1.05) saturate(0.9);
+  transition: filter var(--transition-slow) var(--ease), transform 8s var(--ease);
 }
 
 .work-card:hover .work-card__image {
-  filter: grayscale(0%) contrast(1.05) saturate(1.1) brightness(1.05);
-  transform: scale(1.12);
-  /* Enhanced hover with vibrant color restoration */
+  filter: grayscale(0%) contrast(1) saturate(1);
+  transform: scale(1.08);
 }
 
 .work-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg, 
-    rgba(245,240,235,0) 0%, 
-    rgba(245,240,235,0) 35%, 
-    rgba(245,240,235,0.6) 65%,
-    rgba(245,240,235,0.9) 100%
-  );
+  background: linear-gradient(180deg, rgba(10,9,8,0) 0%, rgba(10,9,8,0) 50%, rgba(10,9,8,0.6) 100%);
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  /* Matching homepage cream background gradient */
+  transition: opacity var(--transition-base) var(--ease);
 }
 
 .work-card:hover .work-card__overlay {
-  opacity: 0.9;
-  background: linear-gradient(
-    180deg, 
-    rgba(245,240,235,0) 0%, 
-    rgba(245,240,235,0) 30%, 
-    rgba(245,240,235,0.7) 60%,
-    rgba(245,240,235,0.95) 100%
-  );
+  opacity: 0.7;
 }
 
 .work-card__info {
   position: absolute;
-  bottom: 0;
+  bottom: -60px;
   left: 0;
   right: 0;
-  padding: var(--space-6) var(--space-5);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0.95;
-  /* Enhanced positioning and visibility */
+  padding: var(--space-4) 0;
 }
 
 .work-card__title {
   font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: clamp(0.875rem, 1.2vw, 1rem);
-  letter-spacing: var(--tracking-wider);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: var(--space-3);
-  font-weight: 500;
-  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  /* Matching homepage design system */
+  color: var(--cream);
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-base) var(--ease);
 }
 
 .work-card:hover .work-card__title {
-  color: var(--accent);
-  transform: translateY(-3px);
+  color: var(--gradient-rose);
 }
 
-.work-card:hover .work-card__info {
-  transform: translateY(-6px);
-  opacity: 1;
-  /* Enhanced lift with better visibility */
-}
 
 .work-card__meta {
   font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
-  color: var(--ink-muted);
-  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  font-weight: 400;
-}
-
-.work-card:hover .work-card__meta {
-  color: var(--ink);
+  color: rgba(255,255,255,0.4);
 }
 
 .work-card__link {
@@ -3810,59 +3750,49 @@ body.visuals-page #main {
 
 .work-card__index {
   position: absolute;
-  top: var(--space-5);
-  left: var(--space-5);
+  top: var(--space-4);
+  left: var(--space-4);
   font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: clamp(0.75rem, 1vw, 0.875rem);
-  letter-spacing: var(--tracking-wider);
-  color: var(--ink-muted);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: rgba(255,255,255,0.6);
   z-index: 3;
   opacity: 0;
-  transform: translateY(-12px) scale(0.9);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  font-weight: 500;
+  transform: translateY(-10px);
+  transition: all var(--transition-base) var(--ease);
 }
 
 .work-card:hover .work-card__index {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  color: var(--ink);
+  transform: translateY(0);
 }
 
 .work-card__type {
   position: absolute;
-  top: var(--space-5);
-  right: var(--space-5);
+  top: var(--space-4);
+  right: var(--space-4);
   font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: clamp(0.625rem, 0.9vw, 0.75rem);
-  letter-spacing: var(--tracking-wider);
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--ink);
-  background: rgba(245,240,235,0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: var(--space-2) var(--space-4);
-  border-radius: 4px;
-  border: 1px solid rgba(26,23,20,0.1);
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 2px;
   z-index: 3;
   opacity: 0;
-  transform: translateY(-12px) scale(0.9);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-10px);
+  transition: all var(--transition-base) var(--ease);
 }
 
 .work-card:hover .work-card__type {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  background: rgba(245,240,235,0.95);
-  border-color: rgba(26,23,20,0.2);
-  box-shadow: 
-    0 4px 12px rgba(0,0,0,0.15),
-    0 0 20px rgba(196,30,58,0.1);
+  transform: translateY(0);
 }
 
-/* Scroll Hint & Progress */
+/* Scroll Hint & Progress - matching HTML exactly */
 .scroll-hint {
   position: fixed;
   bottom: var(--space-6);
@@ -3870,18 +3800,11 @@ body.visuals-page #main {
   transform: translateX(-50%);
   z-index: 100;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   opacity: 0;
   animation: fadeIn 0.8s var(--ease-out) 1.5s forwards;
   transition: opacity 0.5s var(--ease);
-  width: auto;
-  text-align: center;
-  /* Ensure it doesn't overlap with back-to-top button */
-  padding-bottom: calc(44px + var(--space-2));
-  margin: 0 auto;
 }
 
 .scroll-hint__text {
@@ -3924,6 +3847,22 @@ body.visuals-page #main {
   background: linear-gradient(90deg, var(--gradient-warm), var(--gradient-rose));
   width: 0%;
   transition: width 0.1s linear;
+}
+
+/* Main container for visuals page - makes document wider for horizontal scroll */
+html.visuals-page #main-content,
+body.visuals-page #main-content {
+  display: block !important;
+  position: relative;
+  overflow: visible !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  /* Width will be set by JavaScript based on works-container */
 }
 
 /* Exhibition Detail View */
