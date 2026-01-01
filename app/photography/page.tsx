@@ -165,22 +165,51 @@ export default function PhotographyPage() {
     }
   }, [lightboxOpen])
 
-  // Horizontal scroll on wheel
+  // Smooth horizontal scroll on wheel with momentum
   useEffect(() => {
     if (typeof window === 'undefined') return
     
     const gallery = document.getElementById('main-content')
     if (!gallery) return
 
+    let scrollVelocity = 0
+    let isScrolling = false
+    let rafId: number | null = null
+
+    const smoothScroll = () => {
+      if (Math.abs(scrollVelocity) > 0.5) {
+        gallery.scrollLeft += scrollVelocity
+        scrollVelocity *= 0.92 // Friction
+        rafId = requestAnimationFrame(smoothScroll)
+      } else {
+        isScrolling = false
+        scrollVelocity = 0
+      }
+    }
+
     const handleWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault()
-        gallery.scrollLeft += e.deltaY
+        
+        // Add momentum
+        scrollVelocity += e.deltaY * 0.5
+        
+        // Clamp velocity for smoothness
+        scrollVelocity = Math.max(-30, Math.min(30, scrollVelocity))
+        
+        // Start smooth scroll loop if not already running
+        if (!isScrolling) {
+          isScrolling = true
+          rafId = requestAnimationFrame(smoothScroll)
+        }
       }
     }
 
     gallery.addEventListener('wheel', handleWheel, { passive: false })
-    return () => gallery.removeEventListener('wheel', handleWheel)
+    return () => {
+      gallery.removeEventListener('wheel', handleWheel)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   // Set overflow hidden on mount for horizontal scroll
@@ -255,6 +284,8 @@ export default function PhotographyPage() {
                     src={photo.src}
                     alt={photo.alt}
                     loading={index < 3 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    style={{ willChange: 'transform, opacity, filter' }}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       // Fallback to a placeholder or hide the image
@@ -337,6 +368,22 @@ export default function PhotographyPage() {
             }}
           />
 
+          {/* Progress Tracker */}
+          <div className="lightbox__progress">
+            <div className="lightbox__progress-bar">
+              <div 
+                className="lightbox__progress-fill" 
+                style={{ width: `${((lightboxIndex + 1) / currentCategoryImages.length) * 100}%` }}
+              ></div>
+            </div>
+            <div className="lightbox__progress-info">
+              <span className="lightbox__counter">
+                {String(lightboxIndex + 1).padStart(2, '0')} / {String(currentCategoryImages.length).padStart(2, '0')}
+              </span>
+              <span className="lightbox__hint">ESC to close</span>
+            </div>
+          </div>
+
           <div className="lightbox__nav">
             {currentCategoryImages.map((_, index) => (
               <button
@@ -350,11 +397,6 @@ export default function PhotographyPage() {
               />
             ))}
           </div>
-
-          <span className="lightbox__counter">
-            {lightboxIndex + 1} / {currentCategoryImages.length}
-          </span>
-          <span className="lightbox__hint">ESC to close</span>
         </div>
       )}
     </>

@@ -24,9 +24,9 @@ interface Work {
 const works: Work[] = [
   {
     title: 'Neon Genesis',
-    year: '2024',
+    year: '2026',
     type: 'AI Art',
-    catalog: 'RM-NG-24-001',
+    catalog: 'RM-NG-26-001',
     image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1400&q=95',
     alt: 'Neon Genesis',
     medium: 'AI-generated image + digital post-production',
@@ -40,9 +40,9 @@ const works: Work[] = [
   },
   {
     title: 'Midnight Waves',
-    year: '2024',
+    year: '2026',
     type: 'Album Cover',
-    catalog: 'RM-MW-24-002',
+    catalog: 'RM-MW-26-002',
     image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1400&q=95',
     alt: 'Midnight Waves',
     medium: 'Digital composition + photography',
@@ -51,14 +51,14 @@ const works: Work[] = [
     edition: 'Commercial license',
     series: 'Music & Identity',
     note: 'Created for an electronic music release exploring themes of nocturnal solitude and urban isolation.',
-    provenance: 'Client commission, 2024',
+    provenance: 'Client commission, 2026',
     status: 'Licensed'
   },
   {
     title: 'Digital Bloom',
-    year: '2024',
+    year: '2026',
     type: 'AI Art',
-    catalog: 'RM-DB-24-003',
+    catalog: 'RM-DB-26-003',
     image: 'https://images.unsplash.com/photo-1634017839464-5c339bbe3c35?w=1400&q=95',
     alt: 'Digital Bloom',
     medium: 'AI-generated image + color grading',
@@ -72,9 +72,9 @@ const works: Work[] = [
   },
   {
     title: 'Glitch Protocol',
-    year: '2024',
+    year: '2026',
     type: 'Experiment',
-    catalog: 'RM-GP-24-004',
+    catalog: 'RM-GP-26-004',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=95',
     alt: 'Glitch Protocol',
     medium: 'Corrupted data visualization + AI reconstruction',
@@ -88,9 +88,9 @@ const works: Work[] = [
   },
   {
     title: 'Echoes',
-    year: '2024',
+    year: '2026',
     type: 'Album Cover',
-    catalog: 'RM-EC-24-005',
+    catalog: 'RM-EC-26-005',
     image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1400&q=95',
     alt: 'Echoes',
     medium: 'Photography + digital manipulation',
@@ -99,7 +99,7 @@ const works: Work[] = [
     edition: 'Commercial license',
     series: 'Music & Identity',
     note: 'An album cover exploring the resonance between sound and visual memory.',
-    provenance: 'Client commission, 2024',
+    provenance: 'Client commission, 2026',
     status: 'Licensed'
   },
   {
@@ -147,7 +147,7 @@ const works: Work[] = [
     edition: 'Commercial license',
     series: 'Music & Identity',
     note: 'Pure color as emotion.',
-    provenance: 'Client commission, 2023',
+    provenance: 'Client commission, 2026',
     status: 'Licensed'
   }
 ]
@@ -533,7 +533,7 @@ export default function VisualsPage() {
             <h1 ref={galleryTitleRef} className="gallery__title" id="galleryTitle"></h1>
             <div className="gallery__line"></div>
             <p className="gallery__desc">A curated collection of AI art, album covers, and digital experiments exploring the boundaries of synthetic creativity.</p>
-            <p className="gallery__year">© 2024</p>
+            <p className="gallery__year">© 2026</p>
           </div>
 
           {/* Cards */}
@@ -671,17 +671,6 @@ export default function VisualsPage() {
                   <div className="exhibition__note">
                     <p className="exhibition__note-label">Curatorial Note</p>
                     <p className="exhibition__note-text" id="exhibitionNote">{currentWork.note}</p>
-                  </div>
-
-                  <div className="exhibition__footer">
-                    <div className="exhibition__footer-item">
-                      Provenance
-                      <span id="exhibitionProvenance">{currentWork.provenance}</span>
-                    </div>
-                    <div className="exhibition__footer-item">
-                      Status
-                      <span id="exhibitionStatus">{currentWork.status}</span>
-                    </div>
                   </div>
                 </>
               )}
