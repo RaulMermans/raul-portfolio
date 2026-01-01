@@ -18,9 +18,17 @@ const sections = [
     id: 'photography',
     index: '02',
     title: 'Photography',
-    description: 'Places, faces, quiet moments. From Moroccan medinas to intimate portraits — images that stay with you.',
+    description: 'Street scenes, urban narratives, and architectural moments. Visual storytelling that captures the pulse of cities and the poetry of everyday life.',
     href: '/photography',
     image: '/images/sections/photography-bg.webp',
+  },
+  {
+    id: 'visuals',
+    index: '03',
+    title: 'Visuals',
+    description: 'AI art, album covers, and experiments. Digital pieces made for clients, or just because.',
+    href: '#', // Placeholder - will link to /visuals when sublanding is ready
+    image: '/images/sections/visuals-bg.webp',
   },
 ]
 
@@ -93,11 +101,19 @@ export default function SectionCards() {
             </p>
           </div>
           <span className="section-card__view" aria-hidden="true">Explore</span>
-          <Link
-            href={section.href}
-            className="section-card__link"
-            aria-label={`Explore ${section.title}`}
-          ></Link>
+          {section.href === '#' ? (
+            <div
+              className="section-card__link"
+              aria-label={`${section.title} - Coming soon`}
+              style={{ cursor: 'not-allowed', opacity: 0.7 }}
+            ></div>
+          ) : (
+            <Link
+              href={section.href}
+              className="section-card__link"
+              aria-label={`Explore ${section.title}`}
+            ></Link>
+          )}
         </section>
       ))}
     </>

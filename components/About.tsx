@@ -51,17 +51,11 @@ export default function About() {
         <div className="about__content">
           <p className="label about__label reveal">About</p>
           <h2 id="about-title" className="about__headline reveal reveal-delay-1">
-            Visual Storyteller<br/>Based in Spain
+            Digital Systems & Creative Direction
           </h2>
           <p className="about__text reveal reveal-delay-2">
-            Working at the intersection of photography, brand identity, and AI-powered creatives. Creating visual narratives that resonate beyond aesthetics — from traditional photography to cutting-edge generative art.
+            I&apos;m a self-taught builder obsessed with how stories and systems fit together. I&apos;ve taken my business background and turned it into a practice of creating digital environments where AI and human intuition work side-by-side.
           </p>
-          
-          <div className="about__belief reveal reveal-delay-2">
-            <p className="about__belief-text">
-              I believe great work doesn&apos;t just capture moments — it <span>creates meaning</span> and drives real results.
-            </p>
-          </div>
           
           <Link 
             href="/about" 

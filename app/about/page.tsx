@@ -63,11 +63,11 @@ export default function AboutPage() {
               <p className="bio__page-title reveal">About</p>
               <p className="label bio__label reveal reveal--delay-1">The Story</p>
               <h1 className="bio__headline reveal reveal--delay-1">
-                I make things that feel like something.
+                Digital Systems & Creative Direction
               </h1>
 
               <p className="bio__text reveal reveal--delay-2">
-                I&apos;m Raúl — a <span className="bio__highlight">photographer, brand builder, and creative</span> based in Spain. I spend most of my time somewhere between a camera, a screen, and an idea that won&apos;t leave me alone until I make it real.
+                I&apos;m a self-taught builder obsessed with how stories and systems fit together. I&apos;ve taken my business background and turned it into a practice of creating digital environments where AI and human intuition work side-by-side.
               </p>
               
               <p className="bio__text reveal reveal--delay-3">
@@ -90,6 +90,7 @@ export default function AboutPage() {
             <a
               href="mailto:raulmermans@gmail.com"
               className="btn btn--arrow connect__email reveal reveal--delay-2"
+              aria-label="Send email to Raúl Mermans"
             >
               Get in Touch
             </a>
@@ -102,7 +103,7 @@ export default function AboutPage() {
                 href="https://www.instagram.com/raulmeermans/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram"
+                aria-label="Visit Raúl Mermans on Instagram (opens in new tab)"
               >
                 IG
               </a>
@@ -110,7 +111,7 @@ export default function AboutPage() {
                 href="https://linkedin.com/in/raulmermans"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
+                aria-label="Visit Raúl Mermans on LinkedIn (opens in new tab)"
               >
                 LI
               </a>
@@ -118,7 +119,7 @@ export default function AboutPage() {
                 href="https://unsplash.com/@raulmermans"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Unsplash"
+                aria-label="Visit Raúl Mermans on Unsplash (opens in new tab)"
               >
                 UN
               </a>
@@ -126,7 +127,7 @@ export default function AboutPage() {
                 href="https://twitter.com/raulmermans"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Twitter"
+                aria-label="Visit Raúl Mermans on Twitter (opens in new tab)"
               >
                 X
               </a>

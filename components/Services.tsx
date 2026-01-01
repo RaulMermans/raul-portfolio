@@ -10,7 +10,7 @@ const services = [
     titleShort: 'AI Agents',
     items: ['Custom AI Solutions', 'Automation Workflows', 'Prompt Engineering', 'AI Integration'],
     description: 'Intelligent automation systems that streamline workflows and unlock new possibilities.',
-    image: '/images/services/ai-agents.webp',
+    image: '/images/services/Services_AI_Agents.webp',
   },
   {
     number: '00-2',
@@ -18,7 +18,7 @@ const services = [
     titleShort: 'Web Dev',
     items: ['Custom Web Design', 'Frontend Development', 'Performance Optimization', 'CMS Integration'],
     description: 'Modern, performant web experiences crafted with precision.',
-    image: '/images/services/web-development.webp',
+    image: '/images/services/Services_Web_Development.webp',
   },
   {
     number: '00-3',
@@ -26,7 +26,7 @@ const services = [
     titleShort: 'Photography',
     items: ['Brand Photo', 'Visual Story', 'Editorial Shoot', 'Product Photo'],
     description: 'Visual narratives that capture the essence of brands and stories.',
-    image: '/images/services/photography.webp',
+    image: '/images/services/Services_Photography.webp',
   },
   {
     number: '00-4',
@@ -34,7 +34,7 @@ const services = [
     titleShort: 'Creative Dir',
     items: ['Brand Strategy', 'Visual Identity', 'Art Direction', 'Campaign Concepts'],
     description: 'Strategic creative vision from concept to execution.',
-    image: '/images/services/creative-direction.webp',
+    image: '/images/services/Services_Creative_Direction.webp',
   },
 ]
 
@@ -88,6 +88,21 @@ export default function Services() {
                     quality={85}
                     className="service__image-img"
                     loading="lazy"
+                    sizes="(max-width: 768px) 0px, 300px"
+                    style={{ 
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      // Fallback: hide the image container if image fails to load
+                      const container = target.closest('.service__image')
+                      if (container) {
+                        (container as HTMLElement).style.display = 'none'
+                      }
+                    }}
                   />
                 </div>
               </div>
