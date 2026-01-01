@@ -165,25 +165,32 @@ export default function PhotographyPage() {
     }
   }, [lightboxOpen])
 
-  // Smooth horizontal scroll on wheel with momentum
+  // Smooth horizontal scroll on wheel with improved performance
   useEffect(() => {
     if (typeof window === 'undefined') return
     
     const gallery = document.getElementById('main-content')
     if (!gallery) return
 
-    let scrollVelocity = 0
-    let isScrolling = false
+    let scrollTarget = gallery.scrollLeft
     let rafId: number | null = null
+    let lastTime = performance.now()
 
-    const smoothScroll = () => {
-      if (Math.abs(scrollVelocity) > 0.5) {
-        gallery.scrollLeft += scrollVelocity
-        scrollVelocity *= 0.92 // Friction
+    const smoothScroll = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime
+      lastTime = currentTime
+      
+      const current = gallery.scrollLeft
+      const diff = scrollTarget - current
+      
+      if (Math.abs(diff) > 0.5) {
+        // Use time-based easing for consistent speed
+        const easing = Math.min(0.2 * (deltaTime / 16), 0.3) // Normalize to 60fps
+        gallery.scrollLeft += diff * easing
         rafId = requestAnimationFrame(smoothScroll)
       } else {
-        isScrolling = false
-        scrollVelocity = 0
+        gallery.scrollLeft = scrollTarget
+        rafId = null
       }
     }
 
@@ -191,15 +198,16 @@ export default function PhotographyPage() {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault()
         
-        // Add momentum
-        scrollVelocity += e.deltaY * 0.5
+        // Update target scroll position with momentum
+        const scrollAmount = e.deltaY * 1.5
+        scrollTarget = Math.max(0, Math.min(
+          gallery.scrollWidth - gallery.clientWidth,
+          scrollTarget + scrollAmount
+        ))
         
-        // Clamp velocity for smoothness
-        scrollVelocity = Math.max(-30, Math.min(30, scrollVelocity))
-        
-        // Start smooth scroll loop if not already running
-        if (!isScrolling) {
-          isScrolling = true
+        // Start smooth scroll if not already running
+        if (rafId === null) {
+          lastTime = performance.now()
           rafId = requestAnimationFrame(smoothScroll)
         }
       }
@@ -370,6 +378,9 @@ export default function PhotographyPage() {
 
           {/* Progress Tracker */}
           <div className="lightbox__progress">
+            <div className="lightbox__category">
+              {categoriesState[lightboxCategory]?.name || 'Gallery'}
+            </div>
             <div className="lightbox__progress-bar">
               <div 
                 className="lightbox__progress-fill" 
