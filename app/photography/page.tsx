@@ -225,7 +225,8 @@ export default function PhotographyPage() {
                     loading={index < 3 ? 'eager' : 'lazy'}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
-                      target.src = '/images/placeholders/visuals-fallback.webp'
+                      // Fallback to a placeholder or hide the image
+                      target.style.display = 'none'
                     }}
                   />
                 </div>
@@ -299,7 +300,8 @@ export default function PhotographyPage() {
             onClick={(e) => e.stopPropagation()}
             onError={(e) => {
               const target = e.target as HTMLImageElement
-              target.src = '/images/placeholders/visuals-fallback.webp'
+              // Fallback to a placeholder or hide the image
+              target.style.display = 'none'
             }}
           />
 

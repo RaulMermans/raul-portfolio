@@ -22,14 +22,6 @@ const sections = [
     href: '/photography',
     image: '/images/sections/photography-bg.webp',
   },
-  {
-    id: 'visuals',
-    index: '03',
-    title: 'Visuals',
-    description: 'AI art, album covers, and experiments. Digital pieces made for clients, or just because.',
-    href: '/visuals',
-    image: '/images/sections/visuals-bg.webp', // Replace with your custom image
-  },
 ]
 
 export default function SectionCards() {

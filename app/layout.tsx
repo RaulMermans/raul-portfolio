@@ -3,6 +3,15 @@ import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
+import '@/lib/performance-bot' // Initialize performance bot
+import '@/lib/cache-bot' // Initialize cache bot
+import '@/lib/error-bot' // Initialize error bot
+import '@/lib/optimization-bot' // Initialize optimization bot
+import '@/lib/seo-bot' // Initialize SEO bot
+import '@/lib/image-optimization-bot' // Initialize image optimization bot
+import '@/lib/accessibility-bot' // Initialize accessibility bot
+import '@/lib/analytics-bot' // Initialize analytics bot
+import '@/lib/security-bot' // Initialize security bot
 
 const bebasNeue = Bebas_Neue({
   weight: '400',

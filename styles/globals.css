@@ -102,44 +102,7 @@ body {
   min-height: 100dvh; /* Dynamic viewport height for mobile */
 }
 
-/* Allow horizontal scroll on visuals page - matching HTML exactly */
-html.visuals-page {
-  background: var(--ink) !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  height: 100vh !important;
-  height: 100svh !important;
-  width: 100% !important;
-  scroll-snap-type: none !important;
-}
-
-body.visuals-page {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: var(--text-base);
-  line-height: 1.6;
-  background: var(--ink) !important;
-  color: var(--cream) !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  height: 100vh !important;
-  height: 100svh !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-snap-type: none !important;
-}
-
-/* Visuals layout wrapper - ensure full screen */
 @media (max-width: 768px) {
-  html.visuals-page,
-  body.visuals-page {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    height: auto !important;
-  }
-  
   body {
     font-size: 0.9375rem; /* 15px base for better mobile readability */
     line-height: 1.65;
@@ -176,12 +139,6 @@ img {
   opacity: 0.03;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Visuals page grain - different opacity and blend mode */
-.visuals-layout .grain {
-  opacity: 0.035;
-  mix-blend-mode: overlay;
 }
 
 /* Reveal animation */
@@ -2545,171 +2502,9 @@ section {
 }
 
 /* ========================================
-   VISUALS PAGE
-   ======================================== */
-.visuals-page {
-  min-height: 100vh;
-  background: var(--cream);
-  padding: calc(var(--header-height) + var(--space-8)) var(--section-padding) var(--space-8);
-}
-
-/* Visuals page - enable horizontal document scroll */
-/* Applied via inline styles in component, but ensure structure supports it */
-#main {
-  display: block;
-  width: 100%;
-}
-
-/* Visuals page main - full screen */
-html.visuals-page #main,
-body.visuals-page #main {
-  height: 100vh !important;
-  height: 100svh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.visuals-page__header {
-  max-width: 1200px;
-  margin: 0 auto var(--space-8);
-  text-align: center;
-}
-
-.visuals-page__back {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-sm);
-  color: var(--ink-faint);
-  margin-bottom: var(--space-6);
-  transition: color var(--transition-base) var(--ease), transform 0.2s var(--ease);
-}
-
-.visuals-page__back:hover {
-  color: var(--ink);
-  transform: translateX(-4px);
-}
-
-.visuals-page__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(3rem, 8vw, 6rem);
-  letter-spacing: var(--tracking-tight);
-  color: var(--ink);
-  margin-bottom: var(--space-4);
-}
-
-.visuals-page__description {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: var(--text-md);
-  color: var(--ink-soft);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.visuals-page__filters {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-8);
-  flex-wrap: wrap;
-}
-
-.visuals-page__filter {
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  padding: var(--space-3) var(--space-5);
-  border: 1px solid var(--cream-dark);
-  background: transparent;
-  cursor: pointer;
-  transition: all var(--transition-base) var(--ease);
-  min-height: 44px;
-}
-
-.visuals-page__filter:hover {
-  color: var(--ink);
-  border-color: var(--ink-faint);
-  background: rgba(26, 23, 20, 0.02);
-}
-
-.visuals-page__filter.active {
-  color: var(--ink);
-  border-color: var(--ink);
-  background: rgba(26, 23, 20, 0.04);
-}
-
-.visuals-page__gallery {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-6);
-  padding-bottom: var(--space-8);
-}
-
-.visuals-page__item {
-  cursor: pointer;
-  transition: transform var(--transition-base) var(--ease);
-}
-
-.visuals-page__item:hover {
-  transform: translateY(-4px);
-}
-
-.visuals-page__image-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: var(--cream-dark);
-  border: 1px solid var(--cream-dark);
-}
-
-.visuals-page__image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-slow) var(--ease), filter var(--transition-base) var(--ease);
-  filter: grayscale(20%) brightness(0.95);
-}
-
-.visuals-page__item:hover .visuals-page__image-wrapper img {
-  transform: scale(1.1);
-  filter: grayscale(0%) brightness(1);
-}
-
-.visuals-page__item-title {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: var(--text-sm);
-  color: var(--ink-soft);
-  margin-top: var(--space-3);
-  text-align: center;
 }
 
 @media (max-width: 768px) {
-  .visuals-page {
-    padding: calc(var(--header-height) + var(--space-6)) var(--space-4) var(--space-6);
-  }
-
-  .visuals-page__gallery {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: var(--space-4);
-  }
-
-  .visuals-page__filters {
-    gap: var(--space-2);
-    margin-bottom: var(--space-6);
-  }
-
-  .visuals-page__filter {
-    padding: var(--space-2) var(--space-4);
-    font-size: 0.65rem;
-    min-height: 40px;
-  }
 }
 
 /* Lightbox Navigation Buttons */
@@ -2780,18 +2575,6 @@ body.visuals-page #main {
               transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
               filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   filter: blur(0px);
-}
-
-/* Prevent PageTransition transforms from affecting fixed elements on visuals page */
-body.visuals-page .page-transition {
-  transform: none !important;
-  height: 100vh !important;
-  height: 100svh !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: visible !important;
 }
 
 /* Exit animation - fade out with blur and scale */
@@ -3454,23 +3237,6 @@ a[href^="/"]:hover {
 }
 
 /* ========================================
-   VISUALS PAGE (Horizontal Gallery)
-   ======================================== */
-
-.visuals-layout {
-  width: 100% !important;
-  height: 100vh !important;
-  height: 100svh !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  max-height: 100vh !important;
-  max-height: 100svh !important;
-  background: var(--ink) !important;
-  color: var(--cream) !important;
-  position: relative;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: visible !important;
 }
 
 /* Note: Overflow is handled by JavaScript for better control */
@@ -3603,22 +3369,6 @@ a[href^="/"]:hover {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* Main container for visuals page - makes document wider for horizontal scroll */
-html.visuals-page #main,
-body.visuals-page #main {
-  display: block !important;
-  position: relative;
-  overflow: visible !important;
-  height: 100vh !important;
-  height: 100svh !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: auto !important;
-  /* Width will be set by JavaScript based on works-container */
 }
 
 /* Horizontal Scroll Container - matching HTML exactly */
@@ -3845,22 +3595,6 @@ body.visuals-page #main {
   background: linear-gradient(90deg, var(--gradient-warm), var(--gradient-rose));
   width: 0%;
   transition: width 0.1s linear;
-}
-
-/* Main container for visuals page - makes document wider for horizontal scroll */
-html.visuals-page #main-content,
-body.visuals-page #main-content {
-  display: block !important;
-  position: relative;
-  overflow: visible !important;
-  height: 100vh !important;
-  height: 100svh !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: auto !important;
-  /* Width will be set by JavaScript based on works-container */
 }
 
 /* Exhibition Detail View */
@@ -4969,19 +4703,6 @@ body.visuals-page #main-content {
     font-size: clamp(0.625rem, 2vw, 0.75rem);
   }
   
-  /* Visuals page mobile */
-  .visuals-page {
-    padding: var(--space-6) var(--space-4);
-  }
-  
-  .works-container {
-    padding: var(--space-4) 0;
-  }
-  
-  .work-card {
-    min-width: 280px;
-  }
-  
   /* Case studies mobile */
   .case-studies-page {
     padding: var(--space-6) var(--space-4);
@@ -5138,16 +4859,9 @@ body.visuals-page #main-content {
   width: 100% !important;
 }
 
-/* Ensure PageTransition doesn't constrain case studies or visuals */
-body:has(.case-studies-main) .page-transition,
-body:has(.visuals-layout) .page-transition,
-body.visuals-page .page-transition {
-  height: 100vh !important;
-  height: 100svh !important;
-  min-height: 100vh !important;
-  min-height: 100svh !important;
-  overflow: visible !important;
-  transform: none !important;
+/* Ensure PageTransition doesn't constrain case studies */
+body:has(.case-studies-main) .page-transition {
+  /* Styles if needed */
 }
 
 @media (max-width: 900px) {
