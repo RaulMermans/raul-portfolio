@@ -241,7 +241,14 @@ export default function PhotographyPage() {
   const openLightbox = (imgElement: HTMLImageElement, category: 'landscape' | 'architecture' | 'street') => {
     setLightboxCategory(category)
     const categoryImages = categoriesState[category]?.images || []
-    const index = categoryImages.findIndex((img) => img.src === imgElement.src)
+    // Find index by comparing src paths (handle both relative and absolute paths)
+    const imgSrc = imgElement.src.includes(imgElement.src.split('/').pop() || '') 
+      ? imgElement.src 
+      : imgElement.getAttribute('src') || imgElement.src
+    const index = categoryImages.findIndex((img) => {
+      const imgPath = img.src.startsWith('/') ? img.src : `/${img.src}`
+      return imgElement.src.includes(imgPath) || imgElement.src.endsWith(imgPath) || imgPath === imgSrc
+    })
     setLightboxIndex(index >= 0 ? index : 0)
     setLightboxOpen(true)
   }
@@ -278,14 +285,20 @@ export default function PhotographyPage() {
           <div className="gallery__grid">
             {allImages.map((photo, index) => {
               const isActive = photo.category === activeCategory
+              const categoryImages = categoriesState[photo.category]?.images || []
+              const photoIndex = categoryImages.findIndex((img) => img.src === photo.src)
+              
               return (
                 <div
                   key={`${photo.category}-${index}`}
                   className={`gallery__item ${isActive ? 'active' : ''}`}
                   data-category={photo.category}
                   onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img')
-                    if (img) openLightbox(img, photo.category)
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setLightboxCategory(photo.category)
+                    setLightboxIndex(photoIndex >= 0 ? photoIndex : 0)
+                    setLightboxOpen(true)
                   }}
                 >
                   <img

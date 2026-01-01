@@ -36,6 +36,10 @@ export default function SectionCards() {
   const sectionBgsRef = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
+    // Disable parallax on mobile for better performance
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    if (isMobile) return
+
     let ticking = false
     const viewportHeight = window.innerHeight
     
