@@ -27,7 +27,7 @@ const sections = [
     index: '03',
     title: 'Visuals',
     description: 'AI art, album covers, and experiments. Digital pieces made for clients, or just because.',
-    href: '#', // Placeholder - will link to /visuals when sublanding is ready
+    href: '/visuals',
     image: '/images/sections/visuals-bg.webp',
   },
 ]

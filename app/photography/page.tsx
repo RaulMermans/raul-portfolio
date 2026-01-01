@@ -10,6 +10,11 @@ import Header from '@/components/Header'
 // - src: image path (from /public/images/photography/[category]/)
 // - alt: description for accessibility
 // - category: 'landscape', 'architecture', or 'street'
+//
+// RANDOM SELECTION:
+// - You can add more than 12 images per category
+// - The system will randomly select 12 images on each visit
+// - Selection is consistent during the session (stored in sessionStorage)
 // ========================================
 
 interface Photo {
@@ -18,78 +23,105 @@ interface Photo {
   category: 'landscape' | 'architecture' | 'street'
 }
 
-const categories = {
-  landscape: {
-    name: 'Landscape',
-    count: 12,
-    images: [
-      { src: '/images/photography/landscape/photo-1.webp', alt: 'Mountain landscape at dawn', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-2.webp', alt: 'Forest valley with morning mist', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-3.webp', alt: 'Waterfall in tropical forest', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-4.webp', alt: 'Lake reflection at sunset', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-5.webp', alt: 'Rolling hills in fog', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-6.webp', alt: 'Sunlight through forest trees', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-7.webp', alt: 'Ocean cliffs at golden hour', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-8.webp', alt: 'Green meadow with mountains', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-9.webp', alt: 'Dramatic mountain peaks', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-10.webp', alt: 'Autumn forest road', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-11.webp', alt: 'Pine trees in mist', category: 'landscape' as const },
-      { src: '/images/photography/landscape/photo-12.webp', alt: 'Desert dunes at sunset', category: 'landscape' as const },
-    ],
-  },
-  architecture: {
-    name: 'Architecture',
-    count: 12,
-    images: [
-      { src: '/images/photography/architecture/photo-1.webp', alt: 'Modern glass building facade', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-2.webp', alt: 'Brutalist concrete structure', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-3.webp', alt: 'Geometric building patterns', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-4.webp', alt: 'White modern architecture', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-5.webp', alt: 'Classical columns', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-6.webp', alt: 'Japanese traditional building', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-7.webp', alt: 'Urban skyline', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-8.webp', alt: 'Minimalist house exterior', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-9.webp', alt: 'Interior spiral staircase', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-10.webp', alt: 'Museum architecture', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-11.webp', alt: 'Industrial building', category: 'architecture' as const },
-      { src: '/images/photography/architecture/photo-12.webp', alt: 'Bridge architecture', category: 'architecture' as const },
-    ],
-  },
-  street: {
-    name: 'Street',
-    count: 12,
-    images: [
-      { src: '/images/photography/street/photo-1.webp', alt: 'Rainy city street at night', category: 'street' as const },
-      { src: '/images/photography/street/photo-2.webp', alt: 'Person crossing urban street', category: 'street' as const },
-      { src: '/images/photography/street/photo-3.webp', alt: 'City crowd in motion', category: 'street' as const },
-      { src: '/images/photography/street/photo-4.webp', alt: 'New York taxi cab', category: 'street' as const },
-      { src: '/images/photography/street/photo-5.webp', alt: 'Neon signs in alley', category: 'street' as const },
-      { src: '/images/photography/street/photo-6.webp', alt: 'London street scene', category: 'street' as const },
-      { src: '/images/photography/street/photo-7.webp', alt: 'City buildings from below', category: 'street' as const },
-      { src: '/images/photography/street/photo-8.webp', alt: 'Tokyo street crossing', category: 'street' as const },
-      { src: '/images/photography/street/photo-9.webp', alt: 'Urban graffiti wall', category: 'street' as const },
-      { src: '/images/photography/street/photo-10.webp', alt: 'Street vendor scene', category: 'street' as const },
-      { src: '/images/photography/street/photo-11.webp', alt: 'Moody alleyway', category: 'street' as const },
-      { src: '/images/photography/street/photo-12.webp', alt: 'Street performer', category: 'street' as const },
-    ],
-  },
+// Helper function to shuffle array and select random items
+function shuffleAndSelect<T>(array: T[], count: number): T[] {
+  const shuffled = [...array].sort(() => Math.random() - 0.5)
+  return shuffled.slice(0, count)
 }
 
-// Combine all images in the scattered order: landscape (1-12), architecture (13-24), street (25-36)
-const allImages: Photo[] = [
-  ...categories.landscape.images,
-  ...categories.architecture.images,
-  ...categories.street.images,
-]
+// Helper function to get or create random selection (persisted per session)
+function getRandomSelection<T>(key: string, allItems: T[], count: number): T[] {
+  if (typeof window === 'undefined') {
+    // Server-side: return first N items
+    return allItems.slice(0, count)
+  }
+
+  // Check sessionStorage for existing selection
+  const stored = sessionStorage.getItem(`photo-selection-${key}`)
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored)
+      // Validate that stored selection still exists in allItems
+      const validSelection = parsed.filter((item: T) => 
+        allItems.some(ai => JSON.stringify(ai) === JSON.stringify(item))
+      )
+      if (validSelection.length === count) {
+        return validSelection
+      }
+    } catch (e) {
+      // Invalid stored data, continue to generate new
+    }
+  }
+
+  // Generate new random selection
+  const selection = shuffleAndSelect(allItems, count)
+  sessionStorage.setItem(`photo-selection-${key}`, JSON.stringify(selection))
+  return selection
+}
+
+// ALL AVAILABLE IMAGES
+// Automatically includes all uploaded images in each category
+// The system will randomly select 12 images from the available pool
+const allAvailableImages = {
+  landscape: Array.from({ length: 15 }, (_, i) => ({
+    src: `/images/photography/landscape/Landscape${i + 1}.webp`,
+    alt: `Landscape photography ${i + 1}`,
+    category: 'landscape' as const,
+  })),
+  architecture: Array.from({ length: 13 }, (_, i) => ({
+    src: `/images/photography/architecture/Arquitecture${i + 1}.webp`,
+    alt: `Architecture photography ${i + 1}`,
+    category: 'architecture' as const,
+  })),
+  street: Array.from({ length: 18 }, (_, i) => ({
+    src: `/images/photography/street/Street${i + 1}.webp`,
+    alt: `Street photography ${i + 1}`,
+    category: 'street' as const,
+  })),
+}
+
+// Number of images to display per category
+const IMAGES_PER_CATEGORY = 12
+
+// Generate categories with random selection (consistent per session)
+function getCategories() {
+  return {
+    landscape: {
+      name: 'Landscape',
+      count: IMAGES_PER_CATEGORY,
+      images: getRandomSelection('landscape', allAvailableImages.landscape, IMAGES_PER_CATEGORY),
+    },
+    architecture: {
+      name: 'Architecture',
+      count: IMAGES_PER_CATEGORY,
+      images: getRandomSelection('architecture', allAvailableImages.architecture, IMAGES_PER_CATEGORY),
+    },
+    street: {
+      name: 'Street',
+      count: IMAGES_PER_CATEGORY,
+      images: getRandomSelection('street', allAvailableImages.street, IMAGES_PER_CATEGORY),
+    },
+  }
+}
 
 export default function PhotographyPage() {
+  // Get categories with random selection (consistent per session)
+  const [categoriesState] = useState(() => getCategories())
+  
+  // Combine all images in the scattered order: landscape (1-12), architecture (13-24), street (25-36)
+  const allImages: Photo[] = [
+    ...categoriesState.landscape.images,
+    ...categoriesState.architecture.images,
+    ...categoriesState.street.images,
+  ]
+
   const [activeCategory, setActiveCategory] = useState<'landscape' | 'architecture' | 'street'>('landscape')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [lightboxCategory, setLightboxCategory] = useState<'landscape' | 'architecture' | 'street'>('landscape')
 
-  const currentCategoryImages = categories[lightboxCategory]?.images || []
-  const activeCount = categories[activeCategory]?.count || 0
+  const currentCategoryImages = categoriesState[lightboxCategory]?.images || []
+  const activeCount = categoriesState[activeCategory]?.count || 0
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -171,7 +203,7 @@ export default function PhotographyPage() {
 
   const openLightbox = (imgElement: HTMLImageElement, category: 'landscape' | 'architecture' | 'street') => {
     setLightboxCategory(category)
-    const categoryImages = categories[category]?.images || []
+    const categoryImages = categoriesState[category]?.images || []
     const index = categoryImages.findIndex((img) => img.src === imgElement.src)
     setLightboxIndex(index >= 0 ? index : 0)
     setLightboxOpen(true)
@@ -239,7 +271,7 @@ export default function PhotographyPage() {
       {/* Category Overlay */}
       <div className="category-overlay">
         <h1 className="category-overlay__title">
-          <span id="category-name">{categories[activeCategory]?.name || 'Landscape'}</span>
+          <span id="category-name">{categoriesState[activeCategory]?.name || 'Landscape'}</span>
           <span className="category-overlay__count">({activeCount})</span>
         </h1>
       </div>

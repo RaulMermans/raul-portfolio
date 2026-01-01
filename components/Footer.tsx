@@ -35,6 +35,9 @@ export default function Footer() {
               <li>
                 <Link href="/photography">Photography</Link>
               </li>
+              <li>
+                <Link href="/visuals">Visuals</Link>
+              </li>
             </ul>
           </div>
 
