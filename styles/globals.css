@@ -5896,6 +5896,9 @@ a[href^="/"]:hover {
     /* Prevent overlap */
     position: relative;
     z-index: 1;
+    /* Prevent overlap */
+    position: relative;
+    z-index: 1;
     max-width: 450px;
     aspect-ratio: 3/4;
   }
