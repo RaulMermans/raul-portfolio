@@ -56,13 +56,13 @@ export default function AISportsCampaignPage() {
 
       {/* Header */}
       <header className="header case-study-header" id="header">
-        <Link href="/" className="header__logo">
+        <a href="/" className="header__logo">
           Raúl Mermans
-        </Link>
+        </a>
         <nav className="header__nav">
-          <Link href="/#work">Work</Link>
-          <Link href="/#about">About</Link>
-          <Link href="/#contact">Contact</Link>
+          <a href="/#work">Work</a>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
         </nav>
       </header>
 
