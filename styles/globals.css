@@ -158,12 +158,22 @@ img {
   transform: translateY(0) !important;
 }
 
-/* Ensure contact section elements are always visible */
+/* Ensure contact section elements are always visible - CRITICAL FIX */
+.contact__headline,
+.contact__subtitle,
+.contact__cta {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
 .contact__headline.reveal,
 .contact__subtitle.reveal,
 .contact__cta.reveal {
   opacity: 1 !important;
   transform: translateY(0) !important;
+  visibility: visible !important;
 }
 
 .reveal--delay-1 {

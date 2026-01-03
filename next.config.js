@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  // Disable static optimization to prevent caching issues
+  output: undefined, // Keep dynamic rendering
   images: {
     // Removed Unsplash - using local images only
     formats: ['image/avif', 'image/webp'],
@@ -23,10 +25,38 @@ const nextConfig = {
       ...config.resolve.alias,
       '@': require('path').resolve(__dirname),
     }
+    // Disable CSS caching in development
+    if (process.env.NODE_ENV === 'development') {
+      config.optimization = {
+        ...config.optimization,
+        moduleIds: 'named',
+      }
+    }
     return config
   },
-  // Enable static exports if needed for static hosting
-  // output: 'export',
+  // Headers to prevent caching
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

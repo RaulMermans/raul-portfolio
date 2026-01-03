@@ -1,5 +1,9 @@
 'use client'
 
+// Force dynamic rendering to prevent caching
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -18,11 +22,25 @@ export default function Home() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     
+    // Force CSS reload by adding timestamp to stylesheet
+    const links = document.querySelectorAll('link[rel="stylesheet"]')
+    links.forEach((link: any) => {
+      if (link.href && !link.href.includes('?')) {
+        link.href = link.href + '?v=' + Date.now()
+      }
+    })
+    
     // Enable scroll-snap for homepage
     // Only enable on desktop
     const enableScrollSnap = () => {
       if (window.innerWidth > 768) {
         document.documentElement.style.scrollSnapType = 'y mandatory'
+        // Force apply scroll-snap-align to all sections
+        const sections = document.querySelectorAll('section, .hero, .footer')
+        sections.forEach((section: any) => {
+          section.style.scrollSnapAlign = 'start'
+          section.style.scrollSnapStop = 'always'
+        })
       } else {
         document.documentElement.style.scrollSnapType = 'none'
       }
@@ -115,6 +133,7 @@ export default function Home() {
       // Also check periodically for dynamically added elements
       setTimeout(setupRevealObserver, 100)
       setTimeout(setupRevealObserver, 500)
+      setTimeout(setupRevealObserver, 1000)
     })
 
     // Throttled scroll handler for better performance
@@ -128,13 +147,13 @@ export default function Home() {
           const viewportTop = 0
           const viewportBottom = viewportHeight
           
-          for (let i = 0; i < revealElements.length; i++) {
-            const el = revealElements[i] as HTMLElement
+          revealElements.forEach((el) => {
             const rect = el.getBoundingClientRect()
-            if (rect.top < viewportBottom && rect.bottom > viewportTop) {
+            if (rect.top < viewportBottom + 200 && rect.bottom > viewportTop - 200) {
               el.classList.add('visible')
+              revealObserver?.unobserve(el)
             }
-          }
+          })
           ticking = false
         })
         ticking = true
@@ -161,29 +180,14 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Header />
-      
-      <main id="main-content" role="main">
-        <Hero />
-        <SectionCards />
-        <About />
-        <Services />
-        <Contact />
-      </main>
-
+      <Hero />
+      <SectionCards />
+      <About />
+      <Services />
+      <Contact />
       <Footer />
-
-      <BackToTop />
-
-      <div className="ui ui__progress" aria-hidden="true">
-        <span className="ui__progress-text" id="progress-text">
-          {String(currentSection).padStart(2, '0')}/{String(8).padStart(2, '0')}
-        </span>
-        <div className="ui__progress-bar">
-          <div className="ui__progress-fill" id="progress" style={{ height: `${scrollProgress}%` }}></div>
-        </div>
-      </div>
+      <BackToTop scrollProgress={scrollProgress} currentSection={currentSection} totalSections={6} />
     </ErrorBoundary>
   )
 }
