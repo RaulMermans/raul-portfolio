@@ -5,17 +5,22 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 export const metadata: Metadata = {
   title: 'Remoria — Raúl Mermans',
   description:
-    'A poetic fragrance house rooted in Roman legacy, Spanish lyricism, and Mediterranean light—where scent becomes memory and design becomes relic.',
+    'A poetic fragrance house rooted in Roman legacy, Spanish lyricism, and Mediterranean light—where scent becomes memory and design becomes relic. Brand identity and creative direction.',
   openGraph: {
     title: 'Remoria — Raúl Mermans',
-    description: 'A story-driven fragrance world where Mediterranean warmth meets timeless restraint.',
+    description: 'A poetic fragrance house rooted in Roman legacy, Spanish lyricism, and Mediterranean light—where scent becomes memory and design becomes relic.',
     type: 'article',
     url: `${baseUrl}/case-studies/remoria`,
+    publishedTime: '2026-01-01',
+    authors: ['Raúl Mermans'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Remoria — Raúl Mermans',
-    description: 'A story-driven fragrance world where Mediterranean warmth meets timeless restraint.',
+    description: 'A poetic fragrance house rooted in Roman legacy, Spanish lyricism, and Mediterranean light—where scent becomes memory and design becomes relic.',
+  },
+  alternates: {
+    canonical: `${baseUrl}/case-studies/remoria`,
   },
 }
 

@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import NextCaseStudy from '@/components/NextCaseStudy'
+import StructuredData from '@/components/StructuredData'
 
 export default function AISportsCampaignPage() {
   useEffect(() => {
@@ -47,8 +48,26 @@ export default function AISportsCampaignPage() {
     }
   }, [])
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
+
   return (
     <>
+      <StructuredData
+        type="Article"
+        data={{
+          headline: 'AI Sports Campaign',
+          description:
+            'A Creative Direction Engine built in n8n—swap casting and wardrobe while locking the shot. Campaign-grade coherence from generative AI.',
+          image: `${baseUrl}/images/placeholders/ai-sports-hero.webp`,
+          datePublished: '2026-01-01',
+          dateModified: '2026-01-01',
+          url: `${baseUrl}/case-studies/ai-sports`,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${baseUrl}/case-studies/ai-sports`,
+          },
+        }}
+      />
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>

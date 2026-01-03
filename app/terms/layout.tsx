@@ -11,9 +11,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Terms of Service — Raúl Mermans',
-    description: 'Terms of Service for Raúl Mermans portfolio website.',
+    description: 'Terms of Service for Raúl Mermans portfolio website. Read our terms and conditions for using this website.',
     url: `${baseUrl}/terms`,
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/terms`,
   },
 }
 

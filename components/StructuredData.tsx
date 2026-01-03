@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 
 interface StructuredDataProps {
-  type: 'Person' | 'WebSite' | 'Portfolio'
+  type: 'Person' | 'WebSite' | 'Portfolio' | 'Article' | 'CreativeWork'
   data?: Record<string, any>
 }
 
@@ -58,6 +58,32 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         creator: {
           '@type': 'Person',
           name: 'Raúl Mermans',
+        },
+        ...data,
+      }
+    } else if (type === 'Article') {
+      jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        author: {
+          '@type': 'Person',
+          name: 'Raúl Mermans',
+          url: baseUrl,
+        },
+        publisher: {
+          '@type': 'Person',
+          name: 'Raúl Mermans',
+        },
+        ...data,
+      }
+    } else if (type === 'CreativeWork') {
+      jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        creator: {
+          '@type': 'Person',
+          name: 'Raúl Mermans',
+          url: baseUrl,
         },
         ...data,
       }

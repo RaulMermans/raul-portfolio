@@ -11,9 +11,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Privacy Policy — Raúl Mermans',
-    description: 'Privacy Policy for Raúl Mermans portfolio website.',
+    description: 'Privacy Policy for Raúl Mermans portfolio website. Learn how we collect, use, and protect your personal information.',
     url: `${baseUrl}/privacy`,
     type: 'website',
+  },
+  alternates: {
+    canonical: `${baseUrl}/privacy`,
   },
 }
 

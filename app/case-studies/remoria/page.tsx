@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import NextCaseStudy from '@/components/NextCaseStudy'
+import StructuredData from '@/components/StructuredData'
 
 export default function RemoriaPage() {
   useEffect(() => {
@@ -47,8 +48,26 @@ export default function RemoriaPage() {
     }
   }, [])
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
+
   return (
     <>
+      <StructuredData
+        type="Article"
+        data={{
+          headline: 'Remoria',
+          description:
+            'A poetic fragrance house rooted in Roman legacy, Spanish lyricism, and Mediterranean light—where scent becomes memory and design becomes relic.',
+          image: `${baseUrl}/images/placeholders/remoria-hero.webp`,
+          datePublished: '2026-01-01',
+          dateModified: '2026-01-01',
+          url: `${baseUrl}/case-studies/remoria`,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${baseUrl}/case-studies/remoria`,
+          },
+        }}
+      />
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
