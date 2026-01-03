@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { escapeHtml } from '@/lib/utils'
 
 // Initialize Resend client only if API key is available
 const getResendClient = () => {
@@ -61,6 +62,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Escape all user input to prevent HTML injection
+    const escapedName = escapeHtml(name)
+    const escapedEmail = escapeHtml(email)
+    // Escape message and preserve line breaks
+    const escapedMessage = escapeHtml(message).replace(/\n/g, '<br>')
+
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
@@ -92,20 +99,20 @@ export async function POST(request: NextRequest) {
               <div class="content">
                 <div class="field">
                   <div class="label">Name</div>
-                  <div class="value">${name}</div>
+                  <div class="value">${escapedName}</div>
                 </div>
                 <div class="field">
                   <div class="label">Email</div>
-                  <div class="value"><a href="mailto:${email}" style="color: #C41E3A; text-decoration: none;">${email}</a></div>
+                  <div class="value"><a href="mailto:${escapedEmail}" style="color: #C41E3A; text-decoration: none;">${escapedEmail}</a></div>
                 </div>
                 <div class="field">
                   <div class="label">Message</div>
-                  <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
+                  <div class="message-box">${escapedMessage}</div>
                 </div>
               </div>
               <div class="footer">
                 <p>This email was sent from your portfolio contact form.</p>
-                <p>Reply directly to this email to respond to ${name}.</p>
+                <p>Reply directly to this email to respond to ${escapedName}.</p>
               </div>
             </div>
           </body>

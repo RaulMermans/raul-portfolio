@@ -10,14 +10,6 @@ export default function AISportsCampaignPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Force CSS reload on mount (cache busting)
-    const links = document.querySelectorAll('link[rel="stylesheet"]')
-    links.forEach((link: any) => {
-      if (link.href && !link.href.includes('?')) {
-        link.href = link.href + '?v=' + Date.now()
-      }
-    })
-
     // Header scroll effect
     const header = document.getElementById('header')
     const handleScroll = () => {
@@ -111,7 +103,7 @@ export default function AISportsCampaignPage() {
         <div className="hero__content">
           <h1 className="hero__title">AI Sports<br />Campaign</h1>
           <p className="hero__tagline">A Creative Direction Engine.</p>
-          <p className="hero__subtitle">AI Automation System & Creative Direction • 2026</p>
+          <p className="hero__subtitle">AI Automation System & Creative Direction • 2024</p>
         </div>
         <div className="hero__scroll">
           <span>Scroll</span>
@@ -444,6 +436,26 @@ export default function AISportsCampaignPage() {
 
       {/* Next Project */}
       <NextCaseStudy currentHref="/case-studies/ai-sports" />
+
+      {/* Footer */}
+      <footer className="footer case-study-footer">
+        <div className="footer__inner">
+          <a href="/" className="footer__logo">
+            Raúl Mermans
+          </a>
+          <nav className="footer__links">
+            <a href="/#work">Work</a>
+            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
+            <a href="https://instagram.com/raulmermans" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+            <a href="https://linkedin.com/in/raulmermans" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </nav>
+        </div>
+      </footer>
     </>
   )
 }

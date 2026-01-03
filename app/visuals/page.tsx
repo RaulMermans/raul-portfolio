@@ -24,9 +24,9 @@ interface Work {
 const works: Work[] = [
   {
     title: 'Neon Genesis',
-    year: '2026',
+    year: '2024',
     type: 'AI Art',
-    catalog: 'RM-NG-26-001',
+    catalog: 'RM-NG-24-001',
     image: '/images/placeholders/visuals-neon-genesis.webp',
     alt: 'Neon Genesis',
     medium: 'AI-generated image + digital post-production',
@@ -40,9 +40,9 @@ const works: Work[] = [
   },
   {
     title: 'Midnight Waves',
-    year: '2026',
+    year: '2024',
     type: 'Album Cover',
-    catalog: 'RM-MW-26-002',
+    catalog: 'RM-MW-24-002',
     image: '/images/placeholders/visuals-midnight-waves.webp',
     alt: 'Midnight Waves',
     medium: 'Digital composition + photography',
@@ -51,14 +51,14 @@ const works: Work[] = [
     edition: 'Commercial license',
     series: 'Music & Identity',
     note: 'Created for an electronic music release exploring themes of nocturnal solitude and urban isolation.',
-    provenance: 'Client commission, 2026',
+    provenance: 'Client commission, 2024',
     status: 'Licensed'
   },
   {
     title: 'Digital Bloom',
-    year: '2026',
+    year: '2024',
     type: 'AI Art',
-    catalog: 'RM-DB-26-003',
+    catalog: 'RM-DB-24-003',
     image: '/images/placeholders/visuals-digital-bloom.webp',
     alt: 'Digital Bloom',
     medium: 'AI-generated image + color grading',
@@ -72,9 +72,9 @@ const works: Work[] = [
   },
   {
     title: 'Glitch Protocol',
-    year: '2026',
+    year: '2024',
     type: 'Experiment',
-    catalog: 'RM-GP-26-004',
+    catalog: 'RM-GP-24-004',
     image: '/images/placeholders/visuals-glitch-protocol.webp',
     alt: 'Glitch Protocol',
     medium: 'Corrupted data visualization + AI reconstruction',
@@ -88,9 +88,9 @@ const works: Work[] = [
   },
   {
     title: 'Echoes',
-    year: '2026',
+    year: '2024',
     type: 'Album Cover',
-    catalog: 'RM-EC-26-005',
+    catalog: 'RM-EC-24-005',
     image: '/images/placeholders/visuals-echoes.webp',
     alt: 'Echoes',
     medium: 'Photography + digital manipulation',
@@ -99,7 +99,7 @@ const works: Work[] = [
     edition: 'Commercial license',
     series: 'Music & Identity',
     note: 'An album cover exploring the resonance between sound and visual memory.',
-    provenance: 'Client commission, 2026',
+    provenance: 'Client commission, 2024',
     status: 'Licensed'
   },
   {
@@ -147,7 +147,7 @@ const works: Work[] = [
     edition: 'Commercial license',
     series: 'Music & Identity',
     note: 'Pure color as emotion.',
-    provenance: 'Client commission, 2026',
+    provenance: 'Client commission, 2023',
     status: 'Licensed'
   }
 ]
@@ -534,7 +534,7 @@ export default function VisualsPage() {
             <h1 ref={galleryTitleRef} className="gallery__title" id="galleryTitle"></h1>
             <div className="gallery__line"></div>
             <p className="gallery__desc">A curated collection of AI art, album covers, and digital experiments exploring the boundaries of synthetic creativity.</p>
-            <p className="gallery__year">© 2026</p>
+            <p className="gallery__year">© 2024</p>
           </div>
 
           {/* Cards */}

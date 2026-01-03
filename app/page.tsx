@@ -18,30 +18,64 @@ export default function Home() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     
-    // Force CSS reload by adding timestamp to stylesheet
-    const links = document.querySelectorAll('link[rel="stylesheet"]')
-    links.forEach((link: any) => {
-      if (link.href && !link.href.includes('?')) {
-        link.href = link.href + '?v=' + Date.now()
-      }
-    })
+    // Add class to html to identify homepage for CSS
+    document.documentElement.classList.add('homepage')
     
     // Enable scroll-snap for homepage
     // Only enable on desktop
     const enableScrollSnap = () => {
-      if (window.innerWidth > 768) {
-        document.documentElement.style.scrollSnapType = 'y mandatory'
-        // Force apply scroll-snap-align to all sections
-        const sections = document.querySelectorAll('section, .hero, .footer')
-        sections.forEach((section: any) => {
-          section.style.scrollSnapAlign = 'start'
-          section.style.scrollSnapStop = 'always'
+      const isDesktop = window.innerWidth > 768
+      const html = document.documentElement
+      
+      if (isDesktop) {
+        // Wait for all sections to be rendered
+        requestAnimationFrame(() => {
+          // Set scroll-snap on html element (CSS will also apply, but this ensures it)
+          html.style.scrollSnapType = 'y mandatory'
+          
+          // Apply scroll-snap-align to all sections - use multiple selectors to catch all
+          const selectors = [
+            'section.hero',
+            'section.section-card', 
+            'section.about',
+            'section.services',
+            'section.contact',
+            'footer.footer',
+            '.hero',
+            '.section-card',
+            '.about',
+            '.services',
+            '.contact',
+            '.footer'
+          ]
+          
+          selectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector)
+            elements.forEach((element: any) => {
+              if (element) {
+                element.style.scrollSnapAlign = 'start'
+                element.style.scrollSnapStop = 'always'
+              }
+            })
+          })
         })
       } else {
-        document.documentElement.style.scrollSnapType = 'none'
+        html.style.scrollSnapType = 'none'
+        const sections = document.querySelectorAll('section, footer')
+        sections.forEach((section: any) => {
+          if (section) {
+            section.style.scrollSnapAlign = 'unset'
+            section.style.scrollSnapStop = 'unset'
+          }
+        })
       }
     }
-    enableScrollSnap()
+    
+    // Run after a short delay to ensure all components are mounted
+    setTimeout(() => {
+      enableScrollSnap()
+    }, 100)
+    
     window.addEventListener('resize', enableScrollSnap)
     document.body.style.overflowY = 'auto'
     
@@ -169,7 +203,15 @@ export default function Home() {
       }
       // Cleanup scroll-snap on unmount
       if (typeof window !== 'undefined') {
+        document.documentElement.classList.remove('homepage')
         document.documentElement.style.scrollSnapType = ''
+        const sections = document.querySelectorAll('section, footer')
+        sections.forEach((section: any) => {
+          if (section) {
+            section.style.scrollSnapAlign = ''
+            section.style.scrollSnapStop = ''
+          }
+        })
       }
     }
   }, [])

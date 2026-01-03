@@ -9,30 +9,19 @@ export default function Contact() {
       <div className="contact__glow" aria-hidden="true"></div>
       <div className="contact__content">
         <p className="label contact__label reveal">Get in Touch</p>
-        <h1 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work</h1>
-        <p className="contact__subtitle reveal reveal-delay-1">Ready to bring your vision to life? Let&apos;s start a conversation.</p>
+        <h1 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work Together</h1>
+        <p className="contact__subtitle reveal reveal-delay-1">
+          Have a project in mind? I&apos;d love to hear about it. Whether it&apos;s creative direction, 
+          AI automation, or visual storytelling—let&apos;s bring your vision to life.
+        </p>
         
-        {/* CTA Button */}
-        <a 
-          href="#contact-form" 
-          className="contact__cta btn reveal reveal-delay-2"
-          aria-label="Scroll to contact form"
-          onClick={(e) => {
-            e.preventDefault()
-            const form = document.getElementById('contact-form')
-            if (form) {
-              form.scrollIntoView({ behavior: 'smooth', block: 'start' })
-            }
-          }}
-        >
-          <span>Get in Touch</span>
-          <span className="btn__arrow">→</span>
-        </a>
-        
-        <div className="contact__divider reveal reveal-delay-3"></div>
+        <div className="contact__divider reveal reveal-delay-2"></div>
         
         {/* Contact Form */}
-        <div id="contact-form" className="contact__form-wrapper reveal reveal-delay-3">
+        <div id="contact-form" className="contact__form-wrapper reveal reveal-delay-2">
+          <div className="contact-form__intro">
+            <p className="contact-form__intro-text">Send me a message and I&apos;ll get back to you within 24 hours.</p>
+          </div>
           <ContactForm />
         </div>
         

@@ -53,7 +53,8 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="contact-form">
       <div className="contact-form__field">
         <label htmlFor="contact-name" className="contact-form__label">
-          Name
+          <span>Name</span>
+          <span className="contact-form__required">*</span>
         </label>
         <input
           type="text"
@@ -63,13 +64,14 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           className="contact-form__input"
-          placeholder="Your name"
+          placeholder="John Doe"
         />
       </div>
 
       <div className="contact-form__field">
         <label htmlFor="contact-email" className="contact-form__label">
-          Email
+          <span>Email</span>
+          <span className="contact-form__required">*</span>
         </label>
         <input
           type="email"
@@ -79,13 +81,14 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           className="contact-form__input"
-          placeholder="your.email@example.com"
+          placeholder="john@example.com"
         />
       </div>
 
       <div className="contact-form__field">
         <label htmlFor="contact-message" className="contact-form__label">
-          Message
+          <span>Message</span>
+          <span className="contact-form__required">*</span>
         </label>
         <textarea
           id="contact-message"
@@ -95,7 +98,7 @@ export default function ContactForm() {
           required
           rows={6}
           className="contact-form__textarea"
-          placeholder="Tell me about your project..."
+          placeholder="Tell me about your project, timeline, and what you're looking to achieve..."
         />
       </div>
 

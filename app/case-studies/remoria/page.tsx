@@ -103,7 +103,7 @@ export default function RemoriaPage() {
         <div className="hero__content">
           <h1 className="hero__title">Remoria</h1>
           <p className="hero__tagline">A Fragrance House Etched in Memory</p>
-          <p className="hero__subtitle">Brand Identity & Creative Direction • 2026</p>
+          <p className="hero__subtitle">Brand Identity & Creative Direction • 2025</p>
         </div>
         <div className="hero__scroll">
           <span>Scroll</span>
@@ -417,6 +417,26 @@ export default function RemoriaPage() {
 
       {/* Next Project */}
       <NextCaseStudy currentHref="/case-studies/remoria" />
+
+      {/* Footer */}
+      <footer className="footer case-study-footer">
+        <div className="footer__inner">
+          <a href="/" className="footer__logo">
+            Raúl Mermans
+          </a>
+          <nav className="footer__links">
+            <a href="/#work">Work</a>
+            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
+            <a href="https://instagram.com/raulmermans" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+            <a href="https://linkedin.com/in/raulmermans" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </nav>
+        </div>
+      </footer>
     </>
   )
 }
