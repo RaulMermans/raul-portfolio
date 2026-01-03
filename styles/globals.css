@@ -5347,6 +5347,7 @@ a[href^="/"]:hover {
   width: 100%;
   max-width: 100%;
   height: fit-content;
+  z-index: 1;
 }
 
 .about-page__image {
@@ -5390,6 +5391,8 @@ a[href^="/"]:hover {
   width: 100%;
   padding: 0;
   margin: 0;
+  position: relative;
+  z-index: 0;
 }
 
 .about-page__bio {
@@ -5516,7 +5519,11 @@ a[href^="/"]:hover {
   flex-direction: column;
   gap: var(--space-5);
   transition: all var(--transition-base) var(--ease);
-  overflow: hidden;
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
 .about-page__contact::before {
@@ -5590,9 +5597,12 @@ a[href^="/"]:hover {
   transition: all var(--transition-base) var(--ease);
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  z-index: 3;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   cursor: pointer;
+  margin: 0;
 }
 
 .about-page__email-link::before {
@@ -5642,6 +5652,9 @@ a[href^="/"]:hover {
   grid-template-columns: 1fr;
   gap: var(--space-2);
   margin-top: var(--space-2);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .about-page__social-link {
@@ -5663,6 +5676,10 @@ a[href^="/"]:hover {
   position: relative;
   overflow: hidden;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  z-index: 2;
+  margin: 0;
 }
 
 .about-page__social-link::before {
@@ -5726,6 +5743,7 @@ a[href^="/"]:hover {
     top: 0;
     width: 100%;
     max-width: 100%;
+    z-index: 1;
   }
 
   .about-page__image {
@@ -5740,12 +5758,17 @@ a[href^="/"]:hover {
     margin-top: var(--space-6);
     width: 100%;
     max-width: 100%;
+    position: relative;
+    z-index: 2;
+    overflow: visible;
   }
 
   .about-page__content {
     gap: 0;
     width: 100%;
     max-width: 100%;
+    position: relative;
+    z-index: 0;
   }
 
   .about-page__bio {
