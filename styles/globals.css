@@ -5319,30 +5319,30 @@ a[href^="/"]:hover {
   align-items: flex-start;
   justify-content: center;
   background: var(--cream);
-  padding: calc(var(--header-height) + var(--space-8)) var(--section-padding) var(--space-8);
+  padding: calc(var(--header-height) + var(--space-10)) var(--space-8) var(--space-10);
   width: 100%;
   overflow-x: hidden;
 }
 
 .about-page__inner {
-  max-width: 1400px !important;
-  width: 100% !important;
-  display: grid !important;
-  grid-template-columns: 0.35fr 0.65fr !important;
-  gap: var(--space-10) !important;
-  align-items: start !important;
-  min-height: auto !important;
-  padding: 0 !important;
-  margin: 0 auto !important;
-  box-sizing: border-box !important;
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  gap: var(--space-10);
+  align-items: start;
+  min-height: auto;
+  padding: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .about-page__left {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: 0;
   position: sticky;
-  top: calc(var(--header-height) + var(--space-5));
+  top: calc(var(--header-height) + var(--space-8));
   align-self: start;
   width: 100%;
   max-width: 100%;
@@ -5387,7 +5387,7 @@ a[href^="/"]:hover {
 .about-page__content {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-8);
   max-width: 100%;
   width: 100%;
   padding: 0;
@@ -5396,21 +5396,11 @@ a[href^="/"]:hover {
   z-index: 0;
 }
 
-.about-page__bio {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
 .about-page__header {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-6);
   width: 100%;
   max-width: 100%;
 }
@@ -5422,52 +5412,38 @@ a[href^="/"]:hover {
 }
 
 .about-page__divider {
-  flex: 1;
+  width: 60px;
   height: 1px;
-  background: linear-gradient(90deg, var(--cream-dark), transparent);
-  max-width: 120px;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 .about-page__headline {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(2rem, 4.5vw, 3.5rem);
-  line-height: 0.95;
+  line-height: 1.1;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--ink);
-  margin: 0 0 var(--space-5) 0;
-  position: relative;
-  padding-bottom: var(--space-5);
+  margin: 0 0 var(--space-8) 0;
   max-width: 100%;
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
-.about-page__headline::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--warm), var(--rose));
-  border-radius: 2px;
-}
-
 .about-page__text {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  margin-top: var(--space-3);
   max-width: 100%;
   width: 100%;
   padding: 0;
 }
 
 .about-page__paragraph {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif !important;
-  font-size: clamp(1rem, 1.2vw, 1.125rem) !important;
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
   color: var(--ink-soft) !important;
   line-height: 1.9 !important;
   margin: 0 !important;
@@ -5505,11 +5481,120 @@ a[href^="/"]:hover {
   top: 0.5em;
 }
 
-.about-page__paragraph:last-child::before {
-  height: calc(100% - 0.5em);
+/* CTA Button */
+.about-page__cta {
+  margin-top: var(--space-8);
 }
 
-/* Contact Section - Under Image */
+.about-page__cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  transition: all var(--transition-base) var(--ease);
+  background: transparent;
+}
+
+.about-page__cta-link:hover {
+  background: var(--ink);
+  color: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 23, 20, 0.15);
+}
+
+.about-page__cta-arrow {
+  transition: transform var(--transition-base) var(--ease);
+}
+
+.about-page__cta-link:hover .about-page__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Contact Section - Separate Section */
+.about-page__contact-section {
+  background: var(--cream);
+  padding: var(--space-10) var(--space-8);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.about-page__contact-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.about-page__contact-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.about-page__contact-label {
+  margin: 0;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+
+.about-page__contact-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.about-page__contact-form-wrapper {
+  margin-bottom: var(--space-8);
+}
+
+.about-page__contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.about-page__contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--cream-dark);
+  border-radius: 4px;
+  transition: all var(--transition-base) var(--ease);
+  background: transparent;
+}
+
+.about-page__contact-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.about-page__contact-arrow {
+  transition: transform var(--transition-base) var(--ease);
+}
+
+.about-page__contact-link:hover .about-page__contact-arrow {
+  transform: translateX(4px) translateY(-2px);
+}
+
+/* Contact Section - Under Image (Old - Keep for compatibility) */
 .about-page__contact {
   position: relative;
   padding: var(--space-6);
