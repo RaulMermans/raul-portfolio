@@ -99,6 +99,10 @@ export default function Footer() {
             <Link href="/terms">Terms of Service</Link>
           </div>
         </div>
+
+        <div className="footer__vibe">
+          <p className="footer__vibe-text">This website was fully vibe coded</p>
+        </div>
       </div>
     </footer>
   )

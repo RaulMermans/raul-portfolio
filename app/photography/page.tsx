@@ -119,9 +119,14 @@ export default function PhotographyPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [lightboxCategory, setLightboxCategory] = useState<'landscape' | 'architecture' | 'street'>('landscape')
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
   const currentCategoryImages = categoriesState[lightboxCategory]?.images || []
   const activeCount = categoriesState[activeCategory]?.count || 0
+
+  // Minimum swipe distance (in pixels)
+  const minSwipeDistance = 50
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -269,6 +274,31 @@ export default function PhotographyPage() {
     setLightboxIndex((prev) => (prev + 1) % currentCategoryImages.length)
   }
 
+  // Touch handlers for swipe navigation
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      showNext()
+    }
+    if (isRightSwipe) {
+      showPrev()
+    }
+  }
+
   const setCategory = (category: 'landscape' | 'architecture' | 'street') => {
     setActiveCategory(category)
   }
@@ -382,12 +412,42 @@ export default function PhotographyPage() {
             src={currentCategoryImages[lightboxIndex].src}
             alt={currentCategoryImages[lightboxIndex].alt}
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
             onError={(e) => {
               const target = e.target as HTMLImageElement
               // Fallback to a placeholder or hide the image
               target.style.display = 'none'
             }}
           />
+
+          {/* Navigation Buttons - Visible on Mobile */}
+          <button
+            className="lightbox__nav-btn lightbox__nav-btn--prev"
+            onClick={(e) => {
+              e.stopPropagation()
+              showPrev()
+            }}
+            aria-label="Previous image"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <button
+            className="lightbox__nav-btn lightbox__nav-btn--next"
+            onClick={(e) => {
+              e.stopPropagation()
+              showNext()
+            }}
+            aria-label="Next image"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           {/* Progress Tracker */}
           <div className="lightbox__progress">

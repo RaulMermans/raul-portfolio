@@ -4,28 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
-
-// ========================================
-// CASE STUDIES DATA
-// ========================================
-const caseStudies = [
-  {
-    id: 0,
-    title: 'AI Sports Campaign',
-    description: 'A groundbreaking visual campaign merging AI-generated imagery with athletic excellence. Pushing the boundaries of sports marketing through creative technology.',
-    image: '/images/case-studies/ai-sports-campaign.webp',
-    href: '/case-studies/ai-sports',
-    color: 'var(--color-0)',
-  },
-  {
-    id: 1,
-    title: 'Remoria',
-    description: 'A comprehensive brand identity project exploring classical aesthetics and contemporary design. Building visual systems that create lasting impressions.',
-    image: '/images/case-studies/remoria.webp',
-    href: '/case-studies/remoria',
-    color: 'var(--color-1)',
-  },
-]
+import { caseStudies } from '@/data/case-studies'
 
 export default function CaseStudiesPage() {
   const [currentIndex, setCurrentIndex] = useState(0)

@@ -1,4 +1,4 @@
-# Performance Monitoring Guide
+cre# Performance Monitoring Guide
 
 This guide covers the performance monitoring infrastructure, how to use it, and best practices for tracking website performance.
 
