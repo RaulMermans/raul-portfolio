@@ -1,30 +1,67 @@
 # Case Studies Images
 
-This folder contains cover images for case studies.
+## 📁 Folder Structure
 
-## Current Images
+```
+public/images/case-studies/
+├── ai-sports/
+│   ├── README.md (upload guide)
+│   ├── hero.webp
+│   ├── full-1.webp
+│   ├── full-2.webp
+│   ├── approach-1.webp
+│   ├── approach-2.webp
+│   ├── feature.webp
+│   ├── gallery-1.webp
+│   ├── gallery-2.webp
+│   ├── gallery-3.webp
+│   ├── gallery-4.webp
+│   ├── gallery-5.webp
+│   └── thumb.webp
+│
+└── remoria/
+    ├── README.md (upload guide)
+    ├── hero.webp
+    ├── full-1.webp
+    ├── full-2.webp
+    ├── approach-1.webp
+    ├── approach-2.webp
+    ├── feature.webp
+    ├── gallery-1.webp
+    ├── gallery-2.webp
+    ├── gallery-3.webp
+    ├── gallery-4.webp
+    ├── gallery-5.webp
+    └── thumb.webp
+```
 
-- `ai-sports-campaign.webp` - Cover image for AI Sports Campaign case study
-- `remoria.webp` - Cover image for Remoria case study
+## 🎯 Quick Start
 
-## How to Add/Replace Images
+1. **Choose your case study folder:**
+   - `ai-sports/` for AI Sports Campaign
+   - `remoria/` for Remoria
 
-1. **Save your image** to this folder (`/public/images/case-studies/`)
-2. **Recommended format**: WebP for best performance
-3. **Recommended size**: 900x1200px or larger (portrait orientation)
-4. **Update the path** in `app/case-studies/page.tsx` in the `caseStudies` array
+2. **Upload images with exact filenames:**
+   - See the README.md in each folder for required images
+   - Use lowercase filenames with hyphens (e.g., `hero.webp`)
 
-## Image Requirements
+3. **That's it!** The code will automatically use your images.
 
-- Format: WebP (preferred), JPG, or PNG
-- Size: At least 900px wide
-- Aspect ratio: 3:4 or 4:5 portrait orientation (for filmstrip cards)
-- File size: Keep under 400KB if possible (Next.js will optimize)
+## 📝 Current Status
 
-## Adding New Case Studies
+**Currently using placeholders** from `/images/placeholders/`
 
-When adding a new case study:
-1. Add the cover image to this folder
-2. Update the `caseStudies` array in `app/case-studies/page.tsx`
-3. Use the format: `/images/case-studies/your-case-study-name.webp`
+Once you upload images to these folders with the correct filenames, they will automatically replace the placeholders.
 
+## 🔍 Image Requirements
+
+- **Format:** WebP (recommended) or JPG/PNG
+- **Optimization:** Compress before uploading
+- **Naming:** Exact filenames as specified in each folder's README
+
+## 📚 More Info
+
+See the README.md file in each case study folder for:
+- Exact filenames needed
+- Recommended dimensions
+- Where each image is used

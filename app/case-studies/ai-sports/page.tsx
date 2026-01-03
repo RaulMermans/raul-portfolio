@@ -58,7 +58,7 @@ export default function AISportsCampaignPage() {
           headline: 'AI Sports Campaign',
           description:
             'A Creative Direction Engine built in n8n—swap casting and wardrobe while locking the shot. Campaign-grade coherence from generative AI.',
-          image: `${baseUrl}/images/placeholders/ai-sports-hero.webp`,
+          image: `${baseUrl}/images/case-studies/ai-sports/hero.webp`,
           datePublished: '2026-01-01',
           dateModified: '2026-01-01',
           url: `${baseUrl}/case-studies/ai-sports`,
@@ -90,7 +90,7 @@ export default function AISportsCampaignPage() {
         <div className="hero__letterbox hero__letterbox--top"></div>
         <div className="hero__bg">
           <Image
-            src="/images/placeholders/ai-sports-hero.webp"
+            src="/images/case-studies/ai-sports/hero.webp"
             alt="AI Sports Campaign hero image placeholder"
             fill
             priority
@@ -183,7 +183,7 @@ export default function AISportsCampaignPage() {
       {/* Full Bleed Image 1 */}
       <div className="full-image">
         <Image
-          src="/images/placeholders/ai-sports-full-1.webp"
+          src="/images/case-studies/ai-sports/full-1.webp"
           alt="AI Sports Campaign image placeholder 1"
           fill
           quality={90}
@@ -302,7 +302,7 @@ export default function AISportsCampaignPage() {
           <div className="approach__images">
             <div className="approach__image reveal">
               <Image
-                src="/images/placeholders/ai-sports-approach-1.webp"
+                src="/images/case-studies/ai-sports/approach-1.webp"
                 alt="AI Sports Campaign approach image placeholder 1"
                 fill
                 quality={90}
@@ -312,7 +312,7 @@ export default function AISportsCampaignPage() {
             </div>
             <div className="approach__image reveal reveal-delay-1">
               <Image
-                src="/images/placeholders/ai-sports-approach-2.webp"
+                src="/images/case-studies/ai-sports/approach-2.webp"
                 alt="AI Sports Campaign approach image placeholder 2"
                 fill
                 quality={90}
@@ -328,7 +328,7 @@ export default function AISportsCampaignPage() {
       <section className="feature">
         <div className="feature__image reveal">
           <Image
-            src="/images/placeholders/ai-sports-feature.webp"
+            src="/images/case-studies/ai-sports/feature.webp"
             alt="AI Sports Campaign feature image placeholder"
             fill
             quality={95}
@@ -345,7 +345,7 @@ export default function AISportsCampaignPage() {
             <div className="gallery__row--3">
               <div className="gallery__item reveal">
                 <Image
-                  src="/images/placeholders/ai-sports-gallery-1.webp"
+                  src="/images/case-studies/ai-sports/gallery-1.webp"
                   alt="AI Sports Campaign gallery image placeholder 1"
                   fill
                   quality={90}
@@ -355,7 +355,7 @@ export default function AISportsCampaignPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="/images/placeholders/ai-sports-gallery-2.webp"
+                  src="/images/case-studies/ai-sports/gallery-2.webp"
                   alt="AI Sports Campaign gallery image placeholder 2"
                   fill
                   quality={90}
@@ -365,7 +365,7 @@ export default function AISportsCampaignPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-2">
                 <Image
-                  src="/images/placeholders/ai-sports-gallery-3.webp"
+                  src="/images/case-studies/ai-sports/gallery-3.webp"
                   alt="AI Sports Campaign gallery image placeholder 3"
                   fill
                   quality={90}
@@ -377,7 +377,7 @@ export default function AISportsCampaignPage() {
             <div className="gallery__row--asymmetric">
               <div className="gallery__item gallery__item--wide reveal">
                 <Image
-                  src="/images/placeholders/ai-sports-gallery-4.webp"
+                  src="/images/case-studies/ai-sports/gallery-4.webp"
                   alt="AI Sports Campaign gallery image placeholder 4"
                   fill
                   quality={90}
@@ -387,7 +387,7 @@ export default function AISportsCampaignPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="/images/placeholders/ai-sports-gallery-5.webp"
+                  src="/images/case-studies/ai-sports/gallery-5.webp"
                   alt="AI Sports Campaign gallery image placeholder 5"
                   fill
                   quality={90}
@@ -403,7 +403,7 @@ export default function AISportsCampaignPage() {
       {/* Full Bleed Image 2 */}
       <div className="full-image">
         <Image
-          src="/images/placeholders/ai-sports-full-2.webp"
+          src="/images/case-studies/ai-sports/full-2.webp"
           alt="AI Sports Campaign image placeholder 2"
           fill
           quality={90}

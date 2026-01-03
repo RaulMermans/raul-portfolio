@@ -58,7 +58,7 @@ export default function RemoriaPage() {
           headline: 'Remoria',
           description:
             'A poetic fragrance house rooted in Roman legacy, Spanish lyricism, and Mediterranean light—where scent becomes memory and design becomes relic.',
-          image: `${baseUrl}/images/placeholders/remoria-hero.webp`,
+          image: `${baseUrl}/images/case-studies/remoria/hero.webp`,
           datePublished: '2026-01-01',
           dateModified: '2026-01-01',
           url: `${baseUrl}/case-studies/remoria`,
@@ -90,7 +90,7 @@ export default function RemoriaPage() {
         <div className="hero__letterbox hero__letterbox--top"></div>
         <div className="hero__bg">
           <Image
-            src="/images/placeholders/remoria-hero.webp"
+            src="/images/case-studies/remoria/hero.webp"
             alt="Remoria hero image placeholder"
             fill
             priority
@@ -178,7 +178,7 @@ export default function RemoriaPage() {
       {/* Full Bleed Image 1 */}
       <div className="full-image">
         <Image
-          src="/images/placeholders/remoria-full-1.webp"
+          src="/images/case-studies/remoria/full-1.webp"
           alt="Remoria image placeholder 1"
           fill
           quality={90}
@@ -286,7 +286,7 @@ export default function RemoriaPage() {
           <div className="approach__images">
             <div className="approach__image reveal">
               <Image
-                src="/images/placeholders/remoria-approach-1.webp"
+                src="/images/case-studies/remoria/approach-1.webp"
                 alt="Remoria approach image placeholder 1"
                 fill
                 quality={90}
@@ -296,7 +296,7 @@ export default function RemoriaPage() {
             </div>
             <div className="approach__image reveal reveal-delay-1">
               <Image
-                src="/images/placeholders/remoria-approach-2.webp"
+                src="/images/case-studies/remoria/approach-2.webp"
                 alt="Remoria approach image placeholder 2"
                 fill
                 quality={90}
@@ -312,7 +312,7 @@ export default function RemoriaPage() {
       <section className="feature">
         <div className="feature__image reveal">
           <Image
-            src="/images/placeholders/remoria-feature.webp"
+            src="/images/case-studies/remoria/feature.webp"
             alt="Remoria feature image placeholder"
             fill
             quality={95}
@@ -329,7 +329,7 @@ export default function RemoriaPage() {
             <div className="gallery__row--3">
               <div className="gallery__item reveal">
                 <Image
-                  src="/images/placeholders/remoria-gallery-1.webp"
+                  src="/images/case-studies/remoria/gallery-1.webp"
                   alt="Remoria gallery image placeholder 1"
                   fill
                   quality={90}
@@ -339,7 +339,7 @@ export default function RemoriaPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="/images/placeholders/remoria-gallery-2.webp"
+                  src="/images/case-studies/remoria/gallery-2.webp"
                   alt="Remoria gallery image placeholder 2"
                   fill
                   quality={90}
@@ -349,7 +349,7 @@ export default function RemoriaPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-2">
                 <Image
-                  src="/images/placeholders/remoria-gallery-3.webp"
+                  src="/images/case-studies/remoria/gallery-3.webp"
                   alt="Remoria gallery image placeholder 3"
                   fill
                   quality={90}
@@ -361,7 +361,7 @@ export default function RemoriaPage() {
             <div className="gallery__row--asymmetric">
               <div className="gallery__item gallery__item--wide reveal">
                 <Image
-                  src="/images/placeholders/remoria-gallery-4.webp"
+                  src="/images/case-studies/remoria/gallery-4.webp"
                   alt="Remoria gallery image placeholder 4"
                   fill
                   quality={90}
@@ -371,7 +371,7 @@ export default function RemoriaPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="/images/placeholders/remoria-gallery-5.webp"
+                  src="/images/case-studies/remoria/gallery-5.webp"
                   alt="Remoria gallery image placeholder 5"
                   fill
                   quality={90}
@@ -387,7 +387,7 @@ export default function RemoriaPage() {
       {/* Full Bleed Image 2 */}
       <div className="full-image">
         <Image
-          src="/images/placeholders/remoria-full-2.webp"
+          src="/images/case-studies/remoria/full-2.webp"
           alt="Remoria image placeholder 2"
           fill
           quality={90}
