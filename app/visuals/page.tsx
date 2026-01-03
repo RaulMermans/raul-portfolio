@@ -540,6 +540,7 @@ export default function VisualsPage() {
             {currentWork && (
               <>
                 <Image
+                  key={currentWork.catalog}
                   src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
                   alt={currentWork.alt}
                   width={1400}
