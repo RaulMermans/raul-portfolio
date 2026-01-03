@@ -5357,6 +5357,10 @@ a[href^="/"]:hover {
   padding: calc(var(--header-height) + var(--space-10)) var(--space-8) var(--space-10);
   width: 100%;
   overflow-x: hidden;
+  /* Ensure proper layout and no overlap */
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
 }
 
 .about-page__inner {
@@ -5370,6 +5374,10 @@ a[href^="/"]:hover {
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
+  /* Prevent overlap issues */
+  position: relative;
+  z-index: 1;
+  isolation: isolate; /* Create new stacking context */
 }
 
 .about-page__left {
@@ -5382,8 +5390,11 @@ a[href^="/"]:hover {
   width: 100%;
   max-width: 100%;
   height: fit-content;
-  z-index: 1;
+  z-index: 10; /* Content layer - standardized from 1 */
   min-height: auto;
+  /* Prevent overlap with content */
+  max-height: calc(100vh - var(--header-height) - var(--space-8) * 2);
+  overflow: hidden;
 }
 
 .about-page__image {
@@ -5428,7 +5439,10 @@ a[href^="/"]:hover {
   padding: 0;
   margin: 0;
   position: relative;
-  z-index: 0;
+  z-index: 5; /* Content layer - standardized from 0, below image */
+  /* Ensure proper spacing and no overlap */
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .about-page__header {
@@ -5438,6 +5452,10 @@ a[href^="/"]:hover {
   margin-bottom: var(--space-6);
   width: 100%;
   max-width: 100%;
+  /* Prevent overlap */
+  position: relative;
+  z-index: 1;
+  padding: 0;
 }
 
 .about-page__label {
@@ -5456,7 +5474,7 @@ a[href^="/"]:hover {
 .about-page__headline {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(2rem, 4.5vw, 3.5rem);
-  line-height: 1.1;
+  line-height: 1.15; /* Improved from 1.1 for better readability */
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--ink);
@@ -5465,6 +5483,10 @@ a[href^="/"]:hover {
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  /* Prevent overlap and ensure proper spacing */
+  padding: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .about-page__text {
@@ -5474,6 +5496,10 @@ a[href^="/"]:hover {
   max-width: 100%;
   width: 100%;
   padding: 0;
+  /* Ensure proper spacing and no overlap */
+  position: relative;
+  z-index: 1;
+  margin: 0;
 }
 
 .about-page__paragraph {
@@ -5492,6 +5518,11 @@ a[href^="/"]:hover {
 /* CTA Button */
 .about-page__cta {
   margin-top: var(--space-8);
+  /* Prevent overlap */
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .about-page__cta-link {
@@ -5532,12 +5563,21 @@ a[href^="/"]:hover {
   padding: var(--space-10) var(--space-8);
   width: 100%;
   overflow-x: hidden;
+  /* Ensure no overlap with main content */
+  position: relative;
+  z-index: 1;
+  clear: both;
+  margin-top: var(--space-8);
 }
 
 .about-page__contact-inner {
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
+  /* Ensure proper spacing */
+  position: relative;
+  z-index: 1;
+  padding: 0;
 }
 
 .about-page__contact-header {
@@ -5545,6 +5585,11 @@ a[href^="/"]:hover {
   align-items: center;
   gap: var(--space-4);
   margin-bottom: var(--space-8);
+  /* Prevent overlap */
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
 }
 
 .about-page__contact-label {
@@ -5840,13 +5885,17 @@ a[href^="/"]:hover {
     top: 0;
     width: 100%;
     max-width: 100%;
-    z-index: 1;
+    z-index: 10; /* Standardized */
+    max-height: none; /* Remove max-height on mobile */
   }
 
   .about-page__image {
     max-height: 60vh;
     margin: 0 auto;
     width: 100%;
+    /* Prevent overlap */
+    position: relative;
+    z-index: 1;
     max-width: 450px;
     aspect-ratio: 3/4;
   }
