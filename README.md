@@ -1,89 +1,91 @@
-# Raul Portfolio Website
+# Raúl Mermans Portfolio
 
-A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
+A modern, responsive portfolio website built with Next.js 14, TypeScript, and optimized for performance.
 
-## Features
+## 🚀 Quick Start
 
-- 🚀 Next.js 14 with App Router
-- 💻 TypeScript for type safety
-- 🎨 Tailwind CSS for styling
-- 📱 Fully responsive design
-- ⚡ Optimized for performance
-- 🔒 SEO-friendly
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm 9+
-
-### Installation
-
-1. Clone the repository
 ```bash
-git clone https://github.com/raulmermans/raul-portfolio.git
-cd raul-portfolio
-```
-
-2. Install dependencies
-```bash
+# Install dependencies
 npm install
-```
 
-3. Copy environment variables
-```bash
-cp .env.example .env.local
-```
-
-4. Run the development server
-```bash
+# Run development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 raul-portfolio/
 ├── app/                    # Next.js App Router (pages & API routes)
+│   ├── about/             # About page
+│   ├── case-studies/      # Case studies pages
+│   ├── photography/       # Photography gallery
+│   ├── visuals/           # Visuals gallery
+│   └── api/               # API routes
 ├── components/            # React components
-├── lib/                   # Utility functions
-├── public/                # Static assets (images, fonts)
-├── styles/                # Global CSS styles
-├── types/                 # TypeScript type definitions
-├── docs/                  # Documentation & references
-│   ├── reference/         # HTML mockups
-│   └── guides/           # Setup & deployment guides
-└── [config files]         # Configuration files
+├── lib/                   # Utilities & bots
+├── public/                # Static assets
+│   └── images/           # Image assets
+│       ├── case-studies/ # Case study images
+│       ├── photography/  # Photography images
+│       └── visuals/      # Visuals images
+├── styles/                # Global CSS
+└── types/                 # TypeScript definitions
 ```
 
-📖 **See [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) for detailed structure**
+## 🖼️ Adding Images
 
-## Available Scripts
+### Case Studies
+Upload images to: `public/images/case-studies/{case-study-name}/`
+- See README.md in each case study folder for exact filenames
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
+### Photography
+Upload images to: `public/images/photography/{category}/`
+- Categories: `architecture/`, `landscape/`, `street/`
+
+### Visuals
+Upload images to: `public/images/visuals/{category}/`
+- Categories: `ai-art/`, `album-covers/`, `client-work/`, `experiments/`
+
+## 🔧 Configuration
+
+### Environment Variables
+Copy `.env.example` to `.env.local` and fill in:
+- `NEXT_PUBLIC_SITE_URL` - Your site URL
+- `RESEND_API_KEY` - For contact form (optional)
+- `CONTACT_EMAIL` - Contact form recipient
+- `FROM_EMAIL` - Sender email
+
+## 🚀 Deployment
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for Railway deployment instructions.
+
+## 📚 Documentation
+
+See [docs/README.md](./docs/README.md) for detailed documentation.
+
+## 📝 Scripts
+
+- `npm run dev` - Development server
+- `npm run build` - Production build
+- `npm run start` - Production server
 - `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
+- `npm run type-check` - TypeScript type checking
 
-## Deployment
+## 🛠️ Tech Stack
 
-This project can be deployed on:
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** CSS Modules + Global CSS
+- **Deployment:** Railway
+- **Email:** Resend (contact form)
 
-- **Vercel** (recommended for Next.js)
-- **Netlify**
-- **AWS Amplify**
-- **Cloudflare Pages**
-- Any Node.js hosting service
-
-### Deploy to Vercel
-
-1. Push your code to GitHub
-2. Import your repository in [Vercel](https://vercel.com)
-3. Vercel will automatically detect Next.js and configure the build settings
-
-## License
+## 📄 License
 
 MIT

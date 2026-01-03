@@ -1,24 +1,25 @@
 # Documentation
 
-This folder contains all documentation and reference materials for the portfolio website.
+## Essential Guides
 
-## 📁 Structure
+- **[Contact Form Setup](./guides/CONTACT_FORM_SETUP.md)** - Configure Resend email service
+- **[Deployment Guide](../DEPLOYMENT.md)** - Railway deployment instructions
 
-### `/reference/`
-Original HTML mockups and design references:
-- `mockup-original.html` - Initial design mockup
-- `mockup-22.html` - Updated design mockup (current version)
+## Project Structure
 
-### `/guides/`
-Step-by-step guides:
-- `BUILD_GUIDE.md` - How to build the website step by step
-- `DEPLOYMENT.md` - How to deploy to various platforms
-- `SETUP.md` - Initial setup instructions
+- **`app/`** - Next.js pages and API routes
+- **`components/`** - React components
+- **`lib/`** - Utility functions and bots
+- **`public/`** - Static assets (images, fonts)
+- **`styles/`** - Global CSS
+- **`types/`** - TypeScript definitions
 
-## 📖 Quick Links
+## Image Upload Locations
 
-- **Getting Started**: See `guides/SETUP.md`
-- **Building Pages**: See `guides/BUILD_GUIDE.md`
-- **Deploying**: See `guides/DEPLOYMENT.md`
-- **Design Reference**: See `reference/` folder
+- **Case Studies:** `public/images/case-studies/{case-study-name}/`
+- **Photography:** `public/images/photography/{category}/`
+- **Visuals:** `public/images/visuals/{category}/`
+- **About:** `public/images/about/profile.webp`
+- **Sections:** `public/images/sections/`
 
+See README.md files in each image folder for specific requirements.

@@ -1,220 +1,67 @@
 # Project Structure
 
-This document explains the organization of the portfolio website repository.
+## Core Directories
 
-## 📁 Root Directory
+### `app/`
+Next.js App Router pages and API routes.
 
-### Configuration Files
+**Pages:**
+- `page.tsx` - Homepage
+- `about/page.tsx` - About page
+- `case-studies/` - Case studies listing and individual pages
+- `photography/page.tsx` - Photography gallery
+- `visuals/page.tsx` - Visuals gallery
+- `privacy/page.tsx` - Privacy policy
+- `terms/page.tsx` - Terms of service
+
+**API Routes:**
+- `api/contact/route.ts` - Contact form handler
+- `api/health/route.ts` - Health check
+- `api/departments/` - Department status endpoints
+
+### `components/`
+Reusable React components.
+
+**Key Components:**
+- `Header.tsx` - Site header/navigation
+- `Footer.tsx` - Site footer
+- `Hero.tsx` - Homepage hero section
+- `SectionCards.tsx` - Homepage section cards
+- `About.tsx` - About section (homepage)
+- `Services.tsx` - Services section
+- `Contact.tsx` - Contact section with form
+- `NextCaseStudy.tsx` - Random next case study component
+
+### `lib/`
+Utility functions and backend bots.
+
+**Bots:**
+- `performance-bot.ts` - Performance monitoring
+- `error-bot.ts` - Error tracking
+- `seo-bot.ts` - SEO monitoring
+- `departments/` - Department coordinators
+
+### `public/images/`
+Static image assets.
+
+**Structure:**
+- `case-studies/{name}/` - Case study images
+- `photography/{category}/` - Photography images
+- `visuals/{category}/` - Visuals images
+- `about/` - About page images
+- `sections/` - Section background images
+- `services/` - Service images
+
+### `styles/`
+- `globals.css` - Global styles and CSS variables
+
+### `types/`
+- `index.ts` - TypeScript type definitions
+
+## Configuration Files
+
+- `next.config.js` - Next.js configuration
+- `railway.json` - Railway deployment config
 - `package.json` - Dependencies and scripts
 - `tsconfig.json` - TypeScript configuration
-- `next.config.js` - Next.js configuration
-- `tailwind.config.js` - Tailwind CSS configuration
-- `postcss.config.js` - PostCSS configuration
-- `.eslintrc.json` - ESLint rules
-- `.prettierrc` - Code formatting rules
-- `.gitignore` - Git ignore rules
-- `.nvmrc` - Node.js version
-- `netlify.toml` - Netlify deployment config
-- `railway.json` - Railway deployment config
-
-### Documentation
-- `README.md` - Main project readme
-- `TODO.md` - Task list and remaining work
-- `LICENSE` - MIT License
-- `PROJECT_STRUCTURE.md` - This file
-
-### Source Code
-- `app/` - Next.js App Router (pages and API routes)
-- `components/` - React components
-- `lib/` - Utility functions
-- `styles/` - Global CSS styles
-- `types/` - TypeScript type definitions
-- `public/` - Static assets (images, fonts, etc.)
-- `middleware.ts` - Next.js middleware
-
----
-
-## 📂 Detailed Structure
-
-### `/app/`
-Next.js App Router structure:
-```
-app/
-├── api/              # Backend API routes
-│   ├── contact/     # Contact form endpoint
-│   ├── health/      # Health check endpoint
-│   └── projects/    # Projects API endpoint
-├── about/           # About page
-│   ├── layout.tsx   # Page metadata
-│   └── page.tsx     # About page component
-├── case-studies/    # Case studies gallery
-│   ├── layout.tsx   # Page metadata
-│   └── page.tsx     # Case studies page component
-├── photography/     # Photography gallery
-│   ├── layout.tsx   # Page metadata
-│   ├── page.tsx     # Photography page component
-│   └── README.md    # Image upload guide
-├── visuals/         # Visuals gallery
-│   ├── layout.tsx   # Page metadata
-│   └── page.tsx     # Visuals page component
-├── privacy/         # Privacy policy page
-│   ├── layout.tsx   # Page metadata
-│   └── page.tsx     # Privacy policy component
-├── terms/           # Terms of service page
-│   ├── layout.tsx   # Page metadata
-│   └── page.tsx     # Terms component
-├── layout.tsx       # Root layout
-├── page.tsx         # Home page
-├── error.tsx        # Error page
-├── global-error.tsx # Global error page
-├── not-found.tsx    # 404 page
-├── robots.ts        # SEO robots.txt
-└── sitemap.ts       # SEO sitemap
-```
-
-### `/components/`
-Reusable React components:
-```
-components/
-├── Header.tsx       # Navigation header
-├── Footer.tsx       # Footer section
-├── Hero.tsx         # Hero section
-├── SectionCards.tsx # Section cards showcase
-├── About.tsx        # About section
-├── Services.tsx     # Services section
-├── Contact.tsx      # Contact section
-├── BackToTop.tsx    # Back to top button
-├── Reveal.tsx       # Scroll reveal animation
-├── PageTransition.tsx # Page transition wrapper
-├── ErrorBoundary.tsx  # Error boundary component
-└── StructuredData.tsx # JSON-LD structured data
-```
-
-### `/lib/`
-Utility functions:
-```
-lib/
-├── utils.ts         # Helper functions (cn, formatDate, etc.)
-└── performance.ts   # Performance utilities (throttle, debounce, etc.)
-```
-
-### `/styles/`
-Global styles:
-```
-styles/
-└── globals.css      # Global CSS with Tailwind (~5,560 lines)
-```
-
-### `/types/`
-TypeScript definitions:
-```
-types/
-└── index.ts         # Shared type definitions
-```
-
-### `/public/`
-Static assets:
-```
-public/
-└── images/          # Image assets
-    ├── about/       # About section images
-    ├── case-studies/ # Case study images
-    ├── photography/  # Photography gallery images
-    ├── placeholders/ # Fallback images
-    ├── projects/     # Project images
-    ├── sections/     # Section background images
-    ├── services/     # Service images
-    └── visuals/      # Visuals gallery images
-```
-
-### `/docs/`
-Documentation and references:
-```
-docs/
-├── reference/       # Design mockups (HTML)
-└── guides/         # Setup, deployment, and image upload guides
-    ├── BUILD_GUIDE.md
-    ├── DEPLOYMENT.md
-    ├── DEPLOYMENT_CHECK.md
-    ├── IMAGE_UPLOAD_INSTRUCTIONS.md
-    ├── SETUP.md
-    └── README.md
-```
-
----
-
-## 🎯 What Goes Where?
-
-### Adding New Pages
-→ Create in `/app/` (e.g., `/app/about/page.tsx`)
-
-### Adding New Components
-→ Create in `/components/` (e.g., `/components/NewComponent.tsx`)
-
-### Adding Images
-→ Place in `/public/images/` (e.g., `/public/images/projects/photo.webp`)
-
-### Adding Utilities
-→ Add to `/lib/utils.ts` or create new file in `/lib/`
-
-### Adding Types
-→ Add to `/types/index.ts` or create new file in `/types/`
-
-### Adding Styles
-→ Add to `/styles/globals.css` or use Tailwind classes
-
-### Adding API Routes
-→ Create in `/app/api/` (e.g., `/app/api/new-endpoint/route.ts`)
-
----
-
-## 📝 File Naming Conventions
-
-- **Components**: PascalCase (e.g., `Header.tsx`)
-- **Pages**: lowercase (e.g., `page.tsx`)
-- **Utilities**: camelCase (e.g., `utils.ts`)
-- **Types**: camelCase (e.g., `index.ts`)
-- **Images**: kebab-case (e.g., `project-1.webp`)
-
----
-
-## 🚫 What NOT to Include
-
-- `node_modules/` - Dependencies (gitignored)
-- `.next/` - Build output (gitignored)
-- `.env.local` - Environment variables (gitignored)
-- Temporary files
-- Build artifacts
-- Unused components or dead code
-
----
-
-## 🔄 Keeping It Clean
-
-1. **Remove unused files** - Delete files that are no longer needed
-2. **Organize by feature** - Group related files together
-3. **Use consistent naming** - Follow the conventions above
-4. **Document structure** - Update this file when structure changes
-5. **Keep root clean** - Only essential config files in root
-6. **Consolidate docs** - Keep all documentation in `/docs/` folder
-7. **Remove console statements** - Clean production code
-8. **Regular cleanup** - Review and remove unused code periodically
-
-## 📊 Current Statistics
-
-- **Total TypeScript/TSX files**: ~39
-- **Components**: 12 active components
-- **Pages**: 8 main pages + API routes
-- **CSS**: ~5,560 lines (optimized with Tailwind)
-- **Documentation**: Organized in `/docs/` folder
-- **Image folders**: 8 organized categories
-
----
-
-## 🧹 Recent Cleanup (2024)
-
-- ✅ Removed unused `ProjectSection.tsx` component
-- ✅ Removed empty `app/projects/` folder
-- ✅ Consolidated documentation into `/docs/guides/`
-- ✅ Removed console statements from production code
-- ✅ Updated PROJECT_STRUCTURE.md with current state
+- `.env.example` - Environment variables template
