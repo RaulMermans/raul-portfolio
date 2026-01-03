@@ -33,7 +33,7 @@ const spaceMono = Space_Mono({
   variable: '--font-mono',
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
   title: {
@@ -103,6 +103,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        {/* Preload critical images for faster initial load */}
+        <link rel="preload" as="image" href="/images/sections/case-studies-bg.webp" />
+        <link rel="preload" as="image" href="/images/sections/photography-bg.webp" />
       </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
         <div className="grain" aria-hidden="true"></div>

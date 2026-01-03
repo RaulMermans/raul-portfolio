@@ -18,7 +18,10 @@ export default function Home() {
   useEffect(() => {
     // Enable scroll-snap for homepage
     if (typeof window !== 'undefined') {
-      document.documentElement.style.scrollSnapType = 'y mandatory'
+      // Only enable on desktop
+      if (window.innerWidth > 768) {
+        document.documentElement.style.scrollSnapType = 'y mandatory'
+      }
       document.body.style.overflowY = 'auto'
     }
     const sections = document.querySelectorAll('section')

@@ -162,6 +162,7 @@ export default function VisualsPage() {
   const [maxScroll, setMaxScroll] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [visibleCardIndex, setVisibleCardIndex] = useState(1)
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set())
 
   const mainRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
@@ -546,14 +547,19 @@ export default function VisualsPage() {
             >
               <div className="card__inner">
                 <Image
-                  src={work.image}
+                  src={imageErrors.has(work.catalog) ? '/images/placeholders/visuals-fallback.webp' : work.image}
                   alt={work.alt}
                   width={900}
                   height={1200}
                   className="card__image"
-                  loading={index === 0 ? 'eager' : 'lazy'}
+                  priority={index <= 1}
                   quality={90}
                   sizes="(max-width: 768px) 100vw, clamp(360px, 36vw, 560px)"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  onError={() => {
+                    setImageErrors(prev => new Set(prev).add(work.catalog))
+                  }}
                 />
                 <div className="card__overlay"></div>
                 <div className="card__shine"></div>
@@ -614,7 +620,7 @@ export default function VisualsPage() {
             {currentWork && (
               <>
                 <Image
-                  src={currentWork.image}
+                  src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/visuals-fallback.webp' : currentWork.image}
                   alt={currentWork.alt}
                   width={1400}
                   height={1400}
@@ -622,6 +628,11 @@ export default function VisualsPage() {
                   id="exhibitionImage"
                   quality={95}
                   priority
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  onError={() => {
+                    setImageErrors(prev => new Set(prev).add(currentWork.catalog))
+                  }}
                 />
                 <span className="exhibition__counter" id="exhibitionCounter">
                   {String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}

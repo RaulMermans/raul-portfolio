@@ -1,6 +1,7 @@
 'use client'
 
 import Reveal from './Reveal'
+import ContactForm from './ContactForm'
 
 export default function Contact() {
   return (
@@ -10,15 +11,21 @@ export default function Contact() {
         <p className="label contact__label reveal">Get in Touch</p>
         <h2 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work</h2>
         
-        <a 
-          href="mailto:raulmermans@gmail.com" 
-          className="btn contact__email reveal reveal-delay-2"
-          aria-label="Send email to Raúl Mermans"
-        >
-          raulmermans@gmail.com
-        </a>
+        {/* Contact Form */}
+        <div className="contact__form-wrapper reveal reveal-delay-2">
+          <ContactForm />
+        </div>
         
-        <div className="contact__links reveal reveal-delay-2" role="list">
+        <div className="contact__divider reveal reveal-delay-3"></div>
+        
+        <div className="contact__links reveal reveal-delay-3" role="list">
+          <a 
+            href="mailto:raulmermans@gmail.com" 
+            className="link" 
+            aria-label="Send email to Raúl Mermans"
+          >
+            Email
+          </a>
           <a 
             href="https://www.instagram.com/raulmeermans/" 
             className="link" 
@@ -48,9 +55,9 @@ export default function Contact() {
           </a>
         </div>
         
-        <div className="contact__divider reveal reveal-delay-3"></div>
+        <div className="contact__divider reveal reveal-delay-4"></div>
         
-        <div className="ai-products reveal reveal-delay-3">
+        <div className="ai-products reveal reveal-delay-4">
           <p className="label ai-products__label">AI Products</p>
           <div className="ai-products__links" role="list">
             <a 
@@ -74,7 +81,7 @@ export default function Contact() {
           </div>
         </div>
         
-        <p className="contact__location reveal reveal-delay-3">Spain — Available Worldwide</p>
+        <p className="contact__location reveal reveal-delay-5">Spain — Available Worldwide</p>
       </div>
     </section>
   )
