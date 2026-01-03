@@ -9,16 +9,36 @@ export default function Contact() {
       <div className="contact__glow" aria-hidden="true"></div>
       <div className="contact__content">
         <p className="label contact__label reveal">Get in Touch</p>
-        <h2 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work</h2>
+        <h1 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work</h1>
+        <p className="contact__subtitle reveal reveal-delay-1">Ready to bring your vision to life? Let&apos;s start a conversation.</p>
         
-        {/* Contact Form */}
-        <div className="contact__form-wrapper reveal reveal-delay-2">
-          <ContactForm />
-        </div>
+        {/* CTA Button */}
+        <a 
+          href="#contact-form" 
+          className="contact__cta btn reveal reveal-delay-2"
+          aria-label="Scroll to contact form"
+          onClick={(e) => {
+            e.preventDefault()
+            const form = document.getElementById('contact-form')
+            if (form) {
+              form.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+          }}
+        >
+          <span>Get in Touch</span>
+          <span className="btn__arrow">→</span>
+        </a>
         
         <div className="contact__divider reveal reveal-delay-3"></div>
         
-        <div className="contact__links reveal reveal-delay-3" role="list">
+        {/* Contact Form */}
+        <div id="contact-form" className="contact__form-wrapper reveal reveal-delay-3">
+          <ContactForm />
+        </div>
+        
+        <div className="contact__divider reveal reveal-delay-4"></div>
+        
+        <div className="contact__links reveal reveal-delay-4" role="list">
           <a 
             href="mailto:raulmermans@gmail.com" 
             className="link" 
@@ -55,9 +75,9 @@ export default function Contact() {
           </a>
         </div>
         
-        <div className="contact__divider reveal reveal-delay-4"></div>
+        <div className="contact__divider reveal reveal-delay-5"></div>
         
-        <div className="ai-products reveal reveal-delay-4">
+        <div className="ai-products reveal reveal-delay-5">
           <p className="label ai-products__label">AI Products</p>
           <div className="ai-products__links" role="list">
             <a 
@@ -81,7 +101,7 @@ export default function Contact() {
           </div>
         </div>
         
-        <p className="contact__location reveal reveal-delay-5">Spain — Available Worldwide</p>
+        <p className="contact__location reveal reveal-delay-6">Spain — Available Worldwide</p>
       </div>
     </section>
   )
