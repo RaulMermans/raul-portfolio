@@ -119,6 +119,7 @@ a {
   text-decoration: none;
 }
 
+/* Enhanced Focus States for Accessibility - UX/UI Improvement */
 :focus {
   outline: none;
 }
@@ -126,6 +127,40 @@ a {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+/* Interactive Elements - Enhanced Focus States */
+button:focus-visible,
+a:focus-visible,
+.btn:focus-visible,
+.link:focus-visible,
+.cta:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.1);
+}
+
+/* Ensure all interactive elements are keyboard accessible */
+button,
+a,
+[role="button"],
+[tabindex="0"] {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button,
+  a,
+  .btn,
+  .link {
+    min-height: 44px;
+    padding: var(--space-3) var(--space-4);
+  }
 }
 
 img {
