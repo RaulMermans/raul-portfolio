@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "image:check": "node scripts/upload-image.js check",
-    "image:help": "node scripts/upload-image.js help",
+    "verify": "node scripts/verify-deployment.js",
     "bot:status": "node scripts/bot-status.js"
   },
   "dependencies": {
