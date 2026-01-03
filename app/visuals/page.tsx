@@ -27,7 +27,7 @@ const works: Work[] = [
     year: '2026',
     type: 'AI Art',
     catalog: 'RM-NG-26-001',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1400&q=95',
+    image: '/images/placeholders/visuals-neon-genesis.webp',
     alt: 'Neon Genesis',
     medium: 'AI-generated image + digital post-production',
     dimensions: '90 × 60 cm (35.4 × 23.6 in)',
@@ -43,7 +43,7 @@ const works: Work[] = [
     year: '2026',
     type: 'Album Cover',
     catalog: 'RM-MW-26-002',
-    image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1400&q=95',
+    image: '/images/placeholders/visuals-midnight-waves.webp',
     alt: 'Midnight Waves',
     medium: 'Digital composition + photography',
     dimensions: '3000 × 3000 px',
@@ -59,7 +59,7 @@ const works: Work[] = [
     year: '2026',
     type: 'AI Art',
     catalog: 'RM-DB-26-003',
-    image: 'https://images.unsplash.com/photo-1634017839464-5c339bbe3c35?w=1400&q=95',
+    image: '/images/placeholders/visuals-digital-bloom.webp',
     alt: 'Digital Bloom',
     medium: 'AI-generated image + color grading',
     dimensions: '70 × 100 cm (27.6 × 39.4 in)',
@@ -75,7 +75,7 @@ const works: Work[] = [
     year: '2026',
     type: 'Experiment',
     catalog: 'RM-GP-26-004',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=95',
+    image: '/images/placeholders/visuals-glitch-protocol.webp',
     alt: 'Glitch Protocol',
     medium: 'Corrupted data visualization + AI reconstruction',
     dimensions: 'Variable (responsive artwork)',
@@ -91,7 +91,7 @@ const works: Work[] = [
     year: '2026',
     type: 'Album Cover',
     catalog: 'RM-EC-26-005',
-    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1400&q=95',
+    image: '/images/placeholders/visuals-echoes.webp',
     alt: 'Echoes',
     medium: 'Photography + digital manipulation',
     dimensions: '3000 × 3000 px',
@@ -107,7 +107,7 @@ const works: Work[] = [
     year: '2023',
     type: 'AI Art',
     catalog: 'RM-SD-23-006',
-    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1400&q=95',
+    image: '/images/placeholders/visuals-synthetic-dreams.webp',
     alt: 'Synthetic Dreams',
     medium: 'AI-generated image + digital post-production',
     dimensions: '60 × 90 cm (23.6 × 35.4 in)',
@@ -123,7 +123,7 @@ const works: Work[] = [
     year: '2023',
     type: 'Experiment',
     catalog: 'RM-PF-23-007',
-    image: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=1400&q=95',
+    image: '/images/placeholders/visuals-particle-field.webp',
     alt: 'Particle Field',
     medium: 'Generative algorithm + data visualization',
     dimensions: 'Variable (generative artwork)',
@@ -139,7 +139,7 @@ const works: Work[] = [
     year: '2023',
     type: 'Album Cover',
     catalog: 'RM-CH-23-008',
-    image: 'https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=1400&q=95',
+    image: '/images/placeholders/visuals-chromatic.webp',
     alt: 'Chromatic',
     medium: 'Photography + color manipulation',
     dimensions: '3000 × 3000 px',
@@ -547,7 +547,7 @@ export default function VisualsPage() {
             >
               <div className="card__inner">
                 <Image
-                  src={imageErrors.has(work.catalog) ? '/images/placeholders/visuals-fallback.webp' : work.image}
+                  src={imageErrors.has(work.catalog) ? '/images/placeholders/image-placeholder.webp' : work.image}
                   alt={work.alt}
                   width={900}
                   height={1200}
@@ -620,7 +620,7 @@ export default function VisualsPage() {
             {currentWork && (
               <>
                 <Image
-                  src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/visuals-fallback.webp' : currentWork.image}
+                  src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
                   alt={currentWork.alt}
                   width={1400}
                   height={1400}
