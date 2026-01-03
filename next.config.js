@@ -2,8 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Disable static optimization to prevent caching issues
-  output: undefined, // Keep dynamic rendering
+  // Keep dynamic rendering (default)
   images: {
     // Removed Unsplash - using local images only
     formats: ['image/avif', 'image/webp'],
@@ -34,7 +33,7 @@ const nextConfig = {
     }
     return config
   },
-  // Headers to prevent caching
+  // Headers to prevent caching (simplified for Railway compatibility)
   async headers() {
     return [
       {
@@ -42,16 +41,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'no-cache, no-store, must-revalidate',
           },
         ],
       },
