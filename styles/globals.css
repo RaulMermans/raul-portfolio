@@ -5444,16 +5444,19 @@ a[href^="/"]:hover {
 }
 
 .about-page__paragraph {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
-  color: var(--ink-soft);
-  line-height: 1.9;
-  margin: 0;
-  position: relative;
-  padding-left: var(--space-6);
-  max-width: 100%;
-  width: 100%;
-  word-wrap: break-word;
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif !important;
+  font-size: clamp(1rem, 1.2vw, 1.125rem) !important;
+  color: var(--ink-soft) !important;
+  line-height: 1.9 !important;
+  margin: 0 !important;
+  position: relative !important;
+  padding-left: var(--space-6) !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
+  display: block !important;
   overflow-wrap: break-word;
 }
 
