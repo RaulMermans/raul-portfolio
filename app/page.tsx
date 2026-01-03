@@ -181,6 +181,22 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
+      {/* DEPLOYMENT TEST BANNER - REMOVE AFTER VERIFICATION */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        background: '#ff0000',
+        color: '#fff',
+        padding: '8px',
+        textAlign: 'center',
+        zIndex: 99999,
+        fontSize: '12px',
+        fontFamily: 'monospace'
+      }}>
+        🚀 DEPLOYED: {buildTimestamp} | Git: {process.env.NEXT_PUBLIC_GIT_COMMIT || 'dev'}
+      </div>
       <Header />
       <Hero />
       <SectionCards />
