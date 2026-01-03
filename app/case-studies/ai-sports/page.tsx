@@ -10,6 +10,14 @@ export default function AISportsCampaignPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
+    // Force CSS reload on mount (cache busting)
+    const links = document.querySelectorAll('link[rel="stylesheet"]')
+    links.forEach((link: any) => {
+      if (link.href && !link.href.includes('?')) {
+        link.href = link.href + '?v=' + Date.now()
+      }
+    })
+
     // Header scroll effect
     const header = document.getElementById('header')
     const handleScroll = () => {
