@@ -320,7 +320,7 @@ img {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  padding: 0.75rem 1.5rem;
+  padding: var(--space-3) var(--space-5);
   border: 1px solid var(--cream-dark);
   background: transparent;
   min-height: 44px;
@@ -393,7 +393,7 @@ img {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  padding: 0.5rem;
+  padding: var(--space-2);
   min-height: 44px;
   display: inline-flex;
   align-items: center;
