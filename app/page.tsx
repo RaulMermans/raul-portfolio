@@ -94,13 +94,13 @@ export default function Home() {
             }
           })
         },
-        { threshold: 0.1, rootMargin: '0px' }
+        { threshold: 0.01, rootMargin: '100px 0px 100px 0px' }
       )
 
       revealElements.forEach((el) => {
-        // Check if already in viewport
+        // Check if already in viewport - be more lenient
         const rect = el.getBoundingClientRect()
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0
+        const isVisible = rect.top < window.innerHeight + 200 && rect.bottom > -200
         if (isVisible) {
           el.classList.add('visible')
         } else {
