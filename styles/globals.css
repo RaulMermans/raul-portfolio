@@ -170,12 +170,12 @@ img {
   object-fit: cover;
 }
 
-/* Grain texture overlay */
+/* Grain texture overlay - Highest layer */
 .grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9998;
+  z-index: 500; /* Standardized from 9998 */
   opacity: 0.03;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -243,7 +243,7 @@ img {
   visibility: hidden;
   transform: translateY(20px);
   transition: all var(--transition-base) var(--ease);
-  z-index: 90;
+  z-index: 145; /* UI Elements layer - standardized from 90 */
 }
 
 .back-to-top.visible {
@@ -262,7 +262,7 @@ img {
     bottom: var(--space-4);
     right: var(--space-4);
     /* Ensure it doesn't overlap with progress bar */
-    z-index: 101;
+    z-index: 145; /* Standardized - above progress bar (140) */
   }
   
   /* Adjust scroll hint on mobile to avoid overlap */
@@ -273,7 +273,7 @@ img {
   
   /* Progress bar should be at very bottom */
   .progress-bar {
-    z-index: 99;
+    z-index: 140; /* Standardized */
   }
 }
 
@@ -294,7 +294,7 @@ img {
   position: fixed;
   top: var(--space-4);
   left: var(--space-4);
-  z-index: 10000;
+  z-index: 600; /* Highest - accessibility critical - standardized from 10000 */
   padding: var(--space-3) var(--space-5);
   background: var(--ink);
   color: var(--cream);
@@ -533,7 +533,7 @@ html {
 /* UI Elements (Header, Progress, etc.) */
 .ui {
   position: fixed;
-  z-index: 100;
+  z-index: 150; /* UI Elements layer - standardized from 100 */
 }
 
 .ui__logo {
@@ -637,7 +637,7 @@ html {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 101;
+  z-index: 310; /* Overlays layer - above mobile menu - standardized from 101 */
   opacity: 0;
   animation: fadeIn 0.8s var(--ease-out) 1.3s forwards;
 }
@@ -670,7 +670,7 @@ html {
   position: fixed;
   inset: 0;
   background: var(--cream);
-  z-index: 99;
+  z-index: 300; /* Overlays layer - standardized from 99 */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1008,9 +1008,9 @@ html {
     text-align: center;
   }
 
-  /* Fix z-index overlapping issues */
+  /* Z-index System - Standardized (UX/UI Improvement) */
   .header {
-    z-index: 1000;
+    z-index: 150; /* UI Elements layer - standardized from 1000 */
   }
 
   .section-card {

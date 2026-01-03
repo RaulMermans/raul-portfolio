@@ -115,6 +115,7 @@ export default function ContactForm() {
         type="submit"
         className="contact-form__submit btn"
         disabled={status === 'loading'}
+        aria-label={status === 'loading' ? 'Sending message' : 'Send message'}
       >
         {status === 'loading' ? 'Sending...' : 'Send Message'}
         {status !== 'loading' && <span className="btn__arrow">→</span>}

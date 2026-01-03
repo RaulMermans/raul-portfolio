@@ -55,6 +55,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               onClick={() => window.location.reload()}
               className="btn"
               style={{ minWidth: '120px' }}
+              aria-label="Refresh page to retry"
             >
               Refresh Page
             </button>
