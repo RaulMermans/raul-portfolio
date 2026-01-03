@@ -202,7 +202,8 @@ export default function VisualsPage() {
     cardsRef.current.forEach((card, index) => {
       if (!card) return
       const rect = card.getBoundingClientRect()
-      if (rect.left < window.innerWidth * 1.3) {
+      // Make cards visible earlier - check if they're within viewport or slightly off-screen
+      if (rect.left < window.innerWidth * 1.5) {
         setTimeout(() => {
           card.classList.add('visible')
         }, index * 80)

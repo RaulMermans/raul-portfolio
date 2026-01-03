@@ -32,6 +32,8 @@ export default function Home() {
         requestAnimationFrame(() => {
           // Set scroll-snap on html element (CSS will also apply, but this ensures it)
           html.style.scrollSnapType = 'y mandatory'
+          html.style.scrollPaddingTop = '0'
+          document.body.style.scrollSnapType = 'y mandatory'
           
           // Apply scroll-snap-align to all sections - use multiple selectors to catch all
           const selectors = [

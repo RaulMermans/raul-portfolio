@@ -10,28 +10,9 @@ export default function CaseStudiesPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
-  const cardsRef = useRef<(HTMLElement | null)[]>([])
   const scrollHintRef = useRef<HTMLDivElement>(null)
 
   const TOTAL = caseStudies.length
-
-  // Update card positions
-  const updatePositions = () => {
-    cardsRef.current.forEach((card, i) => {
-      if (!card) return
-      let position = i - currentIndex
-
-      // Handle wrap for infinite (if more than 2 projects)
-      if (TOTAL > 2) {
-        if (position > Math.floor(TOTAL / 2)) position -= TOTAL
-        if (position < -Math.floor(TOTAL / 2)) position += TOTAL
-      }
-
-      const clampedPosition = Math.max(-2, Math.min(2, position))
-      card.setAttribute('data-position', String(clampedPosition))
-      card.classList.toggle('active', clampedPosition === 0)
-    })
-  }
 
   // Go to slide
   const goTo = (index: number) => {
@@ -50,16 +31,12 @@ export default function CaseStudiesPage() {
       scrollHintRef.current.classList.add('hidden')
     }
 
-    const oldIndex = currentIndex
     setCurrentIndex(newIndex)
 
     // Update slides
     const slides = document.querySelectorAll('.slide')
     slides[oldIndex]?.classList.remove('active')
     slides[newIndex]?.classList.add('active')
-
-    // Update positions
-    updatePositions()
 
     // Update dots
     const dots = document.querySelectorAll('.dot')
@@ -136,19 +113,13 @@ export default function CaseStudiesPage() {
     }
   }, [currentIndex, isAnimating])
 
-  // Initialize positions
+  // Initialize dots
   useEffect(() => {
-    updatePositions()
     const dotInners = document.querySelectorAll('.dot__inner')
     if (dotInners[0]) {
       ;(dotInners[0] as HTMLElement).style.setProperty('background', caseStudies[0].color)
     }
   }, [])
-
-  // Update positions when currentIndex changes
-  useEffect(() => {
-    updatePositions()
-  }, [currentIndex])
 
   // Disable scroll-snap for normal scrolling
   useEffect(() => {
@@ -189,55 +160,28 @@ export default function CaseStudiesPage() {
           ))}
         </section>
 
-        {/* Right: Carousel */}
-        <section className="case-studies-carousel" id="carousel">
-          <div className="carousel__track" id="track">
-            {caseStudies.map((study, index) => (
-              <article
-                key={study.id}
-                ref={(el) => {
-                  if (el) cardsRef.current[index] = el
-                }}
-                className="card intro-card"
-                data-index={index}
-                data-position={index === currentIndex ? '0' : index < currentIndex ? '-1' : '1'}
-                onClick={() => {
-                  if (index === currentIndex) {
-                    window.location.href = study.href
-                  } else {
-                    goTo(index)
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-label={`View ${study.title} case study`}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault()
-                    if (index === currentIndex) {
-                      window.location.href = study.href
-                    } else {
-                      goTo(index)
-                    }
-                  }
-                }}
-              >
-                <div className="card__backing" style={{ background: study.color }}></div>
-                <div className="card__img-wrapper">
-                  <Image
-                    src={study.image}
-                    alt={study.title}
-                    fill
-                    quality={90}
-                    sizes="(max-width: 900px) 100vw, 42vw"
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
-                    priority={index === 0}
-                    className="card__img"
-                  />
-                </div>
-              </article>
-            ))}
-          </div>
+        {/* Right: Project Thumbnail */}
+        <section className="case-studies-thumbnail" id="thumbnail">
+          <Link 
+            href={caseStudies[currentIndex].href}
+            className="case-studies-thumbnail__link"
+            aria-label={`View ${caseStudies[currentIndex].title} case study`}
+          >
+            <div className="case-studies-thumbnail__wrapper">
+              <Image
+                key={caseStudies[currentIndex].id}
+                src={caseStudies[currentIndex].image}
+                alt={caseStudies[currentIndex].title}
+                fill
+                quality={90}
+                sizes="(max-width: 900px) 100vw, 42vw"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+                priority
+                className="case-studies-thumbnail__image"
+              />
+              <div className="case-studies-thumbnail__overlay"></div>
+            </div>
+          </Link>
         </section>
       </main>
 
