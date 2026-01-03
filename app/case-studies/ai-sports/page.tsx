@@ -71,8 +71,8 @@ export default function AISportsCampaignPage() {
         <div className="hero__letterbox hero__letterbox--top"></div>
         <div className="hero__bg">
           <Image
-            src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1920&q=85&auto=format&fit=crop"
-            alt="Athletic figure in motion—AI-generated campaign consistency"
+            src="/images/placeholders/ai-sports-hero.webp"
+            alt="AI Sports Campaign hero image placeholder"
             fill
             priority
             quality={90}
@@ -164,8 +164,8 @@ export default function AISportsCampaignPage() {
       {/* Full Bleed Image 1 */}
       <div className="full-image">
         <Image
-          src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1920&q=85&auto=format&fit=crop"
-          alt="Athletic training environment—consistent lighting and mood"
+          src="/images/placeholders/ai-sports-full-1.webp"
+          alt="AI Sports Campaign image placeholder 1"
           fill
           quality={90}
           sizes="100vw"
@@ -283,8 +283,8 @@ export default function AISportsCampaignPage() {
           <div className="approach__images">
             <div className="approach__image reveal">
               <Image
-                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85&auto=format&fit=crop"
-                alt="Workflow visualization—inputs and outputs"
+                src="/images/placeholders/ai-sports-approach-1.webp"
+                alt="AI Sports Campaign approach image placeholder 1"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -293,8 +293,8 @@ export default function AISportsCampaignPage() {
             </div>
             <div className="approach__image reveal reveal-delay-1">
               <Image
-                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85&auto=format&fit=crop"
-                alt="Campaign variant comparison"
+                src="/images/placeholders/ai-sports-approach-2.webp"
+                alt="AI Sports Campaign approach image placeholder 2"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -309,8 +309,8 @@ export default function AISportsCampaignPage() {
       <section className="feature">
         <div className="feature__image reveal">
           <Image
-            src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1400&q=85&auto=format&fit=crop"
-            alt="AI Sports Campaign hero output—campaign-consistent athletic imagery"
+            src="/images/placeholders/ai-sports-feature.webp"
+            alt="AI Sports Campaign feature image placeholder"
             fill
             quality={95}
             sizes="(max-width: 1400px) 100vw, 1400px"
@@ -326,8 +326,8 @@ export default function AISportsCampaignPage() {
             <div className="gallery__row--3">
               <div className="gallery__item reveal">
                 <Image
-                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=85&auto=format&fit=crop"
-                  alt="Campaign output variant 1"
+                  src="/images/placeholders/ai-sports-gallery-1.webp"
+                  alt="AI Sports Campaign gallery image placeholder 1"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -336,8 +336,8 @@ export default function AISportsCampaignPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=85&auto=format&fit=crop"
-                  alt="Campaign output variant 2"
+                  src="/images/placeholders/ai-sports-gallery-2.webp"
+                  alt="AI Sports Campaign gallery image placeholder 2"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -346,8 +346,8 @@ export default function AISportsCampaignPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-2">
                 <Image
-                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c149a?w=600&q=85&auto=format&fit=crop"
-                  alt="Campaign output variant 3"
+                  src="/images/placeholders/ai-sports-gallery-3.webp"
+                  alt="AI Sports Campaign gallery image placeholder 3"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -358,8 +358,8 @@ export default function AISportsCampaignPage() {
             <div className="gallery__row--asymmetric">
               <div className="gallery__item gallery__item--wide reveal">
                 <Image
-                  src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85&auto=format&fit=crop"
-                  alt="Campaign consistency demonstration"
+                  src="/images/placeholders/ai-sports-gallery-4.webp"
+                  alt="AI Sports Campaign gallery image placeholder 4"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 60vw"
@@ -368,8 +368,8 @@ export default function AISportsCampaignPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=85&auto=format&fit=crop"
-                  alt="Wardrobe swap example"
+                  src="/images/placeholders/ai-sports-gallery-5.webp"
+                  alt="AI Sports Campaign gallery image placeholder 5"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 40vw"
@@ -384,8 +384,8 @@ export default function AISportsCampaignPage() {
       {/* Full Bleed Image 2 */}
       <div className="full-image">
         <Image
-          src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1920&q=85&auto=format&fit=crop"
-          alt="Athletic environment—consistent campaign world"
+          src="/images/placeholders/ai-sports-full-2.webp"
+          alt="AI Sports Campaign image placeholder 2"
           fill
           quality={90}
           sizes="100vw"

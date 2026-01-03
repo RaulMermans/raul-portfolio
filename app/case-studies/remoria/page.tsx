@@ -71,8 +71,8 @@ export default function RemoriaPage() {
         <div className="hero__letterbox hero__letterbox--top"></div>
         <div className="hero__bg">
           <Image
-            src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?w=1920&q=85&auto=format&fit=crop"
-            alt="Mediterranean light and stone textures behind the REMORIA world—quiet luxury, timeless, and serene."
+            src="/images/placeholders/remoria-hero.webp"
+            alt="Remoria hero image placeholder"
             fill
             priority
             quality={90}
@@ -159,8 +159,8 @@ export default function RemoriaPage() {
       {/* Full Bleed Image 1 */}
       <div className="full-image">
         <Image
-          src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1920&q=85&auto=format&fit=crop"
-          alt="Luxury fragrance aesthetic—stone, light, and stillness"
+          src="/images/placeholders/remoria-full-1.webp"
+          alt="Remoria image placeholder 1"
           fill
           quality={90}
           sizes="100vw"
@@ -267,8 +267,8 @@ export default function RemoriaPage() {
           <div className="approach__images">
             <div className="approach__image reveal">
               <Image
-                src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=900&q=85&auto=format&fit=crop"
-                alt="Moodboard exploration—Mediterranean textures and tones"
+                src="/images/placeholders/remoria-approach-1.webp"
+                alt="Remoria approach image placeholder 1"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -277,8 +277,8 @@ export default function RemoriaPage() {
             </div>
             <div className="approach__image reveal reveal-delay-1">
               <Image
-                src="https://images.unsplash.com/photo-1608528577891-eb055944f2e7?w=900&q=85&auto=format&fit=crop"
-                alt="Typography and material details"
+                src="/images/placeholders/remoria-approach-2.webp"
+                alt="Remoria approach image placeholder 2"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -293,8 +293,8 @@ export default function RemoriaPage() {
       <section className="feature">
         <div className="feature__image reveal">
           <Image
-            src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=1400&q=85&auto=format&fit=crop"
-            alt="Remoria brand identity—hero visual"
+            src="/images/placeholders/remoria-feature.webp"
+            alt="Remoria feature image placeholder"
             fill
             quality={95}
             sizes="(max-width: 1400px) 100vw, 1400px"
@@ -310,8 +310,8 @@ export default function RemoriaPage() {
             <div className="gallery__row--3">
               <div className="gallery__item reveal">
                 <Image
-                  src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=85&auto=format&fit=crop"
-                  alt="Packaging concept"
+                  src="/images/placeholders/remoria-gallery-1.webp"
+                  alt="Remoria gallery image placeholder 1"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -320,8 +320,8 @@ export default function RemoriaPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=600&q=85&auto=format&fit=crop"
-                  alt="Color and material palette"
+                  src="/images/placeholders/remoria-gallery-2.webp"
+                  alt="Remoria gallery image placeholder 2"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -330,8 +330,8 @@ export default function RemoriaPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-2">
                 <Image
-                  src="https://images.unsplash.com/photo-1617897903246-719242758050?w=600&q=85&auto=format&fit=crop"
-                  alt="Brand textures"
+                  src="/images/placeholders/remoria-gallery-3.webp"
+                  alt="Remoria gallery image placeholder 3"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -342,8 +342,8 @@ export default function RemoriaPage() {
             <div className="gallery__row--asymmetric">
               <div className="gallery__item gallery__item--wide reveal">
                 <Image
-                  src="https://images.unsplash.com/photo-1595535873420-a599195b3f4a?w=900&q=85&auto=format&fit=crop"
-                  alt="Visual identity system"
+                  src="/images/placeholders/remoria-gallery-4.webp"
+                  alt="Remoria gallery image placeholder 4"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 60vw"
@@ -352,8 +352,8 @@ export default function RemoriaPage() {
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
-                  src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=85&auto=format&fit=crop"
-                  alt="Brand storytelling"
+                  src="/images/placeholders/remoria-gallery-5.webp"
+                  alt="Remoria gallery image placeholder 5"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 40vw"
@@ -368,8 +368,8 @@ export default function RemoriaPage() {
       {/* Full Bleed Image 2 */}
       <div className="full-image">
         <Image
-          src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=1920&q=85&auto=format&fit=crop"
-          alt="Mediterranean warmth and light"
+          src="/images/placeholders/remoria-full-2.webp"
+          alt="Remoria image placeholder 2"
           fill
           quality={90}
           sizes="100vw"
