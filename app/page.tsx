@@ -187,7 +187,7 @@ export default function Home() {
       <Services />
       <Contact />
       <Footer />
-      <BackToTop scrollProgress={scrollProgress} currentSection={currentSection} totalSections={6} />
+      <BackToTop currentSection={currentSection} totalSections={6} />
     </ErrorBoundary>
   )
 }
