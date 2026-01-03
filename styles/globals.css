@@ -5129,21 +5129,30 @@ a[href^="/"]:hover {
 }
 
 .about-page__inner {
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.32fr 0.68fr;
-  gap: var(--space-7);
+  grid-template-columns: 0.35fr 0.65fr;
+  gap: var(--space-10);
   align-items: start;
 }
 
-.about-page__image {
+.about-page__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
   position: sticky;
   top: calc(var(--header-height) + var(--space-5));
+  align-self: start;
+}
+
+.about-page__image {
   aspect-ratio: 3/4;
-  max-height: 70vh;
+  width: 100%;
   overflow: hidden;
   border-radius: 4px;
+  position: relative;
+  background: var(--cream-dark);
 }
 
 .about-page__img {
@@ -5151,17 +5160,28 @@ a[href^="/"]:hover {
   height: 100%;
   object-fit: cover;
   filter: grayscale(15%) contrast(1.02);
-  transition: filter var(--transition-base) var(--ease);
+  transition: filter 0.6s var(--ease), transform 0.6s var(--ease);
+  transform: scale(1);
+}
+
+.about-page__image {
+  transition: transform 0.3s var(--ease);
+}
+
+.about-page__image:hover {
+  transform: translateY(-4px);
 }
 
 .about-page__image:hover .about-page__img {
-  filter: grayscale(0%) contrast(1);
+  filter: grayscale(0%) contrast(1.05);
+  transform: scale(1.02);
 }
 
 .about-page__content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: 0;
+  max-width: 100%;
 }
 
 .about-page__bio {
@@ -5192,14 +5212,15 @@ a[href^="/"]:hover {
 
 .about-page__headline {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
   line-height: 0.95;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--ink);
-  margin: 0;
+  margin: 0 0 var(--space-5) 0;
   position: relative;
-  padding-bottom: var(--space-4);
+  padding-bottom: var(--space-5);
+  max-width: 100%;
 }
 
 .about-page__headline::after {
@@ -5216,18 +5237,20 @@ a[href^="/"]:hover {
 .about-page__text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  margin-top: var(--space-2);
+  gap: var(--space-6);
+  margin-top: var(--space-3);
+  max-width: 100%;
 }
 
 .about-page__paragraph {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: clamp(0.9375rem, 1.2vw, 1rem);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
   color: var(--ink-soft);
-  line-height: 1.8;
+  line-height: 1.9;
   margin: 0;
   position: relative;
   padding-left: var(--space-6);
+  max-width: 100%;
 }
 
 .about-page__paragraph::before {
@@ -5257,26 +5280,45 @@ a[href^="/"]:hover {
   height: calc(100% - 0.5em);
 }
 
-/* Contact Section - Creative Design */
+/* Contact Section - Under Image */
 .about-page__contact {
   position: relative;
-  padding: 0;
-  background: transparent;
-  border: none;
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--cream-warm) 0%, var(--cream-light) 100%);
+  border-radius: 8px;
+  border: 1px solid var(--cream-dark);
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-5);
+  transition: all var(--transition-base) var(--ease);
+  overflow: hidden;
 }
 
-.about-page__contact-top {
-  margin-bottom: var(--space-6);
+.about-page__contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 170, 136, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: subtlePulse 8s ease-in-out infinite;
+}
+
+.about-page__contact:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(26, 23, 20, 0.1);
+  transform: translateY(-2px);
 }
 
 .about-page__contact-header {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
   flex-wrap: wrap;
+  margin-bottom: var(--space-1);
 }
 
 .about-page__contact-label {
@@ -5289,7 +5331,7 @@ a[href^="/"]:hover {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, var(--cream-dark), transparent);
-  max-width: 200px;
+  min-width: 40px;
 }
 
 .about-page__location {
@@ -5303,28 +5345,7 @@ a[href^="/"]:hover {
 }
 
 .about-page__contact-main {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  padding: var(--space-6);
-  background: linear-gradient(135deg, var(--cream-warm) 0%, var(--cream-light) 100%);
-  border-radius: 8px;
-  border: 1px solid var(--cream-dark);
-  position: relative;
-  overflow: hidden;
-}
-
-.about-page__contact-main::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(255, 170, 136, 0.08) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: subtlePulse 8s ease-in-out infinite;
+  display: none; /* Removed - contact is now directly in contact section */
 }
 
 @keyframes subtlePulse {
@@ -5336,7 +5357,7 @@ a[href^="/"]:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-5) var(--space-6);
+  padding: var(--space-5) var(--space-5);
   background: var(--cream);
   border: 1px solid var(--cream-dark);
   border-radius: 6px;
@@ -5345,6 +5366,8 @@ a[href^="/"]:hover {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  width: 100%;
+  cursor: pointer;
 }
 
 .about-page__email-link::before {
@@ -5382,25 +5405,18 @@ a[href^="/"]:hover {
 }
 
 .about-page__email-link:hover .about-page__email-arrow {
-  transform: translateX(4px);
+  transform: translateX(6px) scale(1.1);
 }
 
-.about-page__social-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.about-page__social-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cream-dark), transparent);
-  margin: 0 var(--space-4);
+.about-page__email-link:active {
+  transform: translateY(0);
 }
 
 .about-page__social {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-3);
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
 }
 
 .about-page__social-link {
@@ -5409,18 +5425,19 @@ a[href^="/"]:hover {
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--ink-muted);
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-3) var(--space-4);
   border: 1px solid var(--cream-dark);
   border-radius: 6px;
   text-decoration: none;
   transition: all var(--transition-base) var(--ease);
-  min-height: 52px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--cream);
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .about-page__social-link::before {
@@ -5459,7 +5476,11 @@ a[href^="/"]:hover {
 
 .about-page__social-link:hover .about-page__social-arrow {
   color: var(--accent);
-  transform: translate(2px, -2px);
+  transform: translate(3px, -3px) scale(1.1);
+}
+
+.about-page__social-link:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 900px) {
@@ -5473,17 +5494,28 @@ a[href^="/"]:hover {
     max-width: 600px;
   }
 
-  .about-page__image {
+  .about-page__left {
     position: relative;
     top: 0;
+  }
+
+  .about-page__image {
     max-height: 50vh;
     margin: 0 auto;
     width: 100%;
     max-width: 400px;
   }
 
+  .about-page__contact {
+    margin-top: var(--space-5);
+  }
+
   .about-page__content {
-    gap: var(--space-6);
+    gap: 0;
+  }
+
+  .about-page__bio {
+    width: 100%;
   }
 
   .about-page__header {
@@ -6850,11 +6882,11 @@ body:has(.case-studies-main) .page-transition {
 /* Gallery */
 .visuals-gallery {
   display: flex;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items: center;
+  align-content: center;
   height: 100%;
-  padding: 2vh 8vw 0;
-  gap: 3vw;
+  padding: 0 8vw;
+  gap: 4vw;
   will-change: transform;
 }
 
@@ -6867,8 +6899,10 @@ body:has(.case-studies-main) .page-transition {
   padding-right: 1.5vw;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: flex-start;
   padding-top: 0;
+  padding-bottom: 0;
 }
 
 .gallery__label {
@@ -6907,7 +6941,7 @@ body:has(.case-studies-main) .page-transition {
   line-height: 0.78;
   letter-spacing: -0.04em;
   text-transform: uppercase;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   overflow: hidden;
   color: var(--ink);
 }
@@ -6939,7 +6973,7 @@ body:has(.case-studies-main) .page-transition {
   font-size: 0.9rem;
   line-height: 1.9;
   color: var(--ink-muted);
-  max-width: 280px;
+  max-width: 100%;
   letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
   opacity: 0;
@@ -6956,9 +6990,18 @@ body:has(.case-studies-main) .page-transition {
   font-size: 0.45rem;
   letter-spacing: 0.5em;
   color: var(--ink-faint);
-  margin-top: 2rem;
+  margin-top: 0;
   opacity: 0;
   animation: fadeUp 1s var(--ease) 1.5s forwards;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gallery__year::before {
+  content: "•";
+  font-size: 0.6rem;
+  color: var(--ink-faint);
 }
 
 /* Cards */
@@ -6972,7 +7015,7 @@ body:has(.case-studies-main) .page-transition {
   opacity: 0;
   transform: translateY(0);
   transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
-  align-self: flex-start;
+  align-self: center;
   margin-top: 0;
 }
 
@@ -9195,24 +9238,47 @@ body {
 /* Visuals Page Mobile */
 @media (max-width: 768px) {
   .visuals-gallery {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
-    gap: var(--space-4);
+    padding: calc(var(--header-height) + var(--space-6)) var(--space-5) var(--space-8);
+    gap: var(--space-6);
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .gallery__intro {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
     padding: 0;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .gallery__title {
-    font-size: clamp(2rem, 12vw, 4rem);
-    margin-bottom: var(--space-3);
+    font-size: clamp(4rem, 20vw, 8rem);
+    margin-bottom: 1.5rem;
+    line-height: 0.85;
+  }
+
+  .gallery__desc {
+    font-size: 0.85rem;
+    max-width: 100%;
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+  }
+
+  .gallery__year {
+    margin-top: 0;
   }
 
   .card {
     width: 100%;
-    margin-top: 0;
+    max-width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    margin: 0 auto;
+    align-self: center;
   }
 
   .work-card {

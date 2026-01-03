@@ -44,24 +44,87 @@ export default function AboutPage() {
         {/* COMBINED BIO & CONNECT SECTION */}
         <section className="about-page">
           <div className="about-page__inner">
-            {/* Image */}
-            <div className="about-page__image reveal">
-              <Image
-                src="/images/about/profile.webp"
-                alt="Raúl Mermans"
-                width={800}
-                height={1067}
-                className="about-page__img"
-                priority
-                quality={90}
-                sizes="(max-width: 900px) 100vw, 35vw"
-                style={{ objectFit: 'cover' }}
-              />
+            {/* Left Column: Image + Contact */}
+            <div className="about-page__left">
+              {/* Image */}
+              <div className="about-page__image reveal">
+                <Image
+                  src="/images/about/profile.webp"
+                  alt="Raúl Mermans"
+                  width={800}
+                  height={1067}
+                  className="about-page__img"
+                  priority
+                  quality={90}
+                  sizes="(max-width: 900px) 100vw, 35vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+
+              {/* Contact Section - Under Image */}
+              <div className="about-page__contact reveal reveal--delay-3">
+                <div className="about-page__contact-header">
+                  <p className="label about-page__contact-label">Get in Touch</p>
+                  <div className="about-page__contact-divider"></div>
+                  <p className="about-page__location">Madrid, Spain</p>
+                </div>
+
+                <a
+                  href="mailto:raulmermans@gmail.com"
+                  className="about-page__email-link"
+                  aria-label="Send email to Raúl Mermans"
+                >
+                  <span className="about-page__email-text">raulmermans@gmail.com</span>
+                  <span className="about-page__email-arrow">→</span>
+                </a>
+
+                <div className="about-page__social">
+                  <a
+                    href="https://www.instagram.com/raulmeermans/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="about-page__social-link"
+                    aria-label="Visit Raúl Mermans on Instagram (opens in new tab)"
+                  >
+                    <span className="about-page__social-text">Instagram</span>
+                    <span className="about-page__social-arrow">↗</span>
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/raulmermans"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="about-page__social-link"
+                    aria-label="Visit Raúl Mermans on LinkedIn (opens in new tab)"
+                  >
+                    <span className="about-page__social-text">LinkedIn</span>
+                    <span className="about-page__social-arrow">↗</span>
+                  </a>
+                  <a
+                    href="https://unsplash.com/@raulmermans"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="about-page__social-link"
+                    aria-label="Visit Raúl Mermans on Unsplash (opens in new tab)"
+                  >
+                    <span className="about-page__social-text">Unsplash</span>
+                    <span className="about-page__social-arrow">↗</span>
+                  </a>
+                  <a
+                    href="https://twitter.com/raulmermans"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="about-page__social-link"
+                    aria-label="Visit Raúl Mermans on Twitter (opens in new tab)"
+                  >
+                    <span className="about-page__social-text">Twitter</span>
+                    <span className="about-page__social-arrow">↗</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
-            {/* Content */}
+            {/* Right Column: Full Content */}
             <div className="about-page__content">
-              {/* Bio Section */}
               <div className="about-page__bio">
                 <div className="about-page__header">
                   <p className="label about-page__label reveal">About</p>
@@ -84,74 +147,6 @@ export default function AboutPage() {
                   <p className="about-page__paragraph">
                     I don&apos;t use technology as a shortcut. I use it as a partner to human intuition. My practice is about architecting the invisible structures that define how a brand feels and how a person interacts with a screen. I build the frameworks that make sense of our digital future because I am not just interested in what we see: I am interested in the systems that make the experience possible.
                   </p>
-                </div>
-              </div>
-
-              {/* Contact Section - Creative Layout */}
-              <div className="about-page__contact reveal reveal--delay-3">
-                <div className="about-page__contact-top">
-                  <div className="about-page__contact-header">
-                    <p className="label about-page__contact-label">Get in Touch</p>
-                    <div className="about-page__contact-divider"></div>
-                    <p className="about-page__location">Madrid, Spain</p>
-                  </div>
-                </div>
-
-                <div className="about-page__contact-main">
-                  <a
-                    href="mailto:raulmermans@gmail.com"
-                    className="about-page__email-link"
-                    aria-label="Send email to Raúl Mermans"
-                  >
-                    <span className="about-page__email-text">raulmermans@gmail.com</span>
-                    <span className="about-page__email-arrow">→</span>
-                  </a>
-
-                  <div className="about-page__social-wrapper">
-                    <div className="about-page__social-divider"></div>
-                    <div className="about-page__social">
-                      <a
-                        href="https://www.instagram.com/raulmeermans/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="about-page__social-link"
-                        aria-label="Visit Raúl Mermans on Instagram (opens in new tab)"
-                      >
-                        <span className="about-page__social-text">Instagram</span>
-                        <span className="about-page__social-arrow">↗</span>
-                      </a>
-                      <a
-                        href="https://linkedin.com/in/raulmermans"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="about-page__social-link"
-                        aria-label="Visit Raúl Mermans on LinkedIn (opens in new tab)"
-                      >
-                        <span className="about-page__social-text">LinkedIn</span>
-                        <span className="about-page__social-arrow">↗</span>
-                      </a>
-                      <a
-                        href="https://unsplash.com/@raulmermans"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="about-page__social-link"
-                        aria-label="Visit Raúl Mermans on Unsplash (opens in new tab)"
-                      >
-                        <span className="about-page__social-text">Unsplash</span>
-                        <span className="about-page__social-arrow">↗</span>
-                      </a>
-                      <a
-                        href="https://twitter.com/raulmermans"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="about-page__social-link"
-                        aria-label="Visit Raúl Mermans on Twitter (opens in new tab)"
-                      >
-                        <span className="about-page__social-text">Twitter</span>
-                        <span className="about-page__social-arrow">↗</span>
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
