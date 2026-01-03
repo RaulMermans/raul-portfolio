@@ -10,7 +10,9 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "verify": "node scripts/verify-deployment.js",
-    "bot:status": "node scripts/bot-status.js"
+    "bot:status": "node scripts/bot-status.js",
+    "improve": "node scripts/auto-improve.js",
+    "suggest": "node scripts/suggest-improvements.js"
   },
   "dependencies": {
     "clsx": "^2.0.0",
