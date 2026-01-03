@@ -2,12 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Force dynamic rendering to prevent static caching
-  output: undefined, // Use default (not static export)
-  // Disable static optimization for debugging
-  experimental: {
-    isrMemoryCacheSize: 0, // Disable ISR cache
-  },
+  // Use default output (not static export)
+  // Note: Client components are already dynamic by default
   images: {
     // Removed Unsplash - using local images only
     formats: ['image/avif', 'image/webp'],

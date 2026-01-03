@@ -1,9 +1,5 @@
 'use client'
 
-// Force dynamic rendering - no static generation
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
-
 import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
