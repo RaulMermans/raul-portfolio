@@ -5444,41 +5444,14 @@ a[href^="/"]:hover {
 .about-page__paragraph {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   font-size: clamp(1rem, 1.2vw, 1.125rem);
-  color: var(--ink-soft) !important;
-  line-height: 1.9 !important;
-  margin: 0 !important;
-  position: relative !important;
-  padding-left: var(--space-6) !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  box-sizing: border-box !important;
-  display: block !important;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+  word-wrap: break-word;
   overflow-wrap: break-word;
-}
-
-.about-page__paragraph::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 3px;
-  height: calc(100% - 1em);
-  background: linear-gradient(180deg, var(--warm), transparent);
-  border-radius: 2px;
-  opacity: 0.3;
-  transition: opacity var(--transition-base) var(--ease);
-}
-
-.about-page__paragraph:hover::before {
-  opacity: 0.5;
-  background: linear-gradient(180deg, var(--warm), var(--rose));
-}
-
-.about-page__paragraph:first-child::before {
-  height: calc(100% - 0.5em);
-  top: 0.5em;
+  box-sizing: border-box;
 }
 
 /* CTA Button */
