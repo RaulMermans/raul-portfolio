@@ -31,6 +31,7 @@ export default function CaseStudiesPage() {
       scrollHintRef.current.classList.add('hidden')
     }
 
+    const oldIndex = currentIndex
     setCurrentIndex(newIndex)
 
     // Update slides
