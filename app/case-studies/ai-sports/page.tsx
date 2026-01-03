@@ -91,7 +91,7 @@ export default function AISportsCampaignPage() {
         <div className="hero__bg">
           <Image
             src="/images/case-studies/ai-sports/hero.webp"
-            alt="AI Sports Campaign hero image placeholder"
+            alt="AI Sports Campaign hero - athletic figure in motion"
             fill
             priority
             quality={90}
@@ -184,11 +184,11 @@ export default function AISportsCampaignPage() {
       <div className="full-image">
         <Image
           src="/images/case-studies/ai-sports/full-1.webp"
-          alt="AI Sports Campaign image placeholder 1"
+          alt="AI Sports Campaign image 1"
           fill
           quality={90}
           sizes="100vw"
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
       </div>
 
@@ -303,21 +303,21 @@ export default function AISportsCampaignPage() {
             <div className="approach__image reveal">
               <Image
                 src="/images/case-studies/ai-sports/approach-1.webp"
-                alt="AI Sports Campaign approach image placeholder 1"
+                alt="AI Sports Campaign workflow visualization"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
             <div className="approach__image reveal reveal-delay-1">
               <Image
                 src="/images/case-studies/ai-sports/approach-2.webp"
-                alt="AI Sports Campaign approach image placeholder 2"
+                alt="AI Sports Campaign variant comparison"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
           </div>
@@ -329,11 +329,11 @@ export default function AISportsCampaignPage() {
         <div className="feature__image reveal">
           <Image
             src="/images/case-studies/ai-sports/feature.webp"
-            alt="AI Sports Campaign feature image placeholder"
+            alt="AI Sports Campaign hero output"
             fill
             quality={95}
             sizes="(max-width: 1400px) 100vw, 1400px"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
         </div>
       </section>
@@ -346,31 +346,31 @@ export default function AISportsCampaignPage() {
               <div className="gallery__item reveal">
                 <Image
                   src="/images/case-studies/ai-sports/gallery-1.webp"
-                  alt="AI Sports Campaign gallery image placeholder 1"
+                  alt="AI Sports Campaign output variant 1"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
                   src="/images/case-studies/ai-sports/gallery-2.webp"
-                  alt="AI Sports Campaign gallery image placeholder 2"
+                  alt="AI Sports Campaign output variant 2"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
               <div className="gallery__item reveal reveal-delay-2">
                 <Image
                   src="/images/case-studies/ai-sports/gallery-3.webp"
-                  alt="AI Sports Campaign gallery image placeholder 3"
+                  alt="AI Sports Campaign output variant 3"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
             </div>
@@ -378,21 +378,21 @@ export default function AISportsCampaignPage() {
               <div className="gallery__item gallery__item--wide reveal">
                 <Image
                   src="/images/case-studies/ai-sports/gallery-4.webp"
-                  alt="AI Sports Campaign gallery image placeholder 4"
+                  alt="AI Sports Campaign consistency demonstration"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 60vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
                   src="/images/case-studies/ai-sports/gallery-5.webp"
-                  alt="AI Sports Campaign gallery image placeholder 5"
+                  alt="AI Sports Campaign wardrobe swap example"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 40vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
             </div>
@@ -404,11 +404,11 @@ export default function AISportsCampaignPage() {
       <div className="full-image">
         <Image
           src="/images/case-studies/ai-sports/full-2.webp"
-          alt="AI Sports Campaign image placeholder 2"
+          alt="AI Sports Campaign consistent campaign world"
           fill
           quality={90}
           sizes="100vw"
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
       </div>
 

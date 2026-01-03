@@ -223,15 +223,16 @@ export default function CaseStudiesPage() {
                 }}
               >
                 <div className="card__backing" style={{ background: study.color }}></div>
-                <div className="card__img-wrapper" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <div className="card__img-wrapper">
                   <Image
                     src={study.image}
                     alt={study.title}
                     fill
                     quality={90}
                     sizes="(max-width: 900px) 100vw, 42vw"
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                     priority={index === 0}
+                    className="card__img"
                   />
                 </div>
               </article>

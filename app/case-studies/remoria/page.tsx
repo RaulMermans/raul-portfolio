@@ -91,7 +91,7 @@ export default function RemoriaPage() {
         <div className="hero__bg">
           <Image
             src="/images/case-studies/remoria/hero.webp"
-            alt="Remoria hero image placeholder"
+            alt="Remoria hero - Mediterranean light and stone textures"
             fill
             priority
             quality={90}
@@ -179,11 +179,11 @@ export default function RemoriaPage() {
       <div className="full-image">
         <Image
           src="/images/case-studies/remoria/full-1.webp"
-          alt="Remoria image placeholder 1"
+          alt="Remoria luxury fragrance aesthetic"
           fill
           quality={90}
           sizes="100vw"
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
       </div>
 
@@ -287,21 +287,21 @@ export default function RemoriaPage() {
             <div className="approach__image reveal">
               <Image
                 src="/images/case-studies/remoria/approach-1.webp"
-                alt="Remoria approach image placeholder 1"
+                alt="Remoria moodboard exploration"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
             <div className="approach__image reveal reveal-delay-1">
               <Image
                 src="/images/case-studies/remoria/approach-2.webp"
-                alt="Remoria approach image placeholder 2"
+                alt="Remoria typography and material details"
                 fill
                 quality={90}
                 sizes="(max-width: 900px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
           </div>
@@ -313,11 +313,11 @@ export default function RemoriaPage() {
         <div className="feature__image reveal">
           <Image
             src="/images/case-studies/remoria/feature.webp"
-            alt="Remoria feature image placeholder"
+            alt="Remoria brand identity hero visual"
             fill
             quality={95}
             sizes="(max-width: 1400px) 100vw, 1400px"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
         </div>
       </section>
@@ -330,31 +330,31 @@ export default function RemoriaPage() {
               <div className="gallery__item reveal">
                 <Image
                   src="/images/case-studies/remoria/gallery-1.webp"
-                  alt="Remoria gallery image placeholder 1"
+                  alt="Remoria packaging concept"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
                   src="/images/case-studies/remoria/gallery-2.webp"
-                  alt="Remoria gallery image placeholder 2"
+                  alt="Remoria color and material palette"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
               <div className="gallery__item reveal reveal-delay-2">
                 <Image
                   src="/images/case-studies/remoria/gallery-3.webp"
-                  alt="Remoria gallery image placeholder 3"
+                  alt="Remoria brand textures"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
             </div>
@@ -362,21 +362,21 @@ export default function RemoriaPage() {
               <div className="gallery__item gallery__item--wide reveal">
                 <Image
                   src="/images/case-studies/remoria/gallery-4.webp"
-                  alt="Remoria gallery image placeholder 4"
+                  alt="Remoria visual identity system"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 60vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
               <div className="gallery__item reveal reveal-delay-1">
                 <Image
                   src="/images/case-studies/remoria/gallery-5.webp"
-                  alt="Remoria gallery image placeholder 5"
+                  alt="Remoria brand storytelling"
                   fill
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 40vw"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
             </div>
@@ -388,11 +388,11 @@ export default function RemoriaPage() {
       <div className="full-image">
         <Image
           src="/images/case-studies/remoria/full-2.webp"
-          alt="Remoria image placeholder 2"
+          alt="Remoria Mediterranean warmth and light"
           fill
           quality={90}
           sizes="100vw"
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
       </div>
 
