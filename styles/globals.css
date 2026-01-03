@@ -7480,8 +7480,8 @@ body:has(.case-studies-main) .page-transition {
   align-items: flex-start !important;
   align-content: flex-start !important;
   height: 100% !important;
-  padding: 0 3vw 0 5vw !important;
-  gap: 2vw !important;
+  padding: 0 2vw 0 4vw !important;
+  gap: 1.5vw !important;
   will-change: transform;
   padding-top: calc(var(--header-height) + 2vh) !important;
   padding-bottom: var(--space-8) !important;
@@ -7490,10 +7490,10 @@ body:has(.case-studies-main) .page-transition {
 /* Intro Section */
 .gallery__intro {
   flex-shrink: 0 !important;
-  width: 28vw !important;
-  min-width: 280px !important;
-  max-width: 380px !important;
-  padding-right: 1.5vw !important;
+  width: 22vw !important;
+  min-width: 240px !important;
+  max-width: 320px !important;
+  padding-right: 1vw !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
