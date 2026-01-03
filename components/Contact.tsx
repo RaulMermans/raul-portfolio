@@ -10,7 +10,6 @@ export default function Contact() {
       <div className="contact__content">
         <p className="label contact__label reveal">Get in Touch</p>
         <h1 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work</h1>
-        <h1 className="contact__test-headline" style={{ fontSize: '2rem', color: 'var(--accent)', marginTop: '1rem' }}>🚀 TEST: Deployment Verification Active</h1>
         <p className="contact__subtitle reveal reveal-delay-1">Ready to bring your vision to life? Let&apos;s start a conversation.</p>
         
         {/* CTA Button */}

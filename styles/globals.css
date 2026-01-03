@@ -5348,6 +5348,7 @@ a[href^="/"]:hover {
   max-width: 100%;
   height: fit-content;
   z-index: 1;
+  min-height: auto;
 }
 
 .about-page__image {
@@ -5515,7 +5516,7 @@ a[href^="/"]:hover {
   background: linear-gradient(135deg, var(--cream-warm) 0%, var(--cream-light) 100%);
   border-radius: 8px;
   border: 1px solid var(--cream-dark);
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: var(--space-5);
   transition: all var(--transition-base) var(--ease);
@@ -5524,6 +5525,9 @@ a[href^="/"]:hover {
   max-width: 100%;
   box-sizing: border-box;
   z-index: 2;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-top: var(--space-6);
 }
 
 .about-page__contact::before {
