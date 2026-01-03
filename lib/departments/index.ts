@@ -102,3 +102,8 @@ export const departmentManager = new DepartmentManager()
 // Export individual departments for direct access if needed
 export { developerDepartment, designDepartment, managementDepartment }
 
+// Export auto-coordination tools
+export { autoCoordinator } from './auto-coordinator'
+export { requestAnalyzer } from './request-analyzer'
+export { improvementExecutor } from './improvement-executor'
+
