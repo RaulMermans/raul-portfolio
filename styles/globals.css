@@ -8412,7 +8412,7 @@ body:has(.case-studies-main) .page-transition {
 }
 
 .section__inner {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-8);
   width: 100%;
@@ -8447,29 +8447,22 @@ body:has(.case-studies-main) .page-transition {
 
 /* Overview Section */
 .overview {
-  display: grid !important;
-  grid-template-columns: 1fr 1.2fr !important;
-  gap: var(--space-10) !important;
-  align-items: start !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-8);
+  align-items: start;
 }
 
 .overview__meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  width: 100%;
-  max-width: 100%;
+  gap: var(--space-5);
 }
 
 .overview__meta-item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .overview__meta-item--full {
@@ -8493,22 +8486,15 @@ body:has(.case-studies-main) .page-transition {
 }
 
 .overview__content {
-  padding-left: var(--space-10);
+  padding-left: var(--space-8);
   border-left: 1px solid var(--cream-dark);
-  width: 100%;
-  max-width: 100%;
 }
 
 .overview__text {
-  font-size: var(--text-lg) !important;
-  line-height: 1.9 !important;
-  color: var(--ink-soft) !important;
-  margin-bottom: var(--space-7) !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  box-sizing: border-box !important;
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-5);
 }
 
 .overview__intent {
@@ -8516,13 +8502,8 @@ body:has(.case-studies-main) .page-transition {
   font-size: var(--text-base);
   font-style: italic;
   color: var(--ink-soft);
-  padding-left: var(--space-6);
+  padding-left: var(--space-5);
   border-left: 2px solid var(--accent);
-  line-height: 1.7;
-  max-width: 100%;
-  width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 /* Remoria-specific: gold accent for overview intent */
@@ -8533,18 +8514,14 @@ body:has(.case-studies-main) .page-transition {
 @media (max-width: 900px) {
   .overview {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
-    width: 100%;
-    max-width: 100%;
+    gap: var(--space-7);
   }
-
+  
   .overview__content {
     padding-left: 0;
     border-left: none;
-    padding-top: var(--space-8);
+    padding-top: var(--space-6);
     border-top: 1px solid var(--cream-dark);
-    width: 100%;
-    max-width: 100%;
   }
 
   .approach__header {
@@ -8574,41 +8551,35 @@ body:has(.case-studies-main) .page-transition {
 /* Challenge Section */
 .challenge__quote {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   line-height: 1.15;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--cream);
-  margin-bottom: var(--space-8);
-  max-width: 100%;
-  width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  margin-bottom: var(--space-7);
+  max-width: 22ch;
 }
 
 .challenge__divider {
   width: 60px;
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-7);
 }
 
 .challenge__text {
   font-size: var(--text-base);
-  line-height: 1.9;
+  line-height: 1.85;
   color: rgba(255, 255, 255, 0.75);
-  max-width: 100%;
-  width: 100%;
-  margin-bottom: var(--space-8);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  max-width: 55ch;
+  margin-bottom: var(--space-6);
 }
 
 .challenge__criteria {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding-top: var(--space-7);
+  gap: var(--space-3);
+  padding-top: var(--space-5);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -8679,21 +8650,15 @@ body:has(.case-studies-main) .page-transition {
 .approach__header {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: var(--space-10);
+  gap: var(--space-8);
   align-items: start;
-  margin-bottom: var(--space-10);
-  width: 100%;
-  max-width: 100%;
+  margin-bottom: var(--space-8);
 }
 
 .approach__text {
   font-size: var(--text-lg);
-  line-height: 1.9;
+  line-height: 1.8;
   color: var(--ink-soft);
-  max-width: 100%;
-  width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .approach__text strong {
@@ -8704,7 +8669,7 @@ body:has(.case-studies-main) .page-transition {
 .approach__tools {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .approach__tools-label {
@@ -8748,10 +8713,10 @@ body:has(.case-studies-main) .page-transition {
 }
 
 .approach__system {
-  padding: var(--space-8);
+  padding: var(--space-6);
   background: var(--cream-warm);
   border-radius: 4px;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .approach__system-label {
@@ -8760,15 +8725,13 @@ body:has(.case-studies-main) .page-transition {
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--ink-muted);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 
 .approach__system-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
-  width: 100%;
-  max-width: 100%;
+  gap: var(--space-6);
 }
 
 .approach__system-item {
@@ -8793,16 +8756,16 @@ body:has(.case-studies-main) .page-transition {
 
 .approach__system-desc {
   font-size: var(--text-sm);
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--ink-soft);
 }
 
 .approach__iteration {
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .iteration {
-  padding: var(--space-8);
+  padding: var(--space-6);
   background: var(--cream-warm);
   border-radius: 4px;
 }
@@ -8813,13 +8776,13 @@ body:has(.case-studies-main) .page-transition {
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--ink-muted);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 
 .iteration__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
+  gap: var(--space-6);
 }
 
 .iteration__item {
@@ -8839,7 +8802,7 @@ body:has(.case-studies-main) .page-transition {
 
 .iteration__text {
   font-size: var(--text-sm);
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--ink-soft);
 }
 
@@ -8853,10 +8816,7 @@ body:has(.case-studies-main) .page-transition {
 .approach__images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-8);
-  margin-top: var(--space-8);
-  width: 100%;
-  max-width: 100%;
+  gap: var(--space-6);
 }
 
 .approach__image {
@@ -8883,18 +8843,16 @@ body:has(.case-studies-main) .page-transition {
 @media (max-width: 900px) {
   .approach__header {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
-    margin-bottom: var(--space-8);
-  }
-
-  .approach__system-grid {
-    grid-template-columns: 1fr;
     gap: var(--space-6);
   }
   
-  .iteration__grid {
+  .approach__system-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: var(--space-5);
+  }
+  
+  .approach__modules {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -8906,7 +8864,7 @@ body:has(.case-studies-main) .page-transition {
 
 /* Deliverables */
 .deliverables {
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8);
 }
 
 .deliverables__label {
@@ -8915,21 +8873,19 @@ body:has(.case-studies-main) .page-transition {
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--ink-muted);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 
 .deliverables__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6) var(--space-8);
-  width: 100%;
-  max-width: 100%;
+  gap: var(--space-4) var(--space-6);
 }
 
 .deliverables__item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-1, 0.25rem);
 }
 
 .deliverables__name {
@@ -8938,12 +8894,11 @@ body:has(.case-studies-main) .page-transition {
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: var(--space-1);
 }
 
 .deliverables__why {
   font-size: var(--text-sm);
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--ink-muted);
 }
 
@@ -9082,29 +9037,20 @@ body:has(.case-studies-main) .page-transition {
 
 /* Results Section */
 .results {
-  max-width: 750px;
-  width: 100%;
+  max-width: 700px;
 }
 
 .results__text {
   font-size: var(--text-lg);
-  line-height: 1.9;
+  line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: var(--space-8);
-  width: 100%;
-  max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  margin-bottom: var(--space-6);
 }
 
 .results__takeaway {
-  padding: var(--space-6);
+  padding: var(--space-5);
   border-left: 2px solid var(--accent);
   background: rgba(255, 255, 255, 0.03);
-  width: 100%;
-  max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 /* Remoria-specific: gold accent for results takeaway */
