@@ -61,3 +61,14 @@ export function getCaseStudyApproach(
   return getCaseStudyImage(caseStudyId, 'approach', filename)
 }
 
+/**
+ * Get case study image path (alias for getCaseStudyImage)
+ */
+export function getCaseStudyImagePath(
+  caseStudyId: string,
+  folder: 'hero' | 'thumb' | 'approach' | 'gallery' | 'feature' | 'full',
+  filename: string
+): string {
+  return getCaseStudyImage(caseStudyId, folder, filename)
+}
+

@@ -1,6 +1,6 @@
 // =============================================
 // CASE STUDY TYPE DEFINITIONS
-// Clean, flexible structure for case study content
+// Detailed structure matching CSS and content requirements
 // =============================================
 
 export interface CaseStudyImage {
@@ -12,6 +12,7 @@ export interface CaseStudyImage {
 
 export interface CaseStudyHero {
   title: string
+  tagline?: string
   subtitle?: string
   description?: string
   image: CaseStudyImage
@@ -25,20 +26,61 @@ export interface CaseStudyMeta {
 export interface CaseStudyOverview {
   title?: string
   description: string
+  intentQuote?: string
   meta?: CaseStudyMeta[]
 }
 
-export interface CaseStudySection {
-  title?: string
-  content: string | string[]
-  image?: CaseStudyImage
+export interface CaseStudyChallenge {
+  quote: string
+  context: string
+  successCriteria: string[]
+}
+
+export interface CaseStudyApproachModuleItem {
+  title: string
+  description: string
+}
+
+export interface CaseStudyApproachModule {
+  label: string
+  items: CaseStudyApproachModuleItem[]
+}
+
+export interface CaseStudyApproachDeliverable {
+  name: string
+  rationale: string
+}
+
+export interface CaseStudyApproach {
+  text: string
+  tools: string[]
+  system?: CaseStudyApproachModule
+  iterationProof?: CaseStudyApproachModule
+  deliverables?: CaseStudyApproachDeliverable[]
+  images?: CaseStudyImage[]
+}
+
+export interface CaseStudyResults {
+  text: string
+  takeawayQuote: string
+}
+
+export interface CaseStudyGalleryRow {
+  layout: '3-col' | '2-col' | 'asymmetric'
+  items: CaseStudyImage[]
 }
 
 export interface CaseStudyContent {
   id: string
+  accentColor?: string
   hero: CaseStudyHero
   overview?: CaseStudyOverview
-  sections?: CaseStudySection[]
-  gallery?: CaseStudyImage[]
+  challenge?: CaseStudyChallenge
+  fullBleedImages?: CaseStudyImage[]
+  approach?: CaseStudyApproach
+  featureImage?: CaseStudyImage
+  gallery?: {
+    rows: CaseStudyGalleryRow[]
+  }
+  results?: CaseStudyResults
 }
-
