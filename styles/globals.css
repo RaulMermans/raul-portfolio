@@ -5517,12 +5517,24 @@ a[href^="/"]:hover {
   box-sizing: border-box;
 }
 
+@media (max-width: 900px) {
+  .about-page {
+    padding: calc(var(--header-height) + var(--space-8)) var(--space-6) var(--space-10);
+  }
+}
+
+@media (max-width: 600px) {
+  .about-page {
+    padding: calc(var(--header-height) + var(--space-6)) var(--space-4) var(--space-8);
+  }
+}
+
 .about-page__inner {
   max-width: 1400px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.4fr 0.6fr;
-  gap: var(--space-16);
+  grid-template-columns: 1fr 1.25fr;
+  gap: var(--space-12);
   align-items: start;
   min-height: auto;
   padding: 0;
@@ -5531,6 +5543,13 @@ a[href^="/"]:hover {
   position: relative;
   z-index: 1;
   isolation: isolate;
+}
+
+@media (max-width: 1024px) {
+  .about-page__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+  }
 }
 
 .about-page__left {
@@ -5595,12 +5614,18 @@ a[href^="/"]:hover {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   width: 100%;
   max-width: 100%;
   position: relative;
   z-index: 1;
   padding: 0;
+}
+
+@media (max-width: 900px) {
+  .about-page__header {
+    margin-bottom: var(--space-5);
+  }
 }
 
 .about-page__label {
@@ -5625,7 +5650,7 @@ a[href^="/"]:hover {
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--ink);
-  margin: 0 0 var(--space-10) 0;
+  margin: 0 0 var(--space-8) 0;
   max-width: 100%;
   width: 100%;
   word-wrap: break-word;
@@ -5634,6 +5659,12 @@ a[href^="/"]:hover {
   position: relative;
   z-index: 1;
   font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .about-page__headline {
+    margin-bottom: var(--space-6);
+  }
 }
 
 .about-page__text {
@@ -5652,13 +5683,21 @@ a[href^="/"]:hover {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
   color: var(--ink-soft);
-  line-height: 1.8;
+  line-height: 1.85;
   margin: 0;
-  max-width: 100%;
+  max-width: 65ch;
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
   box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .about-page__paragraph {
+    max-width: 100%;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.8;
+  }
 }
 
 /* Contact Section - Separate Section */
