@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Reveal from './Reveal'
@@ -33,96 +33,64 @@ const sections = [
 ]
 
 export default function SectionCards() {
-  const sectionBgsRef = useRef<HTMLDivElement[]>([])
-
   useEffect(() => {
-    // Disable parallax on mobile for better performance
-    const isMobile = window.matchMedia('(max-width: 768px)').matches
-    if (isMobile) return
-
-    let ticking = false
-    const viewportHeight = window.innerHeight
-    
-    const updateParallax = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          sectionBgsRef.current.forEach((bg) => {
-            if (!bg) return
-            const section = bg.closest('section')
-            if (!section) return
-            const rect = section.getBoundingClientRect()
-            if (rect.top < viewportHeight && rect.bottom > 0) {
-              const scrollProgress = -rect.top / viewportHeight
-              bg.style.transform = `translateY(${scrollProgress * 40}px) scale(1.05)`
-            }
-          })
-          ticking = false
+    // Set up reveal animations
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
         })
-        ticking = true
-      }
-    }
+      },
+      { threshold: 0.1, rootMargin: '50px 0px' }
+    )
 
-    window.addEventListener('scroll', updateParallax, { passive: true })
-    updateParallax()
+    document.querySelectorAll('.section-card').forEach((el) => revealObserver.observe(el))
 
-    return () => window.removeEventListener('scroll', updateParallax)
+    return () => revealObserver.disconnect()
   }, [])
 
   return (
-    <>
-      {sections.map((section, idx) => (
-        <section
-          key={section.id}
-          id={idx === 0 ? 'work' : section.id}
-          className="section-card"
-          aria-labelledby={`section-${idx + 1}-title`}
-        >
-          <div
-            ref={(el) => {
-              if (el) sectionBgsRef.current[idx] = el
-            }}
-            className="section-card__bg"
-            style={{ position: 'relative', width: '100%', height: '100%' }}
+    <section id="work" className="section-cards-container">
+      <div className="section-cards-grid">
+        {sections.map((section, idx) => (
+          <Link
+            key={section.id}
+            href={section.href}
+            className="section-card"
+            aria-labelledby={`section-${idx + 1}-title`}
           >
-            <Image
-              src={section.image}
-              alt={`${section.title} background`}
-              fill
-              priority={idx <= 1}
-              quality={idx <= 1 ? 85 : 75}
-              sizes="100vw"
-              style={{ objectFit: 'cover' }}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            />
-          </div>
-          <div className="section-card__overlay"></div>
-          <div className="section-card__content">
-            <span className="section-card__index" aria-hidden="true">{section.index}</span>
-            <h2 id={`section-${idx + 1}-title`} className="section-card__title reveal">
-              {section.title}
-            </h2>
-            <p className="section-card__desc reveal reveal-delay-1">
-              {section.description}
-            </p>
-          </div>
-          <span className="section-card__view" aria-hidden="true">Explore</span>
-          {section.href === '#' ? (
-            <div
-              className="section-card__link"
-              aria-label={`${section.title} - Coming soon`}
-              style={{ cursor: 'not-allowed', opacity: 0.7 }}
-            ></div>
-          ) : (
-            <Link
-              href={section.href}
-              className="section-card__link"
-              aria-label={`Explore ${section.title}`}
-            ></Link>
-          )}
-        </section>
-      ))}
-    </>
+            <div className="section-card__image-wrapper">
+              <Image
+                src={section.image}
+                alt={`${section.title} background`}
+                fill
+                priority={idx <= 1}
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: 'cover' }}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+              />
+              <div className="section-card__overlay"></div>
+            </div>
+            <div className="section-card__content">
+              <span className="section-card__index" aria-hidden="true">{section.index}</span>
+              <h2 id={`section-${idx + 1}-title`} className="section-card__title reveal">
+                {section.title}
+              </h2>
+              <p className="section-card__desc reveal reveal-delay-1">
+                {section.description}
+              </p>
+              <span className="section-card__cta reveal reveal-delay-2">
+                Explore <span>→</span>
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
   )
 }
 

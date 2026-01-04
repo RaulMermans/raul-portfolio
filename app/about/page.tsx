@@ -36,33 +36,6 @@ export default function AboutPage() {
     }
   }, [])
 
-  const services = [
-    {
-      number: '01',
-      title: 'AI Agents',
-      description: 'Intelligent automation systems that streamline workflows and unlock new possibilities.',
-      items: ['Custom AI Solutions', 'Automation Workflows', 'Prompt Engineering'],
-    },
-    {
-      number: '02',
-      title: 'Web Development',
-      description: 'Modern, performant web experiences crafted with precision.',
-      items: ['Custom Web Design', 'Frontend Development', 'Performance Optimization'],
-    },
-    {
-      number: '03',
-      title: 'Photography',
-      description: 'Visual narratives that capture the essence of brands and stories.',
-      items: ['Brand Photography', 'Visual Storytelling', 'Editorial Shoots'],
-    },
-    {
-      number: '04',
-      title: 'Creative Direction',
-      description: 'Strategic creative vision from concept to execution.',
-      items: ['Brand Strategy', 'Visual Identity', 'Art Direction'],
-    },
-  ]
-
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>
@@ -118,41 +91,6 @@ export default function AboutPage() {
                   I work best with people who understand that the gap between where culture is moving and where most brands are stuck is an opportunity, not a problem. If you&apos;re building something that requires both strategic thinking and hands-on execution, let&apos;s talk.
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section id="services" className="about-services">
-          <div className="about-services__inner">
-            <div className="about-services__header reveal">
-              <p className="label about-services__label">Services</p>
-              <div className="about-services__divider"></div>
-            </div>
-
-            <h2 className="about-services__title reveal reveal-delay-1">
-              What I Can Provide
-            </h2>
-
-            <p className="about-services__subtitle reveal reveal-delay-1">
-              Strategic creative direction, technical execution, and the systems that connect them.
-            </p>
-
-            <div className="about-services__grid reveal reveal-delay-2">
-              {services.map((service, index) => (
-                <div key={service.number} className="about-services__card">
-                  <div className="about-services__card-header">
-                    <span className="about-services__card-number">{service.number}</span>
-                    <h3 className="about-services__card-title">{service.title}</h3>
-                  </div>
-                  <p className="about-services__card-description">{service.description}</p>
-                  <ul className="about-services__card-items">
-                    {service.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="about-services__card-item">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
             </div>
           </div>
         </section>
