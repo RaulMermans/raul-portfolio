@@ -5686,14 +5686,16 @@ a[href^="/"]:hover {
 /* Contact Section - Separate Section */
 .about-page__contact-section {
   background: var(--cream);
-  padding: var(--space-8) var(--space-8);
+  padding: var(--space-8) var(--space-8) var(--space-9) var(--space-8);
   width: 100%;
   overflow-x: hidden;
+  overflow-y: visible;
   /* Ensure no overlap with main content */
   position: relative;
   z-index: 1;
   clear: both;
   margin-top: var(--space-6);
+  min-height: auto;
 }
 
 .about-page__contact-inner {
@@ -5703,7 +5705,7 @@ a[href^="/"]:hover {
   /* Ensure proper spacing */
   position: relative;
   z-index: 1;
-  padding: 0;
+  padding: 0 0 var(--space-6) 0;
 }
 
 .about-page__contact-header {
@@ -5740,6 +5742,8 @@ a[href^="/"]:hover {
   flex-wrap: wrap;
   gap: var(--space-4);
   margin-top: var(--space-8);
+  margin-bottom: var(--space-6);
+  justify-content: center;
 }
 
 .about-page__contact-link {
