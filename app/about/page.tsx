@@ -90,24 +90,6 @@ export default function AboutPage() {
                   I work best with people who understand that the gap between where culture is moving and where most brands are stuck is an opportunity, not a problem. If you&apos;re building something that requires both strategic thinking and hands-on execution, let&apos;s talk.
                 </p>
               </div>
-
-              {/* Scroll to Contact CTA */}
-              <div className="about-page__cta reveal reveal-delay-3">
-                <a
-                  href="#contact-form"
-                  className="about-page__cta-link"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const form = document.getElementById('contact-form')
-                    if (form) {
-                      form.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                    }
-                  }}
-                >
-                  <span>Get in Touch</span>
-                  <span className="about-page__cta-arrow">→</span>
-                </a>
-              </div>
             </div>
           </div>
         </section>
