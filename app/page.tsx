@@ -31,9 +31,10 @@ export default function Home() {
         // Wait for all sections to be rendered
         requestAnimationFrame(() => {
           // Set scroll-snap on html element (CSS will also apply, but this ensures it)
-          html.style.scrollSnapType = 'y mandatory'
+          // Use proximity instead of mandatory for smoother scrolling after services
+          html.style.scrollSnapType = 'y proximity'
           html.style.scrollPaddingTop = '0'
-          document.body.style.scrollSnapType = 'y mandatory'
+          document.body.style.scrollSnapType = 'y proximity'
           
           // Apply scroll-snap-align to sections except services, contact and footer
           const selectors = [
