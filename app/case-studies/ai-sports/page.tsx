@@ -16,7 +16,7 @@ import '@/styles/case-study.css'
 
 export default function AISportsCampaignPage() {
   const content = getCaseStudyContent('ai-sports')
-  const nextCaseStudy = caseStudies.find((cs) => cs.id === 'remoria')
+  const nextCaseStudy = caseStudies.find((cs) => cs.href === '/case-studies/remoria')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
