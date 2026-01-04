@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 
@@ -75,7 +75,27 @@ const works: Work[] = [
 export default function VisualsPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isExhibitionOpen, setIsExhibitionOpen] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [direction, setDirection] = useState<'left' | 'right'>('right')
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set())
+
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  const goToPrevious = () => {
+    if (isAnimating || currentIndex === 0) return
+    setIsAnimating(true)
+    setDirection('left')
+    setCurrentIndex(prev => prev - 1)
+    setTimeout(() => setIsAnimating(false), 800)
+  }
+
+  const goToNext = () => {
+    if (isAnimating || currentIndex === works.length - 1) return
+    setIsAnimating(true)
+    setDirection('right')
+    setCurrentIndex(prev => prev + 1)
+    setTimeout(() => setIsAnimating(false), 800)
+  }
 
   const openExhibition = (index: number) => {
     setCurrentIndex(index)
@@ -92,70 +112,7 @@ export default function VisualsPage() {
     }
   }
 
-  const goToPrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1)
-    }
-  }
-
-  const goToNext = () => {
-    if (currentIndex < works.length - 1) {
-      setCurrentIndex(prev => prev + 1)
-    }
-  }
-
   const currentWork = works[currentIndex]
-
-  const cardsWrapperRef = useRef<HTMLDivElement>(null)
-
-  // Smooth scroll enhancement
-  useEffect(() => {
-    if (typeof window === 'undefined' || !cardsWrapperRef.current) return
-    
-    const wrapper = cardsWrapperRef.current
-    let isScrolling = false
-    let scrollTimeout: NodeJS.Timeout
-
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling) return
-      
-      isScrolling = true
-      clearTimeout(scrollTimeout)
-      
-      // Smooth scroll with momentum
-      const delta = e.deltaY
-      const currentScroll = wrapper.scrollTop
-      const targetScroll = currentScroll + delta * 0.5
-      
-      wrapper.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth'
-      })
-      
-      scrollTimeout = setTimeout(() => {
-        isScrolling = false
-      }, 150)
-    }
-
-    wrapper.addEventListener('wheel', handleWheel, { passive: true })
-    
-    return () => {
-      wrapper.removeEventListener('wheel', handleWheel)
-      clearTimeout(scrollTimeout)
-    }
-  }, [])
-
-  // Disable scroll-snap for this page
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    document.documentElement.style.scrollSnapType = 'none'
-    document.body.style.overflowY = 'auto'
-    
-    return () => {
-      document.documentElement.style.scrollSnapType = ''
-      document.body.style.overflowY = ''
-    }
-  }, [])
 
   // Keyboard navigation
   useEffect(() => {
@@ -170,30 +127,46 @@ export default function VisualsPage() {
         if (e.key === 'ArrowRight' && currentIndex < works.length - 1) {
           setCurrentIndex(prev => prev + 1)
         }
+      } else {
+        // Navigate cards on main page
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault()
+          goToPrevious()
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault()
+          goToNext()
+        }
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isExhibitionOpen, currentIndex])
+  }, [isExhibitionOpen, currentIndex, isAnimating])
 
-  // Touch swipe in exhibition
+  // Touch swipe
   useEffect(() => {
-    if (!isExhibitionOpen) return
+    if (isExhibitionOpen) return
 
     let touchStartX = 0
+    let touchStartTime = 0
 
     const handleTouchStart = (e: TouchEvent) => {
-      touchStartX = e.changedTouches[0].screenX
+      touchStartX = e.touches[0].clientX
+      touchStartTime = Date.now()
     }
 
     const handleTouchEnd = (e: TouchEvent) => {
-      const diff = touchStartX - e.changedTouches[0].screenX
-      if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentIndex < works.length - 1) {
-          setCurrentIndex(prev => prev + 1)
-        } else if (diff < 0 && currentIndex > 0) {
-          setCurrentIndex(prev => prev - 1)
+      const touchEndX = e.changedTouches[0].clientX
+      const touchEndTime = Date.now()
+      const diffX = touchStartX - touchEndX
+      const diffTime = touchEndTime - touchStartTime
+
+      if (diffTime < 300 && Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          goToNext()
+        } else {
+          goToPrevious()
         }
       }
     }
@@ -205,7 +178,19 @@ export default function VisualsPage() {
       document.removeEventListener('touchstart', handleTouchStart)
       document.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [isExhibitionOpen, currentIndex])
+  }, [currentIndex, isAnimating])
+
+  // Disable scroll-snap for this page
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    document.documentElement.style.scrollSnapType = 'none'
+    document.body.style.overflowY = 'auto'
+    
+    return () => {
+      document.documentElement.style.scrollSnapType = ''
+      document.body.style.overflowY = ''
+    }
+  }, [])
 
   return (
     <>
@@ -236,46 +221,86 @@ export default function VisualsPage() {
             <p className="visuals-year">© 2024</p>
           </div>
 
-          {/* Scrollable Cards Section */}
-          <div ref={cardsWrapperRef} className="visuals-cards-wrapper">
-            <div className="visuals-cards">
-              {works.map((work, index) => (
-                <article
-                  key={work.catalog}
+          {/* Card Display with Navigation */}
+          <div className="visuals-card-display">
+            <div className="visuals-card-container">
+              <div 
+                ref={cardRef}
+                key={currentIndex}
+                className={`visuals-card-slide ${direction === 'right' ? 'slide-in-right' : 'slide-in-left'}`}
+              >
+            <article
                   className="visuals-card"
-                  onClick={() => openExhibition(index)}
+                  onClick={() => openExhibition(currentIndex)}
                 >
                   <div className="visuals-card__image-wrapper">
-                    <Image
-                      src={imageErrors.has(work.catalog) ? '/images/placeholders/image-placeholder.webp' : work.image}
-                      alt={work.alt}
+                <Image
+                      src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
+                      alt={currentWork.alt}
                       fill
                       className="visuals-card__image"
-                      priority={index === 0}
-                      quality={90}
-                      sizes="(max-width: 768px) 100vw, 40vw"
+                      priority
+                  quality={90}
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       style={{ objectFit: 'cover' }}
-                      onError={() => {
-                        setImageErrors(prev => new Set(prev).add(work.catalog))
+                  onError={() => {
+                        setImageErrors(prev => new Set(prev).add(currentWork.catalog))
                       }}
                     />
                     <div className="visuals-card__overlay">
                       <div className="visuals-card__content">
                         <p className="visuals-card__index">
-                          {String(index + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}
+                          {String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}
                         </p>
-                        <h2 className="visuals-card__title">{work.title}</h2>
-                        <p className="visuals-card__meta">{work.year} — {work.type}</p>
+                        <h2 className="visuals-card__title">{currentWork.title}</h2>
+                        <p className="visuals-card__meta">{currentWork.year} — {currentWork.type}</p>
                         <span className="visuals-card__btn">
                           See project <span>→</span>
-                        </span>
-                      </div>
+                  </span>
+                </div>
                     </div>
                   </div>
                 </article>
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              className="visuals-nav-btn visuals-nav-btn--prev"
+              onClick={goToPrevious}
+              disabled={currentIndex === 0 || isAnimating}
+              aria-label="Previous project"
+            >
+              <span className="visuals-nav-arrow">←</span>
+            </button>
+            <button
+              className="visuals-nav-btn visuals-nav-btn--next"
+              onClick={goToNext}
+              disabled={currentIndex === works.length - 1 || isAnimating}
+              aria-label="Next project"
+            >
+              <span className="visuals-nav-arrow">→</span>
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="visuals-dots">
+              {works.map((_, index) => (
+                <button
+                  key={index}
+                  className={`visuals-dot ${index === currentIndex ? 'active' : ''}`}
+                  onClick={() => {
+                    if (index !== currentIndex && !isAnimating) {
+                      setDirection(index > currentIndex ? 'right' : 'left')
+                      setIsAnimating(true)
+                      setCurrentIndex(index)
+                      setTimeout(() => setIsAnimating(false), 800)
+                    }
+                  }}
+                  aria-label={`Go to project ${index + 1}`}
+                />
               ))}
             </div>
-          </div>
+              </div>
         </div>
       </main>
 
@@ -364,7 +389,11 @@ export default function VisualsPage() {
           <nav className="exhibition__nav">
             <button
               className="exhibition__nav-btn"
-              onClick={goToPrevious}
+              onClick={() => {
+                if (currentIndex > 0) {
+                  setCurrentIndex(prev => prev - 1)
+                }
+              }}
               disabled={currentIndex === 0}
             >
               <span><span className="arrow arrow-left">←</span> Previous</span>
@@ -377,7 +406,11 @@ export default function VisualsPage() {
             </button>
             <button
               className="exhibition__nav-btn"
-              onClick={goToNext}
+              onClick={() => {
+                if (currentIndex < works.length - 1) {
+                  setCurrentIndex(prev => prev + 1)
+                }
+              }}
               disabled={currentIndex === works.length - 1}
             >
               <span>Next <span className="arrow arrow-right">→</span></span>
