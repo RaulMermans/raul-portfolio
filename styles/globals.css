@@ -819,8 +819,7 @@ html.homepage .footer {
   .section-card {
     min-height: 100vh;
     min-height: 100dvh;
-    height: 100vh;
-    height: 100dvh;
+    height: auto;
     position: relative;
     overflow: hidden;
   }
@@ -1300,8 +1299,7 @@ html.homepage .footer {
   background: var(--ink);
   min-height: 100vh;
   min-height: 100svh;
-  height: 100vh;
-  height: 100svh;
+  height: auto;
   content-visibility: auto; /* Optimize rendering for off-screen sections */
   contain-intrinsic-size: auto 100vh;
 }
@@ -4977,7 +4975,8 @@ a[href^="/"]:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto;
+  overflow-y: visible;
+  height: auto;
   position: relative;
   transform: translateX(30px);
   opacity: 0;
