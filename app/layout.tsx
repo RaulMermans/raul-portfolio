@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
 import '../styles/globals.css'
+import './case-studies/case-study.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
 import '@/lib/performance-bot' // Initialize performance bot
