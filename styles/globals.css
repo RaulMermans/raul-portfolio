@@ -187,14 +187,20 @@ img {
 /* Reveal animation */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
 
 /* Ensure contact section elements are always visible - CRITICAL FIX */
 .contact__headline,
@@ -365,7 +371,7 @@ img {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s var(--ease);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0); /* GPU acceleration */
 }
 
@@ -386,9 +392,9 @@ img {
 .btn:hover {
   color: var(--accent);
   border-color: var(--accent);
-  background: rgba(196, 30, 58, 0.04);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.15);
+  background: rgba(196, 30, 58, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(196, 30, 58, 0.2);
 }
 
 .btn:hover::before {
@@ -436,7 +442,7 @@ img {
   display: inline-flex;
   align-items: center;
   position: relative;
-  transition: color 0.3s var(--ease), transform 0.2s var(--ease);
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
 }
 
@@ -446,11 +452,11 @@ img {
   bottom: 4px;
   left: 0.5rem;
   right: 0.5rem;
-  height: 1px;
+  height: 1.5px;
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s var(--ease);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .link:hover {
@@ -1290,15 +1296,16 @@ html.homepage .footer {
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   height: 750px;
   min-height: 750px;
+  will-change: transform;
 }
 
 .section-card:hover,
 .section-card:focus-within {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(26, 23, 20, 0.3);
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 24px 72px rgba(26, 23, 20, 0.35);
 }
 
 .section-card__image-wrapper {
@@ -1316,7 +1323,13 @@ html.homepage .footer {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  transition: transform 0.6s var(--ease);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s var(--ease);
+  filter: grayscale(5%) brightness(0.98);
+}
+
+.section-card:hover .section-card__image-wrapper img,
+.section-card:hover .section-card__image-wrapper [data-nimg] {
+  filter: grayscale(0%) brightness(1);
 }
 
 .section-card:hover .section-card__image-wrapper img,
@@ -1334,6 +1347,17 @@ html.homepage .footer {
     rgba(26,23,20,0.6) 100%
   );
   z-index: 1;
+  transition: opacity 0.4s var(--ease);
+}
+
+.section-card:hover .section-card__overlay {
+  opacity: 0.95;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(26,23,20,0.4) 60%,
+    rgba(26,23,20,0.75) 100%
+  );
 }
 
 .section-card__content {
@@ -1354,6 +1378,12 @@ html.homepage .footer {
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
   margin-bottom: var(--space-3);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.section-card:hover .section-card__index {
+  opacity: 0.5;
+  transform: translateY(-2px);
 }
 
 .section-card__title {
@@ -1569,13 +1599,13 @@ html.homepage .footer {
 }
 
 .about__image img {
-  filter: grayscale(15%) contrast(1.02);
-  transition: all var(--transition-slow) var(--ease);
+  filter: grayscale(12%) contrast(1.02);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s var(--ease);
 }
 
 .about__image:hover img {
-  filter: grayscale(0%) contrast(1);
-  transform: scale(1.03);
+  filter: grayscale(0%) contrast(1.05);
+  transform: scale(1.04);
 }
 
 .about__frame {
@@ -2396,16 +2426,18 @@ html.homepage .footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow) var(--ease);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s var(--ease);
   display: block;
   visibility: visible;
   opacity: 1;
+  filter: grayscale(8%) brightness(0.97);
 }
 
 .service:hover .service__image img,
 .service:hover .service__image :global(img),
 .service:hover .service__image-img {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.02);
 }
 
 .service__footer {
