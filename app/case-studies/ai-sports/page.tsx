@@ -62,7 +62,7 @@ export default function AISportsCampaignPage() {
       <main id="main-content" className="case-study-page">
         {/* Hero Section */}
         <section className="case-study-hero">
-          <div className="hero__bg">
+          <div className="case-study-hero__image">
             <Image
               src={content.hero.image.src}
               alt={content.hero.image.alt}
@@ -72,23 +72,25 @@ export default function AISportsCampaignPage() {
               sizes={content.hero.image.sizes ?? '100vw'}
               style={{ objectFit: 'cover' }}
             />
+            <div className="case-study-hero__overlay"></div>
           </div>
-          <div className="hero__overlay"></div>
-          <div className="hero__content">
-            <h1 className="hero__title">{content.hero.title}</h1>
-            {content.hero.tagline && (
-              <p className="hero__tagline">{content.hero.tagline}</p>
-            )}
-            {content.hero.subtitle && (
-              <p className="hero__subtitle">{content.hero.subtitle}</p>
-            )}
+          <div className="case-study-hero__content">
+            <div className="case-study-hero__inner">
+              <h1 className="case-study-hero__title">{content.hero.title}</h1>
+              {content.hero.tagline && (
+                <p className="case-study-hero__subtitle">{content.hero.tagline}</p>
+              )}
+              {content.hero.subtitle && (
+                <p className="case-study-hero__description">{content.hero.subtitle}</p>
+              )}
+            </div>
           </div>
         </section>
 
         {/* Overview Section */}
         {content.overview && (
-          <section className="section section--light">
-            <div className="section__inner">
+          <section className="case-study-section case-study-section--light">
+            <div className="case-study-section__inner">
               <div className="overview">
                 {content.overview.meta && content.overview.meta.length > 0 && (
                   <div className="overview__meta">
@@ -123,8 +125,8 @@ export default function AISportsCampaignPage() {
 
         {/* Challenge Section */}
         {content.challenge && (
-          <section className="section section--dark">
-            <div className="section__inner">
+          <section className="case-study-section case-study-section--dark">
+            <div className="case-study-section__inner">
               <h2 className="challenge__quote">{content.challenge.quote}</h2>
               <div className="challenge__divider"></div>
               <p className="challenge__text">{content.challenge.context}</p>
@@ -148,7 +150,7 @@ export default function AISportsCampaignPage() {
 
         {/* Full Bleed Images */}
         {content.fullBleedImages && content.fullBleedImages.length > 0 && (
-          <section className="section">
+          <section className="case-study-section">
             {content.fullBleedImages.map((image, index) => (
               <div key={index} className="full-image">
                 <Image
@@ -166,8 +168,8 @@ export default function AISportsCampaignPage() {
 
         {/* Approach Section */}
         {content.approach && (
-          <section className="section section--light">
-            <div className="section__inner">
+          <section className="case-study-section case-study-section--light">
+            <div className="case-study-section__inner">
               <div className="approach__header">
                 <p className="approach__text">{content.approach.text}</p>
                 {content.approach.tools && content.approach.tools.length > 0 && (
@@ -279,8 +281,8 @@ export default function AISportsCampaignPage() {
 
         {/* Gallery Section */}
         {content.gallery && content.gallery.rows && content.gallery.rows.length > 0 && (
-          <section className="section section--light">
-            <div className="section__inner">
+          <section className="case-study-section case-study-section--light">
+            <div className="case-study-section__inner">
               <div className="gallery__grid">
                 {content.gallery.rows.map((row, rowIndex) => (
                   <div
@@ -311,8 +313,8 @@ export default function AISportsCampaignPage() {
 
         {/* Results Section */}
         {content.results && (
-          <section className="section section--dark">
-            <div className="section__inner">
+          <section className="case-study-section case-study-section--dark">
+            <div className="case-study-section__inner">
               <div className="results">
                 <p className="results__text">{content.results.text}</p>
                 <div className="results__takeaway" data-gold={isGold ? '' : undefined}>
