@@ -82,8 +82,8 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     id: 'remoria',
     hero: {
       title: 'Remoria',
-      subtitle: 'Brand Identity & Creative Direction',
-      description: 'A poetic fragrance house rooted in Roman legacy, Spanish lyricism, and Mediterranean light—where scent becomes memory and design becomes relic.',
+      subtitle: 'A Fragrance House Etched in Memory',
+      description: 'Brand Identity & Creative Direction • 2025',
       image: {
         src: getCaseStudyHero('remoria'),
         alt: 'Remoria Brand Identity - Fragrance House',
@@ -94,18 +94,35 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     overview: {
       title: 'Overview',
       description:
-        'Remoria is a luxury fragrance house that bridges ancient Roman heritage with contemporary Spanish poetic tradition. The brand identity needed to feel both timeless and intimate—a relic you discover, not a product you buy.',
+        'REMORIA is a story-driven fragrance house inspired by Roman legacy, Spanish lyricism, and Mediterranean warmth. I designed a complete visual and verbal world where scent functions like a relic—quiet, intimate, and emotionally precise. The result is an understated luxury identity built to linger through structure, texture, and silence. To make the brand feel like an artifact rediscovered—warm, silent, and unforgettable.',
       meta: [
-        { label: 'Type', value: 'Brand Identity' },
-        { label: 'Role', value: 'Creative Direction & Design' },
-        { label: 'Year', value: '2024' },
+        { label: 'Type', value: 'Luxury Brand Identity (Fragrance)' },
+        { label: 'Role', value: 'Creative Direction & Brand Aesthetics' },
+        { label: 'Tools', value: 'Illustrator, Photoshop, Figma, Pinterest' },
+        {
+          label: 'Deliverables',
+          value: 'Visual Identity System, Tone of Voice, Packaging Concept, Moodboard, Color Palette, Brand Storytelling',
+        },
       ],
     },
     sections: [
       {
-        title: 'The Vision',
+        title: 'The Challenge',
+        content: [
+          'What if memory was a brand?',
+          'The goal was to create a fragrance identity that communicates luxury without spectacle—built on emotion, restraint, and legacy rather than trend. REMORIA needed to feel monumental yet intimate: classical in reference, modern in execution, and softened by Mediterranean light and materiality. The challenge was coherence—ensuring typography, palette, textures, and copy all carried the same quiet weight. Success meant the brand could be felt before it was explained.',
+          'Success Criteria:\n• Feel timeless, not retro.\n• Signal premium through restraint, not ornament.\n• Build a system that scales across future scents and stories.',
+        ],
+      },
+      {
+        title: 'The Approach',
         content:
-          'The challenge was creating a visual language that honors both the stoic elegance of Roman design and the emotional depth of Spanish poetry. Every element needed to feel discovered, not designed—as if it had existed for centuries and was only now being brought to light.',
+          'Luxury as restraint: let the brand whisper, not shout. I anchored REMORIA in narrative strategy—memory, myth, and place—then translated those themes into a minimal, sculptural identity language. Roman-inspired serif forms established permanence, while Mediterranean warmth kept the brand human and sensual. The palette was built from stone, patina, and gilded accents to evoke time-worn elegance without heaviness. Copy was treated like fragrance: sparse, lyrical, and deliberate—more suggestion than statement.',
+      },
+      {
+        title: 'Results',
+        content:
+          'REMORIA delivered a complete luxury brand world—identity, voice, and aesthetic system—built to scale without losing its atmosphere. It proves that emotional restraint can communicate premium more convincingly than overt signals. The work establishes a foundation for future fragrances to live as chapters of the same mythology. Luxury isn\'t loud—it lingers.',
       },
     ],
     gallery: [
