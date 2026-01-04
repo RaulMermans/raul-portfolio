@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import '../styles/case-studies-landing.css'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
