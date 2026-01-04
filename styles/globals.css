@@ -1268,7 +1268,6 @@ html.homepage .footer {
 .section-cards-container {
   background: var(--cream);
   padding: var(--space-10) var(--section-padding);
-  padding-bottom: var(--space-12);
   width: 100%;
   overflow: visible;
 }
@@ -1287,13 +1286,13 @@ html.homepage .footer {
   display: flex;
   flex-direction: column;
   background: var(--ink);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-  height: 600px;
-  min-height: 600px;
+  height: 750px;
+  min-height: 750px;
 }
 
 .section-card:hover,
@@ -1305,7 +1304,7 @@ html.homepage .footer {
 .section-card__image-wrapper {
   position: relative;
   width: 100%;
-  height: 60%;
+  height: 55%;
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -1340,7 +1339,7 @@ html.homepage .footer {
 .section-card__content {
   position: relative;
   z-index: 2;
-  padding: var(--space-6);
+  padding: var(--space-7);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1359,41 +1358,65 @@ html.homepage .footer {
 
 .section-card__title {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
   line-height: 0.9;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--cream);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .section-card__desc {
-  font-size: var(--text-base);
-  color: rgba(255,255,255,0.7);
-  line-height: 1.7;
-  margin-bottom: var(--space-5);
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.75;
+  margin-bottom: var(--space-6);
   flex-grow: 1;
 }
 
 .section-card__cta {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--cream);
+  letter-spacing: var(--tracking-wider);
+  text-transform: lowercase;
+  color: rgba(255,255,255,0.6);
   margin-top: auto;
+  padding: var(--space-2) 0;
+  transition: color 0.3s var(--ease), gap 0.3s var(--ease);
+  position: relative;
+}
+
+.section-card__cta::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cream);
+  transition: width 0.4s var(--ease);
 }
 
 .section-card__cta span {
-  transition: transform 0.3s var(--ease);
+  transition: transform 0.4s var(--ease);
   display: inline-block;
+  font-size: 1.1em;
+}
+
+.section-card:hover .section-card__cta {
+  color: var(--cream);
+  gap: var(--space-4);
+}
+
+.section-card:hover .section-card__cta::before {
+  width: 100%;
 }
 
 .section-card:hover .section-card__cta span {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 .section-card__view {
@@ -1453,6 +1476,40 @@ html.homepage .footer {
   position: absolute;
   inset: 0;
   z-index: 3;
+}
+
+/* Section Cards Responsive */
+@media (max-width: 1200px) {
+  .section-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-7);
+  }
+  .section-card {
+    height: 680px;
+    min-height: 680px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-cards-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .section-card {
+    height: 600px;
+    min-height: 600px;
+  }
+  .section-card__content {
+    padding: var(--space-6);
+  }
+  .section-card__title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: var(--space-4);
+  }
+  .section-card__desc {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-5);
+  }
 }
 
 /* About Styles */
@@ -2157,7 +2214,7 @@ html.homepage .footer {
   flex-direction: column;
   position: relative;
   overflow: visible;
-  padding: var(--space-10) var(--space-10);
+  padding: var(--space-10) var(--section-padding);
 }
 
 .services__header {
@@ -7599,7 +7656,8 @@ body:has(.case-studies-main) .page-transition {
 /* Main */
 .visuals-main {
   width: 100%;
-  min-height: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   position: relative;
   background: var(--cream);
@@ -7610,7 +7668,8 @@ body:has(.case-studies-main) .page-transition {
   display: grid;
   grid-template-columns: 1fr 1.8fr;
   gap: 0;
-  min-height: auto;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
   padding: calc(var(--header-height) + 4rem) 4vw 4rem;
   max-width: 1600px;
   margin: 0 auto;
@@ -8542,8 +8601,8 @@ body:has(.case-studies-main) .page-transition {
 
 .exhibition__scroll {
   flex: 1;
-  overflow-y: visible;
-  height: auto;
+  overflow-y: auto;
+  height: 0;
   padding: 5rem 3.5rem 3rem;
 }
 
