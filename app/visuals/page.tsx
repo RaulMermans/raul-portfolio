@@ -106,6 +106,45 @@ export default function VisualsPage() {
 
   const currentWork = works[currentIndex]
 
+  const cardsWrapperRef = useRef<HTMLDivElement>(null)
+
+  // Smooth scroll enhancement
+  useEffect(() => {
+    if (typeof window === 'undefined' || !cardsWrapperRef.current) return
+    
+    const wrapper = cardsWrapperRef.current
+    let isScrolling = false
+    let scrollTimeout: NodeJS.Timeout
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling) return
+      
+      isScrolling = true
+      clearTimeout(scrollTimeout)
+      
+      // Smooth scroll with momentum
+      const delta = e.deltaY
+      const currentScroll = wrapper.scrollTop
+      const targetScroll = currentScroll + delta * 0.5
+      
+      wrapper.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      })
+      
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false
+      }, 150)
+    }
+
+    wrapper.addEventListener('wheel', handleWheel, { passive: true })
+    
+    return () => {
+      wrapper.removeEventListener('wheel', handleWheel)
+      clearTimeout(scrollTimeout)
+    }
+  }, [])
+
   // Disable scroll-snap for this page
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -198,7 +237,7 @@ export default function VisualsPage() {
           </div>
 
           {/* Scrollable Cards Section */}
-          <div className="visuals-cards-wrapper">
+          <div ref={cardsWrapperRef} className="visuals-cards-wrapper">
             <div className="visuals-cards">
               {works.map((work, index) => (
                 <article
