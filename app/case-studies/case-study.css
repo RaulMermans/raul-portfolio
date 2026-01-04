@@ -2,9 +2,49 @@
    CASE STUDY STYLES
    File: app/case-studies/case-study.css
    
-   Import in your case study pages or in globals.css:
-   @import './case-studies/case-study.css';
+   REQUIRES globals.css to be imported FIRST
    ============================================= */
+
+/* =============================================
+   SECTION BASE STYLES
+   ============================================= */
+.section {
+  padding: var(--space-10) var(--space-8);
+}
+
+.section--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.section--light {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.section__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-6);
+}
+
+.section--dark .section__label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-8) var(--space-6);
+  }
+}
 
 /* =============================================
    HERO SECTION
@@ -45,7 +85,7 @@
   z-index: 0;
 }
 
-/* next/image compatibility - targets the wrapper span */
+/* next/image compatibility */
 .hero__bg img,
 .hero__bg > img,
 .hero__bg > span,
@@ -144,17 +184,12 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes scrollPulse {
-  0%,
-  100% {
+  0%, 100% {
     transform: scaleY(1);
     opacity: 1;
   }
@@ -237,6 +272,11 @@
   color: var(--ink-soft);
   padding-left: var(--space-5);
   border-left: 2px solid var(--accent);
+}
+
+/* Gold variant for Remoria */
+.overview__intent[data-gold] {
+  border-left-color: var(--gold);
 }
 
 @media (max-width: 900px) {
@@ -326,6 +366,11 @@
   width: 6px;
   height: 1px;
   background: var(--accent);
+}
+
+/* Gold variant for Remoria */
+.challenge__criteria-item[data-gold]::before {
+  background: var(--gold);
 }
 
 /* =============================================
@@ -425,7 +470,13 @@
   color: var(--accent);
 }
 
-/* How It Works Box */
+/* Gold variant for Remoria */
+.approach__tool[data-gold]:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* How It Works / Brand System Box */
 .approach__system {
   padding: var(--space-6);
   background: var(--cream-warm);
@@ -462,13 +513,165 @@
   color: var(--accent);
 }
 
+/* Gold variant for Remoria */
+.approach__system-title[data-gold] {
+  color: var(--gold);
+}
+
 .approach__system-desc {
   font-size: var(--text-sm);
   line-height: 1.6;
   color: var(--ink-soft);
 }
 
-/* Iteration Proof */
+/* Approach Modules (Aesthetic + Voice side by side) */
+.approach__modules {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 900px) {
+  .approach__modules {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
+   AESTHETIC SYSTEM (Remoria)
+   ============================================= */
+.aesthetic {
+  padding: var(--space-6);
+  background: var(--cream-warm);
+  border-radius: 4px;
+}
+
+.aesthetic__header {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-5);
+}
+
+.aesthetic__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.aesthetic__item:last-child {
+  border-bottom: none;
+}
+
+.aesthetic__label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.aesthetic__value {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.aesthetic__color {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.aesthetic__swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid var(--cream-dark);
+}
+
+/* =============================================
+   VOICE (Remoria)
+   ============================================= */
+.voice {
+  padding: var(--space-6);
+  background: var(--ink);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.voice__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--space-5);
+}
+
+.voice__traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: auto;
+  padding-bottom: var(--space-5);
+}
+
+.voice__trait {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.voice__signature {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--gold);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =============================================
+   OBSESSION / THE DETAIL (Remoria)
+   ============================================= */
+.obsession {
+  padding: var(--space-5) var(--space-6);
+  background: var(--cream-warm);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: var(--space-8);
+}
+
+.obsession__label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-3);
+}
+
+.obsession__text {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* =============================================
+   ITERATION PROOF
+   ============================================= */
 .approach__iteration {
   margin-bottom: var(--space-6);
 }
@@ -514,7 +717,22 @@
   color: var(--ink-soft);
 }
 
-/* Deliverables */
+@media (max-width: 900px) {
+  .approach__header {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .approach__system-grid,
+  .iteration__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+/* =============================================
+   DELIVERABLES
+   ============================================= */
 .deliverables {
   margin-bottom: var(--space-8);
 }
@@ -554,7 +772,15 @@
   color: var(--ink-muted);
 }
 
-/* Approach Images */
+@media (max-width: 600px) {
+  .deliverables__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
+   APPROACH IMAGES
+   ============================================= */
 .approach__images {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -587,29 +813,8 @@
   filter: grayscale(0%) contrast(1);
 }
 
-@media (max-width: 900px) {
-  .approach__header {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-
-  .approach__system-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
-
-  .iteration__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
-}
-
 @media (max-width: 600px) {
   .approach__images {
-    grid-template-columns: 1fr;
-  }
-
-  .deliverables__grid {
     grid-template-columns: 1fr;
   }
 }
@@ -713,9 +918,7 @@
 }
 
 @media (max-width: 768px) {
-  .gallery__row--3 {
-    grid-template-columns: 1fr;
-  }
+  .gallery__row--3,
   .gallery__row--2,
   .gallery__row--asymmetric {
     grid-template-columns: 1fr;
@@ -740,6 +943,11 @@
   padding: var(--space-5);
   border-left: 2px solid var(--accent);
   background: rgba(255, 255, 255, 0.03);
+}
+
+/* Gold variant for Remoria */
+.results__takeaway[data-gold] {
+  border-left-color: var(--gold);
 }
 
 .results__takeaway-text {
@@ -861,7 +1069,7 @@
 }
 
 /* =============================================
-   CASE STUDY HEADER (dark variant)
+   CASE STUDY HEADER
    ============================================= */
 .case-study-header {
   position: fixed;
@@ -990,7 +1198,7 @@
 }
 
 /* =============================================
-   REVEAL ANIMATIONS — Hydration Safe
+   REVEAL ANIMATIONS
    ============================================= */
 .reveal {
   opacity: 0;
@@ -1003,57 +1211,7 @@
   transform: translateY(0);
 }
 
-.reveal-delay-1 {
-  transition-delay: 0.1s;
-}
-.reveal-delay-2 {
-  transition-delay: 0.2s;
-}
-.reveal-delay-3 {
-  transition-delay: 0.3s;
-}
-.reveal-delay-4 {
-  transition-delay: 0.4s;
-}
-
-/* =============================================
-   SECTION BASE STYLES
-   ============================================= */
-.section {
-  padding: var(--space-10) var(--space-8);
-}
-
-.section--dark {
-  background: var(--ink);
-  color: var(--cream);
-}
-
-.section--light {
-  background: var(--cream);
-  color: var(--ink);
-}
-
-.section__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section__label {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: var(--space-6);
-}
-
-.section--dark .section__label {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: var(--space-8) var(--space-6);
-  }
-}
-
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
