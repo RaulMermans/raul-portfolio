@@ -44,8 +44,9 @@ export default function NotFound() {
 
     return () => {
       clearInterval(interval)
-      if (pageRef.current) {
-        pageRef.current.removeEventListener('mousemove', handleMouseMove)
+      const pageElement = pageRef.current
+      if (pageElement) {
+        pageElement.removeEventListener('mousemove', handleMouseMove)
       }
     }
   }, [])

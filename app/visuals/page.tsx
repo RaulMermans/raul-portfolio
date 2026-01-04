@@ -139,6 +139,20 @@ export default function VisualsPage() {
     return () => window.removeEventListener('resize', handleResize)
   }, [scrollPosition])
 
+  // Reveal cards function
+  const revealCards = useCallback(() => {
+    cardsRef.current.forEach((card, index) => {
+      if (!card) return
+      const rect = card.getBoundingClientRect()
+      // Make cards visible earlier - check if they're within viewport or slightly off-screen
+      if (rect.left < window.innerWidth * 1.5) {
+        setTimeout(() => {
+          card.classList.add('visible')
+        }, index * 80)
+      }
+    })
+  }, [])
+
   // Smooth momentum scroll
   useEffect(() => {
     if (!isDesktop || !galleryRef.current) return
@@ -195,21 +209,7 @@ export default function VisualsPage() {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [isDesktop, targetScroll, scrollPosition, velocity, maxScroll])
-
-  // Reveal cards function
-  const revealCards = useCallback(() => {
-    cardsRef.current.forEach((card, index) => {
-      if (!card) return
-      const rect = card.getBoundingClientRect()
-      // Make cards visible earlier - check if they're within viewport or slightly off-screen
-      if (rect.left < window.innerWidth * 1.5) {
-        setTimeout(() => {
-          card.classList.add('visible')
-        }, index * 80)
-      }
-    })
-  }, [])
+  }, [isDesktop, targetScroll, scrollPosition, velocity, maxScroll, revealCards])
 
   // Wheel scroll
   useEffect(() => {
@@ -223,9 +223,14 @@ export default function VisualsPage() {
       })
     }
 
-    mainRef.current.addEventListener('wheel', handleWheel, { passive: false })
+    const mainElement = mainRef.current
+    if (mainElement) {
+      mainElement.addEventListener('wheel', handleWheel, { passive: false })
+    }
     return () => {
-      mainRef.current?.removeEventListener('wheel', handleWheel)
+      if (mainElement) {
+        mainElement.removeEventListener('wheel', handleWheel)
+      }
     }
   }, [isDesktop, maxScroll])
 
@@ -246,12 +251,17 @@ export default function VisualsPage() {
       setTargetScroll(Math.max(0, Math.min(touchStartScroll + deltaX * 2, maxScroll)))
     }
 
-    mainRef.current.addEventListener('touchstart', handleTouchStart, { passive: true })
-    mainRef.current.addEventListener('touchmove', handleTouchMove, { passive: true })
+    const mainElement = mainRef.current
+    if (mainElement) {
+      mainElement.addEventListener('touchstart', handleTouchStart, { passive: true })
+      mainElement.addEventListener('touchmove', handleTouchMove, { passive: true })
+    }
 
     return () => {
-      mainRef.current?.removeEventListener('touchstart', handleTouchStart)
-      mainRef.current?.removeEventListener('touchmove', handleTouchMove)
+      if (mainElement) {
+        mainElement.removeEventListener('touchstart', handleTouchStart)
+        mainElement.removeEventListener('touchmove', handleTouchMove)
+      }
     }
   }, [isDesktop, targetScroll, maxScroll])
 

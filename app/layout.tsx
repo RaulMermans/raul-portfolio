@@ -99,10 +99,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         {/* Preload critical images for faster initial load */}
         <link rel="preload" as="image" href="/images/sections/case-studies-bg.webp" />
         <link rel="preload" as="image" href="/images/sections/photography-bg.webp" />

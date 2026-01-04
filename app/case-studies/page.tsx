@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
@@ -15,7 +15,7 @@ export default function CaseStudiesPage() {
   const TOTAL = caseStudies.length
 
   // Go to slide
-  const goTo = (index: number) => {
+  const goTo = useCallback((index: number) => {
     if (isAnimating) return
 
     // Infinite loop
@@ -48,7 +48,7 @@ export default function CaseStudiesPage() {
     ;(dotInners[newIndex] as HTMLElement)?.style.setProperty('background', caseStudies[newIndex].color)
 
     setTimeout(() => setIsAnimating(false), 1000)
-  }
+  }, [currentIndex, isAnimating, TOTAL, hasScrolled])
 
   // Scroll handling
   useEffect(() => {
@@ -112,7 +112,7 @@ export default function CaseStudiesPage() {
       window.removeEventListener('touchend', handleTouchEnd)
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [currentIndex, isAnimating])
+  }, [currentIndex, isAnimating, goTo])
 
   // Initialize dots
   useEffect(() => {

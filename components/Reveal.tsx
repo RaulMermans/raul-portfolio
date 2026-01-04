@@ -28,8 +28,9 @@ export default function Reveal({ children, delay }: RevealProps) {
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
+      const element = ref.current
+      if (element) {
+        observer.unobserve(element)
       }
     }
   }, [])

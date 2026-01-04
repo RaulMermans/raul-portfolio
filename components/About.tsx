@@ -26,8 +26,9 @@ export default function About() {
     }
 
     return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current)
+      const imageElement = imageRef.current
+      if (imageElement) {
+        observer.unobserve(imageElement)
       }
     }
   }, [])
