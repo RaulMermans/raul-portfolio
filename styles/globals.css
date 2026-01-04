@@ -1766,6 +1766,130 @@ html.homepage .footer {
   flex-shrink: 0;
 }
 
+/* Socials Section */
+.socials {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  background: var(--cream);
+  padding: calc(var(--header-height) + var(--space-6)) var(--section-padding) var(--space-10);
+  min-height: auto;
+  overflow-x: hidden;
+  overflow-y: visible;
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+.socials__glow {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 181, 160, 0.15) 0%,
+    rgba(255, 170, 136, 0.1) 30%,
+    rgba(232, 208, 200, 0.08) 50%,
+    transparent 75%
+  );
+  filter: blur(120px);
+  opacity: 0.4;
+  animation: glowPulse 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.socials__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.socials__label {
+  margin-bottom: var(--space-3);
+  margin-top: 0;
+}
+
+.socials__title {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif !important;
+  font-size: clamp(3rem, 10vw, 7rem) !important;
+  line-height: 0.9 !important;
+  letter-spacing: var(--tracking-tight) !important;
+  text-transform: uppercase !important;
+  margin-bottom: var(--space-4) !important;
+  margin-top: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 50%, var(--ink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+.socials__divider {
+  width: 100%;
+  max-width: 400px;
+  height: 1px;
+  background: var(--cream-dark);
+  margin: var(--space-4) 0;
+  flex-shrink: 0;
+}
+
+.socials__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.socials__location {
+  margin-top: var(--space-4);
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .socials {
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
+    min-height: auto;
+  }
+
+  .socials__title {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .socials__links a {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
 /* Contact Form */
 .contact__form-wrapper {
   width: 100%;

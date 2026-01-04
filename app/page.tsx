@@ -8,6 +8,7 @@ import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
+import Socials from '@/components/Socials'
 import BackToTop from '@/components/BackToTop'
 import ErrorBoundary from '@/components/ErrorBoundary'
 
@@ -194,6 +195,7 @@ export default function Home() {
       <About />
       <Services />
       <Contact />
+      <Socials />
       <Footer />
       <BackToTop />
     </ErrorBoundary>
