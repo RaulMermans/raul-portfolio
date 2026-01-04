@@ -478,8 +478,7 @@ img {
 section {
   min-height: 100vh;
   min-height: 100svh;
-  height: 100vh;
-  height: 100svh;
+  height: auto;
   position: relative;
   overflow: hidden;
   scroll-snap-align: none;
@@ -8547,7 +8546,8 @@ body:has(.case-studies-main) .page-transition {
 
 .exhibition__scroll {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: visible;
+  height: auto;
   padding: 5rem 3.5rem 3rem;
 }
 
