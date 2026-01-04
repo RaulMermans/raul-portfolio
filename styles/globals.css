@@ -1608,8 +1608,8 @@ section {
   padding: var(--section-padding);
   min-height: 100vh;
   min-height: 100svh;
-  height: 100vh;
-  height: 100svh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .contact__glow {
@@ -1652,6 +1652,7 @@ section {
   align-items: center;
   max-width: 600px;
   width: 100%;
+  padding: var(--space-4) 0;
 }
 
 .contact__label {
@@ -1706,7 +1707,7 @@ section {
   max-width: 400px;
   height: 1px;
   background: var(--cream-dark);
-  margin: var(--space-7) 0;
+  margin: var(--space-5) 0;
 }
 
 .ai-products {
