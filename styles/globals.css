@@ -5552,8 +5552,8 @@ a[href^="/"]:hover {
   max-width: 1200px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.4fr 0.6fr;
-  gap: var(--space-10);
+  grid-template-columns: 0.35fr 0.65fr;
+  gap: var(--space-12);
   align-items: start;
   min-height: auto;
   padding: 0;
@@ -5578,7 +5578,7 @@ a[href^="/"]:hover {
   z-index: 10; /* Content layer - standardized from 1 */
   min-height: auto;
   /* Prevent overlap with content */
-  max-height: calc(100vh - var(--header-height) - var(--space-6) * 2);
+  max-height: calc(100vh - var(--header-height) - var(--space-8));
   overflow: hidden;
 }
 
@@ -5591,6 +5591,7 @@ a[href^="/"]:hover {
   position: relative;
   background: var(--cream-dark);
   min-height: 400px;
+  max-height: 85vh;
 }
 
 .about-page__img {
@@ -5636,7 +5637,7 @@ a[href^="/"]:hover {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-7);
   width: 100%;
   max-width: 100%;
   /* Prevent overlap */
@@ -5660,12 +5661,12 @@ a[href^="/"]:hover {
 
 .about-page__headline {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(2.25rem, 4vw, 3rem);
-  line-height: 1.15;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--ink);
-  margin: 0 0 var(--space-7) 0;
+  margin: 0 0 var(--space-8) 0;
   max-width: 100%;
   width: 100%;
   word-wrap: break-word;
@@ -5674,12 +5675,13 @@ a[href^="/"]:hover {
   padding: 0;
   position: relative;
   z-index: 1;
+  font-weight: 400;
 }
 
 .about-page__text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
   max-width: 100%;
   width: 100%;
   padding: 0;
@@ -5691,9 +5693,9 @@ a[href^="/"]:hover {
 
 .about-page__paragraph {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: clamp(1.0625rem, 1.2vw, 1.1875rem);
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
   color: var(--ink-soft);
-  line-height: 1.8;
+  line-height: 1.75;
   margin: 0;
   max-width: 100%;
   width: 100%;
