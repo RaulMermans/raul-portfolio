@@ -7482,11 +7482,11 @@ body:has(.case-studies-main) .page-transition {
 /* Gallery */
 .visuals-gallery {
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   align-content: flex-start !important;
   height: 100% !important;
-  padding: 0 2vw 0 4vw !important;
-  gap: 1.5vw !important;
+  padding: 0 12vw !important;
+  gap: 7vw !important;
   will-change: transform;
   padding-top: calc(var(--header-height) + 2vh) !important;
   padding-bottom: var(--space-8) !important;
@@ -7495,13 +7495,13 @@ body:has(.case-studies-main) .page-transition {
 /* Intro Section */
 .gallery__intro {
   flex-shrink: 0 !important;
-  width: 22vw !important;
-  min-width: 240px !important;
-  max-width: 320px !important;
-  padding-right: 1vw !important;
+  width: 42vw !important;
+  min-width: 360px !important;
+  max-width: 550px !important;
+  padding-right: 2vw !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-start !important;
+  justify-content: center !important;
   align-items: flex-start !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
@@ -7546,7 +7546,7 @@ body:has(.case-studies-main) .page-transition {
   line-height: 0.78;
   letter-spacing: -0.04em;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   margin-top: 0;
   overflow: hidden;
   color: var(--ink);
@@ -7569,7 +7569,7 @@ body:has(.case-studies-main) .page-transition {
   width: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--warm), var(--rose));
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   animation: lineExpand 1.2s var(--ease) 1.6s forwards;
 }
 
@@ -7581,9 +7581,9 @@ body:has(.case-studies-main) .page-transition {
   font-size: 0.9rem;
   line-height: 1.9;
   color: var(--ink-muted);
-  max-width: 100%;
+  max-width: 280px;
   letter-spacing: 0.02em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeUp 1s var(--ease) 1.3s forwards;
@@ -7598,30 +7598,21 @@ body:has(.case-studies-main) .page-transition {
   font-size: 0.45rem;
   letter-spacing: 0.5em;
   color: var(--ink-faint);
-  margin-top: 0;
+  margin-top: 4rem;
   opacity: 0;
   animation: fadeUp 1s var(--ease) 1.5s forwards;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.gallery__year::before {
-  content: "•";
-  font-size: 0.6rem;
-  color: var(--ink-faint);
 }
 
 /* Cards */
 .card {
   flex-shrink: 0 !important;
-  width: clamp(320px, 32vw, 500px) !important;
-  height: 70vh !important;
-  max-height: 700px !important;
+  width: clamp(360px, 36vw, 560px) !important;
+  height: 78vh !important;
+  max-height: 750px !important;
   position: relative !important;
   perspective: 1200px;
   opacity: 0;
-  transform: translateY(0);
+  transform: translateY(100px);
   transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
   align-self: flex-start !important;
   margin-top: 0 !important;
@@ -8283,25 +8274,25 @@ body:has(.case-studies-main) .page-transition {
 /* Responsive */
 @media (max-width: 1200px) {
   .visuals-gallery {
-    gap: 2.5vw;
+    gap: 5vw;
+    padding: 0 8vw;
     padding-top: calc(var(--header-height) + 2vh);
-    padding-left: 8vw;
-    padding-right: 8vw;
-    align-items: flex-start;
+    padding-bottom: var(--space-8);
+    align-items: center;
   }
 
   .gallery__intro {
     width: 38vw;
     padding-top: 0;
-    padding-right: 1.5vw;
+    padding-right: 2vw;
     margin-top: 0;
     align-self: flex-start;
   }
 
   .card {
     width: clamp(320px, 40vw, 500px);
-    height: 65vh;
-    max-height: 650px;
+    height: 72vh;
+    max-height: 750px;
     margin-top: 0;
     align-self: flex-start;
   }
@@ -8309,25 +8300,25 @@ body:has(.case-studies-main) .page-transition {
 
 @media (max-width: 1024px) {
   .visuals-gallery {
-    gap: 2.5vw;
+    gap: 4vw;
+    padding: 0 6vw;
     padding-top: calc(var(--header-height) + 2vh);
-    padding-left: 6vw;
-    padding-right: 6vw;
-    align-items: flex-start;
+    padding-bottom: var(--space-8);
+    align-items: center;
   }
 
   .gallery__intro {
     width: 44vw;
     padding-top: 0;
-    padding-right: 1vw;
+    padding-right: 2vw;
     margin-top: 0;
     align-self: flex-start;
   }
 
   .card {
     width: clamp(300px, 45vw, 450px);
-    height: 60vh;
-    max-height: 600px;
+    height: 65vh;
+    max-height: 750px;
     margin-top: 0;
     align-self: flex-start;
   }
