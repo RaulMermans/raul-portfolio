@@ -36,14 +36,18 @@ export default function Home() {
           html.style.scrollPaddingTop = '0'
           document.body.style.scrollSnapType = 'y proximity'
           
-          // Apply scroll-snap-align to sections except services, contact and footer
+          // Apply scroll-snap-align to sections including services and contact (but not footer)
           const selectors = [
             'section.hero',
             'section.section-card', 
             'section.about',
+            'section.services',
+            'section.contact',
             '.hero',
             '.section-card',
-            '.about'
+            '.about',
+            '.services',
+            '.contact'
           ]
           
           selectors.forEach(selector => {
@@ -56,11 +60,9 @@ export default function Home() {
             })
           })
           
-          // Explicitly remove scroll-snap from services, contact and footer
-          const servicesElements = document.querySelectorAll('section.services, .services')
-          const contactElements = document.querySelectorAll('section.contact, .contact')
+          // Explicitly remove scroll-snap from footer only (contact to footer should be smooth)
           const footerElements = document.querySelectorAll('footer.footer, .footer')
-          ;[...servicesElements, ...contactElements, ...footerElements].forEach((element: any) => {
+          footerElements.forEach((element: any) => {
             if (element) {
               element.style.scrollSnapAlign = 'none'
               element.style.scrollSnapStop = 'normal'

@@ -501,19 +501,25 @@ section {
   
   html.homepage .hero,
   html.homepage .section-card,
-  html.homepage .about {
+  html.homepage .about,
+  html.homepage .services,
+  html.homepage .contact {
     scroll-snap-align: start !important;
     scroll-snap-stop: always !important;
   }
   
-  html.homepage .services,
-  html.homepage .contact,
   html.homepage .footer {
     scroll-snap-align: none !important;
     scroll-snap-stop: normal !important;
   }
   
   html.homepage section:not(.contact):not(.services) {
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+  }
+  
+  html.homepage section.services,
+  html.homepage section.contact {
     scroll-snap-align: start !important;
     scroll-snap-stop: always !important;
   }
@@ -999,8 +1005,10 @@ section {
 
   /* Contact Mobile */
   .contact {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-4);
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
     min-height: auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .contact__headline {
@@ -1605,17 +1613,18 @@ section {
 .contact {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   text-align: center;
   background: var(--cream);
-  padding: calc(var(--header-height) + var(--space-6)) var(--section-padding) 0;
-  min-height: auto;
+  padding: calc(var(--header-height) + var(--space-6)) var(--section-padding) var(--space-8);
+  min-height: 100vh;
+  min-height: 100svh;
   overflow-x: hidden;
   position: relative;
   box-sizing: border-box;
-  scroll-snap-align: none;
-  scroll-snap-stop: normal;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   margin-bottom: 0;
 }
 
@@ -1661,7 +1670,7 @@ section {
   width: 100%;
   padding: 0;
   margin: 0;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0;
 }
 
@@ -1739,8 +1748,8 @@ section {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-3);
-  margin-top: var(--space-2);
-  margin-bottom: var(--space-2);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
   flex-shrink: 0;
 }
 
@@ -1749,14 +1758,14 @@ section {
   max-width: 400px;
   height: 1px;
   background: var(--cream-dark);
-  margin: var(--space-2) 0;
+  margin: var(--space-3) 0;
   flex-shrink: 0;
 }
 
 .ai-products {
   display: flex;
   flex-direction: column;
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
   flex-shrink: 0;
   align-items: center;
 }
@@ -1773,9 +1782,9 @@ section {
 }
 
 .contact__location {
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
   margin-bottom: 0;
-  padding-bottom: var(--space-6);
+  padding-bottom: 0;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
@@ -1788,9 +1797,9 @@ section {
 .contact__form-wrapper {
   width: 100%;
   max-width: 550px;
-  margin: var(--space-3) auto var(--space-3);
+  margin: var(--space-4) auto var(--space-4);
   scroll-margin-top: calc(var(--header-height) + var(--space-4));
-  padding: var(--space-5) var(--space-6);
+  padding: var(--space-6) var(--space-7);
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(12px);
   border-radius: 16px;
