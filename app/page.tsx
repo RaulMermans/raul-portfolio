@@ -35,20 +35,16 @@ export default function Home() {
           html.style.scrollPaddingTop = '0'
           document.body.style.scrollSnapType = 'y mandatory'
           
-          // Apply scroll-snap-align to all sections - use multiple selectors to catch all
+          // Apply scroll-snap-align to all sections except contact and footer
           const selectors = [
             'section.hero',
             'section.section-card', 
             'section.about',
             'section.services',
-            'section.contact',
-            'footer.footer',
             '.hero',
             '.section-card',
             '.about',
-            '.services',
-            '.contact',
-            '.footer'
+            '.services'
           ]
           
           selectors.forEach(selector => {
@@ -59,6 +55,16 @@ export default function Home() {
                 element.style.scrollSnapStop = 'always'
               }
             })
+          })
+          
+          // Explicitly remove scroll-snap from contact and footer
+          const contactElements = document.querySelectorAll('section.contact, .contact')
+          const footerElements = document.querySelectorAll('footer.footer, .footer')
+          ;[...contactElements, ...footerElements].forEach((element: any) => {
+            if (element) {
+              element.style.scrollSnapAlign = 'none'
+              element.style.scrollSnapStop = 'normal'
+            }
           })
         })
       } else {

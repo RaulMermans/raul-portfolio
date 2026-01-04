@@ -75,15 +75,19 @@ export default function AboutPage() {
 
               <div className="about-page__text reveal reveal-delay-2">
                 <p className="about-page__paragraph">
-                  I&apos;ve always believed that the best things are built in the space between a sharp business mind and an untamed creative spirit. My foundation is in business administration, but my real work lives in the things I taught myself to see and build when no one was watching. I am an autodidact who prefers the grit of the process over the safety of a classroom.
+                  I build brand systems that turn cultural momentum into business outcomes. My background is in business administration, but I&apos;m self-taught in what actually moves the needle: brand strategy, visual storytelling, technical automation, and the frameworks that connect them.
                 </p>
                 
                 <p className="about-page__paragraph">
-                  I have never been comfortable staying in one lane. My work is driven by a restless need to master whatever tool is required to bring a vision to life, regardless of the complexity. I don&apos;t see a wall between a technical system and a human story: I see them as parts of the same language. I am always pushing toward the edge of what can be achieved because I am not just looking for a project. I am looking for the next foundation to lay and the next boundary to break.
+                  Most people separate creative vision from technical execution. I don&apos;t. I&apos;ve built photography projects that function as brand narratives, designed identity systems that scale across platforms, and automated workflows that turn trend analysis into actionable content strategies. The thread connecting all of it is treating culture as a system you can read, interpret, and build with.
                 </p>
 
                 <p className="about-page__paragraph">
-                  I don&apos;t use technology as a shortcut. I use it as a partner to human intuition. My practice is about architecting the invisible structures that define how a brand feels and how a person interacts with a screen. I build the frameworks that make sense of our digital future because I am not just interested in what we see: I am interested in the systems that make the experience possible.
+                  My work lives in the space between what a brand says and how it operates. I develop visual identities for cultural brands, architect automation systems for content and marketing, and translate emerging trends into strategies that create demand rather than chase it. I&apos;m interested in building the invisible infrastructure that makes a brand feel inevitable.
+                </p>
+
+                <p className="about-page__paragraph">
+                  I work best with people who understand that the gap between where culture is moving and where most brands are stuck is an opportunity, not a problem. If you&apos;re building something that requires both strategic thinking and hands-on execution, let&apos;s talk.
                 </p>
               </div>
 

@@ -54,20 +54,9 @@ export default function About() {
           <h2 id="about-title" className="about__headline reveal reveal-delay-1">
             Digital Systems & Creative Direction
           </h2>
-          <div className="about__text reveal reveal-delay-2">
-            <p>
-              I build brand systems that turn cultural momentum into business outcomes. My background is in business administration, but I&apos;m self-taught in what actually moves the needle: brand strategy, visual storytelling, technical automation, and the frameworks that connect them.
-            </p>
-            <p>
-              Most people separate creative vision from technical execution. I don&apos;t. I&apos;ve built photography projects that function as brand narratives, designed identity systems that scale across platforms, and automated workflows that turn trend analysis into actionable content strategies. The thread connecting all of it is treating culture as a system you can read, interpret, and build with.
-            </p>
-            <p>
-              My work lives in the space between what a brand says and how it operates. I develop visual identities for cultural brands, architect automation systems for content and marketing, and translate emerging trends into strategies that create demand rather than chase it. I&apos;m interested in building the invisible infrastructure that makes a brand feel inevitable.
-            </p>
-            <p>
-              I work best with people who understand that the gap between where culture is moving and where most brands are stuck is an opportunity, not a problem. If you&apos;re building something that requires both strategic thinking and hands-on execution, let&apos;s talk.
-            </p>
-          </div>
+          <p className="about__text reveal reveal-delay-2">
+            I&apos;m a self-taught builder obsessed with how stories and systems fit together. I&apos;ve taken my business background and turned it into a practice of creating digital environments where AI and human intuition work side-by-side.
+          </p>
           
           <Link 
             href="/about" 
