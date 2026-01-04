@@ -7486,7 +7486,7 @@ body:has(.case-studies-main) .page-transition {
   align-content: flex-start !important;
   height: 100% !important;
   padding: 0 4vw !important;
-  gap: 3vw !important;
+  gap: 0 !important;
   will-change: transform;
   padding-top: calc(var(--header-height) + 2vh) !important;
   padding-bottom: var(--space-8) !important;
@@ -7498,7 +7498,7 @@ body:has(.case-studies-main) .page-transition {
   width: 28vw !important;
   min-width: 280px !important;
   max-width: 400px !important;
-  padding-right: 2vw !important;
+  padding-right: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -8274,7 +8274,7 @@ body:has(.case-studies-main) .page-transition {
 /* Responsive */
 @media (max-width: 1200px) {
   .visuals-gallery {
-    gap: 2.5vw;
+    gap: 0;
     padding: 0 3vw;
     padding-top: calc(var(--header-height) + 2vh);
     padding-bottom: var(--space-8);
@@ -8286,7 +8286,7 @@ body:has(.case-studies-main) .page-transition {
     min-width: 260px;
     max-width: 360px;
     padding-top: 0;
-    padding-right: 2vw;
+    padding-right: 0;
     margin-top: 0;
     align-self: flex-start;
   }
@@ -8302,7 +8302,7 @@ body:has(.case-studies-main) .page-transition {
 
 @media (max-width: 1024px) {
   .visuals-gallery {
-    gap: 2vw;
+    gap: 0;
     padding: 0 3vw;
     padding-top: calc(var(--header-height) + 2vh);
     padding-bottom: var(--space-8);
@@ -8314,7 +8314,7 @@ body:has(.case-studies-main) .page-transition {
     min-width: 240px;
     max-width: 320px;
     padding-top: 0;
-    padding-right: 2vw;
+    padding-right: 0;
     margin-top: 0;
     align-self: flex-start;
   }
