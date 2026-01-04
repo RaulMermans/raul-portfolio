@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
+import '../styles/case-studies-landing.css'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
   title: 'Case Studies',
