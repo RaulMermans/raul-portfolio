@@ -1141,11 +1141,13 @@ section {
   align-items: center;
   text-align: center;
   background: var(--cream);
-  height: 100vh;
-  height: 100svh;
-  padding: var(--section-padding);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: calc(var(--header-height) + var(--space-6)) var(--section-padding) var(--space-8);
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .hero__gradient {
@@ -1613,14 +1615,14 @@ section {
 .contact {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   background: var(--cream);
-  padding: calc(var(--header-height) + var(--space-6)) var(--section-padding) var(--space-8);
-  min-height: 100vh;
-  min-height: 100svh;
+  padding: calc(var(--header-height) + var(--space-6)) var(--section-padding) var(--space-10);
+  min-height: auto;
   overflow-x: hidden;
+  overflow-y: visible;
   position: relative;
   box-sizing: border-box;
   scroll-snap-align: start;
@@ -1670,7 +1672,7 @@ section {
   width: 100%;
   padding: 0;
   margin: 0;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0;
 }
 
@@ -1681,11 +1683,11 @@ section {
 
 .contact__headline {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif !important;
-  font-size: clamp(3.5rem, 12vw, 8rem) !important;
+  font-size: clamp(3rem, 10vw, 7rem) !important;
   line-height: 0.9 !important;
   letter-spacing: var(--tracking-tight) !important;
   text-transform: uppercase !important;
-  margin-bottom: var(--space-3) !important;
+  margin-bottom: var(--space-4) !important;
   margin-top: 0 !important;
   display: block !important;
   width: 100% !important;
@@ -1724,8 +1726,8 @@ section {
   font-size: clamp(0.95rem, 1.8vw, 1.15rem) !important;
   line-height: 1.6 !important;
   color: var(--ink-soft) !important;
-  margin-bottom: var(--space-4) !important;
-  margin-top: var(--space-3) !important;
+  margin-bottom: var(--space-5) !important;
+  margin-top: var(--space-2) !important;
   max-width: 50ch !important;
   display: block !important;
   width: 100% !important;
@@ -1748,8 +1750,8 @@ section {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-3);
-  margin-top: var(--space-3);
-  margin-bottom: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
   flex-shrink: 0;
 }
 
@@ -1758,14 +1760,15 @@ section {
   max-width: 400px;
   height: 1px;
   background: var(--cream-dark);
-  margin: var(--space-3) 0;
+  margin: var(--space-4) 0;
   flex-shrink: 0;
 }
 
 .ai-products {
   display: flex;
   flex-direction: column;
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
   flex-shrink: 0;
   align-items: center;
 }
@@ -1782,7 +1785,7 @@ section {
 }
 
 .contact__location {
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
   margin-bottom: 0;
   padding-bottom: 0;
   font-family: var(--font-mono);
@@ -1797,9 +1800,9 @@ section {
 .contact__form-wrapper {
   width: 100%;
   max-width: 550px;
-  margin: var(--space-4) auto var(--space-4);
+  margin: var(--space-5) auto var(--space-5);
   scroll-margin-top: calc(var(--header-height) + var(--space-4));
-  padding: var(--space-6) var(--space-7);
+  padding: var(--space-5) var(--space-6);
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(12px);
   border-radius: 16px;
