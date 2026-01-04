@@ -1715,16 +1715,6 @@ html.homepage .footer {
   min-width: 280px;
 }
 
-.contact__links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-4);
-  flex-shrink: 0;
-}
-
 .contact__divider {
   width: 100%;
   max-width: 400px;
