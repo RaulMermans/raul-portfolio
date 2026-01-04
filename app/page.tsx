@@ -27,58 +27,18 @@ export default function Home() {
       const isDesktop = window.innerWidth > 768
       const html = document.documentElement
       
-      if (isDesktop) {
-        // Wait for all sections to be rendered
-        requestAnimationFrame(() => {
-          // Set scroll-snap on html element (CSS will also apply, but this ensures it)
-          // Use proximity instead of mandatory for smoother scrolling after services
-          html.style.scrollSnapType = 'y proximity'
-          html.style.scrollPaddingTop = '0'
-          document.body.style.scrollSnapType = 'y proximity'
-          
-          // Apply scroll-snap-align to sections including services and contact (but not footer)
-          const selectors = [
-            'section.hero',
-            'section.section-card', 
-            'section.about',
-            'section.services',
-            'section.contact',
-            '.hero',
-            '.section-card',
-            '.about',
-            '.services',
-            '.contact'
-          ]
-          
-          selectors.forEach(selector => {
-            const elements = document.querySelectorAll(selector)
-            elements.forEach((element: any) => {
-              if (element) {
-                element.style.scrollSnapAlign = 'start'
-                element.style.scrollSnapStop = 'always'
-              }
-            })
-          })
-          
-          // Explicitly remove scroll-snap from footer only (contact to footer should be smooth)
-          const footerElements = document.querySelectorAll('footer.footer, .footer')
-          footerElements.forEach((element: any) => {
-            if (element) {
-              element.style.scrollSnapAlign = 'none'
-              element.style.scrollSnapStop = 'normal'
-            }
-          })
-        })
-      } else {
-        html.style.scrollSnapType = 'none'
-        const sections = document.querySelectorAll('section, footer')
-        sections.forEach((section: any) => {
-          if (section) {
-            section.style.scrollSnapAlign = 'unset'
-            section.style.scrollSnapStop = 'unset'
-          }
-        })
-      }
+      // Disable scroll-snap completely
+      html.style.scrollSnapType = 'none'
+      document.body.style.scrollSnapType = 'none'
+      
+      // Remove scroll-snap from all sections
+      const sections = document.querySelectorAll('section, footer')
+      sections.forEach((section: any) => {
+        if (section) {
+          section.style.scrollSnapAlign = 'none'
+          section.style.scrollSnapStop = 'normal'
+        }
+      })
     }
     
     // Run after a short delay to ensure all components are mounted
@@ -88,6 +48,12 @@ export default function Home() {
     
     window.addEventListener('resize', enableScrollSnap)
     document.body.style.overflowY = 'auto'
+    
+    // Ensure scroll-snap is disabled on mount
+    if (typeof window !== 'undefined') {
+      document.documentElement.style.scrollSnapType = 'none'
+      document.body.style.scrollSnapType = 'none'
+    }
     
     const sections = document.querySelectorAll('section')
     const footer = document.querySelector('.footer')
@@ -211,17 +177,11 @@ export default function Home() {
       if (revealObserver) {
         revealObserver.disconnect()
       }
-      // Cleanup scroll-snap on unmount
+      // Cleanup on unmount
       if (typeof window !== 'undefined') {
         document.documentElement.classList.remove('homepage')
-        document.documentElement.style.scrollSnapType = ''
-        const sections = document.querySelectorAll('section, footer')
-        sections.forEach((section: any) => {
-          if (section) {
-            section.style.scrollSnapAlign = ''
-            section.style.scrollSnapStop = ''
-          }
-        })
+        document.documentElement.style.scrollSnapType = 'none'
+        document.body.style.scrollSnapType = 'none'
       }
     }
   }, [])

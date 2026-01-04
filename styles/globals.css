@@ -482,62 +482,22 @@ section {
   height: 100svh;
   position: relative;
   overflow: hidden;
-  scroll-snap-align: start;
+  scroll-snap-align: none;
 }
 
-/* Homepage scroll-snap - only apply on homepage */
-@media (min-width: 769px) {
-  html.homepage {
-    scroll-snap-type: y proximity !important;
-    scroll-padding-top: 0;
-    height: 100%;
-    overflow-y: scroll;
-  }
-  
-  html.homepage body {
-    height: 100%;
-    overflow-y: auto;
-  }
-  
-  html.homepage .hero,
-  html.homepage .section-card,
-  html.homepage .about,
-  html.homepage .services,
-  html.homepage .contact {
-    scroll-snap-align: start !important;
-    scroll-snap-stop: always !important;
-  }
-  
-  html.homepage .footer {
-    scroll-snap-align: none !important;
-    scroll-snap-stop: normal !important;
-  }
-  
-  html.homepage section:not(.contact):not(.services) {
-    scroll-snap-align: start !important;
-    scroll-snap-stop: always !important;
-  }
-  
-  html.homepage section.services,
-  html.homepage section.contact {
-    scroll-snap-align: start !important;
-    scroll-snap-stop: always !important;
-  }
+/* Scroll-snap disabled - using normal scrolling */
+html.homepage {
+  scroll-snap-type: none;
 }
 
-@media (max-width: 768px) {
-  html.homepage {
-    scroll-snap-type: none; /* Disable on mobile */
-  }
-  
-  html.homepage .hero,
-  html.homepage .section-card,
-  html.homepage .about,
-  html.homepage .services,
-  html.homepage .contact,
-  html.homepage .footer {
-    scroll-snap-align: unset;
-  }
+html.homepage .hero,
+html.homepage .section-card,
+html.homepage .about,
+html.homepage .services,
+html.homepage .contact,
+html.homepage .footer {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
 }
 
 /* Mobile: Remove scroll-snap and add performance optimizations */
@@ -1007,8 +967,8 @@ section {
   .contact {
     padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
     min-height: auto;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
   }
 
   .contact__headline {
@@ -1144,8 +1104,6 @@ section {
   min-height: 100vh;
   min-height: 100svh;
   padding: calc(var(--header-height) + var(--space-6)) var(--section-padding) var(--space-8);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   overflow-x: hidden;
   position: relative;
 }
@@ -1639,8 +1597,6 @@ section {
   overflow-y: visible;
   position: relative;
   box-sizing: border-box;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   margin-bottom: 0;
 }
 
