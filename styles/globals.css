@@ -1154,6 +1154,8 @@ section {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero__orb {
@@ -1164,6 +1166,8 @@ section {
   transition: transform 0.5s ease-out;
   transform: translateZ(0); /* GPU acceleration */
   contain: layout style paint; /* Optimize rendering */
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero__orb--main {
@@ -1202,9 +1206,10 @@ section {
 
 .hero__content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   max-width: 1200px;
+  padding: 0 var(--space-4);
 }
 
 .hero__label {
@@ -1212,6 +1217,9 @@ section {
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 0.8s var(--ease-out) 0.2s forwards;
+  position: relative;
+  z-index: 1;
+  color: var(--ink-faint);
 }
 
 .hero__name {
@@ -1222,6 +1230,8 @@ section {
   text-transform: uppercase;
   color: var(--ink);
   transition: letter-spacing var(--transition-slow) var(--ease);
+  position: relative;
+  z-index: 1;
 }
 
 .hero__name:hover {
@@ -1262,6 +1272,8 @@ section {
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 0.8s var(--ease-out) 1s forwards;
+  position: relative;
+  z-index: 1;
 }
 
 .hero__tagline {
@@ -1277,6 +1289,8 @@ section {
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 0.8s var(--ease-out) 1.15s forwards;
+  position: relative;
+  z-index: 1;
 }
 
 .hero__scroll {
