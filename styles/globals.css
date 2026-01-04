@@ -1598,6 +1598,7 @@ html.homepage .footer {
   position: relative;
   box-sizing: border-box;
   margin-bottom: 0;
+  height: auto;
 }
 
 .contact__glow {
@@ -1644,6 +1645,8 @@ html.homepage .footer {
   margin: 0;
   justify-content: flex-start;
   gap: 0;
+  height: auto;
+  overflow: visible;
 }
 
 .contact__label {
@@ -1759,6 +1762,7 @@ html.homepage .footer {
   position: relative;
   box-sizing: border-box;
   margin-bottom: 0;
+  height: auto;
 }
 
 .socials__glow {
@@ -1794,6 +1798,8 @@ html.homepage .footer {
   margin: 0;
   justify-content: flex-start;
   gap: 0;
+  height: auto;
+  overflow: visible;
 }
 
 .socials__label {
