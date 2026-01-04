@@ -89,7 +89,7 @@ export default function SectionCards() {
               alt={`${section.title} background`}
               fill
               priority={idx <= 1}
-              quality={85}
+              quality={idx <= 1 ? 85 : 75}
               sizes="100vw"
               style={{ objectFit: 'cover' }}
               placeholder="blur"

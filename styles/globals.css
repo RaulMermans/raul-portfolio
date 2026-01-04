@@ -834,17 +834,12 @@ html.homepage .footer {
     will-change: auto;
   }
 
-  .section-card__bg img {
+  .section-card__bg img,
+  .section-card__bg span img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    transition: opacity 0.4s var(--ease);
-    opacity: 0;
-    animation: imageFadeIn 0.5s var(--ease) forwards;
-  }
-
-  .section-card__bg img[data-loaded="true"] {
-    opacity: 1;
+    opacity: 1 !important;
   }
 
   .section-card__overlay {
@@ -2157,9 +2152,10 @@ html.homepage .footer {
   background: var(--cream);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: auto;
   position: relative;
+  overflow: visible;
+  overflow-y: visible;
 }
 
 .services__header {
@@ -2186,7 +2182,7 @@ html.homepage .footer {
 .services__grid {
   display: flex;
   flex: 1;
-  min-height: 0;
+  min-height: auto;
 }
 
 .service {
@@ -5806,6 +5802,169 @@ a[href^="/"]:hover {
   }
 }
 
+/* About Services Section */
+.about-services {
+  background: var(--cream);
+  padding: calc(var(--header-height) + var(--space-10)) var(--section-padding) var(--space-10);
+  min-height: auto;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.about-services__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.about-services__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--space-6);
+}
+
+.about-services__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-3);
+}
+
+.about-services__divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--warm), var(--rose));
+  border-radius: 2px;
+}
+
+.about-services__title {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: var(--space-4);
+}
+
+.about-services__subtitle {
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+}
+
+.about-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.about-services__card {
+  padding: var(--space-6);
+  background: var(--cream-warm);
+  border-radius: 8px;
+  border: 1px solid var(--cream-dark);
+  transition: all var(--transition-base) var(--ease);
+}
+
+.about-services__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--ink-muted);
+}
+
+.about-services__card-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.about-services__card-number {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.about-services__card-title {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.about-services__card-description {
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-4);
+}
+
+.about-services__card-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.about-services__card-item {
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--ink-muted);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.about-services__card-item::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .about-services {
+    padding: calc(var(--header-height) + var(--space-8)) var(--space-6) var(--space-8);
+  }
+
+  .about-services__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+@media (max-width: 600px) {
+  .about-services {
+    padding: calc(var(--header-height) + var(--space-6)) var(--space-4) var(--space-6);
+  }
+
+  .about-services__title {
+    margin-bottom: var(--space-3);
+  }
+
+  .about-services__subtitle {
+    margin-bottom: var(--space-6);
+  }
+
+  .about-services__card {
+    padding: var(--space-5);
+  }
+}
+
 /* Contact Section - Separate Section */
 .about-page__contact-section {
   background: var(--cream);
@@ -7602,7 +7761,7 @@ body:has(.case-studies-main) .page-transition {
 /* Main */
 .visuals-main {
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   overflow-x: hidden;
   position: relative;
   background: var(--cream);
@@ -7613,7 +7772,7 @@ body:has(.case-studies-main) .page-transition {
   display: grid;
   grid-template-columns: 1fr 1.8fr;
   gap: 0;
-  min-height: 100vh;
+  min-height: auto;
   padding: calc(var(--header-height) + 4rem) 4vw 4rem;
   max-width: 1600px;
   margin: 0 auto;

@@ -42,7 +42,7 @@ export default function About() {
               src="/images/about/profile.webp"
               alt="Portrait of Raúl Mermans"
               fill
-              quality={90}
+              quality={80}
               sizes="(max-width: 768px) 100vw, 380px"
               style={{ objectFit: 'cover' }}
             />

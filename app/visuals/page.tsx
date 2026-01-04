@@ -240,7 +240,7 @@ export default function VisualsPage() {
                       fill
                       className="visuals-card__image"
                       priority
-                  quality={90}
+                  quality={85}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       style={{ objectFit: 'cover' }}
                   onError={() => {
@@ -325,7 +325,7 @@ export default function VisualsPage() {
                   width={1400}
                   height={1400}
                   className="exhibition__image"
-                  quality={95}
+                  quality={90}
                   priority
                   style={{ objectFit: 'contain' }}
                   onError={() => {

@@ -174,7 +174,7 @@ export default function CaseStudiesPage() {
                 src={caseStudies[currentIndex].image}
                 alt={caseStudies[currentIndex].title}
                 fill
-                quality={90}
+                quality={85}
                 sizes="(max-width: 900px) 100vw, 42vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
                 priority
