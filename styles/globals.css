@@ -7482,29 +7482,29 @@ body:has(.case-studies-main) .page-transition {
 /* Gallery */
 .visuals-gallery {
   display: flex !important;
-  align-items: center !important;
+  align-items: flex-start !important;
   align-content: flex-start !important;
   height: 100% !important;
-  padding: 0 4vw !important;
-  gap: 3vw !important;
+  padding: 0 3vw !important;
+  gap: 2.5vw !important;
   will-change: transform;
-  padding-top: calc(var(--header-height) + 2vh) !important;
+  padding-top: calc(var(--header-height) + 4vh) !important;
   padding-bottom: var(--space-8) !important;
 }
 
 /* Intro Section */
 .gallery__intro {
   flex-shrink: 0 !important;
-  width: 28vw !important;
-  min-width: 280px !important;
-  max-width: 400px !important;
+  width: 24vw !important;
+  min-width: 240px !important;
+  max-width: 320px !important;
   padding-right: 0 !important;
   margin-right: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   align-items: flex-start !important;
-  padding-top: 0 !important;
+  padding-top: 2vh !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
   align-self: flex-start !important;
@@ -7607,22 +7607,22 @@ body:has(.case-studies-main) .page-transition {
 /* Cards */
 .card {
   flex-shrink: 0 !important;
-  width: clamp(360px, 36vw, 560px) !important;
-  height: 78vh !important;
-  max-height: 750px !important;
+  width: clamp(340px, 34vw, 520px) !important;
+  height: 75vh !important;
+  max-height: 720px !important;
   position: relative !important;
   perspective: 1200px;
   opacity: 0;
   transform: translateY(100px);
   transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
   align-self: flex-start !important;
-  margin-top: 0 !important;
+  margin-top: 2vh !important;
   margin-left: 0 !important;
 }
 
 /* Remove gap between intro and first card */
 .visuals-gallery > .gallery__intro + .card {
-  margin-left: calc(-3vw) !important;
+  margin-left: calc(-2.5vw) !important;
 }
 
 .card.visible {
@@ -8280,18 +8280,18 @@ body:has(.case-studies-main) .page-transition {
 /* Responsive */
 @media (max-width: 1200px) {
   .visuals-gallery {
-    gap: 2.5vw;
+    gap: 2vw;
     padding: 0 3vw;
-    padding-top: calc(var(--header-height) + 2vh);
+    padding-top: calc(var(--header-height) + 3vh);
     padding-bottom: var(--space-8);
-    align-items: center;
+    align-items: flex-start;
   }
 
   .gallery__intro {
-    width: 30vw;
-    min-width: 260px;
-    max-width: 360px;
-    padding-top: 0;
+    width: 26vw;
+    min-width: 240px;
+    max-width: 300px;
+    padding-top: 2vh;
     padding-right: 0;
     margin-right: 0;
     margin-top: 0;
@@ -8299,7 +8299,11 @@ body:has(.case-studies-main) .page-transition {
   }
 
   .visuals-gallery > .gallery__intro + .card {
-    margin-left: calc(-2.5vw) !important;
+    margin-left: calc(-2vw) !important;
+  }
+
+  .card {
+    margin-top: 2vh !important;
   }
 
   .card {
@@ -8313,18 +8317,18 @@ body:has(.case-studies-main) .page-transition {
 
 @media (max-width: 1024px) {
   .visuals-gallery {
-    gap: 2vw;
+    gap: 1.5vw;
     padding: 0 3vw;
-    padding-top: calc(var(--header-height) + 2vh);
+    padding-top: calc(var(--header-height) + 3vh);
     padding-bottom: var(--space-8);
-    align-items: center;
+    align-items: flex-start;
   }
 
   .gallery__intro {
-    width: 32vw;
-    min-width: 240px;
-    max-width: 320px;
-    padding-top: 0;
+    width: 28vw;
+    min-width: 220px;
+    max-width: 280px;
+    padding-top: 2vh;
     padding-right: 0;
     margin-right: 0;
     margin-top: 0;
@@ -8332,7 +8336,11 @@ body:has(.case-studies-main) .page-transition {
   }
 
   .visuals-gallery > .gallery__intro + .card {
-    margin-left: calc(-2vw) !important;
+    margin-left: calc(-1.5vw) !important;
+  }
+
+  .card {
+    margin-top: 2vh !important;
   }
 
   .card {

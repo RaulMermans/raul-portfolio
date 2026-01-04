@@ -118,7 +118,20 @@ export default function VisualsPage() {
       if (desktop && galleryRef.current) {
         const max = galleryRef.current.scrollWidth - window.innerWidth
         setMaxScroll(max)
-        if (galleryRef.current) {
+        // Set initial scroll to show first card partially
+        const introElement = galleryRef.current.querySelector('.gallery__intro') as HTMLElement
+        if (introElement && cardsRef.current[0]) {
+          const introWidth = introElement.offsetWidth
+          const cardWidth = cardsRef.current[0].offsetWidth
+          const gap = window.innerWidth * 0.025
+          // Start with first card partially visible
+          const initialScroll = Math.max(0, introWidth + gap - cardWidth * 0.3)
+          setScrollPosition(initialScroll)
+          setTargetScroll(initialScroll)
+          if (galleryRef.current) {
+            galleryRef.current.style.transform = `translateX(${-initialScroll}px)`
+          }
+        } else if (galleryRef.current) {
           galleryRef.current.style.transform = `translateX(${-scrollPosition}px)`
         }
       } else {
@@ -137,7 +150,7 @@ export default function VisualsPage() {
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [scrollPosition])
+  }, [])
 
   // Reveal cards function
   const revealCards = useCallback(() => {
