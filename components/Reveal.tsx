@@ -12,6 +12,9 @@ export default function Reveal({ children, delay }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,15 +26,10 @@ export default function Reveal({ children, delay }: RevealProps) {
       { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
+    observer.observe(element)
 
     return () => {
-      const element = ref.current
-      if (element) {
-        observer.unobserve(element)
-      }
+      observer.unobserve(element)
     }
   }, [])
 

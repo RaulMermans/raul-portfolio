@@ -16,17 +16,20 @@ export default function NotFound() {
     }, 50)
 
     // Orb parallax
+    const pageElement = pageRef.current
+    const orbElement = orbRef.current
+    
     const handleMouseMove = (e: MouseEvent) => {
-      if (!orbRef.current || !pageRef.current) return
-      const rect = pageRef.current.getBoundingClientRect()
+      if (!orbElement || !pageElement) return
+      const rect = pageElement.getBoundingClientRect()
       const x = (e.clientX - rect.left) / rect.width - 0.5
       const y = (e.clientY - rect.top) / rect.height - 0.5
 
-      orbRef.current.style.transform = `translate(calc(-50% + ${x * 30}px), calc(-50% + ${y * 30}px)) scale(1)`
+      orbElement.style.transform = `translate(calc(-50% + ${x * 30}px), calc(-50% + ${y * 30}px)) scale(1)`
     }
 
-    if (pageRef.current && window.matchMedia('(hover: hover)').matches) {
-      pageRef.current.addEventListener('mousemove', handleMouseMove, { passive: true })
+    if (pageElement && window.matchMedia('(hover: hover)').matches) {
+      pageElement.addEventListener('mousemove', handleMouseMove, { passive: true })
     }
 
     // Random glitch trigger
@@ -44,7 +47,6 @@ export default function NotFound() {
 
     return () => {
       clearInterval(interval)
-      const pageElement = pageRef.current
       if (pageElement) {
         pageElement.removeEventListener('mousemove', handleMouseMove)
       }

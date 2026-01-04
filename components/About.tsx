@@ -21,12 +21,12 @@ export default function About() {
       { threshold: 0.3 }
     )
 
-    if (imageRef.current) {
-      observer.observe(imageRef.current)
+    const imageElement = imageRef.current
+    if (imageElement) {
+      observer.observe(imageElement)
     }
 
     return () => {
-      const imageElement = imageRef.current
       if (imageElement) {
         observer.unobserve(imageElement)
       }
