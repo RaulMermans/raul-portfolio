@@ -3,6 +3,25 @@
    Modern, UX-driven case study showcase
    ============================================= */
 
+/* Ensure header has proper contrast on case study pages */
+.case-study-page .ui__logo,
+.case-study-page .ui__nav a,
+.case-study-page .ui__menu-btn span {
+  color: var(--cream, #f5f0eb) !important;
+  border-color: var(--cream, #f5f0eb) !important;
+}
+
+.case-study-page .ui__nav a::after {
+  background: var(--cream, #f5f0eb) !important;
+}
+
+.case-study-page .ui__logo.on-dark,
+.case-study-page .ui__nav.on-dark a,
+.case-study-page .ui__menu-btn.on-dark span {
+  color: var(--cream, #f5f0eb) !important;
+  border-color: var(--cream, #f5f0eb) !important;
+}
+
 /* =============================================
    HERO SECTION
    ============================================= */
@@ -238,47 +257,75 @@
 }
 
 /* =============================================
-   GALLERY SECTION
+   GALLERY SECTION - SOLID 2x2 GRID LAYOUT
    ============================================= */
-.case-study-gallery {
+.gallery__title {
+  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink, #1a1714);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.gallery__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  aspect-ratio: 1;
 }
 
-.case-study-gallery__item {
+.gallery__item {
   position: relative;
-  aspect-ratio: 4/3;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  background: var(--cream-dark, #ddd5c8);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.case-study-gallery__item:hover {
-  transform: translateY(-4px);
+.gallery__item:hover {
+  transform: scale(1.02);
+  z-index: 1;
 }
 
-.case-study-gallery__item img,
-.case-study-gallery__item > span,
-.case-study-gallery__item [data-nimg] {
+.gallery__item img,
+.gallery__item > span,
+.gallery__item [data-nimg] {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  filter: grayscale(10%) contrast(1.05);
-  transition: filter 0.3s ease;
+  filter: grayscale(15%) contrast(1.05);
+  transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.case-study-gallery__item:hover img,
-.case-study-gallery__item:hover [data-nimg] {
-  filter: grayscale(0%) contrast(1);
+.gallery__item:hover img,
+.gallery__item:hover [data-nimg] {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-  .case-study-gallery {
+  .gallery__grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-rows: repeat(4, 1fr);
+    aspect-ratio: auto;
+    gap: 1rem;
+  }
+
+  .gallery__item {
+    aspect-ratio: 4/3;
+    min-height: 300px;
+  }
+
+  .gallery__title {
+    margin-bottom: 2rem;
   }
 }
 

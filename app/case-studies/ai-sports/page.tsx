@@ -21,6 +21,14 @@ export default function AISportsCampaignPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
+    // Add on-dark class to header elements for contrast
+    const logo = document.querySelector('.ui__logo')
+    const nav = document.querySelector('.ui__nav')
+    const menuBtn = document.querySelector('.ui__menu-btn')
+    if (logo) logo.classList.add('on-dark')
+    if (nav) nav.classList.add('on-dark')
+    if (menuBtn) menuBtn.classList.add('on-dark')
+
     // Smooth scroll reveal animations
     const reveals = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(
@@ -41,6 +49,10 @@ export default function AISportsCampaignPage() {
 
     return () => {
       observer.disconnect()
+      // Cleanup on-dark classes on unmount
+      if (logo) logo.classList.remove('on-dark')
+      if (nav) nav.classList.remove('on-dark')
+      if (menuBtn) menuBtn.classList.remove('on-dark')
     }
   }, [])
 
@@ -283,27 +295,18 @@ export default function AISportsCampaignPage() {
         {content.gallery && content.gallery.rows && content.gallery.rows.length > 0 && (
           <section className="case-study-section case-study-section--light">
             <div className="case-study-section__inner">
+              <h2 className="gallery__title">Gallery</h2>
               <div className="gallery__grid">
-                {content.gallery.rows.map((row, rowIndex) => (
-                  <div
-                    key={rowIndex}
-                    className={`gallery__row gallery__row--${row.layout}`}
-                  >
-                    {row.items.map((image, imageIndex) => (
-                      <div
-                        key={imageIndex}
-                        className={`gallery__item ${row.layout === 'asymmetric' && imageIndex === 0 ? 'gallery__item--wide' : ''}`}
-                      >
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          quality={image.quality ?? 90}
-                          sizes={image.sizes ?? '(max-width: 768px) 100vw, 33vw'}
-                          style={{ objectFit: 'cover' }}
-                        />
-                      </div>
-                    ))}
+                {content.gallery.rows.flatMap((row) => row.items).slice(0, 4).map((image, index) => (
+                  <div key={index} className="gallery__item">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      quality={image.quality ?? 90}
+                      sizes={image.sizes ?? '(max-width: 768px) 100vw, 50vw'}
+                      style={{ objectFit: 'cover' }}
+                    />
                   </div>
                 ))}
               </div>
