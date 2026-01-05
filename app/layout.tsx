@@ -14,6 +14,7 @@ import '@/lib/analytics-bot' // Initialize analytics bot
 import '@/lib/security-bot' // Initialize security bot
 import '@/lib/cleanup-bot' // Initialize cleanup bot
 import '@/lib/departments' // Initialize department managers (coordinates all bots)
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -105,6 +106,7 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/images/sections/photography-bg.webp" />
       </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
+        <GoogleAnalytics />
         <div className="grain" aria-hidden="true"></div>
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />

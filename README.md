@@ -58,6 +58,7 @@ Upload images to: `public/images/visuals/{category}/`
 ### Environment Variables
 Copy `.env.example` to `.env.local` and fill in:
 - `NEXT_PUBLIC_SITE_URL` - Your site URL
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` - Google Analytics Measurement ID (format: G-XXXXXXXXXX) (optional)
 - `RESEND_API_KEY` - For contact form (optional)
 - `CONTACT_EMAIL` - Contact form recipient
 - `FROM_EMAIL` - Sender email

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { trackFormSubmit } from '@/lib/gtag'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -33,6 +34,9 @@ export default function ContactForm() {
 
       setStatus('success')
       setFormData({ name: '', email: '', message: '' })
+      
+      // Track form submission in Google Analytics
+      trackFormSubmit('contact_form')
       
       // Reset success message after 5 seconds
       setTimeout(() => {

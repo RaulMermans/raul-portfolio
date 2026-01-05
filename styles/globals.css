@@ -2274,17 +2274,20 @@ html.homepage .footer {
 .services__grid {
   display: flex;
   flex: 1;
+  min-height: 500px;
+  align-items: stretch;
 }
 
 .service {
   flex: 1;
   border-right: 1px solid var(--ink);
-  padding: 1.5rem 1.25rem 2rem;
+  padding: 1.5rem 1.25rem 5rem;
   display: flex;
   flex-direction: column;
   position: relative;
   transition: flex 0.5s var(--ease);
-  overflow: hidden;
+  overflow: visible;
+  min-height: 400px;
 }
 
 .service:last-child {
@@ -2325,10 +2328,12 @@ html.homepage .footer {
   top: 1.5rem;
   left: 1.25rem;
   right: 1.25rem;
-  bottom: 4rem;
+  bottom: 5rem;
   display: flex;
   flex-direction: column;
   transition: opacity 0.4s var(--ease), visibility 0.4s;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .service__header {
