@@ -37,6 +37,5 @@ export * from './performance-monitor'
 // Utils (excluding isValidEmail which is in validation)
 export {
   cn,
-  formatDate,
 } from './utils'
 
