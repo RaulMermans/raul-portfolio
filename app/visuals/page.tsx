@@ -21,7 +21,17 @@ interface Work {
   status: string
 }
 
-const works: Work[] = [
+// Shuffle array function for randomizing order
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
+const worksData: Work[] = [
   {
     title: 'Astralis',
     year: '2024',
@@ -119,6 +129,9 @@ const works: Work[] = [
     status: 'Concept'
   }
 ]
+
+// Randomize the order of works on each page load
+const works = shuffleArray(worksData)
 
 export default function VisualsPage() {
   const [currentIndex, setCurrentIndex] = useState(0)

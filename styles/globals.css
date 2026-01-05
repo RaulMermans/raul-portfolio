@@ -1335,7 +1335,7 @@ html.homepage .footer {
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-  margin-top: var(--space-5);
+  margin-top: var(--space-3);
   margin-bottom: var(--space-4);
   position: relative;
   z-index: 1;
@@ -1429,7 +1429,7 @@ html.homepage .footer {
   justify-content: center;
   gap: var(--space-3);
   margin-top: var(--space-4);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-5);
   position: relative;
   z-index: 1;
   flex-wrap: wrap;

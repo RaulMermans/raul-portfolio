@@ -2,12 +2,27 @@
 
 import { useEffect, useRef } from 'react'
 
+interface Shape {
+  baseX: number
+  baseY: number
+  x: number
+  y: number
+  size: number
+  baseSize: number
+  opacity: number
+  baseOpacity: number
+  phase: 'normal' | 'exploding' | 'regenerating'
+  phaseTime: number
+  nextExplodeTime: number
+}
+
 export default function HeroBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const animationFrameRef = useRef<number>()
   const mousePositionRef = useRef({ x: 0.5, y: 0.5 })
   const targetMouseRef = useRef({ x: 0.5, y: 0.5 })
+  const shapesRef = useRef<Shape[]>([])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -133,41 +148,110 @@ export default function HeroBackground() {
       const mouseX = x * rect.width
       const mouseY = y * rect.height
       
-      const shapes = [
-        {
-          baseX: rect.width * 0.15,
-          baseY: rect.height * 0.25,
-          x: rect.width * 0.15,
-          y: rect.height * 0.25,
-          size: 200,
-          baseSize: 200,
-          opacity: 0.04,
-          baseOpacity: 0.04,
-        },
-        {
-          baseX: rect.width * 0.85,
-          baseY: rect.height * 0.75,
-          x: rect.width * 0.85,
-          y: rect.height * 0.75,
-          size: 160,
-          baseSize: 160,
-          opacity: 0.035,
-          baseOpacity: 0.035,
-        },
-        {
-          baseX: rect.width * 0.5,
-          baseY: rect.height * 0.5,
-          x: rect.width * 0.5,
-          y: rect.height * 0.5,
-          size: 120,
-          baseSize: 120,
-          opacity: 0.03,
-          baseOpacity: 0.03,
-        },
-      ]
+      // Initialize shapes with explode/regenerate animation state
+      if (!shapesRef.current.length) {
+        shapesRef.current = [
+          {
+            baseX: rect.width * 0.15,
+            baseY: rect.height * 0.25,
+            x: rect.width * 0.15,
+            y: rect.height * 0.25,
+            size: 200,
+            baseSize: 200,
+            opacity: 0.04,
+            baseOpacity: 0.04,
+            phase: 'normal' as const,
+            phaseTime: 0,
+            nextExplodeTime: Math.random() * 8000 + 4000, // Random time between 4-12 seconds
+          },
+          {
+            baseX: rect.width * 0.85,
+            baseY: rect.height * 0.75,
+            x: rect.width * 0.85,
+            y: rect.height * 0.75,
+            size: 160,
+            baseSize: 160,
+            opacity: 0.035,
+            baseOpacity: 0.035,
+            phase: 'normal' as const,
+            phaseTime: 0,
+            nextExplodeTime: Math.random() * 8000 + 4000,
+          },
+          {
+            baseX: rect.width * 0.5,
+            baseY: rect.height * 0.5,
+            x: rect.width * 0.5,
+            y: rect.height * 0.5,
+            size: 120,
+            baseSize: 120,
+            opacity: 0.03,
+            baseOpacity: 0.03,
+            phase: 'normal' as const,
+            phaseTime: 0,
+            nextExplodeTime: Math.random() * 8000 + 4000,
+          },
+        ]
+      }
 
-      // Make shapes "reach" toward cursor
-      shapes.forEach((shape) => {
+      const shapes = shapesRef.current
+      
+      // Update shapes based on animation phase
+      shapes.forEach((shape, index) => {
+        // Update base positions on resize (maintain proportional positions)
+        const positions = [
+          { x: 0.15, y: 0.25 },
+          { x: 0.85, y: 0.75 },
+          { x: 0.5, y: 0.5 },
+        ]
+        shape.baseX = rect.width * positions[index].x
+        shape.baseY = rect.height * positions[index].y
+
+        // Handle explode/regenerate animation
+        if (shape.phase === 'normal') {
+          shape.phaseTime += 16 // ~60fps
+          if (shape.phaseTime >= shape.nextExplodeTime) {
+            shape.phase = 'exploding'
+            shape.phaseTime = 0
+          }
+        } else if (shape.phase === 'exploding') {
+          shape.phaseTime += 16
+          const explodeDuration = 600 // 600ms explode
+          const progress = Math.min(shape.phaseTime / explodeDuration, 1)
+          
+          // Ease out for explosion
+          const easeOut = 1 - Math.pow(1 - progress, 3)
+          
+          // Scale up and fade out
+          shape.size = shape.baseSize * (1 + easeOut * 2.5) // Scale to 3.5x
+          shape.opacity = shape.baseOpacity * (1 - easeOut) // Fade to 0
+          
+          if (progress >= 1) {
+            shape.phase = 'regenerating'
+            shape.phaseTime = 0
+            shape.size = 0
+            shape.opacity = 0
+          }
+        } else if (shape.phase === 'regenerating') {
+          shape.phaseTime += 16
+          const regenerateDuration = 800 // 800ms regenerate
+          const progress = Math.min(shape.phaseTime / regenerateDuration, 1)
+          
+          // Ease out for regeneration
+          const easeOut = 1 - Math.pow(1 - progress, 2)
+          
+          // Scale from 0 and fade in
+          shape.size = shape.baseSize * easeOut
+          shape.opacity = shape.baseOpacity * easeOut
+          
+          if (progress >= 1) {
+            shape.phase = 'normal'
+            shape.phaseTime = 0
+            shape.nextExplodeTime = Math.random() * 8000 + 4000 // Random next explode time
+            shape.size = shape.baseSize
+            shape.opacity = shape.baseOpacity
+          }
+        }
+
         // Calculate direction to cursor
         const dx = mouseX - shape.baseX
         const dy = mouseY - shape.baseY
@@ -175,20 +259,28 @@ export default function HeroBackground() {
         const maxDistance = Math.sqrt(rect.width * rect.width + rect.height * rect.height)
         const normalizedDistance = Math.min(distance / maxDistance, 1)
         
-        // Reach intensity based on cursor proximity
-        const reachFactor = (1 - normalizedDistance) * reachIntensity * 0.6
+        // Reach intensity based on cursor proximity (only when not exploding/regenerating)
+        const reachFactor = shape.phase === 'normal' 
+          ? (1 - normalizedDistance) * reachIntensity * 0.6 
+          : 0
         
         // Move shape toward cursor (reaching effect)
         shape.x = shape.baseX + dx * reachFactor * 0.3
         shape.y = shape.baseY + dy * reachFactor * 0.3
         
         // Stretch shape toward cursor
-        const stretchX = 1 + Math.abs(dx / rect.width) * reachFactor * 0.5
-        const stretchY = 1 + Math.abs(dy / rect.height) * reachFactor * 0.5
+        const stretchX = shape.phase === 'normal'
+          ? 1 + Math.abs(dx / rect.width) * reachFactor * 0.5
+          : 1
+        const stretchY = shape.phase === 'normal'
+          ? 1 + Math.abs(dy / rect.height) * reachFactor * 0.5
+          : 1
         
-        // Grow and intensify on hover
-        shape.size = shape.baseSize + reachIntensity * 60
-        shape.opacity = shape.baseOpacity + reachIntensity * 0.05
+        // Grow and intensify on hover (only when normal)
+        if (shape.phase === 'normal') {
+          shape.size = shape.size + reachIntensity * 60
+          shape.opacity = shape.opacity + reachIntensity * 0.05
+        }
 
         ctx.save()
         ctx.globalAlpha = shape.opacity
