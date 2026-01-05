@@ -1427,7 +1427,7 @@ html.homepage .footer {
   justify-content: center;
   gap: var(--space-3);
   margin-top: var(--space-4);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-8);
   position: relative;
   z-index: 1;
   flex-wrap: wrap;
@@ -1458,7 +1458,7 @@ html.homepage .footer {
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-sm);
   letter-spacing: var(--tracking-wider);
-  text-transform: lowercase;
+  text-transform: uppercase;
   color: var(--ink);
   margin-top: 0;
   margin-bottom: var(--space-5);

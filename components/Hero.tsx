@@ -83,7 +83,7 @@ export default function Hero() {
       </div>
       
       <div className="hero__content">
-        <p className="hero__vibe-coded reveal">this website was fully vibe coded</p>
+        <p className="hero__vibe-coded reveal">THIS WEBSITE WAS FULLY VIBE CODED</p>
         
         <p className="label hero__label reveal reveal-delay-1">Visual Storyteller</p>
         
