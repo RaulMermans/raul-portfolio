@@ -409,25 +409,20 @@
    TEXT HIGHLIGHTING FOR CASE STUDIES
    ============================================= */
 .case-study-section .highlight {
-  position: relative;
   color: var(--ink);
-  font-weight: 500;
-  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.12) 0%, rgba(196, 30, 58, 0.12) 85%, transparent 85%);
-  padding: 0 0.15em;
-  transition: background 0.3s var(--ease);
+  font-weight: 600;
+  transition: color 0.3s var(--ease);
 }
 
 .case-study-section--dark .highlight {
   color: var(--cream);
-  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 85%, transparent 85%);
 }
 
-.case-study-section .highlight:hover,
-.case-study-section--dark .highlight:hover {
-  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.2) 0%, rgba(196, 30, 58, 0.2) 85%, transparent 85%);
+.case-study-section .highlight:hover {
+  color: var(--accent);
 }
 
 .case-study-section--dark .highlight:hover {
-  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.25) 85%, transparent 85%);
+  color: rgba(255, 255, 255, 0.9);
 }
 
