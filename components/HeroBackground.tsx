@@ -13,7 +13,7 @@ interface Shape {
   baseOpacity: number
   phase: 'normal' | 'exploding' | 'regenerating'
   phaseTime: number
-  nextExplodeTime: number
+  isHovered: boolean
 }
 
 export default function HeroBackground() {
@@ -162,7 +162,7 @@ export default function HeroBackground() {
             baseOpacity: 0.04,
             phase: 'normal' as const,
             phaseTime: 0,
-            nextExplodeTime: Math.random() * 8000 + 4000, // Random time between 4-12 seconds
+            isHovered: false,
           },
           {
             baseX: rect.width * 0.85,
@@ -175,7 +175,7 @@ export default function HeroBackground() {
             baseOpacity: 0.035,
             phase: 'normal' as const,
             phaseTime: 0,
-            nextExplodeTime: Math.random() * 8000 + 4000,
+            isHovered: false,
           },
           {
             baseX: rect.width * 0.5,
@@ -188,7 +188,7 @@ export default function HeroBackground() {
             baseOpacity: 0.03,
             phase: 'normal' as const,
             phaseTime: 0,
-            nextExplodeTime: Math.random() * 8000 + 4000,
+            isHovered: false,
           },
         ]
       }
@@ -206,15 +206,34 @@ export default function HeroBackground() {
         shape.baseX = rect.width * positions[index].x
         shape.baseY = rect.height * positions[index].y
 
-        // Handle explode/regenerate animation
-        if (shape.phase === 'normal') {
-          shape.phaseTime += 16 // ~60fps
-          if (shape.phaseTime >= shape.nextExplodeTime) {
+        // Check if mouse is hovering over this circle
+        const dxToMouse = mouseX - shape.x
+        const dyToMouse = mouseY - shape.y
+        const distanceToMouse = Math.sqrt(dxToMouse * dxToMouse + dyToMouse * dyToMouse)
+        const isCurrentlyHovered = distanceToMouse < shape.size * 1.2 // Hover threshold (120% of radius)
+        
+        // Detect hover state changes
+        if (isCurrentlyHovered && !shape.isHovered) {
+          // Just started hovering - trigger explode
+          shape.isHovered = true
+          if (shape.phase === 'normal' || shape.phase === 'regenerating') {
             shape.phase = 'exploding'
             shape.phaseTime = 0
           }
-        } else if (shape.phase === 'exploding') {
-          shape.phaseTime += 16
+        } else if (!isCurrentlyHovered && shape.isHovered) {
+          // Just stopped hovering - trigger regenerate
+          shape.isHovered = false
+          if (shape.phase === 'normal' || shape.phase === 'exploding') {
+            shape.phase = 'regenerating'
+            shape.phaseTime = 0
+            shape.size = 0
+            shape.opacity = 0
+          }
+        }
+        
+        // Handle explode/regenerate animation
+        if (shape.phase === 'exploding') {
+          shape.phaseTime += 16 // ~60fps
           const explodeDuration = 600 // 600ms explode
           const progress = Math.min(shape.phaseTime / explodeDuration, 1)
           
@@ -226,10 +245,13 @@ export default function HeroBackground() {
           shape.opacity = shape.baseOpacity * (1 - easeOut) // Fade to 0
           
           if (progress >= 1) {
-            shape.phase = 'regenerating'
-            shape.phaseTime = 0
-            shape.size = 0
-            shape.opacity = 0
+            // Explosion complete - stay exploded while hovered
+            if (!shape.isHovered) {
+              shape.phase = 'regenerating'
+              shape.phaseTime = 0
+              shape.size = 0
+              shape.opacity = 0
+            }
           }
         } else if (shape.phase === 'regenerating') {
           shape.phaseTime += 16
@@ -246,7 +268,6 @@ export default function HeroBackground() {
           if (progress >= 1) {
             shape.phase = 'normal'
             shape.phaseTime = 0
-            shape.nextExplodeTime = Math.random() * 8000 + 4000 // Random next explode time
             shape.size = shape.baseSize
             shape.opacity = shape.baseOpacity
           }
