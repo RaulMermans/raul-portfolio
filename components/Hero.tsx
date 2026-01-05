@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import HeroBackground from './HeroBackground'
 
 export default function Hero() {
   const orbMainRef = useRef<HTMLDivElement>(null)
@@ -74,6 +75,7 @@ export default function Hero() {
       className="hero" 
       aria-labelledby="hero-title"
     >
+      <HeroBackground />
       <div className="hero__gradient" aria-hidden="true">
         <div ref={orbMainRef} className="hero__orb hero__orb--main" id="orb-main"></div>
         <div ref={orbSecondaryRef} className="hero__orb hero__orb--secondary" id="orb-secondary"></div>
@@ -81,7 +83,9 @@ export default function Hero() {
       </div>
       
       <div className="hero__content">
-        <p className="label hero__label reveal">Visual Storyteller</p>
+        <p className="hero__vibe-coded reveal">this website was fully vibe coded</p>
+        
+        <p className="label hero__label reveal reveal-delay-1">Visual Storyteller</p>
         
         <h1 id="hero-title" className="hero__name">
           <span className="hero__line">
@@ -107,11 +111,11 @@ export default function Hero() {
         </div>
         
         <div className="hero__cta-group reveal reveal-delay-2">
-          <Link href="/case-studies" className="hero__cta hero__cta--primary">
+          <Link href="/#work" className="hero__cta hero__cta--primary">
             <span>View Work</span>
             <span className="hero__cta-arrow">→</span>
           </Link>
-          <Link href="/about#contact" className="hero__cta hero__cta--secondary">
+          <Link href="/#contact" className="hero__cta hero__cta--secondary">
             <span>Get in Touch</span>
           </Link>
         </div>
@@ -123,8 +127,6 @@ export default function Hero() {
           <span className="hero__service-divider">·</span>
           <span className="hero__service">AI-Powered Creatives</span>
         </div>
-        
-        <p className="hero__vibe-coded reveal reveal-delay-4">this website was fully vibe coded</p>
       </div>
       
       <button 
