@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
+import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
@@ -106,7 +107,9 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/images/sections/photography-bg.webp" />
       </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
-        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <div className="grain" aria-hidden="true"></div>
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />
