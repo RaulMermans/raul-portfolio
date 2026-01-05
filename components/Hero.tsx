@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import HeroBackground from './HeroBackground'
-import CursorTrail from './CursorTrail'
+import HeroHoverEffect from './HeroHoverEffect'
 
 export default function Hero() {
   const orbMainRef = useRef<HTMLDivElement>(null)
@@ -115,7 +115,7 @@ export default function Hero() {
       className="hero" 
       aria-labelledby="hero-title"
     >
-      <CursorTrail />
+      <HeroHoverEffect />
       <HeroBackground />
       <div className="hero__gradient" aria-hidden="true">
         <div ref={orbMainRef} className="hero__orb hero__orb--main" id="orb-main"></div>
