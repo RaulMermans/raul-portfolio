@@ -14,6 +14,7 @@ import '@/lib/accessibility-bot' // Initialize accessibility bot
 import '@/lib/analytics-bot' // Initialize analytics bot
 import '@/lib/security-bot' // Initialize security bot
 import '@/lib/cleanup-bot' // Initialize cleanup bot
+import '@/lib/animation-expert' // Initialize animation expert bot
 import '@/lib/departments' // Initialize department managers (coordinates all bots)
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 

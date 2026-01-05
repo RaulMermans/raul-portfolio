@@ -1,14 +1,17 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import HeroBackground from './HeroBackground'
+import CursorTrail from './CursorTrail'
 
 export default function Hero() {
   const orbMainRef = useRef<HTMLDivElement>(null)
   const orbSecondaryRef = useRef<HTMLDivElement>(null)
   const orbTertiaryRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
+  const primaryCtaRef = useRef<HTMLDivElement>(null)
+  const secondaryCtaRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const hero = heroRef.current
@@ -29,6 +32,7 @@ export default function Hero() {
           const x = (e.clientX - cachedRect.left) / cachedRect.width - 0.5
           const y = (e.clientY - cachedRect.top) / cachedRect.height - 0.5
 
+          // Orb parallax
           if (orbMainRef.current) {
             orbMainRef.current.style.transform = `translate(calc(-50% + ${x * 30}px), calc(-50% + ${y * 30}px))`
           }
@@ -38,6 +42,42 @@ export default function Hero() {
           if (orbTertiaryRef.current) {
             orbTertiaryRef.current.style.transform = `translate(${x * 20}px, ${y * 20}px)`
           }
+
+          // Magnetic hover effect for CTAs - Awwwards-level interaction
+          if (primaryCtaRef.current) {
+            const rect = primaryCtaRef.current.getBoundingClientRect()
+            const centerX = rect.left + rect.width / 2
+            const centerY = rect.top + rect.height / 2
+            const distanceX = e.clientX - centerX
+            const distanceY = e.clientY - centerY
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+            const maxDistance = 120 // Magnetic field radius
+            
+            if (distance < maxDistance) {
+              const strength = (1 - distance / maxDistance) * 0.4 // Increased strength for more noticeable effect
+              primaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.02)`
+            } else {
+              primaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
+            }
+          }
+
+          if (secondaryCtaRef.current) {
+            const rect = secondaryCtaRef.current.getBoundingClientRect()
+            const centerX = rect.left + rect.width / 2
+            const centerY = rect.top + rect.height / 2
+            const distanceX = e.clientX - centerX
+            const distanceY = e.clientY - centerY
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+            const maxDistance = 120
+            
+            if (distance < maxDistance) {
+              const strength = (1 - distance / maxDistance) * 0.4
+              secondaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.02)`
+            } else {
+              secondaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
+            }
+          }
+
           ticking = false
         })
         ticking = true
@@ -75,6 +115,7 @@ export default function Hero() {
       className="hero" 
       aria-labelledby="hero-title"
     >
+      <CursorTrail />
       <HeroBackground />
       <div className="hero__gradient" aria-hidden="true">
         <div ref={orbMainRef} className="hero__orb hero__orb--main" id="orb-main"></div>
@@ -111,13 +152,23 @@ export default function Hero() {
         </div>
         
         <div className="hero__cta-group reveal reveal-delay-2">
-          <Link href="/#work" className="hero__cta hero__cta--primary">
-            <span>View Work</span>
-            <span className="hero__cta-arrow">→</span>
-          </Link>
-          <Link href="/#contact" className="hero__cta hero__cta--secondary">
-            <span>Get in Touch</span>
-          </Link>
+          <div ref={primaryCtaRef} className="hero__cta-wrapper">
+            <Link 
+              href="/#work" 
+              className="hero__cta hero__cta--primary"
+            >
+              <span>View Work</span>
+              <span className="hero__cta-arrow">→</span>
+            </Link>
+          </div>
+          <div ref={secondaryCtaRef} className="hero__cta-wrapper">
+            <Link 
+              href="/#contact" 
+              className="hero__cta hero__cta--secondary"
+            >
+              <span>Get in Touch</span>
+            </Link>
+          </div>
         </div>
       </div>
       

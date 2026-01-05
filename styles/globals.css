@@ -1163,6 +1163,20 @@ html.homepage .footer {
   transform: translateZ(0);
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  mix-blend-mode: multiply;
+}
+
+/* Cursor Trail - Awwwards-level animation */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
 }
 
 .hero__gradient {
@@ -1343,6 +1357,12 @@ html.homepage .footer {
   flex-shrink: 0;
 }
 
+.hero__cta-wrapper {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
 .hero__cta {
   display: inline-flex;
   align-items: center;
@@ -1359,10 +1379,11 @@ html.homepage .footer {
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s var(--ease);
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), all 0.4s var(--ease);
   cursor: pointer;
   min-width: 160px;
   z-index: 1;
+  will-change: transform;
 }
 
 .hero__cta::before {

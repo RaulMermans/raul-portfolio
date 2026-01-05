@@ -70,6 +70,11 @@ export const DEPARTMENTS: Record<string, Department> = {
     description: 'Handles documentation, README files, and guides',
     capabilities: ['documentation', 'readme', 'guides', 'docs'],
   },
+  'animation': {
+    name: 'Animation & UI Expert',
+    description: 'Specialized in award-winning animations, microinteractions, and Awwwards-level UI design',
+    capabilities: ['animations', 'microinteractions', 'ui design', 'transitions', 'hover effects', 'scroll animations', 'award-winning design'],
+  },
 }
 
 /**
