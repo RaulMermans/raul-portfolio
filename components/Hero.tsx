@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import HeroBackground from './HeroBackground'
 import CursorTrail from './CursorTrail'
