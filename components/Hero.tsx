@@ -43,7 +43,7 @@ export default function Hero() {
             orbTertiaryRef.current.style.transform = `translate(${x * 20}px, ${y * 20}px)`
           }
 
-          // Magnetic hover effect for CTAs - Awwwards-level interaction
+          // Magnetic hover effect for CTAs - Subtle, smooth interaction
           if (primaryCtaRef.current) {
             const rect = primaryCtaRef.current.getBoundingClientRect()
             const centerX = rect.left + rect.width / 2
@@ -51,11 +51,11 @@ export default function Hero() {
             const distanceX = e.clientX - centerX
             const distanceY = e.clientY - centerY
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-            const maxDistance = 120 // Magnetic field radius
+            const maxDistance = 150 // Slightly larger but more subtle
             
             if (distance < maxDistance) {
-              const strength = (1 - distance / maxDistance) * 0.4 // Increased strength for more noticeable effect
-              primaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.02)`
+              const strength = (1 - distance / maxDistance) * 0.2 // Reduced strength for subtlety
+              primaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.01)`
             } else {
               primaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
             }
@@ -68,11 +68,11 @@ export default function Hero() {
             const distanceX = e.clientX - centerX
             const distanceY = e.clientY - centerY
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-            const maxDistance = 120
+            const maxDistance = 150
             
             if (distance < maxDistance) {
-              const strength = (1 - distance / maxDistance) * 0.4
-              secondaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.02)`
+              const strength = (1 - distance / maxDistance) * 0.2
+              secondaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.01)`
             } else {
               secondaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
             }
