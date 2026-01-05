@@ -120,13 +120,21 @@ export default function AISportsCampaignPage() {
                   </div>
                 )}
                 <div className="overview__content">
-                  <p className="overview__text">{content.overview.description}</p>
+                  <p className="overview__text">
+                    {content.overview.description.split(/(Creative Direction Engine|campaign-grade coherence|consistent campaigns|swap the model and wardrobe|lighting, environment, and shot DNA|repeatable loop)/gi).map((part, i) => {
+                      const isHighlight = /Creative Direction Engine|campaign-grade coherence|consistent campaigns|swap the model and wardrobe|lighting, environment, and shot DNA|repeatable loop/i.test(part);
+                      return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                    })}
+                  </p>
                   {content.overview.intentQuote && (
                     <p
                       className="overview__intent"
                       data-gold={isGold ? '' : undefined}
                     >
-                      {content.overview.intentQuote}
+                      {content.overview.intentQuote.split(/(slot machine outcomes|system you can run on purpose)/gi).map((part, i) => {
+                        const isHighlight = /slot machine outcomes|system you can run on purpose/i.test(part);
+                        return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                      })}
                     </p>
                   )}
                 </div>
@@ -141,7 +149,12 @@ export default function AISportsCampaignPage() {
             <div className="case-study-section__inner">
               <h2 className="challenge__quote">{content.challenge.quote}</h2>
               <div className="challenge__divider"></div>
-              <p className="challenge__text">{content.challenge.context}</p>
+              <p className="challenge__text">
+                {content.challenge.context.split(/(drift|continuity|campaigns|scene stays constant|casting and wardrobe|editable)/gi).map((part, i) => {
+                  const isHighlight = /drift|continuity|campaigns|scene stays constant|casting and wardrobe|editable/i.test(part);
+                  return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                })}
+              </p>
               {content.challenge.successCriteria && content.challenge.successCriteria.length > 0 && (
                 <div className="challenge__criteria">
                   <div className="challenge__criteria-label">Success Criteria:</div>
@@ -183,7 +196,12 @@ export default function AISportsCampaignPage() {
           <section className="case-study-section case-study-section--light">
             <div className="case-study-section__inner">
               <div className="approach__header">
-                <p className="approach__text">{content.approach.text}</p>
+                <p className="approach__text">
+                  {content.approach.text.split(/(system, not a poster|campaign consistency|constants vs variables|non-negotiables|controlled flexibility|repeatable pipeline|continuity over novelty|human-led|realism, brand fit, and product readability|campaigns are edited)/gi).map((part, i) => {
+                    const isHighlight = /system, not a poster|campaign consistency|constants vs variables|non-negotiables|controlled flexibility|repeatable pipeline|continuity over novelty|human-led|realism, brand fit, and product readability|campaigns are edited/i.test(part);
+                    return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                  })}
+                </p>
                 {content.approach.tools && content.approach.tools.length > 0 && (
                   <div className="approach__tools">
                     <div className="approach__tools-label">Tools</div>
@@ -315,18 +333,28 @@ export default function AISportsCampaignPage() {
         )}
 
         {/* Results Section */}
-        {content.results && (
-          <section className="case-study-section case-study-section--dark">
-            <div className="case-study-section__inner">
-              <div className="results">
-                <p className="results__text">{content.results.text}</p>
-                <div className="results__takeaway" data-gold={isGold ? '' : undefined}>
-                  <p className="results__takeaway-text">{content.results.takeawayQuote}</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+              {content.results && (
+                <section className="case-study-section case-study-section--dark">
+                  <div className="case-study-section__inner">
+                    <div className="results">
+                      <p className="results__text">
+                        {content.results.text.split(/(campaign iteration|fast and controllable|coherent variants|repeatable creative loop|judgment, not randomness|campaign-level decisions)/gi).map((part, i) => {
+                          const isHighlight = /campaign iteration|fast and controllable|coherent variants|repeatable creative loop|judgment, not randomness|campaign-level decisions/i.test(part);
+                          return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                        })}
+                      </p>
+                      <div className="results__takeaway" data-gold={isGold ? '' : undefined}>
+                        <p className="results__takeaway-text">
+                          {content.results.takeawayQuote.split(/(automated infrastructure|repeatable creative direction)/gi).map((part, i) => {
+                            const isHighlight = /automated infrastructure|repeatable creative direction/i.test(part);
+                            return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
 
         {/* Next Case Study */}
         {nextCaseStudy && (

@@ -55,7 +55,7 @@ export default function About() {
             Digital Systems & Creative Direction
           </h2>
           <p className="about__text reveal reveal-delay-2">
-            I&apos;m a self-taught builder obsessed with how stories and systems fit together. I&apos;ve taken my business background and turned it into a practice of creating digital environments where AI and human intuition work side-by-side.
+            I&apos;m a <span className="highlight">self-taught builder</span> obsessed with how <span className="highlight">stories and systems</span> fit together. I&apos;ve taken my business background and turned it into a practice of creating <span className="highlight">digital environments</span> where <span className="highlight">AI and human intuition</span> work side-by-side.
           </p>
           
           <Link 

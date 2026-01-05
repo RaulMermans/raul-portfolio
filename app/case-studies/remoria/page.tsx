@@ -120,13 +120,21 @@ export default function RemoriaPage() {
                   </div>
                 )}
                 <div className="overview__content">
-                  <p className="overview__text">{content.overview.description}</p>
+                  <p className="overview__text">
+                    {content.overview.description.split(/(story-driven|visual and verbal world|scent functions like a relic|understated luxury identity|structure, texture, and silence)/gi).map((part, i) => {
+                      const isHighlight = /story-driven|visual and verbal world|scent functions like a relic|understated luxury identity|structure, texture, and silence/i.test(part);
+                      return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                    })}
+                  </p>
                   {content.overview.intentQuote && (
                     <p
                       className="overview__intent"
                       data-gold={isGold ? '' : undefined}
                     >
-                      {content.overview.intentQuote}
+                      {content.overview.intentQuote.split(/(artifact rediscovered|warm, silent, and unforgettable)/gi).map((part, i) => {
+                        const isHighlight = /artifact rediscovered|warm, silent, and unforgettable/i.test(part);
+                        return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                      })}
                     </p>
                   )}
                 </div>
@@ -141,7 +149,12 @@ export default function RemoriaPage() {
             <div className="case-study-section__inner">
               <h2 className="challenge__quote">{content.challenge.quote}</h2>
               <div className="challenge__divider"></div>
-              <p className="challenge__text">{content.challenge.context}</p>
+              <p className="challenge__text">
+                {content.challenge.context.split(/(memory was a brand|luxury without spectacle|emotion, restraint, and legacy|monumental yet intimate|classical in reference|modern in execution|Mediterranean light|coherence|typography, palette, textures, and copy|quiet weight|felt before it was explained)/gi).map((part, i) => {
+                  const isHighlight = /memory was a brand|luxury without spectacle|emotion, restraint, and legacy|monumental yet intimate|classical in reference|modern in execution|Mediterranean light|coherence|typography, palette, textures, and copy|quiet weight|felt before it was explained/i.test(part);
+                  return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                })}
+              </p>
               {content.challenge.successCriteria && content.challenge.successCriteria.length > 0 && (
                 <div className="challenge__criteria">
                   <div className="challenge__criteria-label">Success Criteria:</div>
@@ -183,7 +196,12 @@ export default function RemoriaPage() {
           <section className="case-study-section case-study-section--light">
             <div className="case-study-section__inner">
               <div className="approach__header">
-                <p className="approach__text">{content.approach.text}</p>
+                <p className="approach__text">
+                  {content.approach.text.split(/(Luxury as restraint|narrative strategy|memory, myth, and place|minimal, sculptural identity|Roman-inspired serif|Mediterranean warmth|stone, patina, and gilded accents|time-worn elegance|sparse, lyrical, and deliberate|more suggestion than statement)/gi).map((part, i) => {
+                    const isHighlight = /Luxury as restraint|narrative strategy|memory, myth, and place|minimal, sculptural identity|Roman-inspired serif|Mediterranean warmth|stone, patina, and gilded accents|time-worn elegance|sparse, lyrical, and deliberate|more suggestion than statement/i.test(part);
+                    return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                  })}
+                </p>
                 {content.approach.tools && content.approach.tools.length > 0 && (
                   <div className="approach__tools">
                     <div className="approach__tools-label">Tools</div>
@@ -287,9 +305,19 @@ export default function RemoriaPage() {
           <section className="case-study-section case-study-section--dark">
             <div className="case-study-section__inner">
               <div className="results">
-                <p className="results__text">{content.results.text}</p>
+                <p className="results__text">
+                  {content.results.text.split(/(complete luxury brand world|identity, voice, and aesthetic system|scale without losing|emotional restraint|communicate premium|foundation for future fragrances|chapters of the same mythology)/gi).map((part, i) => {
+                    const isHighlight = /complete luxury brand world|identity, voice, and aesthetic system|scale without losing|emotional restraint|communicate premium|foundation for future fragrances|chapters of the same mythology/i.test(part);
+                    return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                  })}
+                </p>
                 <div className="results__takeaway" data-gold={isGold ? '' : undefined}>
-                  <p className="results__takeaway-text">{content.results.takeawayQuote}</p>
+                  <p className="results__takeaway-text">
+                    {content.results.takeawayQuote.split(/(Luxury isn't loud|it lingers)/gi).map((part, i) => {
+                      const isHighlight = /Luxury isn't loud|it lingers/i.test(part);
+                      return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
+                    })}
+                  </p>
                 </div>
               </div>
             </div>

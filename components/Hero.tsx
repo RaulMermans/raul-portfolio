@@ -89,13 +89,23 @@ export default function Hero() {
           </span>
         </h1>
         
-        <p className="hero__role">Photography · Brand Identity · AI-Powered Creatives</p>
+        <div className="hero__value">
+          <p className="hero__value-text">
+            Building brand systems that turn <span className="hero__value-highlight">cultural momentum</span> into <span className="hero__value-highlight">business outcomes</span>
+          </p>
+        </div>
         
-        <p className="hero__tagline">&quot;Crafting visual stories that move people and elevate brands.&quot;</p>
+        <div className="hero__services">
+          <span className="hero__service">Photography</span>
+          <span className="hero__service-divider">·</span>
+          <span className="hero__service">Brand Identity</span>
+          <span className="hero__service-divider">·</span>
+          <span className="hero__service">AI-Powered Creatives</span>
+        </div>
       </div>
       
       <div className="hero__scroll" aria-hidden="true">
-        <span className="hero__scroll-text">Scroll</span>
+        <span className="hero__scroll-text">Explore</span>
         <div className="hero__scroll-line"></div>
       </div>
     </section>

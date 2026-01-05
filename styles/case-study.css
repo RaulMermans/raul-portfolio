@@ -82,6 +82,8 @@
   text-transform: uppercase;
   color: var(--cream, #f5f0eb);
   margin-bottom: 1.5rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5), 0 4px 40px rgba(0, 0, 0, 0.3);
+  font-weight: 400;
 }
 
 .case-study-hero__subtitle {
@@ -268,6 +270,19 @@
   color: var(--ink, #1a1714);
   margin-bottom: 3rem;
   text-align: center;
+  font-weight: 400;
+  position: relative;
+}
+
+.gallery__title::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--accent, #c41e3a);
 }
 
 .gallery__grid {
@@ -388,5 +403,31 @@
 .case-study-reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =============================================
+   TEXT HIGHLIGHTING FOR CASE STUDIES
+   ============================================= */
+.case-study-section .highlight {
+  position: relative;
+  color: var(--ink);
+  font-weight: 500;
+  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.12) 0%, rgba(196, 30, 58, 0.12) 85%, transparent 85%);
+  padding: 0 0.15em;
+  transition: background 0.3s var(--ease);
+}
+
+.case-study-section--dark .highlight {
+  color: var(--cream);
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 85%, transparent 85%);
+}
+
+.case-study-section .highlight:hover,
+.case-study-section--dark .highlight:hover {
+  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.2) 0%, rgba(196, 30, 58, 0.2) 85%, transparent 85%);
+}
+
+.case-study-section--dark .highlight:hover {
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.25) 85%, transparent 85%);
 }
 

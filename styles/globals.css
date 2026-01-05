@@ -896,14 +896,19 @@ html.homepage .footer {
     margin-bottom: var(--space-4);
   }
 
-  .hero__role {
-    font-size: clamp(0.875rem, 2.5vw, 1rem);
-    margin-bottom: var(--space-3);
+  .hero__value-text {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    max-width: 100%;
+    padding: 0 var(--space-2);
   }
 
-  .hero__tagline {
-    font-size: clamp(0.875rem, 2.5vw, 1rem);
-    max-width: 90%;
+  .hero__services {
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+  }
+
+  .hero__service {
+    font-size: clamp(0.6875rem, 2vw, 0.75rem);
   }
 
   /* About Section Mobile */
@@ -1198,13 +1203,8 @@ html.homepage .footer {
 .hero__line:nth-child(2) .hero__letter:nth-child(6) { animation-delay: 0.75s; }
 .hero__line:nth-child(2) .hero__letter:nth-child(7) { animation-delay: 0.8s; }
 
-.hero__role {
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-top: var(--space-4);
+.hero__value {
+  margin-top: var(--space-6);
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 0.8s var(--ease-out) 1s forwards;
@@ -1212,21 +1212,61 @@ html.homepage .footer {
   z-index: 1;
 }
 
-.hero__tagline {
+.hero__value-text {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-style: italic;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
   color: var(--ink-soft);
+  max-width: 50ch;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.hero__value-highlight {
+  color: var(--ink);
+  font-weight: 500;
+  position: relative;
+  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.1) 0%, rgba(196, 30, 58, 0.1) 85%, transparent 85%);
+  padding: 0 0.2em;
+  transition: background 0.3s var(--ease);
+}
+
+.hero__value-highlight:hover {
+  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.15) 0%, rgba(196, 30, 58, 0.15) 85%, transparent 85%);
+}
+
+.hero__services {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
   margin-top: var(--space-6);
-  max-width: 36ch;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5;
   opacity: 0;
   transform: translateY(20px);
-  animation: slideUp 0.8s var(--ease-out) 1.15s forwards;
+  animation: slideUp 0.8s var(--ease-out) 1.2s forwards;
   position: relative;
   z-index: 1;
+  flex-wrap: wrap;
+}
+
+.hero__service {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+  cursor: default;
+}
+
+.hero__service:hover {
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.hero__service-divider {
+  color: var(--ink-faint);
+  font-size: var(--text-xs);
 }
 
 .hero__scroll {
@@ -1253,13 +1293,26 @@ html.homepage .footer {
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--ink-faint);
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+  cursor: pointer;
+}
+
+.hero__scroll:hover .hero__scroll-text {
+  color: var(--ink);
+  transform: translateY(-3px);
 }
 
 .hero__scroll-line {
   width: 1px;
-  height: 40px;
-  background: linear-gradient(var(--ink-faint), transparent);
+  height: 50px;
+  background: linear-gradient(to bottom, var(--ink-faint) 0%, rgba(196, 30, 58, 0.3) 50%, transparent 100%);
   animation: scrollPulse 2.5s ease-in-out infinite 1.8s;
+  transition: height 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.hero__scroll:hover .hero__scroll-line {
+  height: 60px;
+  background: linear-gradient(to bottom, var(--accent) 0%, rgba(196, 30, 58, 0.5) 50%, transparent 100%);
 }
 
 @keyframes scrollPulse {
@@ -2150,9 +2203,9 @@ html.homepage .footer {
     font-size: clamp(2.5rem, 12vw, 5rem);
   }
   
-  .hero__tagline {
+  .hero__value-text {
     font-size: var(--text-base);
-    max-width: 28ch;
+    max-width: 100%;
   }
   
   .hero__orb--main {
@@ -5794,6 +5847,22 @@ a[href^="/"]:hover {
   max-width: 65ch;
 }
 
+/* Highlight key words in About text */
+.about-hero__text .highlight,
+.about__text .highlight {
+  position: relative;
+  color: var(--ink);
+  font-weight: 500;
+  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.08) 0%, rgba(196, 30, 58, 0.08) 85%, transparent 85%);
+  padding: 0 0.15em;
+  transition: background 0.3s var(--ease);
+}
+
+.about-hero__text .highlight:hover,
+.about__text .highlight:hover {
+  background: linear-gradient(to bottom, transparent 0%, rgba(196, 30, 58, 0.15) 0%, rgba(196, 30, 58, 0.15) 85%, transparent 85%);
+}
+
 @media (max-width: 1024px) {
   .about-hero__container {
     grid-template-columns: 1fr;
@@ -6318,12 +6387,16 @@ a[href^="/"]:hover {
     hyphens: auto;
   }
   
-  .hero__role,
-  .hero__tagline {
-    font-size: clamp(0.875rem, 3vw, 1rem);
+  .hero__value-text {
+    font-size: clamp(1rem, 3vw, 1.25rem);
     padding: 0 var(--space-2);
-    line-height: 1.5;
+    line-height: 1.6;
     max-width: 100%;
+  }
+
+  .hero__services {
+    gap: var(--space-2);
+    margin-top: var(--space-5);
   }
   
   .hero__gradient,
@@ -9164,17 +9237,6 @@ body:has(.case-studies-main) .page-transition {
   overflow-wrap: break-word;
 }
 
-.case-study-hero .hero__tagline {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: var(--space-4);
-  max-width: 40ch;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: heroReveal 0.8s var(--ease) 0.45s forwards;
-}
 
 .case-study-hero .hero__subtitle {
   font-family: var(--font-mono);
@@ -9445,7 +9507,7 @@ body:has(.case-studies-main) .page-transition {
 /* Challenge Section */
 .challenge__quote {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
   line-height: 1.15;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
@@ -9455,6 +9517,9 @@ body:has(.case-studies-main) .page-transition {
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;
+  font-weight: 400;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4), 0 4px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .challenge__divider {
@@ -10235,6 +10300,8 @@ body:has(.case-studies-main) .page-transition {
   max-width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  font-weight: 400;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5), 0 4px 40px rgba(0, 0, 0, 0.3);
 }
 
 .next__link:hover .next__title {
@@ -10498,9 +10565,9 @@ body:has(.section--dark) {
     margin-bottom: var(--space-4);
   }
 
-  .hero__tagline {
-    font-size: clamp(0.9375rem, 3vw, 1.125rem);
-    margin-bottom: var(--space-3);
+  .hero__value-text {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    margin-bottom: var(--space-4);
   }
 
   .hero__subtitle {
