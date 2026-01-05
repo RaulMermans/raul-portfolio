@@ -85,8 +85,6 @@ export default function Hero() {
       <div className="hero__content">
         <p className="hero__vibe-coded reveal">THIS WEBSITE WAS FULLY VIBE CODED</p>
         
-        <p className="label hero__label reveal reveal-delay-1">Visual Storyteller</p>
-        
         <h1 id="hero-title" className="hero__name">
           <span className="hero__line">
             {nameLetters.map((letter, i) => (
@@ -104,10 +102,12 @@ export default function Hero() {
           </span>
         </h1>
         
-        <div className="hero__value reveal reveal-delay-1">
-          <p className="hero__value-text">
-            Building brand systems that turn <span className="hero__value-highlight">cultural momentum</span> into <span className="hero__value-highlight">business outcomes</span>
-          </p>
+        <div className="hero__services reveal reveal-delay-1">
+          <span className="hero__service">Photography</span>
+          <span className="hero__service-divider">·</span>
+          <span className="hero__service">Brand Identity</span>
+          <span className="hero__service-divider">·</span>
+          <span className="hero__service">AI-Powered Creatives</span>
         </div>
         
         <div className="hero__cta-group reveal reveal-delay-2">
@@ -118,14 +118,6 @@ export default function Hero() {
           <Link href="/#contact" className="hero__cta hero__cta--secondary">
             <span>Get in Touch</span>
           </Link>
-        </div>
-        
-        <div className="hero__services reveal reveal-delay-3">
-          <span className="hero__service">Photography</span>
-          <span className="hero__service-divider">·</span>
-          <span className="hero__service">Brand Identity</span>
-          <span className="hero__service-divider">·</span>
-          <span className="hero__service">AI-Powered Creatives</span>
         </div>
       </div>
       

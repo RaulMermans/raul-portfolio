@@ -69,6 +69,54 @@ const works: Work[] = [
     note: 'A single eye is cropped to fill the square, turning skin, lash line, and iris into a hard-edged landscape of color. The iris reads as neon green with darker ringed structure, set against a cooler cyan white and surrounded by saturated red-orange tones that deepen into near-black shadow at the lid. A dense crosshatched grain and scattered speckling sit over the entire image, giving it the look of a distressed scan or printed fabric rather than a clean photo. The "Parental Advisory: Explicit Content" mark in the top-right completes the packaging language and heightens the sense of intensity and surveillance.',
     provenance: 'Client commission, 2024',
     status: 'Licensed'
+  },
+  {
+    title: 'Dungeon Master\'s Torch',
+    year: '2024',
+    type: 'AI Poster Concept',
+    catalog: 'RM-VC-24-001',
+    image: '/images/visuals/visual-concepts/D&D_world.webp',
+    alt: 'AI poster concept showing a party advancing through blue vapor led by a torch, with colossal reptilian heads emerging in a staggered procession, warm orange light falling into cool cyan.',
+    medium: 'AI-generated image; AI-assisted concept poster',
+    dimensions: '—',
+    support: '—',
+    edition: '—',
+    series: 'Visual Concepts',
+    note: 'A party advances through blue vapor, led by a single torch whose heat defines the entire scene. Its light rakes across stone and grit, revealing colossal reptilian heads emerging in a staggered procession—snouts, teeth, and ridged brows repeating with a measured cadence. The figures remain mostly in silhouette, compact and forward-leaning, their scale calibrated against the torch\'s small, unwavering flame. Warm orange falls into cool cyan with abrupt edges, so the image reads as a sequence of visibility: what the fire touches becomes real; what it doesn\'t recedes into atmosphere. The composition keeps the upper field spare, letting fog operate like a moving curtain over the creatures\' faces. Held at human height, the torch becomes a tool of agency—light as rule-set, peril as what waits just beyond its reach.',
+    provenance: 'Personal exploration, 2024',
+    status: 'Concept'
+  },
+  {
+    title: 'Desert Eclipse',
+    year: '2024',
+    type: 'AI Poster Concept',
+    catalog: 'RM-VC-24-002',
+    image: '/images/visuals/visual-concepts/Dune_poster_concept.webp',
+    alt: 'AI poster concept showing three figures cresting a dune ridge under an eclipsed sun, with a serpentine surge gathering behind them in amber light and blue-green shadow.',
+    medium: 'AI-generated image; AI-assisted concept poster',
+    dimensions: '—',
+    support: '—',
+    edition: '—',
+    series: 'Visual Concepts',
+    note: 'Under an eclipsed sun, three figures crest a dune ridge, their silhouettes held against wind-driven dust. A dense field of amber light meets a cooler blue-green shadow, giving the scene a split atmosphere—heat at the horizon, night in the foreground. The eclipse functions as a hard graphic anchor, while the ridge line carries the eye on a single, rising diagonal. Behind the figures, a towering serpentine surge gathers from sand and haze, its contour reading as a geological force before it resolves as a creature. Fine striations and soft drift lines across the dunes establish scale without detail overload, keeping the human forms legible at distance. The image holds tension through restraint: minimal landmarks, a distant settlement swallowed by air, and a landscape that never fully settles. It frames endurance as an act of navigation across shifting ground.',
+    provenance: 'Personal exploration, 2024',
+    status: 'Concept'
+  },
+  {
+    title: 'Storm Rift',
+    year: '2024',
+    type: 'AI Poster Concept',
+    catalog: 'RM-VC-24-003',
+    image: '/images/visuals/visual-concepts/Oddisey_poster_concept.webp',
+    alt: 'AI poster concept showing a lone figure standing on wet black rock with a staff, back turned, as rain slants through the frame and a storm mass opens into a bright rift above the sea.',
+    medium: 'AI-generated image; AI-assisted concept poster',
+    dimensions: '—',
+    support: '—',
+    edition: '—',
+    series: 'Visual Concepts',
+    note: 'A lone figure stands on wet black rock, back turned, a long staff held upright as rain slants through the frame. The sea breaks hard at the shoreline, throwing white spray that catches stray embers of warm light. Farther out, a small sailboat rides the chop, reduced to a dark silhouette against mist. Above, the sky becomes the image\'s engine: a dense, rotating storm mass opens into a bright rift, sending angled shafts down to the water like a seam cut through cloud. Armor plates take the glancing illumination while a torn cloak streams and frays, echoing the sea\'s turbulence. The palette stays in slate, iron, and smoke, with the rupture\'s pale gold acting as the only certainty. The scene fixes the journey at its threshold—weather as antagonist, light as direction.',
+    provenance: 'Personal exploration, 2024',
+    status: 'Concept'
   }
 ]
 
@@ -216,7 +264,7 @@ export default function VisualsPage() {
             <h1 className="visuals-title">Visuals</h1>
             <div className="visuals-divider"></div>
             <p className="visuals-description">
-              A curated collection of AI art, album covers, and digital experiments exploring the boundaries of synthetic creativity.
+              A curated collection of AI art, album covers, visual concepts, and digital experiments exploring the boundaries of synthetic creativity.
             </p>
             <p className="visuals-year">© 2024</p>
           </div>

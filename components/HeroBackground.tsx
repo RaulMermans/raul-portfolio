@@ -38,7 +38,7 @@ export default function HeroBackground() {
       const height = Math.ceil(rect.height)
       const imageData = ctx.createImageData(width, height)
       const data = imageData.data
-      const grainIntensity = 0.12 // Subtle analog grain
+      const grainIntensity = 0.18 // More visible analog grain
       const baseR = 245
       const baseG = 240
       const baseB = 235
@@ -46,7 +46,7 @@ export default function HeroBackground() {
       for (let i = 0; i < data.length; i += 4) {
         // More organic grain pattern
         const grain = (Math.random() - 0.5) * grainIntensity * 255
-        const variation = Math.random() * 0.03 // Subtle color variation
+        const variation = Math.random() * 0.04 // Subtle color variation
         
         data[i] = Math.max(0, Math.min(255, baseR + grain + variation * 10))     // R
         data[i + 1] = Math.max(0, Math.min(255, baseG + grain + variation * 8))  // G
@@ -61,13 +61,15 @@ export default function HeroBackground() {
     let time = 0
     let isAnimating = true
 
-    // Smooth mouse tracking with easing
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!container) return
-      const rect = container.getBoundingClientRect()
+    // Smooth mouse tracking with easing - listen to hero section for mouse events
+    const heroSection = container.closest('.hero') as HTMLElement | null
+    const handleMouseMove = (e: Event) => {
+      const mouseEvent = e as MouseEvent
+      if (!container || !heroSection) return
+      const rect = heroSection.getBoundingClientRect()
       targetMouseRef.current = {
-        x: (e.clientX - rect.left) / rect.width,
-        y: (e.clientY - rect.top) / rect.height,
+        x: (mouseEvent.clientX - rect.left) / rect.width,
+        y: (mouseEvent.clientY - rect.top) / rect.height,
       }
     }
 
@@ -105,7 +107,7 @@ export default function HeroBackground() {
       const distortionIntensity = Math.sqrt(distortionX * distortionX + distortionY * distortionY)
       
       // "Reaching" effect - more dramatic when hovering
-      const reachIntensity = Math.min(distortionIntensity * 1.5, 1.2) // Amplify the reach
+      const reachIntensity = Math.min(distortionIntensity * 2, 1.5) // Amplify the reach more
       const reachX = distortionX * reachIntensity
       const reachY = distortionY * reachIntensity
       
@@ -116,12 +118,12 @@ export default function HeroBackground() {
       ctx.save()
       // Apply dramatic "reaching" distortion - background stretches toward cursor
       ctx.translate(
-        rect.width * 0.5 + reachX * 25 + grainOffsetX, // Increased from 8 to 25 for dramatic reach
-        rect.height * 0.5 + reachY * 25 + grainOffsetY
+        rect.width * 0.5 + reachX * 40 + grainOffsetX, // More dramatic reach
+        rect.height * 0.5 + reachY * 40 + grainOffsetY
       )
       // Stretching scale effect - background expands toward cursor
-      const scaleX = 1 + Math.abs(reachX) * 0.08 // Stretch horizontally
-      const scaleY = 1 + Math.abs(reachY) * 0.08 // Stretch vertically
+      const scaleX = 1 + Math.abs(reachX) * 0.12 // More visible stretch horizontally
+      const scaleY = 1 + Math.abs(reachY) * 0.12 // More visible stretch vertically
       ctx.scale(scaleX, scaleY)
       ctx.translate(-rect.width * 0.5, -rect.height * 0.5)
       ctx.putImageData(grainImageData, 0, 0)
@@ -137,30 +139,30 @@ export default function HeroBackground() {
           baseY: rect.height * 0.25,
           x: rect.width * 0.15,
           y: rect.height * 0.25,
-          size: 180,
-          baseSize: 180,
-          opacity: 0.02,
-          baseOpacity: 0.02,
+          size: 200,
+          baseSize: 200,
+          opacity: 0.04,
+          baseOpacity: 0.04,
         },
         {
           baseX: rect.width * 0.85,
           baseY: rect.height * 0.75,
           x: rect.width * 0.85,
           y: rect.height * 0.75,
-          size: 140,
-          baseSize: 140,
-          opacity: 0.018,
-          baseOpacity: 0.018,
+          size: 160,
+          baseSize: 160,
+          opacity: 0.035,
+          baseOpacity: 0.035,
         },
         {
           baseX: rect.width * 0.5,
           baseY: rect.height * 0.5,
           x: rect.width * 0.5,
           y: rect.height * 0.5,
-          size: 100,
-          baseSize: 100,
-          opacity: 0.015,
-          baseOpacity: 0.015,
+          size: 120,
+          baseSize: 120,
+          opacity: 0.03,
+          baseOpacity: 0.03,
         },
       ]
 
@@ -185,8 +187,8 @@ export default function HeroBackground() {
         const stretchY = 1 + Math.abs(dy / rect.height) * reachFactor * 0.5
         
         // Grow and intensify on hover
-        shape.size = shape.baseSize + reachIntensity * 40
-        shape.opacity = shape.baseOpacity + reachIntensity * 0.03
+        shape.size = shape.baseSize + reachIntensity * 60
+        shape.opacity = shape.baseOpacity + reachIntensity * 0.05
 
         ctx.save()
         ctx.globalAlpha = shape.opacity
@@ -217,8 +219,10 @@ export default function HeroBackground() {
       }, 150)
     }
 
-    // Event listeners
-    container.addEventListener('mousemove', handleMouseMove, { passive: true })
+    // Event listeners - attach to hero section for mouse tracking
+    if (heroSection) {
+      heroSection.addEventListener('mousemove', handleMouseMove, { passive: true })
+    }
     window.addEventListener('resize', handleResize, { passive: true })
 
     return () => {
@@ -227,7 +231,9 @@ export default function HeroBackground() {
         cancelAnimationFrame(animationFrameRef.current)
       }
       clearTimeout(resizeTimeout)
-      container.removeEventListener('mousemove', handleMouseMove)
+      if (heroSection) {
+        heroSection.removeEventListener('mousemove', handleMouseMove)
+      }
       window.removeEventListener('resize', handleResize)
     }
   }, [])

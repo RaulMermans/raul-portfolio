@@ -8,6 +8,7 @@ This folder contains all images for the Visuals sublanding page.
 - `album-covers/` - Album cover designs
 - `client-work/` - Client commission work
 - `experiments/` - Experimental visual work
+- `visual-concepts/` - Visual concept explorations
 
 ## Required Images
 
@@ -26,6 +27,11 @@ Based on the current code in `app/visuals/page.tsx`, you need to upload the foll
 ### Experiments (`/experiments/`)
 - `glitch-protocol.webp` - For "Glitch Protocol" (RM-GP-24-004)
 - `particle-field.webp` - For "Particle Field" (RM-PF-23-007)
+
+### Visual Concepts (`/visual-concepts/`)
+- `concept-a.webp` - For "Concept A" (RM-VC-24-001)
+- `concept-b.webp` - For "Concept B" (RM-VC-24-002)
+- `concept-c.webp` - For "Concept C" (RM-VC-24-003)
 
 ## Image Specifications
 
@@ -52,6 +58,7 @@ Make sure this placeholder exists, or images will show as broken.
    - AI Art → `/ai-art/`
    - Album Covers → `/album-covers/`
    - Experiments → `/experiments/`
+   - Visual Concepts → `/visual-concepts/`
 4. The images will automatically appear on the visuals page
 
 ## Adding New Works

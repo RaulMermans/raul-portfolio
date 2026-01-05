@@ -1148,6 +1148,8 @@ html.homepage .footer {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
 }
 
 .hero__background-canvas {
