@@ -427,17 +427,22 @@ export default function PhotographyPage() {
             </svg>
           </button>
 
-          <img
+          <Image
             className="lightbox__image"
             src={currentCategoryImages[lightboxIndex].src}
             alt={currentCategoryImages[lightboxIndex].alt}
+            width={1400}
+            height={1400}
+            quality={90}
+            priority
+            sizes="(max-width: 768px) 95vw, (max-width: 1024px) 90vw, 75vw"
+            style={{ objectFit: 'contain' }}
             onClick={(e) => e.stopPropagation()}
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
             onError={(e) => {
               const target = e.target as HTMLImageElement
-              // Fallback to a placeholder or hide the image
               target.style.display = 'none'
             }}
           />
