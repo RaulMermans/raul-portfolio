@@ -115,6 +115,12 @@
   padding: 6rem 2rem;
 }
 
+@media (max-width: 768px) {
+  .case-study-section {
+    padding: var(--space-6) var(--space-4); /* Improved mobile spacing */
+  }
+}
+
 .case-study-section--light {
   background: var(--cream, #f5f0eb);
   color: var(--ink, #1a1714);
@@ -395,6 +401,14 @@
   display: block;
   text-decoration: none;
   color: inherit;
+  min-height: 48px; /* Ensure minimum touch target */
+  padding: var(--space-2) 0; /* Add padding for better touch area */
+}
+
+@media (max-width: 768px) {
+  .case-study-next__link {
+    padding: var(--space-3) 0; /* Increased padding on mobile */
+  }
 }
 
 .case-study-next__title {

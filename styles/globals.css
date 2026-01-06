@@ -958,7 +958,7 @@ html.homepage .footer {
   }
 
   .hero__service {
-    font-size: clamp(0.6875rem, 2vw, 0.75rem);
+    font-size: clamp(0.75rem, 2vw, 0.8125rem); /* Increased from 0.6875rem to prevent iOS zoom */
   }
 
   /* About Section Mobile */
