@@ -8428,6 +8428,28 @@ body:has(.case-studies-main) .page-transition {
   right: 2rem;
 }
 
+@media (max-width: 768px) {
+  .visuals-nav-btn {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-width: 1.5px;
+  }
+
+  .visuals-nav-btn--prev {
+    left: var(--space-3);
+  }
+
+  .visuals-nav-btn--next {
+    right: var(--space-3);
+  }
+
+  .visuals-nav-arrow {
+    font-size: 1.25rem;
+  }
+}
+
 .visuals-nav-arrow {
   font-size: 1.5rem;
   color: var(--ink);
@@ -9190,43 +9212,113 @@ body:has(.case-studies-main) .page-transition {
 @media (max-width: 900px) {
   .exhibition {
     grid-template-columns: 1fr;
-    grid-template-rows: 42vh 1fr;
+    grid-template-rows: 40vh 1fr;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .exhibition__details {
     height: auto;
+    min-height: 60vh;
   }
 
   .exhibition__scroll {
-    padding: 2.5rem 2rem;
+    padding: 2.5rem var(--space-4);
+  }
+
+  .exhibition__content {
+    max-width: 100%;
   }
 
   .exhibition__close {
     background: rgba(245,240,235,0.95);
     backdrop-filter: blur(10px);
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .exhibition__image-panel {
+    padding: var(--space-4);
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .exhibition__image-wrap {
-    max-height: 36vh;
+    max-height: 35vh;
+    max-width: 90%;
   }
 
   .exhibition__image {
-    max-height: 36vh;
+    max-height: 35vh;
+    max-width: 100%;
   }
 
   .exhibition__counter {
     display: none;
   }
+
+  .exhibition__title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: var(--space-2);
+  }
+
+  .exhibition__subtitle {
+    font-size: clamp(0.625rem, 2vw, 0.7rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .exhibition__meta {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .exhibition__field {
+    gap: var(--space-2);
+  }
+
+  .exhibition__label {
+    font-size: clamp(0.4rem, 1.5vw, 0.45rem);
+  }
+
+  .exhibition__value {
+    font-size: clamp(0.75rem, 2vw, 0.8rem);
+    line-height: 1.7;
+  }
+
+  .exhibition__note {
+    padding-top: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .exhibition__note-label {
+    font-size: clamp(0.4rem, 1.5vw, 0.45rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .exhibition__note-text {
+    font-size: clamp(0.875rem, 2.5vw, 0.95rem);
+    line-height: 1.85;
+  }
 }
 
 @media (max-width: 768px) {
   .visuals-container {
-    padding: calc(var(--header-height) + 2rem) 1.5rem 2rem;
-    gap: 2rem;
+    padding: calc(var(--header-height) + 2rem) var(--space-4) var(--space-4);
+    gap: var(--space-5);
   }
 
   .visuals-title {
     font-size: clamp(3rem, 15vw, 5rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .visuals-description {
+    font-size: clamp(0.875rem, 2.5vw, 0.95rem);
+    line-height: 1.75;
+    margin-bottom: var(--space-5);
   }
 
   .visuals-cards {
@@ -9235,55 +9327,154 @@ body:has(.case-studies-main) .page-transition {
 
   .visuals-card {
     aspect-ratio: 1;
+    max-width: 100%;
   }
 
   .visuals-card__overlay {
-    padding: 1.5rem;
+    padding: var(--space-4);
   }
 
   .visuals-card__title {
     font-size: clamp(1.5rem, 8vw, 2.5rem);
+    margin-bottom: var(--space-2);
+  }
+
+  .visuals-card__meta {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .visuals-card__btn {
+    min-height: 44px;
+    padding: var(--space-2) var(--space-4);
+    font-size: clamp(0.5rem, 1.5vw, 0.55rem);
   }
 
   .exhibition {
-    grid-template-rows: 35vh 1fr;
+    grid-template-rows: 38vh 1fr;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .exhibition__close {
-    top: 1rem;
-    right: 1rem;
-    width: 48px; /* Increased from 44px for better touch target */
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 48px;
     height: 48px;
     min-width: 48px;
     min-height: 48px;
+    background: rgba(245, 240, 235, 0.98);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba(26, 23, 20, 0.1);
+    z-index: 15;
   }
 
   .exhibition__image-panel {
-    padding: 1.5rem;
+    padding: var(--space-4);
+    min-height: 38vh;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .exhibition__image-wrap {
+    max-height: 33vh;
+    max-width: 95%;
+  }
+
+  .exhibition__image {
+    max-height: 33vh;
+    max-width: 100%;
   }
 
   .exhibition__scroll {
-    padding: 1.5rem;
+    padding: var(--space-5) var(--space-4) var(--space-6);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .exhibition__content {
+    max-width: 100%;
+  }
+
+  .exhibition__catalog {
+    font-size: clamp(0.45rem, 1.8vw, 0.5rem);
+    margin-bottom: var(--space-4);
   }
 
   .exhibition__title {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+    line-height: 1.1;
+    margin-bottom: var(--space-2);
+  }
+
+  .exhibition__subtitle {
+    font-size: clamp(0.6rem, 2vw, 0.7rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .exhibition__divider {
+    width: 35px;
+    height: 2px;
+    margin-bottom: var(--space-4);
   }
 
   .exhibition__meta {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .exhibition__field {
+    gap: var(--space-2);
+  }
+
+  .exhibition__label {
+    font-size: clamp(0.4rem, 1.5vw, 0.45rem);
+    letter-spacing: 0.3em;
+  }
+
+  .exhibition__value {
+    font-size: clamp(0.75rem, 2.2vw, 0.8rem);
+    line-height: 1.7;
+  }
+
+  .exhibition__note {
+    padding-top: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .exhibition__note-label {
+    font-size: clamp(0.4rem, 1.5vw, 0.45rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .exhibition__note-text {
+    font-size: clamp(0.875rem, 2.5vw, 0.95rem);
+    line-height: 1.85;
   }
 
   .exhibition__footer {
     flex-direction: column;
-    gap: 1.25rem;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+  }
+
+  .exhibition__nav {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    background: var(--cream);
+    border-top: 1px solid var(--cream-darker);
+    box-shadow: 0 -2px 12px rgba(26, 23, 20, 0.05);
   }
 
   .exhibition__nav-btn {
-    padding: 1.25rem 1rem;
-    min-height: 48px; /* Ensure minimum touch target */
-    font-size: 0.5rem;
+    padding: var(--space-4) var(--space-3);
+    min-height: 52px;
+    font-size: clamp(0.45rem, 1.8vw, 0.5rem);
+    letter-spacing: 0.15em;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(196, 30, 58, 0.1);
   }
 
   .visuals-main .vignette {
