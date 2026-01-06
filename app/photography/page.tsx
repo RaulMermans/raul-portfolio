@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
+import Image from 'next/image'
 import Header from '@/components/Header'
 
 // ========================================
@@ -122,7 +123,11 @@ export default function PhotographyPage() {
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
-  const currentCategoryImages = categoriesState[lightboxCategory]?.images || []
+  // Memoize current category images to prevent unnecessary recalculations
+  const currentCategoryImages = useMemo(
+    () => categoriesState[lightboxCategory]?.images || [],
+    [categoriesState, lightboxCategory]
+  )
   const activeCount = categoriesState[activeCategory]?.count || 0
 
   // Minimum swipe distance (in pixels)
@@ -171,6 +176,12 @@ export default function PhotographyPage() {
   }, [lightboxOpen])
 
   // Smooth horizontal scroll on wheel with improved performance (desktop only)
+  // Optimized with refs to prevent closure issues and improve performance
+  const wheelHandlerRef = useRef<((e: WheelEvent) => void) | null>(null)
+  const rafIdRef = useRef<number | null>(null)
+  const scrollTargetRef = useRef<number>(0)
+  const lastTimeRef = useRef<number>(performance.now())
+
   useEffect(() => {
     if (typeof window === 'undefined') return
     
@@ -181,51 +192,52 @@ export default function PhotographyPage() {
     const gallery = document.getElementById('main-content')
     if (!gallery) return
 
-    let scrollTarget = gallery.scrollLeft
-    let rafId: number | null = null
-    let lastTime = performance.now()
+    scrollTargetRef.current = gallery.scrollLeft
 
     const smoothScroll = (currentTime: number) => {
-      const deltaTime = currentTime - lastTime
-      lastTime = currentTime
+      const deltaTime = currentTime - lastTimeRef.current
+      lastTimeRef.current = currentTime
       
       const current = gallery.scrollLeft
-      const diff = scrollTarget - current
+      const diff = scrollTargetRef.current - current
       
       if (Math.abs(diff) > 0.5) {
         // Use time-based easing for consistent speed
         const easing = Math.min(0.2 * (deltaTime / 16), 0.3) // Normalize to 60fps
         gallery.scrollLeft += diff * easing
-        rafId = requestAnimationFrame(smoothScroll)
+        rafIdRef.current = requestAnimationFrame(smoothScroll)
       } else {
-        gallery.scrollLeft = scrollTarget
-        rafId = null
+        gallery.scrollLeft = scrollTargetRef.current
+        rafIdRef.current = null
       }
     }
 
-    const handleWheel = (e: WheelEvent) => {
+    // Throttled wheel handler for better performance
+    wheelHandlerRef.current = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault()
         
         // Update target scroll position with momentum
         const scrollAmount = e.deltaY * 1.5
-        scrollTarget = Math.max(0, Math.min(
+        scrollTargetRef.current = Math.max(0, Math.min(
           gallery.scrollWidth - gallery.clientWidth,
-          scrollTarget + scrollAmount
+          scrollTargetRef.current + scrollAmount
         ))
         
         // Start smooth scroll if not already running
-        if (rafId === null) {
-          lastTime = performance.now()
-          rafId = requestAnimationFrame(smoothScroll)
+        if (rafIdRef.current === null) {
+          lastTimeRef.current = performance.now()
+          rafIdRef.current = requestAnimationFrame(smoothScroll)
         }
       }
     }
 
+    const handleWheel = wheelHandlerRef.current
     gallery.addEventListener('wheel', handleWheel, { passive: false })
+    
     return () => {
       gallery.removeEventListener('wheel', handleWheel)
-      if (rafId !== null) cancelAnimationFrame(rafId)
+      if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current)
     }
   }, [])
 
@@ -303,9 +315,10 @@ export default function PhotographyPage() {
     }
   }
 
-  const setCategory = (category: 'landscape' | 'architecture' | 'street') => {
+  // Memoize category setter to prevent unnecessary re-renders
+  const setCategory = useCallback((category: 'landscape' | 'architecture' | 'street') => {
     setActiveCategory(category)
-  }
+  }, [])
 
   return (
     <>
@@ -335,15 +348,18 @@ export default function PhotographyPage() {
                     setLightboxOpen(true)
                   }}
                 >
-                  <img
+                  <Image
                     src={photo.src}
                     alt={photo.alt}
-                    loading={index < 6 ? 'eager' : 'lazy'} // Load first 6 images eagerly for better mobile experience
-                    decoding="async"
-                    style={{ willChange: 'transform, opacity, filter' }}
+                    fill
+                    sizes="(max-width: 768px) 140px, (max-width: 1024px) 160px, 180px"
+                    quality={85}
+                    loading={index < 6 ? 'eager' : 'lazy'}
+                    priority={index < 3}
+                    className="gallery__item-image"
+                    style={{ objectFit: 'cover', willChange: 'transform, opacity, filter' }}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
-                      // Fallback to a placeholder or hide the image
                       target.style.display = 'none'
                     }}
                   />
