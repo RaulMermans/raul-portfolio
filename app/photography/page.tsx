@@ -241,15 +241,24 @@ export default function PhotographyPage() {
     }
   }, [])
 
-  // Set overflow hidden on mount for horizontal scroll
+  // Set overflow for horizontal scroll (mobile-friendly)
   useEffect(() => {
     if (typeof window === 'undefined') return
 
+    const isMobile = window.innerWidth <= 768
+    
     // Disable scroll-snap for normal scrolling
     document.documentElement.style.scrollSnapType = 'none'
-    document.body.style.overflowY = 'auto'
-    document.documentElement.style.overflow = 'hidden'
-    document.body.style.overflow = 'hidden'
+    
+    // On mobile, allow vertical scroll but enable horizontal scroll on gallery
+    if (isMobile) {
+      document.body.style.overflowY = 'auto'
+      document.documentElement.style.overflow = 'auto'
+    } else {
+      document.body.style.overflowY = 'auto'
+      document.documentElement.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden'
+    }
 
     return () => {
       document.documentElement.style.scrollSnapType = ''

@@ -3733,6 +3733,19 @@ html.homepage .footer {
   scroll-snap-type: x proximity;
 }
 
+@media (max-width: 768px) {
+  .gallery {
+    /* Ensure horizontal scrolling works on mobile */
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    /* Prevent vertical scroll interference */
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
+  }
+}
+
 .gallery::-webkit-scrollbar {
   height: 3px;
 }
