@@ -9250,14 +9250,14 @@ body:has(.case-studies-main) .page-transition {
 @media (max-width: 900px) {
   .exhibition {
     grid-template-columns: 1fr;
-    grid-template-rows: 40vh 1fr;
+    grid-template-rows: 1fr; /* Single row - no image panel on mobile */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .exhibition__details {
-    height: auto;
-    min-height: 60vh;
+    height: 100vh;
+    min-height: 100vh;
   }
 
   .exhibition__scroll {
@@ -9275,26 +9275,9 @@ body:has(.case-studies-main) .page-transition {
     min-height: 48px;
   }
 
+  /* Hide image panel on mobile/tablet - show only info */
   .exhibition__image-panel {
-    padding: var(--space-4);
-    min-height: 40vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .exhibition__image-wrap {
-    max-height: 35vh;
-    max-width: 90%;
-  }
-
-  .exhibition__image {
-    max-height: 35vh;
-    max-width: 100%;
-  }
-
-  .exhibition__counter {
-    display: none;
+    display: none !important;
   }
 
   .exhibition__title {
@@ -9389,7 +9372,8 @@ body:has(.case-studies-main) .page-transition {
   }
 
   .exhibition {
-    grid-template-rows: 38vh 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr; /* Remove image panel row on mobile */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -9407,22 +9391,14 @@ body:has(.case-studies-main) .page-transition {
     z-index: 15;
   }
 
+  /* Hide image panel on mobile - show only info */
   .exhibition__image-panel {
-    padding: var(--space-4);
-    min-height: 38vh;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    display: none !important;
   }
 
-  .exhibition__image-wrap {
-    max-height: 33vh;
-    max-width: 95%;
-  }
-
-  .exhibition__image {
-    max-height: 33vh;
-    max-width: 100%;
+  .exhibition__details {
+    height: 100vh;
+    min-height: 100vh;
   }
 
   .exhibition__scroll {
