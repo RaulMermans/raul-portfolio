@@ -253,7 +253,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     },
     fullBleedImages: [
       {
-        src: getCaseStudyImagePath('remoria', 'full', 'full-1.webp'),
+        src: getCaseStudyImagePath('remoria', 'full', 'full.webp'),
         alt: 'Remoria full bleed image',
         quality: 90,
         sizes: '100vw',
@@ -281,6 +281,17 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
               alt: 'Remoria website hero concept',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 33vw',
+            },
+          ],
+        },
+        {
+          layout: '2-col',
+          items: [
+            {
+              src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-4.webp'),
+              alt: 'Remoria brand application',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 50vw',
             },
           ],
         },
