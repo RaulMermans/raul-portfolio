@@ -213,7 +213,14 @@ export default function PhotographyPage() {
     }
 
     // Throttled wheel handler for better performance
+    let lastWheelTime = 0
+    const wheelThrottle = 16 // ~60fps
+    
     wheelHandlerRef.current = (e: WheelEvent) => {
+      const now = performance.now()
+      if (now - lastWheelTime < wheelThrottle) return
+      lastWheelTime = now
+      
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault()
         
@@ -329,6 +336,17 @@ export default function PhotographyPage() {
     setActiveCategory(category)
   }, [])
 
+  // Memoize image items to prevent unnecessary re-renders
+  const imageItems = useMemo(() => {
+    return allImages.map((photo, index) => {
+      const isActive = photo.category === activeCategory
+      const categoryImages = categoriesState[photo.category]?.images || []
+      const photoIndex = categoryImages.findIndex((img) => img.src === photo.src)
+      
+      return { photo, index, isActive, categoryImages, photoIndex }
+    })
+  }, [allImages, activeCategory, categoriesState])
+
   return (
     <>
       <div className="grain" aria-hidden="true"></div>
@@ -339,42 +357,36 @@ export default function PhotographyPage() {
       <main id="main-content" role="main" className="gallery">
         <div className="gallery__track">
           <div className="gallery__grid">
-            {allImages.map((photo, index) => {
-              const isActive = photo.category === activeCategory
-              const categoryImages = categoriesState[photo.category]?.images || []
-              const photoIndex = categoryImages.findIndex((img) => img.src === photo.src)
-              
-              return (
-                <div
-                  key={`${photo.category}-${index}`}
-                  className={`gallery__item ${isActive ? 'active' : ''}`}
-                  data-category={photo.category}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    setLightboxCategory(photo.category)
-                    setLightboxIndex(photoIndex >= 0 ? photoIndex : 0)
-                    setLightboxOpen(true)
+            {imageItems.map(({ photo, index, isActive, categoryImages, photoIndex }) => (
+              <div
+                key={`${photo.category}-${index}`}
+                className={`gallery__item ${isActive ? 'active' : ''}`}
+                data-category={photo.category}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  setLightboxCategory(photo.category)
+                  setLightboxIndex(photoIndex >= 0 ? photoIndex : 0)
+                  setLightboxOpen(true)
+                }}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 768px) 140px, (max-width: 1024px) 160px, 180px"
+                  quality={index < 6 ? 75 : 60}
+                  loading={index < 4 ? 'eager' : 'lazy'}
+                  priority={index < 2}
+                  className="gallery__item-image"
+                  style={{ objectFit: 'cover' }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.style.display = 'none'
                   }}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    sizes="(max-width: 768px) 140px, (max-width: 1024px) 160px, 180px"
-                    quality={85}
-                    loading={index < 6 ? 'eager' : 'lazy'}
-                    priority={index < 3}
-                    className="gallery__item-image"
-                    style={{ objectFit: 'cover', willChange: 'transform, opacity, filter' }}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.style.display = 'none'
-                    }}
-                  />
-                </div>
-              )
-            })}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </main>
@@ -442,7 +454,7 @@ export default function PhotographyPage() {
             alt={currentCategoryImages[lightboxIndex].alt}
             width={1400}
             height={1400}
-            quality={90}
+            quality={85}
             priority
             sizes="(max-width: 768px) 95vw, (max-width: 1024px) 90vw, 75vw"
             style={{ objectFit: 'contain' }}
