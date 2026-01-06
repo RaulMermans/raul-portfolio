@@ -170,9 +170,13 @@ export default function PhotographyPage() {
     }
   }, [lightboxOpen])
 
-  // Smooth horizontal scroll on wheel with improved performance
+  // Smooth horizontal scroll on wheel with improved performance (desktop only)
   useEffect(() => {
     if (typeof window === 'undefined') return
+    
+    // Skip on mobile - use native touch scrolling
+    const isMobile = window.innerWidth <= 768
+    if (isMobile) return
     
     const gallery = document.getElementById('main-content')
     if (!gallery) return
@@ -334,7 +338,7 @@ export default function PhotographyPage() {
                   <img
                     src={photo.src}
                     alt={photo.alt}
-                    loading={index < 3 ? 'eager' : 'lazy'}
+                    loading={index < 6 ? 'eager' : 'lazy'} // Load first 6 images eagerly for better mobile experience
                     decoding="async"
                     style={{ willChange: 'transform, opacity, filter' }}
                     onError={(e) => {
