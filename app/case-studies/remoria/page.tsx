@@ -10,6 +10,7 @@ import CaseStudyImage from '@/components/case-studies/CaseStudyImage'
 import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import RemoriaBrandSystem from '@/components/case-studies/RemoriaBrandSystem'
+import BoldText from '@/components/case-studies/BoldText'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import { caseStudies } from '@/data/case-studies'
 import '@/styles/case-study-new.css'
@@ -82,7 +83,7 @@ export default function RemoriaPage() {
           >
             <div className="case-study-intro">
               <p className="case-study-intro__text">
-                {content.overview.description}
+                <BoldText text={content.overview.description} />
               </p>
               {content.overview.intentQuote && (
                 <blockquote className="case-study-intro__quote">
@@ -104,7 +105,7 @@ export default function RemoriaPage() {
                 {content.challenge.quote}
               </h3>
               <p className="case-study-challenge__text">
-                {content.challenge.context}
+                <BoldText text={content.challenge.context} />
               </p>
               {content.challenge.successCriteria && content.challenge.successCriteria.length > 0 && (
                 <div className="case-study-challenge__criteria">
@@ -143,7 +144,7 @@ export default function RemoriaPage() {
           >
             <div className="case-study-approach">
               <p className="case-study-approach__text">
-                {content.approach.text}
+                <BoldText text={content.approach.text} />
               </p>
 
               {content.approach.tools && content.approach.tools.length > 0 && (
@@ -207,7 +208,7 @@ export default function RemoriaPage() {
           >
             <div className="case-study-results">
               <p className="case-study-results__text">
-                {content.results.text}
+                <BoldText text={content.results.text} />
               </p>
               <blockquote className="case-study-results__quote">
                 {content.results.takeawayQuote}
