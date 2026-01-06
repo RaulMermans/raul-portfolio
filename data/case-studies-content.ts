@@ -15,7 +15,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       tagline: 'A Creative Direction Engine.',
       subtitle: 'AI Automation System & Creative Direction • 2025',
       image: {
-        src: getCaseStudyImagePath('ai-sports', 'hero', 'Hero.webp'),
+        src: getCaseStudyImagePath('ai-sports', 'hero', 'hero.webp'),
         alt: 'AI Sports Campaign - Creative Direction Engine',
         quality: 90,
         sizes: '100vw',
@@ -46,20 +46,6 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         'Produce usable variants fast enough for real marketing iteration',
       ],
     },
-    fullBleedImages: [
-      {
-        src: getCaseStudyImagePath('ai-sports', 'full', 'Full-1.webp'),
-        alt: 'AI Sports Campaign - Full campaign image showcasing consistency',
-        quality: 90,
-        sizes: '100vw',
-      },
-      {
-        src: getCaseStudyImagePath('ai-sports', 'full', 'full-2.webp'),
-        alt: 'AI Sports Campaign - Campaign variant demonstrating system output',
-        quality: 90,
-        sizes: '100vw',
-      },
-    ],
     approach: {
       text: 'Make it usable: a system, not a poster. The key insight: campaign consistency comes from constraints, not creativity-by-prompt. I designed the automation around a "constants vs variables" model—first locking the non-negotiables of the reference shot, then giving controlled flexibility to casting and wardrobe. The workflow ingests three visual inputs and routes them through a repeatable pipeline that prioritizes continuity over novelty. Output selection stays human-led: I pick the final based on realism, brand fit, and product readability—because campaigns are edited, not merely generated.',
       tools: ['n8n', 'Generative API', 'Reference Conditioning', 'Prompt Schema', 'Output Versioning'],
@@ -217,12 +203,6 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         'Build a system that scales across future scents and stories.',
       ],
     },
-    fullBleedImages: [
-      {
-        src: getCaseStudyImagePath('remoria', 'full', 'full-1.webp'),
-        alt: 'Remoria brand mood board',
-      },
-    ],
     approach: {
       text: 'Luxury as restraint: let the brand whisper, not shout. I anchored REMORIA in narrative strategy—memory, myth, and place—then translated those themes into a minimal, sculptural identity language. Roman-inspired serif forms established permanence, while Mediterranean warmth kept the brand human and sensual. The palette was built from stone, patina, and gilded accents to evoke time-worn elegance without heaviness. Copy was treated like fragrance: sparse, lyrical, and deliberate—more suggestion than statement.',
       tools: ['Adobe Illustrator', 'Photoshop', 'Figma', 'Pinterest'],
@@ -253,10 +233,6 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
           alt: 'Remoria typography system',
         },
       ],
-    },
-    featureImage: {
-      src: getCaseStudyImagePath('remoria', 'feature', 'feature.webp'),
-      alt: 'Remoria brand feature image',
     },
     gallery: {
       rows: [
