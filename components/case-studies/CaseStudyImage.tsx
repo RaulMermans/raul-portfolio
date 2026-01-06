@@ -40,7 +40,7 @@ export default function CaseStudyImage({
           priority={priority}
           quality={image.quality ?? 90}
           sizes={image.sizes ?? '(max-width: 768px) 100vw, 80vw'}
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'contain' }}
           className={`case-study-image-new__img ${loaded ? 'case-study-image-new__img--loaded' : ''}`}
           onLoad={() => setLoaded(true)}
           onError={() => {

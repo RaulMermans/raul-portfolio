@@ -164,7 +164,7 @@
    ============================================= */
 .case-study-meta-new {
   background: var(--cream, #f5f0eb);
-  padding: var(--case-study-space-sm) 2rem;
+  padding: 1rem 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -176,13 +176,13 @@
 .case-study-meta-new__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--case-study-space-sm);
+  gap: 1.5rem 2rem;
 }
 
 .case-study-meta-new__item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .case-study-meta-new__label {
@@ -203,7 +203,7 @@
    SECTION WRAPPER
    ============================================= */
 .case-study-section-new {
-  padding: var(--case-study-space-xl) 2rem;
+  padding: var(--case-study-space-md) 2rem;
   position: relative;
 }
 
@@ -344,6 +344,9 @@
   background: var(--cream-dark, #ddd5c8);
   border-radius: 8px;
   min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .case-study-image-new--clickable {
