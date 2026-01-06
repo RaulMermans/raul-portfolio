@@ -23,6 +23,7 @@ import '@/lib/analytics-bot' // Initialize analytics bot
 import '@/lib/cleanup-bot' // Initialize cleanup bot
 import '@/lib/animation-expert' // Initialize animation expert bot
 import '@/lib/mobile-optimizer' // Initialize mobile optimizer bot
+import '@/lib/detective-bot' // Initialize detective bot for debugging
 import '@/lib/env-validation' // Validate environment variables
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 

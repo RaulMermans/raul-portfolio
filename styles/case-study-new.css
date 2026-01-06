@@ -164,9 +164,14 @@
    ============================================= */
 .case-study-meta-new {
   background: var(--cream, #f5f0eb);
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 0.75rem 2rem; /* Minimal bottom padding when same bg as next section */
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   margin: 0;
+}
+
+/* When meta is followed by light section (same background), eliminate gap */
+.case-study-meta-new + .case-study-section-new--light {
+  padding-top: 0.5rem; /* Minimal top padding when same background */
 }
 
 .case-study-meta-new__container {
@@ -204,7 +209,7 @@
    SECTION WRAPPER
    ============================================= */
 .case-study-section-new {
-  padding: var(--case-study-space-sm) 2rem;
+  padding: 0.75rem 2rem var(--case-study-space-sm) 2rem; /* Reduced top padding */
   position: relative;
   margin: 0;
 }
