@@ -15,7 +15,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       tagline: 'A Creative Direction Engine.',
       subtitle: 'AI Automation System & Creative Direction • 2025',
       image: {
-        src: getCaseStudyImagePath('ai-sports', 'hero', 'hero.webp'),
+        src: getCaseStudyImagePath('ai-sports', 'hero', 'Hero.webp'),
         alt: 'AI Sports Campaign - Creative Direction Engine',
         quality: 90,
         sizes: '100vw',
