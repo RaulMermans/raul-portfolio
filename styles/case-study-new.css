@@ -309,7 +309,7 @@
   font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.8;
   max-width: 900px;
-  margin-bottom: var(--case-study-space-md);
+  margin-bottom: var(--case-study-space-sm); /* Reduced from md */
   color: rgba(245, 240, 235, 0.95);
 }
 
@@ -364,7 +364,7 @@
   overflow: hidden;
   background: var(--cream-dark, #ddd5c8);
   border-radius: 8px;
-  min-height: 200px;
+  min-height: auto; /* Removed fixed height - let aspect-ratio handle sizing */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -427,7 +427,7 @@
   font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.8;
   max-width: 900px;
-  margin-bottom: var(--case-study-space-md);
+  margin-bottom: var(--case-study-space-sm); /* Reduced from md */
   color: var(--ink-soft, #3a3530);
 }
 
@@ -555,7 +555,7 @@
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  margin-bottom: var(--case-study-space-md);
+  margin-bottom: var(--case-study-space-sm); /* Reduced from md */
   color: var(--ink, #1a1714);
   text-align: center;
 }
@@ -577,7 +577,7 @@
   background: white;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.4s var(--case-study-transition);
-  min-height: 200px;
+  min-height: auto; /* Removed fixed height - let images determine size */
 }
 
 .case-study-gallery-new__item:hover {
@@ -666,7 +666,7 @@
   font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.8;
   max-width: 900px;
-  margin-bottom: var(--case-study-space-md);
+  margin-bottom: var(--case-study-space-sm); /* Reduced from md */
   color: rgba(245, 240, 235, 0.95);
 }
 
@@ -746,7 +746,7 @@
   background: var(--cream, #f5f0eb);
   padding: var(--case-study-space-lg) 2rem;
   position: relative;
-  min-height: 60vh;
+  min-height: auto; /* Removed fixed 60vh to prevent huge gaps */
   display: flex;
   align-items: center;
 }
@@ -766,7 +766,7 @@
 
 /* Preview Image with Peek */
 .case-study-next-new__preview {
-  margin-bottom: var(--case-study-space-md);
+  margin-bottom: var(--case-study-space-sm); /* Reduced from md */
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
