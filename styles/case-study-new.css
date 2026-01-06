@@ -648,19 +648,20 @@
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
   animation: bounceHint 2s infinite;
 }
 
 .case-study-scroll-hint.visible {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .case-study-scroll-hint__text {
@@ -895,6 +896,23 @@
 
   .case-study-hero-new__title {
     font-size: 2.5rem;
+  }
+
+  .case-study-scroll-hint {
+    bottom: 1rem;
+  }
+
+  .case-study-scroll-hint__text {
+    font-size: 0.625rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .case-study-scroll-hint__arrow {
+    font-size: 1.25rem;
+  }
+
+  .case-study-next-new__preview {
+    max-width: 100%;
   }
 }
 

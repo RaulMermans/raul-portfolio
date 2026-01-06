@@ -37,7 +37,7 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
 
               return (
                 <div
-                  key={index}
+                  key={`${image.src}-${index}`}
                   className={`case-study-gallery-new__item reveal ${isGrayscale ? 'case-study-gallery-new__item--grayscale' : ''}`}
                   style={{ 
                     animationDelay: `${index * 0.1}s`,
@@ -54,10 +54,13 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
                     sizes={image.sizes ?? "(max-width: 768px) 100vw, 50vw"}
                     style={{ objectFit: 'cover' }}
                     className="case-study-gallery-new__img"
+                    loading={index < 4 ? 'eager' : 'lazy'}
                     onError={(e) => {
                       console.error('Gallery image failed to load:', image.src)
                       const target = e.target as HTMLImageElement
-                      target.style.display = 'none'
+                      if (target.parentElement) {
+                        target.parentElement.style.display = 'none'
+                      }
                     }}
                   />
                 </div>
