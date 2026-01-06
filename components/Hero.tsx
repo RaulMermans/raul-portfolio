@@ -3,12 +3,8 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import HeroBackground from './HeroBackground'
-import HeroHoverEffect from './HeroHoverEffect'
 
 export default function Hero() {
-  const orbMainRef = useRef<HTMLDivElement>(null)
-  const orbSecondaryRef = useRef<HTMLDivElement>(null)
-  const orbTertiaryRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
   const primaryCtaRef = useRef<HTMLDivElement>(null)
   const secondaryCtaRef = useRef<HTMLDivElement>(null)
@@ -29,20 +25,6 @@ export default function Hero() {
           if (!cachedRect) {
             cachedRect = hero.getBoundingClientRect()
           }
-          const x = (e.clientX - cachedRect.left) / cachedRect.width - 0.5
-          const y = (e.clientY - cachedRect.top) / cachedRect.height - 0.5
-
-          // Orb parallax
-          if (orbMainRef.current) {
-            orbMainRef.current.style.transform = `translate(calc(-50% + ${x * 30}px), calc(-50% + ${y * 30}px))`
-          }
-          if (orbSecondaryRef.current) {
-            orbSecondaryRef.current.style.transform = `translate(${x * 50}px, ${y * 50}px)`
-          }
-          if (orbTertiaryRef.current) {
-            orbTertiaryRef.current.style.transform = `translate(${x * 20}px, ${y * 20}px)`
-          }
-
           // Magnetic hover effect for CTAs - Subtle, smooth interaction
           if (primaryCtaRef.current) {
             const rect = primaryCtaRef.current.getBoundingClientRect()
@@ -115,14 +97,7 @@ export default function Hero() {
       className="hero" 
       aria-labelledby="hero-title"
     >
-      <HeroHoverEffect />
       <HeroBackground />
-      <div className="hero__gradient" aria-hidden="true">
-        <div ref={orbMainRef} className="hero__orb hero__orb--main" id="orb-main"></div>
-        <div ref={orbSecondaryRef} className="hero__orb hero__orb--secondary" id="orb-secondary"></div>
-        <div ref={orbTertiaryRef} className="hero__orb hero__orb--tertiary" id="orb-tertiary"></div>
-      </div>
-      
       <div className="hero__content">
         <p className="hero__vibe-coded reveal">THIS WEBSITE WAS FULLY VIBE CODED</p>
         
