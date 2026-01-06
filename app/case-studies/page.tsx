@@ -1,135 +1,72 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import { caseStudies } from '@/data/case-studies'
 
 export default function CaseStudiesPage() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const [hasScrolled, setHasScrolled] = useState(false)
-  const scrollHintRef = useRef<HTMLDivElement>(null)
+  const projectsRef = useRef<HTMLDivElement>(null)
 
-  const TOTAL = caseStudies.length
-
-  // Go to slide
-  const goTo = useCallback((index: number) => {
-    if (isAnimating) return
-
-    // Infinite loop
-    let newIndex = index
-    if (newIndex < 0) newIndex = TOTAL - 1
-    if (newIndex >= TOTAL) newIndex = 0
-
-    if (newIndex === currentIndex) return
-
-    setIsAnimating(true)
-    if (!hasScrolled && scrollHintRef.current) {
-      setHasScrolled(true)
-      scrollHintRef.current.classList.add('hidden')
-    }
-
-    const oldIndex = currentIndex
-    setCurrentIndex(newIndex)
-
-    // Update slides
-    const slides = document.querySelectorAll('.slide')
-    slides[oldIndex]?.classList.remove('active')
-    slides[newIndex]?.classList.add('active')
-
-    // Update dots
-    const dots = document.querySelectorAll('.dot')
-    const dotInners = document.querySelectorAll('.dot__inner')
-    dots[oldIndex]?.classList.remove('active')
-    ;(dotInners[oldIndex] as HTMLElement)?.style.setProperty('background', '')
-    dots[newIndex]?.classList.add('active')
-    ;(dotInners[newIndex] as HTMLElement)?.style.setProperty('background', caseStudies[newIndex].color)
-
-    setTimeout(() => setIsAnimating(false), 1000)
-  }, [currentIndex, isAnimating, TOTAL, hasScrolled])
-
-  // Scroll handling
+  // Intersection Observer for reveal animations and scroll indicator
   useEffect(() => {
-    let lastScroll = 0
-    const COOLDOWN = 800
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    }
 
-    const handleWheel = (e: WheelEvent) => {
-      const now = Date.now()
-      if (now - lastScroll < COOLDOWN || isAnimating) return
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed')
+        }
+      })
 
-      const delta = e.deltaY
-      if (delta > 30) {
-        lastScroll = now
-        goTo(currentIndex + 1)
-      } else if (delta < -30) {
-        lastScroll = now
-        goTo(currentIndex - 1)
+      // Hide scroll indicator if last card is visible
+      const allCards = document.querySelectorAll('.case-study-card')
+      const lastCard = allCards[allCards.length - 1]
+      const scrollIndicator = document.querySelector('.case-studies-landing__scroll-indicator')
+      
+      if (lastCard && scrollIndicator) {
+        const lastCardRect = lastCard.getBoundingClientRect()
+        const isLastVisible = lastCardRect.bottom <= window.innerHeight + 100
+        if (isLastVisible) {
+          scrollIndicator.classList.add('hidden')
+        } else {
+          scrollIndicator.classList.remove('hidden')
+        }
+      }
+    }, observerOptions)
+
+    const projectCards = document.querySelectorAll('.case-study-card')
+    projectCards.forEach((card) => observer.observe(card))
+
+    // Handle scroll for indicator visibility
+    const handleScroll = () => {
+      const scrollIndicator = document.querySelector('.case-studies-landing__scroll-indicator')
+      if (!scrollIndicator) return
+
+      const allCards = document.querySelectorAll('.case-study-card')
+      if (allCards.length === 0) return
+
+      const lastCard = allCards[allCards.length - 1]
+      const lastCardRect = lastCard.getBoundingClientRect()
+      const isLastVisible = lastCardRect.bottom <= window.innerHeight + 100
+
+      if (isLastVisible) {
+        scrollIndicator.classList.add('hidden')
+      } else {
+        scrollIndicator.classList.remove('hidden')
       }
     }
 
-    window.addEventListener('wheel', handleWheel, { passive: true })
-
-    // Touch handling
-    let touchY = 0
-    const handleTouchStart = (e: TouchEvent) => {
-      touchY = e.touches[0].clientY
-    }
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isAnimating) return
-      const diff = touchY - e.changedTouches[0].clientY
-
-      if (diff > 50) {
-        goTo(currentIndex + 1)
-      } else if (diff < -50) {
-        goTo(currentIndex - 1)
-      }
-    }
-
-    window.addEventListener('touchstart', handleTouchStart, { passive: true })
-    window.addEventListener('touchend', handleTouchEnd, { passive: true })
-
-    // Keyboard handling
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isAnimating) return
-
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
-        e.preventDefault()
-        goTo(currentIndex + 1)
-      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-        e.preventDefault()
-        goTo(currentIndex - 1)
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Check initial state
 
     return () => {
-      window.removeEventListener('wheel', handleWheel)
-      window.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('touchend', handleTouchEnd)
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [currentIndex, isAnimating, goTo])
-
-  // Initialize dots
-  useEffect(() => {
-    const dotInners = document.querySelectorAll('.dot__inner')
-    if (dotInners[0]) {
-      ;(dotInners[0] as HTMLElement).style.setProperty('background', caseStudies[0].color)
-    }
-  }, [])
-
-  // Disable scroll-snap for normal scrolling
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    document.documentElement.style.scrollSnapType = 'none'
-    document.body.style.overflowY = 'auto'
-    return () => {
-      document.documentElement.style.scrollSnapType = ''
-      document.body.style.overflowY = ''
+      projectCards.forEach((card) => observer.unobserve(card))
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
@@ -141,77 +78,86 @@ export default function CaseStudiesPage() {
       <Header />
 
       {/* Main Layout */}
-      <main id="main-content" role="main" className="case-studies-main">
-        {/* Left: Content */}
-        <section className="case-studies-content intro-content">
-          {caseStudies.map((study, index) => (
-            <article
-              key={study.id}
-              className={`slide ${index === currentIndex ? 'active' : ''}`}
-              data-index={index}
-            >
-              <h1 className="slide__title" style={{ color: study.color }}>
-                {study.title}
-              </h1>
-              <p className="slide__desc">{study.description}</p>
-              <Link href={study.href} className="cta" style={{ color: study.color }}>
-                Open Case Study <span className="cta__arrow">→</span>
-              </Link>
-            </article>
-          ))}
+      <main id="main-content" role="main" className="case-studies-landing">
+        {/* Hero Section */}
+        <section className="case-studies-landing__hero">
+          <div className="case-studies-landing__hero-content">
+            <h1 className="case-studies-landing__title">
+              Selected <br /> Work
+            </h1>
+            <p className="case-studies-landing__subtitle">
+              A curated collection of creative projects and case studies
+            </p>
+            <div className="case-studies-landing__count">
+              <span className="case-studies-landing__count-number">{caseStudies.length}</span>
+              <span className="case-studies-landing__count-label">Projects</span>
+            </div>
+          </div>
         </section>
 
-        {/* Right: Project Thumbnail */}
-        <section className="case-studies-thumbnail" id="thumbnail">
-          <Link 
-            href={caseStudies[currentIndex].href}
-            className="case-studies-thumbnail__link"
-            aria-label={`View ${caseStudies[currentIndex].title} case study`}
-          >
-            <div className="case-studies-thumbnail__wrapper">
-              <Image
-                key={caseStudies[currentIndex].id}
-                src={caseStudies[currentIndex].image}
-                alt={caseStudies[currentIndex].title}
-                fill
-                quality={85}
-                sizes="(max-width: 900px) 100vw, 42vw"
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-                priority
-                className="case-studies-thumbnail__image"
-              />
-              <div className="case-studies-thumbnail__overlay"></div>
-            </div>
-          </Link>
+        {/* Projects Grid */}
+        <section className="case-studies-landing__projects" ref={projectsRef}>
+          <div className="case-studies-landing__projects-grid">
+            {caseStudies.map((study, index) => (
+              <Link
+                key={study.id}
+                href={study.href}
+                className="case-study-card"
+                data-index={index}
+                aria-label={`View ${study.title} case study`}
+              >
+                <div className="case-study-card__image-wrapper">
+                  <Image
+                    src={study.image}
+                    alt={study.title}
+                    fill
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="case-study-card__image"
+                    priority={index < 2}
+                  />
+                  <div 
+                    className="case-study-card__overlay"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${study.color}15 0%, ${study.color}08 100%)` 
+                    }}
+                  ></div>
+                  <div className="case-study-card__hover-overlay">
+                    <div className="case-study-card__arrow">→</div>
+                  </div>
+                </div>
+                
+                <div className="case-study-card__content">
+                  <div className="case-study-card__meta">
+                    <span 
+                      className="case-study-card__number"
+                      style={{ color: study.color }}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    {study.subtitle && (
+                      <span className="case-study-card__category">{study.subtitle}</span>
+                    )}
+                  </div>
+                  <h2 
+                    className="case-study-card__title"
+                    style={{ color: study.color }}
+                  >
+                    {study.title}
+                  </h2>
+                  <p className="case-study-card__description">{study.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Scroll Indicator - Only visible when more projects can be scrolled */}
+          <div className="case-studies-landing__scroll-indicator">
+            <span>Scroll for more</span>
+            <div className="case-studies-landing__scroll-arrow">↓</div>
+          </div>
         </section>
       </main>
-
-      {/* Dots Navigation */}
-      <nav className="case-studies-dots intro-dots" id="dotsNav" aria-label="Case study navigation">
-        {caseStudies.map((study, index) => (
-          <button
-            key={index}
-            className={`dot ${index === currentIndex ? 'active' : ''}`}
-            data-index={index}
-            onClick={() => goTo(index)}
-            aria-label={`Go to ${study.title}`}
-            aria-current={index === currentIndex ? 'true' : undefined}
-          >
-            <span className="dot__inner" style={{ background: index === currentIndex ? study.color : '' }}></span>
-          </button>
-        ))}
-      </nav>
-
-      {/* Scroll Hint */}
-      <div
-        ref={scrollHintRef}
-        className={`scroll-hint intro-scroll ${hasScrolled ? 'hidden' : ''}`}
-        id="scrollHint"
-        aria-hidden="true"
-      >
-        <div className="scroll-hint__line"></div>
-        <span>Scroll</span>
-      </div>
     </>
   )
 }
