@@ -62,8 +62,11 @@ export default function CaseStudiesPage() {
     }
   }, [currentIndex, isAnimating])
 
-  // Touch handling
+  // Touch handling - disabled on mobile for simpler scroll experience
   useEffect(() => {
+    const isMobile = window.innerWidth <= 900
+    if (isMobile) return // Don't enable touch swipe on mobile - allow normal scroll
+
     let touchY = 0
 
     const handleTouchStart = (e: TouchEvent) => {
