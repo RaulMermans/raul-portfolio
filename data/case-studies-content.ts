@@ -251,6 +251,14 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         },
       ],
     },
+    fullBleedImages: [
+      {
+        src: getCaseStudyImagePath('remoria', 'full', 'full-1.webp'),
+        alt: 'Remoria full bleed image',
+        quality: 90,
+        sizes: '100vw',
+      },
+    ],
     gallery: {
       rows: [
         {
@@ -259,29 +267,20 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
             {
               src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-1.webp'),
               alt: 'Remoria stationery mockup',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 33vw',
             },
             {
               src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-2.webp'),
               alt: 'Remoria packaging design',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 33vw',
             },
             {
               src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-3.webp'),
               alt: 'Remoria website hero concept',
-            },
-          ],
-        },
-        {
-          layout: 'asymmetric',
-          items: [
-            {
-              src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-4.webp'),
-              alt: 'Remoria social media graphic',
-              sizes: '(max-width: 768px) 100vw, 60vw',
-            },
-            {
-              src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-5.webp'),
-              alt: 'Remoria brand pattern',
-              sizes: '(max-width: 768px) 100vw, 40vw',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 33vw',
             },
           ],
         },
