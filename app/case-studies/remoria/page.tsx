@@ -9,9 +9,11 @@ import CaseStudySection from '@/components/case-studies/CaseStudySection'
 import CaseStudyImage from '@/components/case-studies/CaseStudyImage'
 import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import RemoriaBrandSystem from '@/components/case-studies/RemoriaBrandSystem'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import { caseStudies } from '@/data/case-studies'
 import '@/styles/case-study-new.css'
+import '@/styles/remoria-brand-system.css'
 
 export default function RemoriaPage() {
   const content = getCaseStudyContent('remoria')
@@ -158,23 +160,10 @@ export default function RemoriaPage() {
               )}
 
               {content.approach.system && (
-                <div className="case-study-approach__system">
-                  <h4 className="case-study-approach__system-title">
-                    {content.approach.system.label}
-                  </h4>
-                  <div className="case-study-approach__system-grid">
-                    {content.approach.system.items.map((item, index) => (
-                      <div key={index} className="case-study-approach__system-item">
-                        <h5 className="case-study-approach__system-item-title">
-                          {item.title}
-                        </h5>
-                        <p className="case-study-approach__system-item-desc">
-                          {item.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <RemoriaBrandSystem
+                  items={content.approach.system.items}
+                  label={content.approach.system.label}
+                />
               )}
 
               {content.approach.images && content.approach.images.length > 0 && (

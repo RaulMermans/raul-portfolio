@@ -1,0 +1,202 @@
+/* =============================================
+   REMORIA BRAND SYSTEM - UNIQUE COMPONENT
+   Luxury brand identity visualization
+   ============================================= */
+
+.remoria-brand-system {
+  margin: var(--case-study-space-md) 0;
+}
+
+.remoria-brand-system__title {
+  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: var(--case-study-space-md);
+  color: var(--ink, #1a1714);
+  position: relative;
+  display: inline-block;
+}
+
+.remoria-brand-system__title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #C6A877 0%, #D4C5B9 100%);
+}
+
+/* Color Palette */
+.remoria-brand-system__palette {
+  margin-bottom: var(--case-study-space-lg);
+  padding: var(--case-study-space-md);
+  background: linear-gradient(135deg, rgba(237, 230, 221, 0.3) 0%, rgba(255, 255, 255, 0.5) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(196, 168, 119, 0.2);
+}
+
+.remoria-brand-system__palette-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-muted, #6b635a);
+  font-weight: 600;
+  margin-bottom: var(--case-study-space-sm);
+}
+
+.remoria-brand-system__palette-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--case-study-space-sm);
+}
+
+.remoria-brand-system__swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.remoria-brand-system__swatch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.remoria-brand-system__swatch-color {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.remoria-brand-system__swatch-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.remoria-brand-system__swatch-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink, #1a1714);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.remoria-brand-system__swatch-hex {
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  color: var(--ink-muted, #6b635a);
+}
+
+/* System Items */
+.remoria-brand-system__items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--case-study-space-sm);
+}
+
+.remoria-brand-system__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: var(--case-study-space-sm);
+  align-items: start;
+  padding: var(--case-study-space-md);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.remoria-brand-system__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #C6A877 0%, #D4C5B9 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.remoria-brand-system__item:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.remoria-brand-system__item:hover::before {
+  opacity: 1;
+}
+
+.remoria-brand-system__item-number {
+  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1;
+  color: rgba(196, 168, 119, 0.3);
+  letter-spacing: -0.02em;
+}
+
+.remoria-brand-system__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.remoria-brand-system__item-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--gold, #C6A877);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.remoria-brand-system__item-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-soft, #3a3530);
+  margin: 0;
+}
+
+.remoria-brand-system__item-accent {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.remoria-brand-system__item:hover .remoria-brand-system__item-accent {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .remoria-brand-system__palette-swatches {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .remoria-brand-system__item {
+    grid-template-columns: 50px 1fr;
+  }
+
+  .remoria-brand-system__item-accent {
+    display: none;
+  }
+}
+
