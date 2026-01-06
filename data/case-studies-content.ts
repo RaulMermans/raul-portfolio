@@ -158,6 +158,23 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
             },
           ],
         },
+        {
+          layout: '2-col',
+          items: [
+            {
+              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-5.webp'),
+              alt: 'AI Sports Campaign - Gallery image 5',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 50vw',
+            },
+            {
+              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-6.webp'),
+              alt: 'AI Sports Campaign - Gallery image 6',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 50vw',
+            },
+          ],
+        },
       ],
     },
     results: {
