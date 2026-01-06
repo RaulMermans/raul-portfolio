@@ -48,8 +48,12 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     },
     fullBleedImages: [
       {
-        src: getCaseStudyImagePath('ai-sports', 'full', 'full-1.webp'),
+        src: getCaseStudyImagePath('ai-sports', 'full', 'Full-1.webp'),
         alt: 'AI generated sports scene',
+      },
+      {
+        src: getCaseStudyImagePath('ai-sports', 'full', 'full-2.webp'),
+        alt: 'AI generated sports campaign variant',
       },
     ],
     approach: {
@@ -119,7 +123,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       ],
     },
     featureImage: {
-      src: getCaseStudyImagePath('ai-sports', 'feature', 'feature.webp'),
+      src: getCaseStudyImagePath('ai-sports', 'feature', 'feature_1.webp'),
       alt: 'AI Sports Campaign feature image',
     },
     gallery: {
@@ -145,14 +149,9 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
           layout: 'asymmetric',
           items: [
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-4.webp'),
+              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery4.webp'),
               alt: 'Gallery image 4',
               sizes: '(max-width: 768px) 100vw, 60vw',
-            },
-            {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-5.webp'),
-              alt: 'Gallery image 5',
-              sizes: '(max-width: 768px) 100vw, 40vw',
             },
           ],
         },
