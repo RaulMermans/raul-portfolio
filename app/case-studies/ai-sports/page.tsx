@@ -175,7 +175,7 @@ export default function AISportsCampaignPage() {
 
         {/* Full Bleed Images */}
         {content.fullBleedImages && content.fullBleedImages.length > 0 && (
-          <section className="case-study-section">
+          <section className="case-study-section case-study-section--full-bleed">
             {content.fullBleedImages.map((image, index) => (
               <div key={index} className="full-image">
                 <Image
@@ -185,6 +185,7 @@ export default function AISportsCampaignPage() {
                   quality={image.quality ?? 90}
                   sizes={image.sizes ?? '100vw'}
                   style={{ objectFit: 'cover' }}
+                  loading="lazy"
                 />
               </div>
             ))}
@@ -276,7 +277,7 @@ export default function AISportsCampaignPage() {
               {content.approach.images && content.approach.images.length > 0 && (
                 <div className="approach__images">
                   {content.approach.images.map((image, index) => (
-                    <div key={index} className="approach__image">
+                    <div key={index} className="approach__image reveal">
                       <Image
                         src={image.src}
                         alt={image.alt}
@@ -297,7 +298,7 @@ export default function AISportsCampaignPage() {
         {/* Feature Image */}
         {content.featureImage && (
           <section className="feature">
-            <div className="feature__image">
+            <div className="feature__image reveal">
               <Image
                 src={content.featureImage.src}
                 alt={content.featureImage.alt}
@@ -315,19 +316,26 @@ export default function AISportsCampaignPage() {
         {content.gallery && content.gallery.rows && content.gallery.rows.length > 0 && (
           <section className="case-study-section case-study-section--light">
             <div className="case-study-section__inner">
-              <h2 className="gallery__title">Gallery</h2>
-              <div className="gallery__grid">
-                {content.gallery.rows.flatMap((row) => row.items).slice(0, 4).map((image, index) => (
-                  <div key={index} className="gallery__item">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      quality={image.quality ?? 90}
-                      sizes={image.sizes ?? '(max-width: 768px) 100vw, 50vw'}
-                      style={{ objectFit: 'cover' }}
-                      loading="lazy"
-                    />
+              <h2 className="gallery__title reveal">Gallery</h2>
+              <div className="gallery">
+                {content.gallery.rows.map((row, rowIndex) => (
+                  <div 
+                    key={rowIndex} 
+                    className={`gallery__row gallery__row--${row.layout} reveal`}
+                  >
+                    {row.items.map((image, imageIndex) => (
+                      <div key={imageIndex} className="gallery__item">
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          quality={image.quality ?? 90}
+                          sizes={image.sizes ?? '(max-width: 768px) 100vw, 50vw'}
+                          style={{ objectFit: 'cover' }}
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>

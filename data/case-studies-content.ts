@@ -50,10 +50,14 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       {
         src: getCaseStudyImagePath('ai-sports', 'full', 'Full-1.webp'),
         alt: 'AI generated sports scene',
+        quality: 90,
+        sizes: '100vw',
       },
       {
         src: getCaseStudyImagePath('ai-sports', 'full', 'full-2.webp'),
         alt: 'AI generated sports campaign variant',
+        quality: 90,
+        sizes: '100vw',
       },
     ],
     approach: {
@@ -115,16 +119,22 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         {
           src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-1.webp'),
           alt: 'AI workflow diagram',
+          quality: 90,
+          sizes: '(max-width: 768px) 100vw, 50vw',
         },
         {
           src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-2.webp'),
           alt: 'AI prompt engineering example',
+          quality: 90,
+          sizes: '(max-width: 768px) 100vw, 50vw',
         },
       ],
     },
     featureImage: {
       src: getCaseStudyImagePath('ai-sports', 'feature', 'feature_1.webp'),
       alt: 'AI Sports Campaign feature image',
+      quality: 90,
+      sizes: '(max-width: 1400px) 100vw, 1400px',
     },
     gallery: {
       rows: [
@@ -134,14 +144,20 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
             {
               src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-1.webp'),
               alt: 'Gallery image 1',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 50vw',
             },
             {
               src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-2.webp'),
               alt: 'Gallery image 2',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 50vw',
             },
             {
               src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-3.webp'),
               alt: 'Gallery image 3',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 50vw',
             },
           ],
         },
@@ -151,6 +167,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
             {
               src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery4.webp'),
               alt: 'Gallery image 4',
+              quality: 90,
               sizes: '(max-width: 768px) 100vw, 60vw',
             },
           ],
