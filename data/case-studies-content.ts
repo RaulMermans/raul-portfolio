@@ -49,13 +49,13 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     fullBleedImages: [
       {
         src: getCaseStudyImagePath('ai-sports', 'full', 'Full-1.webp'),
-        alt: 'AI generated sports scene',
+        alt: 'AI Sports Campaign - Full campaign image showcasing consistency',
         quality: 90,
         sizes: '100vw',
       },
       {
         src: getCaseStudyImagePath('ai-sports', 'full', 'full-2.webp'),
-        alt: 'AI generated sports campaign variant',
+        alt: 'AI Sports Campaign - Campaign variant demonstrating system output',
         quality: 90,
         sizes: '100vw',
       },
@@ -118,13 +118,13 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       images: [
         {
           src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-1.webp'),
-          alt: 'AI workflow diagram',
+          alt: 'AI Sports Campaign - Workflow and system architecture',
           quality: 90,
           sizes: '(max-width: 768px) 100vw, 50vw',
         },
         {
           src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-2.webp'),
-          alt: 'AI prompt engineering example',
+          alt: 'AI Sports Campaign - Prompt engineering and consistency techniques',
           quality: 90,
           sizes: '(max-width: 768px) 100vw, 50vw',
         },
@@ -132,43 +132,43 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     },
     featureImage: {
       src: getCaseStudyImagePath('ai-sports', 'feature', 'feature_1.webp'),
-      alt: 'AI Sports Campaign feature image',
+      alt: 'AI Sports Campaign - Featured showcase of campaign consistency system',
       quality: 90,
       sizes: '(max-width: 1400px) 100vw, 1400px',
     },
     gallery: {
       rows: [
         {
-          layout: '3-col',
+          layout: '2-col',
           items: [
             {
               src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-1.webp'),
-              alt: 'Gallery image 1',
+              alt: 'AI Sports Campaign - Gallery image 1',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
             {
               src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-2.webp'),
-              alt: 'Gallery image 2',
-              quality: 90,
-              sizes: '(max-width: 768px) 100vw, 50vw',
-            },
-            {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-3.webp'),
-              alt: 'Gallery image 3',
+              alt: 'AI Sports Campaign - Gallery image 2',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
           ],
         },
         {
-          layout: 'asymmetric',
+          layout: '2-col',
           items: [
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery4.webp'),
-              alt: 'Gallery image 4',
+              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-3.webp'),
+              alt: 'AI Sports Campaign - Gallery image 3',
               quality: 90,
-              sizes: '(max-width: 768px) 100vw, 60vw',
+              sizes: '(max-width: 768px) 100vw, 50vw',
+            },
+            {
+              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery4.webp'),
+              alt: 'AI Sports Campaign - Gallery image 4',
+              quality: 90,
+              sizes: '(max-width: 768px) 100vw, 50vw',
             },
           ],
         },
