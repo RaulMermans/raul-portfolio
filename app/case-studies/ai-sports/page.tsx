@@ -1,18 +1,17 @@
-// =============================================
-// AI SPORTS CAMPAIGN - CASE STUDY PAGE
-// Detailed structure matching types and CSS
-// =============================================
-
 'use client'
 
 import { useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
+import CaseStudyMeta from '@/components/case-studies/CaseStudyMeta'
+import CaseStudySection from '@/components/case-studies/CaseStudySection'
+import CaseStudyImage from '@/components/case-studies/CaseStudyImage'
+import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
+import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import { caseStudies } from '@/data/case-studies'
-import '@/styles/case-study.css'
+import '@/styles/case-study-new.css'
 
 export default function AISportsCampaignPage() {
   const content = getCaseStudyContent('ai-sports')
@@ -21,7 +20,7 @@ export default function AISportsCampaignPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Add on-dark class to header elements for contrast
+    // Header styling
     const logo = document.querySelector('.ui__logo')
     const nav = document.querySelector('.ui__nav')
     const menuBtn = document.querySelector('.ui__menu-btn')
@@ -29,7 +28,7 @@ export default function AISportsCampaignPage() {
     if (nav) nav.classList.add('on-dark')
     if (menuBtn) menuBtn.classList.add('on-dark')
 
-    // Smooth scroll reveal animations
+    // Scroll reveal animations
     const reveals = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(
       (entries) => {
@@ -39,17 +38,12 @@ export default function AISportsCampaignPage() {
           }
         })
       },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
-      }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     )
-
     reveals.forEach((el) => observer.observe(el))
 
     return () => {
       observer.disconnect()
-      // Cleanup on-dark classes on unmount
       if (logo) logo.classList.remove('on-dark')
       if (nav) nav.classList.remove('on-dark')
       if (menuBtn) menuBtn.classList.remove('on-dark')
@@ -60,364 +54,195 @@ export default function AISportsCampaignPage() {
     return <div>Case study not found</div>
   }
 
-  const isGold = content.accentColor === 'var(--gold)'
-
   return (
     <>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="grain" aria-hidden="true"></div>
-
+      
       <Header />
 
-      <main id="main-content" className="case-study-page">
+      <main id="main-content" className="case-study-page-new">
         {/* Hero Section */}
-        <section className="case-study-hero">
-          <div className="case-study-hero__image">
-            <Image
-              src={content.hero.image.src}
-              alt={content.hero.image.alt}
-              fill
-              priority
-              quality={content.hero.image.quality ?? 90}
-              sizes={content.hero.image.sizes ?? '100vw'}
-              style={{ objectFit: 'cover' }}
-            />
-            <div className="case-study-hero__overlay"></div>
-          </div>
-          <div className="case-study-hero__content">
-            <div className="case-study-hero__inner">
-              <h1 className="case-study-hero__title">{content.hero.title}</h1>
-              {content.hero.tagline && (
-                <p className="case-study-hero__subtitle">{content.hero.tagline}</p>
-              )}
-              {content.hero.subtitle && (
-                <p className="case-study-hero__description">{content.hero.subtitle}</p>
-              )}
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero 
+          hero={content.hero} 
+          accentColor={content.accentColor}
+        />
 
-        {/* Overview Section */}
+        {/* Meta Section */}
+        {content.overview?.meta && (
+          <CaseStudyMeta 
+            meta={content.overview.meta} 
+            accentColor={content.accentColor}
+          />
+        )}
+
+        {/* Introduction Section */}
         {content.overview && (
-          <section className="case-study-section case-study-section--light">
-            <div className="case-study-section__inner">
-              <h2 className="case-study-section__title reveal">Overview</h2>
-              <div className="overview">
-                {content.overview.meta && content.overview.meta.length > 0 && (
-                  <div className="overview__meta">
-                    {content.overview.meta.map((item, index) => (
-                      <div
-                        key={index}
-                        className={`overview__meta-item ${
-                          item.label === 'Deliverables' ? 'overview__meta-item--full' : ''
-                        }`}
-                      >
-                        <div className="overview__meta-label">{item.label}</div>
-                        <div className="overview__meta-value">{item.value}</div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <div className="overview__content">
-                  <p className="overview__text">
-                    {content.overview.description.split(/(Creative Direction Engine|campaign-grade coherence|consistent campaigns|swap the model and wardrobe|lighting, environment, and shot DNA|repeatable loop)/gi).map((part, i) => {
-                      const isHighlight = /Creative Direction Engine|campaign-grade coherence|consistent campaigns|swap the model and wardrobe|lighting, environment, and shot DNA|repeatable loop/i.test(part);
-                      return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
-                    })}
-                  </p>
-                  {content.overview.intentQuote && (
-                    <p
-                      className="overview__intent"
-                      data-gold={isGold ? '' : undefined}
-                    >
-                      {content.overview.intentQuote.split(/(slot machine outcomes|system you can run on purpose)/gi).map((part, i) => {
-                        const isHighlight = /slot machine outcomes|system you can run on purpose/i.test(part);
-                        return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
-                      })}
-                    </p>
-                  )}
-                </div>
-              </div>
+          <CaseStudySection 
+            title="Overview" 
+            variant="light"
+            id="overview"
+          >
+            <div className="case-study-intro">
+              <p className="case-study-intro__text">
+                {content.overview.description}
+              </p>
+              {content.overview.intentQuote && (
+                <blockquote className="case-study-intro__quote">
+                  {content.overview.intentQuote}
+                </blockquote>
+              )}
             </div>
-          </section>
+          </CaseStudySection>
         )}
 
         {/* Challenge Section */}
         {content.challenge && (
-          <section className="case-study-section case-study-section--dark">
-            <div className="case-study-section__inner">
-              <h2 className="case-study-section__title reveal">Challenge</h2>
-              <h3 className="challenge__quote">{content.challenge.quote}</h3>
-              <div className="challenge__divider"></div>
-              <p className="challenge__text">
-                {content.challenge.context.split(/(drift|continuity|campaigns|scene stays constant|casting and wardrobe|editable)/gi).map((part, i) => {
-                  const isHighlight = /drift|continuity|campaigns|scene stays constant|casting and wardrobe|editable/i.test(part);
-                  return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
-                })}
+          <CaseStudySection 
+            title="The Challenge" 
+            variant="dark"
+            id="challenge"
+          >
+            <div className="case-study-challenge">
+              <h3 className="case-study-challenge__quote">
+                {content.challenge.quote}
+              </h3>
+              <p className="case-study-challenge__text">
+                {content.challenge.context}
               </p>
               {content.challenge.successCriteria && content.challenge.successCriteria.length > 0 && (
-                <div className="challenge__criteria">
-                  <div className="challenge__criteria-label">Success Criteria:</div>
-                  {content.challenge.successCriteria.map((criterion, index) => (
-                    <div
-                      key={index}
-                      className="challenge__criteria-item"
-                      data-gold={isGold ? '' : undefined}
-                    >
-                      {criterion}
-                    </div>
-                  ))}
+                <div className="case-study-challenge__criteria">
+                  <h4 className="case-study-challenge__criteria-title">Success Criteria</h4>
+                  <ul className="case-study-challenge__criteria-list">
+                    {content.challenge.successCriteria.map((criterion, index) => (
+                      <li key={index} className="case-study-challenge__criteria-item">
+                        {criterion}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </div>
-          </section>
+          </CaseStudySection>
         )}
 
         {/* Full Bleed Images */}
         {content.fullBleedImages && content.fullBleedImages.length > 0 && (
-          <section className="case-study-section case-study-section--full-bleed">
+          <section className="case-study-fullbleed">
             {content.fullBleedImages.map((image, index) => (
-              <div key={index} className="full-image">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  quality={image.quality ?? 90}
-                  sizes={image.sizes ?? '100vw'}
-                  style={{ objectFit: 'cover' }}
-                  loading="lazy"
-                  onError={(e) => {
-                    console.error(`❌ Full Bleed Image ${index + 1} failed to load:`, image.src);
-                    console.error(`   Expected location: public/images/case-studies/${content.id}/full/`);
-                  }}
-                />
-              </div>
+              <CaseStudyImage
+                key={index}
+                image={image}
+                aspectRatio="16/9"
+                className="case-study-fullbleed__image"
+              />
             ))}
           </section>
         )}
 
         {/* Approach Section */}
         {content.approach && (
-          <section className="case-study-section case-study-section--light">
-            <div className="case-study-section__inner">
-              <h2 className="case-study-section__title reveal">Approach</h2>
-              <div className="approach__header">
-                <p className="approach__text">
-                  {content.approach.text.split(/(system, not a poster|campaign consistency|constants vs variables|non-negotiables|controlled flexibility|repeatable pipeline|continuity over novelty|human-led|realism, brand fit, and product readability|campaigns are edited)/gi).map((part, i) => {
-                    const isHighlight = /system, not a poster|campaign consistency|constants vs variables|non-negotiables|controlled flexibility|repeatable pipeline|continuity over novelty|human-led|realism, brand fit, and product readability|campaigns are edited/i.test(part);
-                    return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
-                  })}
-                </p>
-                {content.approach.tools && content.approach.tools.length > 0 && (
-                  <div className="approach__tools">
-                    <div className="approach__tools-label">Tools</div>
-                    <div className="approach__tools-list">
-                      {content.approach.tools.map((tool, index) => (
-                        <span
-                          key={index}
-                          className="approach__tool"
-                          data-gold={isGold ? '' : undefined}
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+          <CaseStudySection 
+            title="The Approach" 
+            variant="light"
+            id="approach"
+          >
+            <div className="case-study-approach">
+              <p className="case-study-approach__text">
+                {content.approach.text}
+              </p>
 
-              {/* System Module */}
+              {content.approach.tools && content.approach.tools.length > 0 && (
+                <div className="case-study-approach__tools">
+                  <h4 className="case-study-approach__tools-title">Tools & Technologies</h4>
+                  <div className="case-study-approach__tools-list">
+                    {content.approach.tools.map((tool, index) => (
+                      <span key={index} className="case-study-approach__tool">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {content.approach.system && (
-                <div className="approach__system">
-                  <div className="approach__system-label">{content.approach.system.label}</div>
-                  <div className="approach__system-grid">
+                <div className="case-study-approach__system">
+                  <h4 className="case-study-approach__system-title">
+                    {content.approach.system.label}
+                  </h4>
+                  <div className="case-study-approach__system-grid">
                     {content.approach.system.items.map((item, index) => (
-                      <div key={index} className="approach__system-item">
-                        <div
-                          className="approach__system-title"
-                          data-gold={isGold ? '' : undefined}
-                        >
+                      <div key={index} className="case-study-approach__system-item">
+                        <h5 className="case-study-approach__system-item-title">
                           {item.title}
-                        </div>
-                        <div className="approach__system-desc">{item.description}</div>
+                        </h5>
+                        <p className="case-study-approach__system-item-desc">
+                          {item.description}
+                        </p>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Iteration Proof Module */}
-              {content.approach.iterationProof && (
-                <div className="approach__iteration">
-                  <div className="iteration">
-                    <div className="iteration__label">{content.approach.iterationProof.label}</div>
-                    <div className="iteration__grid">
-                      {content.approach.iterationProof.items.map((item, index) => (
-                        <div key={index} className="iteration__item">
-                          <div className="iteration__title">{item.title}</div>
-                          <div className="iteration__text">{item.description}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Deliverables */}
-              {content.approach.deliverables && content.approach.deliverables.length > 0 && (
-                <div className="deliverables">
-                  <div className="deliverables__label">Deliverables</div>
-                  <div className="deliverables__grid">
-                    {content.approach.deliverables.map((deliverable, index) => (
-                      <div key={index} className="deliverables__item">
-                        <div className="deliverables__name">{deliverable.name}</div>
-                        <div className="deliverables__why">{deliverable.rationale}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Approach Images */}
               {content.approach.images && content.approach.images.length > 0 && (
-                <div className="approach__images">
+                <div className="case-study-approach__images">
                   {content.approach.images.map((image, index) => (
-                    <div key={index} className="approach__image reveal">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        quality={image.quality ?? 90}
-                        sizes={image.sizes ?? '(max-width: 768px) 100vw, 50vw'}
-                        style={{ objectFit: 'cover' }}
-                        loading="lazy"
-                        onError={(e) => {
-                          console.error('Image failed to load:', image.src);
-                        }}
-                      />
-                    </div>
+                    <CaseStudyImage
+                      key={index}
+                      image={image}
+                      aspectRatio="4/3"
+                      className="case-study-approach__image"
+                    />
                   ))}
                 </div>
               )}
             </div>
-          </section>
+          </CaseStudySection>
         )}
 
         {/* Feature Image */}
         {content.featureImage && (
-          <section className="feature">
-            <div className="feature__image reveal">
-              <Image
-                src={content.featureImage.src}
-                alt={content.featureImage.alt}
-                fill
-                quality={content.featureImage.quality ?? 90}
-                sizes={content.featureImage.sizes ?? '(max-width: 1400px) 100vw, 1400px'}
-                style={{ objectFit: 'cover' }}
-                loading="lazy"
-                onError={(e) => {
-                  console.error('Image failed to load:', content.featureImage?.src);
-                }}
-              />
-            </div>
+          <section className="case-study-feature">
+            <CaseStudyImage
+              image={content.featureImage}
+              aspectRatio="16/9"
+              className="case-study-feature__image"
+            />
           </section>
         )}
 
         {/* Gallery Section */}
-        {content.gallery && content.gallery.rows && content.gallery.rows.length > 0 && (
-          <section className="case-study-section case-study-section--light">
-            <div className="case-study-section__inner">
-              <h2 className="case-study-section__title reveal">Gallery</h2>
-              <div className="gallery">
-                {content.gallery.rows.map((row, rowIndex) => (
-                  <div 
-                    key={rowIndex} 
-                    className={`gallery__row gallery__row--${row.layout} reveal`}
-                  >
-                    {row.items.map((image, imageIndex) => {
-                      // Calculate global position for 2-col layout
-                      const globalIndex = row.layout === '2-col' 
-                        ? (rowIndex * row.items.length + imageIndex) + 1
-                        : imageIndex + 1;
-                      const position = row.layout === '2-col' 
-                        ? ['Top-Left', 'Top-Right', 'Bottom-Left', 'Bottom-Right'][globalIndex - 1]
-                        : `Position ${globalIndex}`;
-                      
-                      return (
-                        <div 
-                          key={imageIndex} 
-                          className="gallery__item"
-                          style={{ 
-                            animationDelay: row.layout === '2-col' 
-                              ? `${(rowIndex * row.items.length + imageIndex) * 0.1}s` 
-                              : `${imageIndex * 0.1}s` 
-                          }}
-                        >
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            fill
-                            quality={image.quality ?? 90}
-                            sizes={image.sizes ?? '(max-width: 968px) 100vw, 50vw'}
-                            style={{ objectFit: 'cover' }}
-                            loading="lazy"
-                            onError={(e) => {
-                              console.error(`❌ Gallery Image ${globalIndex} (${position}) failed to load:`, image.src);
-                              console.error(`   Expected filename: gallery-${globalIndex === 4 ? '4' : globalIndex}.webp`);
-                              console.error(`   Location: public/images/case-studies/${content.id}/gallery/`);
-                            }}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+        {content.gallery && content.gallery.rows && (
+          <CaseStudyGallery 
+            rows={content.gallery.rows}
+            accentColor={content.accentColor}
+          />
         )}
 
         {/* Results Section */}
-              {content.results && (
-                <section className="case-study-section case-study-section--dark">
-                  <div className="case-study-section__inner">
-                    <h2 className="case-study-section__title reveal">Results</h2>
-                    <div className="results">
-                      <p className="results__text">
-                        {content.results.text.split(/(campaign iteration|fast and controllable|coherent variants|repeatable creative loop|judgment, not randomness|campaign-level decisions)/gi).map((part, i) => {
-                          const isHighlight = /campaign iteration|fast and controllable|coherent variants|repeatable creative loop|judgment, not randomness|campaign-level decisions/i.test(part);
-                          return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
-                        })}
-                      </p>
-                      <div className="results__takeaway" data-gold={isGold ? '' : undefined}>
-                        <p className="results__takeaway-text">
-                          {content.results.takeawayQuote.split(/(automated infrastructure|repeatable creative direction)/gi).map((part, i) => {
-                            const isHighlight = /automated infrastructure|repeatable creative direction/i.test(part);
-                            return isHighlight ? <span key={i} className="highlight">{part}</span> : part;
-                          })}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              )}
+        {content.results && (
+          <CaseStudySection 
+            title="Results" 
+            variant="dark"
+            id="results"
+          >
+            <div className="case-study-results">
+              <p className="case-study-results__text">
+                {content.results.text}
+              </p>
+              <blockquote className="case-study-results__quote">
+                {content.results.takeawayQuote}
+              </blockquote>
+            </div>
+          </CaseStudySection>
+        )}
 
         {/* Next Case Study */}
-        {nextCaseStudy && (
-          <section className="next">
-            <div className="next__inner">
-              <p className="next__label">Next Project</p>
-              <Link href={nextCaseStudy.href} className="next__link">
-                <h2 className="next__title">{nextCaseStudy.title}</h2>
-                {nextCaseStudy.subtitle && (
-                  <p className="next__subtitle">{nextCaseStudy.subtitle}</p>
-                )}
-              </Link>
-            </div>
-          </section>
-        )}
+        <CaseStudyNext 
+          nextCaseStudy={nextCaseStudy}
+          accentColor={content.accentColor}
+        />
       </main>
 
       <Footer />
