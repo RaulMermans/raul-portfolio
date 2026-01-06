@@ -4,19 +4,26 @@ import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
+// Critical bots - loaded immediately (error handling, security)
+import '@/lib/error-bot' // Initialize error bot
+import '@/lib/security-bot' // Initialize security bot
+import '@/lib/departments' // Initialize department managers (coordinates all bots)
+
+// Performance bots - loaded for optimization
+// Note: For production with multiple instances, consider lazy loading non-critical bots
+// Current approach: All bots loaded for SSR compatibility
+// Future optimization: Refactor bots to support dynamic imports for client-side lazy loading
 import '@/lib/performance-bot' // Initialize performance bot
 import '@/lib/cache-bot' // Initialize cache bot
-import '@/lib/error-bot' // Initialize error bot
 import '@/lib/optimization-bot' // Initialize optimization bot
 import '@/lib/seo-bot' // Initialize SEO bot
 import '@/lib/image-optimization-bot' // Initialize image optimization bot
 import '@/lib/accessibility-bot' // Initialize accessibility bot
 import '@/lib/analytics-bot' // Initialize analytics bot
-import '@/lib/security-bot' // Initialize security bot
 import '@/lib/cleanup-bot' // Initialize cleanup bot
 import '@/lib/animation-expert' // Initialize animation expert bot
 import '@/lib/mobile-optimizer' // Initialize mobile optimizer bot
-import '@/lib/departments' // Initialize department managers (coordinates all bots)
+import '@/lib/env-validation' // Validate environment variables
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const bebasNeue = Bebas_Neue({
@@ -109,6 +116,9 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/images/sections/photography-bg.webp" />
       </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>

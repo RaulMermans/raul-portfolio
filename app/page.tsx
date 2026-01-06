@@ -189,15 +189,17 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
-      <Header />
-      <Hero />
-      <SectionCards />
-      <About />
-      <Services />
-      <Contact />
-      <Socials />
-      <Footer />
-      <BackToTop />
+      <main id="main-content">
+        <Header />
+        <Hero />
+        <SectionCards />
+        <About />
+        <Services />
+        <Contact />
+        <Socials />
+        <Footer />
+        <BackToTop />
+      </main>
     </ErrorBoundary>
   )
 }

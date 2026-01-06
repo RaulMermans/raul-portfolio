@@ -2,10 +2,19 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  // Add any middleware logic here
-  // For example: authentication, redirects, headers, etc.
+  // Security headers
+  const response = NextResponse.next()
   
-  return NextResponse.next()
+  // Add security headers
+  response.headers.set('X-Content-Type-Options', 'nosniff')
+  response.headers.set('X-Frame-Options', 'DENY')
+  response.headers.set('X-XSS-Protection', '1; mode=block')
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  
+  // Add custom headers if needed
+  // response.headers.set('X-Custom-Header', 'value')
+  
+  return response
 }
 
 export const config = {

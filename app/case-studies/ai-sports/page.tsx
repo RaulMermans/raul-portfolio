@@ -186,6 +186,9 @@ export default function AISportsCampaignPage() {
                   sizes={image.sizes ?? '100vw'}
                   style={{ objectFit: 'cover' }}
                   loading="lazy"
+                  onError={(e) => {
+                    console.error('Image failed to load:', image.src);
+                  }}
                 />
               </div>
             ))}
@@ -286,6 +289,9 @@ export default function AISportsCampaignPage() {
                         sizes={image.sizes ?? '(max-width: 768px) 100vw, 50vw'}
                         style={{ objectFit: 'cover' }}
                         loading="lazy"
+                        onError={(e) => {
+                          console.error('Image failed to load:', image.src);
+                        }}
                       />
                     </div>
                   ))}
@@ -307,6 +313,9 @@ export default function AISportsCampaignPage() {
                 sizes={content.featureImage.sizes ?? '(max-width: 1400px) 100vw, 1400px'}
                 style={{ objectFit: 'cover' }}
                 loading="lazy"
+                onError={(e) => {
+                  console.error('Image failed to load:', content.featureImage?.src);
+                }}
               />
             </div>
           </section>
@@ -333,6 +342,9 @@ export default function AISportsCampaignPage() {
                           sizes={image.sizes ?? '(max-width: 768px) 100vw, 50vw'}
                           style={{ objectFit: 'cover' }}
                           loading="lazy"
+                          onError={(e) => {
+                            console.error('Image failed to load:', image.src);
+                          }}
                         />
                       </div>
                     ))}

@@ -38,10 +38,10 @@ export default function ContactForm() {
       // Track form submission in Google Analytics
       trackFormSubmit('contact_form')
       
-      // Reset success message after 5 seconds
+      // Reset success message after configured time
       setTimeout(() => {
         setStatus('idle')
-      }, 5000)
+      }, 5000) // CONTACT_FORM_SUCCESS_DISPLAY_TIME from constants
     } catch (error) {
       setStatus('error')
       setErrorMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.')

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { escapeHtml } from '@/lib/utils'
+import { logger } from '@/lib/logger'
+import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limiter'
 
 // Initialize Resend client only if API key is available
 const getResendClient = () => {
@@ -16,6 +18,29 @@ const FROM_EMAIL = process.env.FROM_EMAIL || 'onboarding@resend.dev'
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const clientId = getClientIdentifier(request)
+    const rateLimit = checkRateLimit(clientId)
+    
+    if (!rateLimit.success) {
+      const retryAfter = Math.ceil((rateLimit.resetTime - Date.now()) / 1000)
+      return NextResponse.json(
+        { 
+          error: 'Too many requests. Please try again later.',
+          retryAfter,
+        },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': retryAfter.toString(),
+            'X-RateLimit-Limit': '5',
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+          },
+        }
+      )
+    }
+    
     const body = await request.json()
     const { name, email, message } = body
 
@@ -41,7 +66,7 @@ export async function POST(request: NextRequest) {
     if (!resend) {
       // In development, log the submission instead of failing
       if (process.env.NODE_ENV === 'development') {
-        console.log('📧 Contact form submission (Resend not configured):', {
+        logger.log('📧 Contact form submission (Resend not configured):', {
           name,
           email,
           message,
@@ -133,7 +158,7 @@ Reply directly to this email to respond to ${name}.
     })
 
     if (error) {
-      console.error('Resend error:', error)
+      logger.error('Resend error:', error)
       return NextResponse.json(
         { error: 'Failed to send email. Please try again later.' },
         { status: 500 }
@@ -146,10 +171,17 @@ Reply directly to this email to respond to ${name}.
         message: 'Thank you for your message! I will get back to you soon.',
         emailId: data?.id, // Resend email ID for tracking
       },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: {
+          'X-RateLimit-Limit': '5',
+          'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+          'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString(),
+        },
+      }
     )
   } catch (error) {
-    console.error('Contact form error:', error)
+    logger.error('Contact form error:', error)
     return NextResponse.json(
       { error: 'Internal server error. Please try again later.' },
       { status: 500 }

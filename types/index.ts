@@ -1,16 +1,3 @@
-// Project types
-export interface Project {
-  id: string
-  title: string
-  description: string
-  image?: string
-  technologies: string[]
-  githubUrl?: string
-  liveUrl?: string
-  featured?: boolean
-  date: string
-}
-
 // Contact form types
 export interface ContactFormData {
   name: string

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import HeroBackground from './HeroBackground'
+import { HERO_MAGNETIC_MAX_DISTANCE, HERO_MAGNETIC_STRENGTH, HERO_SCALE_FACTOR } from '@/lib/constants'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -33,11 +34,10 @@ export default function Hero() {
             const distanceX = e.clientX - centerX
             const distanceY = e.clientY - centerY
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-            const maxDistance = 150 // Slightly larger but more subtle
             
-            if (distance < maxDistance) {
-              const strength = (1 - distance / maxDistance) * 0.2 // Reduced strength for subtlety
-              primaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.01)`
+            if (distance < HERO_MAGNETIC_MAX_DISTANCE) {
+              const strength = (1 - distance / HERO_MAGNETIC_MAX_DISTANCE) * HERO_MAGNETIC_STRENGTH
+              primaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(${HERO_SCALE_FACTOR})`
             } else {
               primaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
             }
@@ -50,11 +50,10 @@ export default function Hero() {
             const distanceX = e.clientX - centerX
             const distanceY = e.clientY - centerY
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-            const maxDistance = 150
             
-            if (distance < maxDistance) {
-              const strength = (1 - distance / maxDistance) * 0.2
-              secondaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(1.01)`
+            if (distance < HERO_MAGNETIC_MAX_DISTANCE) {
+              const strength = (1 - distance / HERO_MAGNETIC_MAX_DISTANCE) * HERO_MAGNETIC_STRENGTH
+              secondaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(${HERO_SCALE_FACTOR})`
             } else {
               secondaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
             }
