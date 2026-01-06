@@ -58,9 +58,6 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
                       console.error('Gallery image failed to load:', image.src)
                     }}
                   />
-                  <div className="case-study-gallery-new__overlay">
-                    <span className="case-study-gallery-new__view">View</span>
-                  </div>
                 </div>
               )
             })}

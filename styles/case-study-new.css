@@ -557,35 +557,7 @@
   transform: scale(1.05);
 }
 
-.case-study-gallery-new__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
-  opacity: 0;
-}
-
-.case-study-gallery-new__item:hover .case-study-gallery-new__overlay {
-  background: rgba(0, 0, 0, 0.3);
-  opacity: 1;
-}
-
-.case-study-gallery-new__view {
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transform: translateY(10px);
-  transition: transform 0.3s ease;
-}
-
-.case-study-gallery-new__item:hover .case-study-gallery-new__view {
-  transform: translateY(0);
-}
+/* Overlay removed - no "View" text needed */
 
 /* Lightbox */
 .case-study-gallery-new__lightbox {
