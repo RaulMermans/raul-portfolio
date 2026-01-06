@@ -75,6 +75,11 @@ export const DEPARTMENTS: Record<string, Department> = {
     description: 'Specialized in award-winning animations, microinteractions, and Awwwards-level UI design',
     capabilities: ['animations', 'microinteractions', 'ui design', 'transitions', 'hover effects', 'scroll animations', 'award-winning design'],
   },
+  'mobile': {
+    name: 'Mobile Optimizer',
+    description: 'Proactively monitors and optimizes mobile design, performance, and user experience',
+    capabilities: ['mobile design', 'touch optimization', 'responsive design', 'mobile performance', 'viewport optimization', 'mobile UX', 'mobile bug fixes'],
+  },
 }
 
 /**
@@ -189,6 +194,38 @@ export function analyzeRequest(request: string): TaskAnalysis {
       department: ['optimization'],
       dependencies: ['task-opt-1'],
       priority: 'high',
+      estimatedComplexity: 'moderate',
+    })
+  }
+
+  // Mobile audit and optimization
+  if (requestLower.includes('mobile') || requestLower.includes('audit') || 
+      requestLower.includes('ux') || requestLower.includes('ui') || 
+      requestLower.includes('performance') && requestLower.includes('improve')) {
+    tasks.push({
+      id: 'task-mobile-audit-1',
+      content: 'Run mobile UX/UI and performance audit',
+      status: 'pending',
+      department: ['mobile', 'design', 'optimization'],
+      priority: 'high',
+      estimatedComplexity: 'moderate',
+    })
+    tasks.push({
+      id: 'task-mobile-audit-2',
+      content: 'Analyze audit results and generate recommendations',
+      status: 'pending',
+      department: ['mobile'],
+      dependencies: ['task-mobile-audit-1'],
+      priority: 'high',
+      estimatedComplexity: 'simple',
+    })
+    tasks.push({
+      id: 'task-mobile-audit-3',
+      content: 'Implement mobile improvements',
+      status: 'pending',
+      department: ['mobile', 'design', 'frontend'],
+      dependencies: ['task-mobile-audit-2'],
+      priority: 'medium',
       estimatedComplexity: 'moderate',
     })
   }
