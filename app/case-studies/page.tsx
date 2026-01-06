@@ -125,7 +125,9 @@ export default function CaseStudiesPage() {
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="grain" aria-hidden="true"></div>
 
-      <Header />
+      <div className="case-studies-split__header-wrapper">
+        <Header />
+      </div>
 
       <main id="main-content" role="main" className="case-studies-split" ref={containerRef}>
         {/* Left Content Column */}

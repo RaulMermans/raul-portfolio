@@ -7245,6 +7245,38 @@ a[href^="/"]:hover {
   position: relative;
 }
 
+/* Header wrapper for case studies split page */
+.case-studies-split__header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.case-studies-split__header-wrapper .ui__logo,
+.case-studies-split__header-wrapper .ui__nav {
+  pointer-events: auto;
+}
+
+/* Apply dark styling to header on right side (over dark background) */
+.case-studies-split__header-wrapper .ui__logo {
+  color: var(--ink); /* Dark on light background */
+}
+
+.case-studies-split__header-wrapper .ui__nav a {
+  color: var(--ink-muted); /* Dark on light background */
+}
+
+/* On mobile, ensure header is readable */
+@media (max-width: 900px) {
+  .case-studies-split__header-wrapper .ui__logo,
+  .case-studies-split__header-wrapper .ui__nav a {
+    color: var(--ink);
+  }
+}
+
 /* Left Content Column */
 .case-studies-split__content {
   display: flex;
