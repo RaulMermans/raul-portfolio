@@ -22,33 +22,32 @@ export default function CaseStudyImage({
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState(false)
 
+  // Don't render if image is missing or failed to load
+  if (error || !image?.src) {
+    return null
+  }
+
   return (
     <div 
       className={`case-study-image-new ${className} ${onClick ? 'case-study-image-new--clickable' : ''}`}
       style={{ aspectRatio, position: 'relative' }}
       onClick={onClick}
     >
-      {error ? (
-        <div className="case-study-image-new__error">
-          <span>Image failed to load</span>
-        </div>
-      ) : (
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority={priority}
-          quality={image.quality ?? 90}
-          sizes={image.sizes ?? '(max-width: 768px) 100vw, 80vw'}
-          style={{ objectFit: 'contain' }}
-          className={`case-study-image-new__img ${loaded ? 'case-study-image-new__img--loaded' : ''}`}
-          onLoad={() => setLoaded(true)}
-          onError={() => {
-            setError(true)
-            console.error('Image failed to load:', image.src)
-          }}
-        />
-      )}
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        priority={priority}
+        quality={image.quality ?? 90}
+        sizes={image.sizes ?? '(max-width: 768px) 100vw, 80vw'}
+        style={{ objectFit: 'contain' }}
+        className={`case-study-image-new__img ${loaded ? 'case-study-image-new__img--loaded' : ''}`}
+        onLoad={() => setLoaded(true)}
+        onError={() => {
+          setError(true)
+          console.error('Image failed to load:', image.src)
+        }}
+      />
     </div>
   )
 }

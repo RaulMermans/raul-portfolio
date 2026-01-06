@@ -365,6 +365,11 @@
   justify-content: center;
 }
 
+/* Hide if empty or failed */
+.case-study-image-new:empty {
+  display: none;
+}
+
 .case-study-image-new--clickable {
   cursor: pointer;
   transition: transform 0.3s var(--case-study-transition);
@@ -397,6 +402,11 @@
 .case-study-fullbleed {
   padding: 0;
   margin: 0;
+}
+
+/* Hide section if empty (no images) */
+.case-study-fullbleed:empty {
+  display: none;
 }
 
 .case-study-fullbleed__image {
@@ -496,12 +506,23 @@
   margin-top: var(--case-study-space-md);
 }
 
+/* Hide if empty (no images) */
+.case-study-approach__images:empty {
+  display: none;
+  margin: 0;
+}
+
 /* =============================================
    FEATURE IMAGE
    ============================================= */
 .case-study-feature {
   padding: 0;
   margin: 0;
+}
+
+/* Hide section if empty (no image) */
+.case-study-feature:empty {
+  display: none;
 }
 
 .case-study-feature__image {
