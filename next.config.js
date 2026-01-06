@@ -10,8 +10,8 @@ const nextConfig = {
     // Optimize image loading
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Enable image optimization - increased cache TTL for better performance
-    minimumCacheTTL: 31536000, // 1 year cache
+    // Enable image optimization - reasonable cache TTL with revalidation
+    minimumCacheTTL: 60, // 60 seconds - allows updates while maintaining performance
     dangerouslyAllowSVG: false,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
@@ -48,22 +48,22 @@ const nextConfig = {
         ],
       },
       {
-        // Next.js image optimization - cache for 1 year
+        // Next.js image optimization - cache with revalidation
         source: '/_next/image',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
         ],
       },
       {
-        // Public static assets (images, fonts, etc.) - cache for 1 year
+        // Public static assets (images, fonts, etc.) - cache with revalidation
         source: '/images/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
         ],
       },
