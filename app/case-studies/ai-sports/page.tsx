@@ -103,6 +103,7 @@ export default function AISportsCampaignPage() {
         {content.overview && (
           <section className="case-study-section case-study-section--light">
             <div className="case-study-section__inner">
+              <h2 className="case-study-section__title reveal">Overview</h2>
               <div className="overview">
                 {content.overview.meta && content.overview.meta.length > 0 && (
                   <div className="overview__meta">
@@ -147,7 +148,8 @@ export default function AISportsCampaignPage() {
         {content.challenge && (
           <section className="case-study-section case-study-section--dark">
             <div className="case-study-section__inner">
-              <h2 className="challenge__quote">{content.challenge.quote}</h2>
+              <h2 className="case-study-section__title reveal">Challenge</h2>
+              <h3 className="challenge__quote">{content.challenge.quote}</h3>
               <div className="challenge__divider"></div>
               <p className="challenge__text">
                 {content.challenge.context.split(/(drift|continuity|campaigns|scene stays constant|casting and wardrobe|editable)/gi).map((part, i) => {
@@ -199,6 +201,7 @@ export default function AISportsCampaignPage() {
         {content.approach && (
           <section className="case-study-section case-study-section--light">
             <div className="case-study-section__inner">
+              <h2 className="case-study-section__title reveal">Approach</h2>
               <div className="approach__header">
                 <p className="approach__text">
                   {content.approach.text.split(/(system, not a poster|campaign consistency|constants vs variables|non-negotiables|controlled flexibility|repeatable pipeline|continuity over novelty|human-led|realism, brand fit, and product readability|campaigns are edited)/gi).map((part, i) => {
@@ -325,7 +328,7 @@ export default function AISportsCampaignPage() {
         {content.gallery && content.gallery.rows && content.gallery.rows.length > 0 && (
           <section className="case-study-section case-study-section--light">
             <div className="case-study-section__inner">
-              <h2 className="gallery__title reveal">Gallery</h2>
+              <h2 className="case-study-section__title reveal">Gallery</h2>
               <div className="gallery">
                 {content.gallery.rows.map((row, rowIndex) => (
                   <div 
@@ -333,13 +336,21 @@ export default function AISportsCampaignPage() {
                     className={`gallery__row gallery__row--${row.layout} reveal`}
                   >
                     {row.items.map((image, imageIndex) => (
-                      <div key={imageIndex} className="gallery__item">
+                      <div 
+                        key={imageIndex} 
+                        className="gallery__item"
+                        style={{ 
+                          animationDelay: row.layout === '2-col' 
+                            ? `${(rowIndex * row.items.length + imageIndex) * 0.1}s` 
+                            : `${imageIndex * 0.1}s` 
+                        }}
+                      >
                         <Image
                           src={image.src}
                           alt={image.alt}
                           fill
                           quality={image.quality ?? 90}
-                          sizes={image.sizes ?? '(max-width: 768px) 100vw, 50vw'}
+                          sizes={image.sizes ?? '(max-width: 968px) 100vw, 50vw'}
                           style={{ objectFit: 'cover' }}
                           loading="lazy"
                           onError={(e) => {
@@ -359,6 +370,7 @@ export default function AISportsCampaignPage() {
               {content.results && (
                 <section className="case-study-section case-study-section--dark">
                   <div className="case-study-section__inner">
+                    <h2 className="case-study-section__title reveal">Results</h2>
                     <div className="results">
                       <p className="results__text">
                         {content.results.text.split(/(campaign iteration|fast and controllable|coherent variants|repeatable creative loop|judgment, not randomness|campaign-level decisions)/gi).map((part, i) => {

@@ -423,86 +423,149 @@
 }
 
 /* =============================================
-   GALLERY SECTION - RESPECTS ROW LAYOUTS
+   GALLERY SECTION - SHOWCASE STYLE
    ============================================= */
-.gallery__title {
-  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: var(--ink, #1a1714);
-  margin-bottom: 3rem;
-  text-align: center;
-  font-weight: 400;
-  position: relative;
-}
-
-.gallery__title::after {
-  content: '';
-  position: absolute;
-  bottom: -1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: var(--accent, #c41e3a);
-}
-
 .gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.gallery__row {
   display: grid;
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 3rem 2rem;
+  background: rgba(245, 240, 235, 0.5);
+  border-radius: 8px;
+}
+
+/* Gallery Grid Layout - 2x2 showcase */
+.gallery__row {
+  display: contents;
+}
+
+/* 2-column layout - becomes grid item */
+.gallery__row--2-col {
+  display: contents;
+}
+
+.gallery__row--2-col .gallery__item {
+  /* Items are direct children of .gallery grid */
+}
+
+/* 3-column layout - separate row */
+.gallery__row--3-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  grid-column: 1 / -1;
   width: 100%;
 }
 
-/* 3-column layout */
-.gallery__row--3-col {
-  grid-template-columns: repeat(3, 1fr);
+/* Asymmetric layout - full width */
+.gallery__row--asymmetric {
+  display: grid;
+  grid-column: 1 / -1;
+  width: 100%;
+  gap: 2rem;
 }
 
-/* Asymmetric layout - single large image */
-.gallery__row--asymmetric {
+.gallery__row--asymmetric--60-40 {
+  grid-template-columns: 1.5fr 1fr;
+}
+
+.gallery__row--asymmetric--single {
   grid-template-columns: 1fr;
   max-width: 900px;
   margin: 0 auto;
 }
 
-/* 2-column layout */
-.gallery__row--2-col {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
 .gallery__item {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
   overflow: hidden;
-  background: var(--cream-dark, #ddd5c8);
-  border-radius: 4px;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+              filter 0.5s ease,
+              box-shadow 0.5s ease;
+  cursor: pointer;
+}
+
+/* Default aspect ratio */
+.gallery__item {
+  aspect-ratio: 4/3;
+}
+
+/* 2x2 Grid - Target items directly in gallery (when using display: contents) */
+.gallery > .gallery__row--2-col .gallery__item:nth-child(1),
+.gallery .gallery__row--2-col:nth-of-type(1) .gallery__item:nth-child(1) {
+  aspect-ratio: 4/3;
+}
+
+.gallery > .gallery__row--2-col .gallery__item:nth-child(2),
+.gallery .gallery__row--2-col:nth-of-type(1) .gallery__item:nth-child(2) {
+  aspect-ratio: 3/4;
+}
+
+.gallery > .gallery__row--2-col .gallery__item:nth-child(3),
+.gallery .gallery__row--2-col:nth-of-type(2) .gallery__item:nth-child(1) {
+  aspect-ratio: 3/4;
+}
+
+.gallery > .gallery__row--2-col .gallery__item:nth-child(4),
+.gallery .gallery__row--2-col:nth-of-type(2) .gallery__item:nth-child(2) {
+  aspect-ratio: 4/3;
+}
+
+/* Alternative: Use direct grid item targeting when items are flattened */
+.gallery__item:nth-child(1),
+.gallery__item:nth-child(4) {
+  aspect-ratio: 4/3;
+}
+
+.gallery__item:nth-child(2),
+.gallery__item:nth-child(3) {
+  aspect-ratio: 3/4;
 }
 
 .gallery__row--asymmetric .gallery__item {
   aspect-ratio: 16/9;
 }
 
-.gallery__row--2-col .gallery__item {
-  aspect-ratio: 4/3;
+.gallery__row--asymmetric--single .gallery__item {
+  aspect-ratio: 16/10;
 }
 
+/* Color/Grayscale Mix - Showcase Style */
+/* Items 1 & 4 (top-left, bottom-right) - Full Color */
+.gallery__item:nth-child(1) img,
+.gallery__item:nth-child(1) [data-nimg],
+.gallery__item:nth-child(4) img,
+.gallery__item:nth-child(4) [data-nimg],
+.gallery .gallery__row--2-col:nth-of-type(1) .gallery__item:nth-child(1) img,
+.gallery .gallery__row--2-col:nth-of-type(1) .gallery__item:nth-child(1) [data-nimg],
+.gallery .gallery__row--2-col:nth-of-type(2) .gallery__item:nth-child(2) img,
+.gallery .gallery__row--2-col:nth-of-type(2) .gallery__item:nth-child(2) [data-nimg] {
+  filter: grayscale(0%) contrast(1.02) brightness(1.01);
+}
+
+/* Items 2 & 3 (top-right, bottom-left) - Grayscale */
+.gallery__item:nth-child(2) img,
+.gallery__item:nth-child(2) [data-nimg],
+.gallery__item:nth-child(3) img,
+.gallery__item:nth-child(3) [data-nimg],
+.gallery .gallery__row--2-col:nth-of-type(1) .gallery__item:nth-child(2) img,
+.gallery .gallery__row--2-col:nth-of-type(1) .gallery__item:nth-child(2) [data-nimg],
+.gallery .gallery__row--2-col:nth-of-type(2) .gallery__item:nth-child(1) img,
+.gallery .gallery__row--2-col:nth-of-type(2) .gallery__item:nth-child(1) [data-nimg] {
+  filter: grayscale(100%) contrast(1.05) brightness(0.98);
+}
+
+/* Hover Effects - Subtle and elegant */
 .gallery__item:hover {
-  transform: scale(1.02);
-  z-index: 1;
+  transform: translateY(-6px);
+  z-index: 2;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .gallery__item img,
@@ -511,48 +574,56 @@
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  filter: grayscale(15%) contrast(1.05);
-  transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: filter 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, filter;
 }
 
+/* All images become color on hover */
 .gallery__item:hover img,
 .gallery__item:hover [data-nimg] {
-  filter: grayscale(0%) contrast(1.1);
-  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1.08) brightness(1.03);
+  transform: scale(1.03);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 968px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .gallery__row--2-col .gallery__item {
+    aspect-ratio: 16/10;
+    grid-column: 1;
+  }
+
+  /* Reset aspect ratios for mobile */
+  .gallery__item:nth-child(1),
+  .gallery__item:nth-child(2),
+  .gallery__item:nth-child(3),
+  .gallery__item:nth-child(4) {
+    aspect-ratio: 16/10;
+  }
+
+  .gallery__row--3-col {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery__row--asymmetric--60-40 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
   .gallery {
     gap: 1.5rem;
-    padding: 0 var(--space-4);
-  }
-  
-  .gallery__title {
-    margin-bottom: 2rem;
-    padding: 0 var(--space-4);
-  }
-
-  .gallery__row--3-col,
-  .gallery__row--2-col {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .gallery__row--2-col .gallery__item {
-    aspect-ratio: 16/9;
-  }
-
-  .gallery__row--asymmetric {
-    max-width: 100%;
   }
 
   .gallery__item {
-    aspect-ratio: 4/3;
-    min-height: 300px;
-  }
-  
-  .gallery__row--asymmetric .gallery__item {
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/10;
+    min-height: 250px;
   }
 }
 
