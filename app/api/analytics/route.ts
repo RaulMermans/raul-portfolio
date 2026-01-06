@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     // Example: Log metrics (replace with actual storage)
     if (process.env.NODE_ENV === 'development') {
-      console.log('Performance metrics:', processedMetrics)
+      // Metrics processed successfully
     }
 
     // Example: Send to analytics service
