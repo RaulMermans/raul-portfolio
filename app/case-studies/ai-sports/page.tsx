@@ -240,7 +240,10 @@ export default function AISportsCampaignPage() {
 
         {/* Next Case Study */}
         <CaseStudyNext 
-          nextCaseStudy={nextCaseStudy}
+          nextCaseStudy={nextCaseStudy ? {
+            ...nextCaseStudy,
+            image: nextCaseStudy.image
+          } : undefined}
           accentColor={content.accentColor}
         />
       </main>

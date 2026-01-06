@@ -217,7 +217,10 @@ export default function RemoriaPage() {
         )}
 
         <CaseStudyNext 
-          nextCaseStudy={nextCaseStudy}
+          nextCaseStudy={nextCaseStudy ? {
+            ...nextCaseStudy,
+            image: nextCaseStudy.image
+          } : undefined}
           accentColor={content.accentColor}
         />
       </main>
