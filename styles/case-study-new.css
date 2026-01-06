@@ -3,13 +3,13 @@
    Clean, engaging, performance-focused
    ============================================= */
 
-/* Variables - Meaningful Spacing System */
+/* Variables - Meaningful Spacing System - Reduced for tighter layout */
 :root {
-  --case-study-space-xl: clamp(3rem, 6vw, 4.5rem); /* Major section breaks - reduced from 4-6rem */
-  --case-study-space-lg: clamp(2.5rem, 5vw, 3.5rem); /* Section padding - reduced from 3-4.5rem */
-  --case-study-space-md: clamp(1.5rem, 3vw, 2.5rem); /* Content spacing - reduced from 2-3rem */
-  --case-study-space-sm: clamp(1.25rem, 2.5vw, 1.75rem); /* Element spacing - reduced from 1.5-2rem */
-  --case-study-space-xs: clamp(0.75rem, 1.5vw, 1.25rem); /* Tight spacing - reduced from 1-1.5rem */
+  --case-study-space-xl: clamp(2.5rem, 5vw, 3.5rem); /* Major section breaks */
+  --case-study-space-lg: clamp(2rem, 4vw, 3rem); /* Section padding */
+  --case-study-space-md: clamp(1.25rem, 2.5vw, 2rem); /* Content spacing */
+  --case-study-space-sm: clamp(1rem, 2vw, 1.5rem); /* Element spacing */
+  --case-study-space-xs: clamp(0.625rem, 1.5vw, 1rem); /* Tight spacing */
   --case-study-container: min(90vw, 1400px);
   --case-study-transition: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -164,8 +164,9 @@
    ============================================= */
 .case-study-meta-new {
   background: var(--cream, #f5f0eb);
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin: 0;
 }
 
 .case-study-meta-new__container {
@@ -176,7 +177,7 @@
 .case-study-meta-new__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem 2rem;
+  gap: 1rem 2rem;
 }
 
 .case-study-meta-new__item {
@@ -203,8 +204,9 @@
    SECTION WRAPPER
    ============================================= */
 .case-study-section-new {
-  padding: var(--case-study-space-md) 2rem;
+  padding: var(--case-study-space-sm) 2rem;
   position: relative;
+  margin: 0;
 }
 
 .case-study-section-new--light {
@@ -228,7 +230,8 @@
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  margin-bottom: var(--case-study-space-md);
+  margin-bottom: var(--case-study-space-sm);
+  margin-top: 0;
   position: relative;
   display: inline-block;
 }
