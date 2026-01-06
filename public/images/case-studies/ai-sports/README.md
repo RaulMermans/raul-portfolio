@@ -8,21 +8,24 @@
 Upload your images here with these **exact filenames**:
 
 ### Hero Image
-- **Filename:** `hero.webp`
+- **Filename:** `Hero.webp` (capital H)
+- **Location:** `hero/Hero.webp`
 - **Usage:** Hero background image
 - **Recommended:** 1920x1080px or larger
-- **Current placeholder:** `/images/placeholders/ai-sports-hero.webp`
+- **Position:** Hero section background
 
 ### Full Bleed Images
-- **Filename:** `full-1.webp`
+- **Filename:** `Full-1.webp` (capital F)
+- **Location:** `full/Full-1.webp`
 - **Usage:** First full-width image section
 - **Recommended:** 1920x1080px or larger
-- **Current placeholder:** `/images/placeholders/ai-sports-full-1.webp`
+- **Position:** Full bleed section - first image
 
-- **Filename:** `full-2.webp`
+- **Filename:** `full-2.webp` (lowercase f)
+- **Location:** `full/full-2.webp`
 - **Usage:** Second full-width image section
 - **Recommended:** 1920x1080px or larger
-- **Current placeholder:** `/images/placeholders/ai-sports-full-2.webp`
+- **Position:** Full bleed section - second image
 
 ### Approach Images
 - **Filename:** `approach-1.webp`
@@ -36,19 +39,39 @@ Upload your images here with these **exact filenames**:
 - **Current placeholder:** `/images/placeholders/ai-sports-approach-2.webp`
 
 ### Feature Image
-- **Filename:** `feature.webp`
+- **Filename:** `feature_1.webp` (with underscore)
+- **Location:** `feature/feature_1.webp`
 - **Usage:** Large featured showcase image
 - **Recommended:** 1400x788px
-- **Current placeholder:** `/images/placeholders/ai-sports-feature.webp`
+- **Position:** Feature section - large showcase
 
-### Gallery Images
-- **Filename:** `gallery-1.webp` (600x400px)
-- **Filename:** `gallery-2.webp` (600x400px)
-- **Filename:** `gallery-3.webp` (600x400px)
-- **Filename:** `gallery-4.webp` (900x600px)
-- **Filename:** `gallery-5.webp` (600x400px)
+### Gallery Images (2x2 Grid - Position-Based)
 
-**Current placeholders:** `/images/placeholders/ai-sports-gallery-*.webp`
+**IMPORTANT:** Gallery images appear in specific positions based on filename:
+
+- **Filename:** `gallery-1.webp`
+  - **Location:** `gallery/gallery-1.webp`
+  - **Position:** Top-Left
+  - **Display:** COLOR, Landscape (4:3)
+  - **Recommended:** 1200x900px
+
+- **Filename:** `gallery-2.webp`
+  - **Location:** `gallery/gallery-2.webp`
+  - **Position:** Top-Right
+  - **Display:** GRAYSCALE, Portrait (3:4)
+  - **Recommended:** 900x1200px
+
+- **Filename:** `gallery-3.webp`
+  - **Location:** `gallery/gallery-3.webp`
+  - **Position:** Bottom-Left
+  - **Display:** GRAYSCALE, Portrait (3:4)
+  - **Recommended:** 900x1200px
+
+- **Filename:** `gallery4.webp` (no hyphen!)
+  - **Location:** `gallery/gallery4.webp`
+  - **Position:** Bottom-Right
+  - **Display:** COLOR, Landscape (4:3)
+  - **Recommended:** 1200x900px
 
 ### Thumbnail (for case studies listing)
 - **Filename:** `thumb.webp`
@@ -76,12 +99,30 @@ Once you upload images with the correct filenames, the code will automatically u
 
 ## ✅ Checklist
 
-- [ ] `hero.webp` - Hero background
-- [ ] `full-1.webp` - First full bleed
-- [ ] `full-2.webp` - Second full bleed
-- [ ] `approach-1.webp` - First approach image
-- [ ] `approach-2.webp` - Second approach image
-- [ ] `feature.webp` - Feature showcase
-- [ ] `gallery-1.webp` through `gallery-5.webp` - Gallery images
-- [ ] `thumb.webp` - Case studies thumbnail
+- [ ] `hero/Hero.webp` - Hero background
+- [ ] `full/Full-1.webp` - First full bleed
+- [ ] `full/full-2.webp` - Second full bleed
+- [ ] `approach/approach-1.webp` - First approach image (left)
+- [ ] `approach/approach-2.webp` - Second approach image (right)
+- [ ] `feature/feature_1.webp` - Feature showcase
+- [ ] `gallery/gallery-1.webp` - Gallery top-left (COLOR, landscape)
+- [ ] `gallery/gallery-2.webp` - Gallery top-right (GRAYSCALE, portrait)
+- [ ] `gallery/gallery-3.webp` - Gallery bottom-left (GRAYSCALE, portrait)
+- [ ] `gallery/gallery4.webp` - Gallery bottom-right (COLOR, landscape)
+- [ ] `thumb/thumb.webp` - Case studies thumbnail
+
+## 🎯 Position Reference
+
+**Gallery Grid Layout:**
+```
+┌─────────────┬─────────────┐
+│ gallery-1   │ gallery-2   │
+│ (COLOR)     │ (GRAYSCALE) │
+│ Landscape   │ Portrait    │
+├─────────────┼─────────────┤
+│ gallery-3   │ gallery4    │
+│ (GRAYSCALE) │ (COLOR)     │
+│ Portrait    │ Landscape   │
+└─────────────┴─────────────┘
+```
 

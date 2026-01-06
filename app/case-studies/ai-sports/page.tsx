@@ -189,7 +189,8 @@ export default function AISportsCampaignPage() {
                   style={{ objectFit: 'cover' }}
                   loading="lazy"
                   onError={(e) => {
-                    console.error('Image failed to load:', image.src);
+                    console.error(`❌ Full Bleed Image ${index + 1} failed to load:`, image.src);
+                    console.error(`   Expected location: public/images/case-studies/${content.id}/full/`);
                   }}
                 />
               </div>
@@ -335,30 +336,42 @@ export default function AISportsCampaignPage() {
                     key={rowIndex} 
                     className={`gallery__row gallery__row--${row.layout} reveal`}
                   >
-                    {row.items.map((image, imageIndex) => (
-                      <div 
-                        key={imageIndex} 
-                        className="gallery__item"
-                        style={{ 
-                          animationDelay: row.layout === '2-col' 
-                            ? `${(rowIndex * row.items.length + imageIndex) * 0.1}s` 
-                            : `${imageIndex * 0.1}s` 
-                        }}
-                      >
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          quality={image.quality ?? 90}
-                          sizes={image.sizes ?? '(max-width: 968px) 100vw, 50vw'}
-                          style={{ objectFit: 'cover' }}
-                          loading="lazy"
-                          onError={(e) => {
-                            console.error('Image failed to load:', image.src);
+                    {row.items.map((image, imageIndex) => {
+                      // Calculate global position for 2-col layout
+                      const globalIndex = row.layout === '2-col' 
+                        ? (rowIndex * row.items.length + imageIndex) + 1
+                        : imageIndex + 1;
+                      const position = row.layout === '2-col' 
+                        ? ['Top-Left', 'Top-Right', 'Bottom-Left', 'Bottom-Right'][globalIndex - 1]
+                        : `Position ${globalIndex}`;
+                      
+                      return (
+                        <div 
+                          key={imageIndex} 
+                          className="gallery__item"
+                          style={{ 
+                            animationDelay: row.layout === '2-col' 
+                              ? `${(rowIndex * row.items.length + imageIndex) * 0.1}s` 
+                              : `${imageIndex * 0.1}s` 
                           }}
-                        />
-                      </div>
-                    ))}
+                        >
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            quality={image.quality ?? 90}
+                            sizes={image.sizes ?? '(max-width: 968px) 100vw, 50vw'}
+                            style={{ objectFit: 'cover' }}
+                            loading="lazy"
+                            onError={(e) => {
+                              console.error(`❌ Gallery Image ${globalIndex} (${position}) failed to load:`, image.src);
+                              console.error(`   Expected filename: gallery-${globalIndex === 4 ? '4' : globalIndex}.webp`);
+                              console.error(`   Location: public/images/case-studies/${content.id}/gallery/`);
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 ))}
               </div>
