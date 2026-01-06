@@ -128,6 +128,13 @@
 .case-study-section__inner {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .case-study-section__inner {
+    padding: 0 var(--space-4); /* Improved mobile spacing */
+  }
 }
 
 .case-study-section__title {
@@ -251,10 +258,17 @@
   .case-study-overview {
     grid-template-columns: 1fr;
     gap: 3rem;
+    padding: var(--space-6) var(--space-4); /* Improved mobile spacing */
   }
 
   .case-study-overview__meta {
     min-width: auto;
+    gap: 1.5rem; /* Better spacing on mobile */
+  }
+
+  .case-study-overview__text {
+    font-size: 1.125rem; /* Slightly smaller for mobile readability */
+    line-height: 1.75; /* Improved line height */
   }
 }
 
@@ -294,6 +308,18 @@
   max-width: 1400px;
   margin: 0 auto;
   aspect-ratio: 1;
+}
+
+@media (max-width: 768px) {
+  .gallery__grid {
+    gap: 0.75rem; /* Tighter gap on mobile but still readable */
+    padding: 0 var(--space-4); /* Add horizontal padding */
+  }
+  
+  .gallery__title {
+    margin-bottom: 2rem; /* Reduced margin on mobile */
+    padding: 0 var(--space-4);
+  }
 }
 
 .gallery__item {

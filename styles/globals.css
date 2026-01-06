@@ -944,8 +944,12 @@ html.homepage .footer {
   .hero__cta {
     width: 100%;
     max-width: 280px;
-    padding: var(--space-3) var(--space-6);
-    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    padding: var(--space-4) var(--space-6); /* Increased padding for better touch target */
+    min-height: 48px; /* Ensure minimum 48px touch target */
+    font-size: clamp(0.875rem, 2vw, 0.9375rem); /* Increased from 0.75rem to prevent iOS zoom */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero__services {
@@ -8240,6 +8244,7 @@ body:has(.case-studies-main) .page-transition {
   text-transform: uppercase;
   color: #fff;
   padding: 1rem 2rem;
+  min-height: 44px; /* Ensure minimum touch target */
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 50px;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -9152,8 +9157,10 @@ body:has(.case-studies-main) .page-transition {
   .exhibition__close {
     top: 1rem;
     right: 1rem;
-    width: 44px;
-    height: 44px;
+    width: 48px; /* Increased from 44px for better touch target */
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
   }
 
   .exhibition__image-panel {
@@ -9180,6 +9187,7 @@ body:has(.case-studies-main) .page-transition {
 
   .exhibition__nav-btn {
     padding: 1.25rem 1rem;
+    min-height: 48px; /* Ensure minimum touch target */
     font-size: 0.5rem;
   }
 
