@@ -51,11 +51,13 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
                     alt={image.alt}
                     fill
                     quality={image.quality ?? 90}
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes={image.sizes ?? "(max-width: 768px) 100vw, 50vw"}
                     style={{ objectFit: 'cover' }}
                     className="case-study-gallery-new__img"
                     onError={(e) => {
                       console.error('Gallery image failed to load:', image.src)
+                      const target = e.target as HTMLImageElement
+                      target.style.display = 'none'
                     }}
                   />
                 </div>
