@@ -93,6 +93,31 @@ export default function CaseStudiesPage() {
     }
   }, [currentIndex, isAnimating])
 
+  // Hide scroll hint when at bottom or on last project
+  useEffect(() => {
+    const scrollHint = document.querySelector('.case-studies-split__scroll-hint')
+    if (!scrollHint) return
+
+    const handleScroll = () => {
+      const scrollPosition = window.innerHeight + window.scrollY
+      const documentHeight = document.documentElement.scrollHeight
+      const distanceFromBottom = documentHeight - scrollPosition
+      const isAtBottom = distanceFromBottom < 100
+      const isLastProject = currentIndex === caseStudies.length - 1
+
+      if (isAtBottom || isLastProject) {
+        scrollHint.classList.add('hidden')
+      } else {
+        scrollHint.classList.remove('hidden')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Check initial state
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [currentIndex])
+
   const currentStudy = caseStudies[currentIndex]
 
   return (
@@ -167,6 +192,12 @@ export default function CaseStudiesPage() {
             />
           ))}
         </nav>
+
+        {/* Scroll Indicator - Shows there's more content */}
+        <div className="case-studies-split__scroll-hint">
+          <div className="case-studies-split__scroll-hint-line"></div>
+          <span className="case-studies-split__scroll-hint-text">Scroll</span>
+        </div>
       </main>
     </>
   )
