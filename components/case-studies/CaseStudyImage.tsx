@@ -25,7 +25,7 @@ export default function CaseStudyImage({
   return (
     <div 
       className={`case-study-image-new ${className} ${onClick ? 'case-study-image-new--clickable' : ''}`}
-      style={{ aspectRatio }}
+      style={{ aspectRatio, position: 'relative' }}
       onClick={onClick}
     >
       {error ? (

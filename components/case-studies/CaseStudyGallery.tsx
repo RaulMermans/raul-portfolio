@@ -41,7 +41,8 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
                   className={`case-study-gallery-new__item reveal ${isGrayscale ? 'case-study-gallery-new__item--grayscale' : ''}`}
                   style={{ 
                     animationDelay: `${index * 0.1}s`,
-                    aspectRatio 
+                    aspectRatio,
+                    position: 'relative'
                   }}
                   onClick={() => handleImageClick(image.src, image.alt)}
                 >
@@ -53,6 +54,9 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
                     sizes="(max-width: 768px) 100vw, 50vw"
                     style={{ objectFit: 'cover' }}
                     className="case-study-gallery-new__img"
+                    onError={(e) => {
+                      console.error('Gallery image failed to load:', image.src)
+                    }}
                   />
                   <div className="case-study-gallery-new__overlay">
                     <span className="case-study-gallery-new__view">View</span>

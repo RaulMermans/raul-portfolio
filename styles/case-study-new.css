@@ -93,7 +93,7 @@
 
 .case-study-hero-new__title {
   font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   line-height: 0.9;
   letter-spacing: -0.02em;
   color: white;
@@ -103,7 +103,7 @@
 }
 
 .case-study-hero-new__tagline {
-  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 1rem;
   font-weight: 300;
@@ -111,7 +111,7 @@
 }
 
 .case-study-hero-new__subtitle {
-  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -119,7 +119,7 @@
 }
 
 .case-study-hero-new__description {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(0.9375rem, 2vw, 1.125rem);
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.7;
   max-width: 700px;
@@ -221,7 +221,7 @@
 
 .case-study-section-new__title {
   font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -257,7 +257,7 @@
    INTRO SECTION
    ============================================= */
 .case-study-intro__text {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.8;
   max-width: 900px;
   margin-bottom: 2rem;
@@ -265,7 +265,7 @@
 }
 
 .case-study-intro__quote {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   line-height: 1.6;
   font-style: italic;
   color: var(--ink, #1a1714);
@@ -279,15 +279,15 @@
    CHALLENGE SECTION
    ============================================= */
 .case-study-challenge__quote {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.2;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  line-height: 1.3;
   font-weight: 300;
   margin-bottom: 2rem;
   color: var(--cream, #f5f0eb);
 }
 
 .case-study-challenge__text {
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.8;
   max-width: 900px;
   margin-bottom: 3rem;
@@ -340,6 +340,7 @@
   overflow: hidden;
   background: var(--cream-dark, #ddd5c8);
   border-radius: 8px;
+  min-height: 200px;
 }
 
 .case-study-image-new--clickable {
@@ -389,7 +390,7 @@
    APPROACH SECTION
    ============================================= */
 .case-study-approach__text {
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.8;
   max-width: 900px;
   margin-bottom: 3rem;
@@ -503,7 +504,7 @@
 
 .case-study-gallery-new__title {
   font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -529,6 +530,7 @@
   background: white;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.4s var(--case-study-transition);
+  min-height: 200px;
 }
 
 .case-study-gallery-new__item:hover {
@@ -626,6 +628,7 @@
   max-width: 1400px;
   height: 100%;
   max-height: 90vh;
+  min-height: 300px;
 }
 
 .case-study-gallery-new__lightbox-img {
@@ -641,7 +644,7 @@
    RESULTS SECTION
    ============================================= */
 .case-study-results__text {
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.8;
   max-width: 900px;
   margin-bottom: 3rem;
@@ -649,7 +652,7 @@
 }
 
 .case-study-results__quote {
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   line-height: 1.5;
   font-style: italic;
   color: var(--cream, #f5f0eb);
@@ -705,7 +708,7 @@
 
 .case-study-next-new__title {
   font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
