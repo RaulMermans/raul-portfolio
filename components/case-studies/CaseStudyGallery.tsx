@@ -56,7 +56,7 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
                     className="case-study-gallery-new__img"
                     loading={index < 4 ? 'eager' : 'lazy'}
                     onError={(e) => {
-                      console.error('Gallery image failed to load:', image.src)
+                      // Gallery image failed to load - hide the container
                       const target = e.target as HTMLImageElement
                       if (target.parentElement) {
                         target.parentElement.style.display = 'none'

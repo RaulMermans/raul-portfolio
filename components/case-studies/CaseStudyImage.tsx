@@ -45,7 +45,7 @@ export default function CaseStudyImage({
         onLoad={() => setLoaded(true)}
         onError={() => {
           setError(true)
-          console.error('Image failed to load:', image.src)
+          // Image failed to load - component will return null
         }}
       />
     </div>

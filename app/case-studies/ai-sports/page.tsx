@@ -59,7 +59,7 @@ export default function AISportsCampaignPage() {
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="grain" aria-hidden="true"></div>
-      
+
       <Header />
 
       <main id="main-content" className="case-study-page-new">
@@ -67,7 +67,7 @@ export default function AISportsCampaignPage() {
         <CaseStudyHero 
           hero={content.hero} 
           accentColor={content.accentColor}
-        />
+            />
 
         {/* Meta Section */}
         {content.overview?.meta && (
@@ -75,7 +75,7 @@ export default function AISportsCampaignPage() {
             meta={content.overview.meta} 
             accentColor={content.accentColor}
           />
-        )}
+              )}
 
         {/* Introduction Section */}
         {content.overview && (
@@ -87,12 +87,12 @@ export default function AISportsCampaignPage() {
             <div className="case-study-intro">
               <p className="case-study-intro__text">
                 <BoldText text={content.overview.description} />
-              </p>
-              {content.overview.intentQuote && (
+                  </p>
+                  {content.overview.intentQuote && (
                 <blockquote className="case-study-intro__quote">
                   {content.overview.intentQuote}
                 </blockquote>
-              )}
+                  )}
             </div>
           </CaseStudySection>
         )}
@@ -115,11 +115,11 @@ export default function AISportsCampaignPage() {
                 <div className="case-study-challenge__criteria">
                   <h4 className="case-study-challenge__criteria-title">Success Criteria</h4>
                   <ul className="case-study-challenge__criteria-list">
-                    {content.challenge.successCriteria.map((criterion, index) => (
+                  {content.challenge.successCriteria.map((criterion, index) => (
                       <li key={index} className="case-study-challenge__criteria-item">
-                        {criterion}
+                      {criterion}
                       </li>
-                    ))}
+                  ))}
                   </ul>
                 </div>
               )}
@@ -157,18 +157,18 @@ export default function AISportsCampaignPage() {
                 <BoldText text={content.approach.text} />
               </p>
 
-              {content.approach.tools && content.approach.tools.length > 0 && (
+                {content.approach.tools && content.approach.tools.length > 0 && (
                 <div className="case-study-approach__tools">
                   <h4 className="case-study-approach__tools-title">Tools & Technologies</h4>
                   <div className="case-study-approach__tools-list">
-                    {content.approach.tools.map((tool, index) => (
+                      {content.approach.tools.map((tool, index) => (
                       <span key={index} className="case-study-approach__tool">
-                        {tool}
-                      </span>
-                    ))}
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {content.approach.system && (
                 <div className="case-study-approach__system">
@@ -201,7 +201,7 @@ export default function AISportsCampaignPage() {
                         aspectRatio="4/3"
                         className="case-study-approach__image"
                       />
-                    ))}
+                  ))}
                 </div>
               )}
             </div>
@@ -224,11 +224,11 @@ export default function AISportsCampaignPage() {
           <CaseStudyGallery 
             rows={content.gallery.rows}
             accentColor={content.accentColor}
-          />
+                        />
         )}
 
         {/* Results Section */}
-        {content.results && (
+              {content.results && (
           <CaseStudySection 
             title="Results" 
             variant="dark"
@@ -237,13 +237,13 @@ export default function AISportsCampaignPage() {
             <div className="case-study-results">
               <p className="case-study-results__text">
                 <BoldText text={content.results.text} />
-              </p>
+                      </p>
               <blockquote className="case-study-results__quote">
                 {content.results.takeawayQuote}
               </blockquote>
-            </div>
+                      </div>
           </CaseStudySection>
-        )}
+              )}
 
         {/* Next Case Study */}
         <CaseStudyNext 

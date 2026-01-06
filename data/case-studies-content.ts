@@ -257,7 +257,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         alt: 'Remoria full bleed image',
         quality: 90,
         sizes: '100vw',
-      },
+    },
     ],
     gallery: {
       rows: [

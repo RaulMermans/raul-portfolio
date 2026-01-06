@@ -358,34 +358,34 @@ export default function PhotographyPage() {
         <div className="gallery__track">
           <div className="gallery__grid">
             {imageItems.map(({ photo, index, isActive, categoryImages, photoIndex }) => (
-              <div
-                key={`${photo.category}-${index}`}
-                className={`gallery__item ${isActive ? 'active' : ''}`}
-                data-category={photo.category}
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  setLightboxCategory(photo.category)
-                  setLightboxIndex(photoIndex >= 0 ? photoIndex : 0)
-                  setLightboxOpen(true)
-                }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(max-width: 768px) 140px, (max-width: 1024px) 160px, 180px"
+                <div
+                  key={`${photo.category}-${index}`}
+                  className={`gallery__item ${isActive ? 'active' : ''}`}
+                  data-category={photo.category}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setLightboxCategory(photo.category)
+                    setLightboxIndex(photoIndex >= 0 ? photoIndex : 0)
+                    setLightboxOpen(true)
+                  }}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="(max-width: 768px) 140px, (max-width: 1024px) 160px, 180px"
                   quality={index < 6 ? 75 : 60}
                   loading={index < 4 ? 'eager' : 'lazy'}
                   priority={index < 2}
-                  className="gallery__item-image"
+                    className="gallery__item-image"
                   style={{ objectFit: 'cover' }}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.style.display = 'none'
-                  }}
-                />
-              </div>
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.style.display = 'none'
+                    }}
+                  />
+                </div>
             ))}
           </div>
         </div>

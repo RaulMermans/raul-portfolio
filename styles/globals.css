@@ -12,14 +12,11 @@
   --ink-muted: #6B635A;
   --ink-faint: #8A827A;
   --accent: #C41E3A;
-  --gradient-warm: #FFAA88;
-  --gradient-rose: #FFB5A0;
   --gradient-soft: #E8D0C8;
   --warm: #FFAA88;
   --rose: #FFB5A0;
   --cream-darker: #D8D2CB;
   --gold: #C6A877;
-  --meta-rose: #FFB5A0;
   
   /* Case Studies Project Colors */
   --color-0: #6B8A9A;
@@ -4550,8 +4547,8 @@ a[href^="/"]:hover {
   border-radius: 50%;
   background: radial-gradient(
     circle at 30% 30%,
-    var(--gradient-warm),
-    var(--gradient-rose),
+    var(--warm),
+    var(--rose),
     var(--gradient-soft)
   );
   filter: blur(60px);
@@ -4771,7 +4768,7 @@ a[href^="/"]:hover {
 }
 
 .page-404 .label {
-  color: var(--gradient-rose);
+  color: var(--rose);
   margin-bottom: var(--space-4);
   display: block;
 }
@@ -5240,7 +5237,7 @@ a[href^="/"]:hover {
 }
 
 .work-card:hover .work-card__title {
-  color: var(--gradient-rose);
+  color: var(--rose);
 }
 
 
@@ -5357,7 +5354,7 @@ a[href^="/"]:hover {
 
 .progress-bar__fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--gradient-warm), var(--gradient-rose));
+  background: linear-gradient(90deg, var(--warm), var(--rose));
   width: 0%;
   transition: width 0.1s linear;
 }

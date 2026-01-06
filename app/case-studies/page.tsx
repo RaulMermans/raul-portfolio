@@ -14,10 +14,10 @@ export default function CaseStudiesPage() {
   const goToProject = (index: number) => {
     if (isAnimating) return
     setIsAnimating(true)
-    
+
     const newIndex = index < 0 ? caseStudies.length - 1 : index >= caseStudies.length ? 0 : index
     setCurrentIndex(newIndex)
-    
+
     setTimeout(() => setIsAnimating(false), 800)
   }
 
@@ -126,7 +126,7 @@ export default function CaseStudiesPage() {
       <div className="grain" aria-hidden="true"></div>
 
       <div className="case-studies-split__header-wrapper">
-        <Header />
+      <Header />
       </div>
 
       <main id="main-content" role="main" className="case-studies-split" ref={containerRef}>
@@ -165,10 +165,10 @@ export default function CaseStudiesPage() {
               }}
             >
               <div className="case-studies-split__image-inner">
-                <Image
+              <Image
                   src={study.image}
                   alt={study.title}
-                  fill
+                fill
                   quality={90}
                   sizes="50vw"
                   className="case-studies-split__image"
@@ -181,25 +181,25 @@ export default function CaseStudiesPage() {
 
         {/* Vertical Scroll Indicator Dots */}
         <nav className="case-studies-split__dots" aria-label="Project navigation">
-          {caseStudies.map((study, index) => (
-            <button
-              key={index}
+        {caseStudies.map((study, index) => (
+          <button
+            key={index}
               className={`case-studies-split__dot ${index === currentIndex ? 'active' : ''}`}
               onClick={() => goToProject(index)}
-              aria-label={`Go to ${study.title}`}
-              aria-current={index === currentIndex ? 'true' : undefined}
+            aria-label={`Go to ${study.title}`}
+            aria-current={index === currentIndex ? 'true' : undefined}
               style={{
                 '--dot-color': study.color,
               } as React.CSSProperties}
             />
-          ))}
-        </nav>
+        ))}
+      </nav>
 
         {/* Scroll Indicator - Shows there's more content */}
         <div className="case-studies-split__scroll-hint">
           <div className="case-studies-split__scroll-hint-line"></div>
           <span className="case-studies-split__scroll-hint-text">Scroll</span>
-        </div>
+      </div>
       </main>
     </>
   )
