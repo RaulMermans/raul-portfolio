@@ -34,11 +34,21 @@ const nextConfig = {
     }
     return config
   },
-  // Proper caching headers for production
+  // CDN-safe caching headers for Cloudflare + Railway
   async headers() {
     return [
       {
-        // Static assets (JS, CSS, images) - cache for 1 year
+        // API routes - never cache
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
+      },
+      {
+        // Static assets (JS, CSS, fonts) - cache aggressively (fingerprinted)
         source: '/_next/static/:path*',
         headers: [
           {
@@ -68,12 +78,22 @@ const nextConfig = {
         ],
       },
       {
-        // HTML pages - allow caching but revalidate
+        // Fonts - cache aggressively
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // HTML pages - CDN can cache briefly but must revalidate
         source: '/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, s-maxage=3600, stale-while-revalidate=86400',
+            value: 'public, max-age=0, must-revalidate',
           },
         ],
       },
