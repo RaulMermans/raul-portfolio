@@ -52,23 +52,52 @@
 
 ### Step 3: Verify Cloudflare is Active
 
-Wait 5-10 minutes for DNS propagation, then test:
+**Wait for DNS propagation** - repeatedly test until Cloudflare headers appear (typically 1-10 minutes, sometimes up to an hour for global propagation).
+
+#### Verification 1: Cloudflare Proxy Active
 
 ```bash
-# Check homepage shows Cloudflare headers
+# Check if Cloudflare is in front of your site
 curl -I https://www.raulmermans.com
 
-# Expected output includes:
+# Expected: Look for either of these Cloudflare indicators:
 # - server: cloudflare
 # - cf-ray: <some-id>
+# - cf-cache-status: <status>
+#
+# Also expect HTML cache header:
 # - cache-control: public, max-age=0, must-revalidate
+```
 
-# Check static assets are cached
-curl -I https://www.raulmermans.com/_next/static/chunks/main-<hash>.js
+#### Verification 2: Static Assets Cached Correctly
 
-# Expected output includes:
+```bash
+# Step 1: Extract an actual static chunk path from your site
+CHUNK_PATH=$(curl -s https://www.raulmermans.com | grep -o '/_next/static/[^"]*\.js' | head -n 1)
+echo "Testing chunk: $CHUNK_PATH"
+
+# Step 2: Test caching headers on that chunk
+curl -I "https://www.raulmermans.com${CHUNK_PATH}"
+
+# Expected output:
 # - cache-control: public, max-age=31536000, immutable
-# - cf-cache-status: HIT (on second request)
+# - cf-cache-status: MISS (on first request)
+#
+# Run the same curl command again:
+curl -I "https://www.raulmermans.com${CHUNK_PATH}"
+# Expected on second request:
+# - cf-cache-status: HIT
+```
+
+#### Verification 3: Apex Domain Redirect (if configured)
+
+```bash
+# Check if apex domain redirects to www
+curl -I https://raulmermans.com
+
+# Expected: 301 or 308 redirect to https://www.raulmermans.com
+# If you see "server: cloudflare" and a 200 OK, the apex is serving directly
+# (both configurations are valid - choose based on your preference)
 ```
 
 ### Step 4: Configure Cloudflare Caching (Optional)
@@ -84,15 +113,29 @@ curl -I https://www.raulmermans.com/_next/static/chunks/main-<hash>.js
    - Setting: Cache Level = Cache Everything
    - Edge Cache TTL: 1 year
 
+#### Verification 4: API Routes Not Cached
+
+```bash
+# Check that API routes are never cached
+curl -I https://www.raulmermans.com/api/health
+
+# Expected:
+# - cache-control: no-cache, no-store, must-revalidate
+# - cf-cache-status: DYNAMIC or BYPASS (NOT HIT or MISS)
+```
+
 ### Verification Checklist
 
-- [ ] `curl -I https://www.raulmermans.com` shows `server: cloudflare`
-- [ ] Static assets show `cache-control: public, max-age=31536000, immutable`
-- [ ] Second request to static asset shows `cf-cache-status: HIT`
-- [ ] HTML pages show `cache-control: public, max-age=0, must-revalidate`
-- [ ] API routes show `cache-control: no-cache, no-store, must-revalidate`
-- [ ] Contact form still works (API not cached)
-- [ ] Site updates after new Railway deployment (no stale HTML)
+After completing Steps 3-4 above, confirm:
+
+- [ ] ✅ Verification 1: `curl -I https://www.raulmermans.com` shows `server: cloudflare` or `cf-ray`
+- [ ] ✅ Verification 2: Static chunk shows `cache-control: public, max-age=31536000, immutable`
+- [ ] ✅ Verification 2: Second request to static chunk shows `cf-cache-status: HIT`
+- [ ] ✅ Verification 3: Apex redirect works (or apex serves directly if preferred)
+- [ ] ✅ Verification 4: API route shows `cache-control: no-cache, no-store, must-revalidate`
+- [ ] ✅ HTML pages show `cache-control: public, max-age=0, must-revalidate`
+- [ ] ✅ Contact form still works after Cloudflare enabled (API not cached)
+- [ ] ✅ Site updates appear after new Railway deployment (no stale HTML)
 
 ## Railway Configuration
 
