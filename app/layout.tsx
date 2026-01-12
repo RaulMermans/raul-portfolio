@@ -26,6 +26,7 @@ import '@/lib/mobile-optimizer' // Initialize mobile optimizer bot
 import '@/lib/detective-bot' // Initialize detective bot for debugging
 import '@/lib/env-validation' // Validate environment variables
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import PluginProvider from '@/components/PluginProvider'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -126,7 +127,9 @@ export default function RootLayout({
         <div className="grain" aria-hidden="true"></div>
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />
-        <PageTransition>{children}</PageTransition>
+        <PluginProvider>
+          <PageTransition>{children}</PageTransition>
+        </PluginProvider>
       </body>
     </html>
   )
