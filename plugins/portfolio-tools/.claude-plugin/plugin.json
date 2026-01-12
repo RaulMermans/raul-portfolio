@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-tools",
+  "version": "1.0.0",
+  "description": "Tools for optimizing and improving the portfolio project",
+  "author": "Raul Mermans",
+  "commands": {
+    "optimize-ui": {
+      "file": "../commands/optimize-ui.md",
+      "description": "Analyze portfolio CSS and suggest modern design improvements"
+    }
+  }
+}
