@@ -1,12 +1,41 @@
 {
   "name": "portfolio-tools",
-  "version": "1.0.0",
-  "description": "Tools for optimizing and improving the portfolio project",
+  "version": "2.0.0",
+  "description": "Professional development tools for the portfolio project",
   "author": "Raul Mermans",
   "commands": {
     "optimize-ui": {
       "file": "../commands/optimize-ui.md",
       "description": "Analyze portfolio CSS and suggest modern design improvements"
+    },
+    "review": {
+      "file": "../commands/review.md",
+      "description": "Perform a deep PR-style code review"
+    },
+    "commit": {
+      "file": "../commands/commit.md",
+      "description": "Smart git commit with conventional commit messages"
+    }
+  },
+  "skills": {
+    "security-auditor": {
+      "file": "../skills/security-auditor/SKILL.md",
+      "description": "Auto-detect security vulnerabilities and exposed secrets",
+      "trigger": "automatic",
+      "priority": "critical"
+    },
+    "design-system": {
+      "file": "../skills/design-system/SKILL.md",
+      "description": "Maintain consistent design language and CSS patterns",
+      "trigger": "automatic",
+      "priority": "standard"
+    }
+  },
+  "agents": {
+    "architect": {
+      "file": "../agents/architect.md",
+      "description": "Planning specialist for complex multi-file changes",
+      "invocation": ["Architect,", "@architect"]
     }
   }
 }
