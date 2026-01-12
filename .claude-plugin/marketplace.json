@@ -1,0 +1,12 @@
+{
+  "name": "Local-Tools",
+  "version": "1.0.0",
+  "description": "Local plugin marketplace for portfolio development tools",
+  "plugins": {
+    "portfolio-tools": {
+      "source": "./plugins/portfolio-tools",
+      "version": "1.0.0",
+      "description": "Portfolio optimization and development tools"
+    }
+  }
+}
