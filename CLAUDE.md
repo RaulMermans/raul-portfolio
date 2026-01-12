@@ -193,3 +193,57 @@ curl -I https://www.raulmermans.com/api/health
 - Caching is centralized in `next.config.js` (see guardrails above)
 - Railway auto-deploys from GitHub (main branch or feature branches)
 - Cloudflare proxies the domain (CDN + security)
+
+## 🔌 Custom Tooling
+
+This project includes a local plugin system at `plugins/portfolio-tools/`.
+
+### Slash Commands
+
+| Command | Description | When to Use |
+|---------|-------------|-------------|
+| `/optimize-ui` | Analyze CSS and suggest 3 modern design improvements | Before UI overhauls |
+| `/review` | Deep PR-style code review with security/perf checks | Before merging changes |
+| `/commit` | Smart git workflow with conventional commit messages | When ready to commit |
+
+### Auto-Pilot Skills
+
+| Skill | Trigger | Location |
+|-------|---------|----------|
+| **security-auditor** | Auto-activates on API keys, passwords, unsafe inputs | `plugins/portfolio-tools/skills/security-auditor/` |
+| **design-system** | Auto-activates on UI/CSS changes | `plugins/portfolio-tools/skills/design-system/` |
+
+### Specialist Agents
+
+| Agent | Invocation | Purpose |
+|-------|------------|---------|
+| **Architect** | "Architect, ..." or "@architect" | Plan complex multi-file changes |
+
+### Plugin Structure
+```
+plugins/portfolio-tools/
+├── .claude-plugin/plugin.json   # Plugin manifest
+├── commands/                    # User-triggered prompts
+├── skills/                      # Auto-pilot behaviors
+└── agents/                      # Specialist sub-workers
+```
+
+## 🎨 UI/CSS Change Rules
+
+**IMPORTANT:** When making ANY UI or CSS changes:
+
+1. **First consult** the design-system skill at `plugins/portfolio-tools/skills/design-system/SKILL.md`
+2. **Use CSS variables** from the design system - never hardcode colors, spacing, or typography
+3. **Follow the defined patterns** for buttons, cards, inputs, and other components
+4. **Maintain consistency** with the established color palette and typography scale
+
+### Quick Reference (from design-system skill)
+```css
+/* Always use variables, not hardcoded values */
+color: var(--color-text-primary);      /* NOT #0f172a */
+padding: var(--space-4);               /* NOT 16px */
+border-radius: var(--radius-lg);       /* NOT 8px */
+font-size: var(--text-base);           /* NOT 1rem */
+```
+
+See `plugins/portfolio-tools/skills/design-system/SKILL.md` for full color palette, typography scale, and component patterns.
