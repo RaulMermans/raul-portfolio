@@ -1687,6 +1687,11 @@ html.homepage .footer {
   line-height: 1.7;
   margin-bottom: var(--space-5);
   flex-grow: 0;
+  /* Constrain description to ensure CTA visibility */
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .section-card__cta {
@@ -1825,6 +1830,7 @@ html.homepage .footer {
     font-size: var(--text-sm);
     line-height: 1.65;
     margin-bottom: var(--space-4);
+    -webkit-line-clamp: 7;
   }
 }
 
