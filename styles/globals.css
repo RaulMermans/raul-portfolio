@@ -1582,8 +1582,8 @@ html.homepage .footer {
   text-decoration: none;
   color: inherit;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  height: 750px;
-  min-height: 750px;
+  height: 820px;
+  min-height: 820px;
   will-change: transform;
 }
 
@@ -1682,11 +1682,11 @@ html.homepage .footer {
 }
 
 .section-card__desc {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   color: rgba(255,255,255,0.75);
-  line-height: 1.75;
-  margin-bottom: var(--space-6);
-  flex-grow: 1;
+  line-height: 1.7;
+  margin-bottom: var(--space-5);
+  flex-grow: 0;
 }
 
 .section-card__cta {
@@ -1800,8 +1800,8 @@ html.homepage .footer {
     gap: var(--space-7);
   }
   .section-card {
-    height: 680px;
-    min-height: 680px;
+    height: 780px;
+    min-height: 780px;
   }
 }
 
@@ -1811,8 +1811,8 @@ html.homepage .footer {
     gap: var(--space-6);
   }
   .section-card {
-    height: 600px;
-    min-height: 600px;
+    height: 680px;
+    min-height: 680px;
   }
   .section-card__content {
     padding: var(--space-6);
@@ -1822,8 +1822,9 @@ html.homepage .footer {
     margin-bottom: var(--space-4);
   }
   .section-card__desc {
-    font-size: var(--text-base);
-    margin-bottom: var(--space-5);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    margin-bottom: var(--space-4);
   }
 }
 
