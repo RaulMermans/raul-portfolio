@@ -1685,13 +1685,8 @@ html.homepage .footer {
   font-size: var(--text-base);
   color: rgba(255,255,255,0.75);
   line-height: 1.7;
-  margin-bottom: var(--space-5);
-  flex-grow: 0;
-  /* Constrain description to ensure CTA visibility */
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  margin-bottom: var(--space-4);
+  flex-grow: 1;
 }
 
 .section-card__cta {
@@ -1703,8 +1698,8 @@ html.homepage .footer {
   letter-spacing: var(--tracking-wider);
   text-transform: lowercase;
   color: rgba(255,255,255,0.6);
-  margin-top: auto;
-  padding: var(--space-2) 0;
+  margin-top: var(--space-4);
+  padding: var(--space-3) 0;
   transition: color 0.3s var(--ease), gap 0.3s var(--ease);
   position: relative;
 }
@@ -1829,8 +1824,7 @@ html.homepage .footer {
   .section-card__desc {
     font-size: var(--text-sm);
     line-height: 1.65;
-    margin-bottom: var(--space-4);
-    -webkit-line-clamp: 7;
+    margin-bottom: var(--space-3);
   }
 }
 
