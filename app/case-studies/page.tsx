@@ -188,9 +188,6 @@ export default function CaseStudiesPage() {
 
               {/* Content */}
               <div className="hero-card__content">
-                {study.subtitle && (
-                  <span className="hero-card__subtitle">{study.subtitle}</span>
-                )}
                 <h2 className="hero-card__title">{study.title}</h2>
                 <p className="hero-card__description">{study.description}</p>
                 <Link 
@@ -206,28 +203,7 @@ export default function CaseStudiesPage() {
           ))}
         </div>
 
-        {/* Pagination */}
-        <nav 
-          className="hero-stack__pagination" 
-          aria-label="Project navigation"
-        >
-          {caseStudies.map((study, index) => (
-            <button
-              key={study.id}
-              className={`hero-stack__pagination-item ${index === currentIndex ? 'active' : ''}`}
-              onClick={() => goToProject(index)}
-              aria-label={`Go to ${study.title}`}
-              aria-current={index === currentIndex ? 'true' : undefined}
-            >
-              <span className="hero-stack__pagination-number">
-                {formatNumber(index)}
-              </span>
-              <span className="hero-stack__pagination-line" aria-hidden="true" />
-            </button>
-          ))}
-        </nav>
-
-        {/* Counter Display */}
+        {/* Counter Display - Top Right */}
         <div className="hero-stack__counter" aria-live="polite" aria-atomic="true">
           <span className="hero-stack__counter-current">{formatNumber(currentIndex)}</span>
           <span className="hero-stack__counter-separator">/</span>
@@ -237,26 +213,15 @@ export default function CaseStudiesPage() {
           </span>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="hero-stack__scroll-indicator" aria-hidden="true">
-          <span className="hero-stack__scroll-indicator-text">Scroll</span>
-          <div className="hero-stack__scroll-indicator-line" />
-        </div>
-
-        {/* Next Project Preview */}
+        {/* Minimal Next Hint - Center Bottom */}
         {!isLastCard && (
           <button
-            className="hero-stack__next-preview"
+            className="hero-stack__next-hint"
             onClick={goToNext}
-            aria-label={`Next project: ${nextStudy.title}`}
+            aria-label={`Next: ${nextStudy.title}`}
           >
-            <div className="hero-stack__next-preview-inner">
-              <div className="hero-stack__next-preview-content">
-                <span className="hero-stack__next-preview-label">Next Project</span>
-                <span className="hero-stack__next-preview-title">{nextStudy.title}</span>
-                <span className="hero-stack__next-preview-arrow" aria-hidden="true">↓</span>
-              </div>
-            </div>
+            <span className="hero-stack__next-hint-arrow" aria-hidden="true">↓</span>
+            <span className="hero-stack__next-hint-title">{nextStudy.title}</span>
           </button>
         )}
       </main>
