@@ -4,33 +4,21 @@ import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
-// Critical bots - loaded immediately (error handling, security)
-import '@/lib/error-bot' // Initialize error bot
-import '@/lib/security-bot' // Initialize security bot
-import '@/lib/departments' // Initialize department managers (coordinates all bots)
+// Critical bots - loaded immediately (error handling, security, env validation)
+import '@/lib/error-bot'
+import '@/lib/security-bot'
+import '@/lib/env-validation'
 
-// Performance bots - loaded for optimization
-// Note: For production with multiple instances, consider lazy loading non-critical bots
-// Current approach: All bots loaded for SSR compatibility
-// Future optimization: Refactor bots to support dynamic imports for client-side lazy loading
-import '@/lib/performance-bot' // Initialize performance bot
-import '@/lib/cache-bot' // Initialize cache bot
-import '@/lib/optimization-bot' // Initialize optimization bot
-import '@/lib/seo-bot' // Initialize SEO bot
-import '@/lib/image-optimization-bot' // Initialize image optimization bot
-import '@/lib/accessibility-bot' // Initialize accessibility bot
-import '@/lib/analytics-bot' // Initialize analytics bot
-import '@/lib/cleanup-bot' // Initialize cleanup bot
-import '@/lib/animation-expert' // Initialize animation expert bot
-import '@/lib/mobile-optimizer' // Initialize mobile optimizer bot
-import '@/lib/detective-bot' // Initialize detective bot for debugging
-import '@/lib/env-validation' // Validate environment variables
+// Non-critical bots - lazy loaded on client after page load
+// This improves initial bundle size and Time to Interactive
+import '@/lib/lazy-bots'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-display',
+  display: 'swap',
 })
 
 const dmSans = DM_Sans({
@@ -38,12 +26,14 @@ const dmSans = DM_Sans({
   style: ['normal', 'italic'],
   subsets: ['latin'],
   variable: '--font-body',
+  display: 'swap',
 })
 
 const spaceMono = Space_Mono({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-mono',
+  display: 'swap',
 })
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'

@@ -2,13 +2,16 @@
  * Performance Bot
  * Automated performance monitoring and optimization system
  * Runs in the background to improve website performance
+ * 
+ * Uses web-vitals library for accurate Core Web Vitals measurement
+ * INP (Interaction to Next Paint) replaces deprecated FID metric
  */
 
 interface PerformanceReport {
   timestamp: number
   metrics: {
     lcp?: number
-    fid?: number
+    inp?: number
     cls?: number
     fcp?: number
     ttfb?: number
@@ -22,7 +25,7 @@ class PerformanceBot {
   private reportHistory: PerformanceReport[] = []
   private readonly thresholds = {
     lcp: { good: 2500, poor: 4000 },
-    fid: { good: 100, poor: 300 },
+    inp: { good: 200, poor: 500 },
     cls: { good: 0.1, poor: 0.25 },
     fcp: { good: 1800, poor: 3000 },
     ttfb: { good: 800, poor: 1800 },
@@ -100,8 +103,8 @@ class PerformanceBot {
     if (metrics.lcp && metrics.lcp > this.thresholds.lcp.poor) score -= 30
     else if (metrics.lcp && metrics.lcp > this.thresholds.lcp.good) score -= 15
     
-    if (metrics.fid && metrics.fid > this.thresholds.fid.poor) score -= 20
-    else if (metrics.fid && metrics.fid > this.thresholds.fid.good) score -= 10
+    if (metrics.inp && metrics.inp > this.thresholds.inp.poor) score -= 20
+    else if (metrics.inp && metrics.inp > this.thresholds.inp.good) score -= 10
     
     if (metrics.cls && metrics.cls > this.thresholds.cls.poor) score -= 20
     else if (metrics.cls && metrics.cls > this.thresholds.cls.good) score -= 10
@@ -146,71 +149,92 @@ class PerformanceBot {
   }
 
   /**
-   * Monitor Web Vitals automatically
+   * Monitor Web Vitals automatically using web-vitals library
+   * Uses INP (Interaction to Next Paint) instead of deprecated FID
    */
   startMonitoring(): void {
     if (typeof window === 'undefined') return
 
-    // Monitor Core Web Vitals
-    if ('PerformanceObserver' in window) {
-      // LCP
-      try {
-        const lcpObserver = new PerformanceObserver((list) => {
-          for (const entry of list.getEntries()) {
-            if (entry.entryType === 'largest-contentful-paint') {
-              this.recordMetric('lcp', entry.startTime)
-            }
-          }
-        })
-        lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
-      } catch (error) {
-        // Performance Observer not supported
-      }
+    // Use web-vitals library for accurate Core Web Vitals measurement
+    import('web-vitals').then(({ onCLS, onINP, onLCP, onFCP, onTTFB }) => {
+      // LCP - Largest Contentful Paint
+      onLCP((metric) => {
+        this.recordMetric('lcp', metric.value)
+      })
 
-      // FID
-      try {
-        const fidObserver = new PerformanceObserver((list) => {
-          for (const entry of list.getEntries()) {
-            if (entry.entryType === 'first-input') {
-              if ('processingStart' in entry && 'startTime' in entry) {
-                const fidEntry = entry as { processingStart: number; startTime: number }
-                this.recordMetric('fid', fidEntry.processingStart - fidEntry.startTime)
-              }
-            }
-          }
-        })
-        fidObserver.observe({ entryTypes: ['first-input'] })
-      } catch (error) {
-        // Performance Observer not supported
-      }
+      // INP - Interaction to Next Paint (replaces FID)
+      onINP((metric) => {
+        this.recordMetric('inp', metric.value)
+      })
 
-      // CLS
-      try {
-        let clsValue = 0
-        const clsObserver = new PerformanceObserver((list) => {
-          for (const entry of list.getEntries()) {
-            if ('hadRecentInput' in entry && 'value' in entry) {
-              const layoutShift = entry as { hadRecentInput: boolean; value: number }
-              if (!layoutShift.hadRecentInput) {
-                clsValue += layoutShift.value
-                this.recordMetric('cls', clsValue)
-              }
-            }
-          }
-        })
-        clsObserver.observe({ entryTypes: ['layout-shift'] })
-      } catch (error) {
-        // Performance Observer not supported
-      }
-    }
+      // CLS - Cumulative Layout Shift
+      onCLS((metric) => {
+        this.recordMetric('cls', metric.value)
+      })
+
+      // FCP - First Contentful Paint
+      onFCP((metric) => {
+        this.recordMetric('fcp', metric.value)
+      })
+
+      // TTFB - Time to First Byte
+      onTTFB((metric) => {
+        this.recordMetric('ttfb', metric.value)
+      })
+    }).catch(() => {
+      // Fallback to manual measurement if web-vitals fails to load
+      this.startFallbackMonitoring()
+    })
 
     // Monitor page load time
-    if (window.performance && window.performance.timing) {
-      window.addEventListener('load', () => {
+    window.addEventListener('load', () => {
+      if (window.performance && window.performance.timing) {
         const timing = window.performance.timing
         const loadTime = timing.loadEventEnd - timing.navigationStart
-        this.recordMetric('pageLoad', loadTime)
+        if (loadTime > 0) {
+          this.recordMetric('pageLoad', loadTime)
+        }
+      }
+    })
+  }
+
+  /**
+   * Fallback monitoring using PerformanceObserver when web-vitals unavailable
+   */
+  private startFallbackMonitoring(): void {
+    if (!('PerformanceObserver' in window)) return
+
+    // LCP
+    try {
+      const lcpObserver = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.entryType === 'largest-contentful-paint') {
+            this.recordMetric('lcp', entry.startTime)
+          }
+        }
       })
+      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
+    } catch {
+      // Performance Observer not supported
+    }
+
+    // CLS
+    try {
+      let clsValue = 0
+      const clsObserver = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if ('hadRecentInput' in entry && 'value' in entry) {
+            const layoutShift = entry as { hadRecentInput: boolean; value: number }
+            if (!layoutShift.hadRecentInput) {
+              clsValue += layoutShift.value
+              this.recordMetric('cls', clsValue)
+            }
+          }
+        }
+      })
+      clsObserver.observe({ entryTypes: ['layout-shift'] })
+    } catch {
+      // Performance Observer not supported
     }
   }
 

@@ -24,11 +24,50 @@ export const metadata: Metadata = {
   },
 }
 
+function BreadcrumbSchema() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: baseUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Case Studies',
+        item: `${baseUrl}/case-studies`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Remoria',
+        item: `${baseUrl}/case-studies/remoria`,
+      },
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
+  )
+}
+
 export default function RemoriaLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <>
+      <BreadcrumbSchema />
+      {children}
+    </>
+  )
 }
 

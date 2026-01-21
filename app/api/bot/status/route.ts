@@ -9,11 +9,31 @@ import { analyticsBot } from '@/lib/analytics-bot'
 import { securityBot } from '@/lib/security-bot'
 
 /**
- * Bot Status API
- * Returns status of all automated bots
+ * GET /api/bot/status
+ * 
+ * INTERNAL DEVELOPMENT TOOL - Bot Status Dashboard API
+ * Returns comprehensive status of all automated bots including:
+ * - Performance metrics and recommendations
+ * - Cache statistics
+ * - Error tracking
+ * - SEO analysis
+ * - Image optimization status
+ * - Accessibility compliance
+ * - Analytics summary
+ * - Security audit results
+ * 
+ * Note: This endpoint is disabled in production for security.
  */
 
 export async function GET() {
+  // Disable in production - development tool only
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json(
+      { error: 'This endpoint is disabled in production' },
+      { status: 403 }
+    )
+  }
+
   try {
     const performanceReport = performanceBot.generateReport()
     const cacheStats = cacheBot.getStats()

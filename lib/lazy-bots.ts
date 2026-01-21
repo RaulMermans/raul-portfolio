@@ -10,6 +10,7 @@ if (typeof window !== 'undefined') {
     // Load bots when browser is idle
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
+        import('@/lib/departments').catch(() => {})
         import('@/lib/performance-bot').catch(() => {})
         import('@/lib/cache-bot').catch(() => {})
         import('@/lib/optimization-bot').catch(() => {})
@@ -20,10 +21,12 @@ if (typeof window !== 'undefined') {
         import('@/lib/cleanup-bot').catch(() => {})
         import('@/lib/animation-expert').catch(() => {})
         import('@/lib/mobile-optimizer').catch(() => {})
+        import('@/lib/detective-bot').catch(() => {})
       }, { timeout: 2000 })
     } else {
       // Fallback for browsers without requestIdleCallback
       setTimeout(() => {
+        import('@/lib/departments').catch(() => {})
         import('@/lib/performance-bot').catch(() => {})
         import('@/lib/cache-bot').catch(() => {})
         import('@/lib/optimization-bot').catch(() => {})
@@ -34,6 +37,7 @@ if (typeof window !== 'undefined') {
         import('@/lib/cleanup-bot').catch(() => {})
         import('@/lib/animation-expert').catch(() => {})
         import('@/lib/mobile-optimizer').catch(() => {})
+        import('@/lib/detective-bot').catch(() => {})
       }, 1000)
     }
   }

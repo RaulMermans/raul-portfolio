@@ -3,10 +3,25 @@ import { orchestrateRequest, analyzeRequest, formatTaskAnalysis, DEPARTMENTS, ty
 import { logger } from '@/lib/logger'
 
 /**
- * GET /api/tasks - Get task breakdown for a request
- * POST /api/tasks - Create and track tasks from a request
+ * Task Management API
+ * 
+ * INTERNAL DEVELOPMENT TOOL - Analyzes requests and breaks them into tasks
+ * Used by the automated project manager system during development.
+ * 
+ * GET /api/tasks?q=request - Analyze a request and get task breakdown
+ * POST /api/tasks - Create tasks from a request body
+ * 
+ * Note: This endpoint is disabled in production for security.
  */
 export async function GET(request: NextRequest) {
+  // Disable in production - development tool only
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json(
+      { error: 'This endpoint is disabled in production' },
+      { status: 403 }
+    )
+  }
+
   try {
     const { searchParams } = new URL(request.url)
     const query = searchParams.get('q') || searchParams.get('request')
@@ -38,6 +53,14 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  // Disable in production - development tool only
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json(
+      { error: 'This endpoint is disabled in production' },
+      { status: 403 }
+    )
+  }
+
   try {
     const body = await request.json()
     const { request: requestText, tasks, department } = body

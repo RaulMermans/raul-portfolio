@@ -2,9 +2,22 @@ import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 
 /**
- * Performance Optimization API
- * Automatically optimizes website performance
- * Can be triggered manually or via cron job
+ * POST /api/optimize
+ * 
+ * ADMIN API - Performance Optimization Trigger
+ * Revalidates static pages and triggers optimization tasks.
+ * Protected by OPTIMIZE_SECRET environment variable.
+ * 
+ * Usage:
+ *   POST /api/optimize
+ *   Headers: x-optimize-secret: <OPTIMIZE_SECRET>
+ * 
+ * Can be triggered by:
+ * - Manual curl request during deployment
+ * - Cron job for scheduled cache refresh
+ * - CI/CD pipeline after deployment
+ * 
+ * Required env: OPTIMIZE_SECRET
  */
 
 export async function POST(request: NextRequest) {
