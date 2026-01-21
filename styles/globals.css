@@ -7839,186 +7839,113 @@ a[href^="/"]:hover {
 }
 
 /* ========================================
-   CASE STUDIES HERO STACK - NEW DESIGN
-   Immersive full-bleed hero cards with pagination
+   CASE STUDIES - FULLPAGE SCROLL SECTIONS
+   Simple scroll-based layout, no carousel
    ======================================== */
 
-/* Main Container */
-.hero-stack {
+/* Main Scroll Container */
+.case-studies-scroll {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+/* Individual Section - Each takes full viewport */
+.case-study-section {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
-  background: var(--ink);
-}
-
-/* Header wrapper for hero stack page - light text on dark */
-.hero-stack__header-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 200;
-  pointer-events: none;
-}
-
-.hero-stack__header-wrapper .ui__logo,
-.hero-stack__header-wrapper .ui__nav {
-  pointer-events: auto;
-}
-
-.hero-stack__header-wrapper .ui__logo {
-  color: var(--cream);
-}
-
-.hero-stack__header-wrapper .ui__nav a {
-  color: rgba(245, 240, 235, 0.8);
-}
-
-.hero-stack__header-wrapper .ui__nav a:hover {
-  color: var(--cream);
-}
-
-/* Cards Container */
-.hero-stack__cards {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* Individual Hero Card */
-.hero-card {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.95) translateY(30px);
-  transition: 
-    opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-    visibility 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 1;
-}
-
-.hero-card.active {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1) translateY(0);
-  z-index: 10;
-}
-
-.hero-card.prev {
-  opacity: 0;
-  transform: scale(1.05) translateY(-50px);
-  z-index: 5;
-}
-
-.hero-card.next {
-  opacity: 0.3;
-  visibility: visible;
-  transform: scale(0.9) translateY(60vh);
-  z-index: 15;
-}
-
-/* Media/Image Container */
-.hero-card__media {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  scroll-snap-align: start;
   overflow: hidden;
 }
 
-.hero-card__image {
+/* Full-bleed Background Image */
+.case-study-section__media {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 110%;
-  top: -5%;
+  height: 100%;
+  z-index: 0;
+}
+
+.case-study-section__image {
   object-fit: cover;
   object-position: center;
-  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
+  transition: transform 8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.hero-card:hover .hero-card__image {
+/* Subtle zoom on section in view */
+.case-study-section:hover .case-study-section__image {
   transform: scale(1.03);
 }
 
-/* Gradient Overlays */
-.hero-card__gradient {
+/* Gradient Overlay - darker at bottom for text readability */
+.case-study-section__gradient {
   position: absolute;
   inset: 0;
   background: 
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.2) 40%,
-      rgba(0, 0, 0, 0.6) 80%,
-      rgba(0, 0, 0, 0.85) 100%
+      rgba(0, 0, 0, 0.15) 30%,
+      rgba(0, 0, 0, 0.5) 70%,
+      rgba(0, 0, 0, 0.8) 100%
     ),
     linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0) 50%
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0) 60%
     );
   z-index: 1;
 }
 
-/* Content Area */
-.hero-card__content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: clamp(2rem, 5vw, 4rem);
-  padding-bottom: clamp(4rem, 10vh, 8rem);
+/* Content Area - Bottom Left */
+.case-study-section__content {
+  position: relative;
   z-index: 10;
-  max-width: 800px;
+  padding: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+  max-width: 700px;
+  /* Reveal animation */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 
+    opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.hero-card__subtitle {
-  display: inline-block;
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: clamp(0.6875rem, 1vw, 0.8125rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(245, 240, 235, 0.7);
-  margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 100px;
+.case-study-section__content.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.hero-card__title {
+/* Title */
+.case-study-section__title {
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-size: clamp(3rem, 10vw, 7rem);
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: -0.02em;
   color: var(--cream);
-  margin: 0 0 clamp(1rem, 2vw, 1.5rem) 0;
+  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem) 0;
   text-transform: uppercase;
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
-.hero-card__description {
+/* Description */
+.case-study-section__description {
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
   font-weight: 400;
   line-height: 1.7;
   color: rgba(245, 240, 235, 0.9);
-  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem) 0;
-  max-width: 50ch;
+  margin: 0 0 clamp(1.25rem, 3vw, 2rem) 0;
+  max-width: 45ch;
 }
 
-.hero-card__cta {
+/* CTA Link */
+.case-study-section__cta {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -8029,197 +7956,76 @@ a[href^="/"]:hover {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--cream);
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   min-height: 44px;
   transition: all 0.3s var(--ease-out);
 }
 
-.hero-card__cta-arrow {
+.case-study-section__cta-arrow {
   display: inline-block;
   transition: transform 0.3s var(--ease-out);
 }
 
-.hero-card__cta:hover {
+.case-study-section__cta:hover {
   color: rgba(245, 240, 235, 0.8);
 }
 
-.hero-card__cta:hover .hero-card__cta-arrow {
+.case-study-section__cta:hover .case-study-section__cta-arrow {
   transform: translateX(8px);
 }
 
-/* Counter Display - Top Right (Single position indicator) */
-.hero-stack__counter {
-  position: fixed;
-  right: clamp(1.5rem, 3vw, 3rem);
-  top: calc(var(--header-height, 80px) + 1.5rem);
-  z-index: 100;
-  display: flex;
-  align-items: baseline;
-  gap: 0.25rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
-  color: var(--cream);
-}
-
-.hero-stack__counter-current {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  font-weight: 500;
-  line-height: 1;
-}
-
-.hero-stack__counter-separator {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  opacity: 0.5;
-  margin: 0 0.125rem;
-}
-
-.hero-stack__counter-total {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  opacity: 0.5;
-}
-
-/* Minimal Next Hint - Center Bottom */
-.hero-stack__next-hint {
-  position: fixed;
-  bottom: clamp(2rem, 4vh, 3rem);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 1rem;
-  min-height: 44px;
-  transition: all 0.3s var(--ease-out);
-  opacity: 0.7;
-}
-
-.hero-stack__next-hint:hover {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-4px);
-}
-
-.hero-stack__next-hint-arrow {
-  font-size: 1.25rem;
-  color: var(--cream);
-  animation: gentleBounce 2.5s ease-in-out infinite;
-}
-
-.hero-stack__next-hint:hover .hero-stack__next-hint-arrow {
-  animation: none;
-}
-
-.hero-stack__next-hint-title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  font-weight: 400;
-  color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.8;
-}
-
-@keyframes gentleBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-/* Hide next hint on last card */
-.hero-stack--last-card .hero-stack__next-hint {
-  opacity: 0;
-  pointer-events: none;
-}
-
 /* ========================================
-   HERO STACK - RESPONSIVE DESIGN
+   CASE STUDIES SCROLL - RESPONSIVE
    ======================================== */
 
-@media (max-width: 1024px) {
-  .hero-card__content {
-    max-width: 600px;
-  }
-}
-
 @media (max-width: 768px) {
-  .hero-stack {
-    height: 100vh;
-    height: 100dvh;
+  .case-study-section {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
   
-  /* Counter adjustments for mobile */
-  .hero-stack__counter {
-    right: 1.5rem;
-    top: calc(var(--header-height, 80px) + 0.75rem);
-  }
-  
-  .hero-card__content {
+  .case-study-section__content {
     padding: 1.5rem;
-    padding-bottom: clamp(5rem, 12vh, 7rem);
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
     max-width: 100%;
   }
   
-  .hero-card__title {
+  .case-study-section__title {
     font-size: clamp(2.5rem, 12vw, 4.5rem);
   }
   
-  .hero-card__description {
+  .case-study-section__description {
     font-size: 1rem;
     max-width: 100%;
-  }
-  
-  /* Next hint - slightly larger on mobile for touch */
-  .hero-stack__next-hint {
-    bottom: clamp(1.5rem, 3vh, 2.5rem);
-    padding: 1.25rem;
-  }
-  
-  /* Header light on dark */
-  .hero-stack__header-wrapper .ui__logo,
-  .hero-stack__header-wrapper .ui__nav a {
-    color: var(--cream);
   }
 }
 
 @media (max-width: 480px) {
-  .hero-card__title {
+  .case-study-section__title {
     font-size: clamp(2rem, 14vw, 3.5rem);
     margin-bottom: 0.75rem;
   }
   
-  .hero-card__description {
+  .case-study-section__description {
     font-size: 0.9375rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
   
-  .hero-card__cta {
+  .case-study-section__cta {
     font-size: 0.75rem;
-  }
-  
-  .hero-stack__counter-current {
-    font-size: 1.125rem;
-  }
-  
-  .hero-stack__counter-separator,
-  .hero-stack__counter-total {
-    font-size: 0.875rem;
-  }
-  
-  .hero-stack__next-hint-title {
-    font-size: 0.8125rem;
   }
 }
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .hero-card,
-  .hero-card__image,
-  .hero-stack__next-hint {
+  .case-study-section__content,
+  .case-study-section__image {
     transition-duration: 0.01ms !important;
-    animation: none !important;
+  }
+  
+  .case-studies-scroll {
+    scroll-behavior: auto;
   }
 }
 
