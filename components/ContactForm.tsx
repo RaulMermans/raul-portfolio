@@ -3,10 +3,39 @@
 import { useState, FormEvent } from 'react'
 import { trackFormSubmit } from '@/lib/gtag'
 
+const PROJECT_TYPES = [
+  { value: '', label: 'Select project type' },
+  { value: 'photography', label: 'Photography' },
+  { value: 'brand-identity', label: 'Brand Identity' },
+  { value: 'ai-creatives', label: 'AI Creatives' },
+  { value: 'digital-systems', label: 'Digital Systems' },
+  { value: 'other', label: 'Other' },
+]
+
+const BUDGET_RANGES = [
+  { value: '', label: 'Select budget range' },
+  { value: 'under-2500', label: 'Under €2,500' },
+  { value: '2500-5000', label: '€2,500 – €5,000' },
+  { value: '5000-10000', label: '€5,000 – €10,000' },
+  { value: 'over-10000', label: '€10,000+' },
+  { value: 'flexible', label: 'Flexible / Not sure' },
+]
+
+const TIMELINES = [
+  { value: '', label: 'Select timeline' },
+  { value: 'asap', label: 'ASAP' },
+  { value: '1-2-weeks', label: '1-2 weeks' },
+  { value: '1-month', label: '1 month' },
+  { value: 'flexible', label: 'Flexible' },
+]
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    projectType: '',
+    budget: '',
+    timeline: '',
     message: '',
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -33,7 +62,7 @@ export default function ContactForm() {
       }
 
       setStatus('success')
-      setFormData({ name: '', email: '', message: '' })
+      setFormData({ name: '', email: '', projectType: '', budget: '', timeline: '', message: '' })
       
       // Track form submission in Google Analytics
       trackFormSubmit('contact_form')
@@ -48,7 +77,7 @@ export default function ContactForm() {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
@@ -90,6 +119,65 @@ export default function ContactForm() {
       </div>
 
       <div className="contact-form__field">
+        <label htmlFor="contact-project-type" className="contact-form__label">
+          <span>Project Type</span>
+        </label>
+        <select
+          id="contact-project-type"
+          name="projectType"
+          value={formData.projectType}
+          onChange={handleChange}
+          className="contact-form__select"
+        >
+          {PROJECT_TYPES.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="contact-form__row">
+        <div className="contact-form__field contact-form__field--half">
+          <label htmlFor="contact-budget" className="contact-form__label">
+            <span>Budget Range</span>
+          </label>
+          <select
+            id="contact-budget"
+            name="budget"
+            value={formData.budget}
+            onChange={handleChange}
+            className="contact-form__select"
+          >
+            {BUDGET_RANGES.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="contact-form__field contact-form__field--half">
+          <label htmlFor="contact-timeline" className="contact-form__label">
+            <span>Timeline</span>
+          </label>
+          <select
+            id="contact-timeline"
+            name="timeline"
+            value={formData.timeline}
+            onChange={handleChange}
+            className="contact-form__select"
+          >
+            {TIMELINES.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="contact-form__field">
         <label htmlFor="contact-message" className="contact-form__label">
           <span>Message</span>
           <span className="contact-form__required">*</span>
@@ -102,7 +190,7 @@ export default function ContactForm() {
           required
           rows={6}
           className="contact-form__textarea"
-          placeholder="Tell me about your project, timeline, and what you're looking to achieve..."
+          placeholder="Tell me about your project and what you're looking to achieve..."
         />
       </div>
 
@@ -117,6 +205,10 @@ export default function ContactForm() {
           Thank you! I&apos;ll get back to you soon.
         </div>
       )}
+
+      <p className="contact-form__response-note">
+        I typically respond within 24 hours.
+      </p>
 
       <button
         type="submit"

@@ -10,7 +10,7 @@ const sections = [
     id: 'case-studies',
     index: '01',
     title: 'Case Studies',
-    description: 'The stories behind the work. Brand campaigns, creative direction, and the thinking that shaped them.',
+    description: 'The stories behind the work. Brand campaigns, creative direction, and the thinking that shaped them. Discover how strategic creative direction transforms brands—each case study reveals the process from concept to measurable impact.',
     href: '/case-studies',
     image: '/images/sections/case-studies-bg.webp',
   },
@@ -18,7 +18,7 @@ const sections = [
     id: 'photography',
     index: '02',
     title: 'Photography',
-    description: 'Street scenes, urban narratives, and architectural moments. Visual storytelling that captures the pulse of cities and the poetry of everyday life.',
+    description: 'Street scenes, urban narratives, and architectural moments. Visual storytelling that captures the pulse of cities and the poetry of everyday life. Helping brands convert visual interest into lasting engagement through authentic imagery.',
     href: '/photography',
     image: '/images/sections/photography-bg.webp',
   },
@@ -26,7 +26,7 @@ const sections = [
     id: 'visuals',
     index: '03',
     title: 'Visuals',
-    description: 'AI art, album covers, and experiments. Digital pieces made for clients, or just because.',
+    description: 'AI art, album covers, and experiments. Digital pieces made for clients, or just because. Pushing the boundaries of what\'s possible—these works showcase the potential of AI-human collaboration to create truly unique brand assets.',
     href: '/visuals',
     image: '/images/sections/visuals-bg.webp',
   },
@@ -66,9 +66,10 @@ export default function SectionCards() {
                 src={section.image}
                 alt={`${section.title} background`}
                 fill
-                priority={idx <= 1}
+                priority={idx === 0}
+                loading={idx === 0 ? undefined : 'lazy'}
                 quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 style={{ objectFit: 'cover' }}
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
@@ -9,8 +10,10 @@ import About from '@/components/About'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
 import Socials from '@/components/Socials'
-import BackToTop from '@/components/BackToTop'
 import ErrorBoundary from '@/components/ErrorBoundary'
+
+// Dynamic import for non-critical component - improves INP
+const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -193,6 +196,30 @@ export default function Home() {
         <Header />
         <Hero />
         <SectionCards />
+        
+        {/* Social Proof Section - Placeholder for future content
+        * Suggested location for "Trusted By" logos or testimonial quotes
+        * Uncomment and populate when client logos/testimonials are available
+        *
+        * <section className="social-proof" aria-label="Client testimonials">
+        *   <div className="social-proof__inner">
+        *     <p className="social-proof__label">Trusted By</p>
+        *     <div className="social-proof__logos">
+        *       {/* Add client logos here - recommended: 4-6 logos *}
+        *       {/* <Image src="/images/clients/logo1.svg" alt="Client Name" width={120} height={40} /> *}
+        *     </div>
+        *     <blockquote className="social-proof__testimonial">
+        *       <p className="social-proof__quote">
+        *         "Quote from a satisfied client about the quality of work and results achieved."
+        *       </p>
+        *       <cite className="social-proof__cite">
+        *         — Client Name, Company
+        *       </cite>
+        *     </blockquote>
+        *   </div>
+        * </section>
+        */}
+        
         <About />
         <Services />
         <Contact />

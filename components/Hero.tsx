@@ -2,8 +2,14 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import HeroBackground from './HeroBackground'
+import dynamic from 'next/dynamic'
 import { HERO_MAGNETIC_MAX_DISTANCE, HERO_MAGNETIC_STRENGTH, HERO_SCALE_FACTOR } from '@/lib/constants'
+
+// Dynamic import for heavy animation component - improves INP
+const HeroBackground = dynamic(() => import('./HeroBackground'), { 
+  ssr: false,
+  loading: () => <div className="hero-background" aria-hidden="true" />
+})
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -100,7 +106,8 @@ export default function Hero() {
       <div className="hero__content">
         <p className="hero__vibe-coded reveal">THIS WEBSITE WAS FULLY VIBE CODED</p>
         
-        <h1 id="hero-title" className="hero__name">
+        {/* Name display - visual treatment */}
+        <p className="hero__name" aria-hidden="true">
           <span className="hero__line">
             {nameLetters.map((letter, i) => (
               <span key={i} className="hero__letter" style={{ animationDelay: `${0.3 + i * 0.06}s` }}>
@@ -115,15 +122,16 @@ export default function Hero() {
               </span>
             ))}
           </span>
-        </h1>
+        </p>
         
-        <div className="hero__services reveal reveal-delay-1">
+        {/* SEO-optimized H1 with services */}
+        <h1 id="hero-title" className="hero__services reveal reveal-delay-1">
           <span className="hero__service">Photography</span>
-          <span className="hero__service-divider">·</span>
+          <span className="hero__service-divider" aria-hidden="true">·</span>
           <span className="hero__service">Brand Identity</span>
-          <span className="hero__service-divider">·</span>
+          <span className="hero__service-divider" aria-hidden="true">·</span>
           <span className="hero__service">AI-Powered Creatives</span>
-        </div>
+        </h1>
         
         <div className="hero__cta-group reveal reveal-delay-2">
           <div ref={primaryCtaRef} className="hero__cta-wrapper">

@@ -49,7 +49,7 @@ export default function Header() {
 
       {/* Desktop Nav */}
       <nav className="ui ui__nav" aria-label="Primary navigation">
-        <Link href="/case-studies">Work</Link>
+        <Link href="/case-studies">Case Studies</Link>
         <Link href="/about">About</Link>
         <Link href="/#services" onClick={(e) => handleNavClick(e, '#services')}>Services</Link>
         <Link href="/#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</Link>
@@ -72,10 +72,17 @@ export default function Header() {
         className={`ui__mobile-menu ${isMenuOpen ? 'active' : ''}`}
         aria-label="Mobile navigation"
       >
-        <Link href="/case-studies" onClick={closeMenu}>Work</Link>
+        <Link href="/case-studies" onClick={closeMenu}>Case Studies</Link>
         <Link href="/about" onClick={closeMenu}>About</Link>
         <Link href="/#services" onClick={(e) => { handleNavClick(e, '#services'); closeMenu(); }}>Services</Link>
         <Link href="/#contact" onClick={(e) => { handleNavClick(e, '#contact'); closeMenu(); }}>Contact</Link>
+        <Link 
+          href="/#contact" 
+          className="ui__mobile-cta"
+          onClick={(e) => { handleNavClick(e, '#contact'); closeMenu(); }}
+        >
+          Start a Project
+        </Link>
       </nav>
     </>
   )

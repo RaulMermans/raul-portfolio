@@ -42,9 +42,9 @@ export async function POST(request: NextRequest) {
     }
     
     const body = await request.json()
-    const { name, email, message } = body
+    const { name, email, projectType, budget, timeline, message } = body
 
-    // Validate input
+    // Validate required input
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -69,6 +69,9 @@ export async function POST(request: NextRequest) {
         logger.log('📧 Contact form submission (Resend not configured):', {
           name,
           email,
+          projectType,
+          budget,
+          timeline,
           message,
         })
         return NextResponse.json(
@@ -90,8 +93,19 @@ export async function POST(request: NextRequest) {
     // Escape all user input to prevent HTML injection
     const escapedName = escapeHtml(name)
     const escapedEmail = escapeHtml(email)
+    const escapedProjectType = projectType ? escapeHtml(projectType) : ''
+    const escapedBudget = budget ? escapeHtml(budget) : ''
+    const escapedTimeline = timeline ? escapeHtml(timeline) : ''
     // Escape message and preserve line breaks
     const escapedMessage = escapeHtml(message).replace(/\n/g, '<br>')
+    
+    // Format optional fields for display
+    const formatLabel = (value: string) => {
+      return value
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    }
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
@@ -130,6 +144,24 @@ export async function POST(request: NextRequest) {
                   <div class="label">Email</div>
                   <div class="value"><a href="mailto:${escapedEmail}" style="color: #C41E3A; text-decoration: none;">${escapedEmail}</a></div>
                 </div>
+                ${escapedProjectType ? `
+                <div class="field">
+                  <div class="label">Project Type</div>
+                  <div class="value">${formatLabel(escapedProjectType)}</div>
+                </div>
+                ` : ''}
+                ${escapedBudget ? `
+                <div class="field">
+                  <div class="label">Budget Range</div>
+                  <div class="value">${formatLabel(escapedBudget)}</div>
+                </div>
+                ` : ''}
+                ${escapedTimeline ? `
+                <div class="field">
+                  <div class="label">Timeline</div>
+                  <div class="value">${formatLabel(escapedTimeline)}</div>
+                </div>
+                ` : ''}
                 <div class="field">
                   <div class="label">Message</div>
                   <div class="message-box">${escapedMessage}</div>
@@ -148,6 +180,9 @@ New Contact Form Submission
 
 Name: ${name}
 Email: ${email}
+${projectType ? `Project Type: ${projectType}` : ''}
+${budget ? `Budget Range: ${budget}` : ''}
+${timeline ? `Timeline: ${timeline}` : ''}
 
 Message:
 ${message}

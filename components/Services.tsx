@@ -9,7 +9,7 @@ const services = [
     title: 'AI Agents',
     titleShort: 'AI Agents',
     items: ['Custom AI Solutions', 'Automation Workflows', 'Prompt Engineering', 'AI Integration'],
-    description: 'Intelligent automation systems that streamline workflows and unlock new possibilities.',
+    description: 'Intelligent automation systems that streamline workflows and unlock new possibilities. From custom GPT agents to full automation pipelines, I help brands reduce repetitive tasks by up to 80% while maintaining creative quality.',
     image: '/images/services/Services_AI_Agents.webp',
   },
   {
@@ -17,7 +17,7 @@ const services = [
     title: 'Web Development',
     titleShort: 'Web Dev',
     items: ['Custom Web Design', 'Frontend Development', 'Performance Optimization', 'CMS Integration'],
-    description: 'Modern, performant web experiences crafted with precision.',
+    description: 'Modern, performant web experiences crafted with precision. Every site is built with conversion in mind—fast load times, intuitive navigation, and seamless user journeys that turn visitors into clients.',
     image: '/images/services/Services_Web_Development.webp',
   },
   {
@@ -25,7 +25,7 @@ const services = [
     title: 'Photography',
     titleShort: 'Photography',
     items: ['Brand Photo', 'Visual Story', 'Editorial Shoot', 'Product Photo'],
-    description: 'Visual narratives that capture the essence of brands and stories.',
+    description: 'Visual narratives that capture the essence of brands and stories. Helping brands convert visual interest into lasting engagement through authentic imagery that connects with audiences on an emotional level.',
     image: '/images/services/Services_Photography.webp',
   },
   {
@@ -33,7 +33,7 @@ const services = [
     title: 'Creative Direction',
     titleShort: 'Creative Dir',
     items: ['Brand Strategy', 'Visual Identity', 'Art Direction', 'Campaign Concepts'],
-    description: 'Strategic creative vision from concept to execution.',
+    description: 'Strategic creative vision from concept to execution. I guide brands through the creative process, ensuring every touchpoint—from logo to campaign—tells a cohesive story that resonates with your target audience.',
     image: '/images/services/Services_Creative_Direction.webp',
   },
 ]

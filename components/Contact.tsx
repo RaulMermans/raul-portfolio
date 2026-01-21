@@ -8,7 +8,7 @@ export default function Contact() {
     <section id="contact" className="contact" aria-labelledby="contact-title">
       <div className="contact__glow" aria-hidden="true"></div>
       <div className="contact__content">
-        <h1 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work Together</h1>
+        <h2 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work Together</h2>
         <p className="contact__subtitle reveal reveal-delay-1">
           Have a project in mind? I&apos;d love to hear about it. Whether it&apos;s creative direction, 
           AI automation, or visual storytelling—let&apos;s bring your vision to life.

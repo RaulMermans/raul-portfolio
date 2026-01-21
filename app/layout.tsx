@@ -50,11 +50,11 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Raúl Mermans — Visual Storyteller',
+    default: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
     template: '%s | Raúl Mermans',
   },
-  description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
-  keywords: ['photography', 'brand identity', 'AI creatives', 'visual storytelling', 'Spain', 'creative director', 'photographer', 'AI art'],
+  description: 'Visual Storyteller & Creative Director based in Spain. Specializing in Photography, Brand Identity, AI-Powered Creatives, and Digital Systems. Transform your brand with strategic creative direction.',
+  keywords: ['photography Spain', 'brand identity', 'AI creatives', 'visual storytelling', 'creative director Spain', 'photographer Spain', 'AI art', 'brand photography', 'creative direction', 'digital systems'],
   authors: [{ name: 'Raúl Mermans', url: baseUrl }],
   creator: 'Raúl Mermans',
   publisher: 'Raúl Mermans',
@@ -66,8 +66,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: baseUrl,
-    title: 'Raúl Mermans — Visual Storyteller',
-    description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
+    title: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
+    description: 'Visual Storyteller & Creative Director based in Spain. Specializing in Photography, Brand Identity, AI-Powered Creatives, and Digital Systems.',
     siteName: 'Raúl Mermans Portfolio',
     images: [
       {
@@ -80,8 +80,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Raúl Mermans — Visual Storyteller',
-    description: 'Visual Storyteller — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
+    title: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
+    description: 'Visual Storyteller & Creative Director based in Spain. Photography, Brand Identity, AI-Powered Creatives, and Digital Systems.',
     creator: '@raulmeermans',
     images: [`${baseUrl}/images/og-image.jpg`],
   },
@@ -112,9 +112,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        {/* Preload critical images for faster initial load */}
-        <link rel="preload" as="image" href="/images/sections/case-studies-bg.webp" />
-        <link rel="preload" as="image" href="/images/sections/photography-bg.webp" />
+        {/* Preload hints removed - using Next.js Image priority prop instead for better optimization */}
       </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
         <a href="#main-content" className="skip-link">
@@ -126,6 +124,7 @@ export default function RootLayout({
         <div className="grain" aria-hidden="true"></div>
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />
+        <StructuredData type="Service" />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>
