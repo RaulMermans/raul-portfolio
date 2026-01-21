@@ -3906,15 +3906,14 @@ html.homepage .footer {
   overflow-y: hidden;
   display: flex;
   align-items: center;
-  scroll-behavior: auto; /* Disable native smooth scroll for custom implementation */
+  scroll-behavior: auto; /* Use auto for immediate response, no animation conflicts */
   -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
   scrollbar-width: thin;
   scrollbar-color: var(--ink-muted) var(--cream-dark);
   overscroll-behavior-x: contain;
   /* Enhanced mobile touch scrolling */
   touch-action: pan-x pan-y pinch-zoom;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x proximity;
+  /* Removed scroll-snap-type to prevent conflicts with JS scroll handling */
 }
 
 @media (max-width: 768px) {
@@ -3955,6 +3954,9 @@ html.homepage .footer {
   gap: 0;
   position: relative;
   contain: layout;
+  /* GPU compositing for smooth scrolling */
+  transform: translateZ(0);
+  will-change: scroll-position;
 }
 
 @media (max-width: 768px) {
@@ -3973,7 +3975,10 @@ html.homepage .footer {
   min-width: 420vw;
   height: 85vh;
   padding: var(--space-9) 0;
-  contain: layout;
+  /* Strict containment for better performance isolation */
+  contain: strict;
+  /* GPU layer promotion */
+  transform: translateZ(0);
 }
 
 @media (max-width: 768px) {
@@ -3997,7 +4002,7 @@ html.homepage .footer {
   z-index: 1;
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
-  scroll-snap-align: center; /* Snap to center on mobile */
+  /* Removed scroll-snap-align to prevent conflicts with programmatic scrolling */
 }
 
 /* Only promote to compositor layer on hover - reduces GPU memory */
@@ -4007,8 +4012,7 @@ html.homepage .footer {
 
 @media (max-width: 768px) {
   .gallery__item {
-    scroll-snap-align: center;
-    /* Better touch feedback */
+    /* Better touch feedback on mobile */
     -webkit-tap-highlight-color: rgba(196, 30, 58, 0.15);
   }
 }

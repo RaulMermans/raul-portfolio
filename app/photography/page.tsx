@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 
@@ -24,6 +24,8 @@ interface Photo {
   category: 'landscape' | 'architecture' | 'street'
 }
 
+type CategoryType = 'landscape' | 'architecture' | 'street'
+
 // Helper function to shuffle array and select random items
 function shuffleAndSelect<T>(array: T[], count: number): T[] {
   const shuffled = [...array].sort(() => Math.random() - 0.5)
@@ -31,7 +33,8 @@ function shuffleAndSelect<T>(array: T[], count: number): T[] {
 }
 
 // Helper function to get or create random selection (persisted per session)
-function getRandomSelection<T>(key: string, allItems: T[], count: number): T[] {
+// Optimized: Uses direct property comparison instead of JSON.stringify
+function getRandomSelection(key: string, allItems: Photo[], count: number): Photo[] {
   if (typeof window === 'undefined') {
     // Server-side: return first N items
     return allItems.slice(0, count)
@@ -41,15 +44,15 @@ function getRandomSelection<T>(key: string, allItems: T[], count: number): T[] {
   const stored = sessionStorage.getItem(`photo-selection-${key}`)
   if (stored) {
     try {
-      const parsed = JSON.parse(stored)
-      // Validate that stored selection still exists in allItems
-      const validSelection = parsed.filter((item: T) => 
-        allItems.some(ai => JSON.stringify(ai) === JSON.stringify(item))
+      const parsed = JSON.parse(stored) as Photo[]
+      // Validate using direct src comparison (much faster than JSON.stringify)
+      const validSelection = parsed.filter((item: Photo) => 
+        allItems.some(ai => ai.src === item.src)
       )
       if (validSelection.length === count) {
         return validSelection
       }
-    } catch (e) {
+    } catch {
       // Invalid stored data, continue to generate new
     }
   }
@@ -58,6 +61,16 @@ function getRandomSelection<T>(key: string, allItems: T[], count: number): T[] {
   const selection = shuffleAndSelect(allItems, count)
   sessionStorage.setItem(`photo-selection-${key}`, JSON.stringify(selection))
   return selection
+}
+
+// Get adjacent categories for prefetching
+function getAdjacentCategories(current: CategoryType): CategoryType[] {
+  const order: CategoryType[] = ['landscape', 'architecture', 'street']
+  const idx = order.indexOf(current)
+  const adjacent: CategoryType[] = []
+  if (idx > 0) adjacent.push(order[idx - 1])
+  if (idx < order.length - 1) adjacent.push(order[idx + 1])
+  return adjacent
 }
 
 // ALL AVAILABLE IMAGES
@@ -109,26 +122,52 @@ export default function PhotographyPage() {
   // Get categories with random selection (consistent per session)
   const [categoriesState] = useState(() => getCategories())
   
-  // Combine all images in the scattered order: landscape (1-12), architecture (13-24), street (25-36)
-  const allImages: Photo[] = [
-    ...categoriesState.landscape.images,
-    ...categoriesState.architecture.images,
-    ...categoriesState.street.images,
-  ]
-
-  const [activeCategory, setActiveCategory] = useState<'landscape' | 'architecture' | 'street'>('landscape')
+  const [activeCategory, setActiveCategory] = useState<CategoryType>('landscape')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
-  const [lightboxCategory, setLightboxCategory] = useState<'landscape' | 'architecture' | 'street'>('landscape')
+  const [lightboxCategory, setLightboxCategory] = useState<CategoryType>('landscape')
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [prefetchedCategories, setPrefetchedCategories] = useState<Set<CategoryType>>(new Set(['landscape']))
 
-  // Memoize current category images to prevent unnecessary recalculations
+  // Memoize active category images (only 12 images rendered at a time)
+  const activeCategoryImages = useMemo(
+    () => categoriesState[activeCategory]?.images || [],
+    [categoriesState, activeCategory]
+  )
+
+  // Memoize current lightbox category images
   const currentCategoryImages = useMemo(
     () => categoriesState[lightboxCategory]?.images || [],
     [categoriesState, lightboxCategory]
   )
+  
   const activeCount = categoriesState[activeCategory]?.count || 0
+
+  // Prefetch adjacent category images when active category changes
+  useEffect(() => {
+    const adjacent = getAdjacentCategories(activeCategory)
+    const newPrefetched = new Set(prefetchedCategories)
+    
+    adjacent.forEach(cat => {
+      if (!newPrefetched.has(cat)) {
+        newPrefetched.add(cat)
+        // Prefetch images for adjacent categories
+        const images = categoriesState[cat]?.images || []
+        images.slice(0, 4).forEach(img => {
+          const link = document.createElement('link')
+          link.rel = 'prefetch'
+          link.as = 'image'
+          link.href = img.src
+          document.head.appendChild(link)
+        })
+      }
+    })
+    
+    if (newPrefetched.size !== prefetchedCategories.size) {
+      setPrefetchedCategories(newPrefetched)
+    }
+  }, [activeCategory, categoriesState, prefetchedCategories])
 
   // Minimum swipe distance (in pixels)
   const minSwipeDistance = 50
@@ -175,120 +214,51 @@ export default function PhotographyPage() {
     }
   }, [lightboxOpen])
 
-  // Smooth horizontal scroll on wheel with improved performance (desktop only)
-  // Optimized with refs to prevent closure issues and improve performance
-  const wheelHandlerRef = useRef<((e: WheelEvent) => void) | null>(null)
-  const rafIdRef = useRef<number | null>(null)
-  const scrollTargetRef = useRef<number>(0)
-  const lastTimeRef = useRef<number>(performance.now())
-
+  // Simplified horizontal scroll on wheel (desktop only)
+  // Uses native scrollBy for smooth, non-fighting scroll behavior
   useEffect(() => {
     if (typeof window === 'undefined') return
     
-    // Skip on mobile - use native touch scrolling
-    const isMobile = window.innerWidth <= 768
-    if (isMobile) return
+    // Only activate on desktop with pointer device (not touch)
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    if (!isDesktop) return
     
     const gallery = document.getElementById('main-content')
     if (!gallery) return
 
-    scrollTargetRef.current = gallery.scrollLeft
-
-    const smoothScroll = (currentTime: number) => {
-      const deltaTime = currentTime - lastTimeRef.current
-      lastTimeRef.current = currentTime
-      
-      const current = gallery.scrollLeft
-      const diff = scrollTargetRef.current - current
-      
-      if (Math.abs(diff) > 0.5) {
-        // Use time-based easing for consistent speed
-        const easing = Math.min(0.2 * (deltaTime / 16), 0.3) // Normalize to 60fps
-        gallery.scrollLeft += diff * easing
-        rafIdRef.current = requestAnimationFrame(smoothScroll)
-      } else {
-        gallery.scrollLeft = scrollTargetRef.current
-        rafIdRef.current = null
-      }
-    }
-
-    // Throttled wheel handler for better performance
-    let lastWheelTime = 0
-    const wheelThrottle = 16 // ~60fps
-    
-    wheelHandlerRef.current = (e: WheelEvent) => {
-      const now = performance.now()
-      if (now - lastWheelTime < wheelThrottle) return
-      lastWheelTime = now
-      
+    const handleWheel = (e: WheelEvent) => {
+      // Only convert vertical scroll to horizontal when vertical is dominant
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault()
-        
-        // Update target scroll position with momentum
-        const scrollAmount = e.deltaY * 1.5
-        scrollTargetRef.current = Math.max(0, Math.min(
-          gallery.scrollWidth - gallery.clientWidth,
-          scrollTargetRef.current + scrollAmount
-        ))
-        
-        // Start smooth scroll if not already running
-        if (rafIdRef.current === null) {
-          lastTimeRef.current = performance.now()
-          rafIdRef.current = requestAnimationFrame(smoothScroll)
-        }
+        // Use direct scrollBy with multiplier for natural feel
+        gallery.scrollBy({
+          left: e.deltaY * 2,
+          behavior: 'auto' // Immediate scroll, no animation fighting
+        })
       }
     }
 
-    const handleWheel = wheelHandlerRef.current
     gallery.addEventListener('wheel', handleWheel, { passive: false })
-    
-    return () => {
-      gallery.removeEventListener('wheel', handleWheel)
-      if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current)
-    }
+    return () => gallery.removeEventListener('wheel', handleWheel)
   }, [])
 
-  // Set overflow for horizontal scroll (mobile-friendly)
+  // Consolidated overflow management (runs once on mount)
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const isMobile = window.innerWidth <= 768
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
     
-    // Disable scroll-snap for normal scrolling
-    document.documentElement.style.scrollSnapType = 'none'
-    
-    // On mobile, allow vertical scroll but enable horizontal scroll on gallery
-    if (isMobile) {
-      document.body.style.overflowY = 'auto'
-      document.documentElement.style.overflow = 'auto'
-    } else {
-      document.body.style.overflowY = 'auto'
+    // Set overflow based on device type - only once on mount
+    if (!isMobile) {
       document.documentElement.style.overflow = 'hidden'
       document.body.style.overflow = 'hidden'
     }
 
     return () => {
-      document.documentElement.style.scrollSnapType = ''
-      document.body.style.overflowY = ''
       document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
     }
   }, [])
-
-  const openLightbox = (imgElement: HTMLImageElement, category: 'landscape' | 'architecture' | 'street') => {
-    setLightboxCategory(category)
-    const categoryImages = categoriesState[category]?.images || []
-    // Find index by comparing src paths (handle both relative and absolute paths)
-    const imgSrc = imgElement.src.includes(imgElement.src.split('/').pop() || '') 
-      ? imgElement.src 
-      : imgElement.getAttribute('src') || imgElement.src
-    const index = categoryImages.findIndex((img) => {
-      const imgPath = img.src.startsWith('/') ? img.src : `/${img.src}`
-      return imgElement.src.includes(imgPath) || imgElement.src.endsWith(imgPath) || imgPath === imgSrc
-    })
-    setLightboxIndex(index >= 0 ? index : 0)
-    setLightboxOpen(true)
-  }
 
   const closeLightbox = () => {
     setLightboxOpen(false)
@@ -332,20 +302,18 @@ export default function PhotographyPage() {
   }
 
   // Memoize category setter to prevent unnecessary re-renders
-  const setCategory = useCallback((category: 'landscape' | 'architecture' | 'street') => {
+  const setCategory = useCallback((category: CategoryType) => {
     setActiveCategory(category)
   }, [])
 
-  // Memoize image items to prevent unnecessary re-renders
+  // Memoize image items - only for active category (12 images instead of 36)
   const imageItems = useMemo(() => {
-    return allImages.map((photo, index) => {
-      const isActive = photo.category === activeCategory
-      const categoryImages = categoriesState[photo.category]?.images || []
-      const photoIndex = categoryImages.findIndex((img) => img.src === photo.src)
-      
-      return { photo, index, isActive, categoryImages, photoIndex }
-    })
-  }, [allImages, activeCategory, categoriesState])
+    return activeCategoryImages.map((photo, index) => ({
+      photo,
+      index,
+      photoIndex: index, // Already within the category
+    }))
+  }, [activeCategoryImages])
 
   return (
     <>
@@ -353,20 +321,20 @@ export default function PhotographyPage() {
 
       <Header />
 
-      {/* Gallery */}
+      {/* Gallery - Only renders active category (12 images instead of 36) */}
       <main id="main-content" role="main" className="gallery">
         <div className="gallery__track">
-          <div className="gallery__grid">
-            {imageItems.map(({ photo, index, isActive, categoryImages, photoIndex }) => (
+          <div className="gallery__grid" data-category={activeCategory}>
+            {imageItems.map(({ photo, index, photoIndex }) => (
                 <div
-                  key={`${photo.category}-${index}`}
-                  className={`gallery__item ${isActive ? 'active' : ''}`}
-                  data-category={photo.category}
+                  key={`${activeCategory}-${index}`}
+                  className="gallery__item active"
+                  data-category={activeCategory}
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    setLightboxCategory(photo.category)
-                    setLightboxIndex(photoIndex >= 0 ? photoIndex : 0)
+                    setLightboxCategory(activeCategory)
+                    setLightboxIndex(photoIndex)
                     setLightboxOpen(true)
                   }}
                 >
@@ -374,12 +342,12 @@ export default function PhotographyPage() {
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    sizes="(max-width: 768px) 140px, (max-width: 1024px) 160px, 180px"
-                  quality={index < 6 ? 75 : 60}
-                  loading={index < 4 ? 'eager' : 'lazy'}
-                  priority={index < 2}
+                    sizes="(max-width: 768px) 120px, (max-width: 1024px) 150px, 180px"
+                    quality={index < 4 ? 60 : 50}
+                    loading={index < 3 ? 'eager' : 'lazy'}
+                    priority={index < 2}
                     className="gallery__item-image"
-                  style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'cover' }}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.style.display = 'none'
@@ -452,11 +420,11 @@ export default function PhotographyPage() {
             className="lightbox__image"
             src={currentCategoryImages[lightboxIndex].src}
             alt={currentCategoryImages[lightboxIndex].alt}
-            width={1400}
-            height={1400}
-            quality={85}
+            width={1200}
+            height={1200}
+            quality={80}
             priority
-            sizes="(max-width: 768px) 95vw, (max-width: 1024px) 90vw, 75vw"
+            sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 70vw"
             style={{ objectFit: 'contain' }}
             onClick={(e) => e.stopPropagation()}
             onTouchStart={onTouchStart}
@@ -467,6 +435,28 @@ export default function PhotographyPage() {
               target.style.display = 'none'
             }}
           />
+          
+          {/* Preload adjacent images for smoother navigation */}
+          {currentCategoryImages.length > 1 && (
+            <div style={{ display: 'none' }} aria-hidden="true">
+              <Image
+                src={currentCategoryImages[(lightboxIndex + 1) % currentCategoryImages.length].src}
+                alt=""
+                width={400}
+                height={400}
+                quality={60}
+                loading="eager"
+              />
+              <Image
+                src={currentCategoryImages[(lightboxIndex - 1 + currentCategoryImages.length) % currentCategoryImages.length].src}
+                alt=""
+                width={400}
+                height={400}
+                quality={60}
+                loading="eager"
+              />
+            </div>
+          )}
 
           {/* Navigation Buttons - Visible on Mobile */}
           <button
