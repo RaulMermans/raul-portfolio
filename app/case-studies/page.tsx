@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
@@ -10,77 +10,121 @@ export default function CaseStudiesPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const touchStartY = useRef(0)
+  const touchStartX = useRef(0)
 
-  const goToProject = (index: number) => {
+  const isLastCard = currentIndex === caseStudies.length - 1
+  const nextIndex = isLastCard ? 0 : currentIndex + 1
+  const nextStudy = caseStudies[nextIndex]
+
+  // Navigate to a specific project
+  const goToProject = useCallback((index: number) => {
     if (isAnimating) return
+    
+    // Clamp index within bounds (no wrapping for cleaner UX)
+    const newIndex = Math.max(0, Math.min(index, caseStudies.length - 1))
+    if (newIndex === currentIndex) return
+    
     setIsAnimating(true)
-
-    const newIndex = index < 0 ? caseStudies.length - 1 : index >= caseStudies.length ? 0 : index
     setCurrentIndex(newIndex)
 
+    // Reset animation lock after transition
     setTimeout(() => setIsAnimating(false), 800)
-  }
+  }, [isAnimating, currentIndex])
 
-  // Scroll handling
+  // Navigate to next project
+  const goToNext = useCallback(() => {
+    if (currentIndex < caseStudies.length - 1) {
+      goToProject(currentIndex + 1)
+    }
+  }, [currentIndex, goToProject])
+
+  // Navigate to previous project
+  const goToPrev = useCallback(() => {
+    if (currentIndex > 0) {
+      goToProject(currentIndex - 1)
+    }
+  }, [currentIndex, goToProject])
+
+  // Wheel/scroll handling
   useEffect(() => {
     let lastScroll = 0
     const COOLDOWN = 800
+    const THRESHOLD = 50
 
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now()
       if (now - lastScroll < COOLDOWN || isAnimating) return
 
       const delta = e.deltaY
-      if (delta > 30) {
+      if (Math.abs(delta) > THRESHOLD) {
         lastScroll = now
-        goToProject(currentIndex + 1)
-      } else if (delta < -30) {
-        lastScroll = now
-        goToProject(currentIndex - 1)
+        if (delta > 0) {
+          goToNext()
+        } else {
+          goToPrev()
+        }
       }
     }
 
     window.addEventListener('wheel', handleWheel, { passive: true })
+    return () => window.removeEventListener('wheel', handleWheel)
+  }, [isAnimating, goToNext, goToPrev])
 
-    // Keyboard navigation
+  // Keyboard navigation
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isAnimating) return
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-        e.preventDefault()
-        goToProject(currentIndex + 1)
-      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-        e.preventDefault()
-        goToProject(currentIndex - 1)
+      
+      switch (e.key) {
+        case 'ArrowDown':
+        case 'ArrowRight':
+        case ' ': // Spacebar
+          e.preventDefault()
+          goToNext()
+          break
+        case 'ArrowUp':
+        case 'ArrowLeft':
+          e.preventDefault()
+          goToPrev()
+          break
+        case 'Home':
+          e.preventDefault()
+          goToProject(0)
+          break
+        case 'End':
+          e.preventDefault()
+          goToProject(caseStudies.length - 1)
+          break
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isAnimating, goToNext, goToPrev, goToProject])
 
-    return () => {
-      window.removeEventListener('wheel', handleWheel)
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [currentIndex, isAnimating])
-
-  // Touch handling - disabled on mobile for simpler scroll experience
+  // Touch handling for mobile swipe
   useEffect(() => {
-    const isMobile = window.innerWidth <= 900
-    if (isMobile) return // Don't enable touch swipe on mobile - allow normal scroll
-
-    let touchY = 0
+    const SWIPE_THRESHOLD = 50
 
     const handleTouchStart = (e: TouchEvent) => {
-      touchY = e.touches[0].clientY
+      touchStartY.current = e.touches[0].clientY
+      touchStartX.current = e.touches[0].clientX
     }
 
     const handleTouchEnd = (e: TouchEvent) => {
       if (isAnimating) return
-      const diff = touchY - e.changedTouches[0].clientY
-
-      if (diff > 50) {
-        goToProject(currentIndex + 1)
-      } else if (diff < -50) {
-        goToProject(currentIndex - 1)
+      
+      const deltaY = touchStartY.current - e.changedTouches[0].clientY
+      const deltaX = touchStartX.current - e.changedTouches[0].clientX
+      
+      // Only respond to vertical swipes (ignore horizontal)
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > SWIPE_THRESHOLD) {
+        if (deltaY > 0) {
+          goToNext()
+        } else {
+          goToPrev()
+        }
       }
     }
 
@@ -91,115 +135,130 @@ export default function CaseStudiesPage() {
       window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [currentIndex, isAnimating])
+  }, [isAnimating, goToNext, goToPrev])
 
-  // Hide scroll hint when at bottom or on last project
-  useEffect(() => {
-    const scrollHint = document.querySelector('.case-studies-split__scroll-hint')
-    if (!scrollHint) return
+  // Get card class based on position relative to current
+  const getCardClass = (index: number) => {
+    if (index === currentIndex) return 'active'
+    if (index === currentIndex - 1) return 'prev'
+    if (index === currentIndex + 1) return 'next'
+    return ''
+  }
 
-    const handleScroll = () => {
-      const scrollPosition = window.innerHeight + window.scrollY
-      const documentHeight = document.documentElement.scrollHeight
-      const distanceFromBottom = documentHeight - scrollPosition
-      const isAtBottom = distanceFromBottom < 100
-      const isLastProject = currentIndex === caseStudies.length - 1
-
-      if (isAtBottom || isLastProject) {
-        scrollHint.classList.add('hidden')
-      } else {
-        scrollHint.classList.remove('hidden')
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Check initial state
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [currentIndex])
-
-  const currentStudy = caseStudies[currentIndex]
+  // Format number with leading zero
+  const formatNumber = (num: number) => String(num + 1).padStart(2, '0')
 
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="grain" aria-hidden="true"></div>
 
-      <div className="case-studies-split__header-wrapper">
-      <Header />
+      <div className="hero-stack__header-wrapper">
+        <Header />
       </div>
 
-      <main id="main-content" role="main" className="case-studies-split" ref={containerRef}>
-        {/* Left Content Column */}
-        <div className="case-studies-split__content">
-          <div className="case-studies-split__content-inner">
-            {caseStudies.map((study, index) => (
-              <div
-                key={study.id}
-                className={`case-studies-split__slide ${index === currentIndex ? 'active' : ''}`}
-              >
-                <h1 className="case-studies-split__title">{study.title}</h1>
-                <p className="case-studies-split__description">
-                  {study.description}
-                </p>
+      <main 
+        id="main-content" 
+        role="main" 
+        className={`hero-stack ${isLastCard ? 'hero-stack--last-card' : ''}`}
+        ref={containerRef}
+        aria-label="Case Studies Gallery"
+      >
+        {/* Hero Cards */}
+        <div className="hero-stack__cards">
+          {caseStudies.map((study, index) => (
+            <article
+              key={study.id}
+              className={`hero-card ${getCardClass(index)}`}
+              aria-hidden={index !== currentIndex}
+            >
+              {/* Background Image */}
+              <div className="hero-card__media">
+                <Image
+                  src={study.image}
+                  alt=""
+                  fill
+                  quality={90}
+                  sizes="100vw"
+                  className="hero-card__image"
+                  priority={index === 0 || index === currentIndex}
+                />
+                <div className="hero-card__gradient" aria-hidden="true" />
+              </div>
+
+              {/* Content */}
+              <div className="hero-card__content">
+                {study.subtitle && (
+                  <span className="hero-card__subtitle">{study.subtitle}</span>
+                )}
+                <h2 className="hero-card__title">{study.title}</h2>
+                <p className="hero-card__description">{study.description}</p>
                 <Link 
                   href={study.href} 
-                  className="case-studies-split__cta"
-                  style={{ color: study.color }}
+                  className="hero-card__cta"
+                  tabIndex={index === currentIndex ? 0 : -1}
                 >
-                  OPEN CASE STUDY →
+                  View Project
+                  <span className="hero-card__cta-arrow" aria-hidden="true">→</span>
                 </Link>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Image Column */}
-        <div className="case-studies-split__image-wrapper">
-          {caseStudies.map((study, index) => (
-            <div
-              key={study.id}
-              className={`case-studies-split__image-container ${index === currentIndex ? 'active' : ''}`}
-              style={{
-                background: index === currentIndex ? study.color : 'transparent',
-              }}
-            >
-              <div className="case-studies-split__image-inner">
-              <Image
-                  src={study.image}
-                  alt={study.title}
-                fill
-                  quality={90}
-                  sizes="50vw"
-                  className="case-studies-split__image"
-                  priority={index === currentIndex}
-                />
-              </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* Vertical Scroll Indicator Dots */}
-        <nav className="case-studies-split__dots" aria-label="Project navigation">
-        {caseStudies.map((study, index) => (
-          <button
-            key={index}
-              className={`case-studies-split__dot ${index === currentIndex ? 'active' : ''}`}
+        {/* Pagination */}
+        <nav 
+          className="hero-stack__pagination" 
+          aria-label="Project navigation"
+        >
+          {caseStudies.map((study, index) => (
+            <button
+              key={study.id}
+              className={`hero-stack__pagination-item ${index === currentIndex ? 'active' : ''}`}
               onClick={() => goToProject(index)}
-            aria-label={`Go to ${study.title}`}
-            aria-current={index === currentIndex ? 'true' : undefined}
-              style={{
-                '--dot-color': study.color,
-              } as React.CSSProperties}
-            />
-        ))}
-      </nav>
+              aria-label={`Go to ${study.title}`}
+              aria-current={index === currentIndex ? 'true' : undefined}
+            >
+              <span className="hero-stack__pagination-number">
+                {formatNumber(index)}
+              </span>
+              <span className="hero-stack__pagination-line" aria-hidden="true" />
+            </button>
+          ))}
+        </nav>
 
-        {/* Scroll Indicator - Shows there's more content */}
-        <div className="case-studies-split__scroll-hint">
-          <div className="case-studies-split__scroll-hint-line"></div>
-          <span className="case-studies-split__scroll-hint-text">Scroll</span>
-      </div>
+        {/* Counter Display */}
+        <div className="hero-stack__counter" aria-live="polite" aria-atomic="true">
+          <span className="hero-stack__counter-current">{formatNumber(currentIndex)}</span>
+          <span className="hero-stack__counter-separator">/</span>
+          <span className="hero-stack__counter-total">{formatNumber(caseStudies.length - 1)}</span>
+          <span className="sr-only">
+            Viewing case study {currentIndex + 1} of {caseStudies.length}
+          </span>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="hero-stack__scroll-indicator" aria-hidden="true">
+          <span className="hero-stack__scroll-indicator-text">Scroll</span>
+          <div className="hero-stack__scroll-indicator-line" />
+        </div>
+
+        {/* Next Project Preview */}
+        {!isLastCard && (
+          <button
+            className="hero-stack__next-preview"
+            onClick={goToNext}
+            aria-label={`Next project: ${nextStudy.title}`}
+          >
+            <div className="hero-stack__next-preview-inner">
+              <div className="hero-stack__next-preview-content">
+                <span className="hero-stack__next-preview-label">Next Project</span>
+                <span className="hero-stack__next-preview-title">{nextStudy.title}</span>
+                <span className="hero-stack__next-preview-arrow" aria-hidden="true">↓</span>
+              </div>
+            </div>
+          </button>
+        )}
       </main>
     </>
   )
