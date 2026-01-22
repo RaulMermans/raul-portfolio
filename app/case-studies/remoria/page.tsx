@@ -123,10 +123,11 @@ export default function RemoriaPage() {
           </CaseStudySection>
         )}
 
-        {content.fullBleedImages && content.fullBleedImages.length > 0 && (
+        {content.fullBleedImages && 
+         content.fullBleedImages.filter((img) => img?.src).length > 0 && (
           <section className="case-study-fullbleed">
             {content.fullBleedImages
-              .filter((image) => image && image.src)
+              .filter((image) => image?.src)
               .map((image, index) => (
                 <CaseStudyImage
                   key={index}
@@ -169,10 +170,11 @@ export default function RemoriaPage() {
                 />
               )}
 
-              {content.approach.images && content.approach.images.length > 0 && (
+              {content.approach.images && 
+               content.approach.images.filter((img) => img?.src).length > 0 && (
                 <div className="case-study-approach__images">
                   {content.approach.images
-                    .filter((image) => image && image.src)
+                    .filter((image) => image?.src)
                     .map((image, index) => (
                       <CaseStudyImage
                         key={index}
@@ -187,13 +189,13 @@ export default function RemoriaPage() {
           </CaseStudySection>
         )}
 
-        {content.featureImage && (
+        {content.featureImage?.src && (
           <section className="case-study-feature">
             <CaseStudyImage
               image={content.featureImage}
               aspectRatio="16/9"
               className="case-study-feature__image"
-              />
+            />
           </section>
         )}
 

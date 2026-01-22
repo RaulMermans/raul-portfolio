@@ -128,20 +128,19 @@ export default function AISportsCampaignPage() {
         )}
 
         {/* Full Bleed Images */}
-        {content.fullBleedImages && content.fullBleedImages.length > 0 && (
+        {content.fullBleedImages && 
+         content.fullBleedImages.filter((img) => img?.src).length > 0 && (
           <section className="case-study-fullbleed">
-            {content.fullBleedImages.map((image, index) => {
-              // Only render if image exists
-              if (!image || !image.src) return null
-              return (
+            {content.fullBleedImages
+              .filter((image) => image?.src)
+              .map((image, index) => (
                 <CaseStudyImage
                   key={index}
                   image={image}
                   aspectRatio="16/9"
                   className="case-study-fullbleed__image"
                 />
-              )
-            })}
+            ))}
           </section>
         )}
 
@@ -190,10 +189,11 @@ export default function AISportsCampaignPage() {
                 </div>
               )}
 
-              {content.approach.images && content.approach.images.length > 0 && (
+              {content.approach.images && 
+               content.approach.images.filter((img) => img?.src).length > 0 && (
                 <div className="case-study-approach__images">
                   {content.approach.images
-                    .filter((image) => image && image.src) // Filter out missing images
+                    .filter((image) => image?.src)
                     .map((image, index) => (
                       <CaseStudyImage
                         key={index}
@@ -209,7 +209,7 @@ export default function AISportsCampaignPage() {
         )}
 
         {/* Feature Image */}
-        {content.featureImage && (
+        {content.featureImage?.src && (
           <section className="case-study-feature">
             <CaseStudyImage
               image={content.featureImage}

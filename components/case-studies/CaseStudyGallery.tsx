@@ -11,6 +11,7 @@ interface CaseStudyGalleryProps {
 
 export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null)
+  const [hiddenImages, setHiddenImages] = useState<Set<string>>(new Set())
 
   const handleImageClick = (src: string, alt: string) => {
     setSelectedImage({ src, alt })
@@ -20,8 +21,19 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
     setSelectedImage(null)
   }
 
-  // Flatten all images from rows for the grid
-  const allImages = rows.flatMap(row => row.items)
+  const handleImageError = (src: string) => {
+    setHiddenImages(prev => new Set(prev).add(src))
+  }
+
+  // Flatten all images from rows and filter out invalid ones
+  const allImages = rows
+    .flatMap(row => row.items)
+    .filter(image => image.src && !hiddenImages.has(image.src))
+
+  // Don't render gallery if no valid images
+  if (allImages.length === 0) {
+    return null
+  }
 
   return (
     <>
@@ -29,43 +41,29 @@ export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGallery
         <div className="case-study-gallery-new__container">
           <h2 className="case-study-gallery-new__title reveal">Gallery</h2>
           <div className="case-study-gallery-new__grid">
-            {allImages.map((image, index) => {
-              // Apply color/grayscale pattern: 1,4 = color, 2,3 = grayscale
-              const isGrayscale = index === 1 || index === 2
-              // Aspect ratios: 1,4 = landscape (4:3), 2,3 = portrait (3:4)
-              const aspectRatio = index === 1 || index === 2 ? '3/4' : '4/3'
-
-              return (
-                <div
-                  key={`${image.src}-${index}`}
-                  className={`case-study-gallery-new__item reveal ${isGrayscale ? 'case-study-gallery-new__item--grayscale' : ''}`}
-                  style={{ 
-                    animationDelay: `${index * 0.1}s`,
-                    aspectRatio,
-                    position: 'relative'
-                  }}
-                  onClick={() => handleImageClick(image.src, image.alt)}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    quality={image.quality ?? 90}
-                    sizes={image.sizes ?? "(max-width: 768px) 100vw, 50vw"}
-                    style={{ objectFit: 'cover' }}
-                    className="case-study-gallery-new__img"
-                    loading={index < 4 ? 'eager' : 'lazy'}
-                    onError={(e) => {
-                      // Gallery image failed to load - hide the container
-                      const target = e.target as HTMLImageElement
-                      if (target.parentElement) {
-                        target.parentElement.style.display = 'none'
-                      }
-                    }}
-                  />
-                </div>
-              )
-            })}
+            {allImages.map((image, index) => (
+              <div
+                key={`${image.src}-${index}`}
+                className="case-study-gallery-new__item reveal"
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  position: 'relative'
+                }}
+                onClick={() => handleImageClick(image.src, image.alt)}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  quality={image.quality ?? 90}
+                  sizes={image.sizes ?? "(max-width: 768px) 100vw, 50vw"}
+                  style={{ objectFit: 'cover' }}
+                  className="case-study-gallery-new__img"
+                  loading={index < 4 ? 'eager' : 'lazy'}
+                  onError={() => handleImageError(image.src)}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
