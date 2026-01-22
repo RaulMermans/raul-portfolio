@@ -3379,16 +3379,11 @@ html.homepage .footer {
 
 /* Photography Gallery Styles */
 .photography-layout {
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: var(--cream);
-}
-
-.photography-layout html,
-.photography-layout body {
-  height: 100%;
-  overflow: hidden;
 }
 
 /* Lightbox Modal */

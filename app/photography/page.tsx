@@ -403,15 +403,15 @@ export default function PhotographyPage() {
             </div>
           )}
 
-          {/* Main lightbox image - progressive loading */}
+          {/* Main lightbox image - optimized for faster loading */}
           <Image
             key={currentCategoryImages[lightboxIndex].src}
             className={`lightbox__image ${lightboxLoaded ? 'loaded' : ''}`}
             src={currentCategoryImages[lightboxIndex].src}
             alt={currentCategoryImages[lightboxIndex].alt}
-            width={1400}
-            height={1400}
-            quality={85}
+            width={1200}
+            height={1200}
+            quality={75}
             priority
             sizes="(max-width: 640px) 95vw, (max-width: 1024px) 90vw, 80vw"
             style={{ 
@@ -431,23 +431,23 @@ export default function PhotographyPage() {
             }}
           />
           
-          {/* Preload adjacent images for smoother navigation (larger size) */}
+          {/* Preload adjacent images for smoother navigation */}
           {currentCategoryImages.length > 1 && (
             <div style={{ display: 'none' }} aria-hidden="true">
               <Image
                 src={currentCategoryImages[(lightboxIndex + 1) % currentCategoryImages.length].src}
                 alt=""
-                width={800}
-                height={800}
-                quality={75}
+                width={600}
+                height={600}
+                quality={70}
                 loading="eager"
               />
               <Image
                 src={currentCategoryImages[(lightboxIndex - 1 + currentCategoryImages.length) % currentCategoryImages.length].src}
                 alt=""
-                width={800}
-                height={800}
-                quality={75}
+                width={600}
+                height={600}
+                quality={70}
                 loading="eager"
               />
             </div>
