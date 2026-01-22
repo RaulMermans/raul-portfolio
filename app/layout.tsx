@@ -44,6 +44,10 @@ export const metadata: Metadata = {
     template: '%s | Raúl Mermans',
   },
   description: 'Visual Storyteller & Creative Director based in Spain. Specializing in Photography, Brand Identity, AI-Powered Creatives, and Digital Systems. Transform your brand with strategic creative direction.',
+  icons: {
+    icon: '/favicon.jpg',
+    apple: '/favicon.jpg',
+  },
   keywords: ['photography Spain', 'brand identity', 'AI creatives', 'visual storytelling', 'creative director Spain', 'photographer Spain', 'AI art', 'brand photography', 'creative direction', 'digital systems'],
   authors: [{ name: 'Raúl Mermans', url: baseUrl }],
   creator: 'Raúl Mermans',
