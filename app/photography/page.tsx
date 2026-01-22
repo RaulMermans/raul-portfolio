@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 
@@ -73,6 +73,18 @@ function getAdjacentCategories(current: CategoryType): CategoryType[] {
   return adjacent
 }
 
+// Aspect ratio patterns for masonry variety (matching CSS)
+const getAspectRatio = (index: number): { width: number; height: number } => {
+  const pattern = index % 4
+  switch (pattern) {
+    case 0: return { width: 3, height: 4 }  // 3:4
+    case 1: return { width: 4, height: 5 }  // 4:5
+    case 2: return { width: 1, height: 1 }  // 1:1
+    case 3: return { width: 5, height: 6 }  // 5:6
+    default: return { width: 4, height: 5 }
+  }
+}
+
 // ALL AVAILABLE IMAGES
 // Automatically includes all uploaded images in each category
 // The system will randomly select 12 images from the available pool
@@ -129,6 +141,9 @@ export default function PhotographyPage() {
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const [prefetchedCategories, setPrefetchedCategories] = useState<Set<CategoryType>>(new Set(['landscape']))
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
+  const [lightboxLoaded, setLightboxLoaded] = useState(false)
+  const galleryRef = useRef<HTMLElement>(null)
 
   // Memoize active category images (only 12 images rendered at a time)
   const activeCategoryImages = useMemo(
@@ -143,6 +158,11 @@ export default function PhotographyPage() {
   )
   
   const activeCount = categoriesState[activeCategory]?.count || 0
+
+  // Handle image load completion
+  const handleImageLoad = useCallback((src: string) => {
+    setLoadedImages(prev => new Set(prev).add(src))
+  }, [])
 
   // Prefetch adjacent category images when active category changes
   useEffect(() => {
@@ -172,6 +192,7 @@ export default function PhotographyPage() {
   // Minimum swipe distance (in pixels)
   const minSwipeDistance = 50
 
+  // Keyboard navigation for lightbox
   useEffect(() => {
     if (typeof window === 'undefined') return
     
@@ -181,18 +202,10 @@ export default function PhotographyPage() {
           setLightboxOpen(false)
         } else if (e.key === 'ArrowLeft') {
           setLightboxIndex((prev) => (prev - 1 + currentCategoryImages.length) % currentCategoryImages.length)
+          setLightboxLoaded(false)
         } else if (e.key === 'ArrowRight') {
           setLightboxIndex((prev) => (prev + 1) % currentCategoryImages.length)
-        }
-      } else {
-        // Horizontal scroll with arrow keys when lightbox is closed
-        const gallery = document.getElementById('main-content')
-        if (!gallery) return
-        
-        if (e.key === 'ArrowRight') {
-          gallery.scrollBy({ left: 300, behavior: 'smooth' })
-        } else if (e.key === 'ArrowLeft') {
-          gallery.scrollBy({ left: -300, behavior: 'smooth' })
+          setLightboxLoaded(false)
         }
       }
     }
@@ -201,6 +214,7 @@ export default function PhotographyPage() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [lightboxOpen, currentCategoryImages.length])
 
+  // Lock body scroll when lightbox is open
   useEffect(() => {
     if (typeof window === 'undefined') return
     
@@ -214,51 +228,12 @@ export default function PhotographyPage() {
     }
   }, [lightboxOpen])
 
-  // Simplified horizontal scroll on wheel (desktop only)
-  // Uses native scrollBy for smooth, non-fighting scroll behavior
+  // Reset lightbox loaded state when opening
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    
-    // Only activate on desktop with pointer device (not touch)
-    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-    if (!isDesktop) return
-    
-    const gallery = document.getElementById('main-content')
-    if (!gallery) return
-
-    const handleWheel = (e: WheelEvent) => {
-      // Only convert vertical scroll to horizontal when vertical is dominant
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault()
-        // Use direct scrollBy with multiplier for natural feel
-        gallery.scrollBy({
-          left: e.deltaY * 2,
-          behavior: 'auto' // Immediate scroll, no animation fighting
-        })
-      }
+    if (lightboxOpen) {
+      setLightboxLoaded(false)
     }
-
-    gallery.addEventListener('wheel', handleWheel, { passive: false })
-    return () => gallery.removeEventListener('wheel', handleWheel)
-  }, [])
-
-  // Consolidated overflow management (runs once on mount)
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    const isMobile = window.matchMedia('(max-width: 768px)').matches
-    
-    // Set overflow based on device type - only once on mount
-    if (!isMobile) {
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
-    }
-
-    return () => {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-    }
-  }, [])
+  }, [lightboxOpen, lightboxIndex])
 
   const closeLightbox = () => {
     setLightboxOpen(false)
@@ -270,10 +245,12 @@ export default function PhotographyPage() {
 
   const showPrev = () => {
     setLightboxIndex((prev) => (prev - 1 + currentCategoryImages.length) % currentCategoryImages.length)
+    setLightboxLoaded(false)
   }
 
   const showNext = () => {
     setLightboxIndex((prev) => (prev + 1) % currentCategoryImages.length)
+    setLightboxLoaded(false)
   }
 
   // Touch handlers for swipe navigation
@@ -321,41 +298,45 @@ export default function PhotographyPage() {
 
       <Header />
 
-      {/* Gallery - Only renders active category (12 images instead of 36) */}
-      <main id="main-content" role="main" className="gallery">
-        <div className="gallery__track">
-          <div className="gallery__grid" data-category={activeCategory}>
-            {imageItems.map(({ photo, index, photoIndex }) => (
-                <div
-                  key={`${activeCategory}-${index}`}
-                  className="gallery__item active"
-                  data-category={activeCategory}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    setLightboxCategory(activeCategory)
-                    setLightboxIndex(photoIndex)
-                    setLightboxOpen(true)
+      {/* Masonry Gallery - Renders active category images */}
+      <main id="main-content" role="main" className="gallery" ref={galleryRef}>
+        <div className="gallery__grid" data-category={activeCategory}>
+          {imageItems.map(({ photo, index, photoIndex }) => {
+            const aspectRatio = getAspectRatio(index)
+            const isLoaded = loadedImages.has(photo.src)
+            
+            return (
+              <div
+                key={`${activeCategory}-${index}`}
+                className={`gallery__item ${isLoaded ? 'loaded' : 'loading'}`}
+                data-category={activeCategory}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  setLightboxCategory(activeCategory)
+                  setLightboxIndex(photoIndex)
+                  setLightboxOpen(true)
+                }}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={400}
+                  height={Math.round(400 * (aspectRatio.height / aspectRatio.width))}
+                  sizes="(max-width: 480px) 45vw, (max-width: 768px) 45vw, (max-width: 1200px) 30vw, 25vw"
+                  quality={75}
+                  loading={index < 4 ? 'eager' : 'lazy'}
+                  priority={index < 2}
+                  className="gallery__item-image"
+                  onLoad={() => handleImageLoad(photo.src)}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.style.display = 'none'
                   }}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    sizes="(max-width: 768px) 120px, (max-width: 1024px) 150px, 180px"
-                    quality={index < 4 ? 60 : 50}
-                    loading={index < 3 ? 'eager' : 'lazy'}
-                    priority={index < 2}
-                    className="gallery__item-image"
-                    style={{ objectFit: 'cover' }}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.style.display = 'none'
-                    }}
-                  />
-                </div>
-            ))}
-          </div>
+                />
+              </div>
+            )
+          })}
         </div>
       </main>
 
@@ -416,43 +397,58 @@ export default function PhotographyPage() {
             </svg>
           </button>
 
+          {/* Loading skeleton */}
+          {!lightboxLoaded && (
+            <div className="lightbox__skeleton" aria-hidden="true">
+              <div className="lightbox__skeleton-spinner" />
+            </div>
+          )}
+
+          {/* Main lightbox image - progressive loading */}
           <Image
-            className="lightbox__image"
+            key={currentCategoryImages[lightboxIndex].src}
+            className={`lightbox__image ${lightboxLoaded ? 'loaded' : ''}`}
             src={currentCategoryImages[lightboxIndex].src}
             alt={currentCategoryImages[lightboxIndex].alt}
-            width={1200}
-            height={1200}
-            quality={80}
+            width={1400}
+            height={1400}
+            quality={85}
             priority
-            sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 70vw"
-            style={{ objectFit: 'contain' }}
+            sizes="(max-width: 640px) 95vw, (max-width: 1024px) 90vw, 80vw"
+            style={{ 
+              objectFit: 'contain',
+              opacity: lightboxLoaded ? 1 : 0,
+              transition: 'opacity 0.3s ease'
+            }}
             onClick={(e) => e.stopPropagation()}
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
+            onLoad={() => setLightboxLoaded(true)}
             onError={(e) => {
               const target = e.target as HTMLImageElement
               target.style.display = 'none'
+              setLightboxLoaded(true) // Hide skeleton even on error
             }}
           />
           
-          {/* Preload adjacent images for smoother navigation */}
+          {/* Preload adjacent images for smoother navigation (larger size) */}
           {currentCategoryImages.length > 1 && (
             <div style={{ display: 'none' }} aria-hidden="true">
               <Image
                 src={currentCategoryImages[(lightboxIndex + 1) % currentCategoryImages.length].src}
                 alt=""
-                width={400}
-                height={400}
-                quality={60}
+                width={800}
+                height={800}
+                quality={75}
                 loading="eager"
               />
               <Image
                 src={currentCategoryImages[(lightboxIndex - 1 + currentCategoryImages.length) % currentCategoryImages.length].src}
                 alt=""
-                width={400}
-                height={400}
-                quality={60}
+                width={800}
+                height={800}
+                quality={75}
                 loading="eager"
               />
             </div>
