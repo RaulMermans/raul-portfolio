@@ -140,7 +140,7 @@ export default function PhotographyPage() {
   const [lightboxCategory, setLightboxCategory] = useState<CategoryType>('landscape')
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
-  const [prefetchedCategories, setPrefetchedCategories] = useState<Set<CategoryType>>(new Set(['landscape']))
+  const [prefetchedCategories, setPrefetchedCategories] = useState<Set<CategoryType>>(() => new Set<CategoryType>(['landscape']))
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
   const [lightboxLoaded, setLightboxLoaded] = useState(false)
   const galleryRef = useRef<HTMLElement>(null)
