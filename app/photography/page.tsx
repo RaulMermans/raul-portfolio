@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 
@@ -141,9 +141,8 @@ export default function PhotographyPage() {
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const [prefetchedCategories, setPrefetchedCategories] = useState<Set<CategoryType>>(() => new Set<CategoryType>(['landscape']))
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(() => new Set<string>())
   const [lightboxLoaded, setLightboxLoaded] = useState(false)
-  const galleryRef = useRef<HTMLElement>(null)
 
   // Memoize active category images (only 12 images rendered at a time)
   const activeCategoryImages = useMemo(
@@ -299,7 +298,7 @@ export default function PhotographyPage() {
       <Header />
 
       {/* Masonry Gallery - Renders active category images */}
-      <main id="main-content" role="main" className="gallery" ref={galleryRef}>
+      <main id="main-content" role="main" className="gallery">
         <div className="gallery__grid" data-category={activeCategory}>
           {imageItems.map(({ photo, index, photoIndex }) => {
             const aspectRatio = getAspectRatio(index)
