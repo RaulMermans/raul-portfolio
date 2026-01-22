@@ -1,0 +1,128 @@
+---
+description: Rules for case study pages and data
+globs: 
+  - app/case-studies/**/*.tsx
+  - data/case-studies*.ts
+alwaysApply: false
+---
+
+# Case Study Development Rules
+
+## Required Skills
+
+Before working on case studies, read:
+- `plugins/portfolio-tools/skills/case-study-builder/SKILL.md`
+- `plugins/portfolio-tools/skills/image-manager/SKILL.md`
+
+## Data Structure
+
+Case studies are defined in `data/case-studies.ts`:
+
+```tsx
+export interface CaseStudy {
+  id: number
+  title: string
+  description: string
+  image: string           // Thumbnail path
+  href: string            // URL path
+  color: string           // CSS variable like 'var(--color-0)'
+  subtitle?: string       // Optional subtitle
+}
+```
+
+## Adding a New Case Study
+
+### 1. Add to data file (`data/case-studies.ts`)
+
+```tsx
+{
+  id: 2,  // Next available ID
+  title: 'Project Name',
+  description: 'Brief description for cards and previews.',
+  image: '/images/case-studies/project-name/thumb/thumb.webp',
+  href: '/case-studies/project-name',
+  color: 'var(--color-2)',
+  subtitle: 'Category & Role',
+}
+```
+
+### 2. Create page (`app/case-studies/project-name/page.tsx`)
+
+```tsx
+import { Metadata } from 'next'
+import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
+import CaseStudySection from '@/components/case-studies/CaseStudySection'
+import CaseStudyImage from '@/components/case-studies/CaseStudyImage'
+import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+
+export const metadata: Metadata = {
+  title: 'Project Name | Raúl Mermans',
+  description: 'Case study description for SEO.',
+}
+
+export default function ProjectNamePage() {
+  return (
+    <main className="case-study">
+      <CaseStudyHero
+        title="Project Name"
+        subtitle="Category"
+        description="Hero description text."
+        color="var(--color-2)"
+      />
+      
+      <CaseStudySection title="Section Title">
+        <p>Section content...</p>
+      </CaseStudySection>
+      
+      <CaseStudyImage
+        src="/images/case-studies/project-name/image.webp"
+        alt="Descriptive alt text"
+      />
+      
+      <CaseStudyNext currentHref="/case-studies/project-name" />
+    </main>
+  )
+}
+```
+
+### 3. Add images
+
+```
+public/images/case-studies/project-name/
+  ├── thumb/
+  │   └── thumb.webp     # Thumbnail (800x600 recommended)
+  ├── hero.webp          # Hero image
+  └── *.webp             # Additional images
+```
+
+## Available Components
+
+```tsx
+// Hero section with title and description
+<CaseStudyHero title="" subtitle="" description="" color="" />
+
+// Content section with optional title
+<CaseStudySection title="">
+  <p>Content...</p>
+</CaseStudySection>
+
+// Full-width image
+<CaseStudyImage src="" alt="" />
+
+// Image gallery
+<CaseStudyGallery images={[{ src: '', alt: '' }]} />
+
+// Next case study CTA
+<CaseStudyNext currentHref="/case-studies/current" />
+
+// Metadata display
+<CaseStudyMeta items={[{ label: 'Role', value: 'Designer' }]} />
+```
+
+## Image Guidelines
+
+- Use `.webp` format for all images
+- Thumbnails: 800x600px recommended
+- Hero images: 1920px width max
+- Always include descriptive `alt` text
+- Use `priority` prop for above-fold images

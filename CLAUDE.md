@@ -206,12 +206,28 @@ This project includes a local plugin system at `plugins/portfolio-tools/`.
 | `/review` | Deep PR-style code review with security/perf checks | Before merging changes |
 | `/commit` | Smart git workflow with conventional commit messages | When ready to commit |
 
-### Auto-Pilot Skills
+### Skills (Must Read Before Implementation)
 
-| Skill | Trigger | Location |
-|-------|---------|----------|
-| **security-auditor** | Auto-activates on API keys, passwords, unsafe inputs | `plugins/portfolio-tools/skills/security-auditor/` |
-| **design-system** | Auto-activates on UI/CSS changes | `plugins/portfolio-tools/skills/design-system/` |
+Skills are guidance documents that MUST be consulted before making changes. **These do NOT auto-activate in Cursor** - you must explicitly read the SKILL.md file.
+
+| Skill | Read When | Location |
+|-------|-----------|----------|
+| **design-system** | Any UI/CSS changes | `plugins/portfolio-tools/skills/design-system/SKILL.md` |
+| **visual-hierarchy** | Layout, spacing, decluttering | `plugins/portfolio-tools/skills/visual-hierarchy/SKILL.md` |
+| **security-auditor** | API routes, auth, user input | `plugins/portfolio-tools/skills/security-auditor/SKILL.md` |
+| **case-study-builder** | Case study pages | `plugins/portfolio-tools/skills/case-study-builder/SKILL.md` |
+| **component-scaffolder** | New React components | `plugins/portfolio-tools/skills/component-scaffolder/SKILL.md` |
+| **api-route-builder** | API endpoints | `plugins/portfolio-tools/skills/api-route-builder/SKILL.md` |
+| **image-manager** | Image handling | `plugins/portfolio-tools/skills/image-manager/SKILL.md` |
+| **animation-system** | Animations, transitions | `plugins/portfolio-tools/skills/animation-system/SKILL.md` |
+| **performance-guardian** | Performance optimization | `plugins/portfolio-tools/skills/performance-guardian/SKILL.md` |
+| **seo-optimizer** | SEO, metadata | `plugins/portfolio-tools/skills/seo-optimizer/SKILL.md` |
+| **accessibility-enforcer** | A11y compliance | `plugins/portfolio-tools/skills/accessibility-enforcer/SKILL.md` |
+| **nextjs-app-router** | Next.js patterns | `plugins/portfolio-tools/skills/nextjs-app-router/SKILL.md` |
+| **deployment-verifier** | Deployment checks | `plugins/portfolio-tools/skills/deployment-verifier/SKILL.md` |
+| **frontend-developer** | General frontend | `plugins/portfolio-tools/skills/frontend-developer/SKILL.md` |
+
+**Always list which skills you consulted at the start of your work.**
 
 ### Specialist Agents
 
@@ -247,3 +263,18 @@ font-size: var(--text-base);           /* NOT 1rem */
 ```
 
 See `plugins/portfolio-tools/skills/design-system/SKILL.md` for full color palette, typography scale, and component patterns.
+
+## 📝 Keeping Documentation Current
+
+When completing tasks, update these files if you discover:
+- New patterns worth documenting
+- Corrections to existing guidance
+- New skills or commands created
+- Changed deployment/config details
+
+Files to update:
+- `AGENTS.md` - Quick reference for AI agents
+- `CLAUDE.md` - Detailed guide with caching/deployment specifics
+- `.cursor/rules/*.mdc` - Domain-specific rules
+
+**This is not optional** - keeping docs current ensures consistent, high-quality work across sessions.
