@@ -4007,17 +4007,17 @@ html.homepage .footer {
 @media (max-width: 480px) {
   .gallery__grid {
     column-count: 1; /* Single column on very small screens for Pinterest-style */
-    column-gap: var(--space-2); /* Changed from --space-4 for Pinterest-tight spacing */
-    padding: 0 var(--space-2); /* Changed from --space-4 for minimal side margins */
+    column-gap: 0; /* Remove gap for true single column */
+    padding: 0 var(--space-2); /* Minimal side margins */
   }
 
   .gallery__item {
-    margin-bottom: var(--space-2); /* Changed from --space-4 for Pinterest-tight spacing */
+    margin-bottom: var(--space-2); /* Pinterest-tight spacing */
     width: 100%;
     break-inside: avoid;
     aspect-ratio: auto; /* Natural aspect ratio */
-    min-height: 300px;
-    max-height: 600px; /* Prevent extremely tall images */
+    min-height: 250px; /* Reduce from 300px for better flow */
+    max-height: 700px; /* Increase from 600px for tall images */
   }
   
   .gallery__item img,
@@ -4215,7 +4215,28 @@ html.homepage .footer {
 
 @media (max-width: 768px) {
   .category-overlay {
-    display: none; /* Hide on all mobile screens for cleaner Pinterest look */
+    display: block; /* Make visible on mobile */
+    position: fixed;
+    top: calc(var(--header-height) + var(--space-3));
+    right: var(--space-4);
+    max-width: 60vw;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 1;
+    text-align: right;
+  }
+
+  .category-overlay__title {
+    font-size: clamp(3rem, 14vw, 5rem); /* Bigger for mobile */
+    line-height: 0.85;
+    letter-spacing: var(--tracking-tight);
+    color: var(--ink);
+    opacity: 0.9;
+  }
+
+  .category-overlay__count {
+    font-size: clamp(0.875rem, 3vw, 1.25rem);
+    color: var(--ink-muted);
   }
 }
 
@@ -4270,11 +4291,18 @@ html.homepage .footer {
     width: 100%;
     max-width: 100%;
     border-radius: 0;
-    border-top: 1px solid rgba(26, 23, 20, 0.1);
-    box-shadow: 0 -2px 16px rgba(26, 23, 20, 0.15);
-    backdrop-filter: blur(10px);
-    background: rgba(245, 240, 235, 0.95);
+    border-top: 1px solid rgba(26, 23, 20, 0.08); /* Lighter border */
+    box-shadow: 0 -4px 20px rgba(26, 23, 20, 0.12); /* Softer shadow */
+    backdrop-filter: blur(12px); /* Stronger blur */
+    background: rgba(245, 240, 235, 0.97); /* More opaque */
     transition: transform 0.3s ease;
+    z-index: 100;
+    padding: var(--space-2) 0; /* Add vertical padding */
+  }
+
+  /* Hidden state when footer in view - JS controlled */
+  .bottom-bar.hidden {
+    transform: translateY(100%);
   }
 }
 
@@ -4304,21 +4332,32 @@ html.homepage .footer {
 
 @media (max-width: 768px) {
   .category-btn {
+    flex: 1;
     min-height: 48px; /* Better touch target */
-    min-width: 120px;
-    padding: var(--space-3) var(--space-4);
-    font-size: clamp(0.6875rem, 2.5vw, 0.75rem);
-    border-radius: 8px;
+    min-width: 0;
+    padding: var(--space-3) var(--space-2);
+    font-size: clamp(0.6875rem, 2.5vw, 0.8125rem);
+    border: none; /* Remove borders */
+    border-radius: 0; /* Clean flat look */
+    letter-spacing: 0.08em;
+    background: transparent;
+    position: relative;
   }
-  
-  .category-btn:first-child {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+
+  /* Add subtle separator between buttons */
+  .category-btn + .category-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 50%;
+    background: rgba(26, 23, 20, 0.1);
   }
-  
-  .category-btn:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
+
+  .category-btn.active {
+    background: rgba(26, 23, 20, 0.06);
   }
 }
 
@@ -4352,7 +4391,7 @@ html.homepage .footer {
 @media (max-width: 900px) {
   .gallery {
     padding-top: 140px;
-    padding-bottom: calc(var(--space-8) + 60px + 200px); /* Space for bottom bar + footer */
+    padding-bottom: calc(60px + var(--space-4)); /* Just bottom bar + small buffer */
   }
   
   .category-overlay {
@@ -4397,7 +4436,7 @@ html.homepage .footer {
 @media (max-width: 600px) {
   .gallery {
     padding-top: 130px;
-    padding-bottom: calc(var(--space-8) + 60px + 200px); /* Space for bottom bar + footer */
+    padding-bottom: calc(60px + var(--space-4)); /* Just bottom bar + small buffer */
   }
   
   .category-overlay {
