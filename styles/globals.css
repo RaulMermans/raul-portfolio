@@ -4005,14 +4005,7 @@ html.homepage .footer {
   }
 }
 
-/* Mobile: 2 columns Pinterest-style */
-@media (max-width: 767px) {
-  .gallery__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    padding: 0;
-  }
-}
+/* Mobile: 2 columns Pinterest-style - styles moved to comprehensive mobile query below at line 4309 */
 
 /* Gallery Item - Grid compatible (removed column-specific properties) */
 .gallery__item {
