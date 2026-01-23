@@ -252,6 +252,13 @@ export default function PhotographyPage() {
 
       {/* Masonry Gallery */}
       <main id="main-content" role="main" className="gallery" aria-label="Photography gallery">
+        {/* Mobile category header */}
+        <div className="photography-header-mobile">
+          <h1 className="photography-category-title-mobile">
+            {activeCategory}
+          </h1>
+        </div>
+
         <div className="gallery__grid" id="gallery-content" role="tabpanel" aria-live="polite" data-category={activeCategory}>
           {imageItems.map(({ photo, index }) => {
             const aspectRatio = getAspectRatio(index)
