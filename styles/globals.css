@@ -3985,69 +3985,42 @@ html.homepage .footer {
   background: var(--ink);
 }
 
-/* Masonry Grid Layout using CSS columns */
+/* Masonry Grid Layout using CSS Grid (Pinterest-style) */
 .gallery__grid {
-  column-count: 4;
-  column-gap: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
   padding: 0 var(--space-6);
   max-width: 1600px;
   margin: 0 auto;
+  width: 100%;
 }
 
-@media (max-width: 1200px) {
+/* Tablets: 3 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
   .gallery__grid {
-    column-count: 3;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
     padding: 0 var(--space-5);
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile: 2 columns Pinterest-style */
+@media (max-width: 767px) {
   .gallery__grid {
-    column-count: 2;
-    column-gap: var(--space-3);
-    padding: 0 var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0;
   }
 }
 
-@media (max-width: 480px) {
-  .gallery__grid {
-    column-count: 1; /* Single column on very small screens for Pinterest-style */
-    column-gap: 0; /* Remove gap for true single column */
-    padding: 0 var(--space-2); /* Minimal side margins */
-  }
-
-  .gallery__item {
-    margin-bottom: var(--space-2); /* Pinterest-tight spacing */
-    width: 100%;
-    break-inside: avoid;
-    aspect-ratio: auto; /* Natural aspect ratio */
-    min-height: 250px; /* Reduce from 300px for better flow */
-    max-height: 700px; /* Increase from 600px for tall images */
-  }
-  
-  .gallery__item img,
-  .gallery__item-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  /* Remove fixed aspect ratios on mobile for natural flow */
-  .gallery__item:nth-child(4n+1),
-  .gallery__item:nth-child(4n+2),
-  .gallery__item:nth-child(4n+3),
-  .gallery__item:nth-child(4n) {
-    aspect-ratio: auto;
-  }
-}
-
-/* Gallery Item - Masonry compatible */
+/* Gallery Item - Grid compatible (removed column-specific properties) */
 .gallery__item {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  break-inside: avoid;
-  margin-bottom: var(--space-4);
+  /* REMOVED: break-inside: avoid; - not needed for CSS Grid */
+  /* REMOVED: margin-bottom - Grid gap handles spacing */
   border-radius: var(--radius-sm);
   opacity: 0;
   transform: translateY(20px);
@@ -4077,12 +4050,7 @@ html.homepage .footer {
 .gallery__item:nth-child(11) { animation-delay: 0.55s; }
 .gallery__item:nth-child(12) { animation-delay: 0.6s; }
 
-@media (max-width: 768px) {
-  .gallery__item {
-    margin-bottom: var(--space-2); /* Changed from --space-3 for tighter Pinterest spacing */
-    border-radius: var(--radius-xs);
-  }
-}
+/* Mobile gallery item styles moved to main 767px breakpoint below */
 
 /* Loading state with shimmer animation */
 .gallery__item.loading {
@@ -4348,26 +4316,27 @@ html.homepage .footer {
     display: none;
   }
 
-  /* Gallery layout */
+  /* Gallery layout with proper spacing */
   .gallery {
     padding-top: 80px;
-    padding-bottom: 64px;
+    padding-bottom: 72px; /* Increased for better footer buffer */
     padding-left: 8px;
     padding-right: 8px;
   }
 
+  /* Grid: 2 columns Pinterest-style (REPLACES column-count: 1) */
   .gallery__grid {
-    column-count: 1;
-    column-gap: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0;
   }
 
+  /* Gallery items with natural heights (no constraints) */
   .gallery__item {
-    margin-bottom: 8px;
     border-radius: 4px;
     overflow: hidden;
-    /* Remove height constraints for natural flow */
-    min-height: unset;
-    max-height: unset;
+    /* Natural flow - CSS Grid handles layout */
   }
 
   .gallery__item img,
