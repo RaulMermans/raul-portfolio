@@ -925,7 +925,7 @@
 /* Desktop-specific spacing adjustments to eliminate gaps */
 @media (min-width: 1024px) {
   .case-study-meta-new + .case-study-section-new--light {
-    padding-top: var(--case-study-space-xs); /* Even smaller on desktop */
+    padding: var(--case-study-space-xs) 2rem var(--case-study-space-md) 2rem; /* Override entire padding - minimal top */
     margin-top: 0;
   }
   
