@@ -1,10 +1,21 @@
 'use client'
 
-import { ReactNode, useRef, useEffect, useState } from 'react'
+import { ReactNode, useRef, useEffect, useState, useMemo } from 'react'
 
 interface CaseStudyImageContainerProps {
   children: ReactNode
   className?: string
+}
+
+/**
+ * Check if children prop has any non-null content
+ */
+function hasChildren(children: ReactNode): boolean {
+  if (children == null) return false
+  if (Array.isArray(children)) {
+    return children.some(child => child != null)
+  }
+  return true
 }
 
 /**
@@ -17,13 +28,26 @@ export default function CaseStudyImageContainer({
   className = ''
 }: CaseStudyImageContainerProps) {
   const containerRef = useRef<HTMLElement>(null)
-  const [shouldRender, setShouldRender] = useState(true)
+  // Start pessimistic - only render if we confirm content exists
+  const [shouldRender, setShouldRender] = useState(() => hasChildren(children))
+
+  // Pre-check: if no children prop, don't render at all
+  const hasInitialChildren = useMemo(() => hasChildren(children), [children])
 
   useEffect(() => {
+    if (!hasInitialChildren) {
+      setShouldRender(false)
+      return
+    }
+
     // Wait for next tick to ensure children are rendered
     const checkForContent = () => {
       const element = containerRef.current
-      if (!element) return
+      if (!element) {
+        // Element not mounted yet, but we have children prop, so render optimistically
+        setShouldRender(true)
+        return
+      }
 
       // Check if element has any children
       const childElements = element.children
@@ -43,17 +67,22 @@ export default function CaseStudyImageContainer({
         return isVisible
       })
 
-      if (!hasVisibleChild) {
-        setShouldRender(false)
-      }
+      setShouldRender(hasVisibleChild)
     }
 
-    // Check immediately and after a delay (for async image loading/errors)
-    checkForContent()
-    const timeout = setTimeout(checkForContent, 300)
+    // Check immediately (synchronously if possible) and after a delay (for async image loading/errors)
+    // Use requestAnimationFrame for immediate check after render
+    requestAnimationFrame(() => {
+      checkForContent()
+      // Also check after a short delay for images that might load/error
+      setTimeout(checkForContent, 150)
+    })
+  }, [children, hasInitialChildren])
 
-    return () => clearTimeout(timeout)
-  }, [children])
+  // Don't render if no initial children
+  if (!hasInitialChildren) {
+    return null
+  }
 
   // Don't render if we determined there's no visible content
   if (!shouldRender) {

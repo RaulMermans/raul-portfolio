@@ -174,6 +174,13 @@
   padding-top: var(--case-study-space-md);
 }
 
+/* If the section after meta is empty, ensure no gap */
+.case-study-meta-new + .case-study-section-new:empty {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
 .case-study-meta-new__container {
   max-width: var(--case-study-container);
   margin: 0 auto;
@@ -211,6 +218,14 @@
 .case-study-section-new {
   padding: var(--case-study-space-lg) 2rem var(--case-study-space-md) 2rem;
   position: relative;
+  margin: 0;
+}
+
+/* Ensure empty sections don't create gaps (backup - React should handle this) */
+.case-study-section-new:empty,
+.case-study-section-new__content:empty {
+  display: none;
+  padding: 0;
   margin: 0;
 }
 
@@ -580,7 +595,6 @@
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  cursor: pointer;
   background: white;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.4s var(--case-study-transition);
@@ -601,61 +615,6 @@
 }
 
 /* Overlay removed - no "View" text needed */
-
-/* Lightbox */
-.case-study-gallery-new__lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  animation: fadeIn 0.3s ease;
-}
-
-.case-study-gallery-new__close {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  font-size: 2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 10000;
-}
-
-.case-study-gallery-new__close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(90deg);
-}
-
-.case-study-gallery-new__lightbox-content {
-  position: relative;
-  width: 100%;
-  max-width: 1400px;
-  height: 100%;
-  max-height: 90vh;
-  min-height: 300px;
-}
-
-.case-study-gallery-new__lightbox-img {
-  object-fit: contain;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
 /* =============================================
    RESULTS SECTION
