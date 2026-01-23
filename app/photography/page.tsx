@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 // ========================================
 // PHOTO DATA STRUCTURE
@@ -120,6 +121,7 @@ export default function PhotographyPage() {
   const [activeCategory, setActiveCategory] = useState<CategoryType>('landscape')
   const [prefetchedCategories, setPrefetchedCategories] = useState<Set<CategoryType>>(() => new Set<CategoryType>(['landscape']))
   const [loadedImages, setLoadedImages] = useState<Set<string>>(() => new Set<string>())
+  const bottomBarRef = useRef<HTMLElement | null>(null)
 
   const activeCategoryImages = useMemo(
     () => categoriesState[activeCategory]?.images || [],
@@ -132,8 +134,12 @@ export default function PhotographyPage() {
     setLoadedImages(prev => new Set(prev).add(src))
   }, [])
 
-  // Prefetch adjacent category images when active category changes
+  // Prefetch adjacent category images when active category changes (desktop only)
   useEffect(() => {
+    // Skip prefetching on mobile for better performance
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    if (isMobile) return
+
     const adjacent = getAdjacentCategories(activeCategory)
     const newPrefetched = new Set(prefetchedCategories)
     
@@ -156,9 +162,80 @@ export default function PhotographyPage() {
     }
   }, [activeCategory, categoriesState, prefetchedCategories])
 
+  // Footer detection for bottom bar - hide when footer is in view (mobile only)
+  useEffect(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    if (!isMobile) return // Only on mobile
+
+    const handleScroll = () => {
+      const footer = document.getElementById('footer')
+      const bottomBar = bottomBarRef.current
+      
+      if (footer && bottomBar) {
+        const footerRect = footer.getBoundingClientRect()
+        const viewportHeight = window.innerHeight
+        
+        // If footer is in view, hide bottom bar
+        if (footerRect.top < viewportHeight) {
+          bottomBar.style.transform = 'translateY(100%)'
+          bottomBar.style.transition = 'transform 0.3s ease'
+        } else {
+          bottomBar.style.transform = 'translateY(0)'
+        }
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Check on mount
+    
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const setCategory = useCallback((category: CategoryType) => {
     setActiveCategory(category)
   }, [])
+
+  // Keyboard navigation for category buttons
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle if focus is on a category button
+      const target = e.target as HTMLElement
+      if (!target.classList.contains('category-btn')) return
+
+      let newCategory: CategoryType | null = null
+
+      switch (e.key) {
+        case 'ArrowLeft':
+          e.preventDefault()
+          if (activeCategory === 'architecture') newCategory = 'landscape'
+          else if (activeCategory === 'street') newCategory = 'architecture'
+          break
+        case 'ArrowRight':
+          e.preventDefault()
+          if (activeCategory === 'landscape') newCategory = 'architecture'
+          else if (activeCategory === 'architecture') newCategory = 'street'
+          break
+        case 'Home':
+          e.preventDefault()
+          newCategory = 'landscape'
+          break
+        case 'End':
+          e.preventDefault()
+          newCategory = 'street'
+          break
+      }
+
+      if (newCategory) {
+        setCategory(newCategory)
+        // Focus the newly active button
+        const newButton = document.querySelector(`[data-category="${newCategory}"]`) as HTMLButtonElement
+        newButton?.focus()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeCategory, setCategory])
 
   const imageItems = useMemo(() => {
     return activeCategoryImages.map((photo, index) => ({
@@ -174,8 +251,8 @@ export default function PhotographyPage() {
       <Header />
 
       {/* Masonry Gallery */}
-      <main id="main-content" role="main" className="gallery">
-        <div className="gallery__grid" data-category={activeCategory}>
+      <main id="main-content" role="main" className="gallery" aria-label="Photography gallery">
+        <div className="gallery__grid" id="gallery-content" role="tabpanel" aria-live="polite" data-category={activeCategory}>
           {imageItems.map(({ photo, index }) => {
             const aspectRatio = getAspectRatio(index)
             const isLoaded = loadedImages.has(photo.src)
@@ -189,10 +266,10 @@ export default function PhotographyPage() {
                 <Image
                   src={photo.src}
                   alt={photo.alt}
-                  width={400}
-                  height={Math.round(400 * (aspectRatio.height / aspectRatio.width))}
-                  sizes="(max-width: 480px) 45vw, (max-width: 768px) 45vw, (max-width: 1200px) 30vw, 25vw"
-                  quality={75}
+                  width={800}
+                  height={Math.round(800 * (aspectRatio.height / aspectRatio.width))}
+                  sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                  quality={90}
                   loading={index < 4 ? 'eager' : 'lazy'}
                   priority={index < 2}
                   className="gallery__item-image"
@@ -217,11 +294,15 @@ export default function PhotographyPage() {
       </div>
 
       {/* Navigation Bar */}
-      <nav className="bottom-bar" aria-label="Gallery navigation">
-        <div className="bottom-bar__categories">
+      <nav className="bottom-bar" aria-label="Gallery category navigation" role="navigation" ref={bottomBarRef}>
+        <div className="bottom-bar__categories" role="tablist">
           <button
             className={`category-btn ${activeCategory === 'landscape' ? 'active' : ''}`}
             onClick={() => setCategory('landscape')}
+            role="tab"
+            aria-selected={activeCategory === 'landscape'}
+            aria-controls="gallery-content"
+            aria-label="Show landscape photography"
             data-category="landscape"
           >
             Landscape
@@ -229,6 +310,10 @@ export default function PhotographyPage() {
           <button
             className={`category-btn ${activeCategory === 'architecture' ? 'active' : ''}`}
             onClick={() => setCategory('architecture')}
+            role="tab"
+            aria-selected={activeCategory === 'architecture'}
+            aria-controls="gallery-content"
+            aria-label="Show architecture photography"
             data-category="architecture"
           >
             Architecture
@@ -236,12 +321,18 @@ export default function PhotographyPage() {
           <button
             className={`category-btn ${activeCategory === 'street' ? 'active' : ''}`}
             onClick={() => setCategory('street')}
+            role="tab"
+            aria-selected={activeCategory === 'street'}
+            aria-controls="gallery-content"
+            aria-label="Show street photography"
             data-category="street"
           >
             Street
           </button>
         </div>
       </nav>
+
+      <Footer />
     </>
   )
 }
