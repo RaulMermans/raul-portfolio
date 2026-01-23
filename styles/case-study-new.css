@@ -164,14 +164,15 @@
    ============================================= */
 .case-study-meta-new {
   background: var(--cream, #f5f0eb);
-  padding: var(--case-study-space-md) 2rem;
+  padding: var(--case-study-space-md) 2rem var(--case-study-space-sm) 2rem; /* Reduced bottom padding */
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   margin: 0;
 }
 
 /* When meta is followed by light section (same background), reduce gap */
 .case-study-meta-new + .case-study-section-new--light {
-  padding-top: var(--case-study-space-md);
+  padding-top: var(--case-study-space-sm); /* Reduced from md */
+  margin-top: 0; /* Ensure no additional margin */
 }
 
 /* If the section after meta is empty, ensure no gap */
@@ -918,6 +919,18 @@
 
   .case-study-next-new__preview {
     max-width: 100%;
+  }
+}
+
+/* Desktop-specific spacing adjustments to eliminate gaps */
+@media (min-width: 1024px) {
+  .case-study-meta-new + .case-study-section-new--light {
+    padding-top: var(--case-study-space-xs); /* Even smaller on desktop */
+    margin-top: 0;
+  }
+  
+  .case-study-meta-new {
+    padding-bottom: var(--case-study-space-xs); /* Minimal bottom padding on desktop */
   }
 }
 
