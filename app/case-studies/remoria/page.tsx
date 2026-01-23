@@ -7,6 +7,7 @@ import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
 import CaseStudyMeta from '@/components/case-studies/CaseStudyMeta'
 import CaseStudySection from '@/components/case-studies/CaseStudySection'
 import CaseStudyImage from '@/components/case-studies/CaseStudyImage'
+import CaseStudyImageContainer from '@/components/case-studies/CaseStudyImageContainer'
 import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import RemoriaBrandSystem from '@/components/case-studies/RemoriaBrandSystem'
@@ -125,7 +126,7 @@ export default function RemoriaPage() {
 
         {content.fullBleedImages && 
          content.fullBleedImages.filter((img) => img?.src).length > 0 && (
-          <section className="case-study-fullbleed">
+          <CaseStudyImageContainer className="case-study-fullbleed">
             {content.fullBleedImages
               .filter((image) => image?.src)
               .map((image, index) => (
@@ -136,7 +137,7 @@ export default function RemoriaPage() {
                   className="case-study-fullbleed__image"
                 />
             ))}
-          </section>
+          </CaseStudyImageContainer>
         )}
 
         {content.approach && (
@@ -172,7 +173,7 @@ export default function RemoriaPage() {
 
               {content.approach.images && 
                content.approach.images.filter((img) => img?.src).length > 0 && (
-                <div className="case-study-approach__images">
+                <CaseStudyImageContainer className="case-study-approach__images">
                   {content.approach.images
                     .filter((image) => image?.src)
                     .map((image, index) => (
@@ -183,20 +184,20 @@ export default function RemoriaPage() {
                         className="case-study-approach__image"
                       />
                   ))}
-                </div>
+                </CaseStudyImageContainer>
               )}
             </div>
           </CaseStudySection>
         )}
 
         {content.featureImage?.src && (
-          <section className="case-study-feature">
+          <CaseStudyImageContainer className="case-study-feature">
             <CaseStudyImage
               image={content.featureImage}
               aspectRatio="16/9"
               className="case-study-feature__image"
             />
-          </section>
+          </CaseStudyImageContainer>
         )}
 
         {content.gallery && content.gallery.rows && (

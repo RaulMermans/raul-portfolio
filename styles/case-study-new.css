@@ -411,13 +411,8 @@
   margin: 0;
 }
 
-/* Hide section if empty (no images) */
+/* Hide section if empty (no images) - backup fallback */
 .case-study-fullbleed:empty {
-  display: none;
-}
-
-/* Modern browsers: hide if no valid image children */
-.case-study-fullbleed:not(:has(.case-study-image-new)) {
   display: none;
 }
 
@@ -518,14 +513,8 @@
   margin-top: var(--case-study-space-md);
 }
 
-/* Hide if empty (no images) */
+/* Hide if empty (no images) - backup fallback */
 .case-study-approach__images:empty {
-  display: none;
-  margin: 0;
-}
-
-/* Modern browsers: hide if no valid image children */
-.case-study-approach__images:not(:has(.case-study-image-new)) {
   display: none;
   margin: 0;
 }
@@ -538,13 +527,8 @@
   margin: 0;
 }
 
-/* Hide section if empty (no image) */
+/* Hide section if empty (no image) - backup fallback */
 .case-study-feature:empty {
-  display: none;
-}
-
-/* Modern browsers: hide if no valid image children */
-.case-study-feature:not(:has(.case-study-image-new)) {
   display: none;
 }
 
