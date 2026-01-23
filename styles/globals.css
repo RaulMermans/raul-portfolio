@@ -1679,6 +1679,8 @@ html.homepage .footer {
   text-transform: uppercase;
   color: var(--cream);
   margin-bottom: var(--space-5);
+  opacity: 1;
+  visibility: visible;
 }
 
 .section-card__desc {

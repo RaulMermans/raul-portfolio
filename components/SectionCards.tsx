@@ -78,7 +78,7 @@ export default function SectionCards() {
             </div>
             <div className="section-card__content">
               <span className="section-card__index" aria-hidden="true">{section.index}</span>
-              <h2 id={`section-${idx + 1}-title`} className="section-card__title reveal">
+              <h2 id={`section-${idx + 1}-title`} className="section-card__title">
                 {section.title}
               </h2>
               <p className="section-card__desc reveal reveal-delay-1">
