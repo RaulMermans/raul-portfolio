@@ -4204,6 +4204,15 @@ html.homepage .footer {
   }
 }
 
+/* Mobile header - hidden by default (desktop) */
+.photography-header-mobile {
+  display: none;
+}
+
+.photography-category-title-mobile {
+  display: none;
+}
+
 .category-overlay {
   position: fixed;
   top: calc(var(--header-height) + var(--space-4));
@@ -4216,33 +4225,6 @@ html.homepage .footer {
   opacity: 0;
   animation: fadeIn 0.8s var(--ease-out) 0.5s forwards;
   max-width: 40vw;
-}
-
-@media (max-width: 768px) {
-  .category-overlay {
-    display: block; /* Make visible on mobile */
-    position: fixed;
-    top: calc(var(--header-height) + var(--space-3));
-    right: var(--space-4);
-    max-width: 60vw;
-    z-index: 60;
-    pointer-events: none;
-    opacity: 1;
-    text-align: right;
-  }
-
-  .category-overlay__title {
-    font-size: clamp(3rem, 14vw, 5rem); /* Bigger for mobile */
-    line-height: 0.85;
-    letter-spacing: var(--tracking-tight);
-    color: var(--ink);
-    opacity: 0.9;
-  }
-
-  .category-overlay__count {
-    font-size: clamp(0.875rem, 3vw, 1.25rem);
-    color: var(--ink-muted);
-  }
 }
 
 .category-overlay__title {
@@ -4285,32 +4267,6 @@ html.homepage .footer {
   transition: transform 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .bottom-bar {
-    position: fixed;
-    bottom: 0;
-    top: auto;
-    left: 0;
-    right: 0;
-    transform: translateY(0);
-    width: 100%;
-    max-width: 100%;
-    border-radius: 0;
-    border-top: 1px solid rgba(26, 23, 20, 0.08); /* Lighter border */
-    box-shadow: 0 -4px 20px rgba(26, 23, 20, 0.12); /* Softer shadow */
-    backdrop-filter: blur(12px); /* Stronger blur */
-    background: rgba(245, 240, 235, 0.97); /* More opaque */
-    transition: transform 0.3s ease;
-    z-index: 100;
-    padding: var(--space-2) 0; /* Add vertical padding */
-  }
-
-  /* Hidden state when footer in view - JS controlled */
-  .bottom-bar.hidden {
-    transform: translateY(100%);
-  }
-}
-
 .bottom-bar__categories {
   display: flex;
 }
@@ -4333,37 +4289,6 @@ html.homepage .footer {
   cursor: pointer;
   will-change: transform, background, color;
   transform: translateZ(0);
-}
-
-@media (max-width: 768px) {
-  .category-btn {
-    flex: 1;
-    min-height: 48px; /* Better touch target */
-    min-width: 0;
-    padding: var(--space-3) var(--space-2);
-    font-size: clamp(0.6875rem, 2.5vw, 0.8125rem);
-    border: none; /* Remove borders */
-    border-radius: 0; /* Clean flat look */
-    letter-spacing: 0.08em;
-    background: transparent;
-    position: relative;
-  }
-
-  /* Add subtle separator between buttons */
-  .category-btn + .category-btn::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 50%;
-    background: rgba(26, 23, 20, 0.1);
-  }
-
-  .category-btn.active {
-    background: rgba(26, 23, 20, 0.06);
-  }
 }
 
 .category-btn + .category-btn {
