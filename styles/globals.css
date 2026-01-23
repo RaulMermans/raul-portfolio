@@ -1811,20 +1811,22 @@ html.homepage .footer {
     gap: var(--space-6);
   }
   .section-card {
-    height: 680px;
-    min-height: 680px;
+    height: auto;
+    min-height: 400px;
   }
   .section-card__content {
-    padding: var(--space-6);
+    padding: var(--space-5);
+    justify-content: flex-end;
   }
   .section-card__title {
     font-size: clamp(2rem, 6vw, 3rem);
     margin-bottom: var(--space-4);
   }
   .section-card__desc {
-    font-size: var(--text-sm);
-    line-height: 1.65;
-    margin-bottom: var(--space-3);
+    display: none; /* Hide description on mobile */
+  }
+  .section-card__cta {
+    margin-top: var(--space-3);
   }
 }
 
@@ -2492,6 +2494,7 @@ html.homepage .footer {
   margin-top: var(--space-3);
   align-self: stretch;
   min-width: 200px;
+  min-height: 44px; /* Minimum touch target size */
   padding: var(--space-4) var(--space-6);
   font-weight: 500;
   transition: all var(--transition-base) var(--ease);
@@ -2656,11 +2659,18 @@ html.homepage .footer {
   .contact-form__input,
   .contact-form__textarea {
     font-size: 16px; /* Prevent zoom on iOS */
+    min-height: 44px; /* Minimum touch target */
+  }
+
+  .contact-form__select {
+    font-size: 16px; /* Prevent zoom on iOS */
+    min-height: 44px; /* Minimum touch target */
   }
 
   .contact-form__submit {
     width: 100%;
     min-width: auto;
+    min-height: 44px; /* Minimum touch target */
   }
 }
 
@@ -3979,9 +3989,13 @@ html.homepage .footer {
 
 @media (max-width: 480px) {
   .gallery__grid {
-    column-count: 2;
-    column-gap: var(--space-2);
-    padding: 0 var(--space-3);
+    column-count: 1; /* Single column on very small screens for Pinterest-style */
+    column-gap: var(--space-4);
+    padding: 0 var(--space-4);
+  }
+  
+  .gallery__item {
+    margin-bottom: var(--space-4);
   }
 }
 
@@ -4209,9 +4223,16 @@ html.homepage .footer {
 
 @media (max-width: 768px) {
   .bottom-bar {
-    top: calc(var(--header-height) + var(--space-3));
-    max-width: calc(100% - var(--space-4));
-    border-radius: 12px;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    border-top: 1px solid rgba(26, 23, 20, 0.1);
     box-shadow: 0 -2px 16px rgba(26, 23, 20, 0.15);
     backdrop-filter: blur(10px);
     background: rgba(245, 240, 235, 0.95);
@@ -4286,7 +4307,7 @@ html.homepage .footer {
 @media (max-width: 900px) {
   .gallery {
     padding-top: 140px;
-    padding-bottom: var(--space-6);
+    padding-bottom: calc(var(--space-8) + 60px); /* Space for bottom bar */
   }
   
   .category-overlay {
@@ -4296,18 +4317,11 @@ html.homepage .footer {
   }
 
   .category-overlay__title {
-    font-size: clamp(2rem, 10vw, 4rem);
+    font-size: clamp(2.5rem, 12vw, 5rem); /* Larger on mobile */
   }
 
   .category-overlay__count {
-    font-size: clamp(0.75rem, 2.5vw, 1rem);
-  }
-  
-  .bottom-bar {
-    top: calc(var(--header-height) + var(--space-3));
-    max-width: calc(100% - var(--space-4));
-    border-radius: 12px;
-    box-shadow: 0 2px 16px rgba(26, 23, 20, 0.15);
+    font-size: clamp(0.875rem, 3vw, 1.25rem);
   }
 
   .bottom-bar__categories {
@@ -4321,23 +4335,24 @@ html.homepage .footer {
     min-height: 48px;
     font-size: 0.7rem;
     letter-spacing: 0.08em;
+    border-radius: 0; /* Remove border radius for full-width bottom bar */
   }
 
   .category-btn:first-child {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   .category-btn:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
 @media (max-width: 600px) {
   .gallery {
     padding-top: 130px;
-    padding-bottom: var(--space-6);
+    padding-bottom: calc(var(--space-8) + 60px); /* Space for bottom bar */
   }
   
   .category-overlay {
@@ -4347,7 +4362,7 @@ html.homepage .footer {
   }
 
   .category-overlay__title {
-    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    font-size: clamp(2.5rem, 12vw, 5rem); /* Larger on mobile */
   }
   
   .category-btn {

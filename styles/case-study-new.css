@@ -852,6 +852,28 @@
   transform: translateY(0);
 }
 
+/* Mobile: Reduce animation intensity to prevent bouncing */
+@media (max-width: 768px) {
+  .reveal {
+    transform: translateY(20px); /* Smaller initial offset */
+    transition: opacity 0.4s ease, transform 0.4s ease; /* Faster transition */
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* =============================================
    RESPONSIVE
    ============================================= */
@@ -901,7 +923,16 @@
   }
 
   .case-study-hero-new__title {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 8vw, 2.5rem); /* Better scaling */
+  }
+
+  /* Ensure text is readable on mobile */
+  .case-study-intro__text,
+  .case-study-challenge__text,
+  .case-study-approach__text,
+  .case-study-results__text {
+    font-size: clamp(1rem, 4vw, 1.125rem); /* Minimum 16px */
+    line-height: 1.7;
   }
 
   .case-study-scroll-hint {
@@ -919,6 +950,13 @@
 
   .case-study-next-new__preview {
     max-width: 100%;
+  }
+
+  /* Ensure buttons/links have proper touch targets */
+  .case-study-next-new__link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 }
 
