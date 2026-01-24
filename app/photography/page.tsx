@@ -162,7 +162,7 @@ export default function PhotographyPage() {
     }
   }, [activeCategory, categoriesState, prefetchedCategories])
 
-  // Bottom bar: fixed until footer comes into view (IntersectionObserver for performance)
+  // Bottom bar: fixed until footer comes into view (rAF-throttled scroll handler)
   useEffect(() => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
     if (!isMobile) return
@@ -171,33 +171,35 @@ export default function PhotographyPage() {
     const bottomBar = bottomBarRef.current
     if (!footer || !bottomBar) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Footer is visible - calculate how much it's in view
-            const footerRect = entry.boundingClientRect
-            const viewportHeight = window.innerHeight
-            const visibleAmount = viewportHeight - footerRect.top
+    let ticking = false
 
-            // Push bar up by the visible footer amount
-            bottomBar.style.bottom = `${Math.max(0, visibleAmount)}px`
-          } else {
-            // Footer not visible - bar stays at bottom
-            bottomBar.style.bottom = '0'
-          }
-        })
-      },
-      {
-        // Use multiple thresholds to get smoother updates as footer scrolls into view
-        threshold: Array.from({ length: 21 }, (_, i) => i / 20), // 0, 0.05, 0.1, ... 1
-        rootMargin: '0px'
+    const updateBarPosition = () => {
+      const footerRect = footer.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+
+      if (footerRect.top < viewportHeight) {
+        // Footer is in view - push bar up to avoid overlap
+        const overlap = viewportHeight - footerRect.top
+        bottomBar.style.bottom = `${overlap}px`
+      } else {
+        // Footer not in view - bar stays fixed at bottom
+        bottomBar.style.bottom = '0'
       }
-    )
+      ticking = false
+    }
 
-    observer.observe(footer)
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateBarPosition)
+        ticking = true
+      }
+    }
 
-    return () => observer.disconnect()
+    // Set initial position
+    updateBarPosition()
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const setCategory = useCallback((category: CategoryType) => {
