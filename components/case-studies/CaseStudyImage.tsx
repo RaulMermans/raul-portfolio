@@ -38,8 +38,8 @@ export default function CaseStudyImage({
         alt={image.alt}
         fill
         priority={priority}
-        quality={image.quality ?? 90}
-        sizes={image.sizes ?? '(max-width: 768px) 100vw, 80vw'}
+        quality={image.quality ?? 80}
+        sizes={image.sizes ?? '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw'}
         style={{ objectFit: 'contain' }}
         className={`case-study-image-new__img ${loaded ? 'case-study-image-new__img--loaded' : ''}`}
         onLoad={() => setLoaded(true)}

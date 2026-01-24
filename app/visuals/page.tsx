@@ -139,6 +139,16 @@ export default function VisualsPage() {
   const [isAnimating, setIsAnimating] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right'>('right')
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set())
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile device for performance optimization
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    // No resize listener - check only on mount to avoid unnecessary re-renders
+  }, [])
 
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -147,7 +157,7 @@ export default function VisualsPage() {
     setIsAnimating(true)
     setDirection('left')
     setCurrentIndex(prev => prev - 1)
-    setTimeout(() => setIsAnimating(false), 800)
+    setTimeout(() => setIsAnimating(false), 400)
   }
 
   const goToNext = () => {
@@ -155,7 +165,7 @@ export default function VisualsPage() {
     setIsAnimating(true)
     setDirection('right')
     setCurrentIndex(prev => prev + 1)
-    setTimeout(() => setIsAnimating(false), 800)
+    setTimeout(() => setIsAnimating(false), 400)
   }
 
   const openExhibition = (index: number) => {
@@ -256,14 +266,19 @@ export default function VisualsPage() {
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>
+      {/* Decorative elements - disabled on mobile for performance */}
       <div className="grain" aria-hidden="true"></div>
-      <div className="vignette" aria-hidden="true"></div>
-      <div className="scanlines" aria-hidden="true"></div>
-      <div className="vhs-glitch" aria-hidden="true"></div>
-      <div className="light-leak" aria-hidden="true"></div>
-      <div className="light-leak-2" aria-hidden="true"></div>
-      <div className="film-burn" aria-hidden="true"></div>
-      
+      {!isMobile && (
+        <>
+          <div className="vignette" aria-hidden="true"></div>
+          <div className="scanlines" aria-hidden="true"></div>
+          <div className="vhs-glitch" aria-hidden="true"></div>
+          <div className="light-leak" aria-hidden="true"></div>
+          <div className="light-leak-2" aria-hidden="true"></div>
+          <div className="film-burn" aria-hidden="true"></div>
+        </>
+      )}
+
       <Header />
       
       <main className="visuals-main" id="main-content" role="main">
@@ -354,7 +369,7 @@ export default function VisualsPage() {
                       setDirection(index > currentIndex ? 'right' : 'left')
                       setIsAnimating(true)
                       setCurrentIndex(index)
-                      setTimeout(() => setIsAnimating(false), 800)
+                      setTimeout(() => setIsAnimating(false), 400)
                     }
                   }}
                   aria-label={`Go to project ${index + 1}`}

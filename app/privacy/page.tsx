@@ -1,42 +1,35 @@
-'use client'
-
-import { useEffect } from 'react'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import DisableScrollSnap from '@/components/DisableScrollSnap'
 
 export default function PrivacyPolicy() {
-  useEffect(() => {
-    // Disable scroll snap on this page
-    document.documentElement.style.scrollSnapType = 'none'
-    return () => {
-      document.documentElement.style.scrollSnapType = ''
-    }
-  }, [])
+  const formattedDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 
   return (
     <div className="legal-page-wrapper">
+      <DisableScrollSnap />
       <Header />
       <div className="legal-page">
         <div className="legal-page__inner">
         <Link href="/" className="legal-page__back">
           ← Back to Home
         </Link>
-        
+
         <h1 className="legal-page__title">Privacy Policy</h1>
-        <p className="legal-page__updated">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        <p className="legal-page__updated">Last updated: {formattedDate}</p>
 
         <div className="legal-page__content">
           <section>
             <h2>1. Introduction</h2>
             <p>
-              Welcome to the portfolio website of Raúl Mermans (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). 
-              This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit 
-              our website located at <a href="https://raulmermans.com" target="_blank" rel="noopener noreferrer">raulmermans.com</a> 
+              Welcome to the portfolio website of Raúl Mermans (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;).
+              This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit
+              our website located at <a href="https://raulmermans.com" target="_blank" rel="noopener noreferrer">raulmermans.com</a>
               (the &quot;Website&quot;).
             </p>
             <p>
-              By using our Website, you consent to the data practices described in this Privacy Policy. If you do not 
+              By using our Website, you consent to the data practices described in this Privacy Policy. If you do not
               agree with the data practices described in this policy, you should not use our Website.
             </p>
           </section>
@@ -85,7 +78,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2>4. Cookies and Tracking Technologies</h2>
             <p>
-              Our Website may use cookies and similar tracking technologies to enhance your experience. Cookies are 
+              Our Website may use cookies and similar tracking technologies to enhance your experience. Cookies are
               small data files stored on your device that help us improve our Website and provide a better user experience.
             </p>
             <p>You can control cookies through your browser settings. However, disabling cookies may affect the functionality of our Website.</p>
@@ -99,7 +92,7 @@ export default function PrivacyPolicy() {
               <li>External service providers</li>
             </ul>
             <p>
-              We are not responsible for the privacy practices of these third-party services. We encourage you to review 
+              We are not responsible for the privacy practices of these third-party services. We encourage you to review
               their privacy policies before providing any personal information.
             </p>
           </section>
@@ -107,8 +100,8 @@ export default function PrivacyPolicy() {
           <section>
             <h2>6. Data Security</h2>
             <p>
-              We implement appropriate technical and organizational measures to protect your personal information. However, 
-              no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use 
+              We implement appropriate technical and organizational measures to protect your personal information. However,
+              no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use
               commercially acceptable means to protect your information, we cannot guarantee absolute security.
             </p>
           </section>
@@ -129,7 +122,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2>8. Data Retention</h2>
             <p>
-              We will retain your personal information only for as long as necessary to fulfill the purposes outlined in 
+              We will retain your personal information only for as long as necessary to fulfill the purposes outlined in
               this Privacy Policy, unless a longer retention period is required or permitted by law.
             </p>
           </section>
@@ -137,8 +130,8 @@ export default function PrivacyPolicy() {
           <section>
             <h2>9. Children&apos;s Privacy</h2>
             <p>
-              Our Website is not intended for children under the age of 13. We do not knowingly collect personal 
-              information from children under 13. If you believe we have collected information from a child under 13, 
+              Our Website is not intended for children under the age of 13. We do not knowingly collect personal
+              information from children under 13. If you believe we have collected information from a child under 13,
               please contact us immediately.
             </p>
           </section>
@@ -146,8 +139,8 @@ export default function PrivacyPolicy() {
           <section>
             <h2>10. Changes to This Privacy Policy</h2>
             <p>
-              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new 
-              Privacy Policy on this page and updating the &quot;Last updated&quot; date. You are advised to review this 
+              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new
+              Privacy Policy on this page and updating the &quot;Last updated&quot; date. You are advised to review this
               Privacy Policy periodically for any changes.
             </p>
           </section>
@@ -167,4 +160,3 @@ export default function PrivacyPolicy() {
     </div>
   )
 }
-

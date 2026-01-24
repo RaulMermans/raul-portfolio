@@ -162,35 +162,42 @@ export default function PhotographyPage() {
     }
   }, [activeCategory, categoriesState, prefetchedCategories])
 
-  // Bottom bar: fixed until footer comes into view
+  // Bottom bar: fixed until footer comes into view (IntersectionObserver for performance)
   useEffect(() => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
     if (!isMobile) return
 
-    const handleScroll = () => {
-      const footer = document.getElementById('footer')
-      const bottomBar = bottomBarRef.current
+    const footer = document.getElementById('footer')
+    const bottomBar = bottomBarRef.current
+    if (!footer || !bottomBar) return
 
-      if (footer && bottomBar) {
-        const footerRect = footer.getBoundingClientRect()
-        const viewportHeight = window.innerHeight
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Footer is visible - calculate how much it's in view
+            const footerRect = entry.boundingClientRect
+            const viewportHeight = window.innerHeight
+            const visibleAmount = viewportHeight - footerRect.top
 
-        // When footer top is within viewport, unstick the bar
-        if (footerRect.top <= viewportHeight) {
-          // Calculate how much to offset from bottom
-          const overlap = viewportHeight - footerRect.top
-          bottomBar.style.bottom = `${overlap}px`
-        } else {
-          // Footer not in view - stay fixed at bottom
-          bottomBar.style.bottom = '0'
-        }
+            // Push bar up by the visible footer amount
+            bottomBar.style.bottom = `${Math.max(0, visibleAmount)}px`
+          } else {
+            // Footer not visible - bar stays at bottom
+            bottomBar.style.bottom = '0'
+          }
+        })
+      },
+      {
+        // Use multiple thresholds to get smoother updates as footer scrolls into view
+        threshold: Array.from({ length: 21 }, (_, i) => i / 20), // 0, 0.05, 0.1, ... 1
+        rootMargin: '0px'
       }
-    }
+    )
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Check on mount
+    observer.observe(footer)
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => observer.disconnect()
   }, [])
 
   const setCategory = useCallback((category: CategoryType) => {

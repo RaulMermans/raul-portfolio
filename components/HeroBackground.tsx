@@ -34,9 +34,10 @@ export default function HeroBackground() {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isDesktop = window.matchMedia('(hover: hover)').matches
-    
-    if (prefersReducedMotion) {
-      // Static gradient fallback
+    const isMobile = window.innerWidth < 768
+
+    if (prefersReducedMotion || isMobile) {
+      // Static gradient fallback for reduced motion or mobile (saves battery)
       container.style.background = 'radial-gradient(circle at 50% 50%, rgba(255, 170, 136, 0.15) 0%, rgba(232, 208, 200, 0.1) 50%, transparent 100%)'
       return
     }

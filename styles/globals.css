@@ -8970,11 +8970,11 @@ body:has(.case-studies-main) .page-transition {
 }
 
 .visuals-card-slide.slide-in-right {
-  animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .visuals-card-slide.slide-in-left {
-  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slideInRight {

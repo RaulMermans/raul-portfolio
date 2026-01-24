@@ -53,8 +53,8 @@ export default function CaseStudiesPage() {
                 src={study.image}
                 alt=""
                 fill
-                quality={90}
-                sizes="100vw"
+                quality={80}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                 className="case-study-section__image"
                 priority={index === 0}
               />
