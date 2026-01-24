@@ -275,7 +275,7 @@ export default function PhotographyPage() {
                   alt={photo.alt}
                   width={800}
                   height={Math.round(800 * (aspectRatio.height / aspectRatio.width))}
-                  sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                  sizes="(max-width: 767px) 50vw, (max-width: 1023px) 33vw, 25vw"
                   quality={90}
                   loading={index < 4 ? 'eager' : 'lazy'}
                   priority={index < 2}

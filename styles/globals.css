@@ -4312,24 +4312,28 @@ html.homepage .footer {
   /* Gallery layout - full width Pinterest style */
   .gallery {
     padding-top: 80px;
-    padding-bottom: 64px; /* Space for fixed bottom bar */
-    padding-left: 4px; /* Minimal side padding for full-width feel */
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    padding-left: 4px;
     padding-right: 4px;
   }
 
-  /* Grid: 2 columns Pinterest-style with tight gaps */
+  /* True CSS Columns masonry for Pinterest-style staggered layout */
   .gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4px; /* Tighter Pinterest-style gap */
+    display: block;
+    columns: 2;
+    column-gap: 4px;
     padding: 0;
   }
 
-  /* Gallery items - vivid Pinterest style */
+  /* Gallery items - vivid Pinterest style with natural height */
   .gallery__item {
-    border-radius: 2px; /* Minimal radius for Pinterest feel */
+    display: block;
+    break-inside: avoid;
+    margin-bottom: 4px;
+    width: 100%;
+    border-radius: 2px;
     overflow: hidden;
-    /* Natural flow - CSS Grid handles layout */
+    aspect-ratio: unset; /* Let images dictate height for true masonry */
   }
 
   .gallery__item img,
@@ -4339,19 +4343,37 @@ html.homepage .footer {
     display: block;
   }
 
-  /* Bottom navigation - always fixed and visible */
+  /* Loading state shimmer for gallery items */
+  .gallery__item.loading {
+    background: var(--cream-dark, #ede8e2);
+    background-image: linear-gradient(90deg, var(--cream-dark, #ede8e2), var(--cream, #f5f0eb), var(--cream-dark, #ede8e2));
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    min-height: 150px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Bottom navigation - always fixed with safe area support */
   .bottom-bar {
-    position: fixed !important; /* Force fixed positioning */
+    position: fixed !important;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 56px;
-    background: var(--cream);
+    top: auto !important;
+    transform: none !important;
+    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: rgba(245, 240, 235, 0.95);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border-top: 1px solid rgba(26, 23, 20, 0.08);
     z-index: 100;
     display: flex;
     align-items: center;
-    transform: translateY(0) !important; /* Prevent JS from hiding it */
   }
 
   .bottom-bar__categories {
@@ -7087,13 +7109,7 @@ a[href^="/"]:hover {
     max-width: 40vw;
   }
   
-  .bottom-bar {
-    top: calc(var(--header-height) + var(--space-3));
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - var(--space-8));
-    max-width: 500px;
-  }
+  /* Bottom bar on tablet - keep fixed at bottom, handled in mobile section */
   
   .lightbox__progress {
     bottom: calc(var(--space-6) + 10px);
@@ -7243,9 +7259,7 @@ a[href^="/"]:hover {
     max-width: 35vw;
   }
   
-  .gallery__item {
-    width: 100px !important;
-  }
+  /* Gallery items handled by mobile section - no width override */
   
   .category-btn {
     padding: var(--space-2) var(--space-2);
@@ -7253,11 +7267,8 @@ a[href^="/"]:hover {
     min-height: 44px;
   }
   
-  .bottom-bar {
-    width: calc(100% - var(--space-4));
-    padding: var(--space-2);
-  }
-  
+  /* Bottom bar inherits fixed positioning from mobile section */
+
   /* Reduce padding on very small screens */
   section {
     padding-left: var(--space-3);
@@ -7272,10 +7283,7 @@ a[href^="/"]:hover {
     font-size: clamp(5rem, 30vw, 10rem) !important;
   }
   
-  .gallery__item {
-    width: 90px !important;
-    min-width: 90px;
-  }
+  /* Gallery items inherit from mobile section - no width override needed */
   
   html {
     font-size: 15px; /* Slightly smaller base for very small screens */
@@ -7288,6 +7296,34 @@ a[href^="/"]:hover {
     width: auto;
     margin: 0;
     padding: 0;
+  }
+}
+
+/* Extra small phones (iPhone SE, older devices) */
+@media (max-width: 374px) {
+  .gallery__grid {
+    column-gap: 3px;
+  }
+
+  .gallery__item {
+    margin-bottom: 3px;
+  }
+
+  .category-btn {
+    font-size: 0.5625rem;
+    padding: var(--space-2);
+  }
+
+  .gallery {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+
+/* Reduced motion preference for loading shimmer */
+@media (prefers-reduced-motion: reduce) {
+  .gallery__item.loading {
+    animation: none;
   }
 }
 
