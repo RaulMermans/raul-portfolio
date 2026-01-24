@@ -164,7 +164,7 @@ export default function PhotographyPage() {
 
   // Bottom bar: fixed until footer comes into view (rAF-throttled scroll handler)
   useEffect(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 767
     if (!isMobile) return
 
     const footer = document.getElementById('footer')
