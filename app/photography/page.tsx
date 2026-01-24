@@ -162,34 +162,36 @@ export default function PhotographyPage() {
     }
   }, [activeCategory, categoriesState, prefetchedCategories])
 
-  // Bottom bar stays fixed - disabled hide-on-scroll for Pinterest-style UX
-  // useEffect(() => {
-  //   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-  //   if (!isMobile) return // Only on mobile
+  // Bottom bar: fixed until footer comes into view
+  useEffect(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    if (!isMobile) return
 
-  //   const handleScroll = () => {
-  //     const footer = document.getElementById('footer')
-  //     const bottomBar = bottomBarRef.current
+    const handleScroll = () => {
+      const footer = document.getElementById('footer')
+      const bottomBar = bottomBarRef.current
 
-  //     if (footer && bottomBar) {
-  //       const footerRect = footer.getBoundingClientRect()
-  //       const viewportHeight = window.innerHeight
+      if (footer && bottomBar) {
+        const footerRect = footer.getBoundingClientRect()
+        const viewportHeight = window.innerHeight
 
-  //       // If footer is in view, hide bottom bar
-  //       if (footerRect.top < viewportHeight) {
-  //         bottomBar.style.transform = 'translateY(100%)'
-  //         bottomBar.style.transition = 'transform 0.3s ease'
-  //       } else {
-  //         bottomBar.style.transform = 'translateY(0)'
-  //       }
-  //     }
-  //   }
+        // When footer top is within viewport, unstick the bar
+        if (footerRect.top <= viewportHeight) {
+          // Calculate how much to offset from bottom
+          const overlap = viewportHeight - footerRect.top
+          bottomBar.style.bottom = `${overlap}px`
+        } else {
+          // Footer not in view - stay fixed at bottom
+          bottomBar.style.bottom = '0'
+        }
+      }
+    }
 
-  //   window.addEventListener('scroll', handleScroll, { passive: true })
-  //   handleScroll() // Check on mount
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Check on mount
 
-  //   return () => window.removeEventListener('scroll', handleScroll)
-  // }, [])
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const setCategory = useCallback((category: CategoryType) => {
     setActiveCategory(category)
