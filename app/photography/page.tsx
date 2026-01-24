@@ -137,7 +137,7 @@ export default function PhotographyPage() {
   // Prefetch adjacent category images when active category changes (desktop only)
   useEffect(() => {
     // Skip prefetching on mobile for better performance
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 767
     if (isMobile) return
 
     const adjacent = getAdjacentCategories(activeCategory)
@@ -162,44 +162,77 @@ export default function PhotographyPage() {
     }
   }, [activeCategory, categoriesState, prefetchedCategories])
 
-  // Bottom bar: fixed until footer comes into view (rAF-throttled scroll handler)
+  // Bottom bar: fixed until footer comes into view (rAF-throttled scroll + resize handlers)
   useEffect(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 767
-    if (!isMobile) return
-
-    const footer = document.getElementById('footer')
-    const bottomBar = bottomBarRef.current
-    if (!footer || !bottomBar) return
-
     let ticking = false
+    let scrollCleanup: (() => void) | null = null
 
-    const updateBarPosition = () => {
-      const footerRect = footer.getBoundingClientRect()
-      const viewportHeight = window.innerHeight
+    const setupMobileHandler = () => {
+      const isMobile = window.innerWidth <= 767
+      const footer = document.getElementById('footer')
+      const bottomBar = bottomBarRef.current
 
-      if (footerRect.top < viewportHeight) {
-        // Footer is in view - push bar up to avoid overlap
-        const overlap = viewportHeight - footerRect.top
-        bottomBar.style.bottom = `${overlap}px`
-      } else {
-        // Footer not in view - bar stays fixed at bottom
-        bottomBar.style.bottom = '0'
+      // Clean up existing scroll handler if present
+      if (scrollCleanup) {
+        scrollCleanup()
+        scrollCleanup = null
       }
-      ticking = false
+
+      // Only setup if mobile AND elements exist
+      if (!isMobile || !footer || !bottomBar) return
+
+      const updateBarPosition = () => {
+        const footerRect = footer.getBoundingClientRect()
+        const viewportHeight = window.innerHeight
+
+        if (footerRect.top < viewportHeight) {
+          // Footer is in view - push bar up to avoid overlap
+          const overlap = viewportHeight - footerRect.top
+          bottomBar.style.bottom = `${overlap}px`
+        } else {
+          // Footer not in view - bar stays fixed at bottom
+          bottomBar.style.bottom = '0'
+        }
+        ticking = false
+      }
+
+      const handleScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(updateBarPosition)
+          ticking = true
+        }
+      }
+
+      // Set initial position
+      updateBarPosition()
+
+      window.addEventListener('scroll', handleScroll, { passive: true })
+
+      // Return cleanup function
+      scrollCleanup = () => window.removeEventListener('scroll', handleScroll)
     }
 
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(updateBarPosition)
-        ticking = true
+    // Run on mount
+    setupMobileHandler()
+
+    // Re-run on window resize (debounced via RAF)
+    let resizeTicking = false
+    const handleResize = () => {
+      if (!resizeTicking) {
+        requestAnimationFrame(() => {
+          setupMobileHandler()
+          resizeTicking = false
+        })
+        resizeTicking = true
       }
     }
 
-    // Set initial position
-    updateBarPosition()
+    window.addEventListener('resize', handleResize, { passive: true })
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      if (scrollCleanup) scrollCleanup()
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const setCategory = useCallback((category: CategoryType) => {
