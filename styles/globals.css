@@ -12224,7 +12224,7 @@ body:has(.section--dark) {
 }
 
 /* Photography Page Mobile - Masonry Gallery Fixes */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .photography-layout {
     min-height: 100vh;
     min-height: 100dvh;
