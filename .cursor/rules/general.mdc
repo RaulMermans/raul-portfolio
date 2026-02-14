@@ -127,9 +127,33 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 }
 ```
 
+## Session Continuity
+
+Use `SESSION.md` to maintain context across coding sessions:
+- **Start**: Read SESSION.md for current state, check TASKS.md
+- **End**: Update status, add session entry, note next steps
+
 ## Git Workflow
 
-- Commit messages: Brief, descriptive (e.g., "Add contact form validation")
+Use atomic commits with conventional prefixes:
+
+```
+<type>(<scope>): <description>
+```
+
+| Prefix | Use For |
+|--------|---------|
+| `feat` | New features |
+| `fix` | Bug fixes |
+| `docs` | Documentation |
+| `style` | Formatting/CSS |
+| `refactor` | Code restructuring |
+| `perf` | Performance |
+| `chore` | Maintenance |
+
+**Example:** `feat(case-study): add remoria gallery section`
+
+**Before committing:**
+- Run `npm run lint`
+- Run `npm run type-check`
 - Don't commit `.env` files
-- Run `npm run lint` before committing
-- Run `npm run type-check` for type errors

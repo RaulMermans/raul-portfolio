@@ -125,6 +125,41 @@ Check `TASKS.md` for current project tasks. When completing work:
 2. Move to "Completed" section with date
 3. Add new tasks discovered during work
 
+## Session Continuity
+
+Use `SESSION.md` to maintain context across coding sessions:
+
+**At session start:**
+- Read `SESSION.md` for current state and context
+- Check "Active Work" and "Pending Decisions"
+
+**At session end:**
+- Update status and add session entry
+- Note blockers, decisions, and next steps
+
+This ensures seamless handoffs between sessions.
+
+## Git Commit Convention
+
+Use atomic commits with conventional prefixes:
+
+```bash
+feat(scope): add new feature       # New functionality
+fix(scope): resolve bug            # Bug fixes
+docs(scope): update documentation  # Documentation only
+style(scope): formatting/CSS       # No logic changes
+refactor(scope): restructure code  # No behavior change
+perf(scope): improve performance   # Performance improvements
+chore(scope): maintenance          # Dependencies, config
+```
+
+**Examples:**
+```bash
+git commit -m "feat(case-study): add remoria gallery section"
+git commit -m "fix(contact): handle empty form submission"
+git commit -m "style(hero): adjust mobile padding"
+```
+
 ## Required: Use Project Skills
 
 Before implementing ANY task, read the relevant skill(s) from `plugins/portfolio-tools/skills/`:

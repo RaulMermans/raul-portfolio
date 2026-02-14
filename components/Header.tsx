@@ -28,7 +28,7 @@ export default function Header() {
         target.scrollIntoView({ behavior: 'smooth' })
         // Focus management for accessibility
         target.setAttribute('tabindex', '-1')
-        ;(target as HTMLElement).focus()
+          ; (target as HTMLElement).focus()
       }
     }
     closeMenu()
@@ -72,12 +72,12 @@ export default function Header() {
         className={`ui__mobile-menu ${isMenuOpen ? 'active' : ''}`}
         aria-label="Mobile navigation"
       >
-        <Link href="/case-studies" onClick={closeMenu}>Case Studies</Link>
+        <Link href="/case-studies" onClick={closeMenu}>Work</Link>
         <Link href="/about" onClick={closeMenu}>About</Link>
         <Link href="/#services" onClick={(e) => { handleNavClick(e, '#services'); closeMenu(); }}>Services</Link>
         <Link href="/#contact" onClick={(e) => { handleNavClick(e, '#contact'); closeMenu(); }}>Contact</Link>
-        <Link 
-          href="/#contact" 
+        <Link
+          href="/#contact"
           className="ui__mobile-cta"
           onClick={(e) => { handleNavClick(e, '#contact'); closeMenu(); }}
         >

@@ -174,7 +174,62 @@ curl -I https://www.raulmermans.com/api/health
 
 **Testing:** `npm run lint && npm run type-check && npm run build` (all must pass)
 
-**Committing:** `git add <files> && git commit -m "🎨 Description" && git push`
+**Committing:** Use atomic commits with conventional prefixes (see Git Workflow below)
+
+## 📋 Session Continuity
+
+**Use `SESSION.md` to maintain context across coding sessions.**
+
+### At Session Start
+1. Read `SESSION.md` to understand current state
+2. Check `TASKS.md` for the task list
+3. Update "Current Focus" with what you're working on
+
+### At Session End
+1. Update `SESSION.md` with progress, decisions, and blockers
+2. Add a session entry under "Recent Sessions"
+3. Update `TASKS.md` with completed/new tasks
+
+This ensures the next session (yours or another AI's) can continue seamlessly.
+
+## 🔀 Git Workflow
+
+### Atomic Commit Convention
+
+Each discrete change gets its own commit with a clear prefix:
+
+| Prefix | Use For | Example |
+|--------|---------|---------|
+| `feat` | New features | `feat(case-study): add remoria hero section` |
+| `fix` | Bug fixes | `fix(contact): resolve form submission error` |
+| `docs` | Documentation | `docs(readme): update deployment steps` |
+| `style` | Formatting, CSS | `style(hero): adjust spacing on mobile` |
+| `refactor` | Code restructuring | `refactor(lib): extract validation utils` |
+| `perf` | Performance | `perf(images): optimize lazy loading` |
+| `test` | Tests | `test(api): add contact endpoint tests` |
+| `chore` | Maintenance | `chore(deps): update next.js to 14.1` |
+
+### Format
+```
+<type>(<scope>): <brief description>
+```
+
+- **type**: One of the prefixes above
+- **scope**: Component, feature, or area affected (optional but recommended)
+- **description**: Lowercase, imperative mood, no period
+
+### Examples
+```bash
+git commit -m "feat(photography): add lightbox gallery component"
+git commit -m "fix(api): handle rate limit edge case"
+git commit -m "docs(case-study): update image requirements"
+git commit -m "style(nav): improve mobile hamburger animation"
+```
+
+### Benefits
+- **Git bisect**: Find exact failing commit
+- **Revertable**: Each change independently revertable
+- **History**: Clear trail for debugging and review
 
 ## 🐛 Common Issues
 

@@ -16,7 +16,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-display',
   display: 'swap',
 })
