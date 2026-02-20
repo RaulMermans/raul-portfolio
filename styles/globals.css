@@ -329,26 +329,6 @@ img {
   }
 }
 
-/* Dark room / focus mode - spotlight on main content */
-body[data-focus-mode="true"]::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 80% 60% at 50% 40%,
-    transparent 0%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
-  pointer-events: none;
-  z-index: 400;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body[data-focus-mode="true"]::before {
-    background: rgba(0, 0, 0, 0.3);
-  }
-}
-
 .skip-link {
   position: fixed;
   top: var(--space-4);
@@ -653,68 +633,6 @@ html.homepage .footer {
 
 .ui__nav.on-dark a::after {
   background: var(--cream);
-}
-
-.ui__focus-btn {
-  background: none;
-  border: none;
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  color: var(--ink-muted);
-  cursor: pointer;
-  padding: 0;
-  position: relative;
-  transition: color var(--transition-base) var(--ease), transform var(--transition-base) var(--ease);
-}
-
-.ui__focus-btn:hover {
-  color: var(--ink);
-  transform: translateY(-2px);
-}
-
-.ui__focus-btn[aria-pressed="true"] {
-  color: var(--accent);
-}
-
-.ui__sound-btn {
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  color: var(--ink-muted);
-  transition: color var(--transition-fast) ease, transform var(--transition-fast) ease;
-}
-
-.ui__sound-btn:hover {
-  color: var(--ink);
-  transform: translateY(-2px);
-}
-
-.ui__sound-btn[aria-pressed="true"] {
-  color: var(--accent);
-}
-
-.ui__mobile-focus-btn {
-  background: none;
-  border: none;
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  padding: var(--space-3) 0;
-  margin-top: var(--space-2);
-}
-
-.ui__mobile-sound-btn {
-  background: none;
-  border: none;
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  padding: var(--space-3) 0;
-  margin-top: var(--space-2);
 }
 
 .ui__menu-btn {
