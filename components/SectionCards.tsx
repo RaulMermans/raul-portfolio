@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Reveal from './Reveal'
 
@@ -33,6 +34,8 @@ const sections = [
 ]
 
 export default function SectionCards() {
+  const router = useRouter()
+
   useEffect(() => {
     // Set up reveal animations — unobserve after visible to avoid wasted callbacks
     const revealObserver = new IntersectionObserver(
@@ -60,7 +63,10 @@ export default function SectionCards() {
             key={section.id}
             href={section.href}
             className="section-card"
+            data-card={section.id}
             aria-labelledby={`section-${idx + 1}-title`}
+            prefetch={true}
+            onMouseEnter={() => router.prefetch(section.href)}
           >
             <div className="section-card__image-wrapper">
               <Image

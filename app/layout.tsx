@@ -3,6 +3,7 @@ import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
 import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
+import ScrollProgress from '@/components/ScrollProgress'
 import StructuredData from '@/components/StructuredData'
 // Critical bots - loaded immediately (error handling, security, env validation)
 import '@/lib/error-bot'
@@ -116,6 +117,7 @@ export default function RootLayout({
           <GoogleAnalytics />
         </Suspense>
         <div className="grain" aria-hidden="true"></div>
+        <ScrollProgress />
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />
         <StructuredData type="Service" />

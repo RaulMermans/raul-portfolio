@@ -6,7 +6,10 @@ export interface CaseStudy {
   href: string
   color: string
   subtitle?: string
+  mood?: string[]
 }
+
+export const MOODS = ['All', 'minimal', 'bold', 'editorial', 'tech'] as const
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -17,6 +20,7 @@ export const caseStudies: CaseStudy[] = [
     href: '/case-studies/ai-sports',
     color: 'var(--color-0)',
     subtitle: 'AI Automation System & Creative Direction',
+    mood: ['bold', 'tech'],
   },
   {
     id: 1,
@@ -26,6 +30,7 @@ export const caseStudies: CaseStudy[] = [
     href: '/case-studies/remoria',
     color: 'var(--color-1)',
     subtitle: 'Brand Identity & Creative Direction',
+    mood: ['minimal', 'editorial'],
   },
 ]
 

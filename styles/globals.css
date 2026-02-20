@@ -304,6 +304,51 @@ img {
   border: 0;
 }
 
+/* Scroll progress indicator - fixed at top */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 999;
+  transition: width 0.1s linear;
+}
+
+/* Section transitions - fade/slide on scroll (homepage) */
+@media (prefers-reduced-motion: no-preference) {
+  .section-transition {
+    opacity: 0.6;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .section-transition.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark room / focus mode - spotlight on main content */
+body[data-focus-mode="true"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-focus-mode="true"]::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
 .skip-link {
   position: fixed;
   top: var(--space-4);
@@ -608,6 +653,68 @@ html.homepage .footer {
 
 .ui__nav.on-dark a::after {
   background: var(--cream);
+}
+
+.ui__focus-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--ink-muted);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: color var(--transition-base) var(--ease), transform var(--transition-base) var(--ease);
+}
+
+.ui__focus-btn:hover {
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.ui__focus-btn[aria-pressed="true"] {
+  color: var(--accent);
+}
+
+.ui__sound-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--ink-muted);
+  transition: color var(--transition-fast) ease, transform var(--transition-fast) ease;
+}
+
+.ui__sound-btn:hover {
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.ui__sound-btn[aria-pressed="true"] {
+  color: var(--accent);
+}
+
+.ui__mobile-focus-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  padding: var(--space-3) 0;
+  margin-top: var(--space-2);
+}
+
+.ui__mobile-sound-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  padding: var(--space-3) 0;
+  margin-top: var(--space-2);
 }
 
 .ui__menu-btn {
@@ -1583,6 +1690,33 @@ html.homepage .footer {
 .section-card:focus-within {
   transform: translateY(-10px) scale(1.01);
   box-shadow: 0 24px 72px rgba(26, 23, 20, 0.35);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .section-card[data-card="case-studies"]:hover,
+  .section-card[data-card="case-studies"]:focus-within {
+    box-shadow: 0 24px 72px rgba(196, 30, 58, 0.25);
+  }
+
+  .section-card[data-card="photography"]:hover .section-card__image-wrapper [data-nimg],
+  .section-card[data-card="photography"]:focus-within .section-card__image-wrapper [data-nimg] {
+    transform: scale(1.08) translateY(-2%);
+  }
+
+  .section-card[data-card="visuals"]:hover .section-card__overlay,
+  .section-card[data-card="visuals"]:focus-within .section-card__overlay {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(88, 28, 135, 0.15) 50%,
+      rgba(26, 23, 20, 0.75) 100%
+    );
+  }
+
+  .section-card[data-card="visuals"]:hover,
+  .section-card[data-card="visuals"]:focus-within {
+    box-shadow: 0 24px 72px rgba(88, 28, 135, 0.2);
+  }
 }
 
 .section-card__image-wrapper {
@@ -7896,6 +8030,45 @@ a[href^="/"]:hover {
 .case-studies-scroll {
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
+}
+
+/* Mood filter bar */
+.case-studies-mood-filter {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-4) clamp(1rem, 5vw, 3rem);
+  background: rgba(26, 23, 20, 0.95);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+}
+
+.case-studies-mood-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(245, 240, 235, 0.9);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.case-studies-mood-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.case-studies-mood-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
 }
 
 /* Individual Section - Each takes full viewport */

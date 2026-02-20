@@ -85,6 +85,28 @@ export default function Home() {
       setTimeout(setupRevealObserver, 1000)
     })
 
+    // Section transitions - fade/slide when sections enter viewport
+    const sectionSelectors = '.hero, .section-cards-container, .about, .services, .contact, .socials'
+    const sectionElements = document.querySelectorAll(sectionSelectors)
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-visible')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+    sectionElements.forEach((el) => {
+      el.classList.add('section-transition')
+      const rect = el.getBoundingClientRect()
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('section-visible')
+      }
+      sectionObserver.observe(el)
+    })
+
     // Throttled scroll handler for better performance
     let ticking = false
     const handleScroll = () => {
@@ -117,6 +139,7 @@ export default function Home() {
       if (revealObserver) {
         revealObserver.disconnect()
       }
+      sectionObserver.disconnect()
       // Cleanup on unmount
       if (typeof window !== 'undefined') {
         document.documentElement.classList.remove('homepage')

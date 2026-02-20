@@ -10,6 +10,15 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
   'ai-sports': {
     id: 'ai-sports',
     accentColor: 'var(--accent)',
+    layoutVariant: 'wide',
+    howThisWasMade: {
+      title: 'How this was made',
+      steps: [
+        'Reference conditioning in n8n to lock lighting, environment, and shot DNA',
+        'Prompt schema design separating constants vs variables (casting, wardrobe)',
+        'Output selection and consistency guardrails for campaign-grade coherence',
+      ],
+    },
     hero: {
       title: 'AI Sports Campaign',
       tagline: 'A Creative Direction Engine.',
@@ -185,6 +194,15 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
   remoria: {
     id: 'remoria',
     accentColor: 'var(--gold)',
+    layoutVariant: 'default',
+    howThisWasMade: {
+      title: 'How this was made',
+      steps: [
+        'Narrative strategy—memory, myth, place—translated into sculptural identity',
+        'Roman-inspired serif forms + Mediterranean palette (stone, patina, gilded accents)',
+        'Tone of voice and copy treated like fragrance: sparse, lyrical, deliberate',
+      ],
+    },
     hero: {
       title: 'Remoria',
       tagline: 'A Fragrance House Etched in Memory',

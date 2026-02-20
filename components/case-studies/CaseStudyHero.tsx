@@ -23,7 +23,7 @@ export default function CaseStudyHero({ hero, accentColor }: CaseStudyHeroProps)
         const scrolled = window.scrollY
         const heroImage = heroRef.current.querySelector<HTMLElement>('.case-study-hero-new__image')
         if (heroImage) {
-          heroImage.style.transform = `translateY(${scrolled * 0.5}px)`
+          heroImage.style.transform = `translateY(${scrolled * 0.2}px)`
         }
         ticking = false
       })
@@ -48,7 +48,8 @@ export default function CaseStudyHero({ hero, accentColor }: CaseStudyHeroProps)
             priority
             quality={hero.image.quality ?? 90}
             sizes={hero.image.sizes ?? '100vw'}
-            style={{ objectFit: 'cover' }}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             className="case-study-hero-new__img"
           />
           <div className="case-study-hero-new__overlay"></div>
@@ -60,7 +61,17 @@ export default function CaseStudyHero({ hero, accentColor }: CaseStudyHeroProps)
           <div className="case-study-hero-new__badge">Case Study</div>
           <h1 className="case-study-hero-new__title">{hero.title}</h1>
           {hero.tagline && (
-            <p className="case-study-hero-new__tagline">{hero.tagline}</p>
+            <p className="case-study-hero-new__tagline">
+              {hero.tagline.split(/\s+/).map((word, i) => (
+                <span
+                  key={i}
+                  className="case-study-hero-new__tagline-word"
+                  style={{ animationDelay: `${i * 0.08}s` }}
+                >
+                  {word}{' '}
+                </span>
+              ))}
+            </p>
           )}
           {hero.subtitle && (
             <p className="case-study-hero-new__subtitle">{hero.subtitle}</p>

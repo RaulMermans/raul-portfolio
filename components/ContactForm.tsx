@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 import { trackFormSubmit } from '@/lib/gtag'
+import { playSound } from '@/lib/sounds'
 
 const PROJECT_TYPES = [
   { value: '', label: 'Select project type' },
@@ -80,7 +81,7 @@ export default function ContactForm() {
 
       setStatus('success')
       setFormData({ name: '', email: '', projectType: '', budget: '', timeline: '', message: '' })
-      
+      playSound('success')
       // Track form submission in Google Analytics
       trackFormSubmit('contact_form')
       

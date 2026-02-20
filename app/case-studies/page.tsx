@@ -2,12 +2,20 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Header from '@/components/Header'
-import { caseStudies } from '@/data/case-studies'
+import { useState } from 'react'
+import { caseStudies, MOODS } from '@/data/case-studies'
 
 export default function CaseStudiesPage() {
+  const router = useRouter()
+  const [selectedMood, setSelectedMood] = useState<string>('All')
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
+
+  const filteredStudies = selectedMood === 'All'
+    ? caseStudies
+    : caseStudies.filter((s) => s.mood?.includes(selectedMood))
 
   // Simple reveal animation on scroll
   useEffect(() => {
@@ -22,22 +30,41 @@ export default function CaseStudiesPage() {
       { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
     )
 
-    sectionsRef.current.forEach((section) => {
-      if (section) {
-        const content = section.querySelector('.case-study-section__content')
-        if (content) observer.observe(content)
-      }
-    })
+    // Re-run when filter changes - refs are populated after render
+    const timer = setTimeout(() => {
+      sectionsRef.current.forEach((section) => {
+        if (section) {
+          const content = section.querySelector('.case-study-section__content')
+          if (content) observer.observe(content)
+        }
+      })
+    }, 0)
 
-    return () => observer.disconnect()
-  }, [])
+    return () => {
+      clearTimeout(timer)
+      observer.disconnect()
+    }
+  }, [filteredStudies])
 
   return (
     <>
       <Header />
 
       <main id="main-content" role="main" className="case-studies-scroll">
-        {caseStudies.map((study, index) => (
+        <div className="case-studies-mood-filter" role="group" aria-label="Filter by mood">
+          {MOODS.map((mood) => (
+            <button
+              key={mood}
+              type="button"
+              className={`case-studies-mood-btn ${selectedMood === mood ? 'active' : ''}`}
+              onClick={() => setSelectedMood(mood)}
+              aria-pressed={selectedMood === mood}
+            >
+              {mood}
+            </button>
+          ))}
+        </div>
+        {filteredStudies.map((study, index) => (
           <section
             key={study.id}
             ref={(el) => { sectionsRef.current[index] = el }}
@@ -54,6 +81,8 @@ export default function CaseStudiesPage() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                 className="case-study-section__image"
                 priority={index === 0}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
               <div className="case-study-section__gradient" aria-hidden="true" />
             </div>
@@ -69,7 +98,12 @@ export default function CaseStudiesPage() {
               <p className="case-study-section__description">
                 {study.description}
               </p>
-              <Link href={study.href} className="case-study-section__cta">
+              <Link
+                href={study.href}
+                className="case-study-section__cta"
+                prefetch={true}
+                onMouseEnter={() => router.prefetch(study.href)}
+              >
                 View Project
                 <span className="case-study-section__cta-arrow" aria-hidden="true">→</span>
               </Link>

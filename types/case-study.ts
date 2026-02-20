@@ -65,14 +65,23 @@ export interface CaseStudyResults {
   takeawayQuote: string
 }
 
+export interface HowThisWasMade {
+  title: string
+  steps: string[]
+}
+
 export interface CaseStudyGalleryRow {
   layout: '3-col' | '2-col' | 'asymmetric'
   items: CaseStudyImage[]
 }
 
+export type CaseStudyLayoutVariant = 'default' | 'wide' | 'compact'
+
 export interface CaseStudyContent {
   id: string
   accentColor?: string
+  layoutVariant?: CaseStudyLayoutVariant
+  howThisWasMade?: HowThisWasMade
   hero: CaseStudyHero
   overview?: CaseStudyOverview
   challenge?: CaseStudyChallenge

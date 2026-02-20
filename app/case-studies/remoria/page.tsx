@@ -13,6 +13,8 @@ import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import RemoriaBrandSystem from '@/components/case-studies/RemoriaBrandSystem'
 import BoldText from '@/components/case-studies/BoldText'
+import HowThisWasMade from '@/components/case-studies/HowThisWasMade'
+import FilmStrip from '@/components/FilmStrip'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import { caseStudies } from '@/data/case-studies'
 import '@/styles/remoria-brand-system.css'
@@ -30,8 +32,9 @@ export default function RemoriaPage() {
   return (
     <>
       <Header />
+      <FilmStrip />
 
-      <main id="main-content" className="case-study-page-new">
+      <main id="main-content" className={`case-study-page-new case-study-page-new--${content.layoutVariant ?? 'default'}`}>
         <CaseStudyHero 
           hero={content.hero} 
           accentColor={content.accentColor}
@@ -59,6 +62,12 @@ export default function RemoriaPage() {
                   {content.overview.intentQuote}
                 </blockquote>
                   )}
+              {content.howThisWasMade && (
+                <HowThisWasMade
+                  content={content.howThisWasMade}
+                  accentColor={content.accentColor}
+                />
+              )}
             </div>
           </CaseStudySection>
         )}

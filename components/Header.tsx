@@ -2,11 +2,38 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useSound } from '@/hooks'
+
+const FOCUS_MODE_KEY = 'portfolio-focus-mode'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isFocusMode, setIsFocusMode] = useState(false)
+  const { enabled: soundEnabled, toggle: toggleSound } = useSound()
   const menuRef = useRef<HTMLElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    const stored = localStorage.getItem(FOCUS_MODE_KEY)
+    const active = stored === 'true'
+    setIsFocusMode(active)
+    if (typeof document !== 'undefined' && active) {
+      document.body.setAttribute('data-focus-mode', 'true')
+    }
+  }, [])
+
+  const toggleFocusMode = () => {
+    const next = !isFocusMode
+    setIsFocusMode(next)
+    if (typeof document !== 'undefined') {
+      if (next) {
+        document.body.setAttribute('data-focus-mode', 'true')
+      } else {
+        document.body.removeAttribute('data-focus-mode')
+      }
+    }
+    localStorage.setItem(FOCUS_MODE_KEY, String(next))
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => {
@@ -97,6 +124,25 @@ export default function Header() {
         <Link href="/about">About</Link>
         <Link href="/#services" onClick={(e) => handleNavClick(e, '#services')}>Services</Link>
         <Link href="/#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</Link>
+        <button
+          type="button"
+          className="ui ui__focus-btn"
+          onClick={toggleFocusMode}
+          aria-label={isFocusMode ? 'Exit focus mode' : 'Enter focus mode'}
+          aria-pressed={isFocusMode}
+        >
+          Focus
+        </button>
+        <button
+          type="button"
+          className="ui ui__sound-btn"
+          onClick={toggleSound}
+          aria-label={soundEnabled ? 'Disable sounds' : 'Enable sounds'}
+          aria-pressed={soundEnabled}
+          title={soundEnabled ? 'Sound on' : 'Sound off'}
+        >
+          {soundEnabled ? '🔊' : '🔇'}
+        </button>
       </nav>
 
       {/* Mobile Menu Button */}
@@ -132,6 +178,24 @@ export default function Header() {
         >
           Start a Project
         </Link>
+        <button
+          type="button"
+          className="ui__mobile-focus-btn"
+          onClick={() => { toggleFocusMode(); closeMenu() }}
+          aria-label={isFocusMode ? 'Exit focus mode' : 'Enter focus mode'}
+          aria-pressed={isFocusMode}
+        >
+          Focus
+        </button>
+        <button
+          type="button"
+          className="ui__mobile-sound-btn"
+          onClick={() => { toggleSound(); closeMenu() }}
+          aria-label={soundEnabled ? 'Disable sounds' : 'Enable sounds'}
+          aria-pressed={soundEnabled}
+        >
+          {soundEnabled ? '🔊 Sound on' : '🔇 Sound off'}
+        </button>
       </nav>
     </>
   )
