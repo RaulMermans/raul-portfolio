@@ -68,28 +68,6 @@
   box-sizing: border-box;
 }
 
-/* Skip Link for Accessibility */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--ink);
-  color: var(--cream);
-  padding: 8px 16px;
-  text-decoration: none;
-  z-index: 10000;
-  font-size: var(--text-sm);
-  font-weight: 500;
-  border-radius: 0 0 4px 0;
-  transition: top 0.2s ease;
-}
-
-.skip-link:focus {
-  top: 0;
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -168,22 +146,27 @@ select:focus-visible {
   box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.1);
 }
 
-/* Ensure all interactive elements are keyboard accessible */
-button,
-a,
+/* Ensure interactive UI elements have 44px touch targets — scoped to avoid layout jank on inline links */
+.btn,
+nav a,
 [role="button"],
-[tabindex="0"] {
+[tabindex="0"],
+button:not(.contact-form__submit):not(.contact-form__success-dismiss) {
   min-height: var(--touch-min);
-  min-width: var(--touch-min);
 }
 
 /* Improve touch targets on mobile */
 @media (max-width: 768px) {
-  button,
-  a,
   .btn,
-  .link {
+  nav a,
+  button,
+  .link,
+  .category-btn,
+  .lightbox__close,
+  .lightbox__dot,
+  .ui__menu-btn {
     min-height: 44px;
+    min-width: 44px;
     padding: var(--space-3) var(--space-4);
   }
 }
@@ -1843,7 +1826,12 @@ html.homepage .footer {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Add subtle shadow for contrast */
   }
   .section-card__desc {
-    display: none; /* Hide description on mobile */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.875rem;
+    opacity: 0.85;
   }
   .section-card__cta {
     margin-top: var(--space-4);
@@ -2216,6 +2204,8 @@ html.homepage .footer {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-3);
+  list-style: none;
+  padding: 0;
 }
 
 /* Socials Section */
@@ -2310,6 +2300,8 @@ html.homepage .footer {
   margin-top: var(--space-4);
   margin-bottom: var(--space-4);
   flex-shrink: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .socials__location {
@@ -2402,6 +2394,12 @@ html.homepage .footer {
   font-size: 0.9em;
 }
 
+.contact-form__field-error {
+  font-size: var(--text-sm);
+  color: var(--accent);
+  margin-top: var(--space-1);
+}
+
 .contact-form__input,
 .contact-form__textarea {
   width: 100%;
@@ -2432,6 +2430,12 @@ html.homepage .footer {
     0 0 0 4px rgba(196, 30, 58, 0.12),
     0 2px 8px rgba(26, 23, 20, 0.08);
   transform: translateY(-1px);
+}
+
+.contact-form__input[aria-invalid="true"],
+.contact-form__textarea[aria-invalid="true"] {
+  border-color: var(--accent);
+  background: rgba(196, 30, 58, 0.04);
 }
 
 .contact-form__input::placeholder,
@@ -2560,10 +2564,32 @@ html.homepage .footer {
 }
 
 .contact-form__success {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
   background: rgba(34, 197, 94, 0.1);
   color: #16a34a;
   border: 2px solid rgba(34, 197, 94, 0.25);
   font-weight: 500;
+}
+
+.contact-form__success-dismiss {
+  background: none;
+  border: none;
+  color: #16a34a;
+  font-size: 1.25rem;
+  cursor: pointer;
+  min-height: unset;
+  min-width: unset;
+  padding: 0 var(--space-2);
+  line-height: 1;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.contact-form__success-dismiss:hover {
+  opacity: 1;
 }
 
 .contact-form__submit:disabled {

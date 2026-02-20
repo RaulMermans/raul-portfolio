@@ -40,11 +40,28 @@ export default function ContactForm() {
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string }>({})
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setStatus('loading')
     setErrorMessage('')
+    setFieldErrors({})
+
+    // Client-side validation
+    const errs: { name?: string; email?: string } = {}
+    if (formData.name.trim().length < 2) {
+      errs.name = 'Name must be at least 2 characters.'
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      errs.email = 'Please enter a valid email address.'
+    }
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs)
+      return
+    }
+
+    setStatus('loading')
 
     try {
       const response = await fetch('/api/contact', {
@@ -80,6 +97,10 @@ export default function ContactForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    // Clear field error when user corrects input
+    if ((name === 'name' || name === 'email') && fieldErrors[name as 'name' | 'email']) {
+      setFieldErrors(prev => ({ ...prev, [name]: undefined }))
+    }
   }
 
   return (
@@ -96,9 +117,16 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
+          aria-describedby={fieldErrors.name ? 'contact-name-error' : undefined}
+          aria-invalid={!!fieldErrors.name}
           className="contact-form__input"
           placeholder="John Doe"
         />
+        {fieldErrors.name && (
+          <span id="contact-name-error" className="contact-form__field-error" role="alert">
+            {fieldErrors.name}
+          </span>
+        )}
       </div>
 
       <div className="contact-form__field">
@@ -113,9 +141,16 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
+          aria-describedby={fieldErrors.email ? 'contact-email-error' : undefined}
+          aria-invalid={!!fieldErrors.email}
           className="contact-form__input"
           placeholder="john@example.com"
         />
+        {fieldErrors.email && (
+          <span id="contact-email-error" className="contact-form__field-error" role="alert">
+            {fieldErrors.email}
+          </span>
+        )}
       </div>
 
       <div className="contact-form__field">
@@ -203,7 +238,15 @@ export default function ContactForm() {
 
       {status === 'success' && (
         <div className="contact-form__success" role="alert">
-          Thank you! I&apos;ll get back to you soon.
+          <span>Thank you! I&apos;ll get back to you soon.</span>
+          <button
+            type="button"
+            className="contact-form__success-dismiss"
+            aria-label="Dismiss success message"
+            onClick={() => setStatus('idle')}
+          >
+            ×
+          </button>
         </div>
       )}
 

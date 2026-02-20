@@ -1,20 +1,14 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 export default function NotFound() {
-  const [frameNum, setFrameNum] = useState(0)
   const orbRef = useRef<HTMLDivElement>(null)
   const pageRef = useRef<HTMLElement>(null)
   const glitchWrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Frame counter animation
-    const interval = setInterval(() => {
-      setFrameNum((prev) => (prev + 1) % 10000)
-    }, 50)
-
     // Orb parallax
     const pageElement = pageRef.current
     const orbElement = orbRef.current
@@ -46,7 +40,6 @@ export default function NotFound() {
     setTimeout(triggerGlitch, 2000)
 
     return () => {
-      clearInterval(interval)
       if (pageElement) {
         pageElement.removeEventListener('mousemove', handleMouseMove)
       }
@@ -83,7 +76,7 @@ export default function NotFound() {
       <div className="frame-counter" aria-hidden="true">
         <div className="frame-counter__dot"></div>
         <span className="frame-counter__number">
-          FRM <span>{String(frameNum).padStart(4, '0')}</span>
+          FRM <span>0000</span>
         </span>
       </div>
 

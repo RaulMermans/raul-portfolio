@@ -5,4 +5,5 @@
 export * from './useResponsive'
 export * from './useErrorHandler'
 export * from './useSafeAsync'
+export * from './useCaseStudySetup'
 

@@ -107,16 +107,8 @@ export default function PageTransition({ children }: PageTransitionProps) {
               document.documentElement.style.overflow = ''
               document.body.style.top = ''
               
-              // Restore scroll position if needed (for back navigation)
-              if (newDirection === 'backward' && scrollPositionRef.current > 0) {
-                // Small delay to ensure DOM is ready
-                requestAnimationFrame(() => {
-                  window.scrollTo({ top: 0, behavior: 'instant' })
-                })
-              } else {
-                // Scroll to top for forward navigation
-                window.scrollTo({ top: 0, behavior: 'instant' })
-              }
+              // Scroll to top on route change
+              window.scrollTo({ top: 0, behavior: 'instant' })
             }
             setIsEntering(false)
           }, 500) // Match enter animation duration

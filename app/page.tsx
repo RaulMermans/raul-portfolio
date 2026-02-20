@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -16,41 +16,12 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 
 export default function Home() {
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [currentSection, setCurrentSection] = useState(1)
-
   useEffect(() => {
     if (typeof window === 'undefined') return
     
     // Add class to html to identify homepage for CSS
     document.documentElement.classList.add('homepage')
     
-    // Enable scroll-snap for homepage
-    // Only enable on desktop
-    const enableScrollSnap = () => {
-      const isDesktop = window.innerWidth > 768
-      const html = document.documentElement
-      
-      // Disable scroll-snap completely
-      html.style.scrollSnapType = 'none'
-      document.body.style.scrollSnapType = 'none'
-      
-      // Remove scroll-snap from all sections
-      const sections = document.querySelectorAll('section, footer')
-      sections.forEach((section: any) => {
-        if (section) {
-          section.style.scrollSnapAlign = 'none'
-          section.style.scrollSnapStop = 'normal'
-        }
-      })
-    }
-    
-    // Run after a short delay to ensure all components are mounted
-    setTimeout(() => {
-      enableScrollSnap()
-    }, 100)
-    
-    window.addEventListener('resize', enableScrollSnap)
     document.body.style.overflowY = 'auto'
     
     // Ensure scroll-snap is disabled on mount
@@ -59,42 +30,10 @@ export default function Home() {
       document.body.style.scrollSnapType = 'none'
     }
     
-    const sections = document.querySelectorAll('section')
-    const footer = document.querySelector('.footer')
-    const total = sections.length + 1 // +1 for footer
-
     // Cache viewport height to avoid repeated calculations
     let viewportHeight = window.innerHeight
-    
-    const updateProgress = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - viewportHeight
-      const percentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
-      setScrollProgress(percentage)
 
-      const viewportCenter = viewportHeight / 2
-      let current = 1
-      
-      // Use for loop for better performance
-      for (let i = 0; i < sections.length; i++) {
-        const rect = sections[i].getBoundingClientRect()
-        if (rect.top <= viewportCenter) {
-          current = i + 1
-        }
-      }
-
-      // Check if footer is in view
-      if (footer) {
-        const footerRect = footer.getBoundingClientRect()
-        if (footerRect.top <= viewportCenter) {
-          current = total
-        }
-      }
-
-      setCurrentSection(current)
-    }
-    
-    // Update viewport height on resize (debounced)
+    // Update viewport height on resize
     const handleResize = () => {
       viewportHeight = window.innerHeight
     }
@@ -151,7 +90,6 @@ export default function Home() {
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          updateProgress()
           // Check for reveals on scroll (only check visible ones)
           const revealElements = document.querySelectorAll('.reveal:not(.visible)')
           const viewportTop = 0
@@ -171,11 +109,9 @@ export default function Home() {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    updateProgress()
     handleScroll() // Check immediately
 
     return () => {
-      window.removeEventListener('resize', enableScrollSnap)
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleResize)
       if (revealObserver) {

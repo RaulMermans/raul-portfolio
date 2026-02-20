@@ -20,6 +20,12 @@
   overflow-x: hidden;
 }
 
+/* Override global section min-height — case study content sections should auto-size */
+.case-study-page-new section {
+  min-height: unset;
+  height: auto;
+}
+
 /* =============================================
    HERO SECTION
    ============================================= */
