@@ -189,6 +189,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={6}
+          maxLength={2000}
           className="contact-form__textarea"
           placeholder="Tell me about your project and what you're looking to achieve..."
         />

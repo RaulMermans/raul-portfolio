@@ -13,14 +13,20 @@ export default function CaseStudyHero({ hero, accentColor }: CaseStudyHeroProps)
   const heroRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    // Parallax effect on scroll
+    // Parallax effect on scroll — rAF-throttled to avoid layout thrash every frame
+    let ticking = false
     const handleScroll = () => {
-      if (!heroRef.current) return
-      const scrolled = window.pageYOffset
-      const heroImage = heroRef.current.querySelector('.case-study-hero__image')
-      if (heroImage) {
-        heroImage.setAttribute('style', `transform: translateY(${scrolled * 0.5}px)`)
-      }
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        if (!heroRef.current) { ticking = false; return }
+        const scrolled = window.scrollY
+        const heroImage = heroRef.current.querySelector<HTMLElement>('.case-study-hero-new__image')
+        if (heroImage) {
+          heroImage.style.transform = `translateY(${scrolled * 0.5}px)`
+        }
+        ticking = false
+      })
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })

@@ -45,16 +45,16 @@ export default function Footer() {
             <h4>Services</h4>
             <ul>
               <li>
-                <Link href="#services">AI Agents</Link>
+                <Link href="/#services">AI Agents</Link>
               </li>
               <li>
-                <Link href="#services">Web Development</Link>
+                <Link href="/#services">Web Development</Link>
               </li>
               <li>
-                <Link href="#services">Photography</Link>
+                <Link href="/#services">Photography</Link>
               </li>
               <li>
-                <Link href="#services">Creative Direction</Link>
+                <Link href="/#services">Creative Direction</Link>
               </li>
             </ul>
           </div>
@@ -86,7 +86,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="#contact">Contact</Link>
+                <Link href="/#contact">Contact</Link>
               </li>
             </ul>
           </div>

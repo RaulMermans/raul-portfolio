@@ -789,17 +789,23 @@ html.homepage .footer {
     text-rendering: optimizeLegibility;
   }
   
-  /* Reduce animations on mobile for better performance */
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.2s !important;
-    transition-duration: 0.15s !important;
+  /* Reduce animations on mobile for better performance.
+     Scoped to (prefers-reduced-motion: no-preference) so the
+     global 0.01ms reduced-motion rule always wins. */
+  @media (prefers-reduced-motion: no-preference) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.2s !important;
+      transition-duration: 0.15s !important;
+    }
   }
 
-  /* Disable hover effects on mobile */
-  *:hover {
-    transform: none !important;
+  /* Disable hover transforms on touch-only devices */
+  @media (hover: none) {
+    *:hover {
+      transform: none !important;
+    }
   }
   
   /* Disable parallax and heavy effects on mobile */
@@ -1161,11 +1167,7 @@ html.homepage .footer {
     transform: scale(0.98);
   }
 
-  /* Better image loading on mobile */
-  img {
-    loading: lazy;
-    decoding: async;
-  }
+  /* Note: image loading/decoding are HTML attributes managed by next/image, not CSS properties */
 
   /* Optimize font rendering */
   body {
@@ -1976,7 +1978,7 @@ html.homepage .footer {
   transition: transform 1s var(--ease);
 }
 
-.about__image.revealed::before {
+.about__image.visible::before {
   transform: scaleY(0);
   transform-origin: bottom;
 }
@@ -2003,7 +2005,7 @@ html.homepage .footer {
   transition: opacity var(--transition-slow) var(--ease) 0.5s;
 }
 
-.about__image.revealed + .about__frame,
+.about__image.visible + .about__frame,
 .about__image-wrapper:hover .about__frame {
   opacity: 0.5;
 }

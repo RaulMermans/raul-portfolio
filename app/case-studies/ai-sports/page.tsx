@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
@@ -13,8 +14,6 @@ import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import BoldText from '@/components/case-studies/BoldText'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import { caseStudies } from '@/data/case-studies'
-import '@/styles/case-study-new.css'
-
 export default function AISportsCampaignPage() {
   const content = getCaseStudyContent('ai-sports')
   const nextCaseStudy = caseStudies.find((cs) => cs.href === '/case-studies/remoria')
@@ -77,14 +76,11 @@ export default function AISportsCampaignPage() {
   }, [])
 
   if (!content) {
-    return <div>Case study not found</div>
+    notFound()
   }
 
   return (
     <>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
-      <div className="grain" aria-hidden="true"></div>
-
       <Header />
 
       <main id="main-content" className="case-study-page-new">

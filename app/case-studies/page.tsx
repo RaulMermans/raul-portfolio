@@ -34,9 +34,6 @@ export default function CaseStudiesPage() {
 
   return (
     <>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
-      <div className="grain" aria-hidden="true"></div>
-
       <Header />
 
       <main id="main-content" role="main" className="case-studies-scroll">
@@ -51,7 +48,7 @@ export default function CaseStudiesPage() {
             <div className="case-study-section__media">
               <Image
                 src={study.image}
-                alt=""
+                alt={`${study.title} — ${study.subtitle ?? 'Case study'}`}
                 fill
                 quality={80}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"

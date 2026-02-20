@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
@@ -14,7 +15,6 @@ import RemoriaBrandSystem from '@/components/case-studies/RemoriaBrandSystem'
 import BoldText from '@/components/case-studies/BoldText'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import { caseStudies } from '@/data/case-studies'
-import '@/styles/case-study-new.css'
 import '@/styles/remoria-brand-system.css'
 
 export default function RemoriaPage() {
@@ -77,14 +77,11 @@ export default function RemoriaPage() {
   }, [])
 
   if (!content) {
-    return <div>Case study not found</div>
+    notFound()
   }
 
   return (
     <>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
-      <div className="grain" aria-hidden="true"></div>
-
       <Header />
 
       <main id="main-content" className="case-study-page-new">

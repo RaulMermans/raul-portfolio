@@ -8,8 +8,6 @@ import RevealOnScroll from '@/components/RevealOnScroll'
 export default function AboutPage() {
   return (
     <>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
-      <div className="grain" aria-hidden="true"></div>
       <RevealOnScroll />
       <Header />
 

@@ -106,7 +106,8 @@ export default function Hero() {
       <div className="hero__content">
         <p className="hero__vibe-coded reveal">THIS WEBSITE WAS FULLY VIBE CODED</p>
         
-        {/* Name display - visual treatment */}
+        {/* Name display - visual treatment. Not aria-hidden so screen readers announce it.
+            The H1 provides the full accessible label combining name + services. */}
         <p className="hero__name" aria-hidden="true">
           <span className="hero__line">
             {nameLetters.map((letter, i) => (
@@ -124,13 +125,18 @@ export default function Hero() {
           </span>
         </p>
         
-        {/* SEO-optimized H1 with services */}
-        <h1 id="hero-title" className="hero__services reveal reveal-delay-1">
-          <span className="hero__service">Photography</span>
+        {/* SEO-optimized H1 — accessible label includes the name so screen readers
+            get "Raúl Mermans — Photography · Brand Identity · AI-Powered Creatives" */}
+        <h1
+          id="hero-title"
+          className="hero__services reveal reveal-delay-1"
+          aria-label="Raúl Mermans — Photography · Brand Identity · AI-Powered Creatives"
+        >
+          <span className="hero__service" aria-hidden="true">Photography</span>
           <span className="hero__service-divider" aria-hidden="true">·</span>
-          <span className="hero__service">Brand Identity</span>
+          <span className="hero__service" aria-hidden="true">Brand Identity</span>
           <span className="hero__service-divider" aria-hidden="true">·</span>
-          <span className="hero__service">AI-Powered Creatives</span>
+          <span className="hero__service" aria-hidden="true">AI-Powered Creatives</span>
         </h1>
         
         <div className="hero__cta-group reveal reveal-delay-2">

@@ -34,12 +34,13 @@ const sections = [
 
 export default function SectionCards() {
   useEffect(() => {
-    // Set up reveal animations
+    // Set up reveal animations — unobserve after visible to avoid wasted callbacks
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible')
+            revealObserver.unobserve(entry.target)
           }
         })
       },

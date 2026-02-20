@@ -55,10 +55,7 @@ export default function NotFound() {
 
   return (
     <>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
-      
-      {/* Film Grain Overlay */}
-      <div className="grain" aria-hidden="true"></div>
+      {/* Film Grain Overlay — layout.tsx renders the global grain; this page uses its own scanlines overlay instead */}
       
       {/* Scanlines */}
       <div className="scanlines" aria-hidden="true"></div>
