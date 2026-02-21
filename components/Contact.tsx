@@ -11,7 +11,7 @@ export default function Contact() {
         <h2 id="contact-title" className="contact__headline reveal reveal-delay-1">Let&apos;s Work Together</h2>
         <p className="contact__subtitle reveal reveal-delay-1">
           Have a project in mind? I&apos;d love to hear about it. Whether it&apos;s creative direction, 
-          AI automation, or visual storytelling—let&apos;s bring your vision to life.
+          AI automation, or visual storytelling. Let&apos;s bring your vision to life.
         </p>
         
         <div className="contact__divider reveal reveal-delay-2"></div>

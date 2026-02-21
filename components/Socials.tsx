@@ -87,7 +87,7 @@ export default function Socials() {
           </ul>
         </div>
         
-        <p className="socials__location reveal reveal-delay-4">Spain — Available Worldwide</p>
+        <p className="socials__location reveal reveal-delay-4">Spain · Available Worldwide</p>
       </div>
     </section>
   )
