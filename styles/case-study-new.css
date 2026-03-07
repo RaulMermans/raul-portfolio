@@ -90,11 +90,14 @@ main.case-study-page-new {
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100svh;
+  height: 100vh !important;
+  height: 100dvh !important;
+  height: 100svh !important;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .case-study-hero-new__image-wrapper {
