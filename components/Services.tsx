@@ -70,13 +70,6 @@ export default function Services() {
                   </ul>
                   <div className="service__footer">
                     <p className="service__desc">{service.description}</p>
-                    <Link 
-                      href="/#contact" 
-                      className="btn btn--arrow"
-                      aria-label="Start a project - navigate to contact section"
-                    >
-                      Start a project
-                    </Link>
                   </div>
                 </div>
                 <div className="service__image">
@@ -109,7 +102,16 @@ export default function Services() {
                 </div>
               </div>
             </div>
-            <div className="service__bracket"></div>
+            <div className="service__corner">
+              <div className="service__bracket"></div>
+              <Link 
+                href="/#contact" 
+                className="btn btn--arrow service__cta"
+                aria-label="Start a project - navigate to contact section"
+              >
+                Start a project
+              </Link>
+            </div>
           </article>
         ))}
       </div>

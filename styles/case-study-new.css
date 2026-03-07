@@ -78,14 +78,20 @@
 }
 
 /* =============================================
-   HERO SECTION - Full viewport
+   HERO SECTION - Full viewport, edge-to-edge
    ============================================= */
+/* Ensure main has no top padding so hero starts at viewport top */
+main.case-study-page-new {
+  padding-top: 0;
+}
+
 .case-study-hero-new {
   position: relative;
   width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
   height: 100dvh;
-  min-height: 100vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -111,7 +117,7 @@
 }
 
 .case-study-hero-new__img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   filter: brightness(0.4);
 }
@@ -645,16 +651,28 @@
   margin: 0 auto;
 }
 
-/* Editorial title - understated, left-aligned */
+/* Match section headers for consistency and SEO (h2) */
 .case-study-gallery-new__title {
-  font-family: var(--font-mono, 'Space Mono', monospace);
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-  font-weight: 400;
-  letter-spacing: 0.2em;
+  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  margin-bottom: var(--case-study-space-xl);
-  color: var(--ink-muted, #6b635a);
-  text-align: left;
+  margin-bottom: calc(var(--case-study-space-md) + 0.75rem);
+  margin-top: 0;
+  position: relative;
+  display: inline-block;
+  color: var(--ink, #1a1714);
+}
+
+.case-study-gallery-new__title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: var(--accent, #c41e3a);
 }
 
 /* Rows container - no box, images breathe on cream background */

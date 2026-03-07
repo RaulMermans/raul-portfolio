@@ -1700,7 +1700,7 @@ html.homepage .footer {
 .section-card__content {
   position: relative;
   z-index: 2;
-  padding: var(--space-7);
+  padding: var(--space-7) var(--space-7) var(--space-8) var(--space-7);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1753,7 +1753,7 @@ html.homepage .footer {
   text-transform: lowercase;
   color: rgba(255,255,255,0.6);
   margin-top: var(--space-4);
-  padding: var(--space-3) 0;
+  padding: var(--space-3) 0 var(--space-5) 0;
   transition: color 0.3s var(--ease), gap 0.3s var(--ease);
   position: relative;
 }
@@ -3004,19 +3004,31 @@ html.homepage .footer {
   line-height: 1.7;
   color: var(--ink-soft);
   max-width: 48ch;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
-.service__bracket {
+/* Corner: bracket + CTA fixed together in bottom-left */
+.service__corner {
   position: absolute;
   bottom: 1.5rem;
   left: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity var(--transition-base) var(--ease);
+}
+
+.service__bracket {
+  flex-shrink: 0;
   width: 20px;
   height: 20px;
   border-left: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  opacity: 0;
-  transition: opacity var(--transition-base) var(--ease);
+}
+
+.service__corner .btn--arrow {
+  margin: 0;
 }
 
 .service:hover .service__number-small,
@@ -3029,7 +3041,7 @@ html.homepage .footer {
   visibility: visible;
 }
 
-.service:hover .service__bracket {
+.service:hover .service__corner {
   opacity: 1;
 }
 
@@ -3092,6 +3104,14 @@ html.homepage .footer {
 
   .service__bracket {
     display: none;
+  }
+
+  .service__corner {
+    opacity: 1;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 1.5rem;
   }
 
   .service__footer {
