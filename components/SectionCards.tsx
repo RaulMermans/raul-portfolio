@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Tilt from 'react-parallax-tilt'
 import Reveal from './Reveal'
 
 const sections = [
@@ -59,43 +60,52 @@ export default function SectionCards() {
     <section id="work" className="section-cards-container">
       <div className="section-cards-grid">
         {sections.map((section, idx) => (
-          <Link
+          <Tilt
             key={section.id}
-            href={section.href}
-            className="section-card"
-            data-card={section.id}
-            aria-labelledby={`section-${idx + 1}-title`}
-            prefetch={true}
-            onMouseEnter={() => router.prefetch(section.href)}
+            tiltMaxAngleX={4}
+            tiltMaxAngleY={4}
+            perspective={1000}
+            scale={1.02}
+            transitionSpeed={2500}
+            className="section-card-tilt-wrapper"
           >
-            <div className="section-card__image-wrapper">
-              <Image
-                src={section.image}
-                alt={`${section.title} background`}
-                fill
-                priority={idx === 0}
-                loading={idx === 0 ? undefined : 'lazy'}
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                style={{ objectFit: 'cover' }}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-              />
-              <div className="section-card__overlay"></div>
-            </div>
-            <div className="section-card__content">
-              <span className="section-card__index" aria-hidden="true">{section.index}</span>
-              <h2 id={`section-${idx + 1}-title`} className="section-card__title">
-                {section.title}
-              </h2>
-              <p className="section-card__desc reveal reveal-delay-1">
-                {section.description}
-              </p>
-              <span className="section-card__cta reveal reveal-delay-2">
-                explore <span>→</span>
-              </span>
-            </div>
-          </Link>
+            <Link
+              href={section.href}
+              className="section-card"
+              data-card={section.id}
+              aria-labelledby={`section-${idx + 1}-title`}
+              prefetch={true}
+              onMouseEnter={() => router.prefetch(section.href)}
+            >
+              <div className="section-card__image-wrapper">
+                <Image
+                  src={section.image}
+                  alt={`${section.title} background`}
+                  fill
+                  priority={idx === 0}
+                  loading={idx === 0 ? undefined : 'lazy'}
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  style={{ objectFit: 'cover' }}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                />
+                <div className="section-card__overlay"></div>
+              </div>
+              <div className="section-card__content">
+                <span className="section-card__index" aria-hidden="true">{section.index}</span>
+                <h2 id={`section-${idx + 1}-title`} className="section-card__title">
+                  {section.title}
+                </h2>
+                <p className="section-card__desc reveal reveal-delay-1">
+                  {section.description}
+                </p>
+                <span className="section-card__cta reveal reveal-delay-2">
+                  explore <span>→</span>
+                </span>
+              </div>
+            </Link>
+          </Tilt>
         ))}
       </div>
     </section>

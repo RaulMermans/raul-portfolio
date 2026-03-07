@@ -21,10 +21,18 @@
   /* Case Studies Project Colors */
   --color-0: #6B8A9A;
   --color-1: #9A7B6B;
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-md: 1.125rem;
+  /* Fluid Typography 
+     Min viewport: 320px, Max viewport: 1200px 
+     See: https://fluid-typography.netlify.app/ */
+  --text-xs: clamp(0.75rem, 0.7303rem + 0.0987vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.8355rem + 0.1974vw, 1rem);
+  --text-base: clamp(1rem, 0.9605rem + 0.1974vw, 1.125rem);
+  --text-md: clamp(1.125rem, 1.0461rem + 0.3947vw, 1.375rem);
+  --text-lg: clamp(1.5rem, 1.3421rem + 0.7895vw, 2rem);
+  --text-xl: clamp(2rem, 1.7632rem + 1.1842vw, 2.75rem);
+  --text-2xl: clamp(2.5rem, 2.1842rem + 1.5789vw, 3.5rem);
+  --text-3xl: clamp(3.5rem, 2.8684rem + 3.1579vw, 5.5rem);
+  --text-hero: clamp(4rem, 2.8947rem + 5.5263vw, 7.5rem);
   --tracking-tight: -0.02em;
   --tracking-wide: 0.1em;
   --tracking-wider: 0.2em;

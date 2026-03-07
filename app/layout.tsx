@@ -5,10 +5,18 @@ import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import ScrollProgress from '@/components/ScrollProgress'
 import StructuredData from '@/components/StructuredData'
+import dynamic from 'next/dynamic'
 // Critical bots - loaded immediately (error handling, security, env validation)
 import '@/lib/error-bot'
 import '@/lib/security-bot'
 import '@/lib/env-validation'
+
+const SmoothScroll = dynamic(() => import('@/components/SmoothScroll'), {
+  ssr: false
+})
+const CustomCursor = dynamic(() => import('@/components/CustomCursor'), {
+  ssr: false
+})
 
 // Non-critical bots - lazy loaded on client after page load
 // This improves initial bundle size and Time to Interactive
@@ -121,7 +129,10 @@ export default function RootLayout({
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />
         <StructuredData type="Service" />
-        <PageTransition>{children}</PageTransition>
+        <CustomCursor />
+        <SmoothScroll>
+          <PageTransition>{children}</PageTransition>
+        </SmoothScroll>
       </body>
     </html>
   )

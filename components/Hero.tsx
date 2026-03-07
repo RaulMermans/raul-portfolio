@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import MagneticButton from './MagneticButton'
 import { HERO_MAGNETIC_MAX_DISTANCE, HERO_MAGNETIC_STRENGTH, HERO_SCALE_FACTOR } from '@/lib/constants'
 
 // Dynamic import for heavy animation component - improves INP
-const HeroBackground = dynamic(() => import('./HeroBackground'), { 
+const HeroBackground = dynamic(() => import('./HeroBackground'), {
   ssr: false,
   loading: () => <div className="hero-background" aria-hidden="true" />
 })
@@ -16,7 +17,15 @@ export default function Hero() {
   const primaryCtaRef = useRef<HTMLDivElement>(null)
   const secondaryCtaRef = useRef<HTMLDivElement>(null)
 
+  const [greeting, setGreeting] = useState('WELCOME')
+
   useEffect(() => {
+    // Set greeting based on local time
+    const hour = new Date().getHours()
+    if (hour < 12) setGreeting('GOOD MORNING')
+    else if (hour < 18) setGreeting('GOOD AFTERNOON')
+    else setGreeting('GOOD EVENING')
+
     const hero = heroRef.current
     if (!hero) return
 
@@ -25,7 +34,7 @@ export default function Hero() {
 
     let ticking = false
     let cachedRect: DOMRect | null = null
-    
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -40,7 +49,7 @@ export default function Hero() {
             const distanceX = e.clientX - centerX
             const distanceY = e.clientY - centerY
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-            
+
             if (distance < HERO_MAGNETIC_MAX_DISTANCE) {
               const strength = (1 - distance / HERO_MAGNETIC_MAX_DISTANCE) * HERO_MAGNETIC_STRENGTH
               primaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(${HERO_SCALE_FACTOR})`
@@ -56,7 +65,7 @@ export default function Hero() {
             const distanceX = e.clientX - centerX
             const distanceY = e.clientY - centerY
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-            
+
             if (distance < HERO_MAGNETIC_MAX_DISTANCE) {
               const strength = (1 - distance / HERO_MAGNETIC_MAX_DISTANCE) * HERO_MAGNETIC_STRENGTH
               secondaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(${HERO_SCALE_FACTOR})`
@@ -70,14 +79,14 @@ export default function Hero() {
         ticking = true
       }
     }
-    
+
     const handleResize = () => {
       cachedRect = null
     }
 
     hero.addEventListener('mousemove', handleMouseMove, { passive: true })
     window.addEventListener('resize', handleResize, { passive: true })
-    
+
     return () => {
       hero.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('resize', handleResize)
@@ -97,15 +106,15 @@ export default function Hero() {
   }
 
   return (
-    <section 
-      ref={heroRef} 
-      className="hero" 
+    <section
+      ref={heroRef}
+      className="hero"
       aria-labelledby="hero-title"
     >
       <HeroBackground />
       <div className="hero__content">
-        <p className="hero__vibe-coded reveal">THIS WEBSITE WAS FULLY VIBE CODED</p>
-        
+        <p className="hero__vibe-coded reveal">{greeting}</p>
+
         {/* Name display - visual treatment. Not aria-hidden so screen readers announce it.
             The H1 provides the full accessible label combining name + services. */}
         <p className="hero__name" aria-hidden="true">
@@ -124,7 +133,7 @@ export default function Hero() {
             ))}
           </span>
         </p>
-        
+
         {/* SEO-optimized H1 — accessible label includes the name so screen readers
             get "Raúl Mermans — Photography · Brand Identity · AI-Powered Creatives" */}
         <h1
@@ -138,30 +147,30 @@ export default function Hero() {
           <span className="hero__service-divider" aria-hidden="true">·</span>
           <span className="hero__service" aria-hidden="true">AI-Powered Creatives</span>
         </h1>
-        
+
         <div className="hero__cta-group reveal reveal-delay-2">
-          <div ref={primaryCtaRef} className="hero__cta-wrapper">
-            <Link 
-              href="/#work" 
+          <MagneticButton ref={primaryCtaRef} className="hero__cta-wrapper">
+            <Link
+              href="/#work"
               className="hero__cta hero__cta--primary"
             >
               <span>View Work</span>
               <span className="hero__cta-arrow">→</span>
             </Link>
-          </div>
-          <div ref={secondaryCtaRef} className="hero__cta-wrapper">
-            <Link 
-              href="/#contact" 
+          </MagneticButton>
+          <MagneticButton ref={secondaryCtaRef} className="hero__cta-wrapper" intensity={20}>
+            <Link
+              href="/#contact"
               className="hero__cta hero__cta--secondary"
             >
               <span>Get in Touch</span>
             </Link>
-          </div>
+          </MagneticButton>
         </div>
       </div>
-      
-      <button 
-        className="hero__scroll" 
+
+      <button
+        className="hero__scroll"
         aria-label="Scroll to explore"
         onClick={handleScrollToWork}
       >
