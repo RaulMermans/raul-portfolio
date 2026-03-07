@@ -4,18 +4,11 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import Header from '@/components/Header'
-import { useState } from 'react'
-import { caseStudies, MOODS } from '@/data/case-studies'
+import { caseStudies } from '@/data/case-studies'
 
 export default function CaseStudiesPage() {
   const router = useRouter()
-  const [selectedMood, setSelectedMood] = useState<string>('All')
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
-
-  const filteredStudies = selectedMood === 'All'
-    ? caseStudies
-    : caseStudies.filter((s) => s.mood?.includes(selectedMood))
 
   // Simple reveal animation on scroll
   useEffect(() => {
@@ -30,7 +23,6 @@ export default function CaseStudiesPage() {
       { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
     )
 
-    // Re-run when filter changes - refs are populated after render
     const timer = setTimeout(() => {
       sectionsRef.current.forEach((section) => {
         if (section) {
@@ -44,27 +36,12 @@ export default function CaseStudiesPage() {
       clearTimeout(timer)
       observer.disconnect()
     }
-  }, [filteredStudies])
+  }, [])
 
   return (
     <>
-      <Header />
-
       <main id="main-content" role="main" className="case-studies-scroll">
-        <div className="case-studies-mood-filter" role="group" aria-label="Filter by mood">
-          {MOODS.map((mood) => (
-            <button
-              key={mood}
-              type="button"
-              className={`case-studies-mood-btn ${selectedMood === mood ? 'active' : ''}`}
-              onClick={() => setSelectedMood(mood)}
-              aria-pressed={selectedMood === mood}
-            >
-              {mood}
-            </button>
-          ))}
-        </div>
-        {filteredStudies.map((study, index) => (
+        {caseStudies.map((study, index) => (
           <section
             key={study.id}
             ref={(el) => { sectionsRef.current[index] = el }}

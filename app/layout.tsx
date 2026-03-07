@@ -1,22 +1,13 @@
 import type { Metadata } from 'next'
-import { Bebas_Neue, DM_Sans, Space_Mono } from 'next/font/google'
+import { Bebas_Neue, DM_Sans, Space_Mono, Source_Serif_4 } from 'next/font/google'
 import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
-import ScrollProgress from '@/components/ScrollProgress'
 import StructuredData from '@/components/StructuredData'
-import dynamic from 'next/dynamic'
 // Critical bots - loaded immediately (error handling, security, env validation)
 import '@/lib/error-bot'
 import '@/lib/security-bot'
 import '@/lib/env-validation'
-
-const SmoothScroll = dynamic(() => import('@/components/SmoothScroll'), {
-  ssr: false
-})
-const CustomCursor = dynamic(() => import('@/components/CustomCursor'), {
-  ssr: false
-})
 
 // Non-critical bots - lazy loaded on client after page load
 // This improves initial bundle size and Time to Interactive
@@ -42,6 +33,13 @@ const spaceMono = Space_Mono({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-mono',
+  display: 'swap',
+})
+
+const sourceSerif4 = Source_Serif_4({
+  weight: ['400', '600'],
+  subsets: ['latin'],
+  variable: '--font-reading',
   display: 'swap',
 })
 
@@ -117,7 +115,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         {/* Preload hints removed - using Next.js Image priority prop instead for better optimization */}
       </head>
-      <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}>
+      <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
@@ -125,14 +123,10 @@ export default function RootLayout({
           <GoogleAnalytics />
         </Suspense>
         <div className="grain" aria-hidden="true"></div>
-        <ScrollProgress />
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />
         <StructuredData type="Service" />
-        <CustomCursor />
-        <SmoothScroll>
-          <PageTransition>{children}</PageTransition>
-        </SmoothScroll>
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   )

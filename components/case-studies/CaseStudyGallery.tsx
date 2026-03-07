@@ -9,48 +9,65 @@ interface CaseStudyGalleryProps {
   accentColor?: string
 }
 
-export default function CaseStudyGallery({ rows, accentColor }: CaseStudyGalleryProps) {
+export default function CaseStudyGallery({ rows }: CaseStudyGalleryProps) {
   const [hiddenImages, setHiddenImages] = useState<Set<string>>(new Set())
 
   const handleImageError = (src: string) => {
     setHiddenImages(prev => new Set(prev).add(src))
   }
 
-  // Flatten all images from rows and filter out invalid ones
-  const allImages = rows
-    .flatMap(row => row.items)
-    .filter(image => image.src && !hiddenImages.has(image.src))
+  // Filter rows to only those with valid images
+  const validRows = rows
+    .map(row => ({
+      ...row,
+      items: row.items.filter(img => img.src && !hiddenImages.has(img.src)),
+    }))
+    .filter(row => row.items.length > 0)
 
-  // Don't render gallery if no valid images
-  if (allImages.length === 0) {
+  if (validRows.length === 0) {
     return null
   }
+
+  let imageIndex = 0
 
   return (
     <section className="case-study-gallery-new">
       <div className="case-study-gallery-new__container">
         <h2 className="case-study-gallery-new__title reveal">Gallery</h2>
-        <div className="case-study-gallery-new__grid">
-          {allImages.map((image, index) => (
+        <div className="case-study-gallery-new__rows">
+          {validRows.map((row, rowIndex) => (
             <div
-              key={`${image.src}-${index}`}
-              className="case-study-gallery-new__item reveal"
-              style={{ 
-                animationDelay: `${index * 0.1}s`,
-                position: 'relative'
-              }}
+              key={rowIndex}
+              className={`case-study-gallery-new__row case-study-gallery-new__row--${row.layout}`}
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                quality={image.quality ?? 90}
-                sizes={image.sizes ?? "(max-width: 768px) 100vw, 50vw"}
-                style={{ objectFit: 'cover' }}
-                className="case-study-gallery-new__img"
-                loading={index < 4 ? 'eager' : 'lazy'}
-                onError={() => handleImageError(image.src)}
-              />
+              {row.items.map((image, itemIndex) => {
+                const idx = imageIndex++
+                return (
+                  <div
+                    key={`${image.src}-${idx}`}
+                    className="case-study-gallery-new__item reveal"
+                    style={{ animationDelay: `${idx * 0.08}s` }}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      quality={image.quality ?? 90}
+                      sizes={
+                        row.layout === '3-col'
+                          ? '(max-width: 768px) 100vw, 33vw'
+                          : row.layout === 'asymmetric'
+                            ? '(max-width: 768px) 100vw, 50vw'
+                            : '(max-width: 768px) 100vw, 50vw'
+                      }
+                      style={{ objectFit: 'cover' }}
+                      className="case-study-gallery-new__img"
+                      loading={idx < 4 ? 'eager' : 'lazy'}
+                      onError={() => handleImageError(image.src)}
+                    />
+                  </div>
+                )
+              })}
             </div>
           ))}
         </div>
