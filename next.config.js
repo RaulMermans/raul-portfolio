@@ -16,7 +16,7 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     // Enable image optimization - reasonable cache TTL with revalidation
-    minimumCacheTTL: 60, // 60 seconds - allows updates while maintaining performance
+    minimumCacheTTL: 86400, // 24 hours — portfolio images rarely change; this dramatically reduces sharp re-processing and memory pressure
     dangerouslyAllowSVG: false,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },

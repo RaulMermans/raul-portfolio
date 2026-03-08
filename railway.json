@@ -5,9 +5,8 @@
     "buildCommand": "rm -rf .next 2>/dev/null || true && npm config set cache /tmp/.npm && npm install --no-audit && npm run build"
   },
   "deploy": {
-    "startCommand": "npm start",
+    "startCommand": "NODE_OPTIONS='--max-old-space-size=512' npm start",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
 }
-
