@@ -5,11 +5,16 @@
 
 /* Variables - Meaningful Spacing System */
 :root {
-  --case-study-space-xl: clamp(4rem, 8vw, 6rem); /* Major section breaks */
-  --case-study-space-lg: clamp(3rem, 6vw, 4.5rem); /* Section padding */
-  --case-study-space-md: clamp(2rem, 4vw, 3rem); /* Content spacing */
-  --case-study-space-sm: clamp(1.5rem, 3vw, 2rem); /* Element spacing */
-  --case-study-space-xs: clamp(1rem, 2vw, 1.25rem); /* Tight spacing */
+  --case-study-space-xl: clamp(4rem, 8vw, 6rem);
+  /* Major section breaks */
+  --case-study-space-lg: clamp(3rem, 6vw, 4.5rem);
+  /* Section padding */
+  --case-study-space-md: clamp(2rem, 4vw, 3rem);
+  /* Content spacing */
+  --case-study-space-sm: clamp(1.5rem, 3vw, 2rem);
+  /* Element spacing */
+  --case-study-space-xs: clamp(1rem, 2vw, 1.25rem);
+  /* Tight spacing */
   --case-study-container: min(95vw, 1600px);
   --case-study-transition: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -128,12 +133,10 @@ main.case-study-page-new {
 .case-study-hero-new__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.7) 100%);
   z-index: 1;
 }
 
@@ -162,6 +165,7 @@ main.case-study-page-new {
   text-transform: uppercase;
   color: white;
   margin-bottom: var(--case-study-space-sm);
+  white-space: nowrap;
 }
 
 .case-study-hero-new__title {
@@ -206,6 +210,7 @@ main.case-study-page-new {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: var(--case-study-space-xs);
+  white-space: nowrap;
 }
 
 .case-study-hero-new__description {
@@ -242,8 +247,15 @@ main.case-study-page-new {
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(10px); }
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
 }
 
 /* =============================================
@@ -257,13 +269,15 @@ main.case-study-page-new {
 }
 
 /* When meta is followed by light section (same background), reduce gap */
-.case-study-meta-new + .case-study-section-new--light {
-  padding-top: var(--case-study-space-sm); /* Reduced from md */
-  margin-top: 0; /* Ensure no additional margin */
+.case-study-meta-new+.case-study-section-new--light {
+  padding-top: var(--case-study-space-sm);
+  /* Reduced from md */
+  margin-top: 0;
+  /* Ensure no additional margin */
 }
 
 /* If the section after meta is empty, ensure no gap */
-.case-study-meta-new + .case-study-section-new:empty {
+.case-study-meta-new+.case-study-section-new:empty {
   display: none;
   padding: 0;
   margin: 0;
@@ -298,6 +312,7 @@ main.case-study-page-new {
   font-size: 1rem;
   color: var(--ink, #1a1714);
   line-height: 1.5;
+  white-space: nowrap;
 }
 
 /* =============================================
@@ -469,7 +484,8 @@ main.case-study-page-new {
   overflow: hidden;
   background: var(--cream-dark, #ddd5c8);
   border-radius: 8px;
-  min-height: auto; /* Removed fixed height - let aspect-ratio handle sizing */
+  min-height: auto;
+  /* Removed fixed height - let aspect-ratio handle sizing */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -746,6 +762,7 @@ main.case-study-page-new {
 }
 
 @media (max-width: 768px) {
+
   .case-study-gallery-new__row--2-col,
   .case-study-gallery-new__row--3-col {
     grid-template-columns: 1fr;
@@ -844,13 +861,27 @@ main.case-study-page-new {
 }
 
 @keyframes bounceHint {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 @keyframes bounceArrow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
 }
 
 /* =============================================
@@ -860,7 +891,8 @@ main.case-study-page-new {
   background: var(--cream, #f5f0eb);
   padding: var(--case-study-space-lg) 2rem;
   position: relative;
-  min-height: auto; /* Removed fixed 60vh to prevent huge gaps */
+  min-height: auto;
+  /* Removed fixed 60vh to prevent huge gaps */
   display: flex;
   align-items: center;
 }
@@ -880,7 +912,8 @@ main.case-study-page-new {
 
 /* Preview Image with Peek */
 .case-study-next-new__preview {
-  margin-bottom: var(--case-study-space-sm); /* Reduced from md */
+  margin-bottom: var(--case-study-space-sm);
+  /* Reduced from md */
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -1010,8 +1043,10 @@ main.case-study-page-new {
 /* Mobile: Reduce animation intensity to prevent bouncing */
 @media (max-width: 768px) {
   .reveal {
-    transform: translateY(20px); /* Smaller initial offset */
-    transition: opacity 0.4s ease, transform 0.4s ease; /* Faster transition */
+    transform: translateY(20px);
+    /* Smaller initial offset */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    /* Faster transition */
   }
 }
 
@@ -1022,7 +1057,7 @@ main.case-study-page-new {
     transform: none;
     transition: none;
   }
-  
+
   .reveal.visible {
     opacity: 1;
     transform: none;
@@ -1072,7 +1107,8 @@ main.case-study-page-new {
   }
 
   .case-study-hero-new__title {
-    font-size: clamp(2rem, 8vw, 2.5rem); /* Better scaling */
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    /* Better scaling */
   }
 
   /* Ensure text is readable on mobile */
@@ -1080,7 +1116,8 @@ main.case-study-page-new {
   .case-study-challenge__text,
   .case-study-approach__text,
   .case-study-results__text {
-    font-size: clamp(1rem, 4vw, 1.125rem); /* Minimum 16px */
+    font-size: clamp(1rem, 4vw, 1.125rem);
+    /* Minimum 16px */
     line-height: 1.7;
   }
 
@@ -1111,14 +1148,14 @@ main.case-study-page-new {
 
 /* Desktop-specific spacing adjustments to eliminate gaps */
 @media (min-width: 1024px) {
-  .case-study-meta-new + .case-study-section-new--light {
-    padding: var(--case-study-space-xs) 2rem var(--case-study-space-md) 2rem; /* Override entire padding - minimal top */
+  .case-study-meta-new+.case-study-section-new--light {
+    padding: var(--case-study-space-xs) 2rem var(--case-study-space-md) 2rem;
+    /* Override entire padding - minimal top */
     margin-top: 0;
   }
-  
+
   .case-study-meta-new {
-    padding-bottom: var(--case-study-space-xs); /* Minimal bottom padding on desktop */
+    padding-bottom: var(--case-study-space-xs);
+    /* Minimal bottom padding on desktop */
   }
 }
-
-
