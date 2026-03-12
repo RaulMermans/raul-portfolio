@@ -6,6 +6,7 @@ const withBundleAnalyzer = process.env.ANALYZE === 'true'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ['swiper'],
   swcMinify: true,
   // Use default output (not static export)
   // Note: Client components are already dynamic by default
