@@ -1639,44 +1639,45 @@ html.homepage .footer {
 .section-cards-container {
   position: relative;
   background: var(--cream);
-  padding: var(--space-12) 0 var(--space-10);
+  padding: var(--space-16) 0 var(--space-12);
   width: 100%;
   overflow: hidden;
+  perspective: 1200px;
 }
 
-/* Gradient fade masks on edges */
+/* Gradient fade masks on edges — wider for depth effect */
 .section-cards-container::before,
 .section-cards-container::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80px;
+  width: 120px;
   z-index: 3;
   pointer-events: none;
 }
 
 .section-cards-container::before {
   left: 0;
-  background: linear-gradient(to right, var(--cream), transparent);
+  background: linear-gradient(to right, var(--cream) 20%, transparent);
 }
 
 .section-cards-container::after {
   right: 0;
-  background: linear-gradient(to left, var(--cream), transparent);
+  background: linear-gradient(to left, var(--cream) 20%, transparent);
 }
 
 .section-cards-grid {
   display: flex;
-  gap: var(--space-6);
+  gap: var(--space-5);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: var(--space-4) var(--section-padding);
-  /* Hide scrollbar but keep functionality */
+  padding: var(--space-8) var(--section-padding);
   scrollbar-width: none;
   -ms-overflow-style: none;
+  transform-style: preserve-3d;
 }
 
 .section-cards-grid::-webkit-scrollbar {
@@ -1685,32 +1686,36 @@ html.homepage .footer {
 
 .section-card-tilt-wrapper {
   flex: 0 0 auto;
-  width: min(420px, 82vw);
+  width: min(440px, 82vw);
   scroll-snap-align: center;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-  will-change: transform, opacity;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, filter 0.5s ease;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
 }
 
-/* Section Card - Redesigned for Normal Scroll */
+/* Section Card - 3D Carousel */
 .section-card {
   position: relative;
   display: flex;
   flex-direction: column;
   background: var(--ink);
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  height: 560px;
-  min-height: 560px;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
+  height: 580px;
+  min-height: 580px;
   will-change: transform;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 40px rgba(26, 23, 20, 0.12);
 }
 
 .section-card:hover,
 .section-card:focus-within {
-  transform: translateY(-10px) scale(1.01);
-  box-shadow: 0 24px 72px rgba(26, 23, 20, 0.35);
+  transform: translateY(-12px) scale(1.015);
+  box-shadow: 0 32px 80px rgba(26, 23, 20, 0.35);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -2089,19 +2094,28 @@ html.homepage .footer {
 /* Section Cards Responsive */
 @media (max-width: 1200px) {
   .section-card-tilt-wrapper {
-    width: min(380px, 80vw);
+    width: min(400px, 80vw);
   }
 
   .section-card {
-    height: 520px;
-    min-height: 520px;
+    height: 540px;
+    min-height: 540px;
   }
 }
 
 @media (max-width: 768px) {
+  .section-cards-container {
+    padding: var(--space-10) 0 var(--space-8);
+  }
+
+  .section-cards-container::before,
+  .section-cards-container::after {
+    width: 48px;
+  }
+
   .section-cards-grid {
     gap: var(--space-4);
-    padding: var(--space-3) var(--space-4);
+    padding: var(--space-4) var(--space-4);
   }
 
   .section-card-tilt-wrapper {
@@ -2109,8 +2123,9 @@ html.homepage .footer {
   }
 
   .section-card {
-    height: 460px;
-    min-height: 460px;
+    height: 480px;
+    min-height: 480px;
+    border-radius: 14px;
   }
 
   .section-card__image-wrapper {
@@ -2153,11 +2168,6 @@ html.homepage .footer {
   }
 
   .section-card__desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     font-size: 0.875rem;
     opacity: 0.85;
   }

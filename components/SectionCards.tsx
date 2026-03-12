@@ -4,7 +4,6 @@ import { useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import Tilt from 'react-parallax-tilt'
 
 const sections = [
   {
@@ -18,9 +17,8 @@ const sections = [
   {
     id: 'apps',
     index: '02',
-    eyebrow: 'Digital products',
     title: 'Apps',
-    description: 'Productivity tools and vibe-coded apps — built fast with AI, designed to feel intentional. From idea to launch-ready product in record time.',
+    description: 'Productivity tools and vibe-coded apps — built fast with AI, designed to feel intentional. Each product moves from idea to launch-ready experience at full speed without cutting corners.',
     href: '/apps',
     image: '/images/sections/apps-bg.webp',
   },
@@ -46,40 +44,58 @@ export default function SectionCards() {
   const router = useRouter()
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  const applyScaling = useCallback(() => {
+  const applyDepth = useCallback(() => {
     const container = scrollRef.current
     if (!container) return
+
     const containerRect = container.getBoundingClientRect()
     const centerX = containerRect.left + containerRect.width / 2
     const wrappers = container.querySelectorAll<HTMLElement>('.section-card-tilt-wrapper')
+
     wrappers.forEach((wrapper) => {
       const rect = wrapper.getBoundingClientRect()
       const cardCenterX = rect.left + rect.width / 2
-      const distance = Math.abs(centerX - cardCenterX)
+      const offset = cardCenterX - centerX
       const maxDist = containerRect.width / 2
-      const ratio = Math.min(distance / maxDist, 1)
-      // Very subtle: 1.0 at center, 0.965 at edges
-      const scale = 1 - ratio * 0.035
-      const opacity = 1 - ratio * 0.15
-      wrapper.style.transform = `scale(${scale})`
+      const ratio = Math.min(Math.abs(offset) / maxDist, 1)
+      // Signed ratio for directional rotation
+      const signedRatio = Math.min(Math.max(offset / maxDist, -1), 1)
+
+      // Scale: 1.05 at center → 0.88 at far edges
+      const scale = 1.05 - ratio * 0.17
+      // Opacity: 1 at center → 0.5 at far edges
+      const opacity = 1 - ratio * 0.5
+      // Y-axis rotation: 0° at center → ±12° at edges (cards turn away)
+      const rotateY = signedRatio * -12
+      // Vertical shift: center card lifts slightly
+      const translateY = ratio * 16
+      // Z translation: push side cards back
+      const translateZ = -ratio * 80
+      // Blur on distant cards
+      const blur = ratio * 2
+
+      wrapper.style.transform = `perspective(1200px) rotateY(${rotateY}deg) translateY(${translateY}px) translateZ(${translateZ}px) scale(${scale})`
       wrapper.style.opacity = `${opacity}`
+      wrapper.style.filter = blur > 0.3 ? `blur(${blur}px)` : 'none'
+      wrapper.style.zIndex = `${Math.round((1 - ratio) * 10)}`
     })
   }, [])
 
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
-    applyScaling()
-    container.addEventListener('scroll', applyScaling, { passive: true })
-    window.addEventListener('resize', applyScaling, { passive: true })
+
+    applyDepth()
+    container.addEventListener('scroll', applyDepth, { passive: true })
+    window.addEventListener('resize', applyDepth, { passive: true })
+
     return () => {
-      container.removeEventListener('scroll', applyScaling)
-      window.removeEventListener('resize', applyScaling)
+      container.removeEventListener('scroll', applyDepth)
+      window.removeEventListener('resize', applyDepth)
     }
-  }, [applyScaling])
+  }, [applyDepth])
 
   useEffect(() => {
-    // Set up reveal animations — unobserve after visible to avoid wasted callbacks
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -93,7 +109,6 @@ export default function SectionCards() {
     )
 
     document.querySelectorAll('.section-card').forEach((el) => revealObserver.observe(el))
-
     return () => revealObserver.disconnect()
   }, [])
 
@@ -101,15 +116,7 @@ export default function SectionCards() {
     <section id="work" className="section-cards-container">
       <div className="section-cards-grid" ref={scrollRef}>
         {sections.map((section, idx) => (
-          <Tilt
-            key={section.id}
-            tiltMaxAngleX={4}
-            tiltMaxAngleY={4}
-            perspective={1000}
-            scale={1.02}
-            transitionSpeed={2500}
-            className="section-card-tilt-wrapper"
-          >
+          <div key={section.id} className="section-card-tilt-wrapper">
             <Link
               href={section.href}
               className="section-card"
@@ -173,9 +180,6 @@ export default function SectionCards() {
               </div>
               <div className="section-card__content">
                 <span className="section-card__index" aria-hidden="true">{section.index}</span>
-                {'eyebrow' in section && section.eyebrow ? (
-                  <span className="section-card__eyebrow">{section.eyebrow}</span>
-                ) : null}
                 <h2 id={`section-${idx + 1}-title`} className="section-card__title">
                   {section.title}
                 </h2>
@@ -187,7 +191,7 @@ export default function SectionCards() {
                 </span>
               </div>
             </Link>
-          </Tilt>
+          </div>
         ))}
       </div>
     </section>
