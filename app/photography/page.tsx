@@ -59,16 +59,23 @@ function getAdjacentCategories(current: CategoryType): CategoryType[] {
   return adjacent
 }
 
-// Aspect ratio patterns for masonry variety
+// Editorial aspect ratio patterns — dramatic variety for magazine feel
 const getAspectRatio = (index: number): { width: number; height: number } => {
-  const pattern = index % 4
+  const pattern = index % 6
   switch (pattern) {
-    case 0: return { width: 3, height: 4 }
-    case 1: return { width: 4, height: 5 }
-    case 2: return { width: 1, height: 1 }
-    case 3: return { width: 5, height: 6 }
-    default: return { width: 4, height: 5 }
+    case 0: return { width: 2, height: 3 }   // tall portrait
+    case 1: return { width: 3, height: 2 }   // landscape
+    case 2: return { width: 1, height: 1 }   // square
+    case 3: return { width: 3, height: 4 }   // portrait
+    case 4: return { width: 4, height: 3 }   // wide
+    case 5: return { width: 9, height: 16 }  // ultra-tall editorial
+    default: return { width: 3, height: 4 }
   }
+}
+
+// Featured images that span full width for editorial emphasis
+const isFeaturedImage = (index: number): boolean => {
+  return index === 0 || index === 5 || index === 9
 }
 
 // ALL AVAILABLE IMAGES
@@ -307,19 +314,20 @@ export default function PhotographyPage() {
           {imageItems.map(({ photo, index }) => {
             const aspectRatio = getAspectRatio(index)
             const isLoaded = loadedImages.has(photo.src)
-            
+            const featured = isFeaturedImage(index)
+
             return (
               <div
                 key={`${activeCategory}-${index}`}
-                className={`gallery__item ${isLoaded ? 'loaded' : 'loading'}`}
+                className={`gallery__item ${isLoaded ? 'loaded' : 'loading'}${featured ? ' gallery__item--featured' : ''}`}
                 data-category={activeCategory}
               >
                 <Image
                   src={photo.src}
                   alt={photo.alt}
-                  width={800}
-                  height={Math.round(800 * (aspectRatio.height / aspectRatio.width))}
-                  sizes="(max-width: 767px) 50vw, (max-width: 1023px) 33vw, 25vw"
+                  width={featured ? 1200 : 800}
+                  height={featured ? 800 : Math.round(800 * (aspectRatio.height / aspectRatio.width))}
+                  sizes={featured ? '100vw' : '(max-width: 767px) 100vw, 50vw'}
                   quality={90}
                   loading={index < 4 ? 'eager' : 'lazy'}
                   priority={index < 2}
