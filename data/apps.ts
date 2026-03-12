@@ -64,90 +64,92 @@ export const apps: AppEntry[] = [
     slug: 'overflow',
     href: '/apps/overflow',
     name: 'Overflow',
-    tagline: 'A calmer social planning surface for nights out, shared lists, and group momentum.',
+    tagline: 'A calm performance training journal for iPhone.',
     shortDescription:
-      'Overflow is the first product in the new apps archive: a launch-ready interface system for turning scattered plans, saved spots, and group intent into one elegant flow.',
+      'Overflow is a calm performance journal for iPhone. Track workouts, build routines, and measure progress — without the noise.',
     cardDescription:
-      'Product strategy, interface design, and launch-surface thinking brought into one cinematic app experience.',
+      'Frictionless workout logging, routine planning, and progress tracking designed with restraint and intention.',
     heroStatement:
-      'Overflow turns group chaos into a considered next move, with a product language designed to feel calm, premium, and unmistakably social.',
+      'Train with quiet confidence. Overflow replaces noisy fitness apps with a calm, considered journal that respects your focus.',
     status: 'Featured app',
     launchStage: 'Private beta',
+    icon: '/images/apps/overflow/icon.webp',
     theme: {
-      accent: '#9ad8ca',
-      accentSoft: 'rgba(154, 216, 202, 0.18)',
-      glow: 'rgba(154, 216, 202, 0.26)',
+      accent: '#8B9D83',
+      accentSoft: 'rgba(139, 157, 131, 0.14)',
+      glow: 'rgba(139, 157, 131, 0.22)',
       surface: 'rgba(255, 255, 255, 0.06)',
-      background: '#101716',
+      background: '#F8F7F5',
     },
     metrics: [
-      { label: 'Focus', value: 'Social planning' },
-      { label: 'Platform', value: 'iOS-first concept' },
+      { label: 'Focus', value: 'Performance journal' },
+      { label: 'Platform', value: 'iPhone' },
       { label: 'State', value: 'Private beta' },
     ],
     features: [
       {
-        eyebrow: 'Shared intent',
-        title: 'Plan a night in one calm thread.',
+        eyebrow: 'Effortless input',
+        title: 'Log without thinking twice.',
         description:
-          'Bring people, places, timing, and mood into a single flow instead of splitting the plan across screenshots, chats, and saved links.',
+          'Tap, select, done. Overflow removes every unnecessary step between you and your training data.',
       },
       {
-        eyebrow: 'Curated places',
-        title: 'Save what matters before the moment.',
+        eyebrow: 'Weekly structure',
+        title: 'Routines that hold shape.',
         description:
-          'Collect destinations, notes, and atmosphere cues into reusable lists that make decision-making feel fast and deliberate.',
+          'Build weekly structures that flex when life does. Your program stays visible, not buried in menus.',
       },
       {
-        eyebrow: 'Live momentum',
-        title: 'Move from maybe to yes without friction.',
+        eyebrow: 'Measured progress',
+        title: 'Progress you can feel.',
         description:
-          'Lightweight signals keep the group aligned so the next stop feels obvious instead of negotiated to death.',
+          'Weekly volume, personal records, and streaks that mean something. See your trajectory through clean, calm data.',
       },
       {
-        eyebrow: 'Launch language',
-        title: 'Built like a product, presented like a release.',
+        eyebrow: 'Quiet reflection',
+        title: 'Reflection, not pressure.',
         description:
-          'Overflow is designed as both an app system and a premium landing surface, making the product story feel immediate and real.',
+          'No leaderboards. No guilt mechanics. Just a quiet, considered record of the work you have done.',
       },
     ],
     gallery: [
       {
-        eyebrow: 'Tonight',
-        title: 'A live planning surface with just enough structure.',
+        eyebrow: 'Today',
+        title: 'One calm surface to start every session.',
         description:
-          'See the plan, the energy, and the next action at a glance without losing the editorial feel of the product.',
-        stats: ['Places', 'Timing', 'People'],
+          'Your plan, your streak, and your next set — all on one screen with zero decision fatigue.',
+        stats: ['Plan', 'Streak', 'Next set'],
       },
       {
-        eyebrow: 'Saved',
-        title: 'A personal archive of spots worth returning to.',
+        eyebrow: 'Log',
+        title: 'Every set, tracked with minimal taps.',
         description:
-          'Overflow treats places like a taste library, with enough context to remember why each one belongs in the rotation.',
-        stats: ['Lists', 'Notes', 'Mood'],
+          'Log weight, reps, and rest intuitively. Overflow learns your patterns so each session starts smarter.',
+        stats: ['Weight', 'Reps', 'Rest'],
       },
       {
-        eyebrow: 'Pulse',
-        title: 'Quick context before the group commits.',
+        eyebrow: 'Progress',
+        title: 'See your trajectory, not a dashboard.',
         description:
-          'Surface the right signals fast so the app supports momentum instead of adding more noise to the decision.',
-        stats: ['Signals', 'Context', 'Flow'],
+          'Weekly volume charts, personal records, and consistency streaks presented without noise.',
+        stats: ['Volume', 'Records', 'Trends'],
       },
     ],
     narrative: {
       title: 'Why Overflow exists',
       description:
-        'Most social planning tools feel either chaotic or aggressively utilitarian. Overflow is positioned in the gap between them: a lifestyle-forward product system with product discipline underneath.',
+        'Most training apps feel either chaotic or aggressively gamified. Overflow sits in the gap: a calm, structured journal with product discipline underneath.',
       bullets: [
-        'Editorial framing keeps the product aspirational without drifting into empty concept art.',
-        'The interface system is modular enough to scale into saved places, social loops, and launch-era storytelling.',
-        'The landing experience mirrors the product itself: premium, intentional, and structured for future releases.',
+        'Designed for people who train consistently and want a tool that matches their focus.',
+        'Every screen is built to reduce friction, not add features for the sake of features.',
+        'The interface respects your time — get in, log, and get back to training.',
       ],
     },
     ctas: {
       primary: {
-        label: 'Request access',
-        href: '/#contact',
+        label: 'Join the beta',
+        href: 'https://testflight.apple.com/join/t7jQjsCx',
+        external: true,
       },
       secondary: {
         label: 'View all apps',
