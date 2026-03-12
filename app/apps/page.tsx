@@ -8,7 +8,7 @@ import { apps } from '@/data/apps'
 export const metadata: Metadata = {
   title: 'Apps | Raul M.',
   description:
-    'A curated gallery of digital products, interfaces, and launch-ready app experiences, starting with Overflow.',
+    'A curated gallery of digital products, interfaces, and launch-ready app experiences.',
 }
 
 const AppCoverflowCarousel = dynamic(
@@ -17,7 +17,7 @@ const AppCoverflowCarousel = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex items-center justify-center py-32">
-        <div className="h-[480px] w-[540px] max-w-[86vw] animate-pulse rounded-[32px] bg-white/[0.04]" />
+        <div className="h-[400px] w-[380px] max-w-[80vw] animate-pulse rounded-[24px] bg-white/[0.04]" />
       </div>
     ),
   }
@@ -28,7 +28,7 @@ export default function AppsPage() {
     <>
       <Header />
       <main className="bg-[#060606] text-[#f5f0eb]">
-        {/* Compact hero */}
+        {/* Hero */}
         <section className="relative overflow-hidden">
           <div
             className="absolute inset-0"
@@ -37,7 +37,7 @@ export default function AppsPage() {
                 'radial-gradient(circle at top left, rgba(154, 216, 202, 0.14), transparent 32%), linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 46%)',
             }}
           />
-          <div className="relative mx-auto max-w-[1400px] px-6 pb-12 pt-32 text-center md:px-10 lg:pb-16 lg:pt-40">
+          <div className="relative mx-auto max-w-[1400px] px-6 pb-8 pt-32 text-center md:px-10 lg:pb-12 lg:pt-40">
             <p className="mb-5 text-xs uppercase tracking-[0.35em] text-white/[0.45]">Apps</p>
             <h1
               className="mx-auto max-w-4xl text-[clamp(3.5rem,8vw,7rem)] uppercase leading-[0.88] text-[#f5f0eb]"

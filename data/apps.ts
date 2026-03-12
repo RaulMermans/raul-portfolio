@@ -46,6 +46,7 @@ export interface AppEntry {
   heroStatement: string
   status: string
   launchStage: string
+  icon?: string
   theme: AppTheme
   metrics: AppMetric[]
   features: AppFeature[]

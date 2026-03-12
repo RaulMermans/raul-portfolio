@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────
-   Apps Coverflow Carousel
+   Apps Coverflow Carousel — Tile Style
    ─────────────────────────────────────────── */
 
 .apps-coverflow {
@@ -8,31 +8,33 @@
 }
 
 .apps-coverflow .swiper-wrapper {
-  align-items: center;
+  align-items: stretch;
 }
 
 /* Slide sizing */
 .apps-coverflow .swiper-slide {
-  width: 540px;
-  max-width: 86vw;
-  border-radius: 32px;
-  transition: opacity 0.5s ease, filter 0.5s ease;
+  width: 380px;
+  max-width: 80vw;
+  height: auto;
+  border-radius: 24px;
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
 }
 
-/* Active (center) slide */
+/* Active (center) slide — big and vivid */
 .apps-coverflow .swiper-slide-active {
   opacity: 1;
   filter: none;
   z-index: 2;
+  transform: scale(1.08);
 }
 
-/* Inactive (side) slides */
+/* Inactive (side) slides — faded and receding */
 .apps-coverflow .swiper-slide:not(.swiper-slide-active) {
-  opacity: 0.38;
-  filter: brightness(0.6) saturate(0.45);
+  opacity: 0.35;
+  filter: brightness(0.55) saturate(0.4);
 }
 
-/* Pagination dots — dark theme */
+/* Pagination dots */
 .apps-coverflow .swiper-pagination {
   position: relative;
   margin-top: 32px;
@@ -51,10 +53,16 @@
   transform: scale(1.3);
 }
 
+/* Hover glow on active tile */
+.apps-coverflow .swiper-slide-active a:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--tile-accent, rgba(255, 255, 255, 0.05));
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .apps-coverflow .swiper-slide {
-    width: 480px;
+    width: 340px;
   }
 }
 
@@ -64,7 +72,11 @@
   }
 
   .apps-coverflow .swiper-slide {
-    width: 92vw;
+    width: 85vw;
+  }
+
+  .apps-coverflow .swiper-slide-active {
+    transform: scale(1.02);
   }
 
   .apps-coverflow .swiper-pagination {

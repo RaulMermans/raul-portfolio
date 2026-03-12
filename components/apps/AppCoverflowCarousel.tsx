@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow, Pagination, A11y } from 'swiper/modules'
-import type { AppEntry } from '@/data/apps'
-import AppCoverflowSlide from './AppCoverflowSlide'
 import Link from 'next/link'
+import Image from 'next/image'
+import type { CSSProperties } from 'react'
+import type { AppEntry } from '@/data/apps'
 
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
@@ -18,7 +19,9 @@ interface AppCoverflowCarouselProps {
 
 export default function AppCoverflowCarousel({ apps }: AppCoverflowCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0)
-  const hasEnoughForLoop = apps.length >= 3
+
+  // Build slide list: real apps + placeholders to ensure enough for loop
+  const placeholders = Math.max(0, 3 - apps.length)
 
   return (
     <div className="apps-coverflow-wrapper">
@@ -29,11 +32,11 @@ export default function AppCoverflowCarousel({ apps }: AppCoverflowCarouselProps
         centeredSlides
         slidesPerView="auto"
         initialSlide={0}
-        loop={hasEnoughForLoop}
+        loop={apps.length + placeholders >= 3}
         coverflowEffect={{
-          rotate: 6,
+          rotate: 4,
           stretch: 0,
-          depth: 220,
+          depth: 200,
           modifier: 1,
           slideShadows: false,
         }}
@@ -43,34 +46,102 @@ export default function AppCoverflowCarousel({ apps }: AppCoverflowCarouselProps
       >
         {apps.map((app, idx) => (
           <SwiperSlide key={app.slug}>
-            <AppCoverflowSlide app={app} isActive={activeIndex === idx} />
+            <AppTileSlide app={app} isActive={activeIndex === idx} />
           </SwiperSlide>
         ))}
 
-        {/* Placeholder slide when fewer than 3 apps */}
-        {apps.length < 3 ? (
-          <SwiperSlide>
-            <div className="flex h-full flex-col items-center justify-center rounded-[32px] border border-dashed border-white/[0.14] bg-white/[0.02] px-8 py-16 text-center text-white">
-              <p className="text-[0.6rem] uppercase tracking-[0.3em] text-white/[0.38]">Coming soon</p>
-              <h3
-                className="mt-4 max-w-sm text-[clamp(2rem,4vw,3rem)] uppercase leading-[0.94]"
+        {/* Placeholder slides */}
+        {Array.from({ length: placeholders }).map((_, i) => (
+          <SwiperSlide key={`placeholder-${i}`}>
+            <div className="flex h-full flex-col items-center justify-center rounded-[24px] border border-dashed border-white/[0.1] bg-white/[0.015] p-8 text-center">
+              <div className="flex h-[100px] w-[100px] items-center justify-center rounded-[24px] border border-dashed border-white/[0.08] text-3xl text-white/[0.1]">
+                +
+              </div>
+              <p
+                className="mt-6 text-2xl uppercase leading-[0.95] text-white/[0.16]"
                 style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
               >
-                More products in development.
-              </h3>
-              <p className="mt-4 max-w-sm text-sm leading-6 text-white/[0.52]">
-                Future apps will drop into this carousel as they reach launch readiness.
+                Coming soon
               </p>
-              <Link
-                href="/#contact"
-                className="mt-6 inline-flex items-center rounded-full border border-white/[0.14] bg-white/[0.05] px-5 py-2.5 text-sm text-white/70 transition duration-300 hover:border-white/[0.22] hover:text-white/90"
-              >
-                Discuss a product
-              </Link>
+              <p className="mt-2 text-[0.68rem] uppercase tracking-[0.22em] text-white/[0.12]">
+                In development
+              </p>
             </div>
           </SwiperSlide>
-        ) : null}
+        ))}
       </Swiper>
     </div>
+  )
+}
+
+/* ── Tile slide (icon-centric card) ── */
+
+function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
+  const glowStyle: CSSProperties = {
+    backgroundImage: `radial-gradient(circle at center, ${app.theme.glow}, transparent 70%)`,
+  }
+
+  return (
+    <Link
+      href={app.href}
+      className="group relative flex h-full flex-col items-center overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.03] p-8 text-center transition-all duration-500"
+      style={
+        {
+          '--tile-accent': app.theme.accent,
+        } as CSSProperties
+      }
+    >
+      {/* Glow */}
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        style={{
+          ...glowStyle,
+          opacity: isActive ? 0.7 : 0.3,
+        }}
+      />
+
+      {/* Icon */}
+      <div className="relative z-10 flex flex-1 items-center justify-center py-8">
+        {app.icon ? (
+          <Image
+            src={app.icon}
+            alt={`${app.name} icon`}
+            width={160}
+            height={160}
+            className="h-auto w-[140px] object-contain drop-shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <div
+            className="h-[120px] w-[120px] rounded-[28px] transition-transform duration-500 group-hover:scale-110"
+            style={{
+              background: `linear-gradient(135deg, ${app.theme.accent}, ${app.theme.accentSoft})`,
+              boxShadow: `0 16px 50px rgba(0,0,0,0.4), 0 0 80px ${app.theme.glow}`,
+            }}
+          />
+        )}
+      </div>
+
+      {/* Text */}
+      <div className="relative z-10 w-full">
+        <h3
+          className="text-3xl uppercase leading-[0.95] text-[#f5f0eb] sm:text-4xl"
+          style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
+        >
+          {app.name}
+        </h3>
+        <p className="mt-2 text-[0.7rem] uppercase tracking-[0.22em] text-white/[0.42]">
+          {app.launchStage}
+        </p>
+        <p
+          className="mx-auto mt-3 max-w-xs text-sm leading-6 text-white/[0.5] transition-all duration-500"
+          style={{
+            opacity: isActive ? 1 : 0,
+            transform: isActive ? 'translateY(0)' : 'translateY(6px)',
+          }}
+        >
+          {app.tagline}
+        </p>
+      </div>
+    </Link>
   )
 }
