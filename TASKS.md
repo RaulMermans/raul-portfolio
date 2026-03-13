@@ -30,6 +30,7 @@
 ## Completed
 
 ### March 2026
+- [x] Refine homepage section carousel arrows and initial card alignment
 - [x] Enhance App Coverflow gallery with dynamic theme-based glow and metrics
 - [x] Fix case study visual glitches (squares, text fragments, FilmStrip implementation)
 - [x] Resolve font rendering issues by adding `latin-ext` subset

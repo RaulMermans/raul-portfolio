@@ -44,7 +44,7 @@ export default function SectionCards() {
   const router = useRouter()
   const scrollRef = useRef<HTMLDivElement>(null)
   const didDragRef = useRef(false)
-  
+
   const [isAtStart, setIsAtStart] = useState(true)
   const [isAtEnd, setIsAtEnd] = useState(false)
 
@@ -84,6 +84,20 @@ export default function SectionCards() {
       wrapper.style.zIndex = `${Math.round((1 - ratio) * 10)}`
     })
   }, [])
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    const frame = window.requestAnimationFrame(() => {
+      container.scrollTo({ left: 0, behavior: 'auto' })
+      setIsAtStart(true)
+      setIsAtEnd(container.scrollWidth <= container.clientWidth + 5)
+      applyDepth()
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [applyDepth])
 
   // Mouse wheel → horizontal scroll
   useEffect(() => {
@@ -199,24 +213,39 @@ export default function SectionCards() {
     return () => revealObserver.disconnect()
   }, [])
 
+  const getScrollStep = () => {
+    const container = scrollRef.current
+    if (!container) return 300
+
+    const card = container.querySelector<HTMLElement>('.section-card-tilt-wrapper')
+    if (!card) return 300
+
+    const styles = window.getComputedStyle(container)
+    const gapValue = styles.gap || styles.columnGap || '0'
+    const gap = Number.parseFloat(gapValue) || 0
+
+    return card.clientWidth + gap
+  }
+
   const scrollPrev = () => {
     const container = scrollRef.current
     if (!container) return
-    const cardWidth = container.querySelector('.section-card-tilt-wrapper')?.clientWidth || 300
-    container.scrollBy({ left: -(cardWidth + 32), behavior: 'smooth' })
+
+    container.scrollBy({ left: -getScrollStep(), behavior: 'smooth' })
   }
 
   const scrollNext = () => {
     const container = scrollRef.current
     if (!container) return
-    const cardWidth = container.querySelector('.section-card-tilt-wrapper')?.clientWidth || 300
-    container.scrollBy({ left: cardWidth + 32, behavior: 'smooth' })
+
+    container.scrollBy({ left: getScrollStep(), behavior: 'smooth' })
   }
 
   return (
     <section id="work" className="section-cards-container">
       <div className="section-cards-controls">
         <button 
+          type="button"
           onClick={scrollPrev} 
           disabled={isAtStart} 
           className="section-cards-nav prev" 
@@ -225,6 +254,7 @@ export default function SectionCards() {
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
         </button>
         <button 
+          type="button"
           onClick={scrollNext} 
           disabled={isAtEnd} 
           className="section-cards-nav next" 
