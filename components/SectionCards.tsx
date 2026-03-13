@@ -107,24 +107,31 @@ export default function SectionCards() {
     if (!container) return
 
     let isDragging = false
+    let didDrag = false
     let startX = 0
     let scrollStart = 0
+    const DRAG_THRESHOLD = 5
 
     const onPointerDown = (e: PointerEvent) => {
       // Only primary button (mouse left / touch)
       if (e.button !== 0) return
       isDragging = true
+      didDrag = false
       startX = e.clientX
       scrollStart = container.scrollLeft
-      container.style.cursor = 'grabbing'
       container.style.scrollBehavior = 'auto'
-      container.setPointerCapture(e.pointerId)
     }
 
     const onPointerMove = (e: PointerEvent) => {
       if (!isDragging) return
       const dx = e.clientX - startX
-      container.scrollLeft = scrollStart - dx
+      if (Math.abs(dx) > DRAG_THRESHOLD) {
+        didDrag = true
+        container.style.cursor = 'grabbing'
+      }
+      if (didDrag) {
+        container.scrollLeft = scrollStart - dx
+      }
     }
 
     const onPointerUp = () => {
@@ -133,16 +140,26 @@ export default function SectionCards() {
       container.style.scrollBehavior = 'smooth'
     }
 
+    const onClick = (e: MouseEvent) => {
+      if (didDrag) {
+        e.preventDefault()
+        e.stopPropagation()
+        didDrag = false
+      }
+    }
+
     container.addEventListener('pointerdown', onPointerDown)
     container.addEventListener('pointermove', onPointerMove)
     container.addEventListener('pointerup', onPointerUp)
     container.addEventListener('pointercancel', onPointerUp)
+    container.addEventListener('click', onClick, true)
 
     return () => {
       container.removeEventListener('pointerdown', onPointerDown)
       container.removeEventListener('pointermove', onPointerMove)
       container.removeEventListener('pointerup', onPointerUp)
       container.removeEventListener('pointercancel', onPointerUp)
+      container.removeEventListener('click', onClick, true)
     }
   }, [])
 
