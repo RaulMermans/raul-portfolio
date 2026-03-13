@@ -248,7 +248,7 @@ export default function SectionCards() {
           type="button"
           onClick={scrollPrev} 
           disabled={isAtStart} 
-          className="section-cards-nav prev" 
+          className="section-cards-nav section-cards-nav--prev" 
           aria-label="Previous card"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -257,7 +257,7 @@ export default function SectionCards() {
           type="button"
           onClick={scrollNext} 
           disabled={isAtEnd} 
-          className="section-cards-nav next" 
+          className="section-cards-nav section-cards-nav--next" 
           aria-label="Next card"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>

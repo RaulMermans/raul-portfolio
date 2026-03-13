@@ -52,10 +52,10 @@ When starting work, update this section:
 **Goal**: Fix the oversized homepage section carousel nav, keep arrows visible on both sides, and make the carousel start on card 1.
 **Outcome**: Completed
 **Changes Made**:
-- `components/SectionCards.tsx` - reset the carousel to the first card on mount, computed the scroll step from the live card width/gap, and marked nav controls as explicit buttons.
-- `styles/globals.css` - moved nav buttons to fixed left/right positions, gave them a modern glass treatment, kept disabled arrows visible, and centered the first/last cards with dynamic edge padding.
-**Notes**: `npm run type-check` and `npm run lint` were started but did not complete in the sandboxed environment; a local browser check is still recommended.
-**Next Steps**: Reopen the homepage locally and confirm card 1 is centered on load with left/right arrows anchored to each edge.
+- `components/SectionCards.tsx` - reset the carousel to the first card on mount, computed the scroll step from the live card width/gap, and renamed the nav modifiers to avoid a global `.next` class collision.
+- `styles/globals.css` - reduced the carousel controls to simple side arrows, kept disabled arrows visible, and centered the first/last cards with dynamic edge padding.
+**Notes**: The giant black pill came from the carousel button using the generic `next` class, which inherited the global “Next Project” section styles. `npm run type-check` and `npm run lint` were started but did not complete in the sandboxed environment.
+**Next Steps**: Reopen the homepage locally and confirm card 1 is centered on load with faint left/right arrows at the edges and no center overlay.
 
 ### Session Template
 ```markdown

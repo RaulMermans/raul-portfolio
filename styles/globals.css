@@ -1681,70 +1681,44 @@ html.homepage .footer {
   top: 50%;
   transform: translateY(-50%);
   pointer-events: auto;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background:
-    linear-gradient(145deg, rgba(34, 30, 28, 0.92) 0%, rgba(18, 16, 15, 0.78) 100%);
-  color: var(--cream);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: var(--space-3);
+  border: 0;
+  background: transparent;
+  color: rgba(26, 23, 20, 0.42);
   cursor: pointer;
-  overflow: hidden;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   transition:
-    transform 0.3s var(--ease),
-    background 0.3s var(--ease),
-    border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease),
+    transform 0.25s var(--ease),
+    color 0.25s var(--ease),
     opacity 0.3s var(--ease);
-  box-shadow:
-    0 18px 40px rgba(26, 23, 20, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-.section-cards-nav::before {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
-}
-
-.section-cards-nav.prev {
+.section-cards-nav--prev {
   left: var(--section-cards-nav-offset);
 }
 
-.section-cards-nav.next {
+.section-cards-nav--next {
   right: var(--section-cards-nav-offset);
 }
 
 .section-cards-nav svg {
-  position: relative;
-  z-index: 1;
+  width: 2.25rem;
+  height: 2.25rem;
+  stroke-width: 1.7;
+  filter: drop-shadow(0 2px 12px rgba(255, 255, 255, 0.35));
 }
 
 .section-cards-nav:hover:not(:disabled) {
-  background:
-    linear-gradient(145deg, rgba(196, 30, 58, 0.96) 0%, rgba(80, 18, 29, 0.88) 100%);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow:
-    0 24px 56px rgba(26, 23, 20, 0.3),
-    0 0 0 6px rgba(196, 30, 58, 0.08);
+  color: rgba(26, 23, 20, 0.86);
   transform: translateY(-50%) scale(1.08);
 }
 
 .section-cards-nav:disabled {
-  opacity: 0.42;
+  opacity: 0.18;
   cursor: default;
   pointer-events: none;
-  box-shadow:
-    0 10px 24px rgba(26, 23, 20, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Gradient fade masks on edges — wider for depth effect */
@@ -2219,8 +2193,12 @@ html.homepage .footer {
   }
 
   .section-cards-nav {
-    width: 40px;
-    height: 40px;
+    padding: var(--space-2);
+  }
+
+  .section-cards-nav svg {
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   .section-cards-container::before,
