@@ -33,7 +33,7 @@ export default function HeroBackground() {
 
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isDesktop = window.matchMedia('(hover: hover)').matches
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches
     const isMobile = window.innerWidth < 768
 
     if (prefersReducedMotion || isMobile) {
@@ -54,17 +54,25 @@ export default function HeroBackground() {
     let mouseY = 0.5
     let targetMouseX = 0.5
     let targetMouseY = 0.5
+    let containerRect = container.getBoundingClientRect()
+    let isVisible = containerRect.bottom > 0 && containerRect.top < window.innerHeight
 
-    // Mouse tracking
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDesktop) return
-      const rect = container.getBoundingClientRect()
-      targetMouseX = (e.clientX - rect.left) / rect.width
-      targetMouseY = (e.clientY - rect.top) / rect.height
+    const updateContainerRect = () => {
+      containerRect = container.getBoundingClientRect()
     }
 
-    // Animate gradient mesh
-    const animate = () => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDesktop || containerRect.width === 0 || containerRect.height === 0) return
+      targetMouseX = (e.clientX - containerRect.left) / containerRect.width
+      targetMouseY = (e.clientY - containerRect.top) / containerRect.height
+    }
+
+    const animate = (time: number) => {
+      if (!isVisible) {
+        animationFrameRef.current = undefined
+        return
+      }
+
       // Smooth mouse interpolation
       mouseX += (targetMouseX - mouseX) * 0.05
       mouseY += (targetMouseY - mouseY) * 0.05
@@ -72,9 +80,9 @@ export default function HeroBackground() {
       // Update gradient points with organic movement
       gradientPoints.forEach((point, index) => {
         // Slow, organic drift
-        const time = Date.now() * 0.0003
-        const offsetX = Math.sin(time + index * 1.5) * 0.1
-        const offsetY = Math.cos(time + index * 1.2) * 0.1
+        const timeFactor = time * 0.0003
+        const offsetX = Math.sin(timeFactor + index * 1.5) * 0.1
+        const offsetY = Math.cos(timeFactor + index * 1.2) * 0.1
         
         // Mouse influence (subtle attraction)
         const mouseInfluence = isDesktop ? 0.15 : 0
@@ -89,15 +97,6 @@ export default function HeroBackground() {
         point.y += (point.targetY - point.y) * 0.03
       })
 
-      // Build CSS gradient string
-      const gradientStops = gradientPoints
-        .map((point, index) => {
-          const x = point.x * 100
-          const y = point.y * 100
-          return `${point.color} ${index * 25}%`
-        })
-        .join(', ')
-
       // Create radial gradients for depth
       const gradient1 = `radial-gradient(circle at ${gradientPoints[0].x * 100}% ${gradientPoints[0].y * 100}%, ${gradientPoints[0].color} 0%, transparent 40%)`
       const gradient2 = `radial-gradient(circle at ${gradientPoints[1].x * 100}% ${gradientPoints[1].y * 100}%, ${gradientPoints[1].color} 0%, transparent 45%)`
@@ -110,15 +109,44 @@ export default function HeroBackground() {
       animationFrameRef.current = requestAnimationFrame(animate)
     }
 
-    animate()
+    const startAnimation = () => {
+      if (animationFrameRef.current !== undefined) return
+      animationFrameRef.current = requestAnimationFrame(animate)
+    }
+
+    const stopAnimation = () => {
+      if (animationFrameRef.current !== undefined) {
+        cancelAnimationFrame(animationFrameRef.current)
+        animationFrameRef.current = undefined
+      }
+    }
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting
+        if (isVisible) {
+          startAnimation()
+        } else {
+          stopAnimation()
+        }
+      },
+      { threshold: 0.01 }
+    )
+
+    visibilityObserver.observe(container)
+    window.addEventListener('resize', updateContainerRect, { passive: true })
+
     if (isDesktop) {
       container.addEventListener('mousemove', handleMouseMove, { passive: true })
     }
+    if (isVisible) {
+      startAnimation()
+    }
 
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current)
-      }
+      stopAnimation()
+      visibilityObserver.disconnect()
+      window.removeEventListener('resize', updateContainerRect)
       if (isDesktop) {
         container.removeEventListener('mousemove', handleMouseMove)
       }
@@ -133,4 +161,3 @@ export default function HeroBackground() {
     />
   )
 }
-

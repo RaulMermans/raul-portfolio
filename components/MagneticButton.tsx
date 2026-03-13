@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useRef, useState, forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import React, { forwardRef } from 'react'
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
 
 interface MagneticButtonProps {
     children: React.ReactNode
@@ -14,23 +14,29 @@ const MagneticButton = forwardRef<HTMLDivElement, MagneticButtonProps>(({
     className = '',
     intensity = 30 // How far it pulls towards the cursor
 }, parentRef) => {
-    const [position, setPosition] = useState({ x: 0, y: 0 })
+    const prefersReducedMotion = useReducedMotion()
+    const baseX = useMotionValue(0)
+    const baseY = useMotionValue(0)
+    const x = useSpring(baseX, { stiffness: 150, damping: 15, mass: 0.1 })
+    const y = useSpring(baseY, { stiffness: 150, damping: 15, mass: 0.1 })
 
     const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (prefersReducedMotion) return
+
         const { clientX, clientY, currentTarget } = e
         const { height, width, left, top } = currentTarget.getBoundingClientRect()
         const middleX = clientX - (left + width / 2)
         const middleY = clientY - (top + height / 2)
 
         // Calculate new position based on intensity
-        setPosition({ x: middleX * (intensity / 100), y: middleY * (intensity / 100) })
+        baseX.set(middleX * (intensity / 100))
+        baseY.set(middleY * (intensity / 100))
     }
 
     const reset = () => {
-        setPosition({ x: 0, y: 0 })
+        baseX.set(0)
+        baseY.set(0)
     }
-
-    const { x, y } = position
 
     return (
         <motion.div
@@ -38,8 +44,7 @@ const MagneticButton = forwardRef<HTMLDivElement, MagneticButtonProps>(({
             ref={parentRef}
             onMouseMove={handleMouse}
             onMouseLeave={reset}
-            animate={{ x, y }}
-            transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+            style={{ x, y }}
         >
             {children}
         </motion.div>

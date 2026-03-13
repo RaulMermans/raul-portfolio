@@ -30,6 +30,8 @@
 ## Completed
 
 ### March 2026
+- [x] Optimize photography landing image loading and editorial gallery flow
+- [x] Optimize homepage interaction fluidity
 - [x] Refine homepage section carousel arrows and initial card alignment
 - [x] Enhance App Coverflow gallery with dynamic theme-based glow and metrics
 - [x] Fix case study visual glitches (squares, text fragments, FilmStrip implementation)

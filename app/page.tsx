@@ -18,72 +18,57 @@ const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false }
 export default function Home() {
   useEffect(() => {
     if (typeof window === 'undefined') return
-    
-    // Add class to html to identify homepage for CSS
-    document.documentElement.classList.add('homepage')
-    
-    document.body.style.overflowY = 'auto'
-    
-    // Ensure scroll-snap is disabled on mount
-    if (typeof window !== 'undefined') {
-      document.documentElement.style.scrollSnapType = 'none'
-      document.body.style.scrollSnapType = 'none'
-    }
-    
-    // Cache viewport height to avoid repeated calculations
-    let viewportHeight = window.innerHeight
 
-    // Update viewport height on resize
-    const handleResize = () => {
-      viewportHeight = window.innerHeight
-    }
-    window.addEventListener('resize', handleResize, { passive: true })
+    const root = document.documentElement
+    const body = document.body
+    root.classList.add('homepage')
+    body.style.overflowY = 'auto'
+    root.style.scrollSnapType = 'none'
+    body.style.scrollSnapType = 'none'
 
-    // Reveal animation observer for all .reveal elements
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let revealObserver: IntersectionObserver | null = null
-    
-    const setupRevealObserver = () => {
-      // Clean up existing observer
-      if (revealObserver) {
-        revealObserver.disconnect()
-      }
 
-      const revealElements = document.querySelectorAll('.reveal:not(.visible)')
-      
+    const revealElement = (element: Element) => {
+      element.classList.add('visible')
+      revealObserver?.unobserve(element)
+    }
+
+    const isNearViewport = (element: Element) => {
+      const rect = element.getBoundingClientRect()
+      return rect.top < window.innerHeight + 160 && rect.bottom > -120
+    }
+
+    const setupRevealObserver = () => {
+      const revealElements = Array.from(document.querySelectorAll('.reveal:not(.visible)'))
       if (revealElements.length === 0) return
+
+      if (prefersReducedMotion) {
+        revealElements.forEach((element) => element.classList.add('visible'))
+        return
+      }
 
       revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('visible')
-              revealObserver?.unobserve(entry.target)
+              revealElement(entry.target)
             }
           })
         },
-        { threshold: 0.01, rootMargin: '100px 0px 100px 0px' }
+        { threshold: 0.08, rootMargin: '120px 0px -60px 0px' }
       )
 
-      revealElements.forEach((el) => {
-        // Check if already in viewport - be more lenient
-        const rect = el.getBoundingClientRect()
-        const isVisible = rect.top < window.innerHeight + 200 && rect.bottom > -200
-        if (isVisible) {
-          el.classList.add('visible')
+      revealElements.forEach((element) => {
+        if (isNearViewport(element)) {
+          revealElement(element)
         } else {
-          revealObserver?.observe(el)
+          revealObserver?.observe(element)
         }
       })
     }
 
-    // Run after React hydration
-    requestAnimationFrame(() => {
-      setupRevealObserver()
-      // Also check periodically for dynamically added elements
-      setTimeout(setupRevealObserver, 100)
-      setTimeout(setupRevealObserver, 500)
-      setTimeout(setupRevealObserver, 1000)
-    })
+    requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
     const sectionSelectors = '.hero, .section-cards-container, .about, .services, .contact, .socials'
@@ -107,45 +92,12 @@ export default function Home() {
       sectionObserver.observe(el)
     })
 
-    // Throttled scroll handler for better performance
-    let ticking = false
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          // Check for reveals on scroll (only check visible ones)
-          const revealElements = document.querySelectorAll('.reveal:not(.visible)')
-          const viewportTop = 0
-          const viewportBottom = viewportHeight
-          
-          revealElements.forEach((el) => {
-            const rect = el.getBoundingClientRect()
-            if (rect.top < viewportBottom + 200 && rect.bottom > viewportTop - 200) {
-              el.classList.add('visible')
-              revealObserver?.unobserve(el)
-            }
-          })
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Check immediately
-
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
-      if (revealObserver) {
-        revealObserver.disconnect()
-      }
+      revealObserver?.disconnect()
       sectionObserver.disconnect()
-      // Cleanup on unmount
-      if (typeof window !== 'undefined') {
-        document.documentElement.classList.remove('homepage')
-        document.documentElement.style.scrollSnapType = 'none'
-        document.body.style.scrollSnapType = 'none'
-      }
+      root.classList.remove('homepage')
+      root.style.scrollSnapType = 'none'
+      body.style.scrollSnapType = 'none'
     }
   }, [])
 

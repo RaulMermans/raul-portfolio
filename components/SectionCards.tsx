@@ -99,26 +99,6 @@ export default function SectionCards() {
     return () => window.cancelAnimationFrame(frame)
   }, [applyDepth])
 
-  // Mouse wheel → horizontal scroll
-  useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
-
-    const onWheel = (e: WheelEvent) => {
-      // Only hijack vertical scroll when the carousel is in view and has overflow
-      if (container.scrollWidth <= container.clientWidth) return
-      const atStart = container.scrollLeft <= 0
-      const atEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1
-      // Let vertical scroll pass through if we're at the edges
-      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return
-      e.preventDefault()
-      container.scrollBy({ left: e.deltaY * 2.5, behavior: 'auto' })
-    }
-
-    container.addEventListener('wheel', onWheel, { passive: false })
-    return () => container.removeEventListener('wheel', onWheel)
-  }, [])
-
   // Drag to scroll
   useEffect(() => {
     const container = scrollRef.current

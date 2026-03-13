@@ -17,6 +17,14 @@ interface Photo {
 
 type CategoryType = 'landscape' | 'architecture' | 'street'
 
+interface EditorialLayout {
+  itemClassName: string
+  sizes: string
+  eager?: boolean
+  priority?: boolean
+  fetchPriority?: 'high' | 'auto' | 'low'
+}
+
 // Helper function to shuffle array and select random items
 function shuffleAndSelect<T>(array: T[], count: number): T[] {
   const shuffled = [...array].sort(() => Math.random() - 0.5)
@@ -59,24 +67,69 @@ function getAdjacentCategories(current: CategoryType): CategoryType[] {
   return adjacent
 }
 
-// Editorial aspect ratio patterns — dramatic variety for magazine feel
-const getAspectRatio = (index: number): { width: number; height: number } => {
-  const pattern = index % 6
-  switch (pattern) {
-    case 0: return { width: 2, height: 3 }   // tall portrait
-    case 1: return { width: 3, height: 2 }   // landscape
-    case 2: return { width: 1, height: 1 }   // square
-    case 3: return { width: 3, height: 4 }   // portrait
-    case 4: return { width: 4, height: 3 }   // wide
-    case 5: return { width: 9, height: 16 }  // ultra-tall editorial
-    default: return { width: 3, height: 4 }
-  }
-}
+const PHOTO_BLUR_DATA_URL =
+  'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
 
-// Featured images that span full width for editorial emphasis
-const isFeaturedImage = (index: number): boolean => {
-  return index === 0 || index === 5 || index === 9
-}
+const editorialPattern: EditorialLayout[] = [
+  {
+    itemClassName: 'gallery__item--hero',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), min(100vw - 8rem, 1280px)',
+    eager: true,
+    priority: true,
+    fetchPriority: 'high',
+  },
+  {
+    itemClassName: 'gallery__item--portrait-xl',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 34vw, 30vw',
+    eager: true,
+    priority: true,
+    fetchPriority: 'high',
+  },
+  {
+    itemClassName: 'gallery__item--landscape-lg',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 44vw',
+    eager: true,
+    priority: true,
+  },
+  {
+    itemClassName: 'gallery__item--square',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+    eager: true,
+  },
+  {
+    itemClassName: 'gallery__item--portrait',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+    eager: true,
+  },
+  {
+    itemClassName: 'gallery__item--tall',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+  },
+  {
+    itemClassName: 'gallery__item--wide',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 48vw',
+  },
+  {
+    itemClassName: 'gallery__item--portrait',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 34vw, 28vw',
+  },
+  {
+    itemClassName: 'gallery__item--portrait-xl',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 34vw, 30vw',
+  },
+  {
+    itemClassName: 'gallery__item--landscape',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 44vw',
+  },
+  {
+    itemClassName: 'gallery__item--square',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+  },
+  {
+    itemClassName: 'gallery__item--wide-compact',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 44vw',
+  },
+]
 
 // ALL AVAILABLE IMAGES
 // Automatically includes all uploaded images in each category
@@ -126,9 +179,9 @@ function getCategories() {
 export default function PhotographyPage() {
   const [categoriesState] = useState(() => getCategories())
   const [activeCategory, setActiveCategory] = useState<CategoryType>('landscape')
-  const [prefetchedCategories, setPrefetchedCategories] = useState<Set<CategoryType>>(() => new Set<CategoryType>(['landscape']))
   const [loadedImages, setLoadedImages] = useState<Set<string>>(() => new Set<string>())
   const bottomBarRef = useRef<HTMLElement | null>(null)
+  const prefetchedCategoriesRef = useRef<Set<CategoryType>>(new Set<CategoryType>(['landscape']))
 
   const activeCategoryImages = useMemo(
     () => categoriesState[activeCategory]?.images || [],
@@ -148,13 +201,12 @@ export default function PhotographyPage() {
     if (isMobile) return
 
     const adjacent = getAdjacentCategories(activeCategory)
-    const newPrefetched = new Set(prefetchedCategories)
-    
+
     adjacent.forEach(cat => {
-      if (!newPrefetched.has(cat)) {
-        newPrefetched.add(cat)
+      if (!prefetchedCategoriesRef.current.has(cat)) {
+        prefetchedCategoriesRef.current.add(cat)
         const images = categoriesState[cat]?.images || []
-        images.slice(0, 4).forEach(img => {
+        images.slice(0, 2).forEach(img => {
           const link = document.createElement('link')
           link.rel = 'prefetch'
           link.as = 'image'
@@ -163,11 +215,7 @@ export default function PhotographyPage() {
         })
       }
     })
-    
-    if (newPrefetched.size !== prefetchedCategories.size) {
-      setPrefetchedCategories(newPrefetched)
-    }
-  }, [activeCategory, categoriesState, prefetchedCategories])
+  }, [activeCategory, categoriesState])
 
   // Bottom bar: fixed until footer comes into view (rAF-throttled scroll + resize handlers)
   useEffect(() => {
@@ -292,6 +340,7 @@ export default function PhotographyPage() {
     return activeCategoryImages.map((photo, index) => ({
       photo,
       index,
+      layout: editorialPattern[index % editorialPattern.length],
     }))
   }, [activeCategoryImages])
 
@@ -311,32 +360,36 @@ export default function PhotographyPage() {
         </div>
 
         <div className="gallery__grid" id="gallery-content" role="tabpanel" aria-live="polite" data-category={activeCategory}>
-          {imageItems.map(({ photo, index }) => {
-            const aspectRatio = getAspectRatio(index)
+          {imageItems.map(({ photo, index, layout }) => {
             const isLoaded = loadedImages.has(photo.src)
-            const featured = isFeaturedImage(index)
+            const shouldPrioritize = Boolean(layout.priority || index < 3)
+            const shouldEagerLoad = Boolean(layout.eager || index < 4)
 
             return (
               <div
                 key={`${activeCategory}-${index}`}
-                className={`gallery__item ${isLoaded ? 'loaded' : 'loading'}${featured ? ' gallery__item--featured' : ''}`}
+                className={`gallery__item ${layout.itemClassName} ${isLoaded ? 'loaded' : 'loading'}`}
                 data-category={activeCategory}
+                style={{ animationDelay: `${Math.min(index, 4) * 0.08}s` }}
               >
                 <Image
                   src={photo.src}
                   alt={photo.alt}
-                  width={featured ? 1200 : 800}
-                  height={featured ? 800 : Math.round(800 * (aspectRatio.height / aspectRatio.width))}
-                  sizes={featured ? '100vw' : '(max-width: 767px) 100vw, 50vw'}
-                  quality={90}
-                  loading={index < 4 ? 'eager' : 'lazy'}
-                  priority={index < 2}
+                  fill
+                  sizes={layout.sizes}
+                  quality={index < 3 ? 85 : 82}
+                  loading={shouldEagerLoad ? 'eager' : 'lazy'}
+                  priority={shouldPrioritize}
+                  fetchPriority={layout.fetchPriority ?? (index < 2 ? 'high' : 'auto')}
+                  placeholder="blur"
+                  blurDataURL={PHOTO_BLUR_DATA_URL}
                   className="gallery__item-image"
                   onLoad={() => handleImageLoad(photo.src)}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.style.display = 'none'
                   }}
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
             )
