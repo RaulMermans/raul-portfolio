@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -44,6 +44,9 @@ export default function SectionCards() {
   const router = useRouter()
   const scrollRef = useRef<HTMLDivElement>(null)
   const didDragRef = useRef(false)
+  
+  const [isAtStart, setIsAtStart] = useState(true)
+  const [isAtEnd, setIsAtEnd] = useState(false)
 
   const applyDepth = useCallback(() => {
     const container = scrollRef.current
@@ -153,18 +156,29 @@ export default function SectionCards() {
     }
   }, [])
 
-  // Depth transforms on scroll
+  // Depth transforms and start/end check on scroll
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
 
+    const checkScroll = () => {
+      setIsAtStart(container.scrollLeft <= 5)
+      setIsAtEnd(Math.abs(container.scrollWidth - container.clientWidth - container.scrollLeft) <= 5)
+    }
+
+    const handleScroll = () => {
+      applyDepth()
+      checkScroll()
+    }
+
     applyDepth()
-    container.addEventListener('scroll', applyDepth, { passive: true })
-    window.addEventListener('resize', applyDepth, { passive: true })
+    checkScroll()
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true })
 
     return () => {
-      container.removeEventListener('scroll', applyDepth)
-      window.removeEventListener('resize', applyDepth)
+      container.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
     }
   }, [applyDepth])
 
@@ -185,8 +199,41 @@ export default function SectionCards() {
     return () => revealObserver.disconnect()
   }, [])
 
+  const scrollPrev = () => {
+    const container = scrollRef.current
+    if (!container) return
+    const cardWidth = container.querySelector('.section-card-tilt-wrapper')?.clientWidth || 300
+    container.scrollBy({ left: -(cardWidth + 32), behavior: 'smooth' })
+  }
+
+  const scrollNext = () => {
+    const container = scrollRef.current
+    if (!container) return
+    const cardWidth = container.querySelector('.section-card-tilt-wrapper')?.clientWidth || 300
+    container.scrollBy({ left: cardWidth + 32, behavior: 'smooth' })
+  }
+
   return (
     <section id="work" className="section-cards-container">
+      <div className="section-cards-controls">
+        <button 
+          onClick={scrollPrev} 
+          disabled={isAtStart} 
+          className="section-cards-nav prev" 
+          aria-label="Previous card"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button 
+          onClick={scrollNext} 
+          disabled={isAtEnd} 
+          className="section-cards-nav next" 
+          aria-label="Next card"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+
       <div className="section-cards-grid" ref={scrollRef}>
         {sections.map((section, idx) => (
           <div key={section.id} className="section-card-tilt-wrapper">

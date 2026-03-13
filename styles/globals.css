@@ -1666,6 +1666,46 @@ html.homepage .footer {
   perspective: 1200px;
 }
 
+.section-cards-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--space-8);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.section-cards-nav {
+  pointer-events: auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section-cards-nav:hover:not(:disabled) {
+  background: var(--accent, #666);
+  transform: scale(1.1);
+}
+
+.section-cards-nav:disabled {
+  opacity: 0;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* Gradient fade masks on edges — wider for depth effect */
 .section-cards-container::before,
 .section-cards-container::after {
@@ -2131,6 +2171,15 @@ html.homepage .footer {
 @media (max-width: 768px) {
   .section-cards-container {
     padding: var(--space-10) 0 var(--space-8);
+  }
+
+  .section-cards-controls {
+    padding: 0 var(--space-4);
+  }
+
+  .section-cards-nav {
+    width: 40px;
+    height: 40px;
   }
 
   .section-cards-container::before,
