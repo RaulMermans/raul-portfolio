@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -121,284 +122,16 @@ function IPhoneFrame({
    APP SCREEN MOCKUPS
    ============================================ */
 
-function TodayScreen() {
+function ScreenImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="h-full px-5 pt-3">
-      <p className="text-[10px] uppercase tracking-[0.14em]" style={{ color: MUTED, fontFamily: MONO }}>
-        Tuesday, Mar 12
-      </p>
-      <h3 className="mt-1 text-[21px] font-semibold" style={{ color: INK }}>
-        Good morning
-      </h3>
-
-      {/* Session card */}
-      <div className="mt-5 rounded-2xl bg-white p-4" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <p className="text-[9px] uppercase tracking-[0.16em]" style={{ color: MUTED, fontFamily: MONO }}>
-          Today&apos;s session
-        </p>
-        <p className="mt-2 text-[15px] font-medium" style={{ color: INK }}>
-          Upper Body Push
-        </p>
-        <div className="mt-1 flex gap-3 text-[11px]" style={{ color: BODY }}>
-          <span>4 exercises</span>
-          <span>&middot;</span>
-          <span>~45 min</span>
-        </div>
-        <button
-          className="mt-4 w-full rounded-xl py-2.5 text-[12px] font-medium text-white"
-          style={{ background: ACCENT }}
-        >
-          Start session
-        </button>
-      </div>
-
-      {/* Stat cards */}
-      <div className="mt-3 grid grid-cols-2 gap-3">
-        <div className="rounded-2xl bg-white p-3.5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <p className="text-[20px] font-semibold" style={{ color: ACCENT }}>
-            12
-          </p>
-          <p className="text-[10px]" style={{ color: MUTED }}>
-            Day streak
-          </p>
-        </div>
-        <div className="rounded-2xl bg-white p-3.5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <p className="text-[20px] font-semibold" style={{ color: INK }}>
-            3
-          </p>
-          <p className="text-[10px]" style={{ color: MUTED }}>
-            PRs this week
-          </p>
-        </div>
-      </div>
-
-      {/* Upcoming */}
-      <div className="mt-3 rounded-2xl bg-white p-3.5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <p className="text-[9px] uppercase tracking-[0.14em]" style={{ color: MUTED, fontFamily: MONO }}>
-          Tomorrow
-        </p>
-        <p className="mt-1.5 text-[13px] font-medium" style={{ color: INK }}>
-          Lower Body &middot; Pull
-        </p>
-        <p className="mt-0.5 text-[11px]" style={{ color: BODY }}>
-          5 exercises &middot; ~55 min
-        </p>
-      </div>
-    </div>
-  )
-}
-
-function LogScreen() {
-  const sets = [
-    { n: 1, kg: '80', reps: '8', done: true },
-    { n: 2, kg: '85', reps: '6', done: true },
-    { n: 3, kg: '85', reps: '5', done: false },
-  ]
-  return (
-    <div className="h-full px-5 pt-3">
-      <button className="text-[12px]" style={{ color: ACCENT }}>
-        &larr; Back
-      </button>
-      <h3 className="mt-3 text-[19px] font-semibold" style={{ color: INK }}>
-        Bench Press
-      </h3>
-      <p className="mt-0.5 text-[11px]" style={{ color: MUTED }}>
-        Flat &middot; Barbell
-      </p>
-
-      {/* Set table */}
-      <div className="mt-5">
-        <div className="mb-2 flex gap-2 text-[9px] uppercase tracking-[0.12em]" style={{ color: MUTED, fontFamily: MONO }}>
-          <span className="w-8">Set</span>
-          <span className="flex-1">kg</span>
-          <span className="flex-1">Reps</span>
-          <span className="w-8" />
-        </div>
-        {sets.map((s) => (
-          <div
-            key={s.n}
-            className="mb-2 flex items-center gap-2 rounded-xl bg-white px-3 py-2.5"
-            style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.03)' }}
-          >
-            <span className="w-8 text-[12px] font-medium" style={{ color: MUTED }}>
-              {s.n}
-            </span>
-            <span className="flex-1 text-[14px] font-medium" style={{ color: INK }}>
-              {s.kg}
-            </span>
-            <span className="flex-1 text-[14px] font-medium" style={{ color: INK }}>
-              {s.reps}
-            </span>
-            <span className="flex h-6 w-6 items-center justify-center rounded-full text-[11px]"
-              style={{
-                background: s.done ? ACCENT : 'transparent',
-                color: s.done ? '#fff' : MUTED,
-                border: s.done ? 'none' : `1.5px solid ${MUTED}`,
-              }}
-            >
-              {s.done ? '✓' : ''}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      <button
-        className="mt-3 w-full rounded-xl border py-2.5 text-[12px] font-medium"
-        style={{ borderColor: 'rgba(26,23,20,0.1)', color: BODY }}
-      >
-        + Add set
-      </button>
-
-      {/* Rest timer */}
-      <div className="mt-5 flex items-center justify-between rounded-2xl bg-white px-4 py-3" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <div>
-          <p className="text-[9px] uppercase tracking-[0.12em]" style={{ color: MUTED, fontFamily: MONO }}>
-            Rest timer
-          </p>
-          <p className="mt-1 text-[18px] font-semibold" style={{ color: INK, fontFamily: MONO }}>
-            1:42
-          </p>
-        </div>
-        <div className="h-9 w-9 rounded-full flex items-center justify-center" style={{ background: ACCENT_SOFT }}>
-          <div className="h-3 w-3 rounded-sm" style={{ background: ACCENT }} />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function ProgressScreen() {
-  const bars = [65, 80, 45, 90, 70, 30, 0]
-  const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-  return (
-    <div className="h-full px-5 pt-3">
-      <p className="text-[10px] uppercase tracking-[0.14em]" style={{ color: MUTED, fontFamily: MONO }}>
-        This week
-      </p>
-      <h3 className="mt-1 text-[19px] font-semibold" style={{ color: INK }}>
-        Progress
-      </h3>
-
-      {/* Volume chart */}
-      <div className="mt-5 rounded-2xl bg-white p-4" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <p className="text-[9px] uppercase tracking-[0.12em]" style={{ color: MUTED, fontFamily: MONO }}>
-          Volume (kg)
-        </p>
-        <div className="mt-4 flex items-end justify-between gap-2" style={{ height: 80 }}>
-          {bars.map((h, i) => (
-            <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
-              <div
-                className="w-full rounded-md"
-                style={{
-                  height: `${Math.max(h, 4)}%`,
-                  background: h > 0 ? (i === 3 ? ACCENT : `${ACCENT}66`) : 'rgba(26,23,20,0.06)',
-                }}
-              />
-              <span className="text-[8px]" style={{ color: MUTED }}>{days[i]}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Stats grid */}
-      <div className="mt-3 grid grid-cols-2 gap-3">
-        <div className="rounded-2xl bg-white p-3.5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <p className="text-[18px] font-semibold" style={{ color: INK }}>
-            12,450
-          </p>
-          <p className="text-[10px]" style={{ color: MUTED }}>
-            Total volume (kg)
-          </p>
-        </div>
-        <div className="rounded-2xl bg-white p-3.5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-          <p className="text-[18px] font-semibold" style={{ color: ACCENT }}>
-            5
-          </p>
-          <p className="text-[10px]" style={{ color: MUTED }}>
-            Sessions
-          </p>
-        </div>
-      </div>
-
-      {/* PRs */}
-      <div className="mt-3 rounded-2xl bg-white p-3.5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-        <p className="text-[9px] uppercase tracking-[0.12em]" style={{ color: MUTED, fontFamily: MONO }}>
-          Recent PRs
-        </p>
-        <div className="mt-2 space-y-2">
-          {['Bench Press — 92.5 kg', 'Squat — 120 kg', 'OHP — 55 kg'].map((pr) => (
-            <div key={pr} className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full" style={{ background: ACCENT }} />
-              <span className="text-[12px]" style={{ color: INK }}>{pr}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function RoutinesScreen() {
-  const week = [
-    { day: 'Mon', label: 'Push', active: true },
-    { day: 'Tue', label: 'Pull', active: false },
-    { day: 'Wed', label: 'Rest', active: false, rest: true },
-    { day: 'Thu', label: 'Legs', active: false },
-    { day: 'Fri', label: 'Upper', active: false },
-    { day: 'Sat', label: 'Rest', active: false, rest: true },
-    { day: 'Sun', label: 'Rest', active: false, rest: true },
-  ]
-  return (
-    <div className="h-full px-5 pt-3">
-      <p className="text-[10px] uppercase tracking-[0.14em]" style={{ color: MUTED, fontFamily: MONO }}>
-        Routine
-      </p>
-      <h3 className="mt-1 text-[19px] font-semibold" style={{ color: INK }}>
-        This week
-      </h3>
-
-      {/* Week pills */}
-      <div className="mt-5 flex gap-1.5">
-        {week.map((d) => (
-          <div
-            key={d.day}
-            className="flex-1 rounded-xl py-2 text-center"
-            style={{
-              background: d.active ? ACCENT : d.rest ? 'rgba(26,23,20,0.03)' : 'white',
-              color: d.active ? '#fff' : d.rest ? MUTED : INK,
-              boxShadow: d.active ? 'none' : d.rest ? 'none' : '0 1px 3px rgba(0,0,0,0.04)',
-            }}
-          >
-            <p className="text-[8px] uppercase tracking-wider">{d.day}</p>
-            <p className="mt-0.5 text-[10px] font-medium">{d.label}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Routine cards */}
-      {[
-        { name: 'Upper Body Push', exercises: 4, time: '45 min', color: ACCENT },
-        { name: 'Lower Body Pull', exercises: 5, time: '55 min', color: '#A39585' },
-        { name: 'Full Upper', exercises: 6, time: '60 min', color: '#8B95A3' },
-      ].map((routine) => (
-        <div
-          key={routine.name}
-          className="mt-3 flex items-center gap-3 rounded-2xl bg-white p-3.5"
-          style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}
-        >
-          <div className="h-10 w-10 rounded-xl" style={{ background: `${routine.color}18` }}>
-            <div className="flex h-full w-full items-center justify-center rounded-xl">
-              <div className="h-4 w-4 rounded-md" style={{ background: routine.color }} />
-            </div>
-          </div>
-          <div className="flex-1">
-            <p className="text-[13px] font-medium" style={{ color: INK }}>{routine.name}</p>
-            <p className="text-[10px]" style={{ color: MUTED }}>
-              {routine.exercises} exercises &middot; {routine.time}
-            </p>
-          </div>
-        </div>
-      ))}
+    <div className="relative h-full w-full">
+      <Image
+        src={`/images/apps/overflow/${src}`}
+        alt={alt}
+        fill
+        style={{ objectFit: 'cover' }}
+        priority={src === 'Today-tab.webp'}
+      />
     </div>
   )
 }
@@ -439,21 +172,31 @@ const demoScreens = [
     title: 'Your training at a glance.',
     body: 'The Today screen is the heartbeat of Overflow. One calm surface showing your plan, your streak, and your next move. No dashboard. No decision fatigue.',
     label: 'Today',
+    image: 'Today-tab.webp',
   },
   {
-    title: 'Every set, tracked.',
-    body: 'Log weight, reps, and rest with minimal taps. Overflow learns your patterns so each session starts smarter than the last.',
-    label: 'Log',
+    title: 'Build your structure.',
+    body: 'Design routines tailored to your goals. Add exercises, set target volumes, and craft a plan that holds shape without being rigid.',
+    label: 'Create',
+    image: 'routine-creator.webp',
+  },
+  {
+    title: 'Map out your week.',
+    body: 'Assign routines to specific days to build a balanced schedule. Adjust freely when life happens, so your plan flexes with you.',
+    label: 'Schedule',
+    image: 'schedule-routine.webp',
+  },
+  {
+    title: 'Keep the big picture.',
+    body: 'Review your upcoming schedule at a glance. Move sessions around, mark rest days, and ensure you are always prepared for what is next.',
+    label: 'Calendar',
+    image: 'Calendar-tab.webp',
   },
   {
     title: 'See your trajectory.',
     body: 'Weekly volume charts, personal records, and consistency streaks. Progress in Overflow is always calm, never competitive.',
-    label: 'Progress',
-  },
-  {
-    title: 'Your week, planned.',
-    body: 'Build routines that map to your real life. Move sessions around, mark rest days, and keep the big picture visible at all times.',
-    label: 'Routines',
+    label: 'Milestones',
+    image: 'Milestones.webp',
   },
 ]
 
@@ -476,7 +219,6 @@ const principles = [
    MAIN COMPONENT
    ============================================ */
 
-const screens = [TodayScreen, LogScreen, ProgressScreen, RoutinesScreen]
 
 export default function OverflowLanding() {
   const [activeScreen, setActiveScreen] = useState(0)
@@ -508,8 +250,6 @@ export default function OverflowLanding() {
 
     return () => observer.disconnect()
   }, [])
-
-  const ActiveScreen = screens[activeScreen]
 
   return (
     <>
@@ -606,7 +346,7 @@ export default function OverflowLanding() {
                 }}
               >
                 <IPhoneFrame>
-                  <TodayScreen />
+                  <ScreenImage src="Today-tab.webp" alt="Today Screen" />
                 </IPhoneFrame>
               </div>
             </div>
@@ -668,8 +408,8 @@ export default function OverflowLanding() {
               <Reveal delay={0.2}>
                 <div className="mx-auto lg:mx-0">
                   <IPhoneFrame>
-                    <TodayScreen />
-                  </IPhoneFrame>
+                  <ScreenImage src="Today-tab.webp" alt="Today Screen" />
+                </IPhoneFrame>
                 </div>
               </Reveal>
             </div>
@@ -773,7 +513,7 @@ export default function OverflowLanding() {
               <div className="hidden lg:block lg:sticky lg:top-32 lg:self-start">
                 <IPhoneFrame>
                   <div className="relative h-full">
-                    {screens.map((Screen, i) => (
+                    {demoScreens.map((screen, i) => (
                       <div
                         key={i}
                         className="absolute inset-0"
@@ -782,7 +522,7 @@ export default function OverflowLanding() {
                           transition: 'opacity 0.5s cubic-bezier(0.16,1,0.3,1)',
                         }}
                       >
-                        <Screen />
+                        <ScreenImage src={screen.image} alt={screen.label} />
                       </div>
                     ))}
                   </div>
@@ -804,7 +544,7 @@ export default function OverflowLanding() {
                     {/* Mobile phone inline */}
                     <div className="mb-8 lg:hidden">
                       <IPhoneFrame className="!w-[220px] !h-[450px] [&_*]:!text-[85%]">
-                        {(() => { const S = screens[i]; return <S /> })()}
+                        <ScreenImage src={panel.image} alt={panel.label} />
                       </IPhoneFrame>
                     </div>
 
