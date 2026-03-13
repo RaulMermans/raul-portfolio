@@ -20,7 +20,7 @@ const sections = [
     title: 'Apps',
     description: 'Productivity tools and vibe-coded apps built fast with AI, designed to feel intentional. Each product moves from idea to launch-ready experience at full speed without cutting corners.',
     href: '/apps',
-    image: '/images/sections/apps-bg.webp',
+    image: '/images/sections/apps-bg-v2.webp',
   },
   {
     id: 'photography',
