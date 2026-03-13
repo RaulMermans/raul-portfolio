@@ -24,7 +24,7 @@ const bebasNeue = Bebas_Neue({
 const dmSans = DM_Sans({
   weight: ['400', '500'],
   style: ['normal', 'italic'],
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-body',
   display: 'swap',
 })
@@ -38,7 +38,7 @@ const spaceMono = Space_Mono({
 
 const sourceSerif4 = Source_Serif_4({
   weight: ['400', '600'],
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-reading',
   display: 'swap',
 })
