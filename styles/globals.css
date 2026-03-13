@@ -4520,6 +4520,7 @@ html.homepage .footer {
 
 /* Gallery Item - editorial masonry cards with deterministic rhythm */
 .gallery__item {
+  display: inline-block;
   position: relative;
   overflow: hidden;
   cursor: default;
@@ -4538,42 +4539,35 @@ html.homepage .footer {
   isolation: isolate;
   content-visibility: auto;
   contain-intrinsic-size: 480px 720px;
+  width: 100%;
+  box-shadow: 0 22px 54px rgba(26, 23, 20, 0.08);
 }
 
-.gallery__item--hero {
-  aspect-ratio: 5 / 6;
+.gallery__item--flush {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-.gallery__item--portrait-xl {
-  aspect-ratio: 4 / 5;
+.gallery__item--matte {
+  padding: clamp(10px, 0.9vw, 15px);
+  background: rgba(245, 240, 235, 0.94);
 }
 
-.gallery__item--landscape-lg {
-  aspect-ratio: 6 / 5;
+.gallery__item--paper {
+  padding: clamp(14px, 1vw, 20px);
+  background: linear-gradient(180deg, rgba(250, 247, 243, 0.98), rgba(238, 232, 226, 0.9));
 }
 
-.gallery__item--square {
-  aspect-ratio: 1 / 1;
+.gallery__item--bordered {
+  padding: clamp(8px, 0.7vw, 12px);
+  background: rgba(244, 239, 234, 0.96);
+  border: 1px solid rgba(26, 23, 20, 0.08);
 }
 
-.gallery__item--portrait {
-  aspect-ratio: 3 / 4;
-}
-
-.gallery__item--tall {
-  aspect-ratio: 5 / 7;
-}
-
-.gallery__item--wide {
-  aspect-ratio: 16 / 10;
-}
-
-.gallery__item--landscape {
-  aspect-ratio: 3 / 2;
-}
-
-.gallery__item--wide-compact {
-  aspect-ratio: 5 / 4;
+.gallery__item--soft {
+  padding: clamp(12px, 0.9vw, 16px);
+  background: rgba(242, 236, 230, 0.82);
 }
 
 /* Loading state with faster shimmer */
@@ -4634,9 +4628,8 @@ html.homepage .footer {
 .gallery__item img,
 .gallery__item-image {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;
   transition: transform 0.35s var(--ease), opacity 0.28s var(--ease);
   transform: scale(1);
 }
@@ -4650,7 +4643,7 @@ html.homepage .footer {
 /* Subtle hover zoom effect */
 .gallery__item:hover img,
 .gallery__item:hover .gallery__item-image {
-  transform: scale(1.02);
+  transform: scale(1.012);
 }
 
 .gallery__item:active img,
@@ -4865,31 +4858,17 @@ html.homepage .footer {
     overflow: hidden;
   }
 
-  .gallery__item--hero,
-  .gallery__item--portrait-xl,
-  .gallery__item--portrait {
-    aspect-ratio: 4 / 5;
-  }
-
-  .gallery__item--landscape-lg,
-  .gallery__item--landscape,
-  .gallery__item--wide,
-  .gallery__item--wide-compact {
-    aspect-ratio: 4 / 3;
-  }
-
-  .gallery__item--square {
-    aspect-ratio: 1 / 1;
-  }
-
-  .gallery__item--tall {
-    aspect-ratio: 3 / 4;
+  .gallery__item--matte,
+  .gallery__item--paper,
+  .gallery__item--bordered,
+  .gallery__item--soft {
+    padding: var(--space-2);
   }
 
   .gallery__item img,
   .gallery__item-image {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
   }
 

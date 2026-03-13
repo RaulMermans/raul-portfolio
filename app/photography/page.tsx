@@ -4,18 +4,15 @@ import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import {
+  PHOTOGRAPHY_IMAGES,
+  type PhotographyCategory as CategoryType,
+  type PhotographyPhoto as Photo,
+} from '@/data/photography'
 
 // ========================================
 // PHOTO DATA STRUCTURE
 // ========================================
-
-interface Photo {
-  src: string
-  alt: string
-  category: 'landscape' | 'architecture' | 'street'
-}
-
-type CategoryType = 'landscape' | 'architecture' | 'street'
 
 interface EditorialLayout {
   itemClassName: string
@@ -24,6 +21,8 @@ interface EditorialLayout {
   priority?: boolean
   fetchPriority?: 'high' | 'auto' | 'low'
 }
+
+type PhotoFormat = 'landscape' | 'portrait' | 'tall' | 'square'
 
 // Helper function to shuffle array and select random items
 function shuffleAndSelect<T>(array: T[], count: number): T[] {
@@ -41,9 +40,10 @@ function getRandomSelection(key: string, allItems: Photo[], count: number): Phot
   if (stored) {
     try {
       const parsed = JSON.parse(stored) as Photo[]
-      const validSelection = parsed.filter((item: Photo) => 
-        allItems.some(ai => ai.src === item.src)
-      )
+      const validSelection = parsed
+        .map((item: Photo) => allItems.find((availableItem) => availableItem.src === item.src))
+        .filter((item): item is Photo => Boolean(item))
+
       if (validSelection.length === count) {
         return validSelection
       }
@@ -72,84 +72,127 @@ const PHOTO_BLUR_DATA_URL =
 
 const editorialPattern: EditorialLayout[] = [
   {
-    itemClassName: 'gallery__item--hero',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), min(100vw - 8rem, 1280px)',
+    itemClassName: 'gallery__item--flush',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
     eager: true,
     priority: true,
     fetchPriority: 'high',
   },
   {
-    itemClassName: 'gallery__item--portrait-xl',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 34vw, 30vw',
-    eager: true,
-    priority: true,
-    fetchPriority: 'high',
-  },
-  {
-    itemClassName: 'gallery__item--landscape-lg',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 44vw',
-    eager: true,
-    priority: true,
-  },
-  {
-    itemClassName: 'gallery__item--square',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+    itemClassName: 'gallery__item--matte',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
     eager: true,
   },
   {
-    itemClassName: 'gallery__item--portrait',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+    itemClassName: 'gallery__item--paper',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
     eager: true,
   },
   {
-    itemClassName: 'gallery__item--tall',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+    itemClassName: 'gallery__item--bordered',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
+    eager: true,
   },
   {
-    itemClassName: 'gallery__item--wide',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 48vw',
+    itemClassName: 'gallery__item--soft',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
   },
   {
-    itemClassName: 'gallery__item--portrait',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 34vw, 28vw',
+    itemClassName: 'gallery__item--flush',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
   },
   {
-    itemClassName: 'gallery__item--portrait-xl',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 34vw, 30vw',
+    itemClassName: 'gallery__item--matte',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
   },
   {
-    itemClassName: 'gallery__item--landscape',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 44vw',
+    itemClassName: 'gallery__item--flush',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
   },
   {
-    itemClassName: 'gallery__item--square',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 42vw, 28vw',
+    itemClassName: 'gallery__item--paper',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
   },
   {
-    itemClassName: 'gallery__item--wide-compact',
-    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 52vw, 44vw',
+    itemClassName: 'gallery__item--bordered',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
+  },
+  {
+    itemClassName: 'gallery__item--soft',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
+  },
+  {
+    itemClassName: 'gallery__item--flush',
+    sizes: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 46vw, 40vw',
   },
 ]
 
-// ALL AVAILABLE IMAGES
-// Automatically includes all uploaded images in each category
-// The system will randomly select 12 images from the available pool
-const allAvailableImages = {
-  landscape: Array.from({ length: 15 }, (_, i) => ({
-    src: `/images/photography/landscape/Landscape${i + 1}.webp`,
-    alt: `Landscape photography ${i + 1}`,
-    category: 'landscape' as const,
-  })),
-  architecture: Array.from({ length: 13 }, (_, i) => ({
-    src: `/images/photography/architecture/Arquitecture${i + 1}.webp`,
-    alt: `Architecture photography ${i + 1}`,
-    category: 'architecture' as const,
-  })),
-  street: Array.from({ length: 18 }, (_, i) => ({
-    src: `/images/photography/street/Street${i + 1}.webp`,
-    alt: `Street photography ${i + 1}`,
-    category: 'street' as const,
-  })),
+function getPhotoFormat(photo: Photo): PhotoFormat {
+  const ratio = photo.width / photo.height
+
+  if (ratio >= 1.18) return 'landscape'
+  if (ratio <= 0.72) return 'tall'
+  if (ratio >= 0.92) return 'square'
+
+  return 'portrait'
+}
+
+function takeNextPhoto(
+  buckets: Record<PhotoFormat, Photo[]>,
+  preferredOrder: readonly PhotoFormat[]
+): Photo | undefined {
+  for (const format of preferredOrder) {
+    const nextPhoto = buckets[format].shift()
+    if (nextPhoto) return nextPhoto
+  }
+
+  return undefined
+}
+
+function arrangeEditorialFlow(photos: Photo[]): Photo[] {
+  const buckets: Record<PhotoFormat, Photo[]> = {
+    landscape: [],
+    portrait: [],
+    tall: [],
+    square: [],
+  }
+
+  photos.forEach((photo) => {
+    buckets[getPhotoFormat(photo)].push(photo)
+  })
+
+  const desiredSequence: readonly PhotoFormat[] = [
+    'tall',
+    'landscape',
+    'portrait',
+    'landscape',
+    'portrait',
+    'square',
+    'tall',
+    'portrait',
+    'landscape',
+    'portrait',
+    'landscape',
+    'tall',
+  ]
+
+  const fallbackOrder: Record<PhotoFormat, readonly PhotoFormat[]> = {
+    landscape: ['landscape', 'portrait', 'square', 'tall'],
+    portrait: ['portrait', 'tall', 'square', 'landscape'],
+    tall: ['tall', 'portrait', 'square', 'landscape'],
+    square: ['square', 'portrait', 'landscape', 'tall'],
+  }
+
+  const orderedPhotos = desiredSequence
+    .map((format) => takeNextPhoto(buckets, fallbackOrder[format]))
+    .filter((photo): photo is Photo => Boolean(photo))
+
+  return orderedPhotos.concat(
+    buckets.landscape,
+    buckets.portrait,
+    buckets.square,
+    buckets.tall
+  )
 }
 
 // Number of images to display per category
@@ -161,17 +204,23 @@ function getCategories() {
     landscape: {
       name: 'Landscape',
       count: IMAGES_PER_CATEGORY,
-      images: getRandomSelection('landscape', allAvailableImages.landscape, IMAGES_PER_CATEGORY),
+      images: arrangeEditorialFlow(
+        getRandomSelection('landscape', PHOTOGRAPHY_IMAGES.landscape, IMAGES_PER_CATEGORY)
+      ),
     },
     architecture: {
       name: 'Architecture',
       count: IMAGES_PER_CATEGORY,
-      images: getRandomSelection('architecture', allAvailableImages.architecture, IMAGES_PER_CATEGORY),
+      images: arrangeEditorialFlow(
+        getRandomSelection('architecture', PHOTOGRAPHY_IMAGES.architecture, IMAGES_PER_CATEGORY)
+      ),
     },
     street: {
       name: 'Street',
       count: IMAGES_PER_CATEGORY,
-      images: getRandomSelection('street', allAvailableImages.street, IMAGES_PER_CATEGORY),
+      images: arrangeEditorialFlow(
+        getRandomSelection('street', PHOTOGRAPHY_IMAGES.street, IMAGES_PER_CATEGORY)
+      ),
     },
   }
 }
@@ -201,20 +250,23 @@ export default function PhotographyPage() {
     if (isMobile) return
 
     const adjacent = getAdjacentCategories(activeCategory)
+    const prefetchDelay = window.setTimeout(() => {
+      adjacent.forEach(cat => {
+        if (!prefetchedCategoriesRef.current.has(cat)) {
+          prefetchedCategoriesRef.current.add(cat)
+          const images = categoriesState[cat]?.images || []
+          images.slice(0, 1).forEach(img => {
+            const link = document.createElement('link')
+            link.rel = 'prefetch'
+            link.as = 'image'
+            link.href = img.src
+            document.head.appendChild(link)
+          })
+        }
+      })
+    }, 1400)
 
-    adjacent.forEach(cat => {
-      if (!prefetchedCategoriesRef.current.has(cat)) {
-        prefetchedCategoriesRef.current.add(cat)
-        const images = categoriesState[cat]?.images || []
-        images.slice(0, 2).forEach(img => {
-          const link = document.createElement('link')
-          link.rel = 'prefetch'
-          link.as = 'image'
-          link.href = img.src
-          document.head.appendChild(link)
-        })
-      }
-    })
+    return () => window.clearTimeout(prefetchDelay)
   }, [activeCategory, categoriesState])
 
   // Bottom bar: fixed until footer comes into view (rAF-throttled scroll + resize handlers)
@@ -362,12 +414,12 @@ export default function PhotographyPage() {
         <div className="gallery__grid" id="gallery-content" role="tabpanel" aria-live="polite" data-category={activeCategory}>
           {imageItems.map(({ photo, index, layout }) => {
             const isLoaded = loadedImages.has(photo.src)
-            const shouldPrioritize = Boolean(layout.priority || index < 3)
-            const shouldEagerLoad = Boolean(layout.eager || index < 4)
+            const shouldPrioritize = Boolean(layout.priority || index < 2)
+            const shouldEagerLoad = Boolean(layout.eager || index < 3)
 
             return (
               <div
-                key={`${activeCategory}-${index}`}
+                key={photo.src}
                 className={`gallery__item ${layout.itemClassName} ${isLoaded ? 'loaded' : 'loading'}`}
                 data-category={activeCategory}
                 style={{ animationDelay: `${Math.min(index, 4) * 0.08}s` }}
@@ -375,21 +427,21 @@ export default function PhotographyPage() {
                 <Image
                   src={photo.src}
                   alt={photo.alt}
-                  fill
+                  width={photo.width}
+                  height={photo.height}
                   sizes={layout.sizes}
-                  quality={index < 3 ? 85 : 82}
+                  quality={index < 2 ? 82 : 76}
                   loading={shouldEagerLoad ? 'eager' : 'lazy'}
                   priority={shouldPrioritize}
                   fetchPriority={layout.fetchPriority ?? (index < 2 ? 'high' : 'auto')}
-                  placeholder="blur"
-                  blurDataURL={PHOTO_BLUR_DATA_URL}
+                  placeholder={index < 6 ? 'blur' : 'empty'}
+                  blurDataURL={index < 6 ? PHOTO_BLUR_DATA_URL : undefined}
                   className="gallery__item-image"
                   onLoad={() => handleImageLoad(photo.src)}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.style.display = 'none'
                   }}
-                  style={{ objectFit: 'cover' }}
                 />
               </div>
             )

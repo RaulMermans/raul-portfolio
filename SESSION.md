@@ -48,6 +48,16 @@ When starting work, update this section:
 
 ## Recent Sessions
 
+### 2026-03-13 - Preserve full-frame photography images in editorial columns
+**Goal**: Keep the photography landing in a strong two-column editorial layout while showing the full image instead of cropping it.
+**Outcome**: Completed
+**Changes Made**:
+- `data/photography.ts` - added explicit width/height metadata for every photography asset so the gallery can render true image ratios with better layout stability.
+- `app/photography/page.tsx` - switched the gallery from `fill`/crop rendering to intrinsic image sizing, reordered selections into a more editorial sequence based on natural aspect ratios, and delayed adjacent-category prefetching so the initial page load gets bandwidth first.
+- `styles/globals.css` - replaced ratio-forcing card classes with lighter editorial frame treatments so images stay fully visible while the two-column layout still feels designed.
+**Notes**: This pass prioritizes full-image visibility and faster perceived load over the previous crop-heavy cover treatment. `npm run type-check` and `npm run lint` both launched but remained running without returning a result in this environment.
+**Next Steps**: Review `/photography` locally and decide whether mobile should stay single-column or also move to a two-column variant.
+
 ### 2026-03-13 - Optimize photography landing gallery flow
 **Goal**: Make the photography landing load images faster, remove awkward gaps between images, and keep the gallery feeling editorial instead of random.
 **Outcome**: Completed
