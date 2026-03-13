@@ -43,6 +43,7 @@ const sections = [
 export default function SectionCards() {
   const router = useRouter()
   const scrollRef = useRef<HTMLDivElement>(null)
+  const didDragRef = useRef(false)
 
   const applyDepth = useCallback(() => {
     const container = scrollRef.current
@@ -107,16 +108,14 @@ export default function SectionCards() {
     if (!container) return
 
     let isDragging = false
-    let didDrag = false
     let startX = 0
     let scrollStart = 0
     const DRAG_THRESHOLD = 5
 
     const onPointerDown = (e: PointerEvent) => {
-      // Only primary button (mouse left / touch)
       if (e.button !== 0) return
       isDragging = true
-      didDrag = false
+      didDragRef.current = false
       startX = e.clientX
       scrollStart = container.scrollLeft
       container.style.scrollBehavior = 'auto'
@@ -126,10 +125,11 @@ export default function SectionCards() {
       if (!isDragging) return
       const dx = e.clientX - startX
       if (Math.abs(dx) > DRAG_THRESHOLD) {
-        didDrag = true
+        didDragRef.current = true
         container.style.cursor = 'grabbing'
+        e.preventDefault()
       }
-      if (didDrag) {
+      if (didDragRef.current) {
         container.scrollLeft = scrollStart - dx
       }
     }
@@ -140,26 +140,16 @@ export default function SectionCards() {
       container.style.scrollBehavior = 'smooth'
     }
 
-    const onClick = (e: MouseEvent) => {
-      if (didDrag) {
-        e.preventDefault()
-        e.stopPropagation()
-        didDrag = false
-      }
-    }
-
     container.addEventListener('pointerdown', onPointerDown)
-    container.addEventListener('pointermove', onPointerMove)
+    container.addEventListener('pointermove', onPointerMove, { passive: false })
     container.addEventListener('pointerup', onPointerUp)
     container.addEventListener('pointercancel', onPointerUp)
-    container.addEventListener('click', onClick, true)
 
     return () => {
       container.removeEventListener('pointerdown', onPointerDown)
       container.removeEventListener('pointermove', onPointerMove)
       container.removeEventListener('pointerup', onPointerUp)
       container.removeEventListener('pointercancel', onPointerUp)
-      container.removeEventListener('click', onClick, true)
     }
   }, [])
 
@@ -206,7 +196,14 @@ export default function SectionCards() {
               data-card={section.id}
               aria-labelledby={`section-${idx + 1}-title`}
               prefetch={true}
+              draggable={false}
               onMouseEnter={() => router.prefetch(section.href)}
+              onClick={(e) => {
+                if (didDragRef.current) {
+                  e.preventDefault()
+                  didDragRef.current = false
+                }
+              }}
             >
               <div className="section-card__image-wrapper">
                 <Image

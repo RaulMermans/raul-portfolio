@@ -20,7 +20,6 @@ interface AppCoverflowCarouselProps {
 export default function AppCoverflowCarousel({ apps }: AppCoverflowCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0)
 
-  // Build slide list: real apps + placeholders to ensure enough for loop
   const placeholders = Math.max(0, 3 - apps.length)
 
   return (
@@ -53,17 +52,23 @@ export default function AppCoverflowCarousel({ apps }: AppCoverflowCarouselProps
         {/* Placeholder slides */}
         {Array.from({ length: placeholders }).map((_, i) => (
           <SwiperSlide key={`placeholder-${i}`}>
-            <div className="flex h-full flex-col items-center justify-center rounded-[24px] border border-dashed border-white/[0.1] bg-white/[0.015] p-8 text-center">
-              <div className="flex h-[100px] w-[100px] items-center justify-center rounded-[24px] border border-dashed border-white/[0.08] text-3xl text-white/[0.1]">
+            <div
+              className="flex h-full flex-col items-center justify-center rounded-[24px] border border-dashed p-8 text-center"
+              style={{ borderColor: 'var(--cream-dark)', background: 'var(--cream-light)' }}
+            >
+              <div
+                className="flex h-[100px] w-[100px] items-center justify-center rounded-[24px] border border-dashed text-3xl"
+                style={{ borderColor: 'var(--cream-dark)', color: 'var(--cream-darker)' }}
+              >
                 +
               </div>
               <p
-                className="mt-6 text-2xl uppercase leading-[0.95] text-white/[0.16]"
-                style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
+                className="mt-6 text-2xl uppercase leading-[0.95]"
+                style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif', color: 'var(--cream-dark)' }}
               >
                 Coming soon
               </p>
-              <p className="mt-2 text-[0.68rem] uppercase tracking-[0.22em] text-white/[0.12]">
+              <p className="mt-2 text-[0.68rem] uppercase tracking-[0.22em]" style={{ color: 'var(--cream-darker)' }}>
                 In development
               </p>
             </div>
@@ -74,7 +79,7 @@ export default function AppCoverflowCarousel({ apps }: AppCoverflowCarouselProps
   )
 }
 
-/* ── Tile slide (icon-centric card) ── */
+/* ── Tile slide (light theme card) ── */
 
 function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
   const glowStyle: CSSProperties = {
@@ -84,12 +89,12 @@ function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
   return (
     <Link
       href={app.href}
-      className="group relative flex h-full flex-col items-center overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.03] p-8 text-center transition-all duration-500"
-      style={
-        {
-          '--tile-accent': app.theme.accent,
-        } as CSSProperties
-      }
+      className="group relative flex h-full flex-col items-center overflow-hidden rounded-[24px] border p-8 text-center transition-all duration-500"
+      style={{
+        '--tile-accent': app.theme.accent,
+        background: 'var(--ink)',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+      } as CSSProperties}
     >
       {/* Glow */}
       <div
@@ -124,17 +129,18 @@ function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
       {/* Text */}
       <div className="relative z-10 w-full">
         <h3
-          className="text-3xl uppercase leading-[0.95] text-[#f5f0eb] sm:text-4xl"
-          style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
+          className="text-3xl uppercase leading-[0.95] sm:text-4xl"
+          style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif', color: 'var(--cream)' }}
         >
           {app.name}
         </h3>
-        <p className="mt-2 text-[0.7rem] uppercase tracking-[0.22em] text-white/[0.42]">
+        <p className="mt-2 text-[0.7rem] uppercase tracking-[0.22em]" style={{ color: 'rgba(255,255,255,0.42)' }}>
           {app.launchStage}
         </p>
         <p
-          className="mx-auto mt-3 max-w-xs text-sm leading-6 text-white/[0.5] transition-all duration-500"
+          className="mx-auto mt-3 max-w-xs text-sm leading-6 transition-all duration-500"
           style={{
+            color: 'rgba(255,255,255,0.5)',
             opacity: isActive ? 1 : 0,
             transform: isActive ? 'translateY(0)' : 'translateY(6px)',
           }}
