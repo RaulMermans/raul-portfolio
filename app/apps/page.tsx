@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { CSSProperties } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
@@ -15,69 +16,126 @@ export default function AppsPage() {
   return (
     <>
       <Header />
-      <main style={{ background: 'var(--cream)', color: 'var(--ink)', minHeight: '100vh' }}>
-        {/* Title */}
-        <section className="mx-auto max-w-[1400px] px-6 pt-32 md:px-10 lg:pt-40">
+      <main
+        style={{
+          background: 'var(--cream)',
+          color: 'var(--ink)',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {/* Centered content area */}
+        <section
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 'var(--header-height) 24px 48px',
+          }}
+        >
+          {/* Title */}
           <h1
-            className="text-[clamp(3.5rem,8vw,7rem)] uppercase leading-[0.88]"
-            style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif', color: 'var(--ink)' }}
+            style={{
+              fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif',
+              fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+              textTransform: 'uppercase',
+              lineHeight: 0.88,
+              color: 'var(--ink)',
+              marginBottom: '48px',
+              textAlign: 'center',
+            }}
           >
             My Apps
           </h1>
-        </section>
 
-        {/* Horizontal app icon scroller */}
-        <section className="px-6 py-16 md:px-10 lg:py-24">
+          {/* Horizontal icon row — centered */}
           <div
-            className="mx-auto max-w-[1400px] overflow-x-auto"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            style={{
+              display: 'flex',
+              gap: '40px',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              overflowX: 'auto',
+              maxWidth: '100%',
+              paddingBottom: '8px',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            } as CSSProperties}
           >
-            <div className="flex gap-8 pb-4" style={{ WebkitOverflowScrolling: 'touch' }}>
-              {apps.map((app) => (
-                <Link
-                  key={app.slug}
-                  href={app.href}
-                  className="group flex flex-col items-center gap-3 flex-shrink-0"
+            {apps.map((app) => (
+              <Link
+                key={app.slug}
+                href={app.href}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '12px',
+                  flexShrink: 0,
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  transition: 'transform 0.3s var(--ease)',
+                }}
+                className="group"
+              >
+                {/* iOS-style icon — large */}
+                <div
+                  style={{
+                    width: 200,
+                    height: 200,
+                    borderRadius: '26.6%',
+                    overflow: 'hidden',
+                    background: app.icon
+                      ? 'transparent'
+                      : `linear-gradient(135deg, ${app.theme.accent}, ${app.theme.accentSoft})`,
+                    boxShadow: '0 8px 40px rgba(0,0,0,0.15)',
+                    transition: 'transform 0.3s var(--ease), box-shadow 0.3s var(--ease)',
+                  }}
+                  className="group-hover:scale-105"
                 >
-                  {/* iOS-style icon */}
-                  <div
-                    className="relative overflow-hidden transition-transform duration-300 group-hover:scale-105"
-                    style={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: '26.6%',
-                      background: app.icon
-                        ? 'transparent'
-                        : `linear-gradient(135deg, ${app.theme.accent}, ${app.theme.accentSoft})`,
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
-                    }}
-                  >
-                    {app.icon ? (
-                      <Image
-                        src={app.icon}
-                        alt={`${app.name} icon`}
-                        width={120}
-                        height={120}
-                        className="h-full w-full object-cover"
-                        style={{ borderRadius: '26.6%' }}
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center text-white text-3xl font-bold">
-                        {app.name.charAt(0)}
-                      </div>
-                    )}
-                  </div>
+                  {app.icon ? (
+                    <Image
+                      src={app.icon}
+                      alt={`${app.name} icon`}
+                      width={200}
+                      height={200}
+                      className="h-full w-full object-cover"
+                      style={{ borderRadius: '26.6%' }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontSize: '4rem',
+                        fontWeight: 700,
+                      }}
+                    >
+                      {app.name.charAt(0)}
+                    </div>
+                  )}
+                </div>
 
-                  {/* App name */}
-                  <span
-                    className="text-xs tracking-wide text-center"
-                    style={{ color: 'var(--ink-soft)', maxWidth: 120 }}
-                  >
-                    {app.name}
-                  </span>
-                </Link>
-              ))}
-            </div>
+                {/* App name */}
+                <span
+                  style={{
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--ink-soft)',
+                    textAlign: 'center',
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  {app.name}
+                </span>
+              </Link>
+            ))}
           </div>
         </section>
       </main>

@@ -18,7 +18,7 @@ const sections = [
     id: 'apps',
     index: '02',
     title: 'Apps',
-    description: 'Productivity tools and vibe-coded apps — built fast with AI, designed to feel intentional. Each product moves from idea to launch-ready experience at full speed without cutting corners.',
+    description: 'Productivity tools and vibe-coded apps built fast with AI, designed to feel intentional. Each product moves from idea to launch-ready experience at full speed without cutting corners.',
     href: '/apps',
     image: '/images/sections/apps-bg.webp',
   },
@@ -81,6 +81,72 @@ export default function SectionCards() {
     })
   }, [])
 
+  // Mouse wheel → horizontal scroll
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    const onWheel = (e: WheelEvent) => {
+      // Only hijack vertical scroll when the carousel is in view and has overflow
+      if (container.scrollWidth <= container.clientWidth) return
+      const atStart = container.scrollLeft <= 0
+      const atEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1
+      // Let vertical scroll pass through if we're at the edges
+      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return
+      e.preventDefault()
+      container.scrollBy({ left: e.deltaY * 2.5, behavior: 'auto' })
+    }
+
+    container.addEventListener('wheel', onWheel, { passive: false })
+    return () => container.removeEventListener('wheel', onWheel)
+  }, [])
+
+  // Drag to scroll
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    let isDragging = false
+    let startX = 0
+    let scrollStart = 0
+
+    const onPointerDown = (e: PointerEvent) => {
+      // Only primary button (mouse left / touch)
+      if (e.button !== 0) return
+      isDragging = true
+      startX = e.clientX
+      scrollStart = container.scrollLeft
+      container.style.cursor = 'grabbing'
+      container.style.scrollBehavior = 'auto'
+      container.setPointerCapture(e.pointerId)
+    }
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!isDragging) return
+      const dx = e.clientX - startX
+      container.scrollLeft = scrollStart - dx
+    }
+
+    const onPointerUp = () => {
+      isDragging = false
+      container.style.cursor = ''
+      container.style.scrollBehavior = 'smooth'
+    }
+
+    container.addEventListener('pointerdown', onPointerDown)
+    container.addEventListener('pointermove', onPointerMove)
+    container.addEventListener('pointerup', onPointerUp)
+    container.addEventListener('pointercancel', onPointerUp)
+
+    return () => {
+      container.removeEventListener('pointerdown', onPointerDown)
+      container.removeEventListener('pointermove', onPointerMove)
+      container.removeEventListener('pointerup', onPointerUp)
+      container.removeEventListener('pointercancel', onPointerUp)
+    }
+  }, [])
+
+  // Depth transforms on scroll
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
@@ -139,44 +205,6 @@ export default function SectionCards() {
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
                 <div className="section-card__overlay"></div>
-                {section.id === 'apps' ? (
-                  <div className="section-card__product-preview" aria-hidden="true">
-                    <div className="section-card__product-preview-frame">
-                      <div className="section-card__product-preview-bar">
-                        <span>Overflow</span>
-                        <span>Private beta</span>
-                      </div>
-                      <div className="section-card__product-preview-grid">
-                        <div className="section-card__product-preview-panel section-card__product-preview-panel--primary">
-                          <span className="section-card__preview-label">Tonight</span>
-                          <strong>Calm planning for the next move.</strong>
-                          <div className="section-card__preview-chips">
-                            <span>Places</span>
-                            <span>People</span>
-                            <span>Timing</span>
-                          </div>
-                        </div>
-                        <div className="section-card__product-preview-panel">
-                          <span className="section-card__preview-label">Saved</span>
-                          <div className="section-card__preview-lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                          </div>
-                        </div>
-                        <div className="section-card__product-preview-panel">
-                          <span className="section-card__preview-label">Pulse</span>
-                          <div className="section-card__preview-lines section-card__preview-lines--dense">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
               </div>
               <div className="section-card__content">
                 <span className="section-card__index" aria-hidden="true">{section.index}</span>
