@@ -29,6 +29,11 @@
 
 ## Completed
 
+### March 2026
+- [x] Enhance App Coverflow gallery with dynamic theme-based glow and metrics
+- [x] Fix case study visual glitches (squares, text fragments, FilmStrip implementation)
+- [x] Resolve font rendering issues by adding `latin-ext` subset
+
 ### January 2026
 - [x] Apply security baseline (SECURITY.md, CSP headers, npm audit in CI)
 - [x] Add vibe coding setup (AGENTS.md, Cursor rules)

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -34,7 +35,6 @@ export default function Header() {
     }
     document.addEventListener('keydown', handleEsc)
     return () => document.removeEventListener('keydown', handleEsc)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMenuOpen])
 
   // Focus trap inside mobile menu when open
@@ -75,8 +75,6 @@ export default function Header() {
       const target = document.querySelector(hash)
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' })
-        // tabindex="-1" lets programmatic focus move to a non-interactive element;
-        // the blur listener removes it so it never persists in the tab order.
         target.setAttribute('tabindex', '-1')
         ;(target as HTMLElement).focus()
         target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true })
@@ -84,6 +82,13 @@ export default function Header() {
     }
     closeMenu()
   }
+
+  const menuItems = [
+    { label: 'Work', href: '/case-studies' },
+    { label: 'About', href: '/about' },
+    { label: 'Services', href: '/#services', hash: '#services' },
+    { label: 'Contact', href: '/#contact', hash: '#contact' },
+  ]
 
   return (
     <>
@@ -114,25 +119,49 @@ export default function Header() {
       </button>
 
       {/* Mobile Menu Overlay */}
-      <nav
-        id="mobile-menu"
-        ref={menuRef}
-        className={`ui__mobile-menu ${isMenuOpen ? 'active' : ''}`}
-        aria-label="Mobile navigation"
-        aria-hidden={!isMenuOpen}
-      >
-        <Link href="/case-studies" onClick={closeMenu}>Work</Link>
-        <Link href="/about" onClick={closeMenu}>About</Link>
-        <Link href="/#services" onClick={(e) => handleNavClick(e, '#services')}>Services</Link>
-        <Link href="/#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</Link>
-        <Link
-          href="/#contact"
-          className="ui__mobile-cta"
-          onClick={(e) => handleNavClick(e, '#contact')}
-        >
-          Start a Project
-        </Link>
-      </nav>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.nav
+            id="mobile-menu"
+            ref={menuRef}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="ui__mobile-menu glass active"
+            aria-label="Mobile navigation"
+          >
+            {menuItems.map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.08, duration: 0.4 }}
+              >
+                <Link
+                  href={item.href}
+                  onClick={(e) => item.hash ? handleNavClick(e, item.hash) : closeMenu()}
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + menuItems.length * 0.08, duration: 0.4 }}
+            >
+              <Link
+                href="/#contact"
+                className="ui__mobile-cta"
+                onClick={(e) => handleNavClick(e, '#contact')}
+              >
+                Start a Project
+              </Link>
+            </motion.div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </>
   )
 }

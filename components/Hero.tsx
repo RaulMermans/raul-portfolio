@@ -4,18 +4,15 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import MagneticButton from './MagneticButton'
-import { HERO_MAGNETIC_MAX_DISTANCE, HERO_MAGNETIC_STRENGTH, HERO_SCALE_FACTOR } from '@/lib/constants'
+import { HERO_SCALE_FACTOR } from '@/lib/constants'
 
 // Dynamic import for heavy animation component - improves INP
 const HeroBackground = dynamic(() => import('./HeroBackground'), {
   ssr: false,
   loading: () => <div className="hero-background" aria-hidden="true" />
 })
-
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
-  const primaryCtaRef = useRef<HTMLDivElement>(null)
-  const secondaryCtaRef = useRef<HTMLDivElement>(null)
 
   const [greeting, setGreeting] = useState('WELCOME')
 
@@ -25,72 +22,6 @@ export default function Hero() {
     if (hour < 12) setGreeting('GOOD MORNING')
     else if (hour < 18) setGreeting('GOOD AFTERNOON')
     else setGreeting('GOOD EVENING')
-
-    const hero = heroRef.current
-    if (!hero) return
-
-    const isDesktop = window.matchMedia('(hover: hover)').matches
-    if (!isDesktop) return
-
-    let ticking = false
-    let cachedRect: DOMRect | null = null
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          if (!cachedRect) {
-            cachedRect = hero.getBoundingClientRect()
-          }
-          // Magnetic hover effect for CTAs - Subtle, smooth interaction
-          if (primaryCtaRef.current) {
-            const rect = primaryCtaRef.current.getBoundingClientRect()
-            const centerX = rect.left + rect.width / 2
-            const centerY = rect.top + rect.height / 2
-            const distanceX = e.clientX - centerX
-            const distanceY = e.clientY - centerY
-            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-
-            if (distance < HERO_MAGNETIC_MAX_DISTANCE) {
-              const strength = (1 - distance / HERO_MAGNETIC_MAX_DISTANCE) * HERO_MAGNETIC_STRENGTH
-              primaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(${HERO_SCALE_FACTOR})`
-            } else {
-              primaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
-            }
-          }
-
-          if (secondaryCtaRef.current) {
-            const rect = secondaryCtaRef.current.getBoundingClientRect()
-            const centerX = rect.left + rect.width / 2
-            const centerY = rect.top + rect.height / 2
-            const distanceX = e.clientX - centerX
-            const distanceY = e.clientY - centerY
-            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
-
-            if (distance < HERO_MAGNETIC_MAX_DISTANCE) {
-              const strength = (1 - distance / HERO_MAGNETIC_MAX_DISTANCE) * HERO_MAGNETIC_STRENGTH
-              secondaryCtaRef.current.style.transform = `translate(${distanceX * strength}px, ${distanceY * strength}px) scale(${HERO_SCALE_FACTOR})`
-            } else {
-              secondaryCtaRef.current.style.transform = 'translate(0, 0) scale(1)'
-            }
-          }
-
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    const handleResize = () => {
-      cachedRect = null
-    }
-
-    hero.addEventListener('mousemove', handleMouseMove, { passive: true })
-    window.addEventListener('resize', handleResize, { passive: true })
-
-    return () => {
-      hero.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('resize', handleResize)
-    }
   }, [])
 
   const name = 'RAÚL'
@@ -149,7 +80,7 @@ export default function Hero() {
         </h1>
 
         <div className="hero__cta-group reveal reveal-delay-2">
-          <MagneticButton ref={primaryCtaRef} className="hero__cta-wrapper">
+          <MagneticButton className="hero__cta-wrapper">
             <Link
               href="/#work"
               className="hero__cta hero__cta--primary"
@@ -158,7 +89,7 @@ export default function Hero() {
               <span className="hero__cta-arrow">→</span>
             </Link>
           </MagneticButton>
-          <MagneticButton ref={secondaryCtaRef} className="hero__cta-wrapper" intensity={20}>
+          <MagneticButton className="hero__cta-wrapper" intensity={20}>
             <Link
               href="/#contact"
               className="hero__cta hero__cta--secondary"
