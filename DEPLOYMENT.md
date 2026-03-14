@@ -153,6 +153,12 @@ After completing Steps 3-4 above, confirm:
 
 ## Troubleshooting
 
+### Deploy fails: "mirror: Not connected" or SFTP timeout?
+1. **Verify IONOS SFTP credentials** – In IONOS control panel, confirm the SFTP host (often `ftp.yourdomain.com` or your server hostname), username, and password.
+2. **Check secrets** – Ensure `SFTP_SERVER`, `SFTP_USERNAME`, `SFTP_PASSWORD`, and `SFTP_PORT` (usually `22`) are set in GitHub → Settings → Secrets and variables → Actions.
+3. **Test locally** – Run `lftp -u USER,PASS -e "set sftp:auto-confirm yes; open sftp://HOST:22; ls; quit"` from your machine to confirm credentials work.
+4. **IONOS firewall** – Some plans restrict SFTP by IP; GitHub Actions use dynamic IPs. Check if IONOS allows connections from any IP or if whitelisting is required.
+
 ### Changes Not Appearing?
 1. Clear browser cache (or use Incognito)
 2. Check GitHub Actions deployment status
