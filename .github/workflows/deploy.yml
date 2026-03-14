@@ -14,23 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-          cache: "npm"
-          cache-dependency-path: "raulmermans-portfolio-24/package-lock.json"
-
-      - name: Install dependencies
-        run: npm ci
-        working-directory: raulmermans-portfolio-24
-
-      - name: Build production site
-        run: npm run build
-        working-directory: raulmermans-portfolio-24
-        env:
-          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com' }}
-
       - name: Deploy to IONOS via SFTP
         uses: wangyucode/sftp-upload-action@v2.0.2
         with:
@@ -38,5 +21,5 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: "22"
-          localDir: ./raulmermans-portfolio-24/out/
+          localDir: ./raulmermans-portfolio-24/
           remoteDir: /
