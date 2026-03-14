@@ -6,10 +6,28 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { apps } from '@/data/apps'
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
+
 export const metadata: Metadata = {
-  title: 'Apps | Raul M.',
+  title: 'Apps & Digital Products',
   description:
-    'A curated gallery of digital products, interfaces, and launch-ready app experiences.',
+    'Discover app concepts and digital products by Raúl Mermans, from iPhone experiences to launch-ready interfaces shaped with calm UX and strong visual systems.',
+  openGraph: {
+    title: 'Apps & Digital Products — Raúl Mermans',
+    description:
+      'Discover app concepts and digital products by Raúl Mermans, from iPhone experiences to launch-ready interfaces shaped with calm UX and strong visual systems.',
+    url: `${baseUrl}/apps`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Apps & Digital Products — Raúl Mermans',
+    description:
+      'Discover app concepts and digital products by Raúl Mermans, from iPhone experiences to launch-ready interfaces shaped with calm UX and strong visual systems.',
+  },
+  alternates: {
+    canonical: `${baseUrl}/apps`,
+  },
 }
 
 export default function AppsPage() {

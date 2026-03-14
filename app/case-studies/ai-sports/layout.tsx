@@ -3,12 +3,13 @@ import type { Metadata } from 'next'
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
-  title: 'AI Sports Campaign — Raúl Mermans',
+  title: 'AI Sports Campaign Case Study',
   description:
-    'A Creative Direction Engine built in n8n—swap casting and wardrobe while locking the shot. Campaign-grade coherence from generative AI. AI automation system for creative direction.',
+    'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and art direction consistent across every generated shot.',
   openGraph: {
-    title: 'AI Sports Campaign — Raúl Mermans',
-    description: 'A Creative Direction Engine built in n8n—swap casting and wardrobe while locking the shot. Campaign-grade coherence from generative AI.',
+    title: 'AI Sports Campaign Case Study — Raúl Mermans',
+    description:
+      'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and art direction consistent across every generated shot.',
     type: 'article',
     url: `${baseUrl}/case-studies/ai-sports`,
     publishedTime: '2026-01-01',
@@ -16,8 +17,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Sports Campaign — Raúl Mermans',
-    description: 'A Creative Direction Engine built in n8n—swap casting and wardrobe while locking the shot. Campaign-grade coherence from generative AI.',
+    title: 'AI Sports Campaign Case Study — Raúl Mermans',
+    description:
+      'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and art direction consistent across every generated shot.',
   },
   alternates: {
     canonical: `${baseUrl}/case-studies/ai-sports`,
@@ -70,4 +72,3 @@ export default function AISportsCampaignLayout({
     </>
   )
 }
-

@@ -30,6 +30,7 @@
 ## Completed
 
 ### March 2026
+- [x] Refresh page-level SEO metadata with unique English descriptions
 - [x] Optimize photography landing image loading and editorial gallery flow
 - [x] Optimize homepage interaction fluidity
 - [x] Refine homepage section carousel arrows and initial card alignment

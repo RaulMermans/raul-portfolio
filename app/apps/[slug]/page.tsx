@@ -7,6 +7,8 @@ import AppCard from '@/components/apps/AppCard'
 import AppVisual from '@/components/apps/AppVisual'
 import { apps, getAppBySlug } from '@/data/apps'
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
+
 interface AppPageProps {
   params: {
     slug: string
@@ -32,13 +34,31 @@ export function generateMetadata({ params }: AppPageProps): Metadata {
 
   if (!app) {
     return {
-      title: 'App not found | Raul M.',
+      title: 'App not found',
+      robots: {
+        index: false,
+        follow: false,
+      },
     }
   }
 
   return {
-    title: `${app.name} | Apps | Raul M.`,
+    title: `${app.name} App`,
     description: app.shortDescription,
+    openGraph: {
+      title: `${app.name} App — Raúl Mermans`,
+      description: app.shortDescription,
+      url: `${baseUrl}${app.href}`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${app.name} App — Raúl Mermans`,
+      description: app.shortDescription,
+    },
+    alternates: {
+      canonical: `${baseUrl}${app.href}`,
+    },
   }
 }
 

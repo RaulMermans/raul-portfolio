@@ -50,7 +50,8 @@ export const metadata: Metadata = {
     default: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
     template: '%s | Raúl Mermans',
   },
-  description: 'Visual Storyteller & Creative Director based in Spain. Specializing in Photography, Brand Identity, AI-Powered Creatives, and Digital Systems. Transform your brand with strategic creative direction.',
+  description:
+    'Creative director and visual storyteller in Spain crafting photography, brand identity, AI creatives, and digital systems for brands seeking cultural relevance.',
   icons: {
     icon: '/favicon.jpg',
     apple: '/favicon.jpg',
@@ -68,7 +69,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: baseUrl,
     title: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
-    description: 'Visual Storyteller & Creative Director based in Spain. Specializing in Photography, Brand Identity, AI-Powered Creatives, and Digital Systems.',
+    description:
+      'Creative director and visual storyteller in Spain crafting photography, brand identity, AI creatives, and digital systems for brands seeking cultural relevance.',
     siteName: 'Raúl Mermans Portfolio',
     images: [
       {
@@ -82,7 +84,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
-    description: 'Visual Storyteller & Creative Director based in Spain. Photography, Brand Identity, AI-Powered Creatives, and Digital Systems.',
+    description:
+      'Creative director and visual storyteller in Spain crafting photography, brand identity, AI creatives, and digital systems for brands seeking cultural relevance.',
     creator: '@raulmeermans',
     images: [`${baseUrl}/images/og-image.jpg`],
   },

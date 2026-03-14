@@ -5,17 +5,20 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
   title: 'Case Studies',
-  description: 'Explore detailed case studies showcasing creative projects and visual storytelling by Raúl Mermans. AI automation systems, brand identity, and creative direction.',
+  description:
+    'Explore case studies by Raúl Mermans covering brand identity, AI automation systems, and creative direction with a clear focus on strategy, process, and results.',
   openGraph: {
     title: 'Case Studies — Raúl Mermans',
-    description: 'Explore detailed case studies showcasing creative projects and visual storytelling by Raúl Mermans.',
+    description:
+      'Explore case studies by Raúl Mermans covering brand identity, AI automation systems, and creative direction with a clear focus on strategy, process, and results.',
     url: `${baseUrl}/case-studies`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Case Studies — Raúl Mermans',
-    description: 'Explore detailed case studies showcasing creative projects and visual storytelling by Raúl Mermans.',
+    description:
+      'Explore case studies by Raúl Mermans covering brand identity, AI automation systems, and creative direction with a clear focus on strategy, process, and results.',
   },
   alternates: {
     canonical: `${baseUrl}/case-studies`,
@@ -62,4 +65,3 @@ export default function CaseStudiesLayout({
     </>
   )
 }
-

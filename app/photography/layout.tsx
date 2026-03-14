@@ -4,17 +4,20 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
   title: 'Photography',
-  description: 'Photography work by Raúl Mermans — Landscape, Architecture, and Street photography collections. Visual storytelling through street photography and architectural imagery.',
+  description:
+    'Explore photography by Raúl Mermans, spanning landscape, architecture, and street images shaped by cinematic light, strong composition, and visual storytelling.',
   openGraph: {
     title: 'Photography — Raúl Mermans',
-    description: 'Photography work by Raúl Mermans — Landscape, Architecture, and Street photography collections.',
+    description:
+      'Explore photography by Raúl Mermans, spanning landscape, architecture, and street images shaped by cinematic light, strong composition, and visual storytelling.',
     url: `${baseUrl}/photography`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Photography — Raúl Mermans',
-    description: 'Photography work by Raúl Mermans — Landscape, Architecture, and Street photography collections.',
+    description:
+      'Explore photography by Raúl Mermans, spanning landscape, architecture, and street images shaped by cinematic light, strong composition, and visual storytelling.',
   },
   alternates: {
     canonical: `${baseUrl}/photography`,
@@ -32,4 +35,3 @@ export default function PhotographyLayout({
     </div>
   )
 }
-

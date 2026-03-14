@@ -8,9 +8,7 @@
 **Last Updated**: 2026-03-14
 
 ### Active Work
-- Fixed the GitHub Actions workflow to build and upload `out/` for IONOS SFTP hosting
-- Added static-hosting support files for Apache-style serving on IONOS
-- Confirmed the production build still times out locally before generating `.next/` or `out/`
+- None currently
 
 ### Pending Decisions
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
@@ -50,6 +48,16 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-14 - Refresh page-level SEO metadata
+**Goal**: Improve search result snippets by adding stronger English meta descriptions for public pages and fixing page titles that could inherit the site suffix twice.
+**Outcome**: Completed
+**Changes Made**:
+- `app/layout.tsx` - rewrote the homepage metadata description and aligned the root Open Graph/Twitter descriptions with the new SEO copy.
+- `app/about/layout.tsx`, `app/photography/layout.tsx`, `app/visuals/layout.tsx`, `app/case-studies/layout.tsx`, `app/privacy/layout.tsx`, `app/terms/layout.tsx` - replaced generic descriptions with unique page-level snippets written for search results.
+- `app/apps/page.tsx`, `app/apps/overflow/page.tsx`, `app/apps/[slug]/page.tsx`, `app/case-studies/ai-sports/layout.tsx`, `app/case-studies/remoria/layout.tsx` - improved descriptions, added canonical/Open Graph/Twitter metadata where missing, and normalized page titles so they work cleanly with the root title template.
+**Notes**: The `seo-optimizer` and `nextjs-app-router` skills referenced in repo guidance were not available on disk, so the work followed the existing Next.js metadata pattern directly. Public-page descriptions were kept in English and tuned to roughly 140-180 characters.
+**Next Steps**: Redeploy and inspect a few live pages with browser devtools or Search Console to confirm the updated descriptions and titles are present in the rendered HTML.
 
 ### 2026-03-14 - Reduce platform fingerprints in public site output
 **Goal**: Confirm whether the live site still exposed Webflow traces and remove any remaining platform-identifying output that made the site feel less custom-built.
