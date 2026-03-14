@@ -16,10 +16,15 @@ interface AppPageProps {
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  // Overflow has a dedicated route at /apps/overflow
-  return apps.filter((app) => app.slug !== 'overflow').map((app) => ({
+  // Overflow has a dedicated route at /apps/overflow — exclude it from [slug]
+  const slugs = apps.filter((app) => app.slug !== 'overflow').map((app) => ({
     slug: app.slug,
   }))
+  // Static export requires at least one param; use placeholder that 404s
+  if (slugs.length === 0) {
+    return [{ slug: '__placeholder__' }]
+  }
+  return slugs
 }
 
 export function generateMetadata({ params }: AppPageProps): Metadata {
