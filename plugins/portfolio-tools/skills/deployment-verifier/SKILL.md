@@ -1,6 +1,6 @@
 ---
 name: deployment-verifier
-description: Guide for verifying deployments of the portfolio. This skill should be used before deploying changes, after deployment to verify success, or when debugging deployment issues. Provides pre-deploy checklists, verification commands, and troubleshooting guidance for the Railway + Cloudflare stack.
+description: Guide for verifying deployments of the portfolio. This skill should be used before deploying changes, after deployment to verify success, or when debugging deployment issues. Provides pre-deploy checklists, verification commands, and troubleshooting guidance for the IONOS + Cloudflare stack.
 ---
 
 # Deployment Verifier
@@ -9,7 +9,8 @@ This skill provides guidance for verifying deployments are successful and proper
 
 ## Deployment Stack
 
-- **Origin Server**: Railway (auto-deploys from GitHub)
+- **Origin Server**: IONOS Hosting Plus (static files via SFTP from GitHub Actions)
+- **Deploy**: GitHub Actions auto-deploys on push to `main`
 - **CDN/Proxy**: Cloudflare (DNS with orange cloud)
 - **Domain**: raulmermans.com (www + apex)
 
@@ -30,16 +31,23 @@ All must pass without errors.
 
 ### Environment Variables
 
-Verify these are set in Railway:
+Verify these are set in GitHub (Settings → Secrets and variables → Actions):
 
-**Required:**
+**Required (secrets):**
 - [ ] `NEXT_PUBLIC_SITE_URL` - https://www.raulmermans.com
 - [ ] `RESEND_API_KEY` - For contact form
 - [ ] `CONTACT_EMAIL` - Email recipient
 - [ ] `FROM_EMAIL` - Sender email
 
-**Optional:**
+**Optional (variables):**
+- [ ] `NEXT_PUBLIC_SITE_URL` - https://www.raulmermans.com (or set in workflow)
 - [ ] `NEXT_PUBLIC_GA_MEASUREMENT_ID` - Google Analytics
+
+**SFTP Secrets (required for deploy):**
+- [ ] `SFTP_SERVER` - IONOS SFTP host
+- [ ] `SFTP_USERNAME` - IONOS SFTP username
+- [ ] `SFTP_PASSWORD` - IONOS SFTP password
+- [ ] `SFTP_PORT` - Usually 22
 
 ### File Checks
 
@@ -104,31 +112,15 @@ curl -I "https://www.raulmermans.com${CHUNK_PATH}"
 cf-cache-status: HIT
 ```
 
-### 4. API Routes - NOT Cached
+### 4. Contact Form Works (if using serverless/API)
 
-```bash
-curl -I https://www.raulmermans.com/api/health
-```
-
-**Expected:**
-```
-cache-control: no-cache, no-store, must-revalidate
-cf-cache-status: DYNAMIC  (or BYPASS, NOT HIT)
-```
-
-If API returns `cf-cache-status: HIT`, caching is misconfigured.
-
-### 5. Contact Form Works
-
+With static export, API routes are not deployed. If the contact form uses a serverless function or external service:
 1. Navigate to https://www.raulmermans.com
 2. Fill out contact form
 3. Submit
 4. Verify email received
 
-This proves:
-- API route works
-- Rate limiting active
-- Email service configured
+### 5. Contact Form (Static Export Note)
 
 ### 6. Image Loading
 
@@ -183,7 +175,7 @@ echo -e "\n=== Verification Complete ==="
 ### Changes Not Appearing
 
 1. **Clear browser cache** - Hard refresh (Cmd+Shift+R)
-2. **Check Railway logs** - Verify build succeeded
+2. **Check GitHub Actions logs** - Verify build and SFTP deploy succeeded
 3. **Purge Cloudflare cache** - Dashboard > Caching > Purge Everything
 4. **Verify build output** - Check for build errors
 
@@ -210,8 +202,8 @@ If API routes are being cached:
 
 ### Contact Form Broken
 
-1. **Check Railway env vars** - RESEND_API_KEY, CONTACT_EMAIL, FROM_EMAIL
-2. **Check Railway logs** - Look for Resend errors
+1. **Check GitHub Secrets** - RESEND_API_KEY, CONTACT_EMAIL, FROM_EMAIL (if using form backend)
+2. **Check GitHub Actions logs** - Look for build/deploy errors
 3. **Test locally** - `npm run dev` and test form
 4. **Check rate limiting** - Wait 1 minute if rate limited
 
@@ -227,34 +219,25 @@ If API routes are being cached:
 Cloudflare handles SSL. If issues:
 
 1. Check Cloudflare SSL/TLS settings - Should be "Full (strict)"
-2. Verify Railway has valid certificate
+2. Verify IONOS/origin has valid certificate
 3. Check domain DNS is proxied (orange cloud)
 
-## Railway Dashboard Checks
+## GitHub Actions Checks
 
-### Logs
+### Workflow Logs
 
-Railway > Project > Deployments > View Logs
+GitHub > Repository > Actions > "Deploy to IONOS" workflow
 
 Look for:
 - Build success/failure
-- Runtime errors
-- API errors
+- SFTP upload success
+- No secrets exposed in logs
 
-### Environment Variables
+### Secrets
 
-Railway > Project > Variables
+GitHub > Settings > Secrets and variables > Actions
 
-Verify all required vars are set.
-
-### Deployment Status
-
-Railway > Project > Deployments
-
-Check:
-- Latest deployment status (green = success)
-- Deployment time
-- Commit hash matches expected
+Verify: SFTP_SERVER, SFTP_USERNAME, SFTP_PASSWORD, SFTP_PORT, NEXT_PUBLIC_SITE_URL
 
 ## Cloudflare Dashboard Checks
 
@@ -263,8 +246,8 @@ Check:
 Cloudflare > DNS
 
 Verify:
-- `www` CNAME → Railway domain (proxied - orange cloud)
-- `@` (apex) CNAME → Railway domain (proxied - orange cloud)
+- `www` CNAME → IONOS host (proxied - orange cloud)
+- `@` (apex) CNAME or A → IONOS IP (proxied - orange cloud)
 
 ### Caching
 
@@ -299,12 +282,6 @@ Use for:
 ## Rollback Procedure
 
 If deployment causes issues:
-
-### Railway Rollback
-
-1. Railway > Project > Deployments
-2. Find last working deployment
-3. Click "..." > Redeploy
 
 ### Git Rollback
 

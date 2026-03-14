@@ -66,9 +66,10 @@ FROM_EMAIL=onboarding@resend.dev
 
 **✅ Done by you** - Takes ~2 minutes
 
-#### For Production (Railway/Vercel):
+#### For Production (IONOS):
 
-1. Go to your deployment platform (Railway or Vercel)
+1. For static export: set secrets in GitHub repository (Settings → Secrets) so the build can access them. Resend API calls run client-side or via a separate backend.
+2. If using a server/API: go to your hosting platform
 2. Navigate to your project settings
 3. Find "Environment Variables" or "Secrets"
 4. Add these variables:
@@ -207,7 +208,7 @@ If you need more, upgrade to a paid plan.
 - [ ] Got API key from Resend
 - [ ] Added environment variables to `.env.local`
 - [ ] Tested locally - received test email
-- [ ] Added environment variables to production (Railway/Vercel)
+- [ ] Added environment variables to production (GitHub Actions / IONOS)
 - [ ] Tested in production
 - [ ] (Optional) Verified domain for custom "from" email
 

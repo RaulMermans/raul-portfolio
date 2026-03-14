@@ -11,6 +11,21 @@
 
 3. **Deploy**: Push to the `main` branch to trigger the deployment.
 
+## Removing Railway (Migration)
+
+If you previously used Railway and see failing "Deployment failed" checks (e.g. "adequate-courage - raul-portfolio"):
+
+1. **Disconnect in Railway Dashboard**
+   - Go to [railway.app](https://railway.app) → Your project → Settings
+   - Find "GitHub" or "Source" and **Disconnect** the repository
+   - Or delete the Railway project entirely
+
+2. **Remove from GitHub Branch Protection** (if Railway was a required check)
+   - GitHub → Repository → Settings → Branches → Branch protection rules → Edit `main`
+   - In "Require status checks to pass", remove the Railway check (e.g. "adequate-courage")
+   - Save changes
+
+3. **Verify**: Push a commit; only the "Deploy to IONOS SFTP" check should run.
 
 ## Cloudflare CDN Setup
 
@@ -129,7 +144,7 @@ After completing Steps 3-4 above, confirm:
 - [ ] ✅ Verification 4: API route shows `cache-control: no-cache, no-store, must-revalidate`
 - [ ] ✅ HTML pages show `cache-control: public, max-age=0, must-revalidate`
 - [ ] ✅ Contact form still works after Cloudflare enabled (API not cached)
-- [ ] ✅ Site updates appear after new Railway deployment (no stale HTML)
+- [ ] ✅ Site updates appear after new GitHub Action deploy (no stale HTML)
 
 ## IONOS Configuration
 

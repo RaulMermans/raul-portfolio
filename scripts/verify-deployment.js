@@ -40,7 +40,7 @@ console.log('🔍 Verifying deployment readiness...\n')
 // Critical files
 checkFile('package.json', 'package.json exists')
 checkFile('next.config.js', 'next.config.js exists')
-checkFile('railway.json', 'railway.json exists')
+checkFile('.github/workflows/deploy.yml', 'GitHub Actions deploy workflow exists')
 checkFile('tsconfig.json', 'tsconfig.json exists')
 checkFile('.gitignore', '.gitignore exists')
 checkFile('.nvmrc', 'Node version specified')

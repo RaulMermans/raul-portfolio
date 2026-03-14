@@ -54,7 +54,7 @@
 - ✅ Build successful
 - ✅ Changes committed and pushed
 
-**Next:** Railway will auto-deploy. Images will appear on the live site once deployment completes.
+**Next:** GitHub Actions will auto-deploy to IONOS. Images will appear on the live site once deployment completes.
 
 ---
 

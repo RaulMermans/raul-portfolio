@@ -48,7 +48,6 @@ const SAFE_PATTERNS = [
   /\.gitignore/,
   /README\.md/,
   /DEPLOYMENT\.md/,
-  /\.railway\.json/,
   /^public\/images/,
   /^app\/layout\.tsx/,
   /^app\/page\.tsx/,

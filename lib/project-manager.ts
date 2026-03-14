@@ -250,7 +250,7 @@ export function analyzeRequest(request: string): TaskAnalysis {
     })
   }
 
-  if (requestLower.includes('deploy') || requestLower.includes('railway')) {
+  if (requestLower.includes('deploy') || requestLower.includes('ionos')) {
     tasks.push({
       id: 'task-deploy-1',
       content: 'Verify changes are ready',

@@ -5,7 +5,7 @@
 ## Project Overview
 
 **Stack**: Next.js 14 (App Router) + TypeScript + Tailwind CSS + Resend (email)  
-**Deployment**: Railway + Cloudflare  
+**Deployment**: IONOS (SFTP) + Cloudflare, auto-deploy via GitHub Actions  
 **Purpose**: Personal portfolio showcasing photography, brand identity, and AI-powered creative work
 
 ## Architecture

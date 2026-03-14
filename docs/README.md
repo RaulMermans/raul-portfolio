@@ -3,7 +3,7 @@
 ## Essential Guides
 
 - **[Contact Form Setup](./guides/CONTACT_FORM_SETUP.md)** - Configure Resend email service
-- **[Deployment Guide](../DEPLOYMENT.md)** - Railway deployment instructions
+- **[Deployment Guide](../DEPLOYMENT.md)** - IONOS deployment via GitHub Actions
 
 ## Project Structure
 

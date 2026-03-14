@@ -14,7 +14,7 @@ alwaysApply: true
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS + Custom CSS
 - **Email**: Resend API
-- **Deployment**: Railway + Cloudflare
+- **Deployment**: IONOS (GitHub Actions + SFTP) + Cloudflare
 
 ## Required: Use Project Skills
 

@@ -61,7 +61,7 @@ Static image assets.
 ## Configuration Files
 
 - `next.config.js` - Next.js configuration
-- `railway.json` - Railway deployment config
+- `.github/workflows/deploy.yml` - GitHub Actions deploy to IONOS SFTP
 - `package.json` - Dependencies and scripts
 - `tsconfig.json` - TypeScript configuration
 - `.env.example` - Environment variables template

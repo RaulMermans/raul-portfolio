@@ -17,5 +17,5 @@
 
 ## For Production
 
-Add these same variables to your deployment platform (Railway/Vercel) in the environment variables section.
+Add these same variables in IONOS hosting (if using server-side features) or in GitHub Actions secrets/variables.
 

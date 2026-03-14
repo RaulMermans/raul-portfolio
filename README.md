@@ -65,7 +65,7 @@ Copy `.env.example` to `.env.local` and fill in:
 
 ## 🚀 Deployment
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for Railway deployment instructions.
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for IONOS deployment (auto-deploy via GitHub Actions on push to main).
 
 ## 📚 Documentation
 
@@ -84,7 +84,7 @@ See [docs/README.md](./docs/README.md) for detailed documentation.
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
 - **Styling:** CSS Modules + Global CSS
-- **Deployment:** Railway
+- **Deployment:** IONOS + GitHub Actions
 - **Email:** Resend (contact form)
 
 ## 📄 License
