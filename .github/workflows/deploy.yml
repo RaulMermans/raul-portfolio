@@ -10,9 +10,29 @@ jobs:
   deploy:
     name: Deploy to IONOS SFTP
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL != '' && vars.NEXT_PUBLIC_SITE_URL || secrets.NEXT_PUBLIC_SITE_URL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Verify export output
+        run: |
+          if [ ! -d out ]; then
+            echo "Static export directory ./out/ was not generated."
+            exit 1
+          fi
 
       - name: Deploy to IONOS via SFTP
         uses: wangyucode/sftp-upload-action@v2.0.2
@@ -20,6 +40,6 @@ jobs:
           host: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: "22"
-          localDir: ./
+          port: ${{ secrets.SFTP_PORT }}
+          localDir: ./out/
           remoteDir: /

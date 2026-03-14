@@ -10,8 +10,11 @@ const nextConfig = {
   transpilePackages: ['swiper'],
   swcMinify: true,
   output: 'export',
+  trailingSlash: true,
   // Note: Client components are already dynamic by default
   images: {
+    // Static export on IONOS cannot use the Next.js image optimizer.
+    unoptimized: true,
     // Removed Unsplash - using local images only
     formats: ['image/avif', 'image/webp'],
     // Optimize image loading
