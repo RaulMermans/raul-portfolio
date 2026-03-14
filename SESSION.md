@@ -8,15 +8,16 @@
 **Last Updated**: 2026-03-14
 
 ### Active Work
-- Prepared a GitHub Actions workflow for IONOS SFTP deployment
-- Confirmed the repo is not yet static-export compatible for IONOS Hosting Plus
-- Logged the follow-up work required to migrate the Next.js app to static hosting
+- Fixed the GitHub Actions workflow to build and upload `out/` for IONOS SFTP hosting
+- Added static-hosting support files for Apache-style serving on IONOS
+- Confirmed the production build still times out locally before generating `.next/` or `out/`
 
 ### Pending Decisions
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
 
 ### Blockers
-- IONOS Hosting Plus does not provide a Node.js runtime, and this repo still depends on middleware, route handlers, and default Next image optimization
+- IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
+- `NEXT_PUBLIC_SITE_URL=https://www.raulmermans.com npm run build` timed out locally after 60 seconds without producing `.next/` or `out/`
 
 ---
 
@@ -68,6 +69,16 @@ When starting work, update this section:
 - `TASKS.md` - added follow-up work to convert the app to static export for IONOS Hosting Plus.
 **Notes**: The workflow is ready for the SFTP side, but the repo still is not compatible with static export because it uses `middleware.ts`, route handlers in `app/api/*`, and default `next/image` optimization.
 **Next Steps**: Convert the app to static export or keep the server-side features on Railway and use IONOS only for a truly static version.
+
+### 2026-03-14 - Correct IONOS static deploy output
+**Goal**: Make the GitHub Actions deploy upload the built static export instead of the repository source and add basic static-hosting support for IONOS.
+**Outcome**: Partial
+**Changes Made**:
+- `.github/workflows/deploy.yml` - now checks out the repo, sets up Node.js 20, runs `npm ci`, runs `npm run build`, verifies `out/`, and uploads `./out/` to IONOS over SFTP.
+- `next.config.js` - added `trailingSlash: true` and enabled `images.unoptimized` for static export hosting.
+- `public/.htaccess` - added Apache-friendly static hosting defaults for index resolution, 404 handling, and asset caching.
+**Notes**: Local verification still did not complete cleanly. `NEXT_PUBLIC_SITE_URL=https://www.raulmermans.com npm run build` timed out after 60 seconds in this environment without creating `.next/` or `out/`.
+**Next Steps**: Isolate why `next build` stalls before output generation and remove or adapt any remaining static-export blockers.
 
 ### 2026-03-13 - Preserve full-frame photography images in editorial columns
 **Goal**: Keep the photography landing in a strong two-column editorial layout while showing the full image instead of cropping it.
