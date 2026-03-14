@@ -6,6 +6,7 @@ const withBundleAnalyzer = process.env.ANALYZE === 'true'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   transpilePackages: ['swiper'],
   swcMinify: true,
   // Use default output (not static export)
@@ -108,4 +109,3 @@ const nextConfig = {
 }
 
 module.exports = withBundleAnalyzer(nextConfig)
-

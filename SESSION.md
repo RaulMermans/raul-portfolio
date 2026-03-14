@@ -5,10 +5,12 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-13
+**Last Updated**: 2026-03-14
 
 ### Active Work
-_None currently_
+- Hardened site fingerprints to reduce framework detection in public HTML/headers
+- Removed duplicate viewport metadata and disabled the `x-powered-by` header
+- Corrected a stale canonical fallback in the About layout
 
 ### Pending Decisions
 _None_
@@ -47,6 +49,16 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-14 - Reduce platform fingerprints in public site output
+**Goal**: Confirm whether the live site still exposed Webflow traces and remove any remaining platform-identifying output that made the site feel less custom-built.
+**Outcome**: Completed
+**Changes Made**:
+- `app/layout.tsx` - moved viewport settings into Next's typed `viewport` export and removed the manual `<meta name="viewport">` to avoid duplicate viewport tags in production HTML.
+- `next.config.js` - disabled the `x-powered-by` header so production no longer advertises Next.js directly.
+- `app/about/layout.tsx` - replaced the stale `https://yourdomain.com` fallback with the real production domain.
+**Notes**: Live inspection of `https://www.raulmermans.com` showed no Webflow traces at all. The public site is clearly serving Next.js markup and headers, so the “Webflow” read appears to be inference rather than an explicit fingerprint. `npm run type-check` and `npm run lint` were launched but did not return a result in this environment.
+**Next Steps**: Redeploy and recheck the live headers/source. If an external LLM still says “Webflow,” treat that as heuristic misclassification unless it can point to a concrete Webflow marker.
 
 ### 2026-03-13 - Preserve full-frame photography images in editorial columns
 **Goal**: Keep the photography landing in a strong two-column editorial layout while showing the full image instead of cropping it.

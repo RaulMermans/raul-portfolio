@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Bebas_Neue, DM_Sans, Space_Mono, Source_Serif_4 } from 'next/font/google'
 import { Suspense } from 'react'
 import '../styles/globals.css'
@@ -104,6 +104,13 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -111,10 +118,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        {/* Preload hints removed - using Next.js Image priority prop instead for better optimization */}
-      </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}>
         <a href="#main-content" className="skip-link">
           Skip to main content
@@ -131,4 +134,3 @@ export default function RootLayout({
     </html>
   )
 }
-

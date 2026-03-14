@@ -1,8 +1,0 @@
-# Files and directories to ignore when deploying to Vercel
-node_modules
-.next
-.env*.local
-.git
-.gitignore
-README.md
-
