@@ -1,0 +1,116 @@
+---
+description: Rules for Next.js API routes
+globs: app/api/**/*.ts
+alwaysApply: false
+---
+
+# API Route Development Rules
+
+## Required Skills
+
+Before creating/modifying API routes, read:
+- `plugins/portfolio-tools/skills/api-route-builder/SKILL.md`
+- `plugins/portfolio-tools/skills/security-auditor/SKILL.md`
+
+## Security Requirements (Non-Negotiable)
+
+1. **Rate Limiting**: All public endpoints MUST use rate limiting
+2. **Input Validation**: Validate all inputs before processing
+3. **Output Encoding**: Use `escapeHtml()` for any user-provided content
+4. **Error Handling**: Never expose internal errors to clients
+
+## API Route Template
+
+```tsx
+import { NextRequest, NextResponse } from 'next/server'
+import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limiter'
+import { escapeHtml } from '@/lib/utils'
+import { logger } from '@/lib/logger'
+
+export async function POST(request: NextRequest) {
+  try {
+    // 1. Rate limiting
+    const clientId = getClientIdentifier(request)
+    const rateLimit = checkRateLimit(clientId)
+    
+    if (!rateLimit.success) {
+      const retryAfter = Math.ceil((rateLimit.resetTime - Date.now()) / 1000)
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { 
+          status: 429,
+          headers: { 'Retry-After': retryAfter.toString() }
+        }
+      )
+    }
+    
+    // 2. Parse and validate input
+    const body = await request.json()
+    const { field1, field2 } = body
+    
+    if (!field1 || !field2) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      )
+    }
+    
+    // 3. Sanitize user input
+    const sanitizedField1 = escapeHtml(field1)
+    
+    // 4. Process request
+    // ... your logic here
+    
+    // 5. Return success response
+    return NextResponse.json(
+      { success: true, data: result },
+      { 
+        status: 200,
+        headers: {
+          'X-RateLimit-Remaining': rateLimit.remaining.toString()
+        }
+      }
+    )
+    
+  } catch (error) {
+    // 6. Log error, return generic message
+    logger.error('API error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+```
+
+## Available Utilities
+
+```tsx
+// Rate limiting
+import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limiter'
+
+// Input validation
+import { validateContactForm, isValidEmail, sanitizeString } from '@/lib/validation'
+
+// HTML escaping (XSS prevention)
+import { escapeHtml } from '@/lib/utils'
+
+// Logging (respects NODE_ENV)
+import { logger } from '@/lib/logger'
+```
+
+## Response Patterns
+
+```tsx
+// Success
+return NextResponse.json({ success: true, data: {...} }, { status: 200 })
+
+// Validation error
+return NextResponse.json({ error: 'Invalid input' }, { status: 400 })
+
+// Rate limited
+return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+
+// Server error
+return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+```

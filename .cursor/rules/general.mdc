@@ -1,0 +1,159 @@
+---
+description: General project rules and conventions
+globs: 
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: true
+---
+
+# Project-Wide Rules
+
+## Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS + Custom CSS
+- **Email**: Resend API
+- **Deployment**: Railway + Cloudflare
+
+## Required: Use Project Skills
+
+Before implementing tasks, read relevant skills from `plugins/portfolio-tools/skills/`:
+
+| Task Type | Required Skill(s) |
+|-----------|-------------------|
+| UI/CSS changes | `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
+| Case study work | `case-study-builder/SKILL.md` |
+| New components | `component-scaffolder/SKILL.md`, `design-system/SKILL.md` |
+| API routes | `api-route-builder/SKILL.md`, `security-auditor/SKILL.md` |
+| Images | `image-manager/SKILL.md` |
+| Performance | `performance-guardian/SKILL.md` |
+| SEO | `seo-optimizer/SKILL.md` |
+| Accessibility | `accessibility-enforcer/SKILL.md` |
+
+Skills do NOT auto-activate - you must read the SKILL.md file explicitly.
+
+## File Organization
+
+```
+app/           → Pages and API routes (App Router)
+components/    → React components
+lib/           → Utilities, constants, validation
+data/          → Static content data
+public/images/ → Static images
+styles/        → Global CSS
+types/         → TypeScript definitions
+```
+
+## Import Aliases
+
+Use the `@/` alias for absolute imports:
+
+```tsx
+import { Component } from '@/components/Component'
+import { CONSTANT } from '@/lib/constants'
+import { CaseStudy } from '@/types'
+```
+
+## TypeScript
+
+- Always define explicit types for props and return values
+- Use interfaces for object shapes
+- Avoid `any` - use `unknown` if type is truly unknown
+- Export types from `types/index.ts`
+
+```tsx
+// Good
+interface Props {
+  title: string
+  onClick: () => void
+}
+
+// Bad
+const Component = (props: any) => ...
+```
+
+## Environment Variables
+
+- Access via `process.env.VARIABLE_NAME`
+- Client-side vars must be prefixed with `NEXT_PUBLIC_`
+- Never commit real values - use `.env.example` as template
+- Validate required vars in `lib/env-validation.ts`
+
+## Security Checklist
+
+- [ ] Rate limit public API endpoints
+- [ ] Validate all user inputs
+- [ ] Escape HTML in user-provided content
+- [ ] Never expose internal errors
+- [ ] Use HTTPS in production
+
+## Performance
+
+- Use `next/image` for optimized images
+- Add `priority` to above-fold images
+- Use passive event listeners
+- Lazy load below-fold components
+- Check bundle size before adding dependencies
+
+## Next.js Best Practices (from cursor.directory patterns)
+
+### Server vs Client Components
+- Default to Server Components (no directive needed)
+- Add `'use client'` only for: hooks, event handlers, browser APIs
+- Keep client components small and leaf-level
+
+### Data Fetching
+- Fetch data in Server Components when possible
+- Use `loading.tsx` for streaming/suspense
+- Use `error.tsx` for error boundaries
+
+### Routing
+- Use App Router conventions: `page.tsx`, `layout.tsx`, `loading.tsx`
+- Dynamic routes: `[slug]/page.tsx`
+- Route groups: `(group)/page.tsx` for organization without URL impact
+
+### Metadata
+```tsx
+// Static metadata
+export const metadata: Metadata = {
+  title: 'Page Title | Raúl Mermans',
+  description: 'Page description for SEO',
+}
+
+// Dynamic metadata
+export async function generateMetadata({ params }): Promise<Metadata> {
+  return { title: `${params.slug} | Raúl Mermans` }
+}
+```
+
+## Session Continuity
+
+Use `SESSION.md` to maintain context across coding sessions:
+- **Start**: Read SESSION.md for current state, check TASKS.md
+- **End**: Update status, add session entry, note next steps
+
+## Git Workflow
+
+Use atomic commits with conventional prefixes:
+
+```
+<type>(<scope>): <description>
+```
+
+| Prefix | Use For |
+|--------|---------|
+| `feat` | New features |
+| `fix` | Bug fixes |
+| `docs` | Documentation |
+| `style` | Formatting/CSS |
+| `refactor` | Code restructuring |
+| `perf` | Performance |
+| `chore` | Maintenance |
+
+**Example:** `feat(case-study): add remoria gallery section`
+
+**Before committing:**
+- Run `npm run lint`
+- Run `npm run type-check`
+- Don't commit `.env` files

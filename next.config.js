@@ -9,7 +9,7 @@ const nextConfig = {
   poweredByHeader: false,
   transpilePackages: ['swiper'],
   swcMinify: true,
-  // Use default output (not static export)
+  output: 'export',
   // Note: Client components are already dynamic by default
   images: {
     // Removed Unsplash - using local images only
@@ -41,71 +41,8 @@ const nextConfig = {
     }
     return config
   },
-  // CDN-safe caching headers for Cloudflare + Railway
-  async headers() {
-    return [
-      {
-        // API routes - never cache
-        source: '/api/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
-          },
-        ],
-      },
-      {
-        // Static assets (JS, CSS, fonts) - cache aggressively (fingerprinted)
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // Next.js image optimization - cache with revalidation
-        source: '/_next/image',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        // Public static assets (images, fonts, etc.) - cache with revalidation
-        source: '/images/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        // Fonts - cache aggressively
-        source: '/fonts/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // HTML pages - CDN can cache briefly but must revalidate
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
-          },
-        ],
-      },
-    ]
-  },
+  // Headers are NOT supported by static export.
+  // Caching should be configured via .htaccess or Cloudflare Page Rules.
 }
 
 module.exports = withBundleAnalyzer(nextConfig)
