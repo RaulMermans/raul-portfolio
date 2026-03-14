@@ -8,15 +8,15 @@
 **Last Updated**: 2026-03-14
 
 ### Active Work
-- Hardened site fingerprints to reduce framework detection in public HTML/headers
-- Removed duplicate viewport metadata and disabled the `x-powered-by` header
-- Corrected a stale canonical fallback in the About layout
+- Prepared a GitHub Actions workflow for IONOS SFTP deployment
+- Confirmed the repo is not yet static-export compatible for IONOS Hosting Plus
+- Logged the follow-up work required to migrate the Next.js app to static hosting
 
 ### Pending Decisions
-_None_
+- Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
 
 ### Blockers
-_None_
+- IONOS Hosting Plus does not provide a Node.js runtime, and this repo still depends on middleware, route handlers, and default Next image optimization
 
 ---
 
@@ -59,6 +59,15 @@ When starting work, update this section:
 - `app/about/layout.tsx` - replaced the stale `https://yourdomain.com` fallback with the real production domain.
 **Notes**: Live inspection of `https://www.raulmermans.com` showed no Webflow traces at all. The public site is clearly serving Next.js markup and headers, so the “Webflow” read appears to be inference rather than an explicit fingerprint. `npm run type-check` and `npm run lint` were launched but did not return a result in this environment.
 **Next Steps**: Redeploy and recheck the live headers/source. If an external LLM still says “Webflow,” treat that as heuristic misclassification unless it can point to a concrete Webflow marker.
+
+### 2026-03-14 - Prepare IONOS deployment workflow
+**Goal**: Add a GitHub Actions workflow that can deploy the site to IONOS Hosting Plus over SFTP and document the migration risk from Railway.
+**Outcome**: Partial
+**Changes Made**:
+- `.github/workflows/deploy.yml` - added a push-to-main deployment workflow that installs dependencies, builds the app, preserves `.htaccess`, and deploys `out/` over SFTP using delta sync.
+- `TASKS.md` - added follow-up work to convert the app to static export for IONOS Hosting Plus.
+**Notes**: The workflow is ready for the SFTP side, but the repo still is not compatible with static export because it uses `middleware.ts`, route handlers in `app/api/*`, and default `next/image` optimization.
+**Next Steps**: Convert the app to static export or keep the server-side features on Railway and use IONOS only for a truly static version.
 
 ### 2026-03-13 - Preserve full-frame photography images in editorial columns
 **Goal**: Keep the photography landing in a strong two-column editorial layout while showing the full image instead of cropping it.
