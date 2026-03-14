@@ -39,7 +39,6 @@ jobs:
           PORT="${SFTP_PORT:-22}"
           lftp -u "$SFTP_USERNAME,$SFTP_PASSWORD" -e "
             set sftp:auto-confirm yes
-            set sftp:connect-program \"/usr/bin/ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\"
             set net:timeout 30
             set net:max-retries 3
             open sftp://$SFTP_SERVER:$PORT
