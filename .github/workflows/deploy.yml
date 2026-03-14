@@ -6,74 +6,21 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: read
-
-concurrency:
-  group: deploy-ionos-main
-  cancel-in-progress: true
-
 jobs:
   deploy:
+    name: Deploy to IONOS SFTP
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    env:
-      NODE_VERSION: "18"
-      REMOTE_PORT: "22"
-      REMOTE_PATH: "/"
-      NEXT_TELEMETRY_DISABLED: "1"
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Deploy to IONOS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          fetch-depth: 0
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          local-dir: ./raulmermans-portfolio-24/
+          server-dir: /
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build production site
-        run: npm run build
-        env:
-          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com' }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
-          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
-
-      - name: Require static export output
-        run: |
-          if [ ! -d out ]; then
-            echo "::error::No se encontro la carpeta out/. IONOS Hosting Plus solo puede servir la salida estatica. Antes de activar este deploy, adapta Next.js a output: 'export' y elimina las funciones de servidor incompatibles."
-            exit 1
-          fi
-
-      - name: Preserve .htaccess in export
-        run: |
-          if [ -f public/.htaccess ]; then
-            cp public/.htaccess out/.htaccess
-            echo "Copied public/.htaccess to out/.htaccess"
-          elif [ -f .htaccess ]; then
-            cp .htaccess out/.htaccess
-            echo "Copied .htaccess to out/.htaccess"
-          else
-            echo "No .htaccess file found in repository; skipping."
-          fi
-
-      - name: Deploy changed files to IONOS over SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
-        with:
-          username: ${{ secrets.IONOS_SFTP_USER }}
-          server: ${{ secrets.IONOS_SFTP_HOST }}
-          port: ${{ env.REMOTE_PORT }}
-          password: ${{ secrets.IONOS_SFTP_PASSWORD }}
-          local_path: "./out/"
-          remote_path: ${{ env.REMOTE_PATH }}
-          sftp_only: true
-          sftpArgs: "-o ConnectTimeout=5 -o StrictHostKeyChecking=accept-new"
-          rsyncArgs: "--exclude=.git --exclude=.github --exclude=README.md --exclude=.DS_Store"
