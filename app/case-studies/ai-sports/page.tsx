@@ -12,7 +12,6 @@ import CaseStudyImageContainer from '@/components/case-studies/CaseStudyImageCon
 import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import BoldText from '@/components/case-studies/BoldText'
-import FilmStrip from '@/components/FilmStrip'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import { caseStudies } from '@/data/case-studies'
 export default function AISportsCampaignPage() {
@@ -28,7 +27,6 @@ export default function AISportsCampaignPage() {
   return (
     <>
       <Header />
-      <FilmStrip />
 
       <main id="main-content" className={`case-study-page-new case-study-page-new--${content.layoutVariant ?? 'default'}`}>
         {/* Hero Section */}

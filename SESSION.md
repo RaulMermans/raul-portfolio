@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-14
+**Last Updated**: 2026-03-15
 
 ### Active Work
 - None currently
@@ -48,6 +48,25 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-15 - Recover missing Remoria case study images
+**Goal**: Restore the missing Remoria case-study images if they were still recoverable from the local workspace or git history.
+**Outcome**: Completed
+**Changes Made**:
+- `public/images/case-studies/remoria/hero/hero.webp` - restored from local git history so the Remoria hero image resolves again.
+- `public/images/case-studies/remoria/approach/approach-1.webp` and `public/images/case-studies/remoria/approach/approach-2.webp` - restored the missing approach images used in the case study narrative.
+- `public/images/case-studies/remoria/gallery/gallery-1.webp` through `public/images/case-studies/remoria/gallery/gallery-4.webp` - restored the missing gallery assets used by the Remoria gallery rows.
+**Notes**: The missing files had been removed from the current tree but were still present in local git history, so they were recoverable without changing the Remoria content definitions. The currently referenced Remoria image set now resolves fully on disk.
+**Next Steps**: Open the Remoria case study locally and confirm the restored hero, approach, and gallery images render as expected.
+
+### 2026-03-15 - Remove film strip squares from case study detail pages
+**Goal**: Remove the decorative side squares showing on the individual film/case-study landing pages.
+**Outcome**: Completed
+**Changes Made**:
+- `app/case-studies/ai-sports/page.tsx` - removed the `FilmStrip` render so the left/right sprocket-square decorations no longer appear on the AI Sports case study page.
+- `app/case-studies/remoria/page.tsx` - removed the `FilmStrip` render so the same side decorations no longer appear on the Remoria case study page.
+**Notes**: The square markers came from the shared `FilmStrip` decorative component, but the smallest coherent fix was to stop rendering it on the affected individual pages rather than altering broader case-study styling.
+**Next Steps**: Review the two case-study pages locally to confirm the page edges now feel cleaner without those fixed-position decorations.
 
 ### 2026-03-14 - Refresh page-level SEO metadata
 **Goal**: Improve search result snippets by adding stronger English meta descriptions for public pages and fixing page titles that could inherit the site suffix twice.
