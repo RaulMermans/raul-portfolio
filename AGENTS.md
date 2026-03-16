@@ -162,11 +162,11 @@ git commit -m "style(hero): adjust mobile padding"
 
 ## Required: Use Project Skills
 
-Before implementing ANY task, read the relevant skill(s) from `plugins/portfolio-tools/skills/`:
+Before implementing ANY task, read the relevant skill(s):
 
 | Task Type | Required Skill(s) |
 |-----------|-------------------|
-| UI/CSS changes | `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
+| UI/CSS changes, landing pages, dashboards, product UI, design systems | **`ai-skills/ui-ux-pro-max/`** (UI-UX Pro Max — read SKILL.md, run search.py for design system), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
 | Case study work | `case-study-builder/SKILL.md` |
 | New components | `component-scaffolder/SKILL.md`, `design-system/SKILL.md` |
 | API routes | `api-route-builder/SKILL.md`, `security-auditor/SKILL.md` |
@@ -179,6 +179,16 @@ Before implementing ANY task, read the relevant skill(s) from `plugins/portfolio
 | Deployment | `deployment-verifier/SKILL.md` |
 
 **Always list which skills you consulted at the start of your work.**
+
+### Default Design Intelligence: UI-UX Pro Max
+
+For all UI, frontend, layout, design system, styling, or UX tasks, consult:
+
+- **Skill path**: `ai-skills/ui-ux-pro-max/`
+- **SKILL.md**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md`
+- **Search script**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py`
+
+**Workflow**: Read SKILL.md → Run `--design-system` for new pages → Use `--domain` for style/color/typography details → Apply returned guidance to code.
 
 ## Keeping Documentation Current
 

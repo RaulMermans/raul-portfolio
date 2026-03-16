@@ -22,7 +22,7 @@ Before implementing tasks, read relevant skills from `plugins/portfolio-tools/sk
 
 | Task Type | Required Skill(s) |
 |-----------|-------------------|
-| UI/CSS changes | `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
+| UI/CSS changes | `ai-skills/ui-ux-pro-max/` (UI-UX Pro Max), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
 | Case study work | `case-study-builder/SKILL.md` |
 | New components | `component-scaffolder/SKILL.md`, `design-system/SKILL.md` |
 | API routes | `api-route-builder/SKILL.md`, `security-auditor/SKILL.md` |

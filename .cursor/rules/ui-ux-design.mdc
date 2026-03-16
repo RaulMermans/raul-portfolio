@@ -1,0 +1,75 @@
+---
+description: UI/UX design intelligence - consult UI-UX Pro Max skill before generating frontend code
+globs:
+  - "**/*.tsx"
+  - "**/*.css"
+  - "**/*.module.css"
+  - "app/**/page.tsx"
+  - "app/**/layout.tsx"
+  - "components/**/*"
+alwaysApply: false
+---
+
+# UI-UX Pro Max Design Intelligence
+
+**This rule enforces consultation of the UI-UX Pro Max skill for all UI, frontend, layout, design system, styling, and UX tasks.**
+
+## Skill Location
+
+The design intelligence module lives at:
+
+```
+ai-skills/ui-ux-pro-max/
+```
+
+Key paths:
+- **SKILL.md**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md`
+- **Search script**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py`
+- **Design datasets**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/data/`
+
+## Mandatory Consultation
+
+When a task involves any of the following, you **must** consult the UI-UX Pro Max skill before generating code:
+
+| Task Type | Examples |
+|-----------|----------|
+| Landing pages | Hero sections, conversion flows, CTAs |
+| Dashboards | Data visualization, admin panels, analytics |
+| Product UI | SaaS interfaces, e-commerce, app screens |
+| Component libraries | Buttons, cards, modals, forms, tables |
+| Design systems | Colors, typography, spacing, tokens |
+| Frontend architecture | Layout patterns, responsive behavior, animations |
+
+## Required Process
+
+1. **Read the skill** – Parse `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md` for design patterns, color systems, typography, and UX guidelines relevant to the request.
+
+2. **Generate design system** (for new pages/projects) – Run the search script with `--design-system`:
+   ```bash
+   python3 ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py "<product_type> <industry> <keywords>" --design-system -p "Project Name"
+   ```
+
+3. **Domain-specific search** (as needed) – For style, color, typography, or UX details:
+   ```bash
+   python3 ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py "<keyword>" --domain <style|color|typography|ux|landing|chart>
+   ```
+
+4. **Apply guidance** – Use the returned design system and recommendations to generate structured frontend code with coherent spacing, hierarchy, and typography.
+
+## Integration with Project Skills
+
+This skill **complements** (does not replace) the project's existing skills:
+- `design-system/SKILL.md` – Design tokens and CSS variables
+- `visual-hierarchy/SKILL.md` – Layout and decluttering
+
+For UI tasks: consult **both** the project skills and UI-UX Pro Max.
+
+## Pre-Delivery Checklist (from skill)
+
+- [ ] No emojis as icons (use SVG: Heroicons/Lucide)
+- [ ] `cursor-pointer` on all clickable elements
+- [ ] Hover states with smooth transitions (150–300ms)
+- [ ] Light mode: text contrast 4.5:1 minimum
+- [ ] Focus states visible for keyboard nav
+- [ ] `prefers-reduced-motion` respected
+- [ ] Responsive: 375px, 768px, 1024px, 1440px
