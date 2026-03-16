@@ -1,8 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
+import { trapFocus } from '@/lib/accessibility'
+import styles from './VisualsPage.module.css'
 
 interface Work {
   title: string
@@ -19,16 +21,6 @@ interface Work {
   note: string
   provenance: string
   status: string
-}
-
-// Shuffle array function for randomizing order
-const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array]
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-  }
-  return shuffled
 }
 
 const worksData: Work[] = [
@@ -130,8 +122,7 @@ const worksData: Work[] = [
   }
 ]
 
-// Randomize the order of works on each page load
-const works = shuffleArray(worksData)
+const works = worksData
 
 export default function VisualsPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -140,6 +131,18 @@ export default function VisualsPage() {
   const [direction, setDirection] = useState<'left' | 'right'>('right')
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set())
   const [isMobile, setIsMobile] = useState(false)
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const lastTriggerRef = useRef<HTMLElement | null>(null)
+  const scrollLockRef = useRef<{ scrollY: number; bodyOverflow: string; bodyPosition: string; bodyTop: string; bodyWidth: string; htmlOverflow: string } | null>(null)
+  const swipeStateRef = useRef({
+    active: false,
+    startX: 0,
+    startY: 0,
+    lastX: 0,
+    lastY: 0,
+    locked: false,
+  })
+  const suppressCardClickRef = useRef(false)
 
   // Detect mobile device for performance optimization
   useEffect(() => {
@@ -152,36 +155,36 @@ export default function VisualsPage() {
 
   const cardRef = useRef<HTMLDivElement>(null)
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     if (isAnimating || currentIndex === 0) return
     setIsAnimating(true)
     setDirection('left')
     setCurrentIndex(prev => prev - 1)
     setTimeout(() => setIsAnimating(false), 400)
-  }
+  }, [currentIndex, isAnimating])
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     if (isAnimating || currentIndex === works.length - 1) return
     setIsAnimating(true)
     setDirection('right')
     setCurrentIndex(prev => prev + 1)
     setTimeout(() => setIsAnimating(false), 400)
-  }
+  }, [currentIndex, isAnimating])
 
-  const openExhibition = (index: number) => {
+  const openExhibition = (index: number, trigger?: HTMLElement | null) => {
+    lastTriggerRef.current = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null)
     setCurrentIndex(index)
     setIsExhibitionOpen(true)
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = 'hidden'
-    }
   }
 
-  const closeExhibition = () => {
+  const closeExhibition = useCallback((restoreFocus = true) => {
     setIsExhibitionOpen(false)
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = ''
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => {
+        lastTriggerRef.current?.focus()
+      })
     }
-  }
+  }, [])
 
   const currentWork = works[currentIndex]
 
@@ -213,43 +216,44 @@ export default function VisualsPage() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isExhibitionOpen, currentIndex, isAnimating])
+  }, [closeExhibition, currentIndex, goToNext, goToPrevious, isAnimating, isExhibitionOpen])
 
-  // Touch swipe
   useEffect(() => {
-    if (isExhibitionOpen) return
+    if (!isExhibitionOpen || !dialogRef.current) return
 
-    let touchStartX = 0
-    let touchStartTime = 0
+    const cleanupFocusTrap = trapFocus(dialogRef.current)
+    const { body, documentElement } = document
+    const scrollY = window.scrollY
 
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartX = e.touches[0].clientX
-      touchStartTime = Date.now()
+    scrollLockRef.current = {
+      scrollY,
+      bodyOverflow: body.style.overflow,
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyWidth: body.style.width,
+      htmlOverflow: documentElement.style.overflow,
     }
 
-    const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndX = e.changedTouches[0].clientX
-      const touchEndTime = Date.now()
-      const diffX = touchStartX - touchEndX
-      const diffTime = touchEndTime - touchStartTime
-
-      if (diffTime < 300 && Math.abs(diffX) > 50) {
-        if (diffX > 0) {
-          goToNext()
-        } else {
-          goToPrevious()
-        }
-      }
-    }
-
-    document.addEventListener('touchstart', handleTouchStart, { passive: true })
-    document.addEventListener('touchend', handleTouchEnd, { passive: true })
+    documentElement.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.width = '100%'
 
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart)
-      document.removeEventListener('touchend', handleTouchEnd)
+      cleanupFocusTrap()
+
+      if (scrollLockRef.current) {
+        const lock = scrollLockRef.current
+        documentElement.style.overflow = lock.htmlOverflow
+        body.style.overflow = lock.bodyOverflow
+        body.style.position = lock.bodyPosition
+        body.style.top = lock.bodyTop
+        body.style.width = lock.bodyWidth
+        window.scrollTo({ top: lock.scrollY, behavior: 'auto' })
+      }
     }
-  }, [currentIndex, isAnimating])
+  }, [isExhibitionOpen])
 
   // Disable scroll-snap for this page
   useEffect(() => {
@@ -263,77 +267,174 @@ export default function VisualsPage() {
     }
   }, [])
 
+  const isInteractiveTarget = (target: EventTarget | null) => {
+    return target instanceof Element && Boolean(target.closest('a, button, input, textarea, select, [role="button"]'))
+  }
+
+  const resetSwipeState = () => {
+    swipeStateRef.current = {
+      active: false,
+      startX: 0,
+      startY: 0,
+      lastX: 0,
+      lastY: 0,
+      locked: false,
+    }
+  }
+
+  const handleSwipeStart = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (isExhibitionOpen || event.pointerType !== 'touch' || !event.isPrimary || isInteractiveTarget(event.target)) {
+      return
+    }
+
+    suppressCardClickRef.current = false
+    swipeStateRef.current = {
+      active: true,
+      startX: event.clientX,
+      startY: event.clientY,
+      lastX: event.clientX,
+      lastY: event.clientY,
+      locked: false,
+    }
+  }
+
+  const handleSwipeMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const state = swipeStateRef.current
+    if (!state.active) return
+
+    state.lastX = event.clientX
+    state.lastY = event.clientY
+
+    const dx = state.lastX - state.startX
+    const dy = state.lastY - state.startY
+    const absX = Math.abs(dx)
+    const absY = Math.abs(dy)
+
+    if (!state.locked) {
+      if (absX < 12 && absY < 12) return
+
+      if (absX > absY * 1.25 && absY < 40) {
+        state.locked = true
+        suppressCardClickRef.current = true
+        return
+      }
+
+      if (absY >= absX) {
+        resetSwipeState()
+      }
+    }
+  }
+
+  const handleSwipeEnd = () => {
+    const state = swipeStateRef.current
+    if (!state.active) return
+
+    if (state.locked) {
+      const dx = state.lastX - state.startX
+      if (Math.abs(dx) >= 56) {
+        suppressCardClickRef.current = true
+        if (dx < 0) {
+          goToNext()
+        } else {
+          goToPrevious()
+        }
+        window.setTimeout(() => {
+          suppressCardClickRef.current = false
+        }, 0)
+      } else {
+        suppressCardClickRef.current = false
+      }
+    }
+
+    resetSwipeState()
+  }
+
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       {/* Decorative elements - disabled on mobile for performance */}
-      <div className="grain" aria-hidden="true"></div>
+      <div className={styles.grain} aria-hidden="true"></div>
       {!isMobile && (
         <>
-          <div className="vignette" aria-hidden="true"></div>
-          <div className="scanlines" aria-hidden="true"></div>
-          <div className="vhs-glitch" aria-hidden="true"></div>
-          <div className="light-leak" aria-hidden="true"></div>
-          <div className="light-leak-2" aria-hidden="true"></div>
-          <div className="film-burn" aria-hidden="true"></div>
+          <div className={styles.vignette} aria-hidden="true"></div>
+          <div className={styles.scanlines} aria-hidden="true"></div>
+          <div className={styles.vhsGlitch} aria-hidden="true"></div>
+          <div className={styles.lightLeak} aria-hidden="true"></div>
+          <div className={styles.lightLeakTwo} aria-hidden="true"></div>
+          <div className={styles.filmBurn} aria-hidden="true"></div>
         </>
       )}
 
       <Header />
       
-      <main className="visuals-main" id="main-content" role="main">
-        <div className="visuals-container">
+      <main className={styles.main} id="main-content" role="main" data-mobile-audit="visuals-page">
+        <div className={styles.container}>
           {/* Fixed Intro Section */}
-          <div className="visuals-intro">
-            <p className="visuals-label">
-              <span className="visuals-label-line"></span>
+          <div className={styles.intro}>
+            <p className={styles.label}>
+              <span className={styles.labelLine}></span>
               Collection
             </p>
-            <h1 className="visuals-title">Visuals</h1>
-            <div className="visuals-divider"></div>
-            <p className="visuals-description">
+            <h1 className={styles.title}>Visuals</h1>
+            <div className={styles.divider}></div>
+            <p className={styles.description}>
               A curated collection of AI art, album covers, visual concepts, and digital experiments exploring the boundaries of synthetic creativity.
             </p>
-            <p className="visuals-year">© 2024</p>
+            <p className={styles.year}>© 2024</p>
           </div>
 
           {/* Card Display with Navigation */}
-          <div className="visuals-card-display">
-            <div className="visuals-card-container">
+          <div
+            className={styles.cardDisplay}
+            data-mobile-audit="visuals-surface"
+            onPointerDown={handleSwipeStart}
+            onPointerMove={handleSwipeMove}
+            onPointerUp={handleSwipeEnd}
+            onPointerCancel={handleSwipeEnd}
+          >
+            <div className={styles.cardContainer}>
               <div 
                 ref={cardRef}
                 key={currentIndex}
-                className={`visuals-card-slide ${direction === 'right' ? 'slide-in-right' : 'slide-in-left'}`}
+                className={`${styles.cardSlide} ${direction === 'right' ? styles.slideInRight : styles.slideInLeft}`}
               >
-            <article
-                  className="visuals-card"
-                  onClick={() => openExhibition(currentIndex)}
+                <article
+                  className={styles.card}
+                  data-mobile-audit="visual-card"
+                  onClick={(event) => {
+                    if (suppressCardClickRef.current) {
+                      suppressCardClickRef.current = false
+                      return
+                    }
+                    openExhibition(currentIndex, event.currentTarget)
+                  }}
                 >
-                  <div className="visuals-card__image-wrapper">
-                <Image
+                  <div className={styles.cardImageWrapper}>
+                    <Image
                       src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
                       alt={currentWork.alt}
                       fill
-                      className="visuals-card__image"
+                      className={styles.cardImage}
                       priority
-                  quality={85}
+                      quality={85}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       style={{ objectFit: 'cover' }}
-                  onError={() => {
+                      onError={() => {
                         setImageErrors(prev => new Set(prev).add(currentWork.catalog))
                       }}
                     />
-                    <div className="visuals-card__overlay">
-                      <div className="visuals-card__content">
-                        <p className="visuals-card__index">
+                    <div className={styles.cardOverlay}>
+                      <div className={styles.cardContent}>
+                        <p className={styles.cardIndex}>
                           {String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}
                         </p>
-                        <h2 className="visuals-card__title">{currentWork.title}</h2>
-                        <p className="visuals-card__meta">{currentWork.year} — {currentWork.type}</p>
-                        <span className="visuals-card__btn">
-                          See project <span>→</span>
-                  </span>
-                </div>
+                        <h2 className={styles.cardTitle}>{currentWork.title}</h2>
+                        <p className={styles.cardMeta}>{currentWork.year} — {currentWork.type}</p>
+                        <span className={styles.cardButton}>
+                          <span>See project</span>
+                          <span aria-hidden="true">→</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -342,28 +443,31 @@ export default function VisualsPage() {
 
             {/* Navigation Arrows */}
             <button
-              className="visuals-nav-btn visuals-nav-btn--prev"
+              type="button"
+              className={`${styles.navButton} ${styles.navButtonPrev}`}
               onClick={goToPrevious}
               disabled={currentIndex === 0 || isAnimating}
               aria-label="Previous project"
             >
-              <span className="visuals-nav-arrow">←</span>
+              <span className={styles.navArrow}>←</span>
             </button>
             <button
-              className="visuals-nav-btn visuals-nav-btn--next"
+              type="button"
+              className={`${styles.navButton} ${styles.navButtonNext}`}
               onClick={goToNext}
               disabled={currentIndex === works.length - 1 || isAnimating}
               aria-label="Next project"
             >
-              <span className="visuals-nav-arrow">→</span>
+              <span className={styles.navArrow}>→</span>
             </button>
 
             {/* Dots Indicator */}
-            <div className="visuals-dots">
+            <div className={styles.dots}>
               {works.map((_, index) => (
                 <button
+                  type="button"
                   key={index}
-                  className={`visuals-dot ${index === currentIndex ? 'active' : ''}`}
+                  className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ''}`}
                   onClick={() => {
                     if (index !== currentIndex && !isAnimating) {
                       setDirection(index > currentIndex ? 'right' : 'left')
@@ -381,17 +485,26 @@ export default function VisualsPage() {
       </main>
 
       {/* Exhibition View */}
-      <div className={`exhibition ${isExhibitionOpen ? 'active' : ''}`} id="exhibition" role="dialog" aria-modal="true" aria-hidden={!isExhibitionOpen}>
+      <div
+        ref={dialogRef}
+        className={`${styles.exhibition} ${isExhibitionOpen ? styles.exhibitionActive : ''}`}
+        id="exhibition"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!isExhibitionOpen}
+        aria-labelledby="exhibition-title"
+      >
         <button
-          className="exhibition__close"
-          onClick={closeExhibition}
-          aria-label="Close"
+          type="button"
+          className={styles.exhibitionClose}
+          onClick={() => closeExhibition()}
+          aria-label="Close exhibition"
         >
           ✕
         </button>
 
-        <div className="exhibition__image-panel">
-          <div className="exhibition__image-wrap">
+        <div className={styles.exhibitionImagePanel}>
+          <div className={styles.exhibitionImageWrap}>
             {currentWork && (
               <>
                 <Image
@@ -400,7 +513,7 @@ export default function VisualsPage() {
                   alt={currentWork.alt}
                   width={1400}
                   height={1400}
-                  className="exhibition__image"
+                  className={styles.exhibitionImage}
                   quality={90}
                   priority
                   style={{ objectFit: 'contain' }}
@@ -408,7 +521,7 @@ export default function VisualsPage() {
                     setImageErrors(prev => new Set(prev).add(currentWork.catalog))
                   }}
                 />
-                <span className="exhibition__counter">
+                <span className={styles.exhibitionCounter}>
                   {String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}
                 </span>
               </>
@@ -416,55 +529,56 @@ export default function VisualsPage() {
           </div>
         </div>
 
-        <div className="exhibition__details">
-          <div className="exhibition__scroll">
-            <div className="exhibition__content">
+        <div className={styles.exhibitionDetails}>
+          <div className={styles.exhibitionScroll}>
+            <div className={styles.exhibitionContent}>
               {currentWork && (
                 <>
-                  <div className="exhibition__catalog">
+                  <div className={styles.exhibitionCatalog}>
                     <span>{currentWork.catalog}</span>
                   </div>
 
-                  <h2 className="exhibition__title">{currentWork.title}</h2>
-                  <p className="exhibition__subtitle">{currentWork.year} — {currentWork.type}</p>
+                  <h2 id="exhibition-title" className={styles.exhibitionTitle}>{currentWork.title}</h2>
+                  <p className={styles.exhibitionSubtitle}>{currentWork.year} — {currentWork.type}</p>
                   
-                  <div className="exhibition__divider"></div>
+                  <div className={styles.exhibitionDivider}></div>
 
-                  <div className="exhibition__meta">
-                    <div className="exhibition__field">
-                      <span className="exhibition__label">Medium</span>
-                      <span className="exhibition__value">{currentWork.medium}</span>
+                  <div className={styles.exhibitionMeta}>
+                    <div className={styles.exhibitionField}>
+                      <span className={styles.exhibitionLabel}>Medium</span>
+                      <span className={styles.exhibitionValue}>{currentWork.medium}</span>
                     </div>
-                    <div className="exhibition__field">
-                      <span className="exhibition__label">Dimensions</span>
-                      <span className="exhibition__value">{currentWork.dimensions}</span>
+                    <div className={styles.exhibitionField}>
+                      <span className={styles.exhibitionLabel}>Dimensions</span>
+                      <span className={styles.exhibitionValue}>{currentWork.dimensions}</span>
                     </div>
-                    <div className="exhibition__field">
-                      <span className="exhibition__label">Support</span>
-                      <span className="exhibition__value">{currentWork.support}</span>
+                    <div className={styles.exhibitionField}>
+                      <span className={styles.exhibitionLabel}>Support</span>
+                      <span className={styles.exhibitionValue}>{currentWork.support}</span>
                     </div>
-                    <div className="exhibition__field">
-                      <span className="exhibition__label">Edition</span>
-                      <span className="exhibition__value">{currentWork.edition}</span>
+                    <div className={styles.exhibitionField}>
+                      <span className={styles.exhibitionLabel}>Edition</span>
+                      <span className={styles.exhibitionValue}>{currentWork.edition}</span>
                     </div>
-                    <div className="exhibition__field exhibition__field--full">
-                      <span className="exhibition__label">Series</span>
-                      <span className="exhibition__value">{currentWork.series}</span>
+                    <div className={`${styles.exhibitionField} ${styles.exhibitionFieldFull}`}>
+                      <span className={styles.exhibitionLabel}>Series</span>
+                      <span className={styles.exhibitionValue}>{currentWork.series}</span>
                     </div>
                   </div>
 
-                  <div className="exhibition__note">
-                    <p className="exhibition__note-label">Curatorial Note</p>
-                    <p className="exhibition__note-text">{currentWork.note}</p>
+                  <div className={styles.exhibitionNote}>
+                    <p className={styles.exhibitionNoteLabel}>Curatorial Note</p>
+                    <p className={styles.exhibitionNoteText}>{currentWork.note}</p>
                   </div>
                 </>
               )}
             </div>
           </div>
 
-          <nav className="exhibition__nav">
+          <nav className={styles.exhibitionNav}>
             <button
-              className="exhibition__nav-btn"
+              type="button"
+              className={styles.exhibitionNavButton}
               onClick={() => {
                 if (currentIndex > 0) {
                   setCurrentIndex(prev => prev - 1)
@@ -472,16 +586,18 @@ export default function VisualsPage() {
               }}
               disabled={currentIndex === 0}
             >
-              <span><span className="arrow arrow-left">←</span> Previous</span>
+              <span><span aria-hidden="true">←</span> Previous</span>
             </button>
             <button
-              className="exhibition__nav-btn"
-              onClick={closeExhibition}
+              type="button"
+              className={styles.exhibitionNavButton}
+              onClick={() => closeExhibition()}
             >
               <span>Back to Gallery</span>
             </button>
             <button
-              className="exhibition__nav-btn"
+              type="button"
+              className={styles.exhibitionNavButton}
               onClick={() => {
                 if (currentIndex < works.length - 1) {
                   setCurrentIndex(prev => prev + 1)
@@ -489,7 +605,7 @@ export default function VisualsPage() {
               }}
               disabled={currentIndex === works.length - 1}
             >
-              <span>Next <span className="arrow arrow-right">→</span></span>
+              <span>Next <span aria-hidden="true">→</span></span>
             </button>
           </nav>
         </div>

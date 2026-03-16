@@ -392,10 +392,10 @@ export function auditPage(pagePath: string = 'current'): MobileReport {
  * Analyze hero section specifically
  */
 function analyzeHeroSection(report: MobileReport): void {
-  const hero = document.querySelector('.hero')
+  const hero = document.querySelector<HTMLElement>('[data-home-section="hero"]')
   if (!hero) return
 
-  const heroContent = hero.querySelector('.hero__content')
+  const heroContent = hero.querySelector<HTMLElement>('[data-mobile-audit="hero-content"]')
   if (heroContent) {
     const styles = window.getComputedStyle(heroContent)
     const fontSize = parseFloat(styles.fontSize)
@@ -416,22 +416,20 @@ function analyzeHeroSection(report: MobileReport): void {
   }
 
   // Check CTA buttons
-  const ctas = hero.querySelectorAll('.hero__cta')
+  const ctas = hero.querySelectorAll<HTMLElement>('[data-mobile-audit="hero-cta"]')
   ctas.forEach((cta) => {
-    if (cta instanceof HTMLElement) {
-      const rect = cta.getBoundingClientRect()
-      if (rect.height < MOBILE_STANDARDS.buttonMinHeight) {
-        report.issues.push({
-          type: 'touch-target',
-          severity: 'high',
-          element: 'hero__cta',
-          description: `Hero CTA button height (${Math.round(rect.height)}px) is below recommended minimum (${MOBILE_STANDARDS.buttonMinHeight}px)`,
-          suggestion: `Increase button min-height to ${MOBILE_STANDARDS.buttonMinHeight}px for better mobile usability`,
-          autoFixable: true,
-          currentValue: Math.round(rect.height),
-          recommendedValue: MOBILE_STANDARDS.buttonMinHeight,
-        })
-      }
+    const rect = cta.getBoundingClientRect()
+    if (rect.height < MOBILE_STANDARDS.buttonMinHeight) {
+      report.issues.push({
+        type: 'touch-target',
+        severity: 'high',
+        element: 'hero__cta',
+        description: `Hero CTA button height (${Math.round(rect.height)}px) is below recommended minimum (${MOBILE_STANDARDS.buttonMinHeight}px)`,
+        suggestion: `Increase button min-height to ${MOBILE_STANDARDS.buttonMinHeight}px for better mobile usability`,
+        autoFixable: true,
+        currentValue: Math.round(rect.height),
+        recommendedValue: MOBILE_STANDARDS.buttonMinHeight,
+      })
     }
   })
 }
@@ -482,7 +480,7 @@ function analyzeCaseStudyPage(report: MobileReport): void {
  */
 function analyzeGalleryPage(report: MobileReport): void {
   // Check touch interactions
-  const interactiveElements = document.querySelectorAll('.visuals-card, .photography-card')
+  const interactiveElements = document.querySelectorAll('[data-mobile-audit="visual-card"], .photography-card')
   interactiveElements.forEach((el) => {
     if (el instanceof HTMLElement) {
       const rect = el.getBoundingClientRect()
@@ -540,4 +538,3 @@ export function initMobileOptimizer() {
 if (typeof window === 'undefined' && typeof process !== 'undefined') {
   initMobileOptimizer()
 }
-

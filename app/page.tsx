@@ -71,7 +71,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '.hero, .section-cards-container, .about, .services, .contact, .socials'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], .about, .services, .contact, .socials'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {

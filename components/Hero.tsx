@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import MagneticButton from './MagneticButton'
-import { HERO_SCALE_FACTOR } from '@/lib/constants'
+import styles from './Hero.module.css'
 
 // Dynamic import for heavy animation component - improves INP
 const HeroBackground = dynamic(() => import('./HeroBackground'), {
   ssr: false,
-  loading: () => <div className="hero-background" aria-hidden="true" />
+  loading: () => <div className={styles.background} aria-hidden="true" />
 })
+
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
 
@@ -39,26 +40,27 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="hero"
+      className={styles.hero}
+      data-home-section="hero"
       aria-labelledby="hero-title"
     >
-      <HeroBackground />
-      <div className="hero__content">
-        <p className="hero__vibe-coded reveal">{greeting}</p>
+      <HeroBackground className={styles.background} />
+      <div className={styles.content} data-mobile-audit="hero-content">
+        <p className={`${styles.greeting} reveal`}>{greeting}</p>
 
         {/* Name display - visual treatment. Not aria-hidden so screen readers announce it.
             The H1 provides the full accessible label combining name + services. */}
-        <p className="hero__name" aria-hidden="true">
-          <span className="hero__line">
+        <p className={styles.name} aria-hidden="true">
+          <span className={styles.line}>
             {nameLetters.map((letter, i) => (
-              <span key={i} className="hero__letter" style={{ animationDelay: `${0.3 + i * 0.06}s` }}>
+              <span key={i} className={styles.letter} style={{ animationDelay: `${0.3 + i * 0.06}s` }}>
                 {letter}
               </span>
             ))}
           </span>
-          <span className="hero__line">
+          <span className={styles.line}>
             {surnameLetters.map((letter, i) => (
-              <span key={i} className="hero__letter" style={{ animationDelay: `${0.5 + i * 0.05}s` }}>
+              <span key={i} className={styles.letter} style={{ animationDelay: `${0.5 + i * 0.05}s` }}>
                 {letter}
               </span>
             ))}
@@ -69,30 +71,32 @@ export default function Hero() {
             get "Raúl Mermans — Photography · Brand Identity · AI-Powered Creatives" */}
         <h1
           id="hero-title"
-          className="hero__services reveal reveal-delay-1"
+          className={`${styles.services} reveal reveal-delay-1`}
           aria-label="Raúl Mermans — Photography · Brand Identity · AI-Powered Creatives"
         >
-          <span className="hero__service" aria-hidden="true">Photography</span>
-          <span className="hero__service-divider" aria-hidden="true">·</span>
-          <span className="hero__service" aria-hidden="true">Brand Identity</span>
-          <span className="hero__service-divider" aria-hidden="true">·</span>
-          <span className="hero__service" aria-hidden="true">AI-Powered Creatives</span>
+          <span className={styles.service} aria-hidden="true">Photography</span>
+          <span className={styles.divider} aria-hidden="true">·</span>
+          <span className={styles.service} aria-hidden="true">Brand Identity</span>
+          <span className={styles.divider} aria-hidden="true">·</span>
+          <span className={styles.service} aria-hidden="true">AI-Powered Creatives</span>
         </h1>
 
-        <div className="hero__cta-group reveal reveal-delay-2">
-          <MagneticButton className="hero__cta-wrapper">
+        <div className={`${styles.ctaGroup} reveal reveal-delay-2`}>
+          <MagneticButton className={styles.ctaWrapper}>
             <Link
               href="/#work"
-              className="hero__cta hero__cta--primary"
+              className={`${styles.cta} ${styles.primary}`}
+              data-mobile-audit="hero-cta"
             >
               <span>View Work</span>
-              <span className="hero__cta-arrow">→</span>
+              <span className={styles.ctaArrow}>→</span>
             </Link>
           </MagneticButton>
-          <MagneticButton className="hero__cta-wrapper" intensity={20}>
+          <MagneticButton className={styles.ctaWrapper} intensity={20}>
             <Link
               href="/#contact"
-              className="hero__cta hero__cta--secondary"
+              className={`${styles.cta} ${styles.secondary}`}
+              data-mobile-audit="hero-cta"
             >
               <span>Get in Touch</span>
             </Link>
@@ -101,14 +105,14 @@ export default function Hero() {
       </div>
 
       <button
-        className="hero__scroll"
+        type="button"
+        className={styles.scrollButton}
         aria-label="Scroll to explore"
         onClick={handleScrollToWork}
       >
-        <span className="hero__scroll-text">Explore</span>
-        <div className="hero__scroll-line"></div>
+        <span className={styles.scrollText}>Explore</span>
+        <div className={styles.scrollLine}></div>
       </button>
     </section>
   )
 }
-

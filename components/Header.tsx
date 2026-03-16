@@ -1,72 +1,77 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { trapFocus } from '@/lib/accessibility'
+import styles from './Header.module.css'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const menuRef = useRef<HTMLElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
+  const scrollLockRef = useRef<{ scrollY: number; bodyOverflow: string; bodyPosition: string; bodyTop: string; bodyWidth: string; htmlOverflow: string } | null>(null)
+  const menuDialogId = useId()
+  const menuTitleId = useId()
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => {
-      if (typeof document !== 'undefined') {
-        document.body.style.overflow = !prev ? 'hidden' : ''
-      }
-      return !prev
-    })
-  }
-
-  const closeMenu = () => {
+  const closeMenu = useCallback((restoreFocus = true) => {
     setIsMenuOpen(false)
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = ''
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => {
+        menuBtnRef.current?.focus()
+      })
     }
-    // Return focus to the hamburger button when menu closes
-    menuBtnRef.current?.focus()
-  }
+  }, [])
 
-  // Escape key closes the mobile menu
-  useEffect(() => {
-    if (!isMenuOpen) return
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeMenu()
-    }
-    document.addEventListener('keydown', handleEsc)
-    return () => document.removeEventListener('keydown', handleEsc)
-  }, [isMenuOpen])
-
-  // Focus trap inside mobile menu when open
   useEffect(() => {
     if (!isMenuOpen || !menuRef.current) return
-    const menu = menuRef.current
-    const focusableEls = Array.from(
-      menu.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
-    )
-    const first = focusableEls[0]
-    const last = focusableEls[focusableEls.length - 1]
-    if (!first) return
 
-    const handleTrap = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault()
-          last.focus()
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault()
-          first.focus()
-        }
+    const cleanupFocusTrap = trapFocus(menuRef.current)
+    const { body, documentElement } = document
+    const scrollY = window.scrollY
+
+    scrollLockRef.current = {
+      scrollY,
+      bodyOverflow: body.style.overflow,
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyWidth: body.style.width,
+      htmlOverflow: documentElement.style.overflow,
+    }
+
+    documentElement.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.width = '100%'
+
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeMenu()
       }
     }
 
-    document.addEventListener('keydown', handleTrap)
-    first.focus()
-    return () => document.removeEventListener('keydown', handleTrap)
+    document.addEventListener('keydown', handleEsc)
+
+    return () => {
+      cleanupFocusTrap()
+      document.removeEventListener('keydown', handleEsc)
+
+      if (scrollLockRef.current) {
+        const lock = scrollLockRef.current
+        documentElement.style.overflow = lock.htmlOverflow
+        body.style.overflow = lock.bodyOverflow
+        body.style.position = lock.bodyPosition
+        body.style.top = lock.bodyTop
+        body.style.width = lock.bodyWidth
+        window.scrollTo({ top: lock.scrollY, behavior: 'auto' })
+      }
+    }
   }, [isMenuOpen])
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev)
+  }
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
     // Only intercept hash scrolling when already on the homepage
@@ -80,7 +85,7 @@ export default function Header() {
         target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true })
       }
     }
-    closeMenu()
+    closeMenu(false)
   }
 
   const menuItems = [
@@ -92,12 +97,12 @@ export default function Header() {
 
   return (
     <>
-      <Link href="/" className="ui ui__logo">
+      <Link href="/" className={styles.logo}>
         RM
       </Link>
 
       {/* Desktop Nav */}
-      <nav className="ui ui__nav" aria-label="Primary navigation">
+      <nav className={styles.desktopNav} aria-label="Primary navigation">
         <Link href="/case-studies">Case Studies</Link>
         <Link href="/about">About</Link>
         <Link href="/#services" onClick={(e) => handleNavClick(e, '#services')}>Services</Link>
@@ -107,59 +112,98 @@ export default function Header() {
       {/* Mobile Menu Button */}
       <button
         ref={menuBtnRef}
-        className={`ui ui__menu-btn ${isMenuOpen ? 'active' : ''}`}
+        type="button"
+        className={styles.menuButton}
+        data-state={isMenuOpen ? 'open' : 'closed'}
         onClick={toggleMenu}
         aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={isMenuOpen}
-        aria-controls="mobile-menu"
+        aria-controls={menuDialogId}
+        aria-haspopup="dialog"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span className={styles.menuButtonInner} aria-hidden="true">
+          <span className={styles.menuButtonLine}></span>
+          <span className={styles.menuButtonLine}></span>
+          <span className={styles.menuButtonLine}></span>
+        </span>
       </button>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.nav
-            id="mobile-menu"
-            ref={menuRef}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="ui__mobile-menu glass active"
-            aria-label="Mobile navigation"
+          <motion.div
+            className={styles.menuOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            onClick={() => closeMenu()}
           >
-            {menuItems.map((item, i) => (
+            <motion.div
+              id={menuDialogId}
+              ref={menuRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={menuTitleId}
+              initial={{ opacity: 0, x: 36 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 36 }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              className={styles.menuPanel}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className={styles.menuHeader}>
+                <p id={menuTitleId} className={styles.menuEyebrow}>
+                  Navigation
+                </p>
+                <button
+                  type="button"
+                  className={styles.menuClose}
+                  onClick={() => closeMenu()}
+                  aria-label="Close menu"
+                >
+                  <span aria-hidden="true">✕</span>
+                </button>
+              </div>
+
+              <nav className={styles.menuNav} aria-label="Mobile navigation">
+                {menuItems.map((item, i) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.06 + i * 0.05, duration: 0.32 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className={styles.menuLink}
+                      onClick={(e) => item.hash ? handleNavClick(e, item.hash) : closeMenu(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
               <motion.div
-                key={item.label}
+                className={styles.menuFooter}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + i * 0.08, duration: 0.4 }}
+                transition={{ delay: 0.28, duration: 0.32 }}
               >
+                <p className={styles.menuMeta}>
+                  Brand systems, photography, and AI-powered creative work built to feel calm and precise on any screen.
+                </p>
                 <Link
-                  href={item.href}
-                  onClick={(e) => item.hash ? handleNavClick(e, item.hash) : closeMenu()}
+                  href="/#contact"
+                  className={styles.menuCta}
+                  onClick={(e) => handleNavClick(e, '#contact')}
                 >
-                  {item.label}
+                  Start a Project
                 </Link>
               </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + menuItems.length * 0.08, duration: 0.4 }}
-            >
-              <Link
-                href="/#contact"
-                className="ui__mobile-cta"
-                onClick={(e) => handleNavClick(e, '#contact')}
-              >
-                Start a Project
-              </Link>
             </motion.div>
-          </motion.nav>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

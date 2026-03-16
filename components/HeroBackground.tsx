@@ -23,7 +23,11 @@ interface GradientPoint {
   color: string
 }
 
-export default function HeroBackground() {
+interface HeroBackgroundProps {
+  className?: string
+}
+
+export default function HeroBackground({ className }: HeroBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const animationFrameRef = useRef<number>()
 
@@ -156,7 +160,7 @@ export default function HeroBackground() {
   return (
     <div 
       ref={containerRef}
-      className="hero-background"
+      className={className}
       aria-hidden="true"
     />
   )

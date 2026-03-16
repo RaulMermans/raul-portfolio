@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Bebas_Neue, DM_Sans, Space_Mono, Source_Serif_4 } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
@@ -14,31 +14,37 @@ import '@/lib/env-validation'
 import '@/lib/lazy-bots'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-const bebasNeue = Bebas_Neue({
-  weight: '400',
-  subsets: ['latin', 'latin-ext'],
+const bebasNeue = localFont({
+  src: './fonts/bebas-neue-400.woff2',
   variable: '--font-display',
   display: 'swap',
 })
 
-const dmSans = DM_Sans({
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
-  subsets: ['latin', 'latin-ext'],
+const dmSans = localFont({
+  src: [
+    {
+      path: './fonts/dm-sans-normal-400-500.woff2',
+      style: 'normal',
+      weight: '400 500',
+    },
+    {
+      path: './fonts/dm-sans-italic-400-500.woff2',
+      style: 'italic',
+      weight: '400 500',
+    },
+  ],
   variable: '--font-body',
   display: 'swap',
 })
 
-const spaceMono = Space_Mono({
-  weight: '400',
-  subsets: ['latin'],
+const spaceMono = localFont({
+  src: './fonts/space-mono-400.woff2',
   variable: '--font-mono',
   display: 'swap',
 })
 
-const sourceSerif4 = Source_Serif_4({
-  weight: ['400', '600'],
-  subsets: ['latin', 'latin-ext'],
+const sourceSerif4 = localFont({
+  src: './fonts/source-serif-4-400-600.woff2',
   variable: '--font-reading',
   display: 'swap',
 })

@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useCallback, useState } from 'react'
+import { useEffect, useRef, useCallback, useState, useId } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import styles from './SectionCards.module.css'
 
 const sections = [
   {
@@ -44,6 +45,7 @@ export default function SectionCards() {
   const router = useRouter()
   const scrollRef = useRef<HTMLDivElement>(null)
   const didDragRef = useRef(false)
+  const gridId = useId()
 
   const [isAtStart, setIsAtStart] = useState(true)
   const [isAtEnd, setIsAtEnd] = useState(false)
@@ -103,6 +105,8 @@ export default function SectionCards() {
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
+    const canDragWithPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    if (!canDragWithPointer) return
 
     let isDragging = false
     let startX = 0
@@ -222,13 +226,14 @@ export default function SectionCards() {
   }
 
   return (
-    <section id="work" className="section-cards-container">
-      <div className="section-cards-controls">
+    <section id="work" className={styles.container} data-home-section="work">
+      <div className={styles.controls}>
         <button 
           type="button"
           onClick={scrollPrev} 
           disabled={isAtStart} 
-          className="section-cards-nav section-cards-nav--prev" 
+          className={`${styles.nav} ${styles.navPrev}`}
+          aria-controls={gridId}
           aria-label="Previous card"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -237,19 +242,25 @@ export default function SectionCards() {
           type="button"
           onClick={scrollNext} 
           disabled={isAtEnd} 
-          className="section-cards-nav section-cards-nav--next" 
+          className={`${styles.nav} ${styles.navNext}`}
+          aria-controls={gridId}
           aria-label="Next card"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </button>
       </div>
 
-      <div className="section-cards-grid" ref={scrollRef}>
+      <div
+        id={gridId}
+        className={styles.grid}
+        ref={scrollRef}
+        aria-label="Browse work categories"
+      >
         {sections.map((section, idx) => (
-          <div key={section.id} className="section-card-tilt-wrapper">
+          <div key={section.id} className={styles.cardWrapper}>
             <Link
               href={section.href}
-              className="section-card"
+              className={styles.card}
               data-card={section.id}
               aria-labelledby={`section-${idx + 1}-title`}
               prefetch={true}
@@ -262,7 +273,7 @@ export default function SectionCards() {
                 }
               }}
             >
-              <div className="section-card__image-wrapper">
+              <div className={styles.imageWrapper}>
                 <Image
                   src={section.image}
                   alt={`${section.title} background`}
@@ -275,17 +286,17 @@ export default function SectionCards() {
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
-                <div className="section-card__overlay"></div>
+                <div className={styles.overlay}></div>
               </div>
-              <div className="section-card__content">
-                <span className="section-card__index" aria-hidden="true">{section.index}</span>
-                <h2 id={`section-${idx + 1}-title`} className="section-card__title">
+              <div className={styles.content}>
+                <span className={styles.index} aria-hidden="true">{section.index}</span>
+                <h2 id={`section-${idx + 1}-title`} className={styles.title}>
                   {section.title}
                 </h2>
-                <p className="section-card__desc reveal reveal-delay-1">
+                <p className={`${styles.description} reveal reveal-delay-1`}>
                   {section.description}
                 </p>
-                <span className="section-card__cta reveal reveal-delay-2">
+                <span className={`${styles.cta} reveal reveal-delay-2`}>
                   explore <span>→</span>
                 </span>
               </div>

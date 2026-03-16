@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:update": "playwright test --update-snapshots",
     "analyze": "ANALYZE=true next build",
     "verify": "node scripts/verify-deployment.js",
     "bot:status": "node scripts/bot-status.js",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.0.0",
+    "@playwright/test": "^1.58.2",
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
