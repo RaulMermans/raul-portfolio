@@ -579,82 +579,30 @@ const betaPoints = [
   'For training habits that need continuity, not pressure.',
 ]
 
-type BeatLayout = 'mobile' | 'desktop'
-
 function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
   const reducedMotion = useReducedMotion()
   const [activeBeatId, setActiveBeatId] = useState(beats[0]?.id ?? '')
-  const beatRefs = useRef<Record<string, HTMLDivElement | null>>({})
   const mobileTabRefs = useRef<Record<string, HTMLButtonElement | null>>({})
-  const desktopTabRefs = useRef<Record<string, HTMLButtonElement | null>>({})
 
   useEffect(() => {
     if (!beats[0]) return
     setActiveBeatId((current) => current || beats[0].id)
   }, [beats])
 
-  useEffect(() => {
-    const nodes = beats
-      .map((beat) => beatRefs.current[beat.id])
-      .filter((node): node is HTMLDivElement => Boolean(node))
-
-    if (!nodes.length) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const viewportCenter = window.innerHeight * 0.46
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => {
-            const aCenter = a.boundingClientRect.top + a.boundingClientRect.height / 2
-            const bCenter = b.boundingClientRect.top + b.boundingClientRect.height / 2
-
-            return Math.abs(aCenter - viewportCenter) - Math.abs(bCenter - viewportCenter)
-          })
-
-        if (!visibleEntries[0]) return
-
-        const nextId = (visibleEntries[0].target as HTMLDivElement).dataset.beatId
-        if (nextId) {
-          setActiveBeatId((current) => (current === nextId ? current : nextId))
-        }
-      },
-      {
-        threshold: [0.28, 0.52, 0.74],
-        rootMargin: '-20% 0px -34% 0px',
-      },
-    )
-
-    nodes.forEach((node) => observer.observe(node))
-    return () => observer.disconnect()
-  }, [beats])
-
   const activeBeat = beats.find((beat) => beat.id === activeBeatId) ?? beats[0]
 
-  const handleBeatSelect = (id: string, options?: { scroll?: boolean }) => {
+  const handleBeatSelect = (id: string) => {
     setActiveBeatId(id)
-
-    if (options?.scroll && typeof window !== 'undefined' && window.innerWidth >= 1024) {
-      beatRefs.current[id]?.scrollIntoView({
-        behavior: reducedMotion ? 'auto' : 'smooth',
-        block: 'center',
-      })
-    }
   }
 
-  const getTabId = (layout: BeatLayout, id: string) => `product-story-${layout}-tab-${id}`
-  const getPanelId = (layout: BeatLayout) => `product-story-${layout}-panel`
+  const getTabId = (id: string) => `product-story-mobile-tab-${id}`
+  const getPanelId = () => 'product-story-mobile-panel'
 
-  const focusTab = (layout: BeatLayout, id: string) => {
-    const refs = layout === 'mobile' ? mobileTabRefs.current : desktopTabRefs.current
-    refs[id]?.focus()
+  const focusTab = (id: string) => {
+    mobileTabRefs.current[id]?.focus()
   }
 
-  const handleTabKeyDown = (
-    event: KeyboardEvent<HTMLButtonElement>,
-    currentId: string,
-    layout: BeatLayout,
-  ) => {
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, currentId: string) => {
     const currentIndex = beats.findIndex((beat) => beat.id === currentId)
     if (currentIndex === -1) return
 
@@ -685,7 +633,7 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
     if (!nextId) return
 
     setActiveBeatId(nextId)
-    focusTab(layout, nextId)
+    focusTab(nextId)
   }
 
   return (
@@ -758,14 +706,14 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
                     ref={(node) => {
                       mobileTabRefs.current[beat.id] = node
                     }}
-                    id={getTabId('mobile', beat.id)}
+                    id={getTabId(beat.id)}
                     type="button"
                     role="tab"
                     aria-selected={isActive}
-                    aria-controls={getPanelId('mobile')}
+                    aria-controls={getPanelId()}
                     tabIndex={isActive ? 0 : -1}
                     onClick={() => handleBeatSelect(beat.id)}
-                    onKeyDown={(event) => handleTabKeyDown(event, beat.id, 'mobile')}
+                    onKeyDown={(event) => handleTabKeyDown(event, beat.id)}
                     className="rounded-full px-4 py-2 text-sm transition duration-300"
                     style={{
                       background: isActive ? CTA_DARK : 'rgba(255,255,255,0.72)',
@@ -783,9 +731,9 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
           <Reveal delay={0.1}>
             <MotionSwap changeKey={`mobile-${activeBeat.id}`}>
               <div
-                id={getPanelId('mobile')}
+                id={getPanelId()}
                 role="tabpanel"
-                aria-labelledby={getTabId('mobile', activeBeat.id)}
+                aria-labelledby={getTabId(activeBeat.id)}
                 aria-live="polite"
                 tabIndex={0}
                 className="mt-6 rounded-[32px] p-5"
@@ -876,200 +824,108 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
           </Reveal>
         </div>
 
-        <div className="mt-14 hidden lg:grid lg:grid-cols-[minmax(0,0.96fr),minmax(0,1.04fr)] lg:gap-16">
-          <div className="sticky top-28 self-start">
-            <Reveal delay={0.1}>
-              <div
-                className="rounded-[36px] p-6 lg:p-7"
-                style={{
-                  background:
-                    'linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,243,238,0.96) 100%)',
-                  border: '1px solid rgba(129, 62, 58, 0.12)',
-                  boxShadow: '0 16px 44px rgba(26,18,9,0.06)',
-                }}
-              >
-                <div
-                  role="tablist"
-                  aria-label="Overflow product story screens"
-                  className="flex flex-wrap gap-2"
+        <div className="mt-14 hidden lg:block">
+          <div className="space-y-6">
+            {beats.map((beat, index) => (
+              <Reveal key={beat.id} delay={index * 0.04}>
+                <article
+                  className="rounded-[34px] p-6 lg:grid lg:grid-cols-[minmax(0,0.74fr),minmax(0,1.06fr)] lg:items-center lg:gap-10 lg:p-8"
+                  style={{
+                    background: index % 2 === 0 ? SURFACE : 'rgba(255,255,255,0.72)',
+                    border: '1px solid rgba(129, 62, 58, 0.12)',
+                    boxShadow: '0 14px 36px rgba(26,18,9,0.05)',
+                  }}
                 >
-                  {beats.map((beat) => {
-                    const isActive = beat.id === activeBeat.id
-
-                    return (
-                      <button
-                        key={beat.id}
-                        ref={(node) => {
-                          desktopTabRefs.current[beat.id] = node
-                        }}
-                        id={getTabId('desktop', beat.id)}
-                        type="button"
-                        role="tab"
-                        aria-selected={isActive}
-                        aria-controls={getPanelId('desktop')}
-                        tabIndex={isActive ? 0 : -1}
-                        onClick={() => handleBeatSelect(beat.id, { scroll: true })}
-                        onKeyDown={(event) => handleTabKeyDown(event, beat.id, 'desktop')}
-                        className="rounded-full px-4 py-2 text-sm transition duration-300"
-                        style={{
-                          background: isActive ? CTA_DARK : 'rgba(255,255,255,0.72)',
-                          border: isActive ? '1px solid transparent' : '1px solid var(--cream-dark)',
-                          color: isActive ? 'var(--cream)' : INK,
-                        }}
-                      >
-                        {beat.label}
-                      </button>
-                    )
-                  })}
-                </div>
-
-                <MotionSwap changeKey={`desktop-${activeBeat.id}`}>
-                  <div
-                    id={getPanelId('desktop')}
-                    role="tabpanel"
-                    aria-labelledby={getTabId('desktop', activeBeat.id)}
-                    aria-live="polite"
-                    tabIndex={0}
-                    className="mt-6"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <Eyebrow tint={ACCENT_PRIMARY}>Active beat</Eyebrow>
-                        <p className="mt-2 text-sm" style={{ color: INK }}>
-                          {activeBeat.label}
-                        </p>
-                      </div>
-                      <span
-                        className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
-                        style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
-                      >
-                        {activeBeat.kind}
-                      </span>
-                    </div>
-
-                    <div className="relative mt-6 flex min-h-[620px] items-center justify-center">
-                      <div
-                        className="absolute inset-x-10 bottom-8 top-20 rounded-[60px] blur-3xl"
-                        style={{ background: 'rgba(158, 108, 110, 0.18)' }}
-                        aria-hidden="true"
-                      />
-                      <AnnotatedPhone
-                        image={activeBeat.screen}
-                        alt={activeBeat.alt}
-                        annotations={activeBeat.callouts}
-                        width={292}
-                      />
-                    </div>
+                  <div className="relative mx-auto w-full max-w-[360px]">
+                    <div
+                      className="absolute inset-x-8 bottom-6 top-16 rounded-[56px] blur-3xl"
+                      style={{ background: 'rgba(158, 108, 110, 0.18)' }}
+                      aria-hidden="true"
+                    />
+                    <AnnotatedPhone
+                      image={beat.screen}
+                      alt={beat.alt}
+                      annotations={beat.callouts}
+                      width={292}
+                    />
                   </div>
-                </MotionSwap>
-              </div>
-            </Reveal>
-          </div>
 
-          <div className="space-y-4">
-            {beats.map((beat, index) => {
-              const isActive = beat.id === activeBeat.id
+                  <div className="mt-2 lg:mt-0">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <span
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[0.75rem]"
+                          style={{
+                            background: ACCENT_PRIMARY_SOFT,
+                            color: ACCENT_PRIMARY,
+                            fontFamily: MONO,
+                          }}
+                        >
+                          0{index + 1}
+                        </span>
+                        <div>
+                          <p
+                            className="text-[0.72rem] uppercase tracking-[0.18em]"
+                            style={{ color: MUTED, fontFamily: MONO }}
+                          >
+                            {beat.label}
+                          </p>
+                          <p className="mt-1 text-sm" style={{ color: INK }}>
+                            {beat.kind}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-              return (
-                <Reveal key={beat.id} delay={index * 0.04}>
-                  <div
-                    ref={(node) => {
-                      beatRefs.current[beat.id] = node
-                    }}
-                    data-beat-id={beat.id}
-                  >
-                    <article
-                      tabIndex={0}
-                      onClick={() => setActiveBeatId(beat.id)}
-                      onFocus={() => setActiveBeatId(beat.id)}
-                      className="rounded-[30px] p-6 transition duration-300"
+                    <h3
+                      className="mt-5 text-[1.7rem] leading-[1.02]"
+                      style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
+                    >
+                      {beat.headline}
+                    </h3>
+
+                    <p className="mt-3 max-w-xl text-[0.98rem] leading-7" style={{ color: BODY }}>
+                      {beat.body}
+                    </p>
+
+                    <ul className="mt-5 grid gap-3 xl:grid-cols-3">
+                      {beat.proof.map((item) => (
+                        <li
+                          key={item}
+                          className="rounded-[18px] px-4 py-3 text-sm"
+                          style={{
+                            background: SURFACE_SOFT,
+                            border: '1px solid rgba(129, 62, 58, 0.1)',
+                            color: BODY,
+                          }}
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <details
+                      className="mt-5 rounded-[20px] px-4 py-3"
                       style={{
-                        minHeight: 280,
-                        background: isActive ? SURFACE : 'rgba(255,255,255,0.58)',
-                        border: isActive
-                          ? '1px solid rgba(129, 62, 58, 0.22)'
-                          : '1px solid rgba(129, 62, 58, 0.12)',
-                        boxShadow: isActive
-                          ? '0 18px 42px rgba(26,18,9,0.07)'
-                          : '0 10px 24px rgba(26,18,9,0.03)',
-                        transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
-                        cursor: 'pointer',
+                        background: 'rgba(247,243,238,0.82)',
+                        border: '1px solid rgba(129, 62, 58, 0.12)',
                       }}
                     >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <span
-                            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[0.75rem]"
-                            style={{
-                              background: ACCENT_PRIMARY_SOFT,
-                              color: ACCENT_PRIMARY,
-                              fontFamily: MONO,
-                            }}
-                          >
-                            0{index + 1}
-                          </span>
-                          <div>
-                            <p className="text-[0.72rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
-                              {beat.label}
-                            </p>
-                            <p className="mt-1 text-sm" style={{ color: INK }}>
-                              {beat.kind}
-                            </p>
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <h3
-                        className="mt-5 text-[1.7rem] leading-[1.02]"
-                        style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
+                      <summary
+                        className="flex list-none cursor-pointer items-center justify-between gap-4 text-sm font-medium [&::-webkit-details-marker]:hidden"
+                        style={{ color: INK }}
                       >
-                        {beat.headline}
-                      </h3>
-
-                      <p className="mt-3 max-w-xl text-[0.98rem] leading-7" style={{ color: BODY }}>
-                        {beat.body}
+                        Why this matters
+                        <span style={{ color: MUTED }}>+</span>
+                      </summary>
+                      <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                        {beat.detailNote}
                       </p>
-
-                      <ul className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-                        {beat.proof.map((item) => (
-                          <li
-                            key={item}
-                            className="rounded-[18px] px-4 py-3 text-sm"
-                            style={{
-                              background: SURFACE_SOFT,
-                              border: '1px solid rgba(129, 62, 58, 0.1)',
-                              color: BODY,
-                            }}
-                          >
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <details
-                        className="mt-5 rounded-[20px] px-4 py-3"
-                        style={{
-                          background: 'rgba(247,243,238,0.82)',
-                          border: '1px solid rgba(129, 62, 58, 0.12)',
-                        }}
-                      >
-                        <summary
-                          className="flex list-none cursor-pointer items-center justify-between gap-4 text-sm font-medium [&::-webkit-details-marker]:hidden"
-                          style={{ color: INK }}
-                        >
-                          Why this matters
-                          <span style={{ color: MUTED }}>+</span>
-                        </summary>
-                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
-                          {beat.detailNote}
-                        </p>
-                      </details>
-                    </article>
+                    </details>
                   </div>
-                </Reveal>
-              )
-            })}
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>

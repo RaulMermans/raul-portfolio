@@ -4,7 +4,7 @@
   position: fixed;
   z-index: 160;
   opacity: 0;
-  animation: fadeIn 0.8s var(--ease-out) 1.2s forwards;
+  animation: fadeIn 0.55s var(--ease-out) 0.18s forwards;
 }
 
 .logo {
@@ -15,12 +15,18 @@
   justify-content: center;
   min-width: var(--touch-min);
   min-height: var(--touch-min);
-  padding: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-sm);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--ink);
+  border: 1px solid rgba(26, 23, 20, 0.1);
+  border-radius: 999px;
+  background: rgba(245, 240, 235, 0.82);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: 0 12px 28px rgba(26, 23, 20, 0.08);
   transition: color var(--transition-base) var(--ease), transform var(--transition-base) var(--ease);
   -webkit-user-select: none;
   user-select: none;
@@ -36,8 +42,15 @@
   top: max(var(--space-4), calc(env(safe-area-inset-top) + var(--space-3)));
   right: max(var(--space-4), calc(env(safe-area-inset-right) + var(--space-3)));
   display: flex;
-  gap: var(--space-5);
-  animation-delay: 1.3s;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: 1px solid rgba(26, 23, 20, 0.1);
+  border-radius: 999px;
+  background: rgba(245, 240, 235, 0.82);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: 0 12px 28px rgba(26, 23, 20, 0.08);
+  animation-delay: 0.24s;
 }
 
 .desktopNav a {
@@ -47,12 +60,16 @@
   min-width: var(--touch-min);
   min-height: var(--touch-min);
   padding: var(--space-2) var(--space-3);
+  border-radius: 999px;
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--ink-muted);
-  transition: color var(--transition-base) var(--ease), transform var(--transition-base) var(--ease);
+  color: rgba(26, 23, 20, 0.72);
+  transition:
+    color var(--transition-base) var(--ease),
+    transform var(--transition-base) var(--ease),
+    background var(--transition-base) var(--ease);
 }
 
 .desktopNav a::after {
@@ -71,6 +88,7 @@
 .desktopNav a:hover,
 .desktopNav a:focus-visible {
   color: var(--ink);
+  background: rgba(26, 23, 20, 0.05);
   transform: translateY(-1px);
 }
 
@@ -94,7 +112,7 @@
   box-shadow: 0 12px 28px rgba(26, 23, 20, 0.08);
   align-items: center;
   justify-content: center;
-  animation-delay: 1.3s;
+  animation-delay: 0.24s;
 }
 
 .menuButtonInner {

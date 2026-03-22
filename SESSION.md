@@ -185,6 +185,33 @@ When starting work, update this section:
 **Notes**: This pass was guided by current live references rather than a structural rewrite. Useful reference patterns came from Seif Radwane and Lindi Wheaton for scannable case-study structure, Not Boring Weather for short media-first feature storytelling, Gentler Streak for calm product framing, and Sharon Lee’s Candid case study as a reminder to avoid long undifferentiated text blocks.
 **Next Steps**: Review `/apps/overflow` in a browser and decide whether the next pass should focus on stronger proof assets or one more visual polish pass.
 
+### 2026-03-22 - Replace sticky Overflow story device with per-beat screens
+**Goal**: Stop using a desktop sticky phone that swaps screens while the copy scrolls, and instead pair each product beat with its own screenshot directly beside the text.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - removed the desktop sticky-phone/scrollytelling pattern from the product story section and replaced it with stacked beat rows, each showing its own screen and accompanying copy side by side.
+- `SESSION.md` - recorded the layout simplification for continuity.
+**Notes**: This is a calmer, more literal presentation model. Mobile still uses the compact tabbed selector; desktop now behaves more like a straightforward product case study where proof and explanation stay attached.
+**Next Steps**: Review the desktop product story in-browser and check whether the phone width, row spacing, and screenshot annotation density still need tuning.
+
+### 2026-03-22 - Make shared header readable across all pages
+**Goal**: Ensure the shared header remains visible against varying page backgrounds, especially light hero sections where the logo/nav were getting lost.
+**Outcome**: Completed
+**Changes Made**:
+- `components/Header.module.css` - added a shared translucent contrast surface behind the desktop logo and nav, tightened nav spacing into a pill container, and reduced the long fade-in delay so the header appears quickly.
+- `SESSION.md` - recorded the header visibility pass for continuity.
+**Notes**: This is a shared-header fix, not a per-page override. The header now reads as a consistent floating navigation layer instead of inheriting contrast problems from individual page backgrounds.
+**Next Steps**: Check the header on both light pages and darker gallery/case-study pages to confirm the new surface feels visible without feeling too heavy.
+
+### 2026-03-22 - Restore depth to homepage section cards
+**Goal**: Bring the homepage section cards back to a richer, less-flat presentation closer to the earlier dimensional treatment.
+**Outcome**: Completed
+**Changes Made**:
+- `components/SectionCards.module.css` - strengthened card shadow stacks, added a subtle highlight shell, deepened the image-to-content transition, and restored a darker raised content panel so each card reads as a layered object again.
+- `SESSION.md` - recorded the section-card styling pass for continuity.
+**Notes**: This was a localized CSS-only adjustment to the shared homepage carousel. No structure or interaction logic changed.
+**Next Steps**: Review the homepage carousel in-browser and tune panel opacity or hover lift if the restored depth feels too heavy on smaller screens.
+
 ### Session Template
 ```markdown
 ### YYYY-MM-DD - Brief Description
