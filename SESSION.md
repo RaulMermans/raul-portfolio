@@ -176,6 +176,15 @@ When starting work, update this section:
 **Notes**: The giant black pill came from the carousel button using the generic `next` class, which inherited the global “Next Project” section styles. The wheel-to-horizontal-scroll handler was removed for better vertical page scrolling. `npm run lint` failed in this environment with `ERR_INVALID_PACKAGE_CONFIG` from `next` under Node.js `v24.13.0`, and `npm run type-check` did not complete in the sandbox.
 **Next Steps**: Reopen the homepage locally and confirm vertical page scroll feels normal, card 1 is centered on load, and the side arrows are easier to see.
 
+### 2026-03-22 - Tighten Overflow product story copy and interaction
+**Goal**: Make the `/apps/overflow` product story feel less choppy, improve keyboard access to the screen selector, and cut redundant copy so the page reads more like a sharp portfolio case study.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - converted the story screen selector into a real tab interface with keyboard navigation, added a lighter screen-swap transition, removed redundant labels, and compressed hero/story/week/decision/CTA copy.
+- `SESSION.md` - recorded the interaction and copy-tightening pass for continuity.
+**Notes**: This pass was guided by current live references rather than a structural rewrite. Useful reference patterns came from Seif Radwane and Lindi Wheaton for scannable case-study structure, Not Boring Weather for short media-first feature storytelling, Gentler Streak for calm product framing, and Sharon Lee’s Candid case study as a reminder to avoid long undifferentiated text blocks.
+**Next Steps**: Review `/apps/overflow` in a browser and decide whether the next pass should focus on stronger proof assets or one more visual polish pass.
+
 ### Session Template
 ```markdown
 ### YYYY-MM-DD - Brief Description

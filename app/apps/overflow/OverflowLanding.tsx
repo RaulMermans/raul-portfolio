@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
@@ -280,6 +280,43 @@ function AnnotatedPhone({
   )
 }
 
+function MotionSwap({
+  changeKey,
+  children,
+  className = '',
+}: {
+  changeKey: string
+  children: React.ReactNode
+  className?: string
+}) {
+  const reducedMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element || reducedMotion) return
+
+    const animation = element.animate(
+      [
+        { opacity: 0.56, transform: 'translateY(14px) scale(0.985)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)' },
+      ],
+      {
+        duration: 320,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
+    )
+
+    return () => animation.cancel()
+  }, [changeKey, reducedMotion])
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  )
+}
+
 const heroMeta = [
   { label: 'Platform', value: 'iPhone' },
   { label: 'Stage', value: 'Private beta' },
@@ -289,15 +326,15 @@ const heroMeta = [
 const snapshotCards = [
   {
     label: 'What it is',
-    value: 'An iPhone workout tracker built around routines, scheduling, and fast session starts.',
+    value: 'A workout tracker built around routines, scheduling, and fast starts.',
   },
   {
     label: 'Who it is for',
-    value: 'People who already train and want structure without performance theatre.',
+    value: 'People who already train and want clearer structure, not hype.',
   },
   {
     label: 'Why it feels different',
-    value: 'The week stays visible, the next action stays obvious, and progress stays useful.',
+    value: 'The next action stays obvious, the week stays visible, and progress stays calm.',
   },
 ]
 
@@ -310,8 +347,8 @@ const storyBeats: StoryBeat[] = [
     kind: 'Surface',
     screen: 'Today-tab.webp',
     alt: 'Overflow Today screen showing the week, next workout, and a start workout action.',
-    headline: 'Start from the day that matters.',
-    body: 'Today keeps the next workout, weekly cadence, and the session entry point in one place.',
+    headline: 'Open to the next workout.',
+    body: 'Today shows the next session, the week, and the fastest way into the workout.',
     proof: [
       'The next workout is explicit.',
       'Weekly cadence stays visible.',
@@ -338,7 +375,7 @@ const storyBeats: StoryBeat[] = [
       },
     ],
     detailNote:
-      'Overflow treats Today as an operational home instead of a dashboard. That matters at the exact moment a user either starts the workout or drifts away from it.',
+      'Today works as the operational home. When motivation is low, the next move is still obvious.',
   },
   {
     id: 'create',
@@ -346,8 +383,8 @@ const storyBeats: StoryBeat[] = [
     kind: 'Action',
     screen: 'routine-creator.webp',
     alt: 'Overflow routine creation screen with warmup, main, and cooldown sections.',
-    headline: 'Build the structure once.',
-    body: 'Create turns workouts into reusable blocks with named sections that can come back every week.',
+    headline: 'Build routines once.',
+    body: 'Create turns exercises into reusable templates with clear sections and repeatable structure.',
     proof: [
       'Warmup, main work, and cooldown are explicit.',
       'The routine becomes reusable, not disposable.',
@@ -374,7 +411,7 @@ const storyBeats: StoryBeat[] = [
       },
     ],
     detailNote:
-      'Create reduces repeated setup. Once a routine exists, planning stops being a fresh construction problem every time the week starts over.',
+      'Once a routine exists, planning stops starting from zero each week.',
   },
   {
     id: 'schedule',
@@ -382,8 +419,8 @@ const storyBeats: StoryBeat[] = [
     kind: 'Action',
     screen: 'schedule-routine.webp',
     alt: 'Overflow schedule flow showing a routine picker and a date-specific scheduling action.',
-    headline: 'Place routines into real days.',
-    body: 'Schedule ties reusable routines to actual dates, so the week stays visible and adjustable.',
+    headline: 'Put routines on real dates.',
+    body: 'Schedule drops a routine onto a day and keeps it easy to move when the week changes.',
     proof: [
       'The routine picker stays date-specific.',
       'Scheduling is a direct action, not a hidden setting.',
@@ -410,7 +447,7 @@ const storyBeats: StoryBeat[] = [
       },
     ],
     detailNote:
-      'Rigid plans break when life moves. Overflow keeps the week flexible enough to absorb change without making adjustment feel like failure.',
+      'This is where flexibility becomes real. The week can adjust without feeling broken.',
   },
   {
     id: 'calendar',
@@ -418,8 +455,8 @@ const storyBeats: StoryBeat[] = [
     kind: 'Surface',
     screen: 'Calendar-tab.webp',
     alt: 'Overflow Calendar tab showing a monthly view with planned and completed markers.',
-    headline: 'Keep the month readable.',
-    body: 'Calendar works as planning memory: one surface for spacing, adherence, and day-level context.',
+    headline: 'See the month clearly.',
+    body: 'Calendar shows spacing, adherence, and day-level context in one place.',
     proof: [
       'Planned and completed states are distinct.',
       'Month navigation stays simple.',
@@ -446,7 +483,7 @@ const storyBeats: StoryBeat[] = [
       },
     ],
     detailNote:
-      'Calendar turns training from an abstract intention into something placed in time. That is what makes the week easier to maintain rather than merely imagine.',
+      'Calendar gives the plan memory. The user can see what held and what moved.',
   },
   {
     id: 'milestones',
@@ -454,8 +491,8 @@ const storyBeats: StoryBeat[] = [
     kind: 'Surface',
     screen: 'Milestones.webp',
     alt: 'Overflow milestones screen showing completed milestones and progress toward future milestones.',
-    headline: 'Let progress stay useful.',
-    body: 'Milestones keeps progress visible through records, streaks, and longer arcs without turning the app into a game.',
+    headline: 'Keep progress useful.',
+    body: 'Milestones shows records, streaks, and longer arcs without turning training into a reward loop.',
     proof: [
       'Milestones connect to real training events.',
       'Progress stays visible without hype.',
@@ -482,7 +519,7 @@ const storyBeats: StoryBeat[] = [
       },
     ],
     detailNote:
-      'Overflow uses progress as orientation, not stimulation. The user gets enough evidence to stay connected to the work without being pushed into noisy motivation mechanics.',
+      'Progress is there to orient the user, not to push them.',
   },
 ]
 
@@ -490,25 +527,25 @@ const weekFlow = [
   {
     step: '01',
     label: 'Set structure',
-    body: 'Build or refine reusable routines so the week starts from stable parts.',
+    body: 'Build reusable routines first.',
     link: 'Create',
   },
   {
     step: '02',
     label: 'Place sessions',
-    body: 'Assign those routines to real days and keep the plan adjustable.',
+    body: 'Assign them to real days.',
     link: 'Schedule',
   },
   {
     step: '03',
     label: 'Start from Today',
-    body: 'Open the app to the next workout and move into the session quickly.',
+    body: 'Open to the next workout and begin.',
     link: 'Today',
   },
   {
     step: '04',
     label: 'Review the week',
-    body: 'Use Calendar and Milestones to see what actually happened and what is building.',
+    body: 'Review what happened and what is building.',
     link: 'Review',
   },
 ]
@@ -516,36 +553,40 @@ const weekFlow = [
 const decisionRows = [
   {
     decision: 'One operational home',
-    alternative: 'Many fitness apps lead with dashboards and interpretation work.',
-    impact: 'Overflow keeps the next action obvious when the workout either starts or slips.',
+    alternative: 'Most fitness apps open with dashboards you have to interpret.',
+    impact: 'Overflow keeps the next action obvious.',
   },
   {
     decision: 'Reusable routines plus flexible scheduling',
-    alternative: 'Rigid plans collapse the moment the week changes shape.',
-    impact: 'The user keeps structure without treating adjustment as failure.',
+    alternative: 'Rigid plans break the moment the week changes.',
+    impact: 'The user can move sessions without losing structure.',
   },
   {
     decision: 'A smaller set of progress signals',
-    alternative: 'Dense analytics often produce more reading than understanding.',
-    impact: 'Volume, streaks, records, and milestones stay interpretable.',
+    alternative: 'Big analytics suites create more reading than clarity.',
+    impact: 'Progress stays easy to read and act on.',
   },
   {
     decision: 'Quiet continuity over reward-heavy motivation',
-    alternative: 'Aggressive streak language and gamification add pressure to an already demanding habit.',
-    impact: 'The product feels supportive without becoming performative.',
+    alternative: 'Gamified pressure can make training feel performative.',
+    impact: 'The product supports consistency without extra noise.',
   },
 ]
 
 const betaPoints = [
   'For people who want a clearer weekly rhythm.',
-  'For users who prefer structure over hype.',
-  'For training habits that need continuity more than motivation theatre.',
+  'For people who prefer structure over hype.',
+  'For training habits that need continuity, not pressure.',
 ]
+
+type BeatLayout = 'mobile' | 'desktop'
 
 function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
   const reducedMotion = useReducedMotion()
   const [activeBeatId, setActiveBeatId] = useState(beats[0]?.id ?? '')
   const beatRefs = useRef<Record<string, HTMLDivElement | null>>({})
+  const mobileTabRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  const desktopTabRefs = useRef<Record<string, HTMLButtonElement | null>>({})
 
   useEffect(() => {
     if (!beats[0]) return
@@ -561,18 +602,26 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        const viewportCenter = window.innerHeight * 0.46
         const visibleEntries = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+          .sort((a, b) => {
+            const aCenter = a.boundingClientRect.top + a.boundingClientRect.height / 2
+            const bCenter = b.boundingClientRect.top + b.boundingClientRect.height / 2
+
+            return Math.abs(aCenter - viewportCenter) - Math.abs(bCenter - viewportCenter)
+          })
 
         if (!visibleEntries[0]) return
 
         const nextId = (visibleEntries[0].target as HTMLDivElement).dataset.beatId
-        if (nextId) setActiveBeatId(nextId)
+        if (nextId) {
+          setActiveBeatId((current) => (current === nextId ? current : nextId))
+        }
       },
       {
-        threshold: [0.2, 0.45, 0.65],
-        rootMargin: '-18% 0px -32% 0px',
+        threshold: [0.28, 0.52, 0.74],
+        rootMargin: '-20% 0px -34% 0px',
       },
     )
 
@@ -582,15 +631,61 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
 
   const activeBeat = beats.find((beat) => beat.id === activeBeatId) ?? beats[0]
 
-  const handleBeatSelect = (id: string) => {
+  const handleBeatSelect = (id: string, options?: { scroll?: boolean }) => {
     setActiveBeatId(id)
 
-    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+    if (options?.scroll && typeof window !== 'undefined' && window.innerWidth >= 1024) {
       beatRefs.current[id]?.scrollIntoView({
         behavior: reducedMotion ? 'auto' : 'smooth',
         block: 'center',
       })
     }
+  }
+
+  const getTabId = (layout: BeatLayout, id: string) => `product-story-${layout}-tab-${id}`
+  const getPanelId = (layout: BeatLayout) => `product-story-${layout}-panel`
+
+  const focusTab = (layout: BeatLayout, id: string) => {
+    const refs = layout === 'mobile' ? mobileTabRefs.current : desktopTabRefs.current
+    refs[id]?.focus()
+  }
+
+  const handleTabKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    currentId: string,
+    layout: BeatLayout,
+  ) => {
+    const currentIndex = beats.findIndex((beat) => beat.id === currentId)
+    if (currentIndex === -1) return
+
+    let nextIndex = currentIndex
+
+    switch (event.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        nextIndex = (currentIndex + 1) % beats.length
+        break
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        nextIndex = (currentIndex - 1 + beats.length) % beats.length
+        break
+      case 'Home':
+        nextIndex = 0
+        break
+      case 'End':
+        nextIndex = beats.length - 1
+        break
+      default:
+        return
+    }
+
+    event.preventDefault()
+
+    const nextId = beats[nextIndex]?.id
+    if (!nextId) return
+
+    setActiveBeatId(nextId)
+    focusTab(layout, nextId)
   }
 
   return (
@@ -615,12 +710,10 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
                 className="text-[clamp(2.15rem,5vw,4.25rem)] leading-[0.97]"
                 style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
               >
-                One persistent device, five product beats, and one visible loop.
+                Five screens explain the system.
               </h2>
               <p className="mt-5 max-w-2xl text-[1rem] leading-7" style={{ color: BODY }}>
-                Overflow works best when the product logic is obvious: build the structure, place it into
-                the week, start from Today, and review what the work is adding up to. The page follows that
-                same sequence.
+                Build the routine, place it into the week, start from Today, then review what happened.
               </p>
             </div>
 
@@ -651,15 +744,28 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
 
         <div className="mt-10 lg:hidden">
           <div className="overflow-x-auto pb-2">
-            <div className="flex min-w-max gap-2">
+            <div
+              role="tablist"
+              aria-label="Overflow product story screens"
+              className="flex min-w-max gap-2"
+            >
               {beats.map((beat) => {
                 const isActive = beat.id === activeBeat.id
 
                 return (
                   <button
                     key={beat.id}
+                    ref={(node) => {
+                      mobileTabRefs.current[beat.id] = node
+                    }}
+                    id={getTabId('mobile', beat.id)}
                     type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls={getPanelId('mobile')}
+                    tabIndex={isActive ? 0 : -1}
                     onClick={() => handleBeatSelect(beat.id)}
+                    onKeyDown={(event) => handleTabKeyDown(event, beat.id, 'mobile')}
                     className="rounded-full px-4 py-2 text-sm transition duration-300"
                     style={{
                       background: isActive ? CTA_DARK : 'rgba(255,255,255,0.72)',
@@ -675,87 +781,98 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
           </div>
 
           <Reveal delay={0.1}>
-            <div
-              className="mt-6 rounded-[32px] p-5"
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,243,238,0.96) 100%)',
-                border: '1px solid rgba(129, 62, 58, 0.12)',
-                boxShadow: '0 16px 40px rgba(26,18,9,0.06)',
-              }}
-            >
-              <div className="relative mx-auto max-w-[320px]">
-                <div
-                  className="absolute inset-x-6 bottom-4 top-16 rounded-[48px] blur-3xl"
-                  style={{ background: 'rgba(158, 108, 110, 0.18)' }}
-                  aria-hidden="true"
-                />
-                <AnnotatedPhone
-                  image={activeBeat.screen}
-                  alt={activeBeat.alt}
-                  annotations={activeBeat.callouts}
-                  width={280}
-                />
-              </div>
-
-              <div className="mt-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span
-                    className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
-                    style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
-                  >
-                    {activeBeat.kind}
-                  </span>
-                  <span className="text-[0.75rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
-                    {activeBeat.label}
-                  </span>
+            <MotionSwap changeKey={`mobile-${activeBeat.id}`}>
+              <div
+                id={getPanelId('mobile')}
+                role="tabpanel"
+                aria-labelledby={getTabId('mobile', activeBeat.id)}
+                aria-live="polite"
+                tabIndex={0}
+                className="mt-6 rounded-[32px] p-5"
+                style={{
+                  background:
+                    'linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,243,238,0.96) 100%)',
+                  border: '1px solid rgba(129, 62, 58, 0.12)',
+                  boxShadow: '0 16px 40px rgba(26,18,9,0.06)',
+                }}
+              >
+                <div className="relative mx-auto max-w-[320px]">
+                  <div
+                    className="absolute inset-x-6 bottom-4 top-16 rounded-[48px] blur-3xl"
+                    style={{ background: 'rgba(158, 108, 110, 0.18)' }}
+                    aria-hidden="true"
+                  />
+                  <AnnotatedPhone
+                    image={activeBeat.screen}
+                    alt={activeBeat.alt}
+                    annotations={activeBeat.callouts}
+                    width={280}
+                  />
                 </div>
 
-                <h3
-                  className="mt-4 text-[1.6rem] leading-[1.02]"
-                  style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
-                >
-                  {activeBeat.headline}
-                </h3>
-                <p className="mt-3 text-[0.98rem] leading-7" style={{ color: BODY }}>
-                  {activeBeat.body}
-                </p>
-
-                <ul className="mt-5 grid gap-2">
-                  {activeBeat.proof.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-[18px] px-4 py-3 text-sm"
-                      style={{
-                        background: SURFACE,
-                        border: '1px solid rgba(129, 62, 58, 0.12)',
-                        color: BODY,
-                      }}
+                <div className="mt-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span
+                      className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
+                      style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
                     >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                      {activeBeat.kind}
+                    </span>
+                    <span
+                      className="text-[0.75rem] uppercase tracking-[0.18em]"
+                      style={{ color: MUTED, fontFamily: MONO }}
+                    >
+                      {activeBeat.label}
+                    </span>
+                  </div>
 
-                <details
-                  className="mt-5 rounded-[20px] px-4 py-3"
-                  style={{
-                    background: 'rgba(255,255,255,0.68)',
-                    border: '1px solid rgba(129, 62, 58, 0.12)',
-                  }}
-                >
-                  <summary
-                    className="flex list-none cursor-pointer items-center justify-between gap-4 text-sm font-medium [&::-webkit-details-marker]:hidden"
-                    style={{ color: INK }}
+                  <h3
+                    className="mt-4 text-[1.6rem] leading-[1.02]"
+                    style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                   >
-                    Why this matters
-                    <span style={{ color: MUTED }}>+</span>
-                  </summary>
-                  <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
-                    {activeBeat.detailNote}
+                    {activeBeat.headline}
+                  </h3>
+                  <p className="mt-3 text-[0.98rem] leading-7" style={{ color: BODY }}>
+                    {activeBeat.body}
                   </p>
-                </details>
+
+                  <ul className="mt-5 grid gap-2">
+                    {activeBeat.proof.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-[18px] px-4 py-3 text-sm"
+                        style={{
+                          background: SURFACE,
+                          border: '1px solid rgba(129, 62, 58, 0.12)',
+                          color: BODY,
+                        }}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <details
+                    className="mt-5 rounded-[20px] px-4 py-3"
+                    style={{
+                      background: 'rgba(255,255,255,0.68)',
+                      border: '1px solid rgba(129, 62, 58, 0.12)',
+                    }}
+                  >
+                    <summary
+                      className="flex list-none cursor-pointer items-center justify-between gap-4 text-sm font-medium [&::-webkit-details-marker]:hidden"
+                      style={{ color: INK }}
+                    >
+                      Why this matters
+                      <span style={{ color: MUTED }}>+</span>
+                    </summary>
+                    <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                      {activeBeat.detailNote}
+                    </p>
+                  </details>
+                </div>
               </div>
-            </div>
+            </MotionSwap>
           </Reveal>
         </div>
 
@@ -771,15 +888,28 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
                   boxShadow: '0 16px 44px rgba(26,18,9,0.06)',
                 }}
               >
-                <div className="flex flex-wrap gap-2">
+                <div
+                  role="tablist"
+                  aria-label="Overflow product story screens"
+                  className="flex flex-wrap gap-2"
+                >
                   {beats.map((beat) => {
                     const isActive = beat.id === activeBeat.id
 
                     return (
                       <button
                         key={beat.id}
+                        ref={(node) => {
+                          desktopTabRefs.current[beat.id] = node
+                        }}
+                        id={getTabId('desktop', beat.id)}
                         type="button"
-                        onClick={() => handleBeatSelect(beat.id)}
+                        role="tab"
+                        aria-selected={isActive}
+                        aria-controls={getPanelId('desktop')}
+                        tabIndex={isActive ? 0 : -1}
+                        onClick={() => handleBeatSelect(beat.id, { scroll: true })}
+                        onKeyDown={(event) => handleTabKeyDown(event, beat.id, 'desktop')}
                         className="rounded-full px-4 py-2 text-sm transition duration-300"
                         style={{
                           background: isActive ? CTA_DARK : 'rgba(255,255,255,0.72)',
@@ -793,34 +923,45 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
                   })}
                 </div>
 
-                <div className="mt-6 flex items-center justify-between gap-4">
-                  <div>
-                    <Eyebrow tint={ACCENT_PRIMARY}>Active beat</Eyebrow>
-                    <p className="mt-2 text-sm" style={{ color: INK }}>
-                      {activeBeat.label}
-                    </p>
-                  </div>
-                  <span
-                    className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
-                    style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
-                  >
-                    {activeBeat.kind}
-                  </span>
-                </div>
-
-                <div className="relative mt-6 flex min-h-[620px] items-center justify-center">
+                <MotionSwap changeKey={`desktop-${activeBeat.id}`}>
                   <div
-                    className="absolute inset-x-10 bottom-8 top-20 rounded-[60px] blur-3xl"
-                    style={{ background: 'rgba(158, 108, 110, 0.18)' }}
-                    aria-hidden="true"
-                  />
-                  <AnnotatedPhone
-                    image={activeBeat.screen}
-                    alt={activeBeat.alt}
-                    annotations={activeBeat.callouts}
-                    width={292}
-                  />
-                </div>
+                    id={getPanelId('desktop')}
+                    role="tabpanel"
+                    aria-labelledby={getTabId('desktop', activeBeat.id)}
+                    aria-live="polite"
+                    tabIndex={0}
+                    className="mt-6"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <Eyebrow tint={ACCENT_PRIMARY}>Active beat</Eyebrow>
+                        <p className="mt-2 text-sm" style={{ color: INK }}>
+                          {activeBeat.label}
+                        </p>
+                      </div>
+                      <span
+                        className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
+                        style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
+                      >
+                        {activeBeat.kind}
+                      </span>
+                    </div>
+
+                    <div className="relative mt-6 flex min-h-[620px] items-center justify-center">
+                      <div
+                        className="absolute inset-x-10 bottom-8 top-20 rounded-[60px] blur-3xl"
+                        style={{ background: 'rgba(158, 108, 110, 0.18)' }}
+                        aria-hidden="true"
+                      />
+                      <AnnotatedPhone
+                        image={activeBeat.screen}
+                        alt={activeBeat.alt}
+                        annotations={activeBeat.callouts}
+                        width={292}
+                      />
+                    </div>
+                  </div>
+                </MotionSwap>
               </div>
             </Reveal>
           </div>
@@ -839,7 +980,7 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
                   >
                     <article
                       tabIndex={0}
-                      onMouseEnter={() => setActiveBeatId(beat.id)}
+                      onClick={() => setActiveBeatId(beat.id)}
                       onFocus={() => setActiveBeatId(beat.id)}
                       className="rounded-[30px] p-6 transition duration-300"
                       style={{
@@ -852,6 +993,7 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
                           ? '0 18px 42px rgba(26,18,9,0.07)'
                           : '0 10px 24px rgba(26,18,9,0.03)',
                         transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
+                        cursor: 'pointer',
                       }}
                     >
                       <div className="flex items-start justify-between gap-4">
@@ -876,9 +1018,6 @@ function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
                           </div>
                         </div>
 
-                        <span className="text-[0.72rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
-                          Beat
-                        </span>
                       </div>
 
                       <h3
@@ -971,21 +1110,20 @@ export default function OverflowLanding() {
                     className="mt-5 max-w-4xl text-[clamp(3rem,7vw,5.8rem)] leading-[0.93]"
                     style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                   >
-                    Overflow keeps a training week legible.
+                    Overflow makes a training week easier to follow.
                   </h1>
                 </Reveal>
 
                 <Reveal delay={0.16}>
                   <p className="mt-6 max-w-2xl text-[1.08rem] leading-8" style={{ color: BODY }}>
-                    It is an iPhone workout tracker for building routines, placing them into real days,
-                    starting sessions quickly, and seeing progress without turning the product into a game.
+                    It is an iPhone workout tracker for building routines, placing them into the week,
+                    starting sessions fast, and checking progress without the usual noise.
                   </p>
                 </Reveal>
 
                 <Reveal delay={0.24}>
                   <p className="mt-5 max-w-xl text-[0.98rem] leading-7" style={{ color: MUTED }}>
-                    It exists for people who already want to train and need a clearer system to come back
-                    to every week.
+                    It is for people who already want to train and need a system that is easy to return to.
                   </p>
                 </Reveal>
 
@@ -1062,7 +1200,7 @@ export default function OverflowLanding() {
                       boxShadow: '0 12px 28px rgba(26,18,9,0.06)',
                     }}
                   >
-                    One operational home
+                    One home for the week
                   </div>
                   <div
                     className="absolute -right-7 bottom-24 hidden rounded-full px-4 py-2 text-[0.72rem] lg:block"
@@ -1073,7 +1211,7 @@ export default function OverflowLanding() {
                       boxShadow: '0 12px 28px rgba(26,18,9,0.06)',
                     }}
                   >
-                    Next workout stays explicit
+                    Open to the next workout
                   </div>
 
                   <IPhoneFrame width={300}>
@@ -1132,13 +1270,12 @@ export default function OverflowLanding() {
                     className="text-[clamp(2.15rem,5vw,4rem)] leading-[0.97]"
                     style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                   >
-                    The app is shaped around a real week, not a one-off tap.
+                    Built for the week, not the tap.
                   </h2>
                 </div>
 
                 <p className="max-w-[460px] text-[0.98rem] leading-7" style={{ color: BODY }}>
-                  The rhythm stays simple: set the structure, place it into time, start from Today, and
-                  review what the week became.
+                  Set the structure, place the sessions, start from Today, then review what held.
                 </p>
               </div>
             </Reveal>
@@ -1203,7 +1340,7 @@ export default function OverflowLanding() {
                 className="mt-4 max-w-4xl text-[clamp(2.15rem,5vw,4rem)] leading-[0.97]"
                 style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
               >
-                The product feels quieter because the decisions underneath it are narrower and clearer.
+                The calm feeling comes from a few tight product rules.
               </h2>
             </Reveal>
 
@@ -1290,7 +1427,7 @@ export default function OverflowLanding() {
                         className="mt-3 text-[1.8rem] leading-[1.04]"
                         style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                       >
-                        Open full case study notes
+                        Open case study notes
                       </h2>
                     </div>
                     <span
@@ -1301,7 +1438,7 @@ export default function OverflowLanding() {
                         color: INK,
                       }}
                     >
-                      Reveal notes
+                      Open notes
                     </span>
                   </div>
                 </summary>
@@ -1309,9 +1446,8 @@ export default function OverflowLanding() {
                 <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,0.78fr),minmax(0,1.22fr)] lg:gap-8">
                   <div className="space-y-4">
                     <p className="text-[0.98rem] leading-7" style={{ color: BODY }}>
-                      Overflow is built around practical training questions rather than a motivation loop.
-                      The product gets its tone from that structure: a small number of surfaces, a visible
-                      weekly model, and progress that can orient the user without performing at them.
+                      Overflow is built around practical training questions, a visible weekly model, and
+                      progress that orients without pressuring the user.
                     </p>
 
                     <div
@@ -1341,7 +1477,7 @@ export default function OverflowLanding() {
                       >
                         <Eyebrow tint={ACCENT_PRIMARY}>Surfaces</Eyebrow>
                         <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
-                          Today, Calendar, and Milestones exist to keep the system legible.
+                          Today, Calendar, and Milestones keep the system readable.
                         </p>
                       </div>
                       <div
@@ -1406,13 +1542,13 @@ export default function OverflowLanding() {
                 className="mx-auto mt-5 max-w-4xl text-[clamp(2.3rem,5.2vw,4.8rem)] leading-[0.95]"
                 style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
               >
-                Try Overflow across a real week.
+                Try it for a real week.
               </h2>
             </Reveal>
             <Reveal delay={0.16}>
               <p className="mx-auto mt-6 max-w-2xl text-[1rem] leading-7" style={{ color: BODY }}>
-                The best test is simple: schedule real sessions, return to the app across the week, and see
-                whether the product keeps the rhythm easier to hold together.
+                Schedule real sessions, return to the app through the week, and see if it makes the rhythm
+                easier to hold together.
               </p>
             </Reveal>
 
