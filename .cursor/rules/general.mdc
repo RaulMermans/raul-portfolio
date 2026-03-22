@@ -22,7 +22,7 @@ Before implementing tasks, read relevant skills from `plugins/portfolio-tools/sk
 
 | Task Type | Required Skill(s) |
 |-----------|-------------------|
-| UI/CSS changes | `ai-skills/ui-ux-pro-max/` (UI-UX Pro Max), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
+| UI/CSS changes | `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`, `ai-skills/ui-ux-pro-max/` (UI-UX Pro Max), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
 | Case study work | `case-study-builder/SKILL.md` |
 | New components | `component-scaffolder/SKILL.md`, `design-system/SKILL.md` |
 | API routes | `api-route-builder/SKILL.md`, `security-auditor/SKILL.md` |
@@ -32,6 +32,8 @@ Before implementing tasks, read relevant skills from `plugins/portfolio-tools/sk
 | Accessibility | `accessibility-enforcer/SKILL.md` |
 
 Skills do NOT auto-activate - you must read the SKILL.md file explicitly.
+
+For UI/UX work, the default orchestration entry point is `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`. Use it first before consulting the underlying design skills.
 
 ## File Organization
 

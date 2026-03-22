@@ -1,5 +1,5 @@
 ---
-description: UI/UX design intelligence - consult UI-UX Pro Max skill before generating frontend code
+description: UI/UX design intelligence - invoke the repo UI UX Lead workflow before generating frontend code
 globs:
   - "**/*.tsx"
   - "**/*.css"
@@ -10,26 +10,45 @@ globs:
 alwaysApply: false
 ---
 
-# UI-UX Pro Max Design Intelligence
+# UI UX Lead Design Intelligence
 
-**This rule enforces consultation of the UI-UX Pro Max skill for all UI, frontend, layout, design system, styling, and UX tasks.**
+**This rule enforces the repo's UI UX Lead workflow for all UI, frontend, layout, design system, styling, and UX tasks.**
+
+## Default Entry Point
+
+For any substantial UI/UX task, start here first:
+
+```
+plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md
+```
+
+Related reusable agent prompt:
+
+```
+plugins/portfolio-tools/agents/ui-ux-lead.md
+```
+
+The UI UX Lead workflow is the repo-standard orchestration layer. It requires the agent to consult `ui-ux-pro-max` together with the project design skills instead of treating design work as isolated styling.
 
 ## Skill Location
 
-The design intelligence module lives at:
+The design intelligence modules live at:
 
 ```
+plugins/portfolio-tools/skills/ui-ux-lead/
 ai-skills/ui-ux-pro-max/
 ```
 
 Key paths:
+- **UI UX Lead skill**: `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`
+- **UI UX Lead agent**: `plugins/portfolio-tools/agents/ui-ux-lead.md`
 - **SKILL.md**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md`
 - **Search script**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py`
 - **Design datasets**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/data/`
 
 ## Mandatory Consultation
 
-When a task involves any of the following, you **must** consult the UI-UX Pro Max skill before generating code:
+When a task involves any of the following, you **must** invoke the UI UX Lead workflow before generating code:
 
 | Task Type | Examples |
 |-----------|----------|
@@ -42,19 +61,25 @@ When a task involves any of the following, you **must** consult the UI-UX Pro Ma
 
 ## Required Process
 
-1. **Read the skill** – Parse `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md` for design patterns, color systems, typography, and UX guidelines relevant to the request.
+1. **Read the UI UX Lead skill** – Parse `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`.
 
-2. **Generate design system** (for new pages/projects) – Run the search script with `--design-system`:
+2. **Read UI-UX Pro Max** – Parse `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md`.
+
+3. **Generate design system** (for new pages/projects) – Run the search script with `--design-system`:
    ```bash
    python3 ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py "<product_type> <industry> <keywords>" --design-system -p "Project Name"
    ```
 
-3. **Domain-specific search** (as needed) – For style, color, typography, or UX details:
+4. **Domain-specific search** (as needed) – For style, color, typography, or UX details:
    ```bash
    python3 ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py "<keyword>" --domain <style|color|typography|ux|landing|chart>
    ```
 
-4. **Apply guidance** – Use the returned design system and recommendations to generate structured frontend code with coherent spacing, hierarchy, and typography.
+5. **Read project design skills** – At minimum, consult:
+   - `plugins/portfolio-tools/skills/design-system/SKILL.md`
+   - `plugins/portfolio-tools/skills/visual-hierarchy/SKILL.md`
+
+6. **Apply guidance** – Use the combined guidance to generate structured frontend code with coherent spacing, hierarchy, copy density, and interaction design.
 
 ## Integration with Project Skills
 
@@ -62,7 +87,7 @@ This skill **complements** (does not replace) the project's existing skills:
 - `design-system/SKILL.md` – Design tokens and CSS variables
 - `visual-hierarchy/SKILL.md` – Layout and decluttering
 
-For UI tasks: consult **both** the project skills and UI-UX Pro Max.
+For UI tasks: invoke `ui-ux-lead`, then consult the required project skills and UI-UX Pro Max through that workflow.
 
 ## Pre-Delivery Checklist (from skill)
 

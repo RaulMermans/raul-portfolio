@@ -30,6 +30,8 @@
 ## Completed
 
 ### March 2026
+- [x] Add a repo-level UI UX Lead agent workflow that routes design work through the highest-level skill stack
+- [x] Reframe the Overflow landing page into a lighter progressive-reveal product story
 - [x] Redesign the Overflow app landing page into a clearer product case study
 - [x] Refresh page-level SEO metadata with unique English descriptions
 - [x] Optimize photography landing image loading and editorial gallery flow

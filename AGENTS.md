@@ -166,7 +166,7 @@ Before implementing ANY task, read the relevant skill(s):
 
 | Task Type | Required Skill(s) |
 |-----------|-------------------|
-| UI/CSS changes, landing pages, dashboards, product UI, design systems | **`ai-skills/ui-ux-pro-max/`** (UI-UX Pro Max — read SKILL.md, run search.py for design system), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
+| UI/CSS changes, landing pages, dashboards, product UI, design systems | **`plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`** (default UX/UI orchestration skill), **`ai-skills/ui-ux-pro-max/`** (UI-UX Pro Max — read SKILL.md, run search.py for design system), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
 | Case study work | `case-study-builder/SKILL.md` |
 | New components | `component-scaffolder/SKILL.md`, `design-system/SKILL.md` |
 | API routes | `api-route-builder/SKILL.md`, `security-auditor/SKILL.md` |
@@ -189,6 +189,21 @@ For all UI, frontend, layout, design system, styling, or UX tasks, consult:
 - **Search script**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py`
 
 **Workflow**: Read SKILL.md → Run `--design-system` for new pages → Use `--domain` for style/color/typography details → Apply returned guidance to code.
+
+### Default UX/UI Agent: UI UX Lead
+
+For any substantial UI or UX work, start with:
+
+- **Skill**: `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`
+- **Agent prompt**: `plugins/portfolio-tools/agents/ui-ux-lead.md`
+
+This is the repo's default high-level design entry point. It is responsible for orchestrating:
+- `ai-skills/ui-ux-pro-max/`
+- `design-system/SKILL.md`
+- `visual-hierarchy/SKILL.md`
+- supporting skills such as `case-study-builder`, `nextjs-app-router`, `accessibility-enforcer`, `animation-system`, and `performance-guardian` when relevant
+
+**Default rule**: if a task meaningfully changes how a page or component looks, reads, flows, or feels, invoke `ui-ux-lead` first and treat it as mandatory.
 
 ## Keeping Documentation Current
 

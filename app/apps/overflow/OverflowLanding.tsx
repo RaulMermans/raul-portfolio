@@ -19,36 +19,63 @@ const SURFACE = '#FFFFFF'
 const SURFACE_SOFT = '#F7F3EE'
 const SURFACE_WARM = '#EDE8DF'
 const CTA_DARK = '#2A1210'
-const HERO_GLOW = 'linear-gradient(180deg, rgba(158, 108, 110, 0.18) 0%, rgba(247, 243, 238, 0) 64%)'
+const HERO_GLOW =
+  'linear-gradient(180deg, rgba(158, 108, 110, 0.18) 0%, rgba(247, 243, 238, 0) 64%)'
 const BODY_FONT = 'var(--font-body), "DM Sans", system-ui, sans-serif'
 const READING = 'var(--font-reading), "Source Serif 4", Georgia, serif'
 const MONO = 'var(--font-mono), "Space Mono", monospace'
+const DEVICE_RATIO = 556 / 272
 const TESTFLIGHT = 'https://testflight.apple.com/join/t7jQjsCx'
 
-type ChapterCard = {
-  title: string
-  body: string
-}
+const PRACTICAL_QUESTIONS = [
+  'What should I do today?',
+  'What routines already exist?',
+  'Where do they fit this week?',
+  'What changed on the calendar?',
+  'What is the work adding up to?',
+]
 
-type ChapterAnnotation = {
+type StoryCallout = {
   title: string
   body: string
   top: string
   side: 'left' | 'right'
 }
 
-type Chapter = {
+type StoryBeat = {
   id: string
-  number: string
-  kind: 'Surface' | 'Action'
   label: string
-  title: string
-  summary: string
-  image: string
+  kind: 'Surface' | 'Action'
+  screen: string
   alt: string
-  cards: ChapterCard[]
+  headline: string
+  body: string
   proof: string[]
-  annotations?: ChapterAnnotation[]
+  callouts: StoryCallout[]
+  detailNote: string
+}
+
+function useReducedMotion() {
+  const [reducedMotion, setReducedMotion] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReducedMotion(mediaQuery.matches)
+
+    update()
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', update)
+      return () => mediaQuery.removeEventListener('change', update)
+    }
+
+    mediaQuery.addListener(update)
+    return () => mediaQuery.removeListener(update)
+  }, [])
+
+  return reducedMotion
 }
 
 function useInView(threshold = 0.18) {
@@ -85,7 +112,8 @@ function Reveal({
   className?: string
   delay?: number
 }) {
-  const { ref, visible } = useInView()
+  const reducedMotion = useReducedMotion()
+  const { ref, visible } = useInView(reducedMotion ? 0.01 : 0.18)
 
   return (
     <div
@@ -93,8 +121,10 @@ function Reveal({
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(30px)',
-        transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+        transform: reducedMotion ? 'none' : visible ? 'translateY(0)' : 'translateY(30px)',
+        transition: reducedMotion
+          ? 'none'
+          : `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
       }}
     >
       {children}
@@ -105,30 +135,76 @@ function Reveal({
 function IPhoneFrame({
   children,
   className = '',
+  width = 272,
 }: {
   children: React.ReactNode
   className?: string
+  width?: number
 }) {
+  const height = Math.round(width * DEVICE_RATIO)
+  const outerRadius = Math.round(width * 0.184)
+  const innerInset = Math.max(3, Math.round(width * 0.011))
+  const innerRadius = outerRadius - innerInset
+  const islandWidth = Math.round(width * 0.368)
+  const islandHeight = Math.round(width * 0.096)
+  const islandTop = Math.round(width * 0.04)
+  const topGlowHeight = Math.round(width * 0.338)
+  const bottomBarWidth = Math.round(width * 0.404)
+  const bottomBarHeight = Math.max(4, Math.round(width * 0.015))
+  const bottomBarBottom = Math.max(7, Math.round(width * 0.026))
+
   return (
     <div
       className={`relative mx-auto shrink-0 ${className}`}
-      style={{ width: 272, height: 556 }}
+      style={{ width, height }}
     >
       <div
-        className="absolute inset-0 rounded-[50px]"
+        className="absolute inset-0"
         style={{
+          borderRadius: outerRadius,
           background: '#12100F',
           boxShadow: '0 24px 80px rgba(26,18,9,0.18), 0 8px 24px rgba(26,18,9,0.12)',
         }}
       />
-      <div className="absolute inset-[3px] overflow-hidden rounded-[47px]" style={{ background: SURFACE_SOFT }}>
-        <div className="relative z-10 flex justify-center pt-[11px]">
-          <div className="h-[26px] w-[100px] rounded-full" style={{ background: '#12100F' }} />
-        </div>
-        <div className="absolute inset-0 overflow-hidden pt-[46px] pb-[22px]">{children}</div>
+      <div
+        className="absolute overflow-hidden"
+        style={{
+          inset: innerInset,
+          borderRadius: innerRadius,
+          background: SURFACE_SOFT,
+        }}
+      >
+        <div className="absolute inset-0 overflow-hidden">{children}</div>
         <div
-          className="absolute bottom-[7px] left-1/2 h-[4px] w-[110px] -translate-x-1/2 rounded-full"
-          style={{ background: '#12100F', opacity: 0.18 }}
+          className="pointer-events-none absolute inset-x-0 top-0 z-10"
+          style={{
+            height: topGlowHeight,
+            background:
+              'linear-gradient(180deg, rgba(255,250,245,0.16) 0%, rgba(255,250,245,0.07) 46%, rgba(255,250,245,0) 100%)',
+          }}
+        />
+        <div
+          className="relative z-10 flex justify-center"
+          style={{ paddingTop: islandTop }}
+        >
+          <div
+            style={{
+              width: islandWidth,
+              height: islandHeight,
+              borderRadius: 999,
+              background: '#12100F',
+            }}
+          />
+        </div>
+        <div
+          className="pointer-events-none absolute left-1/2 z-10 -translate-x-1/2 rounded-full"
+          style={{
+            bottom: bottomBarBottom,
+            width: bottomBarWidth,
+            height: bottomBarHeight,
+            background: '#12100F',
+            opacity: 0.18,
+          }}
         />
       </div>
     </div>
@@ -143,8 +219,8 @@ function ScreenImage({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         fill
         priority={src === 'Today-tab.webp'}
-        sizes="(max-width: 768px) 220px, 272px"
-        style={{ objectFit: 'cover' }}
+        sizes="(max-width: 768px) 82vw, 320px"
+        style={{ objectFit: 'cover', objectPosition: 'top center' }}
       />
     </div>
   )
@@ -161,47 +237,20 @@ function Eyebrow({ children, tint = MUTED }: { children: React.ReactNode; tint?:
   )
 }
 
-function InfoCard({
-  title,
-  body,
-  accent = ACCENT_PRIMARY_SOFT,
-}: {
-  title: string
-  body: string
-  accent?: string
-}) {
-  return (
-    <article
-      className="rounded-[26px] p-5"
-      style={{
-        background: SURFACE,
-        border: '1px solid var(--cream-dark)',
-        boxShadow: '0 12px 32px rgba(26,18,9,0.05)',
-      }}
-    >
-      <div className="mb-4 h-1.5 w-12 rounded-full" style={{ background: accent }} />
-      <h3 className="text-[1rem] font-medium" style={{ color: INK, fontFamily: BODY_FONT }}>
-        {title}
-      </h3>
-      <p className="mt-2 text-sm leading-6" style={{ color: BODY, fontFamily: BODY_FONT }}>
-        {body}
-      </p>
-    </article>
-  )
-}
-
 function AnnotatedPhone({
   image,
   alt,
   annotations = [],
+  width = 272,
 }: {
   image: string
   alt: string
-  annotations?: ChapterAnnotation[]
+  annotations?: StoryCallout[]
+  width?: number
 }) {
   return (
-    <div className="relative mx-auto w-full max-w-[430px] px-0 py-4 xl:px-12">
-      <IPhoneFrame>
+    <div className="relative mx-auto w-full max-w-[490px] px-0 py-4 xl:px-10">
+      <IPhoneFrame width={width}>
         <ScreenImage src={image} alt={alt} />
       </IPhoneFrame>
 
@@ -231,279 +280,663 @@ function AnnotatedPhone({
   )
 }
 
-const chapterLinks = [
-  { href: '#why-overflow', label: 'Why it exists' },
-  { href: '#system-map', label: 'How it works' },
-  { href: '#today', label: 'Today' },
-  { href: '#create', label: 'Create' },
-  { href: '#schedule', label: 'Schedule' },
-  { href: '#calendar', label: 'Calendar' },
-  { href: '#milestones', label: 'Milestones' },
-  { href: '#week-flow', label: 'A week with Overflow' },
-]
-
 const heroMeta = [
   { label: 'Platform', value: 'iPhone' },
   { label: 'Stage', value: 'Private beta' },
   { label: 'Type', value: 'Workout tracking' },
 ]
 
-const problemRows = [
+const snapshotCards = [
   {
-    conventional: 'Dashboards, badges, and pressure before the first useful action.',
-    overflow: 'One clear home surface that tells you what to do next.',
+    label: 'What it is',
+    value: 'An iPhone workout tracker built around routines, scheduling, and fast session starts.',
   },
   {
-    conventional: 'Planning hidden behind settings, templates, or rigid programming flows.',
-    overflow: 'Routines and weekly scheduling stay visible, movable, and easy to revisit.',
+    label: 'Who it is for',
+    value: 'People who already train and want structure without performance theatre.',
   },
   {
-    conventional: 'Progress framed as hype, competition, or endless analytics.',
-    overflow: 'Progress framed as volume, streaks, records, and trends you can actually use.',
-  },
-]
-
-const systemSteps = [
-  {
-    number: '01',
-    label: 'Create',
-    title: 'Build a reusable routine.',
-    body: 'Set up the structure once, with warmup, main work, and cooldown blocks that can be reused across the week.',
-  },
-  {
-    number: '02',
-    label: 'Schedule',
-    title: 'Place it into real days.',
-    body: 'Assign routines to dates, move them when plans change, and keep the week understandable at a glance.',
-  },
-  {
-    number: '03',
-    label: 'Today',
-    title: 'Start from the next workout.',
-    body: 'Open the app to the day that matters now, with a primary action that starts the session without extra setup.',
-  },
-  {
-    number: '04',
-    label: 'Session',
-    title: 'Log the work quickly.',
-    body: 'Move from the plan into the session flow with as little friction as possible so the app never interrupts the workout.',
-  },
-  {
-    number: '05',
-    label: 'Review',
-    title: 'See what the week is adding up to.',
-    body: 'Check adherence in Calendar and review consistency, records, and milestones in the progress layer.',
+    label: 'Why it feels different',
+    value: 'The week stays visible, the next action stays obvious, and progress stays useful.',
   },
 ]
 
-const coreChapters: Chapter[] = [
+const systemFlow = ['Create', 'Schedule', 'Today', 'Session', 'Review']
+
+const storyBeats: StoryBeat[] = [
   {
     id: 'today',
-    number: '01',
-    kind: 'Surface',
     label: 'Today',
-    title: 'The app starts where the workout starts.',
-    summary:
-      "Today shows the next workout, this week's cadence, and the fastest path into a session. It works as an operational home, not a dashboard.",
-    image: 'Today-tab.webp',
-    alt: 'Overflow Today screen showing weekly cadence, streak, and a start workout action.',
-    cards: [
-      {
-        title: 'What it does',
-        body: 'It surfaces the week so far, the next planned workout, and the primary action that matters now.',
-      },
-      {
-        title: 'What you do here',
-        body: 'Start a scheduled workout, resume what is already in progress, or jump to the week from one clear entry point.',
-      },
-      {
-        title: 'Why it matters',
-        body: 'The app reduces the pre-workout pause. You are not choosing between dashboards, charts, and menus before you begin.',
-      },
+    kind: 'Surface',
+    screen: 'Today-tab.webp',
+    alt: 'Overflow Today screen showing the week, next workout, and a start workout action.',
+    headline: 'Start from the day that matters.',
+    body: 'Today keeps the next workout, weekly cadence, and the session entry point in one place.',
+    proof: [
+      'The next workout is explicit.',
+      'Weekly cadence stays visible.',
+      'One primary action starts the session.',
     ],
-    proof: ['Weekly cadence stays visible.', 'Next workout is explicit.', 'The start action is primary.'],
-    annotations: [
+    callouts: [
       {
         title: 'Week cadence',
-        body: 'The week is visible without becoming a dashboard.',
-        top: '22%',
+        body: 'The week is visible without turning the screen into a dashboard.',
+        top: '20%',
         side: 'left',
       },
       {
         title: 'Next workout',
-        body: 'The plan is framed as the next action, not buried in navigation.',
-        top: '50%',
+        body: 'The plan is framed as the next action instead of a buried detail.',
+        top: '46%',
         side: 'right',
       },
       {
         title: 'Start now',
-        body: 'One clear primary action moves the user into the session flow.',
-        top: '72%',
+        body: 'One clear action moves the user directly into the session flow.',
+        top: '71%',
         side: 'left',
       },
     ],
+    detailNote:
+      'Overflow treats Today as an operational home instead of a dashboard. That matters at the exact moment a user either starts the workout or drifts away from it.',
   },
   {
     id: 'create',
-    number: '02',
-    kind: 'Action',
     label: 'Create',
-    title: 'Build routines once, use them every week.',
-    summary:
-      'Routine creation is designed around structure and reuse. The app makes it easy to assemble a session shape you can return to without rebuilding it each time.',
-    image: 'routine-creator.webp',
+    kind: 'Action',
+    screen: 'routine-creator.webp',
     alt: 'Overflow routine creation screen with warmup, main, and cooldown sections.',
-    cards: [
+    headline: 'Build the structure once.',
+    body: 'Create turns workouts into reusable blocks with named sections that can come back every week.',
+    proof: [
+      'Warmup, main work, and cooldown are explicit.',
+      'The routine becomes reusable, not disposable.',
+      'The screen stays focused on one task.',
+    ],
+    callouts: [
       {
-        title: 'What it does',
-        body: 'Create reusable routines with named sections so workouts are organised before they ever hit the calendar.',
+        title: 'Sectioned routine',
+        body: 'Structure is visible before anything touches the calendar.',
+        top: '22%',
+        side: 'left',
       },
       {
-        title: 'What you do here',
-        body: 'Name the routine, add exercises to each section, and save something stable enough to schedule across future weeks.',
+        title: 'Reusable block',
+        body: 'A saved routine becomes something the week can keep reusing.',
+        top: '51%',
+        side: 'right',
       },
       {
-        title: 'Why it matters',
-        body: 'Structure becomes an asset instead of repeated setup work. Planning the week gets easier once the building blocks already exist.',
+        title: 'Focused composition',
+        body: 'The interface stays narrow enough that planning does not feel heavy.',
+        top: '74%',
+        side: 'left',
       },
     ],
-    proof: ['Warmup, main, and cooldown are explicit.', 'The routine is reusable.', 'The interface stays focused on one task.'],
+    detailNote:
+      'Create reduces repeated setup. Once a routine exists, planning stops being a fresh construction problem every time the week starts over.',
   },
   {
     id: 'schedule',
-    number: '03',
-    kind: 'Action',
     label: 'Schedule',
-    title: 'Plan the week without locking it in.',
-    summary:
-      'Scheduling connects reusable routines to real dates. Overflow treats plans as something visible and movable, rather than something hidden behind a rigid program.',
-    image: 'schedule-routine.webp',
+    kind: 'Action',
+    screen: 'schedule-routine.webp',
     alt: 'Overflow schedule flow showing a routine picker and a date-specific scheduling action.',
-    cards: [
+    headline: 'Place routines into real days.',
+    body: 'Schedule ties reusable routines to actual dates, so the week stays visible and adjustable.',
+    proof: [
+      'The routine picker stays date-specific.',
+      'Scheduling is a direct action, not a hidden setting.',
+      'The week can move without losing shape.',
+    ],
+    callouts: [
       {
-        title: 'What it does',
-        body: 'It assigns a routine to a specific day and keeps the selection flow tied to the context of that date.',
+        title: 'Date context',
+        body: 'The user is always scheduling in relation to a real day.',
+        top: '21%',
+        side: 'right',
       },
       {
-        title: 'What you do here',
-        body: 'Choose an existing routine, schedule it for the date in view, and revisit the plan when the week shifts.',
+        title: 'Routine picker',
+        body: 'Existing routines are close at hand when the week is being arranged.',
+        top: '51%',
+        side: 'left',
       },
       {
-        title: 'Why it matters',
-        body: 'The schedule remains flexible. The week keeps its shape even when a workout needs to move rather than disappear.',
+        title: 'Direct commitment',
+        body: 'The action is clear enough that planning does not become its own workflow.',
+        top: '73%',
+        side: 'right',
       },
     ],
-    proof: ['Routine selection is date-specific.', 'Scheduling is a direct action.', 'The plan can adapt when life changes.'],
+    detailNote:
+      'Rigid plans break when life moves. Overflow keeps the week flexible enough to absorb change without making adjustment feel like failure.',
   },
   {
     id: 'calendar',
-    number: '04',
-    kind: 'Surface',
     label: 'Calendar',
-    title: 'Keep the whole week legible.',
-    summary:
-      'Calendar is the planning control surface. It lets the user see completed work, planned routines, and the spacing of training days without leaving the month view.',
-    image: 'Calendar-tab.webp',
+    kind: 'Surface',
+    screen: 'Calendar-tab.webp',
     alt: 'Overflow Calendar tab showing a monthly view with planned and completed markers.',
-    cards: [
+    headline: 'Keep the month readable.',
+    body: 'Calendar works as planning memory: one surface for spacing, adherence, and day-level context.',
+    proof: [
+      'Planned and completed states are distinct.',
+      'Month navigation stays simple.',
+      'The week keeps its shape over time.',
+    ],
+    callouts: [
       {
-        title: 'What it does',
-        body: 'It makes the month readable at a glance by combining planned and completed markers in a single surface.',
+        title: 'Month view',
+        body: 'The user can read rhythm and spacing without leaving the calendar.',
+        top: '21%',
+        side: 'left',
       },
       {
-        title: 'What you do here',
-        body: 'Review the month, inspect a specific day, and keep the week balanced by moving or clearing plans when needed.',
+        title: 'State markers',
+        body: 'Planned work and completed work remain visually distinct.',
+        top: '48%',
+        side: 'right',
       },
       {
-        title: 'Why it matters',
-        body: 'A training plan stops feeling abstract once it is placed in time. Calendar is where structure becomes visible and maintainable.',
+        title: 'Planning memory',
+        body: 'The calendar holds context that would otherwise live in the user head.',
+        top: '74%',
+        side: 'left',
       },
     ],
-    proof: ['Planned and completed states are distinct.', 'Month navigation stays simple.', 'The calendar works as planning memory.'],
+    detailNote:
+      'Calendar turns training from an abstract intention into something placed in time. That is what makes the week easier to maintain rather than merely imagine.',
   },
   {
     id: 'milestones',
-    number: '05',
-    kind: 'Surface',
     label: 'Milestones',
-    title: 'Progress stays calm, but it stays visible.',
-    summary:
-      'Overflow tracks progress through milestones, records, streaks, and broader trends. The goal is to make progress interpretable without turning it into a game.',
-    image: 'Milestones.webp',
+    kind: 'Surface',
+    screen: 'Milestones.webp',
     alt: 'Overflow milestones screen showing completed milestones and progress toward future milestones.',
-    cards: [
+    headline: 'Let progress stay useful.',
+    body: 'Milestones keeps progress visible through records, streaks, and longer arcs without turning the app into a game.',
+    proof: [
+      'Milestones connect to real training events.',
+      'Progress stays visible without hype.',
+      'The feedback supports continuity, not pressure.',
+    ],
+    callouts: [
       {
-        title: 'What it does',
-        body: 'It records moments that matter, from first sessions to longer consistency arcs, and connects them to the rest of the training history.',
+        title: 'Completed markers',
+        body: 'Past work is recorded as evidence rather than applause.',
+        top: '21%',
+        side: 'right',
       },
       {
-        title: 'What you do here',
-        body: 'Review what has already been unlocked, see what is building next, and use that context alongside volume, streak, and record signals.',
+        title: 'What builds next',
+        body: 'The screen shows what is accumulating without shouting about it.',
+        top: '49%',
+        side: 'left',
       },
       {
-        title: 'Why it matters',
-        body: 'The app gives the user evidence that the work is accumulating, but it does so quietly and without aggressive reward mechanics.',
+        title: 'Quiet feedback',
+        body: 'The language supports consistency instead of reward loops.',
+        top: '74%',
+        side: 'right',
       },
     ],
-    proof: ['Milestones are tied to real training events.', 'Progress is visible without hype.', 'Feedback supports continuity, not pressure.'],
+    detailNote:
+      'Overflow uses progress as orientation, not stimulation. The user gets enough evidence to stay connected to the work without being pushed into noisy motivation mechanics.',
   },
 ]
 
 const weekFlow = [
   {
-    day: 'Sunday',
-    label: 'Set the structure',
-    body: 'Build or refine the routines you want to run that week, so the plan starts from reusable parts instead of ad hoc decisions.',
+    step: '01',
+    label: 'Set structure',
+    body: 'Build or refine reusable routines so the week starts from stable parts.',
     link: 'Create',
   },
   {
-    day: 'Monday',
-    label: 'Place the sessions',
-    body: 'Schedule the routines into specific days and shape the week around real availability rather than idealised plans.',
+    step: '02',
+    label: 'Place sessions',
+    body: 'Assign those routines to real days and keep the plan adjustable.',
     link: 'Schedule',
   },
   {
-    day: 'Training day',
+    step: '03',
     label: 'Start from Today',
-    body: 'Open the app to the next workout, confirm the plan quickly, and move into the session flow without navigating around the product.',
+    body: 'Open the app to the next workout and move into the session quickly.',
     link: 'Today',
   },
   {
-    day: 'End of week',
-    label: 'Review what the week added up to',
-    body: 'Use Calendar and Milestones to see adherence, continuity, and the progress signals that make the next week easier to plan.',
-    link: 'Calendar + Milestones',
+    step: '04',
+    label: 'Review the week',
+    body: 'Use Calendar and Milestones to see what actually happened and what is building.',
+    link: 'Review',
   },
 ]
 
 const decisionRows = [
   {
-    decision: 'One operational home instead of a multi-card dashboard',
-    alternative: 'Many fitness apps front-load data, widgets, and habit pressure before the workout begins.',
-    impact: 'Overflow keeps the next action obvious, which lowers friction right at the moment the user might abandon the session.',
+    decision: 'One operational home',
+    alternative: 'Many fitness apps lead with dashboards and interpretation work.',
+    impact: 'Overflow keeps the next action obvious when the workout either starts or slips.',
   },
   {
-    decision: 'Reusable routines plus movable weekly scheduling',
-    alternative: 'Rigid plans break as soon as the user misses a day or changes the week.',
-    impact: 'Overflow preserves structure without treating adjustment as failure.',
+    decision: 'Reusable routines plus flexible scheduling',
+    alternative: 'Rigid plans collapse the moment the week changes shape.',
+    impact: 'The user keeps structure without treating adjustment as failure.',
   },
   {
-    decision: 'Meaningful progress signals over exhaustive analytics',
-    alternative: 'Endless charts are often dense to read and weak at driving action.',
-    impact: 'The user gets a shorter list of measures that actually help them understand continuity and output.',
+    decision: 'A smaller set of progress signals',
+    alternative: 'Dense analytics often produce more reading than understanding.',
+    impact: 'Volume, streaks, records, and milestones stay interpretable.',
   },
   {
-    decision: 'Quiet continuity instead of reward-heavy motivation',
-    alternative: 'Aggressive streak language, leaderboards, and unlock loops can add noise to an already demanding habit.',
-    impact: 'Overflow supports disciplined users without making the product feel judgmental or performative.',
+    decision: 'Quiet continuity over reward-heavy motivation',
+    alternative: 'Aggressive streak language and gamification add pressure to an already demanding habit.',
+    impact: 'The product feels supportive without becoming performative.',
   },
 ]
 
 const betaPoints = [
-  'For people who train consistently and want a clearer weekly rhythm.',
-  'For users who prefer structure, not pressure.',
-  'For anyone who wants progress to stay visible without becoming noisy.',
+  'For people who want a clearer weekly rhythm.',
+  'For users who prefer structure over hype.',
+  'For training habits that need continuity more than motivation theatre.',
 ]
+
+function StickyShowcase({ beats }: { beats: StoryBeat[] }) {
+  const reducedMotion = useReducedMotion()
+  const [activeBeatId, setActiveBeatId] = useState(beats[0]?.id ?? '')
+  const beatRefs = useRef<Record<string, HTMLDivElement | null>>({})
+
+  useEffect(() => {
+    if (!beats[0]) return
+    setActiveBeatId((current) => current || beats[0].id)
+  }, [beats])
+
+  useEffect(() => {
+    const nodes = beats
+      .map((beat) => beatRefs.current[beat.id])
+      .filter((node): node is HTMLDivElement => Boolean(node))
+
+    if (!nodes.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+        if (!visibleEntries[0]) return
+
+        const nextId = (visibleEntries[0].target as HTMLDivElement).dataset.beatId
+        if (nextId) setActiveBeatId(nextId)
+      },
+      {
+        threshold: [0.2, 0.45, 0.65],
+        rootMargin: '-18% 0px -32% 0px',
+      },
+    )
+
+    nodes.forEach((node) => observer.observe(node))
+    return () => observer.disconnect()
+  }, [beats])
+
+  const activeBeat = beats.find((beat) => beat.id === activeBeatId) ?? beats[0]
+
+  const handleBeatSelect = (id: string) => {
+    setActiveBeatId(id)
+
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+      beatRefs.current[id]?.scrollIntoView({
+        behavior: reducedMotion ? 'auto' : 'smooth',
+        block: 'center',
+      })
+    }
+  }
+
+  return (
+    <section
+      id="product-story"
+      className="py-20 lg:py-24"
+      style={{
+        borderTop: '1px solid var(--cream-dark)',
+        borderBottom: '1px solid var(--cream-dark)',
+        scrollMarginTop: 120,
+      }}
+    >
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+        <Reveal>
+          <Eyebrow>Product story</Eyebrow>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-[620px]">
+              <h2
+                className="text-[clamp(2.15rem,5vw,4.25rem)] leading-[0.97]"
+                style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
+              >
+                One persistent device, five product beats, and one visible loop.
+              </h2>
+              <p className="mt-5 max-w-2xl text-[1rem] leading-7" style={{ color: BODY }}>
+                Overflow works best when the product logic is obvious: build the structure, place it into
+                the week, start from Today, and review what the work is adding up to. The page follows that
+                same sequence.
+              </p>
+            </div>
+
+            <div className="flex max-w-[430px] flex-wrap items-center gap-2">
+              {systemFlow.map((step, index) => (
+                <div key={step} className="flex items-center gap-2">
+                  <span
+                    className="rounded-full px-3 py-1.5 text-[0.7rem] uppercase tracking-[0.16em]"
+                    style={{
+                      background: index === 2 ? ACCENT_PRIMARY_SOFT : 'rgba(255,255,255,0.72)',
+                      border: '1px solid rgba(129, 62, 58, 0.12)',
+                      color: index === 2 ? ACCENT_PRIMARY : MUTED,
+                      fontFamily: MONO,
+                    }}
+                  >
+                    {step}
+                  </span>
+                  {index < systemFlow.length - 1 ? (
+                    <span className="text-sm" style={{ color: MUTED }}>
+                      {'->'}
+                    </span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-10 lg:hidden">
+          <div className="overflow-x-auto pb-2">
+            <div className="flex min-w-max gap-2">
+              {beats.map((beat) => {
+                const isActive = beat.id === activeBeat.id
+
+                return (
+                  <button
+                    key={beat.id}
+                    type="button"
+                    onClick={() => handleBeatSelect(beat.id)}
+                    className="rounded-full px-4 py-2 text-sm transition duration-300"
+                    style={{
+                      background: isActive ? CTA_DARK : 'rgba(255,255,255,0.72)',
+                      border: isActive ? '1px solid transparent' : '1px solid var(--cream-dark)',
+                      color: isActive ? 'var(--cream)' : INK,
+                    }}
+                  >
+                    {beat.label}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          <Reveal delay={0.1}>
+            <div
+              className="mt-6 rounded-[32px] p-5"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,243,238,0.96) 100%)',
+                border: '1px solid rgba(129, 62, 58, 0.12)',
+                boxShadow: '0 16px 40px rgba(26,18,9,0.06)',
+              }}
+            >
+              <div className="relative mx-auto max-w-[320px]">
+                <div
+                  className="absolute inset-x-6 bottom-4 top-16 rounded-[48px] blur-3xl"
+                  style={{ background: 'rgba(158, 108, 110, 0.18)' }}
+                  aria-hidden="true"
+                />
+                <AnnotatedPhone
+                  image={activeBeat.screen}
+                  alt={activeBeat.alt}
+                  annotations={activeBeat.callouts}
+                  width={280}
+                />
+              </div>
+
+              <div className="mt-4">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span
+                    className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
+                    style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
+                  >
+                    {activeBeat.kind}
+                  </span>
+                  <span className="text-[0.75rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
+                    {activeBeat.label}
+                  </span>
+                </div>
+
+                <h3
+                  className="mt-4 text-[1.6rem] leading-[1.02]"
+                  style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
+                >
+                  {activeBeat.headline}
+                </h3>
+                <p className="mt-3 text-[0.98rem] leading-7" style={{ color: BODY }}>
+                  {activeBeat.body}
+                </p>
+
+                <ul className="mt-5 grid gap-2">
+                  {activeBeat.proof.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-[18px] px-4 py-3 text-sm"
+                      style={{
+                        background: SURFACE,
+                        border: '1px solid rgba(129, 62, 58, 0.12)',
+                        color: BODY,
+                      }}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <details
+                  className="mt-5 rounded-[20px] px-4 py-3"
+                  style={{
+                    background: 'rgba(255,255,255,0.68)',
+                    border: '1px solid rgba(129, 62, 58, 0.12)',
+                  }}
+                >
+                  <summary
+                    className="flex list-none cursor-pointer items-center justify-between gap-4 text-sm font-medium [&::-webkit-details-marker]:hidden"
+                    style={{ color: INK }}
+                  >
+                    Why this matters
+                    <span style={{ color: MUTED }}>+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                    {activeBeat.detailNote}
+                  </p>
+                </details>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 hidden lg:grid lg:grid-cols-[minmax(0,0.96fr),minmax(0,1.04fr)] lg:gap-16">
+          <div className="sticky top-28 self-start">
+            <Reveal delay={0.1}>
+              <div
+                className="rounded-[36px] p-6 lg:p-7"
+                style={{
+                  background:
+                    'linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,243,238,0.96) 100%)',
+                  border: '1px solid rgba(129, 62, 58, 0.12)',
+                  boxShadow: '0 16px 44px rgba(26,18,9,0.06)',
+                }}
+              >
+                <div className="flex flex-wrap gap-2">
+                  {beats.map((beat) => {
+                    const isActive = beat.id === activeBeat.id
+
+                    return (
+                      <button
+                        key={beat.id}
+                        type="button"
+                        onClick={() => handleBeatSelect(beat.id)}
+                        className="rounded-full px-4 py-2 text-sm transition duration-300"
+                        style={{
+                          background: isActive ? CTA_DARK : 'rgba(255,255,255,0.72)',
+                          border: isActive ? '1px solid transparent' : '1px solid var(--cream-dark)',
+                          color: isActive ? 'var(--cream)' : INK,
+                        }}
+                      >
+                        {beat.label}
+                      </button>
+                    )
+                  })}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-4">
+                  <div>
+                    <Eyebrow tint={ACCENT_PRIMARY}>Active beat</Eyebrow>
+                    <p className="mt-2 text-sm" style={{ color: INK }}>
+                      {activeBeat.label}
+                    </p>
+                  </div>
+                  <span
+                    className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
+                    style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
+                  >
+                    {activeBeat.kind}
+                  </span>
+                </div>
+
+                <div className="relative mt-6 flex min-h-[620px] items-center justify-center">
+                  <div
+                    className="absolute inset-x-10 bottom-8 top-20 rounded-[60px] blur-3xl"
+                    style={{ background: 'rgba(158, 108, 110, 0.18)' }}
+                    aria-hidden="true"
+                  />
+                  <AnnotatedPhone
+                    image={activeBeat.screen}
+                    alt={activeBeat.alt}
+                    annotations={activeBeat.callouts}
+                    width={292}
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="space-y-4">
+            {beats.map((beat, index) => {
+              const isActive = beat.id === activeBeat.id
+
+              return (
+                <Reveal key={beat.id} delay={index * 0.04}>
+                  <div
+                    ref={(node) => {
+                      beatRefs.current[beat.id] = node
+                    }}
+                    data-beat-id={beat.id}
+                  >
+                    <article
+                      tabIndex={0}
+                      onMouseEnter={() => setActiveBeatId(beat.id)}
+                      onFocus={() => setActiveBeatId(beat.id)}
+                      className="rounded-[30px] p-6 transition duration-300"
+                      style={{
+                        minHeight: 280,
+                        background: isActive ? SURFACE : 'rgba(255,255,255,0.58)',
+                        border: isActive
+                          ? '1px solid rgba(129, 62, 58, 0.22)'
+                          : '1px solid rgba(129, 62, 58, 0.12)',
+                        boxShadow: isActive
+                          ? '0 18px 42px rgba(26,18,9,0.07)'
+                          : '0 10px 24px rgba(26,18,9,0.03)',
+                        transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
+                      }}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <span
+                            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[0.75rem]"
+                            style={{
+                              background: ACCENT_PRIMARY_SOFT,
+                              color: ACCENT_PRIMARY,
+                              fontFamily: MONO,
+                            }}
+                          >
+                            0{index + 1}
+                          </span>
+                          <div>
+                            <p className="text-[0.72rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
+                              {beat.label}
+                            </p>
+                            <p className="mt-1 text-sm" style={{ color: INK }}>
+                              {beat.kind}
+                            </p>
+                          </div>
+                        </div>
+
+                        <span className="text-[0.72rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
+                          Beat
+                        </span>
+                      </div>
+
+                      <h3
+                        className="mt-5 text-[1.7rem] leading-[1.02]"
+                        style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
+                      >
+                        {beat.headline}
+                      </h3>
+
+                      <p className="mt-3 max-w-xl text-[0.98rem] leading-7" style={{ color: BODY }}>
+                        {beat.body}
+                      </p>
+
+                      <ul className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                        {beat.proof.map((item) => (
+                          <li
+                            key={item}
+                            className="rounded-[18px] px-4 py-3 text-sm"
+                            style={{
+                              background: SURFACE_SOFT,
+                              border: '1px solid rgba(129, 62, 58, 0.1)',
+                              color: BODY,
+                            }}
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <details
+                        className="mt-5 rounded-[20px] px-4 py-3"
+                        style={{
+                          background: 'rgba(247,243,238,0.82)',
+                          border: '1px solid rgba(129, 62, 58, 0.12)',
+                        }}
+                      >
+                        <summary
+                          className="flex list-none cursor-pointer items-center justify-between gap-4 text-sm font-medium [&::-webkit-details-marker]:hidden"
+                          style={{ color: INK }}
+                        >
+                          Why this matters
+                          <span style={{ color: MUTED }}>+</span>
+                        </summary>
+                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                          {beat.detailNote}
+                        </p>
+                      </details>
+                    </article>
+                  </div>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function OverflowLanding() {
   return (
@@ -522,40 +955,37 @@ export default function OverflowLanding() {
             className="pointer-events-none absolute inset-x-0 top-0 h-[380px]"
             style={{
               background:
-                'radial-gradient(circle at 20% 0%, rgba(181,147,69,0.20), transparent 46%), radial-gradient(circle at 80% 10%, rgba(158,108,110,0.22), transparent 42%)',
+                'radial-gradient(circle at 18% 0%, rgba(181,147,69,0.18), transparent 46%), radial-gradient(circle at 82% 8%, rgba(158,108,110,0.22), transparent 42%)',
             }}
           />
 
           <div className="relative mx-auto max-w-[1400px] px-6 pb-20 pt-32 md:px-10 lg:pb-24 lg:pt-40">
-            <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.15fr),auto]">
-              <div className="max-w-[720px]">
+            <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.05fr),auto]">
+              <div className="max-w-[700px]">
                 <Reveal>
                   <Eyebrow tint={ACCENT_PRIMARY}>Overflow case study</Eyebrow>
                 </Reveal>
 
                 <Reveal delay={0.08}>
                   <h1
-                    className="mt-5 max-w-4xl text-[clamp(2.9rem,7vw,5.6rem)] leading-[0.94]"
+                    className="mt-5 max-w-4xl text-[clamp(3rem,7vw,5.8rem)] leading-[0.93]"
                     style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                   >
-                    Overflow is a workout tracker built to make training easier to return to.
+                    Overflow keeps a training week legible.
                   </h1>
                 </Reveal>
 
                 <Reveal delay={0.16}>
                   <p className="mt-6 max-w-2xl text-[1.08rem] leading-8" style={{ color: BODY }}>
-                    It helps people plan workouts, build reusable routines, schedule training days, start
-                    sessions quickly, and track progress through volume, streaks, personal records, and
-                    milestones. The goal is not more motivation theatre. The goal is a calmer, more legible
-                    training system.
+                    It is an iPhone workout tracker for building routines, placing them into real days,
+                    starting sessions quickly, and seeing progress without turning the product into a game.
                   </p>
                 </Reveal>
 
                 <Reveal delay={0.24}>
                   <p className="mt-5 max-w-xl text-[0.98rem] leading-7" style={{ color: MUTED }}>
-                    Overflow exists because many fitness apps feel either noisy, over-gamified, or too
-                    abstract to help in the moment. This page explains how the product is organised, what
-                    each core surface does, and why those choices matter.
+                    It exists for people who already want to train and need a clearer system to come back
+                    to every week.
                   </p>
                 </Reveal>
 
@@ -606,24 +1036,47 @@ export default function OverflowLanding() {
                       </svg>
                     </a>
                     <a
-                      href="#system-map"
+                      href="#product-story"
                       className="inline-flex items-center rounded-full px-7 py-3.5 text-sm font-medium transition duration-300 hover:-translate-y-0.5"
                       style={{ border: '1px solid var(--cream-dark)', color: INK }}
                     >
-                      See how it works
+                      See the product flow
                     </a>
                   </div>
                 </Reveal>
               </div>
 
               <Reveal delay={0.18}>
-                <div className="relative mx-auto w-full max-w-[360px]">
+                <div className="relative mx-auto w-full max-w-[390px]">
                   <div
-                    className="absolute inset-x-6 bottom-3 top-16 rounded-[48px] blur-3xl"
+                    className="absolute inset-x-5 bottom-2 top-16 rounded-[56px] blur-3xl"
                     style={{ background: 'rgba(158, 108, 110, 0.18)' }}
                     aria-hidden="true"
                   />
-                  <IPhoneFrame>
+                  <div
+                    className="absolute -left-6 top-16 hidden rounded-full px-4 py-2 text-[0.72rem] lg:block"
+                    style={{
+                      background: 'rgba(255,255,255,0.9)',
+                      border: '1px solid rgba(129, 62, 58, 0.14)',
+                      color: INK,
+                      boxShadow: '0 12px 28px rgba(26,18,9,0.06)',
+                    }}
+                  >
+                    One operational home
+                  </div>
+                  <div
+                    className="absolute -right-7 bottom-24 hidden rounded-full px-4 py-2 text-[0.72rem] lg:block"
+                    style={{
+                      background: 'rgba(255,255,255,0.9)',
+                      border: '1px solid rgba(181, 147, 69, 0.18)',
+                      color: INK,
+                      boxShadow: '0 12px 28px rgba(26,18,9,0.06)',
+                    }}
+                  >
+                    Next workout stays explicit
+                  </div>
+
+                  <IPhoneFrame width={300}>
                     <ScreenImage src="Today-tab.webp" alt="Overflow Today screen" />
                   </IPhoneFrame>
                 </div>
@@ -632,172 +1085,22 @@ export default function OverflowLanding() {
           </div>
         </section>
 
-        <section style={{ borderBottom: '1px solid var(--cream-dark)' }}>
-          <div className="mx-auto max-w-[1400px] px-6 py-6 md:px-10">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <Eyebrow>Case study guide</Eyebrow>
-              <div className="overflow-x-auto pb-1">
-                <div className="flex min-w-max gap-2">
-                  {chapterLinks.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      className="rounded-full px-4 py-2 text-sm transition duration-300 hover:-translate-y-0.5"
-                      style={{
-                        background: 'rgba(255,255,255,0.72)',
-                        border: '1px solid var(--cream-dark)',
-                        color: INK,
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="why-overflow"
-          className="py-24 lg:py-28"
-          style={{ borderBottom: '1px solid var(--cream-dark)', scrollMarginTop: 120 }}
-        >
+        <section className="relative z-10 -mt-10 pb-10 lg:-mt-12 lg:pb-12">
           <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr),minmax(0,1.08fr)] lg:gap-16">
-              <div className="max-w-[560px]">
-                <Reveal>
-                  <Eyebrow>Why Overflow exists</Eyebrow>
-                </Reveal>
-                <Reveal delay={0.08}>
-                  <h2
-                    className="mt-4 text-[clamp(2.25rem,5vw,4.15rem)] leading-[0.96]"
-                    style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
-                  >
-                    A quieter product response to a crowded category.
-                  </h2>
-                </Reveal>
-                <Reveal delay={0.16}>
-                  <p className="mt-6 text-[1rem] leading-7" style={{ color: BODY }}>
-                    Overflow is not trying to turn training into entertainment. It is built for people
-                    who already want to train and need a product that makes the week easier to hold in
-                    their head. The product direction comes from one belief: clarity compounds better than
-                    pressure does.
-                  </p>
-                </Reveal>
-                <Reveal delay={0.24}>
-                  <div
-                    className="mt-8 rounded-[28px] p-6"
-                    style={{
-                      background: SURFACE,
-                      border: '1px solid rgba(158, 108, 110, 0.16)',
-                      boxShadow: '0 14px 38px rgba(26,18,9,0.05)',
-                    }}
-                  >
-                    <p className="text-sm leading-6" style={{ color: BODY }}>
-                      The product is designed to answer five practical questions with as little friction as
-                      possible: What should I do today? What routines do I already have? Where do they fit
-                      this week? What changed on the calendar? What is the work adding up to over time?
-                    </p>
-                  </div>
-                </Reveal>
-              </div>
-
-              <Reveal delay={0.1}>
-                <div className="grid gap-4">
-                  {problemRows.map((row, index) => (
-                    <article
-                      key={row.overflow}
-                      className="rounded-[28px] p-5 lg:p-6"
-                      style={{
-                        background: index === 1 ? SURFACE_WARM : SURFACE,
-                        border: '1px solid var(--cream-dark)',
-                        boxShadow: '0 10px 30px rgba(26,18,9,0.04)',
-                      }}
-                    >
-                      <div className="grid gap-5 lg:grid-cols-2">
-                        <div>
-                          <Eyebrow tint={MUTED}>Common pattern</Eyebrow>
-                          <p className="mt-3 text-[0.98rem] leading-7" style={{ color: BODY }}>
-                            {row.conventional}
-                          </p>
-                        </div>
-                        <div>
-                          <Eyebrow tint={ACCENT_PRIMARY}>Overflow</Eyebrow>
-                          <p className="mt-3 text-[0.98rem] leading-7" style={{ color: INK }}>
-                            {row.overflow}
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="system-map"
-          className="py-24 lg:py-28"
-          style={{
-            borderBottom: '1px solid var(--cream-dark)',
-            background: 'linear-gradient(180deg, rgba(237, 232, 223, 0.74) 0%, rgba(245, 240, 235, 0.92) 100%)',
-            scrollMarginTop: 120,
-          }}
-        >
-          <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-            <Reveal>
-              <Eyebrow>How the system works</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2
-                className="mt-4 max-w-4xl text-[clamp(2.2rem,5vw,4rem)] leading-[0.98]"
-                style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
-              >
-                Overflow is organised as a planning loop, not a stack of disconnected tabs.
-              </h2>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <p className="mt-6 max-w-3xl text-[1rem] leading-7" style={{ color: BODY }}>
-                The product makes its logic visible. You build routines, place them into real days, start
-                from the day that matters now, log the work, and review what the week is adding up to.
-                Each surface supports a specific part of that loop.
-              </p>
-            </Reveal>
-
-            <div className="mt-14 grid gap-5 lg:grid-cols-5">
-              {systemSteps.map((step, index) => (
-                <Reveal key={step.label} delay={index * 0.06}>
+            <div className="grid gap-4 lg:grid-cols-3">
+              {snapshotCards.map((card, index) => (
+                <Reveal key={card.label} delay={index * 0.05}>
                   <article
-                    className="relative h-full rounded-[28px] p-5 lg:min-h-[260px]"
+                    className="h-full rounded-[28px] px-5 py-5"
                     style={{
-                      background: index % 2 === 0 ? SURFACE : 'rgba(255,255,255,0.72)',
+                      background: index === 1 ? SURFACE_WARM : SURFACE,
                       border: '1px solid rgba(129, 62, 58, 0.12)',
-                      boxShadow: '0 10px 30px rgba(26,18,9,0.04)',
+                      boxShadow: '0 12px 34px rgba(26,18,9,0.05)',
                     }}
                   >
-                    <div className="flex items-center justify-between">
-                      <span
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full text-[0.72rem]"
-                        style={{
-                          background: ACCENT_PRIMARY_SOFT,
-                          color: ACCENT_PRIMARY,
-                          fontFamily: MONO,
-                        }}
-                      >
-                        {step.number}
-                      </span>
-                      <span className="text-[0.7rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
-                        {step.label}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-6 text-[1.18rem] font-medium leading-7" style={{ color: INK }}>
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
-                      {step.body}
+                    <Eyebrow tint={index === 2 ? ACCENT_PRIMARY : MUTED}>{card.label}</Eyebrow>
+                    <p className="mt-4 text-[1rem] leading-7" style={{ color: INK }}>
+                      {card.value}
                     </p>
                   </article>
                 </Reveal>
@@ -806,101 +1109,11 @@ export default function OverflowLanding() {
           </div>
         </section>
 
-        {coreChapters.map((chapter, index) => {
-          const imageFirst = index % 2 === 1
-          const chapterAccent =
-            index % 3 === 0
-              ? ACCENT_PRIMARY_SOFT
-              : index % 3 === 1
-                ? ACCENT_SECONDARY_SOFT
-                : ACCENT_TERTIARY_SOFT
-
-          return (
-            <section
-              key={chapter.id}
-              id={chapter.id}
-              className="py-24 lg:py-28"
-              style={{
-                borderBottom: '1px solid var(--cream-dark)',
-                background: imageFirst ? 'rgba(255,255,255,0.3)' : 'transparent',
-                scrollMarginTop: 120,
-              }}
-            >
-              <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-                <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-                  <Reveal className={imageFirst ? 'order-2 lg:order-1' : ''} delay={0.08}>
-                    <div className="max-w-[620px]">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <span
-                          className="inline-flex items-center rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.2em]"
-                          style={{ background: chapterAccent, color: ACCENT_PRIMARY, fontFamily: MONO }}
-                        >
-                          {chapter.kind}
-                        </span>
-                        <span className="text-[0.75rem] uppercase tracking-[0.2em]" style={{ color: MUTED, fontFamily: MONO }}>
-                          {chapter.number} / {chapter.label}
-                        </span>
-                      </div>
-
-                      <h2
-                        className="mt-5 text-[clamp(2rem,4.6vw,3.7rem)] leading-[0.98]"
-                        style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
-                      >
-                        {chapter.title}
-                      </h2>
-                      <p className="mt-5 max-w-2xl text-[1rem] leading-7" style={{ color: BODY }}>
-                        {chapter.summary}
-                      </p>
-
-                      <div className="mt-8 grid gap-4 md:grid-cols-3">
-                        {chapter.cards.map((card, cardIndex) => (
-                          <InfoCard key={card.title} title={card.title} body={card.body} accent={cardIndex === 1 ? ACCENT_SECONDARY_SOFT : chapterAccent} />
-                        ))}
-                      </div>
-
-                      <div className="mt-8 flex flex-wrap gap-2">
-                        {chapter.proof.map((proof) => (
-                          <span
-                            key={proof}
-                            className="rounded-full px-4 py-2 text-[0.82rem]"
-                            style={{
-                              background: SURFACE,
-                              border: '1px solid rgba(129, 62, 58, 0.12)',
-                              color: BODY,
-                            }}
-                          >
-                            {proof}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </Reveal>
-
-                  <Reveal className={imageFirst ? 'order-1 lg:order-2' : ''} delay={0.14}>
-                    {chapter.annotations ? (
-                      <AnnotatedPhone image={chapter.image} alt={chapter.alt} annotations={chapter.annotations} />
-                    ) : (
-                      <div className="relative mx-auto w-full max-w-[360px]">
-                        <div
-                          className="absolute inset-x-8 bottom-4 top-16 rounded-[48px] blur-3xl"
-                          style={{ background: chapterAccent }}
-                          aria-hidden="true"
-                        />
-                        <IPhoneFrame>
-                          <ScreenImage src={chapter.image} alt={chapter.alt} />
-                        </IPhoneFrame>
-                      </div>
-                    )}
-                  </Reveal>
-                </div>
-              </div>
-            </section>
-          )
-        })}
+        <StickyShowcase beats={storyBeats} />
 
         <section
           id="week-flow"
-          className="py-24 lg:py-28"
+          className="py-20 lg:py-24"
           style={{
             borderBottom: '1px solid var(--cream-dark)',
             background: 'linear-gradient(180deg, rgba(247,243,238,1) 0%, rgba(237,232,223,0.9) 100%)',
@@ -908,61 +1121,69 @@ export default function OverflowLanding() {
           }}
         >
           <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr),minmax(0,1.2fr)] lg:gap-16">
-              <div className="max-w-[520px]">
-                <Reveal>
-                  <Eyebrow>A week with Overflow</Eyebrow>
-                </Reveal>
-                <Reveal delay={0.08}>
+            <Reveal>
+              <Eyebrow>A week with Overflow</Eyebrow>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-[620px]">
                   <h2
-                    className="mt-4 text-[clamp(2.2rem,4.8vw,4rem)] leading-[0.98]"
+                    className="text-[clamp(2.15rem,5vw,4rem)] leading-[0.97]"
                     style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                   >
-                    The product is designed to carry a week, not just a single tap.
+                    The app is shaped around a real week, not a one-off tap.
                   </h2>
-                </Reveal>
-                <Reveal delay={0.16}>
-                  <p className="mt-6 text-[1rem] leading-7" style={{ color: BODY }}>
-                    The flow is simple by design: define the structure, place it into time, start from the
-                    day that matters, and review what the week actually became. That is what makes the app
-                    feel calmer in use. The logic stays visible from one session to the next.
-                  </p>
-                </Reveal>
-              </div>
+                </div>
 
-              <div className="space-y-4">
+                <p className="max-w-[460px] text-[0.98rem] leading-7" style={{ color: BODY }}>
+                  The rhythm stays simple: set the structure, place it into time, start from Today, and
+                  review what the week became.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="relative mt-12">
+              <div
+                className="pointer-events-none absolute left-10 right-10 top-10 hidden h-px lg:block"
+                style={{ background: 'rgba(129, 62, 58, 0.12)' }}
+                aria-hidden="true"
+              />
+
+              <div className="grid gap-4 lg:grid-cols-4">
                 {weekFlow.map((item, index) => (
-                  <Reveal key={item.day} delay={index * 0.08}>
+                  <Reveal key={item.step} delay={index * 0.06}>
                     <article
-                      className="rounded-[28px] p-5 lg:p-6"
+                      className="relative rounded-[28px] p-5 lg:p-6"
                       style={{
                         background: SURFACE,
                         border: '1px solid rgba(129, 62, 58, 0.12)',
                         boxShadow: '0 10px 28px rgba(26,18,9,0.04)',
                       }}
                     >
-                      <div className="grid gap-4 lg:grid-cols-[140px,1fr,170px] lg:items-start">
-                        <div>
-                          <p className="text-[0.72rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
-                            {item.day}
-                          </p>
-                          <h3 className="mt-2 text-[1.08rem] font-medium leading-6" style={{ color: INK }}>
-                            {item.label}
-                          </h3>
-                        </div>
-
-                        <p className="text-sm leading-6" style={{ color: BODY }}>
-                          {item.body}
-                        </p>
-
-                        <div className="lg:text-right">
-                          <span
-                            className="inline-flex rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
-                            style={{ background: ACCENT_SECONDARY_SOFT, color: ACCENT_SECONDARY, fontFamily: MONO }}
-                          >
-                            {item.link}
-                          </span>
-                        </div>
+                      <span
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[0.75rem]"
+                        style={{
+                          background: index === 2 ? ACCENT_PRIMARY_SOFT : ACCENT_SECONDARY_SOFT,
+                          color: index === 2 ? ACCENT_PRIMARY : ACCENT_SECONDARY,
+                          fontFamily: MONO,
+                        }}
+                      >
+                        {item.step}
+                      </span>
+                      <h3 className="mt-5 text-[1.1rem] leading-6" style={{ color: INK, fontWeight: 600 }}>
+                        {item.label}
+                      </h3>
+                      <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                        {item.body}
+                      </p>
+                      <div className="mt-5">
+                        <span
+                          className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
+                          style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
+                        >
+                          {item.link}
+                        </span>
                       </div>
                     </article>
                   </Reveal>
@@ -972,98 +1193,242 @@ export default function OverflowLanding() {
           </div>
         </section>
 
-        <section className="py-24 lg:py-28" style={{ borderBottom: '1px solid var(--cream-dark)' }}>
+        <section className="py-20 lg:py-24" style={{ borderBottom: '1px solid var(--cream-dark)' }}>
           <div className="mx-auto max-w-[1400px] px-6 md:px-10">
             <Reveal>
-              <Eyebrow>Why these decisions matter</Eyebrow>
+              <Eyebrow>Decision rationale</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2
-                className="mt-4 max-w-4xl text-[clamp(2.2rem,5vw,4rem)] leading-[0.98]"
+                className="mt-4 max-w-4xl text-[clamp(2.15rem,5vw,4rem)] leading-[0.97]"
                 style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
               >
-                Quiet confidence here comes from product choices, not just tone.
+                The product feels quieter because the decisions underneath it are narrower and clearer.
               </h2>
             </Reveal>
-            <Reveal delay={0.16}>
-              <p className="mt-6 max-w-3xl text-[1rem] leading-7" style={{ color: BODY }}>
-                The product feels calm because it reduces duplication, keeps each surface narrow in
-                responsibility, and favours legibility over spectacle. The design language follows that
-                logic rather than trying to compensate for it.
-              </p>
-            </Reveal>
 
-            <div className="mt-12 space-y-4">
-              {decisionRows.map((row, index) => (
-                <Reveal key={row.decision} delay={index * 0.06}>
-                  <article
-                    className="rounded-[28px] p-5 lg:p-6"
-                    style={{
-                      background: index % 2 === 0 ? SURFACE : SURFACE_SOFT,
-                      border: '1px solid var(--cream-dark)',
-                    }}
-                  >
-                    <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1fr)]">
+            <div
+              className="mt-12 overflow-hidden rounded-[30px]"
+              style={{
+                border: '1px solid rgba(129, 62, 58, 0.12)',
+                background: SURFACE,
+                boxShadow: '0 12px 32px rgba(26,18,9,0.04)',
+              }}
+            >
+              <div
+                className="hidden lg:grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:px-6 lg:py-4"
+                style={{ borderBottom: '1px solid rgba(129, 62, 58, 0.12)' }}
+              >
+                <Eyebrow tint={ACCENT_PRIMARY}>Decision</Eyebrow>
+                <Eyebrow>Typical pattern</Eyebrow>
+                <Eyebrow tint={ACCENT_SECONDARY}>Why it matters</Eyebrow>
+              </div>
+
+              <div>
+                {decisionRows.map((row, index) => (
+                  <Reveal key={row.decision} delay={index * 0.04}>
+                    <article
+                      className="grid gap-4 px-5 py-5 lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:px-6 lg:py-6"
+                      style={{
+                        borderBottom:
+                          index < decisionRows.length - 1
+                            ? '1px solid rgba(129, 62, 58, 0.12)'
+                            : 'none',
+                        background: index % 2 === 0 ? SURFACE : 'rgba(247,243,238,0.72)',
+                      }}
+                    >
                       <div>
-                        <Eyebrow tint={ACCENT_PRIMARY}>Overflow choice</Eyebrow>
-                        <p className="mt-3 text-[1rem] leading-7" style={{ color: INK }}>
+                        <div className="lg:hidden">
+                          <Eyebrow tint={ACCENT_PRIMARY}>Decision</Eyebrow>
+                        </div>
+                        <p className="mt-2 text-[1rem] leading-7 lg:mt-0" style={{ color: INK }}>
                           {row.decision}
                         </p>
                       </div>
+
                       <div>
-                        <Eyebrow>Common alternative</Eyebrow>
-                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                        <div className="lg:hidden">
+                          <Eyebrow>Typical pattern</Eyebrow>
+                        </div>
+                        <p className="mt-2 text-sm leading-6 lg:mt-0" style={{ color: BODY }}>
                           {row.alternative}
                         </p>
                       </div>
+
                       <div>
-                        <Eyebrow tint={ACCENT_SECONDARY}>Why it matters</Eyebrow>
-                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                        <div className="lg:hidden">
+                          <Eyebrow tint={ACCENT_SECONDARY}>Why it matters</Eyebrow>
+                        </div>
+                        <p className="mt-2 text-sm leading-6 lg:mt-0" style={{ color: BODY }}>
                           {row.impact}
                         </p>
                       </div>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-28 lg:py-34">
+        <section className="py-14 lg:py-16" style={{ borderBottom: '1px solid var(--cream-dark)' }}>
+          <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+            <Reveal>
+              <details
+                className="rounded-[32px] p-6 lg:p-8"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(247,243,238,0.96) 100%)',
+                  border: '1px solid rgba(129, 62, 58, 0.12)',
+                  boxShadow: '0 12px 32px rgba(26,18,9,0.04)',
+                }}
+              >
+                <summary className="list-none cursor-pointer [&::-webkit-details-marker]:hidden">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                    <div>
+                      <Eyebrow tint={ACCENT_PRIMARY}>Optional depth</Eyebrow>
+                      <h2
+                        className="mt-3 text-[1.8rem] leading-[1.04]"
+                        style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
+                      >
+                        Open full case study notes
+                      </h2>
+                    </div>
+                    <span
+                      className="inline-flex items-center self-start rounded-full px-4 py-2 text-sm lg:self-auto"
+                      style={{
+                        background: 'rgba(255,255,255,0.82)',
+                        border: '1px solid rgba(129, 62, 58, 0.12)',
+                        color: INK,
+                      }}
+                    >
+                      Reveal notes
+                    </span>
+                  </div>
+                </summary>
+
+                <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,0.78fr),minmax(0,1.22fr)] lg:gap-8">
+                  <div className="space-y-4">
+                    <p className="text-[0.98rem] leading-7" style={{ color: BODY }}>
+                      Overflow is built around practical training questions rather than a motivation loop.
+                      The product gets its tone from that structure: a small number of surfaces, a visible
+                      weekly model, and progress that can orient the user without performing at them.
+                    </p>
+
+                    <div
+                      className="rounded-[26px] p-5"
+                      style={{
+                        background: SURFACE,
+                        border: '1px solid rgba(129, 62, 58, 0.12)',
+                      }}
+                    >
+                      <Eyebrow>Questions the product answers</Eyebrow>
+                      <ul className="mt-4 space-y-2">
+                        {PRACTICAL_QUESTIONS.map((question) => (
+                          <li key={question} className="text-sm leading-6" style={{ color: BODY }}>
+                            {question}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div
+                        className="rounded-[24px] p-5"
+                        style={{
+                          background: SURFACE,
+                          border: '1px solid rgba(129, 62, 58, 0.12)',
+                        }}
+                      >
+                        <Eyebrow tint={ACCENT_PRIMARY}>Surfaces</Eyebrow>
+                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                          Today, Calendar, and Milestones exist to keep the system legible.
+                        </p>
+                      </div>
+                      <div
+                        className="rounded-[24px] p-5"
+                        style={{
+                          background: SURFACE,
+                          border: '1px solid rgba(129, 62, 58, 0.12)',
+                        }}
+                      >
+                        <Eyebrow tint={ACCENT_SECONDARY}>Actions</Eyebrow>
+                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                          Create and Schedule shape the plan before the workout starts.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4">
+                    {storyBeats.map((beat, index) => (
+                      <article
+                        key={beat.id}
+                        className="rounded-[24px] p-5"
+                        style={{
+                          background: index % 2 === 0 ? SURFACE : 'rgba(255,255,255,0.68)',
+                          border: '1px solid rgba(129, 62, 58, 0.12)',
+                        }}
+                      >
+                        <div className="flex flex-wrap items-center gap-3">
+                          <span
+                            className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
+                            style={{
+                              background: beat.kind === 'Surface' ? ACCENT_PRIMARY_SOFT : ACCENT_SECONDARY_SOFT,
+                              color: beat.kind === 'Surface' ? ACCENT_PRIMARY : ACCENT_SECONDARY,
+                              fontFamily: MONO,
+                            }}
+                          >
+                            {beat.kind}
+                          </span>
+                          <span className="text-[0.75rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
+                            {beat.label}
+                          </span>
+                        </div>
+                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
+                          {beat.detailNote}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              </details>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="py-24 lg:py-28">
           <div className="mx-auto max-w-[1100px] px-6 text-center md:px-10">
             <Reveal>
               <Eyebrow tint={ACCENT_PRIMARY}>Private beta</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2
-                className="mx-auto mt-5 max-w-4xl text-[clamp(2.4rem,5.4vw,4.8rem)] leading-[0.96]"
+                className="mx-auto mt-5 max-w-4xl text-[clamp(2.3rem,5.2vw,4.8rem)] leading-[0.95]"
                 style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
               >
-                Overflow is for people who want the product to support the work, not perform around it.
+                Try Overflow across a real week.
               </h2>
             </Reveal>
             <Reveal delay={0.16}>
               <p className="mx-auto mt-6 max-w-2xl text-[1rem] leading-7" style={{ color: BODY }}>
-                The app is in private beta for iPhone. If the product logic on this page matches how you
-                like to train, the next step is simple: try it, use it across a real week, and see whether
-                the calmer rhythm holds up in practice.
+                The best test is simple: schedule real sessions, return to the app across the week, and see
+                whether the product keeps the rhythm easier to hold together.
               </p>
             </Reveal>
 
             <Reveal delay={0.24}>
-              <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2">
+              <div className="mx-auto mt-8 grid max-w-4xl gap-3 md:grid-cols-3">
                 {betaPoints.map((point, index) => (
-                  <span
+                  <div
                     key={point}
-                    className="rounded-full px-4 py-2 text-sm"
+                    className="rounded-[22px] px-4 py-4 text-sm"
                     style={{
                       background: index === 1 ? ACCENT_SECONDARY_SOFT : ACCENT_PRIMARY_SOFT,
                       color: index === 1 ? ACCENT_SECONDARY : ACCENT_PRIMARY,
                     }}
                   >
                     {point}
-                  </span>
+                  </div>
                 ))}
               </div>
             </Reveal>

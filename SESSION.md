@@ -18,6 +18,7 @@
 - IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
 - `NEXT_PUBLIC_SITE_URL=https://www.raulmermans.com npm run build` timed out locally after 60 seconds without producing `.next/` or `out/`
 - `npm run type-check` and `npm run lint` both launched for the Overflow landing-page redesign on 2026-03-22 but did not finish in this environment after extended waits, so verification remained inconclusive
+- `npm run type-check` and `npm run lint -- --file app/apps/overflow/OverflowLanding.tsx` also launched for the progressive-reveal Overflow UX reframe on 2026-03-22 but again did not return usable output in this environment after extended waits
 
 ---
 
@@ -50,6 +51,25 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-22 - Add repo-level UI UX Lead agent workflow
+**Goal**: Create a durable repo-level UX/UI agent entry point so future design work consistently routes through the strongest design skill stack.
+**Outcome**: Completed
+**Changes Made**:
+- `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md` - added a new orchestration skill that makes `ui-ux-pro-max` the required core of UI work and pairs it with the project design skills.
+- `plugins/portfolio-tools/agents/ui-ux-lead.md` - added a reusable UX/UI lead agent prompt describing when and how to invoke the workflow.
+- `AGENTS.md`, `.cursor/rules/ui-ux-design.mdc`, `.cursor/rules/general.mdc` - wired the new `ui-ux-lead` workflow into the repo's default UI instructions so future agents treat it as the first stop for design-heavy tasks.
+**Notes**: This creates the strongest repo-supported default trigger path available in the current setup. It does not guarantee that every external client will auto-spawn a separate sub-agent, but it does make the high-level UX/UI workflow the documented default for future AI work.
+**Next Steps**: Use `ui-ux-lead` as the first entry point for the next substantial UI task and refine the skill if any friction shows up in real use.
+
+### 2026-03-22 - Reframe Overflow landing page into a progressive-reveal product story
+**Goal**: Reduce text density on the Overflow portfolio page and turn the case study into a more visual, sticky-device-led product story without losing clarity.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - replaced the evenly weighted long-form chapter layout with a lighter structure: tighter hero, snapshot strip, sticky desktop walkthrough, tap-based mobile beat switcher, compact week-flow section, terse decision rationale table, optional case-study notes accordion, and a simpler beta close.
+- `SESSION.md` - recorded the new UX reframe pass and noted that the repo-level checks still did not return in this environment.
+**Notes**: The redesign now uses one persistent phone stage as the primary storytelling device and moves deeper rationale into collapsible notes so the default reading path feels curated rather than dumped. Existing screenshots were reused, so the strongest remaining proof gap is still the lack of an active in-workout screen and a broader progress-overview screen.
+**Next Steps**: Review `/apps/overflow` locally on desktop and mobile, paying special attention to sticky scroll behavior, tap switching on mobile, and whether the screenshot balance now feels strong enough without additional assets.
 
 ### 2026-03-22 - Redesign Overflow landing page into a product case study
 **Goal**: Replace the mood-led Overflow teaser page with a clearer, more explanatory product case study that explains what the app is, how it works, and why the product decisions matter.
