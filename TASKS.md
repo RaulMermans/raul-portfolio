@@ -30,6 +30,7 @@
 ## Completed
 
 ### March 2026
+- [x] Redesign the Overflow app landing page into a clearer product case study
 - [x] Refresh page-level SEO metadata with unique English descriptions
 - [x] Optimize photography landing image loading and editorial gallery flow
 - [x] Optimize homepage interaction fluidity

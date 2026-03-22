@@ -4,21 +4,21 @@ import OverflowLanding from './OverflowLanding'
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
-  title: 'Overflow App',
+  title: 'Overflow Case Study',
   description:
-    'Discover Overflow, a calm workout tracking app for iPhone that helps you log training, build routines, and measure progress with less noise and more focus.',
+    'Case study for Overflow, a calm iPhone workout tracker focused on routines, scheduling, fast session starts, and meaningful progress.',
   openGraph: {
-    title: 'Overflow App — Raúl Mermans',
+    title: 'Overflow Case Study | Raul Mermans',
     description:
-      'Discover Overflow, a calm workout tracking app for iPhone that helps you log training, build routines, and measure progress with less noise and more focus.',
+      'Case study for Overflow, a calm iPhone workout tracker focused on routines, scheduling, fast session starts, and meaningful progress.',
     url: `${baseUrl}/apps/overflow`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Overflow App — Raúl Mermans',
+    title: 'Overflow Case Study | Raul Mermans',
     description:
-      'Discover Overflow, a calm workout tracking app for iPhone that helps you log training, build routines, and measure progress with less noise and more focus.',
+      'Case study for Overflow, a calm iPhone workout tracker focused on routines, scheduling, fast session starts, and meaningful progress.',
   },
   alternates: {
     canonical: `${baseUrl}/apps/overflow`,

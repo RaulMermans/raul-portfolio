@@ -5,17 +5,19 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-15
+**Last Updated**: 2026-03-22
 
 ### Active Work
 - None currently
 
 ### Pending Decisions
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
+- Whether to capture additional Overflow proof assets later, specifically an active workout/session screen and a broader progress overview screen for the portfolio page
 
 ### Blockers
 - IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
 - `NEXT_PUBLIC_SITE_URL=https://www.raulmermans.com npm run build` timed out locally after 60 seconds without producing `.next/` or `out/`
+- `npm run type-check` and `npm run lint` both launched for the Overflow landing-page redesign on 2026-03-22 but did not finish in this environment after extended waits, so verification remained inconclusive
 
 ---
 
@@ -48,6 +50,15 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-22 - Redesign Overflow landing page into a product case study
+**Goal**: Replace the mood-led Overflow teaser page with a clearer, more explanatory product case study that explains what the app is, how it works, and why the product decisions matter.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - rewrote the page architecture into a case-study flow with a clearer hero, product rationale, system map, five core product chapters, a weekly-flow narrative, concrete decision rationale, and a stronger beta close using the existing screenshot set.
+- `app/apps/overflow/page.tsx` - updated metadata so the route now reads as a case study rather than a generic app teaser in search/social surfaces.
+**Notes**: The new page now uses Overflow-aligned warm product tokens and sentence-case editorial hierarchy instead of the old all-caps teaser style. The best available screenshots in the repo cover Today, Create, Schedule, Calendar, and Milestones, but there is still no dedicated active-session or broader progress-overview screenshot in this workspace.
+**Next Steps**: Review `/apps/overflow` locally on desktop and mobile, then decide whether to capture one active workout/session screenshot and one progress-overview screenshot to deepen the proof layer further.
 
 ### 2026-03-15 - Recover missing Remoria case study images
 **Goal**: Restore the missing Remoria case-study images if they were still recoverable from the local workspace or git history.
