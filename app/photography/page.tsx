@@ -406,9 +406,47 @@ export default function PhotographyPage() {
       <main id="main-content" role="main" className="gallery" aria-label="Photography gallery">
         {/* Mobile category header */}
         <div className="photography-header-mobile">
-          <h1 className="photography-category-title-mobile">
-            {activeCategory}
-          </h1>
+          <div className="photography-header-mobile__inner">
+            <div>
+              <p className="photography-header-mobile__eyebrow">Photography</p>
+              <div className="photography-header-mobile__heading">
+                <h1 className="photography-category-title-mobile">
+                  {categoriesState[activeCategory]?.name || 'Landscape'}
+                </h1>
+                <p className="photography-category-count-mobile" aria-live="polite">
+                  {activeCount} photos
+                </p>
+              </div>
+            </div>
+
+            <div className="photography-mobile-filter">
+              <label className="photography-mobile-filter__label" htmlFor="photography-category-select">
+                Category
+              </label>
+              <div className="photography-mobile-filter__field">
+                <select
+                  id="photography-category-select"
+                  className="photography-mobile-filter__select"
+                  value={activeCategory}
+                  onChange={(event) => setCategory(event.target.value as CategoryType)}
+                  aria-label="Choose photography category"
+                >
+                  <option value="landscape">
+                    Landscape ({categoriesState.landscape.count})
+                  </option>
+                  <option value="architecture">
+                    Architecture ({categoriesState.architecture.count})
+                  </option>
+                  <option value="street">
+                    Street ({categoriesState.street.count})
+                  </option>
+                </select>
+                <span className="photography-mobile-filter__icon" aria-hidden="true">
+                  ▾
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="gallery__grid" id="gallery-content" role="tabpanel" aria-live="polite" data-category={activeCategory}>

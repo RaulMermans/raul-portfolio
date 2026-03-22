@@ -257,10 +257,10 @@ export default function SectionCards() {
         aria-label="Browse work categories"
       >
         {sections.map((section, idx) => (
-          <div key={section.id} className={styles.cardWrapper}>
+          <div key={section.id} className={`${styles.cardWrapper} section-card-tilt-wrapper`}>
             <Link
               href={section.href}
-              className={styles.card}
+              className={`${styles.card} section-card`}
               data-card={section.id}
               aria-labelledby={`section-${idx + 1}-title`}
               prefetch={true}

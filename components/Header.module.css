@@ -2,9 +2,8 @@
 .desktopNav,
 .menuButton {
   position: fixed;
-  z-index: 160;
-  opacity: 0;
-  animation: fadeIn 0.55s var(--ease-out) 0.18s forwards;
+  z-index: 320;
+  opacity: 1;
 }
 
 .logo {
@@ -21,12 +20,14 @@
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--ink);
-  border: 1px solid rgba(26, 23, 20, 0.1);
+  border: 1px solid rgba(26, 23, 20, 0.16);
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.82);
+  background: rgba(248, 244, 239, 0.94);
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
-  box-shadow: 0 12px 28px rgba(26, 23, 20, 0.08);
+  box-shadow:
+    0 18px 38px rgba(26, 23, 20, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
   transition: color var(--transition-base) var(--ease), transform var(--transition-base) var(--ease);
   -webkit-user-select: none;
   user-select: none;
@@ -44,13 +45,14 @@
   display: flex;
   gap: var(--space-1);
   padding: var(--space-1);
-  border: 1px solid rgba(26, 23, 20, 0.1);
+  border: 1px solid rgba(26, 23, 20, 0.16);
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.82);
+  background: rgba(248, 244, 239, 0.94);
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
-  box-shadow: 0 12px 28px rgba(26, 23, 20, 0.08);
-  animation-delay: 0.24s;
+  box-shadow:
+    0 18px 38px rgba(26, 23, 20, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 .desktopNav a {
@@ -65,7 +67,7 @@
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: rgba(26, 23, 20, 0.72);
+  color: rgba(26, 23, 20, 0.9);
   transition:
     color var(--transition-base) var(--ease),
     transform var(--transition-base) var(--ease),
@@ -104,15 +106,17 @@
   width: 48px;
   height: 48px;
   padding: 0;
-  border: 0;
+  border: 1px solid rgba(26, 23, 20, 0.16);
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.8);
+  background: rgba(248, 244, 239, 0.94);
   color: var(--ink);
   backdrop-filter: blur(18px) saturate(150%);
-  box-shadow: 0 12px 28px rgba(26, 23, 20, 0.08);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    0 18px 38px rgba(26, 23, 20, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
   align-items: center;
   justify-content: center;
-  animation-delay: 0.24s;
 }
 
 .menuButtonInner {

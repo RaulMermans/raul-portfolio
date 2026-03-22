@@ -212,6 +212,81 @@ When starting work, update this section:
 **Notes**: This was a localized CSS-only adjustment to the shared homepage carousel. No structure or interaction logic changed.
 **Next Steps**: Review the homepage carousel in-browser and tune panel opacity or hover lift if the restored depth feels too heavy on smaller screens.
 
+### 2026-03-22 - Make header immediately visible with stronger contrast
+**Goal**: Ensure the shared header is visibly readable on all pages by removing the hidden-by-default fade treatment and increasing contrast against light backgrounds.
+**Outcome**: Completed
+**Changes Made**:
+- `components/Header.module.css` - removed the initial hidden/fade-in behavior from the fixed header elements, raised the shared header z-index, and increased the opacity, border strength, and text contrast of the logo/nav/menu button surfaces.
+- `SESSION.md` - recorded the visibility-focused header pass for continuity.
+**Notes**: This is a shared-header styling fix, not a page-specific override. The nav should now appear immediately and stay legible regardless of the hero/background tone behind it.
+**Next Steps**: Check the homepage and one darker page in-browser to confirm the stronger contrast feels visible without looking overly heavy.
+
+### 2026-03-22 - Remove optional-depth label from Overflow notes card
+**Goal**: Simplify the case-study notes accordion header by removing the extra `Optional depth` eyebrow label.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - removed the eyebrow label above `Open case study notes` and tightened the heading spacing so the accordion header stays balanced.
+- `SESSION.md` - recorded the small cleanup for continuity.
+**Notes**: This is a presentation-only cleanup. The notes accordion content and behavior are unchanged.
+**Next Steps**: Review the Overflow notes section in-browser and decide if the button label should also be shortened further.
+
+### 2026-03-22 - Make Overflow week-flow cards symmetrical
+**Goal**: Even out the four week-flow cards so they share the same visual height and bottom alignment.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - made each reveal wrapper stretch to full grid height, turned the week-flow cards into full-height flex columns, and pinned the bottom tag row with `mt-auto` so all four cards align.
+- `SESSION.md` - recorded the week-flow symmetry pass for continuity.
+**Notes**: This is a layout-only adjustment to the week-flow section. Copy and interaction remain unchanged.
+**Next Steps**: Review the week-flow row in-browser and decide whether the card minimum height should be trimmed slightly once the final content is locked.
+
+### 2026-03-22 - Soften Overflow screen annotation boxes
+**Goal**: Make the callout boxes around the product-story screens less invasive while keeping them useful.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - reduced the callout box width, padding, blur, shadow, border strength, and text scale inside `AnnotatedPhone` so the annotations compete less with the screens.
+- `SESSION.md` - recorded the annotation softening pass for continuity.
+**Notes**: This is a presentation-only refinement to the story annotations. Screen content and callout copy remain unchanged.
+**Next Steps**: Review the story screens in-browser and decide whether the callouts should stay visible at `xl` only or be pushed to `2xl` if they still feel too strong.
+
+### 2026-03-22 - Clean up Overflow hero balance and clipping
+**Goal**: Fix visible hero issues in the Overflow case-study screenshot, especially the clipped floating pills behind the phone and the oversized left column.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - removed the two floating hero pills around the phone, tightened the hero grid proportions, reduced the hero copy width, slightly reduced the heading scale, and narrowed the phone column so the layout reads cleaner.
+- `SESSION.md` - recorded the hero cleanup pass for continuity.
+**Notes**: This is a presentation-focused hero refinement. The core hero content and CTA structure remain unchanged.
+**Next Steps**: Review the hero in-browser and decide whether the phone should shift slightly higher or the headline should be tightened one step further.
+
+### 2026-03-22 - Refine homepage section cards with stronger depth
+**Goal**: Give the homepage section cards more presence and refinement through stronger layering, clearer panel separation, and working depth behavior.
+**Outcome**: Completed
+**Changes Made**:
+- `components/SectionCards.tsx` - added the literal hook classes needed by the existing depth and reveal logic so the carousel can actually apply its transforms and visibility behavior.
+- `components/SectionCards.module.css` - increased the card scale and elevation, turned the lower content area into an inset floating panel, strengthened shadows and internal highlights, refined typography, and upgraded the CTA treatment for a more premium feel.
+- `SESSION.md` - recorded the section-card refinement pass for continuity.
+**Notes**: This remains a shared-component change. The carousel structure is unchanged, but the cards now read as more deliberate objects and the 3D/depth logic finally has matching DOM hooks.
+**Next Steps**: Review the homepage carousel in-browser and decide whether the new depth should be pushed slightly further or held here to avoid over-styling.
+
+### 2026-03-22 - Make photography category switching obvious on mobile
+**Goal**: Make the photography category selector clearly discoverable and usable on mobile where the fixed bottom category bar was easy to miss.
+**Outcome**: Completed
+**Changes Made**:
+- `app/photography/page.tsx` - added a mobile-only photography header with a native category select for `Landscape`, `Architecture`, and `Street`.
+- `styles/globals.css` - styled the new mobile select control, expanded the mobile photography header, adjusted gallery top padding, and hid the old mobile bottom category bar so there is one clear selector on small screens.
+- `SESSION.md` - recorded the mobile photography selector pass for continuity.
+**Notes**: Desktop category navigation remains unchanged. On mobile there is now a single obvious control near the top of the page instead of relying on a bottom bar.
+**Next Steps**: Review `/photography` on a real phone viewport and decide whether the mobile header should stay compact or become sticky with a slightly stronger surface.
+
+### 2026-03-22 - Restore mobile photography context and reduce header friction
+**Goal**: Bring the mobile photography page closer to the desktop experience by keeping the category control visible without creating a dead fixed band at the top.
+**Outcome**: Completed
+**Changes Made**:
+- `app/photography/page.tsx` - replaced the generic mobile `Gallery` title with the active category name and photo count, and made the select options more explicit.
+- `styles/globals.css` - converted the photography mobile header from a fixed strip into a sticky in-flow control card, tightened the gallery top offset, and added better category/count hierarchy for mobile.
+- `SESSION.md` - recorded the mobile parity follow-up.
+**Notes**: The highest-value mobile issues were the missing active-category context and the risk of the new selector competing with the shared top header. The mobile filter now behaves more like a sticky control surface under the RM/menu chrome.
+**Next Steps**: Check `/photography` in a real mobile viewport and tune the sticky offset if the RM/menu pills feel too close to the photography control card.
+
 ### Session Template
 ```markdown
 ### YYYY-MM-DD - Brief Description

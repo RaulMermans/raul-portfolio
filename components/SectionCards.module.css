@@ -1,5 +1,5 @@
 .container {
-  --section-card-width: min(440px, 82vw);
+  --section-card-width: min(456px, 82vw);
   --section-cards-peek-padding: max(var(--section-padding), calc((100vw - var(--section-card-width)) / 2));
   --section-cards-nav-offset: clamp(var(--space-3), 2vw, var(--space-6));
   position: relative;
@@ -123,21 +123,22 @@
 .card {
   position: relative;
   display: flex;
-  min-height: 520px;
+  min-height: 560px;
   flex-direction: column;
   overflow: hidden;
   isolation: isolate;
-  border: 1px solid rgba(23, 19, 16, 0.14);
-  border-radius: 16px;
+  border: 1px solid rgba(23, 19, 16, 0.16);
+  border-radius: 22px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 18%),
-    linear-gradient(180deg, rgba(34, 29, 25, 0.96) 0%, rgba(21, 18, 16, 1) 100%);
+    radial-gradient(circle at top left, rgba(255, 214, 196, 0.18), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 20%),
+    linear-gradient(180deg, rgba(35, 30, 26, 0.96) 0%, rgba(18, 15, 13, 1) 100%);
   color: inherit;
   text-decoration: none;
   box-shadow:
-    0 16px 38px rgba(26, 23, 20, 0.12),
-    0 28px 72px rgba(26, 23, 20, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 18px 42px rgba(26, 23, 20, 0.12),
+    0 34px 90px rgba(26, 23, 20, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -1px 0 rgba(255, 255, 255, 0.04);
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
 }
@@ -147,8 +148,18 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 22%, transparent 78%, rgba(255, 255, 255, 0.05) 100%);
-  opacity: 0.7;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, transparent 20%, transparent 76%, rgba(255, 255, 255, 0.05) 100%);
+  opacity: 0.74;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: calc(22px - 1px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   pointer-events: none;
   z-index: 0;
 }
@@ -156,10 +167,10 @@
 @media (hover: hover) and (pointer: fine) {
   .card:hover,
   .card:focus-visible {
-    transform: translateY(-12px) scale(1.015);
+    transform: translateY(-14px) scale(1.018);
     box-shadow:
-      0 24px 56px rgba(26, 23, 20, 0.18),
-      0 40px 96px rgba(26, 23, 20, 0.28),
+      0 24px 58px rgba(26, 23, 20, 0.2),
+      0 48px 118px rgba(26, 23, 20, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.22),
       inset 0 -1px 0 rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.16);
@@ -205,18 +216,19 @@
 
 .imageWrapper {
   position: relative;
-  min-height: 272px;
+  min-height: 304px;
   width: 100%;
   flex-shrink: 0;
   overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .imageWrapper::after {
   content: "";
   position: absolute;
   inset: auto 0 0;
-  height: 42%;
-  background: linear-gradient(180deg, transparent 0%, rgba(17, 14, 12, 0.1) 30%, rgba(17, 14, 12, 0.46) 100%);
+  height: 46%;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 14, 12, 0.08) 24%, rgba(17, 14, 12, 0.54) 100%);
   pointer-events: none;
 }
 
@@ -226,13 +238,15 @@
   height: 100% !important;
   object-fit: cover !important;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s var(--ease);
-  filter: grayscale(5%) brightness(0.98);
+  filter: saturate(1.03) contrast(1.03) brightness(0.99);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(17, 14, 12, 0.84) 0%, rgba(17, 14, 12, 0.56) 34%, rgba(17, 14, 12, 0.18) 66%, transparent 84%);
+  background:
+    linear-gradient(to top, rgba(17, 14, 12, 0.88) 0%, rgba(17, 14, 12, 0.52) 34%, rgba(17, 14, 12, 0.16) 66%, transparent 84%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 32%);
   transition: background 0.5s var(--ease);
 }
 
@@ -242,17 +256,19 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: flex-end;
   gap: var(--space-3);
-  margin-top: -22px;
-  padding: calc(var(--space-6) + 0.9rem) var(--space-6) var(--space-6);
+  min-height: 258px;
+  margin: -40px 18px 18px;
+  padding: calc(var(--space-6) + 0.25rem) var(--space-6) var(--space-6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(57, 49, 43, 0.72) 0%, rgba(29, 25, 22, 0.92) 22%, rgba(21, 18, 16, 0.98) 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+    linear-gradient(180deg, rgba(66, 58, 51, 0.74) 0%, rgba(33, 29, 26, 0.94) 18%, rgba(18, 15, 13, 0.98) 100%);
   box-shadow:
-    0 -18px 38px rgba(11, 9, 8, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(14px) saturate(110%);
+    0 -10px 26px rgba(11, 9, 8, 0.22),
+    0 24px 48px rgba(11, 9, 8, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(112%);
   color: var(--cream);
 }
 
@@ -260,32 +276,35 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 24%);
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, transparent 18%, transparent 76%, rgba(255, 255, 255, 0.03) 100%);
   pointer-events: none;
 }
 
 .index {
   font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: 0.5rem;
+  font-size: 0.56rem;
   letter-spacing: 0.4em;
-  color: rgba(255, 255, 255, 0.56);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .title {
   margin: 0;
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.9rem, 6vw, 4.45rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--cream);
+  text-wrap: balance;
 }
 
 .description {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.84);
+  max-width: 28ch;
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .cta {
@@ -293,12 +312,21 @@
   min-height: 44px;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) 0 0;
+  margin-top: auto;
+  width: fit-content;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: var(--text-sm);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.92);
+  transition:
+    transform 0.3s var(--ease),
+    background 0.3s var(--ease),
+    border-color 0.3s var(--ease);
 }
 
 .cta span {
@@ -306,6 +334,12 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .card:hover .cta,
+  .card:focus-visible .cta {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
   .card:hover .cta span,
   .card:focus-visible .cta span {
     transform: translateX(4px);
@@ -314,7 +348,7 @@
 
 @media (max-width: 1200px) {
   .container {
-    --section-card-width: min(400px, 80vw);
+    --section-card-width: min(416px, 80vw);
   }
 
   .card {
@@ -347,23 +381,26 @@
 
   .card {
     min-height: 560px;
-    border-radius: 14px;
+    border-radius: 18px;
   }
 
   .imageWrapper {
-    min-height: 232px;
+    min-height: 240px;
   }
 
   .content {
-    margin-top: -18px;
-    padding: calc(var(--space-5) + 0.75rem) var(--space-5) var(--space-5);
+    min-height: 232px;
+    margin: -30px 14px 14px;
+    padding: calc(var(--space-5) + 0.25rem) var(--space-5) var(--space-5);
+    border-radius: 24px;
   }
 
   .title {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
   }
 
   .description {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }

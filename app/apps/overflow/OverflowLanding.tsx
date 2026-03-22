@@ -257,21 +257,21 @@ function AnnotatedPhone({
       {annotations.map((annotation) => (
         <div
           key={`${annotation.side}-${annotation.title}`}
-          className="absolute hidden max-w-[176px] rounded-[22px] p-4 xl:block"
+          className="absolute hidden max-w-[148px] rounded-[18px] px-3 py-2.5 xl:block"
           style={{
             top: annotation.top,
             left: annotation.side === 'left' ? 0 : 'auto',
             right: annotation.side === 'right' ? 0 : 'auto',
-            background: 'rgba(255,255,255,0.94)',
-            border: '1px solid rgba(129, 62, 58, 0.18)',
-            boxShadow: '0 12px 32px rgba(26,18,9,0.08)',
-            backdropFilter: 'blur(12px)',
+            background: 'rgba(255,255,255,0.84)',
+            border: '1px solid rgba(129, 62, 58, 0.12)',
+            boxShadow: '0 8px 20px rgba(26,18,9,0.05)',
+            backdropFilter: 'blur(8px)',
           }}
         >
-          <p className="text-[0.72rem] font-medium" style={{ color: ACCENT_PRIMARY, fontFamily: BODY_FONT }}>
+          <p className="text-[0.67rem] font-medium leading-4" style={{ color: ACCENT_PRIMARY, fontFamily: BODY_FONT }}>
             {annotation.title}
           </p>
-          <p className="mt-1 text-[0.78rem] leading-5" style={{ color: BODY, fontFamily: BODY_FONT }}>
+          <p className="mt-1 text-[0.72rem] leading-[1.3]" style={{ color: BODY, fontFamily: BODY_FONT }}>
             {annotation.body}
           </p>
         </div>
@@ -955,15 +955,15 @@ export default function OverflowLanding() {
           />
 
           <div className="relative mx-auto max-w-[1400px] px-6 pb-20 pt-32 md:px-10 lg:pb-24 lg:pt-40">
-            <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.05fr),auto]">
-              <div className="max-w-[700px]">
+            <div className="grid items-center gap-12 xl:gap-16 lg:grid-cols-[minmax(0,0.96fr),minmax(320px,0.72fr)]">
+              <div className="max-w-[640px]">
                 <Reveal>
                   <Eyebrow tint={ACCENT_PRIMARY}>Overflow case study</Eyebrow>
                 </Reveal>
 
                 <Reveal delay={0.08}>
                   <h1
-                    className="mt-5 max-w-4xl text-[clamp(3rem,7vw,5.8rem)] leading-[0.93]"
+                    className="mt-5 max-w-[11ch] text-[clamp(2.9rem,6.1vw,5.1rem)] leading-[0.92]"
                     style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                   >
                     Overflow makes a training week easier to follow.
@@ -1041,34 +1041,12 @@ export default function OverflowLanding() {
               </div>
 
               <Reveal delay={0.18}>
-                <div className="relative mx-auto w-full max-w-[390px]">
+                <div className="relative mx-auto w-full max-w-[360px] lg:justify-self-end xl:max-w-[380px]">
                   <div
                     className="absolute inset-x-5 bottom-2 top-16 rounded-[56px] blur-3xl"
                     style={{ background: 'rgba(158, 108, 110, 0.18)' }}
                     aria-hidden="true"
                   />
-                  <div
-                    className="absolute -left-6 top-16 hidden rounded-full px-4 py-2 text-[0.72rem] lg:block"
-                    style={{
-                      background: 'rgba(255,255,255,0.9)',
-                      border: '1px solid rgba(129, 62, 58, 0.14)',
-                      color: INK,
-                      boxShadow: '0 12px 28px rgba(26,18,9,0.06)',
-                    }}
-                  >
-                    One home for the week
-                  </div>
-                  <div
-                    className="absolute -right-7 bottom-24 hidden rounded-full px-4 py-2 text-[0.72rem] lg:block"
-                    style={{
-                      background: 'rgba(255,255,255,0.9)',
-                      border: '1px solid rgba(181, 147, 69, 0.18)',
-                      color: INK,
-                      boxShadow: '0 12px 28px rgba(26,18,9,0.06)',
-                    }}
-                  >
-                    Open to the next workout
-                  </div>
 
                   <IPhoneFrame width={300}>
                     <ScreenImage src="Today-tab.webp" alt="Overflow Today screen" />
@@ -1145,9 +1123,9 @@ export default function OverflowLanding() {
 
               <div className="grid gap-4 lg:grid-cols-4">
                 {weekFlow.map((item, index) => (
-                  <Reveal key={item.step} delay={index * 0.06}>
+                  <Reveal key={item.step} delay={index * 0.06} className="h-full">
                     <article
-                      className="relative rounded-[28px] p-5 lg:p-6"
+                      className="relative flex h-full min-h-[19rem] flex-col rounded-[28px] p-5 lg:min-h-[20rem] lg:p-6"
                       style={{
                         background: SURFACE,
                         border: '1px solid rgba(129, 62, 58, 0.12)',
@@ -1170,7 +1148,7 @@ export default function OverflowLanding() {
                       <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
                         {item.body}
                       </p>
-                      <div className="mt-5">
+                      <div className="mt-auto pt-5">
                         <span
                           className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
                           style={{ background: ACCENT_PRIMARY_SOFT, color: ACCENT_PRIMARY, fontFamily: MONO }}
@@ -1278,9 +1256,8 @@ export default function OverflowLanding() {
                 <summary className="list-none cursor-pointer [&::-webkit-details-marker]:hidden">
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div>
-                      <Eyebrow tint={ACCENT_PRIMARY}>Optional depth</Eyebrow>
                       <h2
-                        className="mt-3 text-[1.8rem] leading-[1.04]"
+                        className="text-[1.8rem] leading-[1.04]"
                         style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
                       >
                         Open case study notes
