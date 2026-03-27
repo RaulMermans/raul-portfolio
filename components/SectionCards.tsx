@@ -1,6 +1,17 @@
 'use client'
 
-import { useEffect, useRef, useCallback, useState, useId } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type MouseEvent,
+  type PointerEvent,
+  type TransitionEvent,
+} from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -10,299 +21,368 @@ const sections = [
   {
     id: 'case-studies',
     index: '01',
+    eyebrow: 'Brand strategy and campaign thinking',
     title: 'Case Studies',
-    description: 'The stories behind the work. Brand campaigns, creative direction, and the strategic thinking that shaped them. Each case study reveals the process from concept to measurable impact.',
+    description:
+      'Brand campaigns, creative direction, and the strategic moves behind them. Each study shows how an idea became something measurable.',
     href: '/case-studies',
     image: '/images/sections/case-studies-bg.webp',
+    accent: '#b94a53',
   },
   {
     id: 'apps',
     index: '02',
+    eyebrow: 'AI-built tools and fast prototypes',
     title: 'Apps',
-    description: 'Productivity tools and vibe-coded apps built fast with AI, designed to feel intentional. Each product moves from idea to launch-ready experience at full speed without cutting corners.',
+    description:
+      'Vibe-coded tools and launch-ready interfaces built quickly, without cutting taste, clarity, or product logic out of the loop.',
     href: '/apps',
     image: '/images/sections/apps-bg-v2.webp',
+    accent: '#3f9f8b',
   },
   {
     id: 'photography',
     index: '03',
+    eyebrow: 'Street, architecture, urban rhythm',
     title: 'Photography',
-    description: 'Street scenes, urban narratives, and architectural moments. Visual storytelling that captures the pulse of cities and helps brands convert visual interest into lasting engagement.',
+    description:
+      'Street frames and architectural moments captured with a quieter eye for atmosphere, tension, and the pulse of a place.',
     href: '/photography',
     image: '/images/sections/photography-bg.webp',
+    accent: '#9c7847',
   },
   {
     id: 'visuals',
     index: '04',
+    eyebrow: 'AI image-making and visual experiments',
     title: 'Visuals',
-    description: 'AI art, album covers, and creative experiments. Digital pieces that push the boundaries of what\'s possible through AI-human collaboration to create truly unique brand assets.',
+    description:
+      'AI art, album covers, and digital image work shaped into assets with a sharper point of view and a cleaner finish.',
     href: '/visuals',
     image: '/images/sections/visuals-bg.webp',
+    accent: '#d86d43',
   },
-]
+] as const
+
+const loopedSections = [sections[sections.length - 1], ...sections, sections[0]]
+
+function getSlideStyle(relativeIndex: number): CSSProperties {
+  const absIndex = Math.abs(relativeIndex)
+
+  if (relativeIndex === 0) {
+    return {
+      opacity: 1,
+      filter: 'none',
+      transform: 'translateY(0px) scale(1) rotateY(0deg)',
+      zIndex: 4,
+    }
+  }
+
+  if (absIndex === 1) {
+    return {
+      opacity: 0.56,
+      filter: 'blur(0.8px) saturate(0.92)',
+      transform: `translateY(22px) scale(0.89) rotateY(${relativeIndex > 0 ? '-18deg' : '18deg'})`,
+      zIndex: 3,
+    }
+  }
+
+  return {
+    opacity: 0.18,
+    filter: 'blur(3px) saturate(0.78)',
+    transform: `translateY(42px) scale(0.76) rotateY(${relativeIndex > 0 ? '-30deg' : '30deg'})`,
+    zIndex: 2,
+    pointerEvents: 'none',
+  }
+}
 
 export default function SectionCards() {
   const router = useRouter()
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const didDragRef = useRef(false)
   const gridId = useId()
+  const pointerStartXRef = useRef<number | null>(null)
+  const pointerDeltaXRef = useRef(0)
+  const didSwipeRef = useRef(false)
+  const rafIdsRef = useRef<number[]>([])
 
-  const [isAtStart, setIsAtStart] = useState(true)
-  const [isAtEnd, setIsAtEnd] = useState(false)
+  const [visualIndex, setVisualIndex] = useState(1)
+  const [transitionsEnabled, setTransitionsEnabled] = useState(true)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
-  const applyDepth = useCallback(() => {
-    const container = scrollRef.current
-    if (!container) return
+  const activeIndex = (visualIndex - 1 + sections.length) % sections.length
+  const previousIndex = (activeIndex - 1 + sections.length) % sections.length
+  const nextIndex = (activeIndex + 1) % sections.length
 
-    const containerRect = container.getBoundingClientRect()
-    const centerX = containerRect.left + containerRect.width / 2
-    const wrappers = container.querySelectorAll<HTMLElement>('.section-card-tilt-wrapper')
-
-    wrappers.forEach((wrapper) => {
-      const rect = wrapper.getBoundingClientRect()
-      const cardCenterX = rect.left + rect.width / 2
-      const offset = cardCenterX - centerX
-      const maxDist = containerRect.width / 2
-      const ratio = Math.min(Math.abs(offset) / maxDist, 1)
-      // Signed ratio for directional rotation
-      const signedRatio = Math.min(Math.max(offset / maxDist, -1), 1)
-
-      // Scale: 1.05 at center → 0.88 at far edges
-      const scale = 1.05 - ratio * 0.17
-      // Opacity: 1 at center → 0.5 at far edges
-      const opacity = 1 - ratio * 0.5
-      // Y-axis rotation: 0° at center → ±12° at edges (cards turn away)
-      const rotateY = signedRatio * -12
-      // Vertical shift: center card lifts slightly
-      const translateY = ratio * 16
-      // Z translation: push side cards back
-      const translateZ = -ratio * 80
-      // Blur on distant cards
-      const blur = ratio * 2
-
-      wrapper.style.transform = `perspective(1200px) rotateY(${rotateY}deg) translateY(${translateY}px) translateZ(${translateZ}px) scale(${scale})`
-      wrapper.style.opacity = `${opacity}`
-      wrapper.style.filter = blur > 0.3 ? `blur(${blur}px)` : 'none'
-      wrapper.style.zIndex = `${Math.round((1 - ratio) * 10)}`
-    })
+  useEffect(() => {
+    return () => {
+      rafIdsRef.current.forEach((id) => window.cancelAnimationFrame(id))
+    }
   }, [])
 
   useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
+    ;[activeIndex, previousIndex, nextIndex].forEach((index) => {
+      router.prefetch(sections[index].href)
+    })
+  }, [activeIndex, nextIndex, previousIndex, router])
 
-    const frame = window.requestAnimationFrame(() => {
-      container.scrollTo({ left: 0, behavior: 'auto' })
-      setIsAtStart(true)
-      setIsAtEnd(container.scrollWidth <= container.clientWidth + 5)
-      applyDepth()
+  const finishWrapReset = useCallback((nextVisualIndex: number) => {
+    setTransitionsEnabled(false)
+    setVisualIndex(nextVisualIndex)
+
+    const firstFrame = window.requestAnimationFrame(() => {
+      const secondFrame = window.requestAnimationFrame(() => {
+        setTransitionsEnabled(true)
+        setIsTransitioning(false)
+      })
+      rafIdsRef.current.push(secondFrame)
     })
 
-    return () => window.cancelAnimationFrame(frame)
-  }, [applyDepth])
-
-  // Drag to scroll
-  useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
-    const canDragWithPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-    if (!canDragWithPointer) return
-
-    let isDragging = false
-    let startX = 0
-    let scrollStart = 0
-    const DRAG_THRESHOLD = 5
-
-    const onPointerDown = (e: PointerEvent) => {
-      if (e.button !== 0) return
-      isDragging = true
-      didDragRef.current = false
-      startX = e.clientX
-      scrollStart = container.scrollLeft
-      container.style.scrollBehavior = 'auto'
-    }
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (!isDragging) return
-      const dx = e.clientX - startX
-      if (Math.abs(dx) > DRAG_THRESHOLD) {
-        didDragRef.current = true
-        container.style.cursor = 'grabbing'
-        e.preventDefault()
-      }
-      if (didDragRef.current) {
-        container.scrollLeft = scrollStart - dx
-      }
-    }
-
-    const onPointerUp = () => {
-      isDragging = false
-      container.style.cursor = ''
-      container.style.scrollBehavior = 'smooth'
-    }
-
-    container.addEventListener('pointerdown', onPointerDown)
-    container.addEventListener('pointermove', onPointerMove, { passive: false })
-    container.addEventListener('pointerup', onPointerUp)
-    container.addEventListener('pointercancel', onPointerUp)
-
-    return () => {
-      container.removeEventListener('pointerdown', onPointerDown)
-      container.removeEventListener('pointermove', onPointerMove)
-      container.removeEventListener('pointerup', onPointerUp)
-      container.removeEventListener('pointercancel', onPointerUp)
-    }
+    rafIdsRef.current.push(firstFrame)
   }, [])
 
-  // Depth transforms and start/end check on scroll
-  useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
+  const goToVisualIndex = useCallback(
+    (nextVisualIndex: number) => {
+      if (isTransitioning) return
 
-    const checkScroll = () => {
-      setIsAtStart(container.scrollLeft <= 5)
-      setIsAtEnd(Math.abs(container.scrollWidth - container.clientWidth - container.scrollLeft) <= 5)
+      setTransitionsEnabled(true)
+      setIsTransitioning(true)
+      setVisualIndex(nextVisualIndex)
+    },
+    [isTransitioning]
+  )
+
+  const goNext = useCallback(() => {
+    goToVisualIndex(visualIndex + 1)
+  }, [goToVisualIndex, visualIndex])
+
+  const goPrev = useCallback(() => {
+    goToVisualIndex(visualIndex - 1)
+  }, [goToVisualIndex, visualIndex])
+
+  const handleTrackTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
+    if (event.target !== event.currentTarget || event.propertyName !== 'transform') return
+
+    if (visualIndex === 0) {
+      finishWrapReset(sections.length)
+      return
     }
 
-    const handleScroll = () => {
-      applyDepth()
-      checkScroll()
+    if (visualIndex === loopedSections.length - 1) {
+      finishWrapReset(1)
+      return
     }
 
-    applyDepth()
-    checkScroll()
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleScroll, { passive: true })
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleScroll)
-    }
-  }, [applyDepth])
-
-  useEffect(() => {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-            revealObserver.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '50px 0px' }
-    )
-
-    document.querySelectorAll('.section-card').forEach((el) => revealObserver.observe(el))
-    return () => revealObserver.disconnect()
-  }, [])
-
-  const getScrollStep = () => {
-    const container = scrollRef.current
-    if (!container) return 300
-
-    const card = container.querySelector<HTMLElement>('.section-card-tilt-wrapper')
-    if (!card) return 300
-
-    const styles = window.getComputedStyle(container)
-    const gapValue = styles.gap || styles.columnGap || '0'
-    const gap = Number.parseFloat(gapValue) || 0
-
-    return card.clientWidth + gap
+    setIsTransitioning(false)
   }
 
-  const scrollPrev = () => {
-    const container = scrollRef.current
-    if (!container) return
+  const handleStageKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      goNext()
+    }
 
-    container.scrollBy({ left: -getScrollStep(), behavior: 'smooth' })
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      goPrev()
+    }
   }
 
-  const scrollNext = () => {
-    const container = scrollRef.current
-    if (!container) return
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (!event.isPrimary) return
 
-    container.scrollBy({ left: getScrollStep(), behavior: 'smooth' })
+    pointerStartXRef.current = event.clientX
+    pointerDeltaXRef.current = 0
+    didSwipeRef.current = false
+  }
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (pointerStartXRef.current === null) return
+
+    pointerDeltaXRef.current = event.clientX - pointerStartXRef.current
+
+    if (Math.abs(pointerDeltaXRef.current) > 12) {
+      didSwipeRef.current = true
+    }
+  }
+
+  const handlePointerEnd = () => {
+    if (pointerStartXRef.current === null) return
+
+    const deltaX = pointerDeltaXRef.current
+
+    if (Math.abs(deltaX) > 56) {
+      if (deltaX < 0) {
+        goNext()
+      } else {
+        goPrev()
+      }
+    }
+
+    pointerStartXRef.current = null
+    pointerDeltaXRef.current = 0
+  }
+
+  const handleCardClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    slideIndex: number,
+    isActiveSlide: boolean
+  ) => {
+    if (didSwipeRef.current) {
+      event.preventDefault()
+      didSwipeRef.current = false
+      return
+    }
+
+    if (!isActiveSlide) {
+      event.preventDefault()
+      goToVisualIndex(slideIndex)
+    }
+  }
+
+  const totalLabel = sections.length.toString().padStart(2, '0')
+  const trackStyle: CSSProperties = {
+    transform: `translateX(calc(-${visualIndex} * (var(--section-card-width) + var(--section-card-gap))))`,
+    transitionDuration: transitionsEnabled ? undefined : '0ms',
   }
 
   return (
     <section id="work" className={styles.container} data-home-section="work">
       <div className={styles.controls}>
-        <button 
+        <button
           type="button"
-          onClick={scrollPrev} 
-          disabled={isAtStart} 
+          onClick={goPrev}
+          disabled={isTransitioning}
           className={`${styles.nav} ${styles.navPrev}`}
           aria-controls={gridId}
-          aria-label="Previous card"
+          aria-label={`Previous section: ${sections[previousIndex].title}`}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
         </button>
-        <button 
+        <button
           type="button"
-          onClick={scrollNext} 
-          disabled={isAtEnd} 
+          onClick={goNext}
+          disabled={isTransitioning}
           className={`${styles.nav} ${styles.navNext}`}
           aria-controls={gridId}
-          aria-label="Next card"
+          aria-label={`Next section: ${sections[nextIndex].title}`}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
         </button>
       </div>
 
       <div
         id={gridId}
-        className={styles.grid}
-        ref={scrollRef}
-        aria-label="Browse work categories"
+        className={styles.stage}
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Selected projects"
+        tabIndex={0}
+        onKeyDown={handleStageKeyDown}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerEnd}
+        onPointerCancel={handlePointerEnd}
+        onPointerLeave={handlePointerEnd}
       >
-        {sections.map((section, idx) => (
-          <div key={section.id} className={`${styles.cardWrapper} section-card-tilt-wrapper`}>
-            <Link
-              href={section.href}
-              className={`${styles.card} section-card`}
-              data-card={section.id}
-              aria-labelledby={`section-${idx + 1}-title`}
-              prefetch={true}
-              draggable={false}
-              onMouseEnter={() => router.prefetch(section.href)}
-              onClick={(e) => {
-                if (didDragRef.current) {
-                  e.preventDefault()
-                  didDragRef.current = false
-                }
-              }}
-            >
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={section.image}
-                  alt={`${section.title} background`}
-                  fill
-                  priority={idx === 0}
-                  loading={idx === 0 ? undefined : 'lazy'}
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                  style={{ objectFit: 'cover' }}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                />
-                <div className={styles.overlay}></div>
+        <p className={styles.srOnly} aria-live="polite">
+          Showing {activeIndex + 1} of {sections.length}: {sections[activeIndex].title}
+        </p>
+
+        <div className={styles.track} style={trackStyle} onTransitionEnd={handleTrackTransitionEnd}>
+          {loopedSections.map((section, slideIndex) => {
+            const relativeIndex = slideIndex - visualIndex
+            const isActiveSlide = relativeIndex === 0
+            const slideStyle = getSlideStyle(relativeIndex)
+            const titleId = `${gridId}-title-${slideIndex}`
+
+            return (
+              <div
+                key={`${section.id}-${slideIndex}`}
+                className={styles.slide}
+                style={slideStyle}
+                aria-hidden={Math.abs(relativeIndex) > 1}
+              >
+                <Link
+                  href={section.href}
+                  className={styles.card}
+                  style={{ '--section-accent': section.accent } as CSSProperties}
+                  aria-labelledby={titleId}
+                  aria-current={isActiveSlide ? 'true' : undefined}
+                  tabIndex={isActiveSlide ? 0 : -1}
+                  prefetch={false}
+                  draggable={false}
+                  onMouseEnter={() => router.prefetch(section.href)}
+                  onFocus={() => router.prefetch(section.href)}
+                  onClick={(event) => handleCardClick(event, slideIndex, isActiveSlide)}
+                >
+                  <div className={styles.content}>
+                    <div className={styles.contentTop}>
+                      <div className={styles.indexRow} aria-hidden="true">
+                        <span className={styles.index}>{section.index}</span>
+                        <span className={styles.count}>/ {totalLabel}</span>
+                      </div>
+                      <p className={styles.eyebrow}>{section.eyebrow}</p>
+                    </div>
+
+                    <div className={styles.copy}>
+                      <h2 id={titleId} className={styles.title}>
+                        {section.title}
+                      </h2>
+                      <p className={styles.description}>{section.description}</p>
+                    </div>
+
+                    <span className={styles.cta}>
+                      <span>Explore section</span>
+                      <span className={styles.ctaLine} aria-hidden="true" />
+                      <span className={styles.ctaArrow} aria-hidden="true">
+                        ↗
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className={styles.imageWrapper}>
+                    <Image
+                      src={section.image}
+                      alt={`${section.title} preview image`}
+                      fill
+                      priority={slideIndex === 1}
+                      loading={slideIndex === 1 ? undefined : 'lazy'}
+                      quality={88}
+                      sizes="(max-width: 640px) 86vw, (max-width: 1200px) 82vw, 980px"
+                      style={{ objectFit: 'cover' }}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
+                    <div className={styles.imageScrim} />
+                  </div>
+                </Link>
               </div>
-              <div className={styles.content}>
-                <span className={styles.index} aria-hidden="true">{section.index}</span>
-                <h2 id={`section-${idx + 1}-title`} className={styles.title}>
-                  {section.title}
-                </h2>
-                <p className={`${styles.description} reveal reveal-delay-1`}>
-                  {section.description}
-                </p>
-                <span className={`${styles.cta} reveal reveal-delay-2`}>
-                  explore <span>→</span>
-                </span>
-              </div>
-            </Link>
-          </div>
-        ))}
+            )
+          })}
+        </div>
       </div>
     </section>
   )

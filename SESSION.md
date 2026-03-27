@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-22
+**Last Updated**: 2026-03-27
 
 ### Active Work
 - None currently
@@ -19,6 +19,7 @@
 - `NEXT_PUBLIC_SITE_URL=https://www.raulmermans.com npm run build` timed out locally after 60 seconds without producing `.next/` or `out/`
 - `npm run type-check` and `npm run lint` both launched for the Overflow landing-page redesign on 2026-03-22 but did not finish in this environment after extended waits, so verification remained inconclusive
 - `npm run type-check` and `npm run lint -- --file app/apps/overflow/OverflowLanding.tsx` also launched for the progressive-reveal Overflow UX reframe on 2026-03-22 but again did not return usable output in this environment after extended waits
+- `npm run type-check` and `npm run lint -- --file components/SectionCards.tsx` again stalled in this environment on 2026-03-27 during the homepage carousel redesign, and `npm run dev -- --hostname 127.0.0.1` never reached a listening localhost URL for browser verification
 
 ---
 
@@ -51,6 +52,16 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-27 - Redesign homepage selected projects carousel into a coverflow split card
+**Goal**: Make the homepage selected-projects carousel feel less bland by removing the boxed text panel, enlarging the imagery, and turning the strip into a more polished looping carousel with peeking side cards and circular motion.
+**Outcome**: Completed
+**Changes Made**:
+- `components/SectionCards.tsx` - replaced the scroll-snap strip with a looped index-driven carousel, added keyboard and swipe navigation, made inactive side cards advance into focus before navigation, tightened the project copy, and rewired the cards into a split editorial text/image layout.
+- `components/SectionCards.module.css` - rebuilt the section-card styling into a larger cream-toned split card with direct text-on-surface layout, stronger typography, full-height imagery, coverflow-style depth/rotation, side peeks, calmer controls, and reduced-motion-safe transitions.
+- `SESSION.md` - recorded the carousel redesign and the verification limitations for continuity.
+**Notes**: This pass intentionally moved away from the previous dark overlay card treatment because the boxed glass panel was making the component feel generic. The new carousel is designed to read like a looping coverflow rather than a simple linear slider, but it still needs an in-browser visual pass because local script checks and localhost boot both stalled again in this environment.
+**Next Steps**: Review the homepage locally on desktop and mobile, focusing on side-card peek amount, title sizing, swipe feel, and whether the new cream/editorial treatment fits the rest of the homepage.
 
 ### 2026-03-22 - Add repo-level UI UX Lead agent workflow
 **Goal**: Create a durable repo-level UX/UI agent entry point so future design work consistently routes through the strongest design skill stack.
