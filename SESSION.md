@@ -57,6 +57,15 @@ When starting work, update this section:
 
 ## Recent Sessions
 
+### 2026-03-28 - Make visuals artwork stage square on desktop
+**Goal**: Reduce the height of the main artwork stage on `/visuals` and make the image container square so more of the artwork composition is visible.
+**Outcome**: Completed
+**Changes Made**:
+- `app/visuals/VisualsPage.module.css` - changed the desktop artwork stage and card to a 1:1 aspect ratio, set the inner stage wrapper to fill that square, and kept the previous responsive stage behavior from `1024px` downward.
+- `SESSION.md` - recorded the square-stage pass and the successful targeted lint result.
+**Notes**: This was a focused visuals-layout adjustment layered on top of the earlier sizing pass. `npm run lint -- --file app/visuals/page.tsx` completed successfully with no ESLint warnings or errors.
+**Next Steps**: Review `/visuals` locally and decide whether the current `42rem` square cap feels right or should come down slightly more.
+
 ### 2026-03-28 - Add newly uploaded photography assets to gallery inventory
 **Goal**: Commit the latest uploaded photography files and ensure they are included in the photography gallery inventory.
 **Outcome**: Completed
