@@ -2076,25 +2076,32 @@ html.homepage .footer {
   left: 1.25rem;
   display: flex;
   align-items: flex-end;
-  /* Align bracket to bottom of button */
-  gap: 0.5rem;
-  /* Tighten the gap */
+  gap: 0;
   opacity: 0;
   transition: opacity var(--transition-base) var(--ease);
 }
 
 .service__bracket {
   flex-shrink: 0;
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border-left: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  margin-bottom: 0.25rem;
-  /* Fine-tune baseline alignment */
+  margin: 0 -1px 3px 0;
 }
 
 .service__corner .btn--arrow {
   margin: 0;
+}
+
+.service__cta {
+  min-height: 48px;
+  padding-inline: var(--space-4);
+}
+
+.service__cta:hover,
+.service__cta:active {
+  transform: none;
 }
 
 .service:hover .service__number-small,

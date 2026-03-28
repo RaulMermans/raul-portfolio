@@ -298,6 +298,18 @@ When starting work, update this section:
 **Notes**: The highest-value mobile issues were the missing active-category context and the risk of the new selector competing with the shared top header. The mobile filter now behaves more like a sticky control surface under the RM/menu chrome.
 **Next Steps**: Check `/photography` in a real mobile viewport and tune the sticky offset if the RM/menu pills feel too close to the photography control card.
 
+### 2026-03-28 - Polish visuals landing, services CTA, and Overflow showcase details
+**Goal**: Clean up several presentation issues across the site: tighten the visuals landing intro, remove its dot pagination, fit the Services CTA into its corner treatment, and refine the Overflow case-study reveal/table behavior.
+**Outcome**: Completed
+**Changes Made**:
+- `app/visuals/VisualsPage.module.css` - narrowed the desktop intro column on `/visuals`, reduced its text measure, and removed the carousel dot indicator styles.
+- `app/visuals/page.tsx` - removed the dot/pill pagination UI from the visuals landing card display.
+- `styles/globals.css` - adjusted the homepage Services corner CTA so the bracket and button sit together more cleanly.
+- `app/apps/overflow/OverflowLanding.tsx` - triggered reveal blocks earlier to avoid blank-looking showcase gaps and aligned the decision-rationale table text and column rhythm.
+- `SESSION.md` - recorded this multi-surface polish pass for continuity.
+**Notes**: The Overflow brand-guidance skill was also rewritten locally in `~/.codex` so it is repo-specific and no longer references outside repositories, but that change is not versioned in this repo.
+**Next Steps**: Review `/visuals`, the homepage Services section, and `/apps/overflow` in-browser to confirm the spacing and alignment feel right in practice.
+
 ### Session Template
 ```markdown
 ### YYYY-MM-DD - Brief Description

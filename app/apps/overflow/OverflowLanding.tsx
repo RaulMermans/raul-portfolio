@@ -78,7 +78,13 @@ function useReducedMotion() {
   return reducedMotion
 }
 
-function useInView(threshold = 0.18) {
+function useInView({
+  threshold = 0.06,
+  rootMargin = '0px 0px 14% 0px',
+}: {
+  threshold?: number
+  rootMargin?: string
+} = {}) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -93,12 +99,12 @@ function useInView(threshold = 0.18) {
           observer.unobserve(element)
         }
       },
-      { threshold },
+      { threshold, rootMargin },
     )
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [threshold])
+  }, [threshold, rootMargin])
 
   return { ref, visible }
 }
@@ -113,7 +119,11 @@ function Reveal({
   delay?: number
 }) {
   const reducedMotion = useReducedMotion()
-  const { ref, visible } = useInView(reducedMotion ? 0.01 : 0.18)
+  const { ref, visible } = useInView(
+    reducedMotion
+      ? { threshold: 0.01, rootMargin: '0px' }
+      : { threshold: 0.06, rootMargin: '0px 0px 14% 0px' },
+  )
 
   return (
     <div
@@ -1187,7 +1197,7 @@ export default function OverflowLanding() {
               }}
             >
               <div
-                className="hidden lg:grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:px-6 lg:py-4"
+                className="hidden lg:grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:items-start lg:px-6 lg:py-4"
                 style={{ borderBottom: '1px solid rgba(129, 62, 58, 0.12)' }}
               >
                 <Eyebrow tint={ACCENT_PRIMARY}>Decision</Eyebrow>
@@ -1199,7 +1209,7 @@ export default function OverflowLanding() {
                 {decisionRows.map((row, index) => (
                   <Reveal key={row.decision} delay={index * 0.04}>
                     <article
-                      className="grid gap-4 px-5 py-5 lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:px-6 lg:py-6"
+                      className="grid gap-4 px-5 py-5 lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:items-start lg:px-6 lg:py-6"
                       style={{
                         borderBottom:
                           index < decisionRows.length - 1
@@ -1208,29 +1218,29 @@ export default function OverflowLanding() {
                         background: index % 2 === 0 ? SURFACE : 'rgba(247,243,238,0.72)',
                       }}
                     >
-                      <div>
+                      <div className="flex h-full flex-col justify-start">
                         <div className="lg:hidden">
                           <Eyebrow tint={ACCENT_PRIMARY}>Decision</Eyebrow>
                         </div>
-                        <p className="mt-2 text-[1rem] leading-7 lg:mt-0" style={{ color: INK }}>
+                        <p className="mt-2 text-[0.98rem] leading-7 lg:mt-0" style={{ color: INK, fontWeight: 500 }}>
                           {row.decision}
                         </p>
                       </div>
 
-                      <div>
+                      <div className="flex h-full flex-col justify-start">
                         <div className="lg:hidden">
                           <Eyebrow>Typical pattern</Eyebrow>
                         </div>
-                        <p className="mt-2 text-sm leading-6 lg:mt-0" style={{ color: BODY }}>
+                        <p className="mt-2 text-[0.98rem] leading-7 lg:mt-0" style={{ color: BODY }}>
                           {row.alternative}
                         </p>
                       </div>
 
-                      <div>
+                      <div className="flex h-full flex-col justify-start">
                         <div className="lg:hidden">
                           <Eyebrow tint={ACCENT_SECONDARY}>Why it matters</Eyebrow>
                         </div>
-                        <p className="mt-2 text-sm leading-6 lg:mt-0" style={{ color: BODY }}>
+                        <p className="mt-2 text-[0.98rem] leading-7 lg:mt-0" style={{ color: BODY }}>
                           {row.impact}
                         </p>
                       </div>

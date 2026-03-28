@@ -177,7 +177,7 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1.8fr;
+  grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.95fr);
   gap: 0;
   min-height: calc(100vh - var(--header-height));
   min-height: calc(100dvh - var(--header-height));
@@ -198,7 +198,8 @@
   height: fit-content;
   flex-direction: column;
   align-items: flex-start;
-  padding-right: 4rem;
+  max-width: 24rem;
+  padding-right: clamp(1.75rem, 2.6vw, 3rem);
 }
 
 .label {
@@ -237,7 +238,7 @@
 }
 
 .description {
-  max-width: 320px;
+  max-width: 18rem;
   margin: 0 0 3rem;
   font-size: 0.95rem;
   line-height: 1.8;
@@ -455,32 +456,6 @@
   transition: transform 0.35s var(--ease);
 }
 
-.dots {
-  position: absolute;
-  left: 50%;
-  bottom: calc(env(safe-area-inset-bottom) + 1rem);
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.75rem;
-  z-index: 2;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border: 1.5px solid rgba(26, 23, 20, 0.28);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.5);
-  transition: width 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease);
-}
-
-.dotActive {
-  width: 22px;
-  background: var(--ink);
-  border-color: var(--ink);
-}
-
 @media (hover: hover) and (pointer: fine) {
   .card:hover .cardImageWrapper,
   .card:focus-visible .cardImageWrapper {
@@ -523,12 +498,6 @@
   .navButtonNext:hover:not(:disabled) .navArrow,
   .navButtonNext:focus-visible:not(:disabled) .navArrow {
     transform: translateX(2px);
-  }
-
-  .dot:hover,
-  .dot:focus-visible {
-    transform: scale(1.14);
-    border-color: rgba(26, 23, 20, 0.6);
   }
 }
 
@@ -805,12 +774,13 @@
 
 @media (max-width: 1200px) {
   .container {
-    grid-template-columns: 1fr 1.6fr;
+    grid-template-columns: minmax(16rem, 0.88fr) minmax(0, 1.72fr);
     padding-top: calc(var(--header-height) + env(safe-area-inset-top) + 3rem);
   }
 
   .intro {
-    padding-right: 3rem;
+    max-width: 22rem;
+    padding-right: 2.25rem;
   }
 }
 
@@ -826,7 +796,12 @@
   .intro {
     position: relative;
     top: 0;
+    max-width: none;
     padding-right: 0;
+  }
+
+  .description {
+    max-width: 34rem;
   }
 
   .cardDisplay {
@@ -926,20 +901,6 @@
   .navButton {
     width: 48px;
     height: 48px;
-  }
-
-  .dots {
-    bottom: calc(env(safe-area-inset-bottom) + var(--space-3));
-    gap: var(--space-2);
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-  }
-
-  .dotActive {
-    width: 20px;
   }
 
   .exhibitionScroll {

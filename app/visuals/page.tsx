@@ -461,26 +461,7 @@ export default function VisualsPage() {
               <span className={styles.navArrow}>→</span>
             </button>
 
-            {/* Dots Indicator */}
-            <div className={styles.dots}>
-              {works.map((_, index) => (
-                <button
-                  type="button"
-                  key={index}
-                  className={`${styles.dot} ${index === currentIndex ? styles.dotActive : ''}`}
-                  onClick={() => {
-                    if (index !== currentIndex && !isAnimating) {
-                      setDirection(index > currentIndex ? 'right' : 'left')
-                      setIsAnimating(true)
-                      setCurrentIndex(index)
-                      setTimeout(() => setIsAnimating(false), 400)
-                    }
-                  }}
-                  aria-label={`Go to project ${index + 1}`}
-                />
-              ))}
             </div>
-              </div>
         </div>
       </main>
 
