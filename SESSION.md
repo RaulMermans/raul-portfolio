@@ -57,6 +57,16 @@ When starting work, update this section:
 
 ## Recent Sessions
 
+### 2026-03-28 - Add newly uploaded photography assets to gallery inventory
+**Goal**: Commit the latest uploaded photography files and ensure they are included in the photography gallery inventory.
+**Outcome**: Completed
+**Changes Made**:
+- `data/photography.ts` - added metadata entries for `Arquitecture14`, `Landscape16` through `Landscape18`, and `Street19` through `Street24` so the uploaded files are part of the rendered photography set.
+- `public/images/photography/architecture/Arquitecture14.webp`, `public/images/photography/landscape/Landscape16.webp`, `public/images/photography/landscape/Landscape17.webp`, `public/images/photography/landscape/Landscape18.webp`, and `public/images/photography/street/Street19.webp` through `Street24.webp` - added new uploaded photography assets.
+- `SESSION.md` - recorded the asset upload pass for continuity.
+**Notes**: An unrelated deleted file at `public/images/photography/Services_Photography.webp` was left out of the commit because the actual services asset in use remains `public/images/services/Services_Photography.webp`.
+**Next Steps**: Review `/photography` after deploy to confirm the newly uploaded images appear in their respective categories.
+
 ### 2026-03-28 - Tighten homepage services CTA corner alignment
 **Goal**: Make the “Start a project” button in the homepage services section sit cleanly on the bracket corner without the visible offset.
 **Outcome**: Completed
