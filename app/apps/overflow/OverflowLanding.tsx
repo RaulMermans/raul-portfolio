@@ -27,14 +27,6 @@ const MONO = 'var(--font-mono), "Space Mono", monospace'
 const DEVICE_RATIO = 556 / 272
 const TESTFLIGHT = 'https://testflight.apple.com/join/t7jQjsCx'
 
-const PRACTICAL_QUESTIONS = [
-  'What should I do today?',
-  'What routines already exist?',
-  'Where do they fit this week?',
-  'What changed on the calendar?',
-  'What is the work adding up to?',
-]
-
 type StoryCallout = {
   title: string
   body: string
@@ -1197,7 +1189,7 @@ export default function OverflowLanding() {
               }}
             >
               <div
-                className="hidden lg:grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:items-start lg:px-6 lg:py-4"
+                className="hidden text-left lg:grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:items-start lg:px-6 lg:py-4"
                 style={{ borderBottom: '1px solid rgba(129, 62, 58, 0.12)' }}
               >
                 <Eyebrow tint={ACCENT_PRIMARY}>Decision</Eyebrow>
@@ -1209,7 +1201,7 @@ export default function OverflowLanding() {
                 {decisionRows.map((row, index) => (
                   <Reveal key={row.decision} delay={index * 0.04}>
                     <article
-                      className="grid gap-4 px-5 py-5 lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:items-start lg:px-6 lg:py-6"
+                      className="grid gap-4 px-5 py-5 text-left lg:grid-cols-[minmax(0,0.9fr),minmax(0,0.95fr),minmax(0,1.05fr)] lg:items-start lg:px-6 lg:py-6"
                       style={{
                         borderBottom:
                           index < decisionRows.length - 1
@@ -1218,7 +1210,7 @@ export default function OverflowLanding() {
                         background: index % 2 === 0 ? SURFACE : 'rgba(247,243,238,0.72)',
                       }}
                     >
-                      <div className="flex h-full flex-col justify-start">
+                      <div className="flex h-full flex-col items-start justify-start text-left">
                         <div className="lg:hidden">
                           <Eyebrow tint={ACCENT_PRIMARY}>Decision</Eyebrow>
                         </div>
@@ -1227,7 +1219,7 @@ export default function OverflowLanding() {
                         </p>
                       </div>
 
-                      <div className="flex h-full flex-col justify-start">
+                      <div className="flex h-full flex-col items-start justify-start text-left">
                         <div className="lg:hidden">
                           <Eyebrow>Typical pattern</Eyebrow>
                         </div>
@@ -1236,7 +1228,7 @@ export default function OverflowLanding() {
                         </p>
                       </div>
 
-                      <div className="flex h-full flex-col justify-start">
+                      <div className="flex h-full flex-col items-start justify-start text-left">
                         <div className="lg:hidden">
                           <Eyebrow tint={ACCENT_SECONDARY}>Why it matters</Eyebrow>
                         </div>
@@ -1249,129 +1241,6 @@ export default function OverflowLanding() {
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="py-14 lg:py-16" style={{ borderBottom: '1px solid var(--cream-dark)' }}>
-          <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-            <Reveal>
-              <details
-                className="rounded-[32px] p-6 lg:p-8"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(247,243,238,0.96) 100%)',
-                  border: '1px solid rgba(129, 62, 58, 0.12)',
-                  boxShadow: '0 12px 32px rgba(26,18,9,0.04)',
-                }}
-              >
-                <summary className="list-none cursor-pointer [&::-webkit-details-marker]:hidden">
-                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                    <div>
-                      <h2
-                        className="text-[1.8rem] leading-[1.04]"
-                        style={{ color: INK, fontFamily: READING, fontWeight: 600 }}
-                      >
-                        Open case study notes
-                      </h2>
-                    </div>
-                    <span
-                      className="inline-flex items-center self-start rounded-full px-4 py-2 text-sm lg:self-auto"
-                      style={{
-                        background: 'rgba(255,255,255,0.82)',
-                        border: '1px solid rgba(129, 62, 58, 0.12)',
-                        color: INK,
-                      }}
-                    >
-                      Open notes
-                    </span>
-                  </div>
-                </summary>
-
-                <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,0.78fr),minmax(0,1.22fr)] lg:gap-8">
-                  <div className="space-y-4">
-                    <p className="text-[0.98rem] leading-7" style={{ color: BODY }}>
-                      Overflow is built around practical training questions, a visible weekly model, and
-                      progress that orients without pressuring the user.
-                    </p>
-
-                    <div
-                      className="rounded-[26px] p-5"
-                      style={{
-                        background: SURFACE,
-                        border: '1px solid rgba(129, 62, 58, 0.12)',
-                      }}
-                    >
-                      <Eyebrow>Questions the product answers</Eyebrow>
-                      <ul className="mt-4 space-y-2">
-                        {PRACTICAL_QUESTIONS.map((question) => (
-                          <li key={question} className="text-sm leading-6" style={{ color: BODY }}>
-                            {question}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="grid gap-4 md:grid-cols-2">
-                      <div
-                        className="rounded-[24px] p-5"
-                        style={{
-                          background: SURFACE,
-                          border: '1px solid rgba(129, 62, 58, 0.12)',
-                        }}
-                      >
-                        <Eyebrow tint={ACCENT_PRIMARY}>Surfaces</Eyebrow>
-                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
-                          Today, Calendar, and Milestones keep the system readable.
-                        </p>
-                      </div>
-                      <div
-                        className="rounded-[24px] p-5"
-                        style={{
-                          background: SURFACE,
-                          border: '1px solid rgba(129, 62, 58, 0.12)',
-                        }}
-                      >
-                        <Eyebrow tint={ACCENT_SECONDARY}>Actions</Eyebrow>
-                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
-                          Create and Schedule shape the plan before the workout starts.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid gap-4">
-                    {storyBeats.map((beat, index) => (
-                      <article
-                        key={beat.id}
-                        className="rounded-[24px] p-5"
-                        style={{
-                          background: index % 2 === 0 ? SURFACE : 'rgba(255,255,255,0.68)',
-                          border: '1px solid rgba(129, 62, 58, 0.12)',
-                        }}
-                      >
-                        <div className="flex flex-wrap items-center gap-3">
-                          <span
-                            className="rounded-full px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em]"
-                            style={{
-                              background: beat.kind === 'Surface' ? ACCENT_PRIMARY_SOFT : ACCENT_SECONDARY_SOFT,
-                              color: beat.kind === 'Surface' ? ACCENT_PRIMARY : ACCENT_SECONDARY,
-                              fontFamily: MONO,
-                            }}
-                          >
-                            {beat.kind}
-                          </span>
-                          <span className="text-[0.75rem] uppercase tracking-[0.18em]" style={{ color: MUTED, fontFamily: MONO }}>
-                            {beat.label}
-                          </span>
-                        </div>
-                        <p className="mt-3 text-sm leading-6" style={{ color: BODY }}>
-                          {beat.detailNote}
-                        </p>
-                      </article>
-                    ))}
-                  </div>
-                </div>
-              </details>
-            </Reveal>
           </div>
         </section>
 

@@ -255,7 +255,9 @@
 .cardDisplay {
   position: relative;
   width: 100%;
-  min-height: clamp(32rem, 72vh, 48rem);
+  max-width: 42rem;
+  min-height: clamp(28rem, 64vh, 42rem);
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -314,7 +316,7 @@
 
 .card {
   position: relative;
-  width: min(100%, 48rem);
+  width: 100%;
   aspect-ratio: 4 / 5;
   padding: 0;
   border: 0;
@@ -805,6 +807,7 @@
   }
 
   .cardDisplay {
+    max-width: none;
     min-height: clamp(30rem, 68vh, 42rem);
   }
 

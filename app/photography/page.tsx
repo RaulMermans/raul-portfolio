@@ -24,39 +24,6 @@ interface EditorialLayout {
 
 type PhotoFormat = 'landscape' | 'portrait' | 'tall' | 'square'
 
-// Helper function to shuffle array and select random items
-function shuffleAndSelect<T>(array: T[], count: number): T[] {
-  const shuffled = [...array].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, count)
-}
-
-// Helper function to get or create random selection (persisted per session)
-function getRandomSelection(key: string, allItems: Photo[], count: number): Photo[] {
-  if (typeof window === 'undefined') {
-    return allItems.slice(0, count)
-  }
-
-  const stored = sessionStorage.getItem(`photo-selection-${key}`)
-  if (stored) {
-    try {
-      const parsed = JSON.parse(stored) as Photo[]
-      const validSelection = parsed
-        .map((item: Photo) => allItems.find((availableItem) => availableItem.src === item.src))
-        .filter((item): item is Photo => Boolean(item))
-
-      if (validSelection.length === count) {
-        return validSelection
-      }
-    } catch {
-      // Invalid stored data, continue to generate new
-    }
-  }
-
-  const selection = shuffleAndSelect(allItems, count)
-  sessionStorage.setItem(`photo-selection-${key}`, JSON.stringify(selection))
-  return selection
-}
-
 // Get adjacent categories for prefetching
 function getAdjacentCategories(current: CategoryType): CategoryType[] {
   const order: CategoryType[] = ['landscape', 'architecture', 'street']
@@ -195,32 +162,27 @@ function arrangeEditorialFlow(photos: Photo[]): Photo[] {
   )
 }
 
-// Number of images to display per category
-const IMAGES_PER_CATEGORY = 12
-
-// Generate categories with random selection (consistent per session)
+// Generate categories using the full image inventory for each topic.
 function getCategories() {
+  const landscapeImages = arrangeEditorialFlow(PHOTOGRAPHY_IMAGES.landscape)
+  const architectureImages = arrangeEditorialFlow(PHOTOGRAPHY_IMAGES.architecture)
+  const streetImages = arrangeEditorialFlow(PHOTOGRAPHY_IMAGES.street)
+
   return {
     landscape: {
       name: 'Landscape',
-      count: IMAGES_PER_CATEGORY,
-      images: arrangeEditorialFlow(
-        getRandomSelection('landscape', PHOTOGRAPHY_IMAGES.landscape, IMAGES_PER_CATEGORY)
-      ),
+      count: landscapeImages.length,
+      images: landscapeImages,
     },
     architecture: {
       name: 'Architecture',
-      count: IMAGES_PER_CATEGORY,
-      images: arrangeEditorialFlow(
-        getRandomSelection('architecture', PHOTOGRAPHY_IMAGES.architecture, IMAGES_PER_CATEGORY)
-      ),
+      count: architectureImages.length,
+      images: architectureImages,
     },
     street: {
       name: 'Street',
-      count: IMAGES_PER_CATEGORY,
-      images: arrangeEditorialFlow(
-        getRandomSelection('street', PHOTOGRAPHY_IMAGES.street, IMAGES_PER_CATEGORY)
-      ),
+      count: streetImages.length,
+      images: streetImages,
     },
   }
 }
@@ -431,15 +393,9 @@ export default function PhotographyPage() {
                   onChange={(event) => setCategory(event.target.value as CategoryType)}
                   aria-label="Choose photography category"
                 >
-                  <option value="landscape">
-                    Landscape ({categoriesState.landscape.count})
-                  </option>
-                  <option value="architecture">
-                    Architecture ({categoriesState.architecture.count})
-                  </option>
-                  <option value="street">
-                    Street ({categoriesState.street.count})
-                  </option>
+                  <option value="landscape">Landscape</option>
+                  <option value="architecture">Architecture</option>
+                  <option value="street">Street</option>
                 </select>
                 <span className="photography-mobile-filter__icon" aria-hidden="true">
                   ▾
@@ -491,7 +447,6 @@ export default function PhotographyPage() {
       <div className="category-overlay">
         <h1 className="category-overlay__title">
           <span id="category-name">{categoriesState[activeCategory]?.name || 'Landscape'}</span>
-          <span className="category-overlay__count">({activeCount})</span>
         </h1>
       </div>
 

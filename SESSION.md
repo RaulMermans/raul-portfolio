@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-27
+**Last Updated**: 2026-03-28
 
 ### Active Work
 - None currently
@@ -20,6 +20,10 @@
 - `npm run type-check` and `npm run lint` both launched for the Overflow landing-page redesign on 2026-03-22 but did not finish in this environment after extended waits, so verification remained inconclusive
 - `npm run type-check` and `npm run lint -- --file app/apps/overflow/OverflowLanding.tsx` also launched for the progressive-reveal Overflow UX reframe on 2026-03-22 but again did not return usable output in this environment after extended waits
 - `npm run type-check` and `npm run lint -- --file components/SectionCards.tsx` again stalled in this environment on 2026-03-27 during the homepage carousel redesign, and `npm run dev -- --hostname 127.0.0.1` never reached a listening localhost URL for browser verification
+- `npm run lint -- --file app/apps/overflow/OverflowLanding.tsx` was retried on 2026-03-28 for a small Overflow content removal and again did not return a usable result in this environment after roughly 60 seconds
+- `npm run lint -- --file app/visuals/page.tsx` was run on 2026-03-28 for a visuals-page sizing tweak and again did not return a usable result in this environment after roughly 30 seconds
+- `npm run lint -- --file app/photography/page.tsx` was run on 2026-03-28 for a photography gallery update and again did not return a usable result in this environment after roughly 30 seconds
+- `npm run lint -- --file components/Services.tsx` was run on 2026-03-28 for a homepage services CTA alignment tweak and again did not return a usable result in this environment after roughly 30 seconds
 
 ---
 
@@ -52,6 +56,51 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-28 - Tighten homepage services CTA corner alignment
+**Goal**: Make the “Start a project” button in the homepage services section sit cleanly on the bracket corner without the visible offset.
+**Outcome**: Completed
+**Changes Made**:
+- `styles/globals.css` - replaced the service bracket’s manual positive bottom offset with a border-overlap alignment so the corner detail now meets the CTA border cleanly on desktop.
+- `SESSION.md` - recorded the CTA alignment pass and the targeted lint limitation for continuity.
+**Notes**: This was a one-line CSS fix focused on the desktop service-card CTA corner. The targeted lint command `npm run lint -- --file components/Services.tsx` launched but did not produce a completion result in this environment after roughly 30 seconds.
+**Next Steps**: Review the homepage services section locally and confirm the bracket/button junction now reads flush at your preferred viewport width.
+
+### 2026-03-28 - Show full photography category sets and remove parenthetical counts
+**Goal**: Make `/photography` show every image available for each category instead of stopping at 12, and remove the parenthetical category counts from the UI.
+**Outcome**: Completed
+**Changes Made**:
+- `app/photography/page.tsx` - removed the 12-image random-selection logic, switched each category to use its full image array from `PHOTOGRAPHY_IMAGES`, kept the mobile header count tied to the real category length, and removed the parenthetical counts from the mobile select options and the large category overlay title.
+- `SESSION.md` - recorded the gallery update and the targeted lint limitation for continuity.
+**Notes**: The on-disk photography folders still match the existing metadata inventory for numbered image files, so this pass only needed page-logic changes. The targeted lint command `npm run lint -- --file app/photography/page.tsx` launched but did not produce a completion result in this environment after roughly 30 seconds.
+**Next Steps**: Review `/photography` locally and confirm the full category sets still feel balanced, especially the longer street category now that it renders all available images.
+
+### 2026-03-28 - Reduce visuals artwork stage footprint
+**Goal**: Make the main artwork container on `/visuals` smaller so it no longer occupies so much of the screen.
+**Outcome**: Completed
+**Changes Made**:
+- `app/visuals/VisualsPage.module.css` - reduced the desktop artwork stage footprint by capping the card display width, lowering its vertical stage height, centering the stage within the right column, and preserving full-width behavior again below `1024px`.
+- `SESSION.md` - recorded the sizing pass and the targeted lint limitation for continuity.
+**Notes**: This was a small layout-tuning pass, not a redesign of the visuals page. The target was to keep the current composition but make the artwork feel less screen-dominant on desktop. The targeted lint command `npm run lint -- --file app/visuals/page.tsx` launched but did not produce a completion result in this environment after roughly 30 seconds.
+**Next Steps**: Review `/visuals` locally and decide whether the stage should come down one more step from `42rem` or stay at this smaller editorial size.
+
+### 2026-03-28 - Align Overflow decision-rationale table copy
+**Goal**: Make the text in the decision-rationale table on `/apps/overflow` align more cleanly across headers and body cells.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - added explicit left/top alignment classes to the decision-rationale header row and each body cell so the table no longer relies on implicit grid alignment behavior.
+- `SESSION.md` - recorded the UI alignment pass for continuity.
+**Notes**: This was a presentational-only adjustment layered on top of the same-day Overflow cleanup. The targeted lint command `npm run lint -- --file app/apps/overflow/OverflowLanding.tsx` was retried and again did not produce a completion result in this environment after roughly 30 seconds.
+**Next Steps**: Check `/apps/overflow` locally and confirm the decision-rationale table now reads as consistently aligned at your target desktop width.
+
+### 2026-03-28 - Remove Overflow case study notes section
+**Goal**: Remove the “Open case study notes” accordion from the `/apps/overflow` landing page.
+**Outcome**: Completed
+**Changes Made**:
+- `app/apps/overflow/OverflowLanding.tsx` - removed the case-study notes section entirely and deleted the now-unused `PRACTICAL_QUESTIONS` constant that only fed that accordion.
+- `SESSION.md` - recorded the removal and the repeated targeted lint limitation for continuity.
+**Notes**: This was a minimal content-removal pass only; the surrounding page structure was left intact. The targeted repo verification command `npm run lint -- --file app/apps/overflow/OverflowLanding.tsx` launched but did not produce a completion result in this environment after roughly a minute.
+**Next Steps**: Review `/apps/overflow` locally and confirm the transition from “Decision rationale” straight into the private-beta close still feels intentional on desktop and mobile.
 
 ### 2026-03-27 - Redesign homepage selected projects carousel into a coverflow split card
 **Goal**: Make the homepage selected-projects carousel feel less bland by removing the boxed text panel, enlarging the imagery, and turning the strip into a more polished looping carousel with peeking side cards and circular motion.
