@@ -13,22 +13,22 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     layoutVariant: 'wide',
     hero: {
       title: 'AI Sports Campaign',
-      tagline: 'A Creative Direction Engine.',
-      subtitle: 'AI Automation System & Creative Direction • 2025',
+      tagline: 'An Applied AI Campaign System.',
+      subtitle: 'AI System Design & Creative Operations • 2025',
       image: {
         src: getCaseStudyImagePath('ai-sports', 'hero', 'hero.webp'),
-        alt: 'AI Sports Campaign - Creative Direction Engine',
+        alt: 'AI Sports Campaign - Applied AI campaign system',
         quality: 90,
         sizes: '100vw',
       },
     },
     overview: {
       description:
-        'Everyone can generate "cool" images now. Almost no one can generate **consistent campaigns**. I built a custom **n8n automation** (a **Creative Direction Engine**) that takes one reference campaign shot and lets me swap the **model and wardrobe** while keeping **lighting, environment, and shot DNA stable**. The result is **campaign-grade coherence** produced in minutes. **Iteration** becomes a **repeatable loop** instead of a re-shoot problem.',
-      intentQuote: 'Turn creative direction from "slot machine outcomes" into a system you can run on purpose.',
+        'Everyone can generate "cool" images now. Almost no one can generate **consistent campaigns**. I built a custom **n8n automation** system that takes one reference campaign shot and lets me swap the **model and wardrobe** while keeping **lighting, environment, and shot DNA stable**. The result is **campaign-grade coherence** produced in minutes. **Iteration** becomes a **repeatable loop** instead of a re-shoot problem.',
+      intentQuote: 'Turn campaign consistency from guesswork into a system you can actually run.',
       meta: [
         { label: 'Type', value: 'AI Automation System' },
-        { label: 'Role', value: 'System Design & Creative Direction' },
+        { label: 'Role', value: 'AI System Design & Creative Operations' },
         { label: 'Tools', value: 'n8n, Generative Image API, Reference Conditioning' },
         {
           label: 'Deliverables',
@@ -91,7 +91,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         },
         {
           name: '3-Input Spec',
-          rationale: 'Makes creative direction explicit and portable',
+          rationale: 'Makes the system logic explicit and portable',
         },
         {
           name: 'Guardrails + Checklist',
@@ -180,7 +180,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     },
     results: {
       text: 'The system makes campaign iteration fast and controllable: you can adapt casting and styling while keeping the visual world consistent. It replaces "generate until lucky" with a repeatable creative loop. Inputs go in, coherent variants come out in minutes, and the final is chosen through judgment, not randomness. Practically, it enables campaign-level decisions without campaign-level burn rate.',
-      takeawayQuote: 'This isn\'t just prompting. It\'s automated infrastructure for repeatable creative direction.',
+      takeawayQuote: 'This isn\'t just prompting. It\'s operational infrastructure for repeatable campaign execution.',
     },
   },
   remoria: {
@@ -190,7 +190,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     hero: {
       title: 'Remoria',
       tagline: 'A Fragrance House Etched in Memory',
-      subtitle: 'Brand Identity & Creative Direction • 2025',
+      subtitle: 'Brand System Design & Creative Infrastructure • 2025',
       image: {
         src: getCaseStudyImagePath('remoria', 'hero', 'hero.webp'),
         alt: 'Remoria Brand Identity - Fragrance House',
@@ -204,7 +204,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       intentQuote: 'To make the brand feel like an artifact rediscovered: warm, silent, and unforgettable.',
       meta: [
         { label: 'Type', value: 'Luxury Brand Identity (Fragrance)' },
-        { label: 'Role', value: 'Creative Direction & Brand Aesthetics' },
+        { label: 'Role', value: 'Brand System Design & Creative Infrastructure' },
         { label: 'Tools', value: 'Illustrator, Photoshop, Figma, Pinterest' },
         {
           label: 'Deliverables',

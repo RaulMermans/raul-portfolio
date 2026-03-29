@@ -5,11 +5,11 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 export const metadata: Metadata = {
   title: 'AI Sports Campaign Case Study',
   description:
-    'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and art direction consistent across every generated shot.',
+    'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and campaign direction consistent across every generated shot.',
   openGraph: {
     title: 'AI Sports Campaign Case Study — Raúl Mermans',
     description:
-      'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and art direction consistent across every generated shot.',
+      'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and campaign direction consistent across every generated shot.',
     type: 'article',
     url: `${baseUrl}/case-studies/ai-sports`,
     publishedTime: '2026-01-01',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AI Sports Campaign Case Study — Raúl Mermans',
     description:
-      'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and art direction consistent across every generated shot.',
+      'See an AI sports campaign system by Raúl Mermans that uses n8n automation to keep casting, wardrobe, and campaign direction consistent across every generated shot.',
   },
   alternates: {
     canonical: `${baseUrl}/case-studies/ai-sports`,

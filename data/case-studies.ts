@@ -15,21 +15,21 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 0,
     title: 'AI Sports Campaign',
-    description: 'A groundbreaking visual campaign merging AI-generated imagery with athletic excellence. Pushing the boundaries of sports marketing through creative technology.',
+    description: 'An AI campaign system built in n8n to keep casting, wardrobe, and art direction consistent across fast-moving sports marketing outputs.',
     image: '/images/case-studies/ai-sports/thumb/thumb.webp',
     href: '/case-studies/ai-sports',
     color: 'var(--color-0)',
-    subtitle: 'AI Automation System & Creative Direction',
+    subtitle: 'AI System Design & Creative Operations',
     mood: ['bold', 'tech'],
   },
   {
     id: 1,
     title: 'Remoria',
-    description: 'A comprehensive brand identity project exploring classical aesthetics and contemporary design. Building visual systems that create lasting impressions.',
+    description: 'A brand system case study showing how identity logic, restraint, and creative infrastructure can scale a premium world without losing coherence.',
     image: '/images/case-studies/remoria/thumb/thumb.webp',
     href: '/case-studies/remoria',
     color: 'var(--color-1)',
-    subtitle: 'Brand Identity & Creative Direction',
+    subtitle: 'Brand System Design & Creative Infrastructure',
     mood: ['minimal', 'editorial'],
   },
 ]
@@ -76,4 +76,3 @@ export function getRandomCaseStudy(currentHref: string): CaseStudy {
 
   return selected
 }
-

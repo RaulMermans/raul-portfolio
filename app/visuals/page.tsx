@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import { trapFocus } from '@/lib/accessibility'
 import styles from './VisualsPage.module.css'
 
@@ -464,6 +465,8 @@ export default function VisualsPage() {
             </div>
         </div>
       </main>
+
+      <Footer />
 
       {/* Exhibition View */}
       <div

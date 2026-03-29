@@ -124,6 +124,16 @@
   color: var(--ink-faint);
 }
 
+.summary {
+  max-width: 52rem;
+  margin: 0 0 var(--space-6);
+  color: var(--ink);
+  font-family: var(--font-body), "DM Sans", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.75;
+  opacity: 0.82;
+}
+
 .ctaGroup {
   display: flex;
   flex-wrap: wrap;
@@ -304,6 +314,12 @@
   .service,
   .divider {
     font-size: clamp(0.75rem, 2vw, 0.8125rem);
+  }
+
+  .summary {
+    margin-bottom: var(--space-5);
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
   .ctaGroup {

@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-28
+**Last Updated**: 2026-03-29
 
 ### Active Work
 - None currently
@@ -56,6 +56,26 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-29 - Reposition homepage around applied AI systems
+**Goal**: Reframe the site so the homepage and shared metadata lead with AI systems, agents, automation, and creative infrastructure rather than visual storyteller / photography-led positioning.
+**Outcome**: Completed
+**Changes Made**:
+- `app/layout.tsx` and `components/StructuredData.tsx` - rewrote root SEO, Open Graph, Twitter, keywords, and schema descriptions around applied AI systems, agents, automation, and creative infrastructure.
+- `components/Hero.tsx`, `components/Hero.module.css`, `components/About.tsx`, `components/Services.tsx`, `components/Contact.tsx`, `components/ContactForm.tsx`, `components/Footer.tsx`, `components/SectionCards.tsx`, `components/Socials.tsx`, and `components/Header.tsx` - repositioned the homepage and shared chrome around AI systems, automation infrastructure, AI prototypes/tools, and brand systems, while reducing photography and prompt-led language to supporting craft.
+- `app/about/page.tsx`, `app/about/layout.tsx`, `data/case-studies.ts`, `data/case-studies-content.ts`, `app/case-studies/layout.tsx`, `app/case-studies/ai-sports/layout.tsx`, `app/case-studies/remoria/layout.tsx`, `app/apps/page.tsx`, `app/apps/overflow/page.tsx`, `app/photography/layout.tsx`, and `app/visuals/layout.tsx` - aligned route-level copy and metadata with the new positioning so supporting pages and previews reinforce the same story.
+- `SESSION.md` - recorded the repositioning pass and the verification limitation.
+**Notes**: The targeted lint command for the touched homepage/metadata files started correctly but did not return a completion result in this environment after roughly 45 seconds, consistent with prior lint stalls recorded in this repo. The site structure still keeps `/photography` and `/visuals` as first-class routes, so the new positioning demotes them in framing without removing them from the information architecture.
+**Next Steps**: Review the homepage, `/about`, `/apps`, and `/case-studies` locally to decide whether photography and visuals should stay in the primary work carousel or move to a more clearly secondary/archive surface in a later pass.
+
+### 2026-03-29 - Add shared footer to visuals landing page
+**Goal**: Make `/visuals` render the shared site footer so the landing page matches the rest of the portfolio.
+**Outcome**: Completed
+**Changes Made**:
+- `app/visuals/page.tsx` - imported the shared `Footer` component and rendered it directly after the main visuals content, keeping the exhibition modal mounted last so its overlay behavior remains unchanged.
+- `SESSION.md` - recorded the visuals footer pass and the targeted lint limitation for continuity.
+**Notes**: This was a minimal composition fix aligned with the pattern already used by the homepage, photography page, about page, app pages, and case-study pages. The targeted verification command `npm run lint -- --file app/visuals/page.tsx` started but did not return a completion result in this environment after roughly 60 seconds.
+**Next Steps**: Review `/visuals` locally or after deploy to confirm the footer spacing feels correct beneath the current full-screen artwork stage.
 
 ### 2026-03-28 - Make visuals artwork stage square on desktop
 **Goal**: Reduce the height of the main artwork stage on `/visuals` and make the image container square so more of the artwork composition is visible.

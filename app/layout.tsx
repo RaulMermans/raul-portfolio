@@ -53,16 +53,16 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
+    default: 'Raúl Mermans — AI Systems Builder for Modern Brands',
     template: '%s | Raúl Mermans',
   },
   description:
-    'Creative director and visual storyteller in Spain crafting photography, brand identity, AI creatives, and digital systems for brands seeking cultural relevance.',
+    'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands across marketing, CRM, content, and execution.',
   icons: {
     icon: '/favicon.jpg',
     apple: '/favicon.jpg',
   },
-  keywords: ['photography Spain', 'brand identity', 'AI creatives', 'visual storytelling', 'creative director Spain', 'photographer Spain', 'AI art', 'brand photography', 'creative direction', 'digital systems'],
+  keywords: ['AI systems builder', 'agentic workflows', 'automation infrastructure', 'marketing automation', 'CRM automation', 'creative infrastructure', 'AI tools for brands', 'workflow design', 'content operations', 'applied AI'],
   authors: [{ name: 'Raúl Mermans', url: baseUrl }],
   creator: 'Raúl Mermans',
   publisher: 'Raúl Mermans',
@@ -74,24 +74,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: baseUrl,
-    title: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
+    title: 'Raúl Mermans — AI Systems Builder for Modern Brands',
     description:
-      'Creative director and visual storyteller in Spain crafting photography, brand identity, AI creatives, and digital systems for brands seeking cultural relevance.',
-    siteName: 'Raúl Mermans Portfolio',
+      'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands across marketing, CRM, content, and execution.',
+    siteName: 'Raúl Mermans',
     images: [
       {
         url: `${baseUrl}/images/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Raúl Mermans — Visual Storyteller',
+        alt: 'Raúl Mermans — AI Systems Builder',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Raúl Mermans — Visual Storyteller & Creative Director in Spain',
+    title: 'Raúl Mermans — AI Systems Builder for Modern Brands',
     description:
-      'Creative director and visual storyteller in Spain crafting photography, brand identity, AI creatives, and digital systems for brands seeking cultural relevance.',
+      'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands across marketing, CRM, content, and execution.',
     creator: '@raulmeermans',
     images: [`${baseUrl}/images/og-image.jpg`],
   },

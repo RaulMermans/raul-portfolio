@@ -20,8 +20,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Raúl Mermans',
-      jobTitle: 'Visual Storyteller & Creative Director',
-      description: 'Visual Storyteller & Creative Director specializing in Photography, Brand Identity, and AI-Powered Creatives. Based in Spain.',
+      jobTitle: 'Applied AI Systems Builder',
+      description: 'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands. Based in Spain.',
       url: baseUrl,
       sameAs: [
         'https://www.instagram.com/raulmeermans/',
@@ -35,12 +35,14 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         addressLocality: 'Spain',
       },
       knowsAbout: [
-        'Photography',
-        'Brand Identity',
-        'Creative Direction',
-        'AI-Powered Creatives',
-        'Visual Storytelling',
-        'Web Development',
+        'AI Systems Design',
+        'Agentic Workflows',
+        'Automation Infrastructure',
+        'Marketing Automation',
+        'CRM Automation',
+        'Content Systems',
+        'Creative Infrastructure',
+        'Product Prototyping',
       ],
       ...data,
     }
@@ -50,7 +52,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'WebSite',
       name: 'Raúl Mermans Portfolio',
       url: baseUrl,
-      description: 'Visual Storyteller & Creative Director — Photography, Brand Identity, AI-Powered Creatives. Based in Spain.',
+      description: 'Applied AI systems, agents, and automation for modern brands across marketing, CRM, content, and creative execution.',
       author: {
         '@type': 'Person',
         name: 'Raúl Mermans',
@@ -71,9 +73,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 1,
-          name: 'Photography',
-          serviceType: 'Professional Photography',
-          description: 'Visual narratives that capture the essence of brands and stories. Brand photography, visual storytelling, editorial shoots, and product photography.',
+          name: 'AI Systems & Agentic Workflows',
+          serviceType: 'Applied AI Systems Design',
+          description: 'Applied AI systems, agentic workflows, and orchestration logic built to make judgment-heavy execution more reliable and usable.',
           provider: {
             '@type': 'Person',
             name: 'Raúl Mermans',
@@ -87,9 +89,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 2,
-          name: 'Brand Identity',
-          serviceType: 'Creative Direction & Brand Strategy',
-          description: 'Strategic creative vision from concept to execution. Brand strategy, visual identity design, art direction, and campaign concepts.',
+          name: 'Automation Infrastructure',
+          serviceType: 'Automation Infrastructure Design',
+          description: 'Automation infrastructure for marketing, CRM, content, and internal operations, built around tool integration, routing, and operational visibility.',
           provider: {
             '@type': 'Person',
             name: 'Raúl Mermans',
@@ -103,9 +105,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 3,
-          name: 'AI-Powered Creatives',
-          serviceType: 'AI Creative Solutions',
-          description: 'Intelligent automation systems and AI-powered creative solutions. Custom AI solutions, automation workflows, prompt engineering, and AI integration.',
+          name: 'AI-Powered Prototypes & Tools',
+          serviceType: 'AI Prototype and Tool Development',
+          description: 'AI-powered prototypes, internal tools, and operator interfaces used to validate workflows, expose new operating models, and ship smarter product surfaces.',
           provider: {
             '@type': 'Person',
             name: 'Raúl Mermans',
@@ -119,9 +121,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 4,
-          name: 'Web Development',
-          serviceType: 'Digital Systems & Web Development',
-          description: 'Modern, performant web experiences crafted with precision. Custom web design, frontend development, performance optimization, and CMS integration.',
+          name: 'Brand & Creative Systems',
+          serviceType: 'Brand and Creative Systems Design',
+          description: 'Brand and creative systems that keep AI-assisted execution coherent, commercially credible, and aligned with the quality bar of the brand.',
           provider: {
             '@type': 'Person',
             name: 'Raúl Mermans',
@@ -182,4 +184,3 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     />
   )
 }
-

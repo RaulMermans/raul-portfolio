@@ -5,11 +5,11 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 export const metadata: Metadata = {
   title: 'Photography',
   description:
-    'Explore photography by Raúl Mermans, spanning landscape, architecture, and street images shaped by cinematic light, strong composition, and visual storytelling.',
+    'Explore photography by Raúl Mermans, a supporting craft practice in composition, restraint, and visual judgment alongside his broader AI systems work.',
   openGraph: {
     title: 'Photography — Raúl Mermans',
     description:
-      'Explore photography by Raúl Mermans, spanning landscape, architecture, and street images shaped by cinematic light, strong composition, and visual storytelling.',
+      'Explore photography by Raúl Mermans, a supporting craft practice in composition, restraint, and visual judgment alongside his broader AI systems work.',
     url: `${baseUrl}/photography`,
     type: 'website',
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Photography — Raúl Mermans',
     description:
-      'Explore photography by Raúl Mermans, spanning landscape, architecture, and street images shaped by cinematic light, strong composition, and visual storytelling.',
+      'Explore photography by Raúl Mermans, a supporting craft practice in composition, restraint, and visual judgment alongside his broader AI systems work.',
   },
   alternates: {
     canonical: `${baseUrl}/photography`,

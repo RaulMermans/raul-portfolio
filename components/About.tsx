@@ -53,10 +53,18 @@ export default function About() {
         <div className="about__content">
           <p className="label about__label reveal">About</p>
           <h2 id="about-title" className="about__headline reveal reveal-delay-1">
-            Digital Systems & Creative Direction
+            Business-minded builder. Systems-first by default.
           </h2>
           <p className="about__text reveal reveal-delay-2">
-            I&apos;m a <span className="highlight">self-taught builder</span> obsessed with how <span className="highlight">stories and systems</span> fit together. I&apos;ve taken my business background and turned it into a practice of creating <span className="highlight">digital environments</span> where <span className="highlight">AI and human intuition</span> work side-by-side.
+            I came into this work through business, then taught myself how to build the
+            systems teams actually need. Today I design <span className="highlight">AI workflows</span>,{' '}
+            <span className="highlight">automation layers</span>, and{' '}
+            <span className="highlight">product-minded interfaces</span> for marketing, CRM, content,
+            and creative execution. My edge is the combination of{' '}
+            <span className="highlight">systems thinking</span>,{' '}
+            <span className="highlight">practical implementation</span>, and{' '}
+            <span className="highlight">creative judgment</span> strong enough to keep the output
+            coherent, useful, and worth deploying.
           </p>
           
           <Link 
@@ -71,4 +79,3 @@ export default function About() {
     </section>
   )
 }
-

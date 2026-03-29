@@ -5,11 +5,11 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 export const metadata: Metadata = {
   title: 'Remoria Case Study',
   description:
-    'Explore Remoria, a fragrance brand identity by Raúl Mermans blending Roman legacy, Mediterranean light, and poetic art direction into a premium visual world.',
+    'Explore Remoria, a brand system case study by Raúl Mermans showing how identity logic, restraint, and creative infrastructure can scale a premium world.',
   openGraph: {
     title: 'Remoria Case Study — Raúl Mermans',
     description:
-      'Explore Remoria, a fragrance brand identity by Raúl Mermans blending Roman legacy, Mediterranean light, and poetic art direction into a premium visual world.',
+      'Explore Remoria, a brand system case study by Raúl Mermans showing how identity logic, restraint, and creative infrastructure can scale a premium world.',
     type: 'article',
     url: `${baseUrl}/case-studies/remoria`,
     publishedTime: '2026-01-01',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Remoria Case Study — Raúl Mermans',
     description:
-      'Explore Remoria, a fragrance brand identity by Raúl Mermans blending Roman legacy, Mediterranean light, and poetic art direction into a premium visual world.',
+      'Explore Remoria, a brand system case study by Raúl Mermans showing how identity logic, restraint, and creative infrastructure can scale a premium world.',
   },
   alternates: {
     canonical: `${baseUrl}/case-studies/remoria`,

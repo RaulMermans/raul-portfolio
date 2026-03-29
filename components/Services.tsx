@@ -6,35 +6,35 @@ import Image from 'next/image'
 const services = [
   {
     number: '00-1',
-    title: 'AI Agents',
-    titleShort: 'AI Agents',
-    items: ['Custom AI Solutions', 'Automation Workflows', 'Prompt Engineering', 'AI Integration'],
-    description: 'Intelligent automation systems that streamline workflows and unlock new possibilities. From custom GPT agents to full automation pipelines, I help brands reduce repetitive tasks by up to 80% while maintaining creative quality.',
+    title: 'AI Systems',
+    titleShort: 'AI Systems',
+    items: ['Agentic Workflows', 'AI Orchestration', 'Human Review Loops', 'Deployment Logic'],
+    description: 'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution. Agents, orchestration, and decision flows built for real teams, not demo theatre.',
     image: '/images/services/Services_AI_Agents.webp',
   },
   {
     number: '00-2',
-    title: 'Web Development',
-    titleShort: 'Web Dev',
-    items: ['Custom Web Design', 'Frontend Development', 'Performance Optimization', 'CMS Integration'],
-    description: 'Modern, performant web experiences crafted with precision. Every site is built with conversion in mind: fast load times, intuitive navigation, and seamless user journeys that turn visitors into clients.',
+    title: 'Automation Infrastructure',
+    titleShort: 'Automation',
+    items: ['CRM Automations', 'Content Pipelines', 'Lead Routing', 'Tool Integration'],
+    description: 'Automation infrastructure for marketing, CRM, content, and internal operations. I connect tools, triggers, and data so execution scales with more visibility, consistency, and control.',
     image: '/images/services/Services_Web_Development.webp',
   },
   {
     number: '00-3',
-    title: 'Photography',
-    titleShort: 'Photography',
-    items: ['Brand Photo', 'Visual Story', 'Editorial Shoot', 'Product Photo'],
-    description: 'Visual narratives that capture the essence of brands and stories. Helping brands convert visual interest into lasting engagement through authentic imagery that connects with audiences on an emotional level.',
-    image: '/images/services/Services_Photography.webp',
+    title: 'AI Prototypes & Tools',
+    titleShort: 'Prototypes',
+    items: ['Internal Tools', 'Operator Interfaces', 'Fast MVPs', 'Workflow Testing'],
+    description: 'AI-powered prototypes and working tools that make a new operating model tangible fast. Useful when you need to test a workflow, validate a product direction, or ship a smarter internal surface.',
+    image: '/images/services/Services_Creative_Direction.webp',
   },
   {
     number: '00-4',
-    title: 'Creative Direction',
-    titleShort: 'Creative Dir',
-    items: ['Brand Strategy', 'Visual Identity', 'Art Direction', 'Campaign Concepts'],
-    description: 'Strategic creative vision from concept to execution. I guide brands through the creative process, ensuring every touchpoint, from logo to campaign, tells a cohesive story that resonates with your target audience.',
-    image: '/images/services/Services_Creative_Direction.webp',
+    title: 'Brand & Creative Systems',
+    titleShort: 'Brand Systems',
+    items: ['Content Systems', 'Taste Guardrails', 'Creative Ops', 'Brand Logic'],
+    description: 'Creative judgment still matters once AI enters the stack. I build brand and content systems that keep outputs coherent, on-brand, and commercially usable across fast-moving execution.',
+    image: '/images/services/Services_Photography.webp',
   },
 ]
 
@@ -43,7 +43,7 @@ export default function Services() {
     <section id="services" className="services" aria-labelledby="services-title">
       <div className="services__header">
         <h2 id="services-title" className="services__title">
-          Services
+          What I Build
         </h2>
         <div className="services__line"></div>
       </div>
@@ -118,4 +118,3 @@ export default function Services() {
     </section>
   )
 }
-

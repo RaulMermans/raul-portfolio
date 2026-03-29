@@ -48,8 +48,8 @@ export default function Hero() {
       <div className={styles.content} data-mobile-audit="hero-content">
         <p className={`${styles.greeting} reveal`}>{greeting}</p>
 
-        {/* Name display - visual treatment. Not aria-hidden so screen readers announce it.
-            The H1 provides the full accessible label combining name + services. */}
+        {/* Name display - visual treatment. Hidden from assistive tech because
+            the H1 carries the full accessible label combining name + positioning. */}
         <p className={styles.name} aria-hidden="true">
           <span className={styles.line}>
             {nameLetters.map((letter, i) => (
@@ -68,20 +68,25 @@ export default function Hero() {
         </p>
 
         {/* SEO-optimized H1 — accessible label includes the name so screen readers
-            get "Raúl Mermans — Photography · Brand Identity · AI-Powered Creatives" */}
+            get "Raúl Mermans — AI Systems · Agents · Automation" */}
         <h1
           id="hero-title"
           className={`${styles.services} reveal reveal-delay-1`}
-          aria-label="Raúl Mermans — Photography · Brand Identity · AI-Powered Creatives"
+          aria-label="Raúl Mermans — AI Systems · Agents · Automation"
         >
-          <span className={styles.service} aria-hidden="true">Photography</span>
+          <span className={styles.service} aria-hidden="true">AI Systems</span>
           <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">Brand Identity</span>
+          <span className={styles.service} aria-hidden="true">Agents</span>
           <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">AI-Powered Creatives</span>
+          <span className={styles.service} aria-hidden="true">Automation</span>
         </h1>
 
-        <div className={`${styles.ctaGroup} reveal reveal-delay-2`}>
+        <p className={`${styles.summary} reveal reveal-delay-2`}>
+          Designing AI systems for modern brands. I build agentic workflows, automation
+          infrastructure, and AI-powered tools across marketing, CRM, content, and creative execution.
+        </p>
+
+        <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
               href="/#work"
@@ -98,7 +103,7 @@ export default function Hero() {
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >
-              <span>Get in Touch</span>
+              <span>Discuss a Project</span>
             </Link>
           </MagneticButton>
         </div>

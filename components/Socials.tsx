@@ -60,7 +60,7 @@ export default function Socials() {
         <div className="socials__divider reveal reveal-delay-3"></div>
         
         <div className="ai-products reveal reveal-delay-3">
-          <p className="label ai-products__label">AI Products</p>
+          <p className="label ai-products__label">Selected Links</p>
           <ul className="ai-products__links">
             <li>
               <a 
@@ -68,9 +68,9 @@ export default function Socials() {
                 className="btn" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                aria-label="View Image Prompts on PromptBase (opens in new tab)"
+                aria-label="View PromptBase profile (opens in new tab)"
               >
-                Image Prompts
+                PromptBase Profile
               </a>
             </li>
             <li>
@@ -92,4 +92,3 @@ export default function Socials() {
     </section>
   )
 }
-

@@ -5,11 +5,11 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 export const metadata: Metadata = {
   title: 'Visuals',
   description:
-    'Browse visual art by Raúl Mermans, from AI-generated artwork and album covers to digital concepts built for music, culture, and striking online releases.',
+    'Browse AI visuals, album covers, and image experiments by Raúl Mermans, part of a broader practice in AI systems and creative infrastructure.',
   openGraph: {
     title: 'Visuals — Raúl Mermans',
     description:
-      'Browse visual art by Raúl Mermans, from AI-generated artwork and album covers to digital concepts built for music, culture, and striking online releases.',
+      'Browse AI visuals, album covers, and image experiments by Raúl Mermans, part of a broader practice in AI systems and creative infrastructure.',
     url: `${baseUrl}/visuals`,
     type: 'website',
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Visuals — Raúl Mermans',
     description:
-      'Browse visual art by Raúl Mermans, from AI-generated artwork and album covers to digital concepts built for music, culture, and striking online releases.',
+      'Browse AI visuals, album covers, and image experiments by Raúl Mermans, part of a broader practice in AI systems and creative infrastructure.',
   },
   alternates: {
     canonical: `${baseUrl}/visuals`,

@@ -5,11 +5,11 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Meet Raúl Mermans, a creative director in Spain building brand systems, visual storytelling, and automation for cultural brands that need strategy and execution.',
+    'About Raúl Mermans, an applied AI systems builder designing agents, automation, and creative infrastructure for modern brands and teams.',
   openGraph: {
     title: 'About — Raúl Mermans',
     description:
-      'Meet Raúl Mermans, a creative director in Spain building brand systems, visual storytelling, and automation for cultural brands that need strategy and execution.',
+      'About Raúl Mermans, an applied AI systems builder designing agents, automation, and creative infrastructure for modern brands and teams.',
     url: `${baseUrl}/about`,
     type: 'profile',
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'About — Raúl Mermans',
     description:
-      'Meet Raúl Mermans, a creative director in Spain building brand systems, visual storytelling, and automation for cultural brands that need strategy and execution.',
+      'About Raúl Mermans, an applied AI systems builder designing agents, automation, and creative infrastructure for modern brands and teams.',
   },
   alternates: {
     canonical: `${baseUrl}/about`,

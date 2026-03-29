@@ -9,21 +9,21 @@ import { apps } from '@/data/apps'
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
 
 export const metadata: Metadata = {
-  title: 'Apps & Digital Products',
+  title: 'Apps & Prototypes',
   description:
-    'Discover app concepts and digital products by Raúl Mermans, from iPhone experiences to launch-ready interfaces shaped with calm UX and strong visual systems.',
+    'Explore apps, AI tools, and product prototypes by Raúl Mermans, built to test workflows, ideas, and operating models with calm, product-minded execution.',
   openGraph: {
-    title: 'Apps & Digital Products — Raúl Mermans',
+    title: 'Apps & Prototypes — Raúl Mermans',
     description:
-      'Discover app concepts and digital products by Raúl Mermans, from iPhone experiences to launch-ready interfaces shaped with calm UX and strong visual systems.',
+      'Explore apps, AI tools, and product prototypes by Raúl Mermans, built to test workflows, ideas, and operating models with calm, product-minded execution.',
     url: `${baseUrl}/apps`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Apps & Digital Products — Raúl Mermans',
+    title: 'Apps & Prototypes — Raúl Mermans',
     description:
-      'Discover app concepts and digital products by Raúl Mermans, from iPhone experiences to launch-ready interfaces shaped with calm UX and strong visual systems.',
+      'Explore apps, AI tools, and product prototypes by Raúl Mermans, built to test workflows, ideas, and operating models with calm, product-minded execution.',
   },
   alternates: {
     canonical: `${baseUrl}/apps`,
@@ -66,7 +66,7 @@ export default function AppsPage() {
               textAlign: 'center',
             }}
           >
-            My Apps
+            Apps & Prototypes
           </h1>
 
           {/* Horizontal icon row — centered */}

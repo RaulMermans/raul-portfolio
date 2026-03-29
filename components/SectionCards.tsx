@@ -21,10 +21,10 @@ const sections = [
   {
     id: 'case-studies',
     index: '01',
-    eyebrow: 'Brand strategy and campaign thinking',
+    eyebrow: 'AI systems, automation, and brand structure',
     title: 'Case Studies',
     description:
-      'Brand campaigns, creative direction, and the strategic moves behind them. Each study shows how an idea became something measurable.',
+      'Case studies spanning agentic workflows, AI systems, and the brand logic that makes execution feel coherent instead of improvised.',
     href: '/case-studies',
     image: '/images/sections/case-studies-bg.webp',
     accent: '#b94a53',
@@ -32,10 +32,10 @@ const sections = [
   {
     id: 'apps',
     index: '02',
-    eyebrow: 'AI-built tools and fast prototypes',
+    eyebrow: 'Prototypes, internal tools, and interface thinking',
     title: 'Apps',
     description:
-      'Vibe-coded tools and launch-ready interfaces built quickly, without cutting taste, clarity, or product logic out of the loop.',
+      'Apps, tools, and product surfaces that show how I think about workflow logic, calm UX, and applied execution.',
     href: '/apps',
     image: '/images/sections/apps-bg-v2.webp',
     accent: '#3f9f8b',
@@ -43,10 +43,10 @@ const sections = [
   {
     id: 'photography',
     index: '03',
-    eyebrow: 'Street, architecture, urban rhythm',
+    eyebrow: 'Supporting craft: composition, restraint, image judgment',
     title: 'Photography',
     description:
-      'Street frames and architectural moments captured with a quieter eye for atmosphere, tension, and the pulse of a place.',
+      'Photography stays in the practice as a way of sharpening taste, direction, and the visual judgment behind stronger systems.',
     href: '/photography',
     image: '/images/sections/photography-bg.webp',
     accent: '#9c7847',
@@ -54,10 +54,10 @@ const sections = [
   {
     id: 'visuals',
     index: '04',
-    eyebrow: 'AI image-making and visual experiments',
+    eyebrow: 'AI image systems and visual experiments',
     title: 'Visuals',
     description:
-      'AI art, album covers, and digital image work shaped into assets with a sharper point of view and a cleaner finish.',
+      'AI visuals, album covers, and image studies shaped as supporting craft for brands, concepts, and fast-moving creative execution.',
     href: '/visuals',
     image: '/images/sections/visuals-bg.webp',
     accent: '#d86d43',

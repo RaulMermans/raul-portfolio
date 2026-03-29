@@ -4,11 +4,11 @@ import { useState, FormEvent } from 'react'
 import { trackFormSubmit } from '@/lib/gtag'
 
 const PROJECT_TYPES = [
-  { value: '', label: 'Select project type' },
-  { value: 'photography', label: 'Photography' },
-  { value: 'brand-identity', label: 'Brand Identity' },
-  { value: 'ai-creatives', label: 'AI Creatives' },
-  { value: 'digital-systems', label: 'Digital Systems' },
+  { value: '', label: 'Select focus area' },
+  { value: 'ai-systems', label: 'AI Systems / Agentic Workflows' },
+  { value: 'automation-infrastructure', label: 'Automation Infrastructure' },
+  { value: 'ai-prototype', label: 'AI Prototype / Internal Tool' },
+  { value: 'brand-creative-systems', label: 'Brand / Creative System' },
   { value: 'other', label: 'Other' },
 ]
 
@@ -154,7 +154,7 @@ export default function ContactForm() {
 
       <div className="contact-form__field">
         <label htmlFor="contact-project-type" className="contact-form__label">
-          <span>Project Type</span>
+          <span>Project Focus</span>
         </label>
         <select
           id="contact-project-type"
@@ -225,7 +225,7 @@ export default function ContactForm() {
           rows={6}
           maxLength={2000}
           className="contact-form__textarea"
-          placeholder="Tell me about your project and what you're looking to achieve..."
+          placeholder="Tell me what you're building, where execution is breaking down, and how AI, automation, or a better interface could help..."
         />
       </div>
 
@@ -250,7 +250,7 @@ export default function ContactForm() {
       )}
 
       <p className="contact-form__response-note">
-        I typically respond within 24 hours.
+        I usually reply within 24 hours.
       </p>
 
       <button
@@ -265,4 +265,3 @@ export default function ContactForm() {
     </form>
   )
 }
-

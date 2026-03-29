@@ -192,14 +192,14 @@ export default function Header() {
                 transition={{ delay: 0.28, duration: 0.32 }}
               >
                 <p className={styles.menuMeta}>
-                  Brand systems, photography, and AI-powered creative work built to feel calm and precise on any screen.
+                  AI systems, automation, and creative infrastructure built with product sense and visual restraint.
                 </p>
                 <Link
                   href="/#contact"
                   className={styles.menuCta}
                   onClick={(e) => handleNavClick(e, '#contact')}
                 >
-                  Start a Project
+                  Discuss a Project
                 </Link>
               </motion.div>
             </motion.div>

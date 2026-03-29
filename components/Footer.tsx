@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <p className="footer__logo">Raúl Mermans</p>
-            <p className="footer__tagline">Visual Storyteller crafting photography, brand identity, and AI-powered creatives from Spain.</p>
+            <p className="footer__tagline">Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands.</p>
             <a 
               href="mailto:raulmermans@gmail.com" 
               className="footer__email"
@@ -45,16 +45,16 @@ export default function Footer() {
             <h4>Services</h4>
             <ul>
               <li>
-                <Link href="/#services">AI Agents</Link>
+                <Link href="/#services">AI Systems</Link>
               </li>
               <li>
-                <Link href="/#services">Web Development</Link>
+                <Link href="/#services">Automation</Link>
               </li>
               <li>
-                <Link href="/#services">Photography</Link>
+                <Link href="/#services">Prototypes</Link>
               </li>
               <li>
-                <Link href="/#services">Creative Direction</Link>
+                <Link href="/#services">Brand Systems</Link>
               </li>
             </ul>
           </div>
@@ -70,9 +70,9 @@ export default function Footer() {
                   href="https://promptbase.com/profile/mangerm" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="View AI Prompts on PromptBase (opens in new tab)"
+                  aria-label="View PromptBase profile (opens in new tab)"
                 >
-                  AI Prompts
+                  PromptBase Profile
                 </a>
               </li>
               <li>
@@ -101,7 +101,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__vibe">
-          <p className="footer__vibe-text">This website was fully vibe coded</p>
+          <p className="footer__vibe-text">Designed and built by Raúl Mermans.</p>
         </div>
       </div>
     </footer>
