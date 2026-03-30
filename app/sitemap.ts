@@ -1,55 +1,55 @@
 import { MetadataRoute } from 'next'
 import { apps } from '@/data/apps'
-import { absoluteUrl } from '@/lib/metadata'
+import { absoluteRouteUrl } from '@/lib/metadata'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: absoluteUrl('/'),
+      url: absoluteRouteUrl('/'),
       lastModified,
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: absoluteUrl('/about'),
+      url: absoluteRouteUrl('/about'),
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: absoluteUrl('/case-studies'),
+      url: absoluteRouteUrl('/case-studies'),
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: absoluteUrl('/apps'),
+      url: absoluteRouteUrl('/apps'),
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.88,
     },
     {
-      url: absoluteUrl('/photography'),
+      url: absoluteRouteUrl('/photography'),
       lastModified,
       changeFrequency: 'weekly',
       priority: 0.75,
     },
     {
-      url: absoluteUrl('/visuals'),
+      url: absoluteRouteUrl('/visuals'),
       lastModified,
       changeFrequency: 'weekly',
       priority: 0.75,
     },
     {
-      url: absoluteUrl('/case-studies/ai-sports'),
+      url: absoluteRouteUrl('/case-studies/ai-sports'),
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: absoluteUrl('/case-studies/remoria'),
+      url: absoluteRouteUrl('/case-studies/remoria'),
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -57,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const appRoutes: MetadataRoute.Sitemap = apps.map((app) => ({
-    url: absoluteUrl(app.href),
+    url: absoluteRouteUrl(app.href),
     lastModified,
     changeFrequency: 'monthly',
     priority: app.slug === 'overflow' ? 0.82 : 0.72,

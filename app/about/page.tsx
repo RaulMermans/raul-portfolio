@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -45,7 +46,11 @@ export default function AboutPage() {
                 <p>
                   I came into this work through <span className="highlight">business</span>, then taught
                   myself how to build what teams actually need when strategy has to become execution.
-                  Today I design <span className="highlight">AI systems</span>,{' '}
+                  Today I design{' '}
+                  <Link href="/case-studies" className="highlight">
+                    AI systems
+                  </Link>
+                  ,{' '}
                   <span className="highlight">agentic workflows</span>, and{' '}
                   <span className="highlight">automation infrastructure</span> for marketing, CRM,
                   content, and creative operations.
@@ -58,7 +63,10 @@ export default function AboutPage() {
                   <span className="highlight">workflow logic</span>,{' '}
                   <span className="highlight">orchestration</span>,{' '}
                   <span className="highlight">internal tools</span>, and{' '}
-                  <span className="highlight">product-minded implementation</span>.
+                  <Link href="/apps/overflow" className="highlight">
+                    product-minded implementation
+                  </Link>
+                  .
                 </p>
 
                 <p>

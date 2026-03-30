@@ -9,6 +9,8 @@
 
 ### Pending
 - [ ] Adaptar el portfolio a `output: 'export'` para poder desplegarlo como sitio estatico en IONOS Hosting Plus
+- [ ] Approve and implement canonical host redirects so `http://raulmermans.com`, `http://www.raulmermans.com`, and `https://raulmermans.com` consolidate to `https://www.raulmermans.com`
+- [ ] Review legacy `/projects/*` URLs and approve the redirect map versus leaving unmatched URLs as proper 404 cleanup
 
 ## Backlog
 
@@ -30,6 +32,7 @@
 ## Completed
 
 ### March 2026
+- [x] Implement safe SEO fixes for titles, heading hierarchy, structured data scoping, sitemap normalization, and custom 404 handling
 - [x] Add a repo-level UI UX Lead agent workflow that routes design work through the highest-level skill stack
 - [x] Reframe the Overflow landing page into a lighter progressive-reveal product story
 - [x] Redesign the Overflow app landing page into a clearer product case study

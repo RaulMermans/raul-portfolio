@@ -366,15 +366,16 @@ export default function PhotographyPage() {
 
       {/* Masonry Gallery */}
       <main id="main-content" role="main" className="gallery" aria-label="Photography gallery">
+        <h1 className="visually-hidden">Photography</h1>
         {/* Mobile category header */}
         <div className="photography-header-mobile">
           <div className="photography-header-mobile__inner">
             <div>
               <p className="photography-header-mobile__eyebrow">Photography</p>
               <div className="photography-header-mobile__heading">
-                <h1 className="photography-category-title-mobile">
+                <p className="photography-category-title-mobile">
                   {categoriesState[activeCategory]?.name || 'Landscape'}
-                </h1>
+                </p>
                 <p className="photography-category-count-mobile" aria-live="polite">
                   {activeCount} photos
                 </p>
@@ -445,9 +446,9 @@ export default function PhotographyPage() {
 
       {/* Category Overlay */}
       <div className="category-overlay">
-        <h1 className="category-overlay__title">
+        <p className="category-overlay__title" aria-hidden="true">
           <span id="category-name">{categoriesState[activeCategory]?.name || 'Landscape'}</span>
-        </h1>
+        </p>
       </div>
 
       {/* Navigation Bar */}

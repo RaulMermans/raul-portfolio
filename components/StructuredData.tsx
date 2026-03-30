@@ -3,10 +3,18 @@
  * Renders directly in HTML for better SEO crawler visibility
  */
 
-import { absoluteUrl, siteConfig } from '@/lib/metadata'
+import { absoluteRouteUrl, absoluteUrl, siteConfig } from '@/lib/metadata'
 
 interface StructuredDataProps {
-  type: 'Person' | 'WebSite' | 'Portfolio' | 'Article' | 'CreativeWork' | 'Service'
+  type:
+    | 'Person'
+    | 'WebSite'
+    | 'Portfolio'
+    | 'Article'
+    | 'CreativeWork'
+    | 'Service'
+    | 'SoftwareApplication'
+    | 'CollectionPage'
   data?: Record<string, unknown>
 }
 
@@ -53,7 +61,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'WebSite',
       '@id': `${siteConfig.url}/#website`,
       name: `${siteConfig.name} Portfolio`,
-      url: siteConfig.url,
+      url: absoluteRouteUrl('/'),
       description: siteConfig.defaultDescription,
       inLanguage: 'en',
       author: {
@@ -167,6 +175,40 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@context': 'https://schema.org',
       '@type': 'CreativeWork',
       creator: {
+        '@type': 'Person',
+        '@id': `${siteConfig.url}/#person`,
+      },
+      ...data,
+    }
+  } else if (type === 'SoftwareApplication') {
+    jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      '@id': `${siteConfig.url}/#software-application`,
+      name: 'Overflow',
+      applicationCategory: 'HealthApplication',
+      operatingSystem: 'iOS',
+      url: absoluteRouteUrl('/apps/overflow'),
+      author: {
+        '@type': 'Person',
+        '@id': `${siteConfig.url}/#person`,
+      },
+      creator: {
+        '@type': 'Person',
+        '@id': `${siteConfig.url}/#person`,
+      },
+      ...data,
+    }
+  } else if (type === 'CollectionPage') {
+    jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${siteConfig.url}/#collection-page`,
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': `${siteConfig.url}/#website`,
+      },
+      about: {
         '@type': 'Person',
         '@id': `${siteConfig.url}/#person`,
       },

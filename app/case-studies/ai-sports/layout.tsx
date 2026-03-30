@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { buildPageMetadata, siteConfig } from '@/lib/metadata'
+import StructuredData from '@/components/StructuredData'
+import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'AI Sports Campaign Case Study',
@@ -12,6 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
   },
   type: 'article',
   keywords: ['AI campaign case study', 'n8n automation', 'AI image system'],
+  absoluteTitle: true,
 })
 
 function BreadcrumbSchema() {
@@ -56,6 +58,21 @@ export default function AISportsCampaignLayout({
   return (
     <>
       <BreadcrumbSchema />
+      <StructuredData
+        type="Article"
+        data={{
+          '@id': `${siteConfig.url}/#ai-sports-case-study`,
+          headline: 'AI Sports Campaign Case Study',
+          name: 'AI Sports Campaign',
+          description:
+            'AI sports campaign case study by Raúl Mermans, showing an n8n-driven image system for consistent casting, styling, and campaign direction.',
+          url: absoluteRouteUrl('/case-studies/ai-sports'),
+          mainEntityOfPage: absoluteRouteUrl('/case-studies/ai-sports'),
+          image: absoluteUrl('/images/case-studies/ai-sports/hero/hero.webp'),
+          articleSection: 'Case Studies',
+          keywords: ['AI campaign case study', 'n8n automation', 'AI image system'],
+        }}
+      />
       {children}
     </>
   )

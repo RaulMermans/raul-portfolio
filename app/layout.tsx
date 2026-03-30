@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
-import { absoluteUrl, defaultKeywords, siteConfig } from '@/lib/metadata'
+import { absoluteRouteUrl, absoluteUrl, defaultKeywords, siteConfig } from '@/lib/metadata'
 // Critical bots - loaded immediately (error handling, security, env validation)
 import '@/lib/error-bot'
 import '@/lib/security-bot'
@@ -69,12 +69,12 @@ export const metadata: Metadata = {
   publisher: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
   alternates: {
-    canonical: siteConfig.url,
+    canonical: absoluteRouteUrl('/'),
   },
   openGraph: {
     type: 'website',
     locale: siteConfig.locale,
-    url: siteConfig.url,
+    url: absoluteRouteUrl('/'),
     title: siteConfig.defaultTitle,
     description: siteConfig.defaultDescription,
     siteName: siteConfig.siteName,
@@ -129,7 +129,6 @@ export default function RootLayout({
         <div className="grain" aria-hidden="true"></div>
         <StructuredData type="Person" />
         <StructuredData type="WebSite" />
-        <StructuredData type="Service" />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>

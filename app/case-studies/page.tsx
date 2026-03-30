@@ -4,7 +4,47 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import { caseStudies } from '@/data/case-studies'
+import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
+
+const caseStudiesCollectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${siteConfig.url}/#case-studies-page`,
+  name: 'Case Studies',
+  description:
+    'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
+  url: absoluteRouteUrl('/case-studies'),
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${siteConfig.url}/#website`,
+  },
+  about: {
+    '@type': 'Person',
+    '@id': `${siteConfig.url}/#person`,
+  },
+}
+
+const caseStudiesBreadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: absoluteRouteUrl('/'),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Case Studies',
+      item: absoluteRouteUrl('/case-studies'),
+    },
+  ],
+}
 
 export default function CaseStudiesPage() {
   const router = useRouter()
@@ -40,7 +80,63 @@ export default function CaseStudiesPage() {
 
   return (
     <>
+      <Header />
       <main id="main-content" role="main" className="case-studies-scroll">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesCollectionSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesBreadcrumbSchema) }}
+        />
+        <section
+          aria-labelledby="case-studies-heading"
+          style={{
+            padding: 'calc(var(--header-height) + 4rem) clamp(1.5rem, 4vw, 4rem) 4rem',
+            background: 'var(--cream)',
+            color: 'var(--ink)',
+          }}
+        >
+          <div style={{ maxWidth: '54rem', margin: '0 auto' }}>
+            <p
+              style={{
+                margin: 0,
+                fontFamily: 'var(--font-mono), "Space Mono", monospace',
+                fontSize: '0.72rem',
+                letterSpacing: '0.28em',
+                textTransform: 'uppercase',
+                color: 'var(--ink-faint)',
+              }}
+            >
+              AI Systems · Automation · Creative Infrastructure
+            </p>
+            <h1
+              id="case-studies-heading"
+              style={{
+                margin: '1rem 0 1.25rem',
+                fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif',
+                fontSize: 'clamp(3.4rem, 8vw, 6.4rem)',
+                lineHeight: 0.9,
+                textTransform: 'uppercase',
+              }}
+            >
+              Case Studies
+            </h1>
+            <p
+              style={{
+                margin: 0,
+                maxWidth: '44rem',
+                fontSize: '1.08rem',
+                lineHeight: 1.8,
+                color: 'var(--ink-soft)',
+              }}
+            >
+              Selected work showing how I design AI systems, automation workflows, and brand logic that help
+              modern teams execute with more consistency, control, and commercial clarity.
+            </p>
+          </div>
+        </section>
         {caseStudies.map((study, index) => (
           <section
             key={study.id}
@@ -88,6 +184,7 @@ export default function CaseStudiesPage() {
           </section>
         ))}
       </main>
+      <Footer />
     </>
   )
 }

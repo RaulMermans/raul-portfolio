@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { buildPageMetadata, siteConfig } from '@/lib/metadata'
+import StructuredData from '@/components/StructuredData'
+import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Remoria Case Study',
@@ -12,6 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
   },
   type: 'article',
   keywords: ['brand system case study', 'creative direction', 'Remoria'],
+  absoluteTitle: true,
 })
 
 function BreadcrumbSchema() {
@@ -56,6 +58,21 @@ export default function RemoriaLayout({
   return (
     <>
       <BreadcrumbSchema />
+      <StructuredData
+        type="Article"
+        data={{
+          '@id': `${siteConfig.url}/#remoria-case-study`,
+          headline: 'Remoria Case Study',
+          name: 'Remoria',
+          description:
+            'Remoria case study by Raúl Mermans, exploring how brand systems, visual restraint, and creative infrastructure scale a premium world.',
+          url: absoluteRouteUrl('/case-studies/remoria'),
+          mainEntityOfPage: absoluteRouteUrl('/case-studies/remoria'),
+          image: absoluteUrl('/images/case-studies/remoria/hero/hero.webp'),
+          articleSection: 'Case Studies',
+          keywords: ['brand system case study', 'creative direction', 'Remoria'],
+        }}
+      />
       {children}
     </>
   )

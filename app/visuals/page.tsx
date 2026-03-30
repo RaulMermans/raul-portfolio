@@ -469,131 +469,132 @@ export default function VisualsPage() {
       <Footer />
 
       {/* Exhibition View */}
-      <div
-        ref={dialogRef}
-        className={`${styles.exhibition} ${isExhibitionOpen ? styles.exhibitionActive : ''}`}
-        id="exhibition"
-        role="dialog"
-        aria-modal="true"
-        aria-hidden={!isExhibitionOpen}
-        aria-labelledby="exhibition-title"
-      >
-        <button
-          type="button"
-          className={styles.exhibitionClose}
-          onClick={() => closeExhibition()}
-          aria-label="Close exhibition"
+      {isExhibitionOpen ? (
+        <div
+          ref={dialogRef}
+          className={`${styles.exhibition} ${styles.exhibitionActive}`}
+          id="exhibition"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="exhibition-title"
         >
-          ✕
-        </button>
+          <button
+            type="button"
+            className={styles.exhibitionClose}
+            onClick={() => closeExhibition()}
+            aria-label="Close exhibition"
+          >
+            ✕
+          </button>
 
-        <div className={styles.exhibitionImagePanel}>
-          <div className={styles.exhibitionImageWrap}>
-            {currentWork && (
-              <>
-                <Image
-                  key={currentWork.catalog}
-                  src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
-                  alt={currentWork.alt}
-                  width={1400}
-                  height={1400}
-                  className={styles.exhibitionImage}
-                  quality={90}
-                  priority
-                  style={{ objectFit: 'contain' }}
-                  onError={() => {
-                    setImageErrors(prev => new Set(prev).add(currentWork.catalog))
-                  }}
-                />
-                <span className={styles.exhibitionCounter}>
-                  {String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}
-                </span>
-              </>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.exhibitionDetails}>
-          <div className={styles.exhibitionScroll}>
-            <div className={styles.exhibitionContent}>
+          <div className={styles.exhibitionImagePanel}>
+            <div className={styles.exhibitionImageWrap}>
               {currentWork && (
                 <>
-                  <div className={styles.exhibitionCatalog}>
-                    <span>{currentWork.catalog}</span>
-                  </div>
-
-                  <h2 id="exhibition-title" className={styles.exhibitionTitle}>{currentWork.title}</h2>
-                  <p className={styles.exhibitionSubtitle}>{currentWork.year} — {currentWork.type}</p>
-                  
-                  <div className={styles.exhibitionDivider}></div>
-
-                  <div className={styles.exhibitionMeta}>
-                    <div className={styles.exhibitionField}>
-                      <span className={styles.exhibitionLabel}>Medium</span>
-                      <span className={styles.exhibitionValue}>{currentWork.medium}</span>
-                    </div>
-                    <div className={styles.exhibitionField}>
-                      <span className={styles.exhibitionLabel}>Dimensions</span>
-                      <span className={styles.exhibitionValue}>{currentWork.dimensions}</span>
-                    </div>
-                    <div className={styles.exhibitionField}>
-                      <span className={styles.exhibitionLabel}>Support</span>
-                      <span className={styles.exhibitionValue}>{currentWork.support}</span>
-                    </div>
-                    <div className={styles.exhibitionField}>
-                      <span className={styles.exhibitionLabel}>Edition</span>
-                      <span className={styles.exhibitionValue}>{currentWork.edition}</span>
-                    </div>
-                    <div className={`${styles.exhibitionField} ${styles.exhibitionFieldFull}`}>
-                      <span className={styles.exhibitionLabel}>Series</span>
-                      <span className={styles.exhibitionValue}>{currentWork.series}</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.exhibitionNote}>
-                    <p className={styles.exhibitionNoteLabel}>Curatorial Note</p>
-                    <p className={styles.exhibitionNoteText}>{currentWork.note}</p>
-                  </div>
+                  <Image
+                    key={currentWork.catalog}
+                    src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
+                    alt={currentWork.alt}
+                    width={1400}
+                    height={1400}
+                    className={styles.exhibitionImage}
+                    quality={90}
+                    priority
+                    style={{ objectFit: 'contain' }}
+                    onError={() => {
+                      setImageErrors(prev => new Set(prev).add(currentWork.catalog))
+                    }}
+                  />
+                  <span className={styles.exhibitionCounter}>
+                    {String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}
+                  </span>
                 </>
               )}
             </div>
           </div>
 
-          <nav className={styles.exhibitionNav}>
-            <button
-              type="button"
-              className={styles.exhibitionNavButton}
-              onClick={() => {
-                if (currentIndex > 0) {
-                  setCurrentIndex(prev => prev - 1)
-                }
-              }}
-              disabled={currentIndex === 0}
-            >
-              <span><span aria-hidden="true">←</span> Previous</span>
-            </button>
-            <button
-              type="button"
-              className={styles.exhibitionNavButton}
-              onClick={() => closeExhibition()}
-            >
-              <span>Back to Gallery</span>
-            </button>
-            <button
-              type="button"
-              className={styles.exhibitionNavButton}
-              onClick={() => {
-                if (currentIndex < works.length - 1) {
-                  setCurrentIndex(prev => prev + 1)
-                }
-              }}
-              disabled={currentIndex === works.length - 1}
-            >
-              <span>Next <span aria-hidden="true">→</span></span>
-            </button>
-          </nav>
+          <div className={styles.exhibitionDetails}>
+            <div className={styles.exhibitionScroll}>
+              <div className={styles.exhibitionContent}>
+                {currentWork && (
+                  <>
+                    <div className={styles.exhibitionCatalog}>
+                      <span>{currentWork.catalog}</span>
+                    </div>
+
+                    <h2 id="exhibition-title" className={styles.exhibitionTitle}>{currentWork.title}</h2>
+                    <p className={styles.exhibitionSubtitle}>{currentWork.year} — {currentWork.type}</p>
+                    
+                    <div className={styles.exhibitionDivider}></div>
+
+                    <div className={styles.exhibitionMeta}>
+                      <div className={styles.exhibitionField}>
+                        <span className={styles.exhibitionLabel}>Medium</span>
+                        <span className={styles.exhibitionValue}>{currentWork.medium}</span>
+                      </div>
+                      <div className={styles.exhibitionField}>
+                        <span className={styles.exhibitionLabel}>Dimensions</span>
+                        <span className={styles.exhibitionValue}>{currentWork.dimensions}</span>
+                      </div>
+                      <div className={styles.exhibitionField}>
+                        <span className={styles.exhibitionLabel}>Support</span>
+                        <span className={styles.exhibitionValue}>{currentWork.support}</span>
+                      </div>
+                      <div className={styles.exhibitionField}>
+                        <span className={styles.exhibitionLabel}>Edition</span>
+                        <span className={styles.exhibitionValue}>{currentWork.edition}</span>
+                      </div>
+                      <div className={`${styles.exhibitionField} ${styles.exhibitionFieldFull}`}>
+                        <span className={styles.exhibitionLabel}>Series</span>
+                        <span className={styles.exhibitionValue}>{currentWork.series}</span>
+                      </div>
+                    </div>
+
+                    <div className={styles.exhibitionNote}>
+                      <p className={styles.exhibitionNoteLabel}>Curatorial Note</p>
+                      <p className={styles.exhibitionNoteText}>{currentWork.note}</p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <nav className={styles.exhibitionNav}>
+              <button
+                type="button"
+                className={styles.exhibitionNavButton}
+                onClick={() => {
+                  if (currentIndex > 0) {
+                    setCurrentIndex(prev => prev - 1)
+                  }
+                }}
+                disabled={currentIndex === 0}
+              >
+                <span><span aria-hidden="true">←</span> Previous</span>
+              </button>
+              <button
+                type="button"
+                className={styles.exhibitionNavButton}
+                onClick={() => closeExhibition()}
+              >
+                <span>Back to Gallery</span>
+              </button>
+              <button
+                type="button"
+                className={styles.exhibitionNavButton}
+                onClick={() => {
+                  if (currentIndex < works.length - 1) {
+                    setCurrentIndex(prev => prev + 1)
+                  }
+                }}
+                disabled={currentIndex === works.length - 1}
+              >
+                <span>Next <span aria-hidden="true">→</span></span>
+              </button>
+            </nav>
+          </div>
         </div>
-      </div>
+      ) : null}
     </>
   )
 }

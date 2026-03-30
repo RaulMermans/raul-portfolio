@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
+import StructuredData from '@/components/StructuredData'
 import OverflowLanding from './OverflowLanding'
-import { buildPageMetadata } from '@/lib/metadata'
+import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Overflow App Case Study',
@@ -15,5 +16,24 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 export default function OverflowPage() {
-  return <OverflowLanding />
+  return (
+    <>
+      <StructuredData
+        type="SoftwareApplication"
+        data={{
+          '@id': `${siteConfig.url}/#overflow-app`,
+          name: 'Overflow',
+          description:
+            'Overflow is a calm performance journal for iPhone focused on routines, scheduling, fast logging, and meaningful progress.',
+          url: absoluteRouteUrl('/apps/overflow'),
+          image: absoluteUrl('/images/apps/overflow/Today-tab.webp'),
+          operatingSystem: 'iOS',
+          applicationCategory: 'HealthApplication',
+          softwareVersion: 'Private beta',
+          featureList: ['Workout logging', 'Routine planning', 'Scheduling', 'Progress tracking'],
+        }}
+      />
+      <OverflowLanding />
+    </>
+  )
 }

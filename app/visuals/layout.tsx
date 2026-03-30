@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { buildPageMetadata } from '@/lib/metadata'
+import StructuredData from '@/components/StructuredData'
+import { absoluteRouteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Visuals',
@@ -18,5 +19,19 @@ export default function VisualsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <>
+      <StructuredData
+        type="CollectionPage"
+        data={{
+          '@id': `${siteConfig.url}/#visuals-page`,
+          name: 'Visuals by Raúl Mermans',
+          description:
+            'AI visuals, album covers, and visual concepts by Raúl Mermans, showing the image systems and creative experimentation behind his broader practice.',
+          url: absoluteRouteUrl('/visuals'),
+        }}
+      />
+      {children}
+    </>
+  )
 }

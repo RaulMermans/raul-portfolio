@@ -9,10 +9,12 @@ interface BuildPageMetadataOptions {
   title?: string
   description?: string
   path?: string
+  canonicalPath?: string | null
   image?: SeoImage
   type?: 'website' | 'article' | 'profile'
   keywords?: string[]
   noIndex?: boolean
+  absoluteTitle?: boolean
 }
 
 export const siteConfig = {
@@ -47,6 +49,20 @@ export function absoluteUrl(path = '/') {
   return new URL(path, siteConfig.url).toString()
 }
 
+export function normalizeRoutePath(path = '/') {
+  if (!path || path === '/') {
+    return '/'
+  }
+
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+
+  return normalizedPath.endsWith('/') ? normalizedPath : `${normalizedPath}/`
+}
+
+export function absoluteRouteUrl(path = '/') {
+  return absoluteUrl(normalizeRoutePath(path))
+}
+
 export function resolveSeoTitle(title?: string) {
   return title ? `${title} — ${siteConfig.name}` : siteConfig.defaultTitle
 }
@@ -55,25 +71,27 @@ export function buildPageMetadata({
   title,
   description = siteConfig.defaultDescription,
   path = '/',
+  canonicalPath = path,
   image = siteConfig.defaultImage,
   type = 'website',
   keywords = [],
   noIndex = false,
+  absoluteTitle = false,
 }: BuildPageMetadataOptions): Metadata {
   const fullTitle = resolveSeoTitle(title)
   const imageUrl = absoluteUrl(image.url)
+  const routeUrl = absoluteRouteUrl(path)
+  const canonicalUrl = canonicalPath === null ? undefined : absoluteRouteUrl(canonicalPath)
 
   return {
-    title: title ?? siteConfig.defaultTitle,
+    title: absoluteTitle ? { absolute: fullTitle } : title ?? siteConfig.defaultTitle,
     description,
     keywords: Array.from(new Set([...defaultKeywords, ...keywords])),
-    alternates: {
-      canonical: absoluteUrl(path),
-    },
+    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
     openGraph: {
       type,
       locale: siteConfig.locale,
-      url: absoluteUrl(path),
+      url: routeUrl,
       title: fullTitle,
       description,
       siteName: siteConfig.siteName,

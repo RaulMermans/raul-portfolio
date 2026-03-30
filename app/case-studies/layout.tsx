@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/case-study-new.css'
-import { buildPageMetadata, siteConfig } from '@/lib/metadata'
+import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Case Studies',
@@ -14,43 +14,10 @@ export const metadata: Metadata = buildPageMetadata({
   keywords: ['case studies', 'AI systems case studies', 'brand systems'],
 })
 
-function BreadcrumbSchema() {
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteConfig.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Case Studies',
-        item: `${siteConfig.url}/case-studies`,
-      },
-    ],
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-    />
-  )
-}
-
 export default function CaseStudiesLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      <BreadcrumbSchema />
-      {children}
-    </>
-  )
+  return children
 }

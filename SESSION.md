@@ -13,6 +13,8 @@
 ### Pending Decisions
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
 - Whether to capture additional Overflow proof assets later, specifically an active workout/session screen and a broader progress overview screen for the portfolio page
+- Whether to approve canonical host redirects that consolidate `http`, apex, and bare-HTTPS variants to `https://www.raulmermans.com`
+- Whether to approve a best-fit redirect map for legacy `/projects/*` URLs versus leaving unmatched URLs as proper 404 cleanup
 
 ### Blockers
 - IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
@@ -56,6 +58,18 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-30 - Implement safe SEO fixes from the live audit
+**Goal**: Apply the low-risk SEO improvements from the live/site code audit without changing URLs or deploying approval-gated redirect behavior.
+**Outcome**: Completed
+**Changes Made**:
+- `lib/metadata.ts`, `app/layout.tsx`, and `app/sitemap.ts` - normalized route URL generation for canonical/sitemap output, added explicit absolute-title support for the article case-study pages, and tightened root canonical handling around the canonical `www` host.
+- `components/StructuredData.tsx`, `app/page.tsx`, `app/case-studies/ai-sports/layout.tsx`, `app/case-studies/remoria/layout.tsx`, `app/apps/overflow/page.tsx`, `app/photography/layout.tsx`, and `app/visuals/layout.tsx` - scoped the services schema to the homepage, added article/software-application/collection-page JSON-LD where confidence was high, and removed duplicate breadcrumb output on nested case-study pages.
+- `app/case-studies/page.tsx`, `app/photography/page.tsx`, `app/visuals/page.tsx`, and `app/about/page.tsx` - fixed the missing/duplicated heading issues, strengthened the case-study hub for AI-systems intent, improved crawlable internal linking from About to proof pages, and removed the hidden duplicate exhibition heading from the visuals page by mounting the dialog only when open.
+- `app/not-found.tsx` and `components/NotFoundExperience.tsx` - preserved the existing 404 visual treatment while moving SEO metadata into the route layer so legacy URLs no longer inherit homepage SEO signals.
+- `TASKS.md` and `SESSION.md` - recorded the shipped fixes and left the redirect work approval-gated.
+**Notes**: `npm run lint -- --file ...` completed successfully for every touched file, and `npm run type-check` completed successfully. `npm run build` was started as a final validation pass but did not return any usable output in this environment after extended waiting, so build verification remains inconclusive here. The live audit also confirmed that `http://raulmermans.com`, `http://www.raulmermans.com`, and `https://raulmermans.com` still return `200`, and that old `/projects/*` URLs are indexed externally but now resolve to `404`, so both redirect tasks remain pending approval.
+**Next Steps**: After approval, implement canonical host redirects in `public/.htaccess` or Cloudflare and add a reviewed redirect map for clear legacy `/projects/*` matches.
 
 ### 2026-03-30 - Overhaul metadata and technical SEO layer
 **Goal**: Improve search visibility and metadata quality across the site by tightening root metadata, route-level metadata, structured data, and technical SEO routes.

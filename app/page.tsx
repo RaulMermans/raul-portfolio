@@ -11,9 +11,87 @@ import Services from '@/components/Services'
 import Contact from '@/components/Contact'
 import Socials from '@/components/Socials'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
 // Dynamic import for non-critical component - improves INP
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
+
+const homeServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${siteConfig.url}/#services`,
+  name: 'Services by Raúl Mermans',
+  itemListElement: [
+    {
+      '@type': 'Service',
+      position: 1,
+      name: 'AI Systems',
+      serviceType: 'Applied AI Systems Design',
+      description:
+        'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution through automation logic, orchestration, and AI-enabled workflows.',
+      provider: {
+        '@type': 'Person',
+        '@id': `${siteConfig.url}/#person`,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Spain',
+      },
+      url: absoluteRouteUrl('/'),
+    },
+    {
+      '@type': 'Service',
+      position: 2,
+      name: 'Web Development',
+      serviceType: 'Web Design and Development',
+      description:
+        'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
+      provider: {
+        '@type': 'Person',
+        '@id': `${siteConfig.url}/#person`,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Spain',
+      },
+      url: absoluteRouteUrl('/'),
+    },
+    {
+      '@type': 'Service',
+      position: 3,
+      name: 'Photography',
+      serviceType: 'Brand and Editorial Photography',
+      description:
+        'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
+      provider: {
+        '@type': 'Person',
+        '@id': `${siteConfig.url}/#person`,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Spain',
+      },
+      url: absoluteRouteUrl('/photography'),
+    },
+    {
+      '@type': 'Service',
+      position: 4,
+      name: 'Creative Direction',
+      serviceType: 'Creative Direction and Brand Systems',
+      description:
+        'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
+      provider: {
+        '@type': 'Person',
+        '@id': `${siteConfig.url}/#person`,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Spain',
+      },
+      url: absoluteRouteUrl('/'),
+    },
+  ],
+}
 
 export default function Home() {
   useEffect(() => {
@@ -104,6 +182,10 @@ export default function Home() {
   return (
     <ErrorBoundary>
       <main id="main-content">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeServiceSchema) }}
+        />
         <Header />
         <Hero />
         <SectionCards />
