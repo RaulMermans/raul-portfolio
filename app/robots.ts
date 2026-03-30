@@ -1,15 +1,16 @@
 import { MetadataRoute } from 'next'
+import { absoluteUrl, siteConfig } from '@/lib/metadata'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-  
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', '/_next/'],
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/_next/'],
+      },
+    ],
+    host: siteConfig.url,
+    sitemap: absoluteUrl('/sitemap.xml'),
   }
 }
-

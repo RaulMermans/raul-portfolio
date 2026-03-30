@@ -1,28 +1,18 @@
 import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'About',
   description:
-    'About Raúl Mermans, an applied AI systems builder designing agents, automation, and creative infrastructure for modern brands and teams.',
-  openGraph: {
-    title: 'About — Raúl Mermans',
-    description:
-      'About Raúl Mermans, an applied AI systems builder designing agents, automation, and creative infrastructure for modern brands and teams.',
-    url: `${baseUrl}/about`,
-    type: 'profile',
+    'About Raúl Mermans, an applied AI systems builder combining product thinking, automation design, and creative judgment for modern brands.',
+  path: '/about',
+  image: {
+    url: '/images/about/profile.webp',
+    alt: 'Portrait of Raúl Mermans',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About — Raúl Mermans',
-    description:
-      'About Raúl Mermans, an applied AI systems builder designing agents, automation, and creative infrastructure for modern brands and teams.',
-  },
-  alternates: {
-    canonical: `${baseUrl}/about`,
-  },
-}
+  type: 'profile',
+  keywords: ['about Raúl Mermans', 'AI systems builder', 'creative infrastructure'],
+})
 
 export default function AboutLayout({
   children,

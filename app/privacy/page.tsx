@@ -25,7 +25,7 @@ export default function PrivacyPolicy() {
             <p>
               Welcome to the portfolio website of Raúl Mermans (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;).
               This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit
-              our website located at <a href="https://raulmermans.com" target="_blank" rel="noopener noreferrer">raulmermans.com</a>
+              our website located at <a href="https://www.raulmermans.com" target="_blank" rel="noopener noreferrer">www.raulmermans.com</a>
               (the &quot;Website&quot;).
             </p>
             <p>

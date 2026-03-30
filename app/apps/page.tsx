@@ -5,30 +5,19 @@ import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { apps } from '@/data/apps'
+import { buildPageMetadata } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Apps & Prototypes',
   description:
-    'Explore apps, AI tools, and product prototypes by Raúl Mermans, built to test workflows, ideas, and operating models with calm, product-minded execution.',
-  openGraph: {
-    title: 'Apps & Prototypes — Raúl Mermans',
-    description:
-      'Explore apps, AI tools, and product prototypes by Raúl Mermans, built to test workflows, ideas, and operating models with calm, product-minded execution.',
-    url: `${baseUrl}/apps`,
-    type: 'website',
+    'Apps and product prototypes by Raúl Mermans, built to test workflows, interfaces, and new operating models with calm, product-minded execution.',
+  path: '/apps',
+  image: {
+    url: '/images/sections/apps-bg-v2.webp',
+    alt: 'Apps and prototypes by Raúl Mermans',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Apps & Prototypes — Raúl Mermans',
-    description:
-      'Explore apps, AI tools, and product prototypes by Raúl Mermans, built to test workflows, ideas, and operating models with calm, product-minded execution.',
-  },
-  alternates: {
-    canonical: `${baseUrl}/apps`,
-  },
-}
+  keywords: ['apps', 'product prototypes', 'AI tools', 'interface concepts'],
+})
 
 export default function AppsPage() {
   return (

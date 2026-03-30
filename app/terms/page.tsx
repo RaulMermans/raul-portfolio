@@ -24,7 +24,7 @@ export default function TermsOfService() {
             <h2>1. Acceptance of Terms</h2>
             <p>
               By accessing and using the website of Raúl Mermans (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;)
-              located at <a href="https://raulmermans.com" target="_blank" rel="noopener noreferrer">raulmermans.com</a>
+              located at <a href="https://www.raulmermans.com" target="_blank" rel="noopener noreferrer">www.raulmermans.com</a>
               (the &quot;Website&quot;), you accept and agree to be bound by the terms and provision of this agreement.
             </p>
             <p>

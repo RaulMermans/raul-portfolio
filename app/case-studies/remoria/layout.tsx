@@ -1,30 +1,18 @@
 import type { Metadata } from 'next'
+import { buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Remoria Case Study',
   description:
-    'Explore Remoria, a brand system case study by Raúl Mermans showing how identity logic, restraint, and creative infrastructure can scale a premium world.',
-  openGraph: {
-    title: 'Remoria Case Study — Raúl Mermans',
-    description:
-      'Explore Remoria, a brand system case study by Raúl Mermans showing how identity logic, restraint, and creative infrastructure can scale a premium world.',
-    type: 'article',
-    url: `${baseUrl}/case-studies/remoria`,
-    publishedTime: '2026-01-01',
-    authors: ['Raúl Mermans'],
+    'Remoria case study by Raúl Mermans, exploring how brand systems, visual restraint, and creative infrastructure scale a premium world.',
+  path: '/case-studies/remoria',
+  image: {
+    url: '/images/case-studies/remoria/hero/hero.webp',
+    alt: 'Remoria case study by Raúl Mermans',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Remoria Case Study — Raúl Mermans',
-    description:
-      'Explore Remoria, a brand system case study by Raúl Mermans showing how identity logic, restraint, and creative infrastructure can scale a premium world.',
-  },
-  alternates: {
-    canonical: `${baseUrl}/case-studies/remoria`,
-  },
-}
+  type: 'article',
+  keywords: ['brand system case study', 'creative direction', 'Remoria'],
+})
 
 function BreadcrumbSchema() {
   const breadcrumbSchema = {
@@ -35,19 +23,19 @@ function BreadcrumbSchema() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: baseUrl,
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Case Studies',
-        item: `${baseUrl}/case-studies`,
+        item: `${siteConfig.url}/case-studies`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Remoria',
-        item: `${baseUrl}/case-studies/remoria`,
+        item: `${siteConfig.url}/case-studies/remoria`,
       },
     ],
   }

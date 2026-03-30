@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-29
+**Last Updated**: 2026-03-30
 
 ### Active Work
 - None currently
@@ -56,6 +56,37 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-03-30 - Overhaul metadata and technical SEO layer
+**Goal**: Improve search visibility and metadata quality across the site by tightening root metadata, route-level metadata, structured data, and technical SEO routes.
+**Outcome**: Completed
+**Changes Made**:
+- `lib/metadata.ts` - added a shared SEO helper for canonical URLs, Open Graph, Twitter cards, robots directives, shared site config, and route-level metadata generation.
+- `app/layout.tsx`, `components/StructuredData.tsx`, `app/about/layout.tsx`, `app/photography/layout.tsx`, `app/visuals/layout.tsx`, `app/case-studies/layout.tsx`, `app/case-studies/ai-sports/layout.tsx`, `app/case-studies/remoria/layout.tsx`, `app/apps/page.tsx`, `app/apps/overflow/page.tsx`, `app/apps/[slug]/page.tsx`, `app/privacy/layout.tsx`, and `app/terms/layout.tsx` - aligned page titles, descriptions, canonical URLs, OG/Twitter previews, robots rules, and schema data around one consistent SEO pattern.
+- `app/sitemap.ts`, `app/robots.ts`, and `app/manifest.ts` - improved the technical SEO layer by expanding the sitemap to include public app routes, removing low-value legal pages from the sitemap, adding an explicit manifest, and centralizing the canonical host.
+- `app/privacy/page.tsx` and `app/terms/page.tsx` - updated hardcoded internal site links to the canonical `www` host.
+- `AGENTS.md` - documented the new shared metadata pattern for future sessions.
+- `SESSION.md` - recorded the SEO pass for continuity.
+**Notes**: The previous root metadata referenced a non-existent OG image path and the shared schema included an invalid `SearchAction`; both were corrected in this pass. `npm run lint -- --file ...` across the touched SEO files completed successfully with no ESLint warnings or errors. `npm run type-check` started but did not return a completion result in this environment after extended waiting, so type-check remains inconclusive.
+**Next Steps**: Review the live HTML head on the homepage, `/about`, `/apps`, `/case-studies`, and `/visuals` after deploy to confirm the new title, description, canonical, OG, Twitter, sitemap, and robots output match expectations.
+
+### 2026-03-30 - Restore earlier homepage services mix
+**Goal**: Bring the homepage services section back toward its earlier multi-disciplinary mix instead of the fully AI-ops-heavy structure from the last repositioning pass.
+**Outcome**: Completed
+**Changes Made**:
+- `components/Services.tsx` - restored the older service structure for the last three cards and the `Services` section heading, resulting in `AI Systems`, `Web Development`, `Photography`, and `Creative Direction`.
+- `SESSION.md` - recorded the services-section revert for continuity.
+**Notes**: I kept the first card labeled `AI Systems` instead of restoring the exact older `AI Agents` wording so the lead service still aligns better with the current positioning. `npm run lint -- --file components/Services.tsx` completed successfully with no ESLint warnings or errors.
+**Next Steps**: Review the homepage and confirm whether you want the first service card to stay as `AI Systems` or be reverted all the way back to the exact older `AI Agents` phrasing.
+
+### 2026-03-30 - Tighten homepage hero copy
+**Goal**: Reduce the homepage hero copy so the positioning lands faster and rename the secondary hero CTA to feel lighter and more open.
+**Outcome**: Completed
+**Changes Made**:
+- `components/Hero.tsx` - shortened the hero summary to `Designing AI systems for modern brands.` and changed the secondary CTA label from `Discuss a Project` to `Connect`.
+- `SESSION.md` - recorded the homepage hero copy pass for continuity.
+**Notes**: This was a minimal homepage copy refinement layered on top of the broader AI-systems repositioning. `npm run lint -- --file components/Hero.tsx` completed successfully with no ESLint warnings or errors.
+**Next Steps**: Review the live homepage hero spacing and button balance to confirm the shorter line reads cleanly across desktop and mobile.
 
 ### 2026-03-29 - Reposition homepage around applied AI systems
 **Goal**: Reframe the site so the homepage and shared metadata lead with AI systems, agents, automation, and creative infrastructure rather than visual storyteller / photography-led positioning.

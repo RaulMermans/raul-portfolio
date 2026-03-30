@@ -1,28 +1,17 @@
 import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Visuals',
   description:
-    'Browse AI visuals, album covers, and image experiments by Raúl Mermans, part of a broader practice in AI systems and creative infrastructure.',
-  openGraph: {
-    title: 'Visuals — Raúl Mermans',
-    description:
-      'Browse AI visuals, album covers, and image experiments by Raúl Mermans, part of a broader practice in AI systems and creative infrastructure.',
-    url: `${baseUrl}/visuals`,
-    type: 'website',
+    'AI visuals, album covers, and visual concepts by Raúl Mermans, showing the image systems and creative experimentation behind his broader practice.',
+  path: '/visuals',
+  image: {
+    url: '/images/sections/visuals-bg.webp',
+    alt: 'AI visuals by Raúl Mermans',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Visuals — Raúl Mermans',
-    description:
-      'Browse AI visuals, album covers, and image experiments by Raúl Mermans, part of a broader practice in AI systems and creative infrastructure.',
-  },
-  alternates: {
-    canonical: `${baseUrl}/visuals`,
-  },
-}
+  keywords: ['AI visuals', 'album covers', 'visual concepts', 'creative experiments'],
+})
 
 export default function VisualsLayout({
   children,

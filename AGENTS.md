@@ -74,6 +74,12 @@ export async function POST(request: NextRequest) {
 - Content separated in `data/case-studies-content.ts`
 - Images follow path pattern: `/images/case-studies/{name}/thumb/thumb.webp`
 
+### Metadata & SEO
+- Shared SEO helpers live in `lib/metadata.ts`
+- Prefer `buildPageMetadata()` for route-level metadata instead of duplicating title, canonical, Open Graph, Twitter, and robots config
+- Shared structured data lives in `components/StructuredData.tsx`
+- Technical SEO routes live in `app/sitemap.ts`, `app/robots.ts`, and `app/manifest.ts`
+
 ### Styling
 - Tailwind for utility classes
 - Custom CSS in `styles/globals.css` for complex components

@@ -1,29 +1,18 @@
 import type { Metadata } from 'next'
 import OverflowLanding from './OverflowLanding'
+import { buildPageMetadata } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
-  title: 'Overflow Case Study',
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Overflow App Case Study',
   description:
-    'Product case study for Overflow, a calm iPhone workout tracker focused on routines, scheduling, fast session starts, and meaningful progress.',
-  openGraph: {
-    title: 'Overflow Case Study | Raul Mermans',
-    description:
-      'Product case study for Overflow, a calm iPhone workout tracker focused on routines, scheduling, fast session starts, and meaningful progress.',
-    url: `${baseUrl}/apps/overflow`,
-    type: 'website',
+    'Overflow case study by Raúl Mermans, a calm iPhone workout tracker focused on routines, scheduling, fast logging, and meaningful progress.',
+  path: '/apps/overflow',
+  image: {
+    url: '/images/apps/overflow/Today-tab.webp',
+    alt: 'Overflow workout tracker app by Raúl Mermans',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Overflow Case Study | Raul Mermans',
-    description:
-      'Product case study for Overflow, a calm iPhone workout tracker focused on routines, scheduling, fast session starts, and meaningful progress.',
-  },
-  alternates: {
-    canonical: `${baseUrl}/apps/overflow`,
-  },
-}
+  keywords: ['Overflow app', 'workout tracker', 'iPhone fitness app', 'app case study'],
+})
 
 export default function OverflowPage() {
   return <OverflowLanding />

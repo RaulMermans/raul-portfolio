@@ -1,29 +1,18 @@
 import type { Metadata } from 'next'
 import '@/styles/case-study-new.css'
+import { buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Case Studies',
   description:
-    'Explore case studies by Raúl Mermans spanning AI systems, automation workflows, brand systems, and product-minded creative execution.',
-  openGraph: {
-    title: 'Case Studies — Raúl Mermans',
-    description:
-      'Explore case studies by Raúl Mermans spanning AI systems, automation workflows, brand systems, and product-minded creative execution.',
-    url: `${baseUrl}/case-studies`,
-    type: 'website',
+    'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
+  path: '/case-studies',
+  image: {
+    url: '/images/sections/case-studies-bg.webp',
+    alt: 'Case studies by Raúl Mermans',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Case Studies — Raúl Mermans',
-    description:
-      'Explore case studies by Raúl Mermans spanning AI systems, automation workflows, brand systems, and product-minded creative execution.',
-  },
-  alternates: {
-    canonical: `${baseUrl}/case-studies`,
-  },
-}
+  keywords: ['case studies', 'AI systems case studies', 'brand systems'],
+})
 
 function BreadcrumbSchema() {
   const breadcrumbSchema = {
@@ -34,13 +23,13 @@ function BreadcrumbSchema() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: baseUrl,
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Case Studies',
-        item: `${baseUrl}/case-studies`,
+        item: `${siteConfig.url}/case-studies`,
       },
     ],
   }

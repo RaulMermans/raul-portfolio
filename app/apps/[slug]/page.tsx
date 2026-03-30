@@ -6,8 +6,7 @@ import Footer from '@/components/Footer'
 import AppCard from '@/components/apps/AppCard'
 import AppVisual from '@/components/apps/AppVisual'
 import { apps, getAppBySlug } from '@/data/apps'
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
+import { buildPageMetadata } from '@/lib/metadata'
 
 interface AppPageProps {
   params: {
@@ -42,24 +41,21 @@ export function generateMetadata({ params }: AppPageProps): Metadata {
     }
   }
 
-  return {
+  return buildPageMetadata({
     title: `${app.name} App`,
     description: app.shortDescription,
-    openGraph: {
-      title: `${app.name} App — Raúl Mermans`,
-      description: app.shortDescription,
-      url: `${baseUrl}${app.href}`,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${app.name} App — Raúl Mermans`,
-      description: app.shortDescription,
-    },
-    alternates: {
-      canonical: `${baseUrl}${app.href}`,
-    },
-  }
+    path: app.href,
+    image: app.icon
+      ? {
+          url: app.icon,
+          alt: `${app.name} app icon`,
+        }
+      : {
+          url: '/images/sections/apps-bg-v2.webp',
+          alt: `${app.name} app preview`,
+        },
+    keywords: [app.name, 'app concept', 'product prototype'],
+  })
 }
 
 /* Shared muted color for labels */

@@ -1,63 +1,67 @@
 import { MetadataRoute } from 'next'
+import { apps } from '@/data/apps'
+import { absoluteUrl } from '@/lib/metadata'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-  
-  return [
+  const lastModified = new Date()
+
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: absoluteUrl('/'),
+      lastModified,
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      url: absoluteUrl('/about'),
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/case-studies`,
-      lastModified: new Date(),
+      url: absoluteUrl('/case-studies'),
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/photography`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      url: absoluteUrl('/apps'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.88,
     },
     {
-      url: `${baseUrl}/visuals`,
-      lastModified: new Date(),
+      url: absoluteUrl('/photography'),
+      lastModified,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.75,
     },
     {
-      url: `${baseUrl}/case-studies/ai-sports`,
-      lastModified: new Date(),
+      url: absoluteUrl('/visuals'),
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.75,
+    },
+    {
+      url: absoluteUrl('/case-studies/ai-sports'),
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/case-studies/remoria`,
-      lastModified: new Date(),
+      url: absoluteUrl('/case-studies/remoria'),
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
     },
   ]
-}
 
+  const appRoutes: MetadataRoute.Sitemap = apps.map((app) => ({
+    url: absoluteUrl(app.href),
+    lastModified,
+    changeFrequency: 'monthly',
+    priority: app.slug === 'overflow' ? 0.82 : 0.72,
+  }))
+
+  return [...staticRoutes, ...appRoutes]
+}

@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
+import { absoluteUrl, defaultKeywords, siteConfig } from '@/lib/metadata'
 // Critical bots - loaded immediately (error handling, security, env validation)
 import '@/lib/error-bot'
 import '@/lib/security-bot'
@@ -49,51 +50,47 @@ const sourceSerif4 = localFont({
   display: 'swap',
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
 export const metadata: Metadata = {
   title: {
-    default: 'Raúl Mermans — AI Systems Builder for Modern Brands',
-    template: '%s | Raúl Mermans',
+    default: siteConfig.defaultTitle,
+    template: `%s — ${siteConfig.name}`,
   },
-  description:
-    'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands across marketing, CRM, content, and execution.',
+  description: siteConfig.defaultDescription,
   icons: {
     icon: '/favicon.jpg',
+    shortcut: '/favicon.jpg',
     apple: '/favicon.jpg',
   },
-  keywords: ['AI systems builder', 'agentic workflows', 'automation infrastructure', 'marketing automation', 'CRM automation', 'creative infrastructure', 'AI tools for brands', 'workflow design', 'content operations', 'applied AI'],
-  authors: [{ name: 'Raúl Mermans', url: baseUrl }],
-  creator: 'Raúl Mermans',
-  publisher: 'Raúl Mermans',
-  metadataBase: new URL(baseUrl),
+  manifest: '/manifest.webmanifest',
+  category: 'technology',
+  keywords: defaultKeywords,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  metadataBase: new URL(siteConfig.url),
   alternates: {
-    canonical: baseUrl,
+    canonical: siteConfig.url,
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: baseUrl,
-    title: 'Raúl Mermans — AI Systems Builder for Modern Brands',
-    description:
-      'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands across marketing, CRM, content, and execution.',
-    siteName: 'Raúl Mermans',
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    siteName: siteConfig.siteName,
     images: [
       {
-        url: `${baseUrl}/images/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Raúl Mermans — AI Systems Builder',
+        url: absoluteUrl(siteConfig.defaultImage.url),
+        alt: siteConfig.defaultImage.alt,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Raúl Mermans — AI Systems Builder for Modern Brands',
-    description:
-      'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands across marketing, CRM, content, and execution.',
-    creator: '@raulmeermans',
-    images: [`${baseUrl}/images/og-image.jpg`],
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    creator: siteConfig.twitterHandle,
+    images: [absoluteUrl(siteConfig.defaultImage.url)],
   },
   robots: {
     index: true,
@@ -105,11 +102,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  verification: {
-    // Add your verification codes here when available
-    // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
   },
 }
 

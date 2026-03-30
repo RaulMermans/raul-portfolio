@@ -82,8 +82,7 @@ export default function Hero() {
         </h1>
 
         <p className={`${styles.summary} reveal reveal-delay-2`}>
-          Designing AI systems for modern brands. I build agentic workflows, automation
-          infrastructure, and AI-powered tools across marketing, CRM, content, and creative execution.
+          Designing AI systems for modern brands.
         </p>
 
         <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
@@ -103,7 +102,7 @@ export default function Hero() {
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >
-              <span>Discuss a Project</span>
+              <span>Connect</span>
             </Link>
           </MagneticButton>
         </div>

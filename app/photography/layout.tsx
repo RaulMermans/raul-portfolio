@@ -1,28 +1,17 @@
 import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Photography',
   description:
-    'Explore photography by Raúl Mermans, a supporting craft practice in composition, restraint, and visual judgment alongside his broader AI systems work.',
-  openGraph: {
-    title: 'Photography — Raúl Mermans',
-    description:
-      'Explore photography by Raúl Mermans, a supporting craft practice in composition, restraint, and visual judgment alongside his broader AI systems work.',
-    url: `${baseUrl}/photography`,
-    type: 'website',
+    'Photography by Raúl Mermans, showcasing the visual judgment, composition, and restraint that support his broader AI systems and creative work.',
+  path: '/photography',
+  image: {
+    url: '/images/sections/photography-bg.webp',
+    alt: 'Photography gallery by Raúl Mermans',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Photography — Raúl Mermans',
-    description:
-      'Explore photography by Raúl Mermans, a supporting craft practice in composition, restraint, and visual judgment alongside his broader AI systems work.',
-  },
-  alternates: {
-    canonical: `${baseUrl}/photography`,
-  },
-}
+  keywords: ['photography portfolio', 'editorial photography', 'brand photography'],
+})
 
 export default function PhotographyLayout({
   children,

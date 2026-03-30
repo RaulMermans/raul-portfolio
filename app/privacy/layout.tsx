@@ -1,26 +1,13 @@
 import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Privacy Policy',
   description:
-    'Read the Privacy Policy for Raúl Mermans to understand how portfolio inquiries, analytics data, and personal information are collected, used, and protected.',
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: 'Privacy Policy — Raúl Mermans',
-    description:
-      'Read the Privacy Policy for Raúl Mermans to understand how portfolio inquiries, analytics data, and personal information are collected, used, and protected.',
-    url: `${baseUrl}/privacy`,
-    type: 'website',
-  },
-  alternates: {
-    canonical: `${baseUrl}/privacy`,
-  },
-}
+    'Privacy Policy for Raúl Mermans covering how contact requests, analytics data, and personal information are collected, used, and protected.',
+  path: '/privacy',
+  noIndex: true,
+})
 
 export default function PrivacyLayout({
   children,

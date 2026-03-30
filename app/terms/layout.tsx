@@ -1,26 +1,13 @@
 import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/metadata'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Terms of Service',
   description:
-    'Read the Terms of Service for Raúl Mermans to understand the rules, limitations, and responsibilities that apply when you use this portfolio website.',
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: 'Terms of Service — Raúl Mermans',
-    description:
-      'Read the Terms of Service for Raúl Mermans to understand the rules, limitations, and responsibilities that apply when you use this portfolio website.',
-    url: `${baseUrl}/terms`,
-    type: 'website',
-  },
-  alternates: {
-    canonical: `${baseUrl}/terms`,
-  },
-}
+    'Terms of Service for Raúl Mermans covering the rules, limitations, and responsibilities that apply when using this portfolio website.',
+  path: '/terms',
+  noIndex: true,
+})
 
 export default function TermsLayout({
   children,

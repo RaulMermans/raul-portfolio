@@ -3,14 +3,14 @@
  * Renders directly in HTML for better SEO crawler visibility
  */
 
+import { absoluteUrl, siteConfig } from '@/lib/metadata'
+
 interface StructuredDataProps {
   type: 'Person' | 'WebSite' | 'Portfolio' | 'Article' | 'CreativeWork' | 'Service'
   data?: Record<string, unknown>
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://raulmermans.com'
-  
   let jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
   }
@@ -19,10 +19,12 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: 'Raúl Mermans',
+      '@id': `${siteConfig.url}/#person`,
+      name: siteConfig.name,
       jobTitle: 'Applied AI Systems Builder',
-      description: 'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands. Based in Spain.',
-      url: baseUrl,
+      description: siteConfig.defaultDescription,
+      url: siteConfig.url,
+      image: absoluteUrl('/images/about/profile.webp'),
       sameAs: [
         'https://www.instagram.com/raulmeermans/',
         'https://linkedin.com/in/raulmermans',
@@ -32,7 +34,6 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       address: {
         '@type': 'PostalAddress',
         addressCountry: 'ES',
-        addressLocality: 'Spain',
       },
       knowsAbout: [
         'AI Systems Design',
@@ -50,36 +51,34 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Raúl Mermans Portfolio',
-      url: baseUrl,
-      description: 'Applied AI systems, agents, and automation for modern brands across marketing, CRM, content, and creative execution.',
+      '@id': `${siteConfig.url}/#website`,
+      name: `${siteConfig.name} Portfolio`,
+      url: siteConfig.url,
+      description: siteConfig.defaultDescription,
+      inLanguage: 'en',
       author: {
         '@type': 'Person',
-        name: 'Raúl Mermans',
-      },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${baseUrl}/case-studies?q={search_term_string}`,
-        'query-input': 'required name=search_term_string',
+        '@id': `${siteConfig.url}/#person`,
       },
       ...data,
     }
   } else if (type === 'Service') {
-    // Service offerings structured data
     jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
+      '@id': `${siteConfig.url}/#services`,
+      name: 'Services by Raúl Mermans',
       itemListElement: [
         {
           '@type': 'Service',
           position: 1,
-          name: 'AI Systems & Agentic Workflows',
+          name: 'AI Systems',
           serviceType: 'Applied AI Systems Design',
-          description: 'Applied AI systems, agentic workflows, and orchestration logic built to make judgment-heavy execution more reliable and usable.',
+          description:
+            'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution through automation logic, orchestration, and AI-enabled workflows.',
           provider: {
             '@type': 'Person',
-            name: 'Raúl Mermans',
-            url: baseUrl,
+            '@id': `${siteConfig.url}/#person`,
           },
           areaServed: {
             '@type': 'Country',
@@ -89,13 +88,13 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 2,
-          name: 'Automation Infrastructure',
-          serviceType: 'Automation Infrastructure Design',
-          description: 'Automation infrastructure for marketing, CRM, content, and internal operations, built around tool integration, routing, and operational visibility.',
+          name: 'Web Development',
+          serviceType: 'Web Design and Development',
+          description:
+            'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
           provider: {
             '@type': 'Person',
-            name: 'Raúl Mermans',
-            url: baseUrl,
+            '@id': `${siteConfig.url}/#person`,
           },
           areaServed: {
             '@type': 'Country',
@@ -105,13 +104,13 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 3,
-          name: 'AI-Powered Prototypes & Tools',
-          serviceType: 'AI Prototype and Tool Development',
-          description: 'AI-powered prototypes, internal tools, and operator interfaces used to validate workflows, expose new operating models, and ship smarter product surfaces.',
+          name: 'Photography',
+          serviceType: 'Brand and Editorial Photography',
+          description:
+            'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
           provider: {
             '@type': 'Person',
-            name: 'Raúl Mermans',
-            url: baseUrl,
+            '@id': `${siteConfig.url}/#person`,
           },
           areaServed: {
             '@type': 'Country',
@@ -121,13 +120,13 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 4,
-          name: 'Brand & Creative Systems',
-          serviceType: 'Brand and Creative Systems Design',
-          description: 'Brand and creative systems that keep AI-assisted execution coherent, commercially credible, and aligned with the quality bar of the brand.',
+          name: 'Creative Direction',
+          serviceType: 'Creative Direction and Brand Systems',
+          description:
+            'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
           provider: {
             '@type': 'Person',
-            name: 'Raúl Mermans',
-            url: baseUrl,
+            '@id': `${siteConfig.url}/#person`,
           },
           areaServed: {
             '@type': 'Country',
@@ -141,11 +140,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'CreativeWork',
-      '@id': `${baseUrl}/#portfolio`,
+      '@id': `${siteConfig.url}/#portfolio`,
       name: 'Raúl Mermans Portfolio',
       creator: {
         '@type': 'Person',
-        name: 'Raúl Mermans',
+        '@id': `${siteConfig.url}/#person`,
       },
       ...data,
     }
@@ -155,12 +154,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'Article',
       author: {
         '@type': 'Person',
-        name: 'Raúl Mermans',
-        url: baseUrl,
+        '@id': `${siteConfig.url}/#person`,
       },
       publisher: {
         '@type': 'Person',
-        name: 'Raúl Mermans',
+        '@id': `${siteConfig.url}/#person`,
       },
       ...data,
     }
@@ -170,8 +168,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'CreativeWork',
       creator: {
         '@type': 'Person',
-        name: 'Raúl Mermans',
-        url: baseUrl,
+        '@id': `${siteConfig.url}/#person`,
       },
       ...data,
     }
