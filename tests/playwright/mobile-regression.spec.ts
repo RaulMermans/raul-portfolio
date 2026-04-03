@@ -180,6 +180,33 @@ test.describe('Mobile Regression', () => {
     await expect.poll(() => scrollRegion.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
   })
 
+  test('visuals exhibition details stay scrollable on desktop split layout', async ({ page }) => {
+    await page.setViewportSize({ width: 1512, height: 864 })
+    await preparePage(page, '/visuals')
+
+    await page.locator('[data-mobile-audit="visual-card"]').click()
+    const exhibition = page.locator('#exhibition')
+    const scrollRegion = page.locator('[data-mobile-audit="visuals-exhibition-scroll"]')
+    const backToGallery = page.getByRole('button', { name: 'Back to Gallery' })
+
+    await expect(exhibition).toBeVisible()
+    await expect(scrollRegion).toBeVisible()
+
+    const metrics = await scrollRegion.evaluate((element) => ({
+      clientHeight: element.clientHeight,
+      scrollHeight: element.scrollHeight,
+    }))
+
+    expect(metrics.scrollHeight).toBeGreaterThan(metrics.clientHeight)
+
+    await scrollRegion.evaluate((element) => {
+      element.scrollTo({ top: 320, behavior: 'auto' })
+    })
+
+    await expect.poll(() => scrollRegion.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+    await expect(backToGallery).toBeVisible()
+  })
+
   test('contact section stays visible and usable on mobile', async ({ page }) => {
     await preparePage(page, '/')
 

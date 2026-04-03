@@ -60,12 +60,12 @@ When starting work, update this section:
 ## Recent Sessions
 
 ### 2026-04-03 - Restore scrolling inside visuals exhibition detail view
-**Goal**: Fix the `/visuals` exhibition detail overlay so opened artwork pages can scroll again, especially in the split desktop view shown from the visuals landing page, and tighten the base `/visuals` swipe behavior so vertical page scrolling wins over accidental diagonal card swipes.
+**Goal**: Fix the `/visuals` exhibition detail overlay so opened artwork pages can scroll again, especially in the split desktop view shown from the visuals landing page, tighten the base `/visuals` swipe behavior so vertical page scrolling wins over accidental diagonal card swipes, and explicitly constrain the desktop exhibition grid row so the right panel cannot stretch beyond the viewport.
 **Outcome**: Completed
 **Changes Made**:
-- `app/visuals/VisualsPage.module.css` - bounded the exhibition grid/flex stack with `min-height: 0`, `height: 100%`, `overflow: hidden`, and scroll-container touch/overscroll rules so the right-hand detail pane can become the active vertical scroller instead of stretching past the viewport.
+- `app/visuals/VisualsPage.module.css` - bounded the exhibition grid/flex stack with `min-height: 0`, `height: 100%`, `overflow: hidden`, scroll-container touch/overscroll rules, and an explicit single-row viewport-constrained exhibition grid so the right-hand detail pane can become the active vertical scroller instead of stretching past the viewport on desktop.
 - `app/visuals/page.tsx` - added a stable `data-mobile-audit` hook to the exhibition scroll region for targeted regression coverage and tightened swipe-intent detection so diagonal/downward gestures on the card surface stop resetting the current visual as easily.
-- `tests/playwright/mobile-regression.spec.ts` - added focused regression checks for the exhibition detail scroll region and for diagonal swipe behavior on the base `/visuals` surface.
+- `tests/playwright/mobile-regression.spec.ts` - added focused regression checks for the exhibition detail scroll region, for diagonal swipe behavior on the base `/visuals` surface, and for the desktop split-layout exhibition scroll behavior.
 - `SESSION.md` - recorded the session for continuity.
 **Notes**: `npm run lint -- --file app/visuals/page.tsx --file tests/playwright/mobile-regression.spec.ts` completed successfully with no warnings or errors, and `npm run type-check` completed successfully. The targeted Playwright commands for the exhibition scroll region and the diagonal-swipe regression both failed to return a result in this environment after extended waiting, so browser verification remains inconclusive here.
 **Next Steps**: Re-open `/visuals` locally and confirm two things: the desktop split view now scrolls through the curatorial note and bottom action bar, and the base page no longer changes cards from slight diagonal/downward swipes while you are trying to scroll.
