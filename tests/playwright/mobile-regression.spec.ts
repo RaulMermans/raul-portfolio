@@ -135,6 +135,16 @@ test.describe('Mobile Regression', () => {
     await expect.poll(readTitle).not.toBe(firstTitle)
   })
 
+  test('visuals surface ignores diagonal downward swipes so page scroll can win', async ({ page }) => {
+    await preparePage(page, '/visuals')
+
+    const readTitle = async () => page.locator('[data-mobile-audit="visual-card"] h2').innerText()
+    const firstTitle = await readTitle()
+
+    await swipeSurface(page, -96, 84)
+    await expect.poll(readTitle).toBe(firstTitle)
+  })
+
   test('visuals gallery and exhibition remain stable on mobile', async ({ page }) => {
     await preparePage(page, '/visuals')
 
@@ -146,6 +156,28 @@ test.describe('Mobile Regression', () => {
     await expect(exhibition).toBeVisible()
 
     await expectStableScreenshot(exhibition, 'visuals-exhibition.png')
+  })
+
+  test('visuals exhibition details stay scrollable once opened', async ({ page }) => {
+    await preparePage(page, '/visuals')
+
+    await page.locator('[data-mobile-audit="visual-card"]').click()
+    const scrollRegion = page.locator('[data-mobile-audit="visuals-exhibition-scroll"]')
+
+    await expect(scrollRegion).toBeVisible()
+
+    const metrics = await scrollRegion.evaluate((element) => ({
+      clientHeight: element.clientHeight,
+      scrollHeight: element.scrollHeight,
+    }))
+
+    expect(metrics.scrollHeight).toBeGreaterThan(metrics.clientHeight)
+
+    await scrollRegion.evaluate((element) => {
+      element.scrollTo({ top: 240, behavior: 'auto' })
+    })
+
+    await expect.poll(() => scrollRegion.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
   })
 
   test('contact section stays visible and usable on mobile', async ({ page }) => {

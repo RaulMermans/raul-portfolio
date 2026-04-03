@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-03-30
+**Last Updated**: 2026-04-03
 
 ### Active Work
 - None currently
@@ -58,6 +58,17 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-04-03 - Restore scrolling inside visuals exhibition detail view
+**Goal**: Fix the `/visuals` exhibition detail overlay so opened artwork pages can scroll again, especially in the split desktop view shown from the visuals landing page, and tighten the base `/visuals` swipe behavior so vertical page scrolling wins over accidental diagonal card swipes.
+**Outcome**: Completed
+**Changes Made**:
+- `app/visuals/VisualsPage.module.css` - bounded the exhibition grid/flex stack with `min-height: 0`, `height: 100%`, `overflow: hidden`, and scroll-container touch/overscroll rules so the right-hand detail pane can become the active vertical scroller instead of stretching past the viewport.
+- `app/visuals/page.tsx` - added a stable `data-mobile-audit` hook to the exhibition scroll region for targeted regression coverage and tightened swipe-intent detection so diagonal/downward gestures on the card surface stop resetting the current visual as easily.
+- `tests/playwright/mobile-regression.spec.ts` - added focused regression checks for the exhibition detail scroll region and for diagonal swipe behavior on the base `/visuals` surface.
+- `SESSION.md` - recorded the session for continuity.
+**Notes**: `npm run lint -- --file app/visuals/page.tsx --file tests/playwright/mobile-regression.spec.ts` completed successfully with no warnings or errors, and `npm run type-check` completed successfully. The targeted Playwright commands for the exhibition scroll region and the diagonal-swipe regression both failed to return a result in this environment after extended waiting, so browser verification remains inconclusive here.
+**Next Steps**: Re-open `/visuals` locally and confirm two things: the desktop split view now scrolls through the curatorial note and bottom action bar, and the base page no longer changes cards from slight diagonal/downward swipes while you are trying to scroll.
 
 ### 2026-03-30 - Implement safe SEO fixes from the live audit
 **Goal**: Apply the low-risk SEO improvements from the live/site code audit without changing URLs or deploying approval-gated redirect behavior.

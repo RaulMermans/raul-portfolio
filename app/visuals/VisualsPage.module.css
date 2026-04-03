@@ -510,6 +510,7 @@
   z-index: 240;
   display: grid;
   grid-template-columns: minmax(0, 55%) minmax(0, 45%);
+  min-height: 0;
   background: var(--cream);
   opacity: 0;
   visibility: hidden;
@@ -546,6 +547,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 0;
   padding: 5rem;
   background: var(--ink);
 }
@@ -592,14 +594,18 @@
 .exhibitionDetails {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
   background: var(--cream);
 }
 
 .exhibitionScroll {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   padding:
     max(4rem, calc(env(safe-area-inset-top) + 3rem))
     clamp(2rem, 4vw, 3.5rem)

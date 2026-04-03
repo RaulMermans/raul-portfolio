@@ -314,13 +314,18 @@ export default function VisualsPage() {
     if (!state.locked) {
       if (absX < 12 && absY < 12) return
 
-      if (absX > absY * 1.25 && absY < 40) {
+      const hasClearHorizontalIntent =
+        absX >= 28 &&
+        absX > absY * 1.75 &&
+        absY <= 28
+
+      if (hasClearHorizontalIntent) {
         state.locked = true
         suppressCardClickRef.current = true
         return
       }
 
-      if (absY >= absX) {
+      if (absY >= 18 && absY >= absX * 0.85) {
         resetSwipeState()
       }
     }
@@ -514,7 +519,7 @@ export default function VisualsPage() {
           </div>
 
           <div className={styles.exhibitionDetails}>
-            <div className={styles.exhibitionScroll}>
+            <div className={styles.exhibitionScroll} data-mobile-audit="visuals-exhibition-scroll">
               <div className={styles.exhibitionContent}>
                 {currentWork && (
                   <>
