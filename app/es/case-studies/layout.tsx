@@ -5,7 +5,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'Casos de Estudio',
   description:
-    'Casos de estudio de Raúl Mermans sobre sistemas de IA, workflows de automatización, sistemas de marca y ejecución creativa con criterio de producto.',
+    'Casos de estudio de Raúl Mermans sobre sistemas de IA, flujos de automatización, sistemas de marca y ejecución creativa con criterio de producto.',
   path: '/case-studies',
   locale: 'es',
   image: {

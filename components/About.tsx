@@ -65,15 +65,16 @@ export default function About({ locale = 'en' }: AboutProps) {
           <p className="about__text reveal reveal-delay-2">
             {locale === 'es' ? (
               <>
-                Llegué a este trabajo desde el negocio y luego aprendí a construir los sistemas
-                que los equipos realmente necesitan. Hoy diseño <span className="highlight">flujos de IA</span>,{' '}
+                Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear
+                los sistemas que los equipos realmente necesitan. Hoy diseño{' '}
+                <span className="highlight">flujos de trabajo con IA</span>,{' '}
                 <span className="highlight">capas de automatización</span> e{' '}
-                <span className="highlight">interfaces con mentalidad de producto</span> para marketing, CRM, contenido
-                y ejecución creativa. Mi ventaja está en la combinación de{' '}
+                <span className="highlight">interfaces orientadas a producto</span>... Mi valor diferencial
+                es la combinación de{' '}
                 <span className="highlight">pensamiento sistémico</span>,{' '}
                 <span className="highlight">implementación práctica</span> y{' '}
-                <span className="highlight">criterio creativo</span> suficiente para que el resultado
-                sea coherente, útil y digno de desplegarse.
+                <span className="highlight">criterio creativo</span> lo suficientemente sólido como para
+                mantener un resultado coherente, útil y listo para desplegarse.
               </>
             ) : (
               <>

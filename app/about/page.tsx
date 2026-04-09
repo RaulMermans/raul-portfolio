@@ -54,43 +54,20 @@ export default function AboutPage() {
                 {locale === 'es' ? (
                   <>
                     <p>
-                      Llegué a este trabajo desde el <span className="highlight">negocio</span> y luego aprendí a construir
-                      lo que los equipos realmente necesitan cuando la estrategia tiene que convertirse en ejecución.
-                      Hoy diseño{' '}
+                      Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear
+                      los sistemas que los equipos realmente necesitan. Hoy diseño{' '}
                       <Link href={localizePath('/case-studies', locale)} className="highlight">
-                        sistemas de IA
+                        flujos de trabajo con IA
                       </Link>
-                      , <span className="highlight">flujos agentivos</span> e{' '}
-                      <span className="highlight">infraestructura de automatización</span> para marketing, CRM,
-                      contenido y operaciones creativas.
-                    </p>
-
-                    <p>
-                      Me interesan menos las salidas puntuales de IA que el sistema que las hace posibles:
-                      dónde se enruta el trabajo, dónde vive el criterio, qué conviene automatizar y
-                      cómo una interfaz vuelve usable todo el conjunto. Eso significa{' '}
-                      <span className="highlight">lógica de workflow</span>,{' '}
-                      <span className="highlight">orquestación</span>,{' '}
-                      <span className="highlight">herramientas internas</span> e{' '}
+                      , <span className="highlight">capas de automatización</span> e{' '}
                       <Link href={localizePath('/apps/overflow', locale)} className="highlight">
-                        implementación con mentalidad de producto
+                        interfaces orientadas a producto
                       </Link>
-                      .
-                    </p>
-
-                    <p>
-                      El criterio creativo sigue importando. Mi fondo en marca, visuales e imagen me sirve
-                      como <span className="highlight">control de calidad dentro del sistema</span>. Me ayuda a decidir
-                      qué debe sentirse contenido, qué debe seguir siendo humano y qué hace que un resultado sea{' '}
-                      <span className="highlight">comercialmente creíble</span> y no simplemente nuevo.
-                    </p>
-
-                    <p>
-                      Trabajo mejor con marcas y equipos modernos que necesitan{' '}
-                      <span className="highlight">mejor ejecución</span>,{' '}
-                      <span className="highlight">mejores workflows</span> e infraestructura que realmente puedan usar.
-                      Si el problema vive entre marketing, CRM, contenido, operaciones y ejecución creativa,
-                      ahí es donde suelo aportar más.
+                      ... Mi valor diferencial es la combinación de{' '}
+                      <span className="highlight">pensamiento sistémico</span>,{' '}
+                      <span className="highlight">implementación práctica</span> y un{' '}
+                      <span className="highlight">criterio creativo</span> lo suficientemente sólido como
+                      para mantener un resultado coherente, útil y listo para desplegarse.
                     </p>
                   </>
                 ) : (

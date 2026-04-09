@@ -333,14 +333,14 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
         { label: 'Herramientas', value: 'n8n, API generativa de imagen, condicionamiento por referencia' },
         {
           label: 'Entregables',
-          value: 'Workflow en n8n, especificación de inputs, guardrails de consistencia y demos de campaña',
+          value: 'Flujo en n8n, especificación de entradas, reglas de consistencia y demostraciones de campaña',
         },
       ],
     },
     challenge: {
       quote: 'La IA generativa te da imágenes. No te da campañas.',
       context:
-        'El problema base de los **workflows generativos de imagen** es el **drift**: cambias una cosa y cambia todo, desde **iluminación y textura** hasta el "mundo" completo. Eso sirve para **visuales aislados**, pero una **campaña exige continuidad**: que cada pieza parezca salir de la **misma producción**. El reto no era crear una sola imagen buena. Era construir un **workflow** donde la **escena se mantuviera constante** mientras **casting y vestuario** siguieran siendo editables.',
+        'El problema base de los **flujos generativos de imagen** es el **drift**: cambias una cosa y cambia todo, desde **iluminación y textura** hasta el "mundo" completo. Eso sirve para **visuales aislados**, pero una **campaña exige continuidad**: que cada pieza parezca salir de la **misma producción**. El reto no era crear una sola imagen buena. Era construir un **flujo de trabajo** donde la **escena se mantuviera constante** mientras **casting y vestuario** siguieran siendo editables.',
       successCriteria: [
         'Las salidas debían leerse como una sola campaña, no como generaciones separadas.',
         'Poder cambiar modelo y vestuario sin rehacer los prompts desde cero.',
@@ -349,7 +349,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
       ],
     },
     approach: {
-      text: 'La clave era hacerlo utilizable: un **sistema**, no un póster. El insight principal fue que la **consistencia de campaña** nace de las **restricciones**, no de la creatividad por prompt. Diseñé la **automatización** alrededor de un modelo de **"constantes vs variables"**: primero fijando los **no negociables** de la imagen de referencia y después dando flexibilidad controlada a **casting y vestuario**. El **workflow** ingiere **tres inputs visuales** y los enruta por una tubería repetible que prioriza **continuidad por encima de novedad**. La **selección final** sigue siendo humana: elijo en función de **realismo, ajuste de marca y lectura del producto**. Las campañas se **editan**; no solo se generan.',
+      text: 'La clave era hacerlo utilizable: un **sistema**, no un póster. La idea clave fue que la **consistencia de campaña** nace de las **restricciones**, no de la creatividad por prompt. Diseñé la **automatización** alrededor de un modelo de **"constantes vs variables"**: primero fijando los **no negociables** de la imagen de referencia y después dando flexibilidad controlada a **casting y vestuario**. El **flujo** procesa **tres entradas visuales** y las enruta por una secuencia repetible que prioriza la **continuidad por encima de la novedad**. La **selección final** sigue siendo humana: elijo en función de **realismo, ajuste de marca y lectura del producto**. Las campañas se **editan**; no solo se generan.',
       tools: ['n8n', 'API generativa', 'Condicionamiento por referencia', 'Esquema de prompt', 'Versionado de outputs'],
       system: {
         label: 'El sistema',
@@ -373,7 +373,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
         items: [
           {
             title: 'Qué cambió',
-            description: 'Separación entre "anclajes de escena" y "atributos editables" dentro de la lógica del workflow',
+            description: 'Separación entre "anclajes de escena" y "atributos editables" dentro de la lógica del flujo',
           },
           {
             title: 'Por qué',
@@ -381,7 +381,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
           },
           {
             title: 'Regla de decisión',
-            description: 'La continuidad manda sobre lo "cool". Si cambian fondo, iluminación o sensación, el output falla. Una campaña se construye sobre repetición con variación intencional.',
+            description: 'La continuidad manda sobre lo llamativo. Si cambian fondo, iluminación o sensación, el resultado falla. Una campaña se construye sobre repetición con variación intencional.',
           },
         ],
       },
@@ -391,11 +391,11 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
           rationale: 'Convierte el proceso en un activo repetible, no en un ritual manual',
         },
         {
-          name: 'Especificación de 3 inputs',
+          name: 'Especificación de 3 entradas',
           rationale: 'Hace explícita y portable la lógica del sistema',
         },
         {
-          name: 'Guardrails + checklist',
+          name: 'Reglas de consistencia + lista de control',
           rationale: 'Fuerza continuidad de campaña y reduce drift generativo',
         },
         {
@@ -406,7 +406,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
       images: [
         {
           src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-1.webp'),
-          alt: 'Campaña deportiva con IA - arquitectura del workflow',
+          alt: 'Campaña deportiva con IA - arquitectura del flujo',
           quality: 90,
           sizes: '(max-width: 768px) 100vw, 50vw',
         },

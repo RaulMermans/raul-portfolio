@@ -5,7 +5,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'Sistemas de IA y Dirección Creativa',
   description:
-    'Raúl Mermans diseña sistemas de IA, automatizaciones y capas de producto para marcas modernas con criterio creativo y ejecución calmada.',
+    'Raúl Mermans diseña sistemas de IA, automatizaciones y capas de producto para marcas modernas con criterio creativo y una ejecución fluida.',
   path: '/',
   locale: 'es',
   image: {

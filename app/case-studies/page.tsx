@@ -23,7 +23,7 @@ function getSchemas(locale: Locale) {
       '@id': `${siteConfig.url}/#case-studies-page`,
       name: isSpanish ? 'Casos de estudio' : 'Case Studies',
       description: isSpanish
-        ? 'Casos de estudio de Raúl Mermans sobre sistemas de IA, workflows de automatización, sistemas de marca y ejecución creativa con criterio de producto.'
+        ? 'Casos de estudio de Raúl Mermans sobre sistemas de IA, flujos de automatización, sistemas de marca y ejecución creativa con criterio de producto.'
         : 'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
       url: absoluteRouteUrl(localizedCaseStudies),
       isPartOf: { '@type': 'WebSite', '@id': `${siteConfig.url}/#website` },

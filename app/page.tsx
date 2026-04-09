@@ -35,7 +35,7 @@ function getHomeServiceSchema(locale: Locale) {
           name: 'Sistemas de IA',
           serviceType: 'Diseño de sistemas de IA aplicados',
           description:
-            'Sistemas de IA aplicados que convierten trabajo repetitivo y cargado de criterio en ejecución fiable mediante automatización, orquestación y workflows habilitados por IA.',
+            'Sistemas de IA aplicada que transforman el trabajo repetitivo y de alta carga cognitiva en una ejecución fiable. Agentes, orquestación y flujos de decisión construidos para equipos reales, no solo para demostraciones.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(localizedRoot),
