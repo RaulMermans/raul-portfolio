@@ -63,7 +63,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       name: `${siteConfig.name} Portfolio`,
       url: absoluteRouteUrl('/'),
       description: siteConfig.defaultDescription,
-      inLanguage: 'en',
+      inLanguage: 'es',
+      availableLanguage: ['es', 'en'],
       author: {
         '@type': 'Person',
         '@id': `${siteConfig.url}/#person`,

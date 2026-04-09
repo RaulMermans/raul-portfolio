@@ -3,15 +3,16 @@ import '@/styles/case-study-new.css'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Case Studies',
+  title: 'Casos de Estudio',
   description:
-    'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
+    'Casos de estudio de Raúl Mermans sobre sistemas de IA, workflows de automatización, sistemas de marca y ejecución creativa con criterio de producto.',
   path: '/case-studies',
+  locale: 'es',
   image: {
     url: '/images/sections/case-studies-bg.webp',
-    alt: 'Case studies by Raúl Mermans',
+    alt: 'Casos de estudio de Raúl Mermans',
   },
-  keywords: ['case studies', 'AI systems case studies', 'brand systems'],
+  keywords: ['casos de estudio', 'sistemas de IA', 'sistemas de marca'],
 })
 
 export default function CaseStudiesLayout({

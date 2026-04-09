@@ -3,9 +3,9 @@ import NotFoundExperience from '@/components/NotFoundExperience'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Page not found',
+  title: 'Página no encontrada',
   description:
-    'The page you requested could not be found. Explore case studies, apps, and AI systems work by Raúl Mermans.',
+    'La página solicitada no se encontró. Explora casos de estudio, apps y trabajo en sistemas de IA de Raúl Mermans.',
   path: '/404',
   canonicalPath: '/404',
   noIndex: true,

@@ -2,16 +2,17 @@ import type { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'About',
+  title: 'Sobre Mí',
   description:
-    'About Raúl Mermans, an applied AI systems builder combining product thinking, automation design, and creative judgment for modern brands.',
+    'Sobre Raúl Mermans: constructor de sistemas de IA aplicada que combina criterio creativo, diseño de automatizaciones y mentalidad de producto.',
   path: '/about',
+  locale: 'es',
   image: {
     url: '/images/about/profile.webp',
-    alt: 'Portrait of Raúl Mermans',
+    alt: 'Retrato de Raúl Mermans',
   },
   type: 'profile',
-  keywords: ['about Raúl Mermans', 'AI systems builder', 'creative infrastructure'],
+  keywords: ['sobre Raúl Mermans', 'sistemas de IA aplicada', 'infraestructura creativa'],
 })
 
 export default function AboutLayout({

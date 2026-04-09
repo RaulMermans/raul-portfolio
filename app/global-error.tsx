@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
 export default function GlobalError({
   error,
@@ -10,12 +12,29 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
+  const copy =
+    locale === 'es'
+      ? {
+          title: 'Algo salió mal',
+          body: 'Lo sentimos, pero ocurrió algo inesperado. Inténtalo de nuevo o vuelve al inicio.',
+          retry: 'Reintentar',
+          home: 'Ir al inicio',
+        }
+      : {
+          title: 'Something Went Wrong',
+          body: "We're sorry, but something unexpected happened. Please try again or return to the homepage.",
+          retry: 'Try Again',
+          home: 'Go Home',
+        }
+
   useEffect(() => {
     console.error('Global application error:', error)
   }, [error])
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body style={{
         margin: 0,
         padding: 0,
@@ -36,7 +55,7 @@ export default function GlobalError({
             fontSize: 'clamp(2rem, 8vw, 4rem)',
             marginBottom: '1rem',
           }}>
-            Something Went Wrong
+            {copy.title}
           </h1>
           <p style={{ 
             marginBottom: '2rem', 
@@ -44,7 +63,7 @@ export default function GlobalError({
             fontSize: '1.125rem',
             maxWidth: '500px',
           }}>
-            We&apos;re sorry, but something unexpected happened. Please try again or return to the homepage.
+            {copy.body}
           </p>
           <div style={{ 
             display: 'flex', 
@@ -65,10 +84,10 @@ export default function GlobalError({
                 minWidth: '140px',
               }}
             >
-              Try Again
+              {copy.retry}
             </button>
             <Link 
-              href="/"
+              href={localizePath('/', locale)}
               style={{
                 padding: '0.75rem 1.5rem',
                 background: 'transparent',
@@ -81,7 +100,7 @@ export default function GlobalError({
                 display: 'inline-block',
               }}
             >
-              Go Home
+              {copy.home}
             </Link>
           </div>
         </div>
@@ -89,4 +108,3 @@ export default function GlobalError({
     </html>
   )
 }
-

@@ -29,7 +29,7 @@ export default function SpanishPhotographyLayout({
           name: 'Fotografía de Raúl Mermans',
           description:
             'Fotografía de Raúl Mermans, mostrando el criterio visual, la composición y la contención que sostienen su trabajo más amplio en sistemas de IA y dirección creativa.',
-          url: absoluteRouteUrl('/es/photography'),
+          url: absoluteRouteUrl('/photography'),
         }}
       />
       {children}

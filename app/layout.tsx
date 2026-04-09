@@ -71,6 +71,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: absoluteRouteUrl('/'),
+    languages: {
+      'es-ES': absoluteRouteUrl('/'),
+      'en-US': absoluteRouteUrl('/en'),
+    },
   },
   openGraph: {
     type: 'website',
@@ -119,7 +123,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}>
         <LocaleDocument />
         <Suspense fallback={null}>

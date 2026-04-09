@@ -3,15 +3,16 @@ import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Photography',
+  title: 'Fotografía',
   description:
-    'Photography by Raúl Mermans, showcasing the visual judgment, composition, and restraint that support his broader AI systems and creative work.',
+    'Fotografía de Raúl Mermans, mostrando el criterio visual, la composición y la contención que sostienen su trabajo más amplio en sistemas de IA y dirección creativa.',
   path: '/photography',
+  locale: 'es',
   image: {
     url: '/images/sections/photography-bg.webp',
-    alt: 'Photography gallery by Raúl Mermans',
+    alt: 'Galería de fotografía de Raúl Mermans',
   },
-  keywords: ['photography portfolio', 'editorial photography', 'brand photography'],
+  keywords: ['portfolio de fotografía', 'fotografía editorial', 'fotografía de marca'],
 })
 
 export default function PhotographyLayout({
@@ -24,10 +25,10 @@ export default function PhotographyLayout({
       <StructuredData
         type="CollectionPage"
         data={{
-          '@id': `${siteConfig.url}/#photography-page`,
-          name: 'Photography by Raúl Mermans',
+          '@id': `${siteConfig.url}/#photography-page-es`,
+          name: 'Fotografía de Raúl Mermans',
           description:
-            'Photography by Raúl Mermans, showcasing the visual judgment, composition, and restraint that support his broader AI systems and creative work.',
+            'Fotografía de Raúl Mermans, mostrando el criterio visual, la composición y la contención que sostienen su trabajo más amplio en sistemas de IA y dirección creativa.',
           url: absoluteRouteUrl('/photography'),
         }}
       />

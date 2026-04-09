@@ -6,13 +6,16 @@ import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { getSiteCopy } from '@/data/site-copy'
 import { getCaseStudies } from '@/data/case-studies'
-import { type Locale, getLocaleFromPath } from '@/lib/i18n'
+import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
 function getSchemas(locale: Locale) {
   const isSpanish = locale === 'es'
+  const localizedHome = localizePath('/', locale)
+  const localizedCaseStudies = localizePath('/case-studies', locale)
+
   return {
     collection: {
       '@context': 'https://schema.org',
@@ -22,7 +25,7 @@ function getSchemas(locale: Locale) {
       description: isSpanish
         ? 'Casos de estudio de Raúl Mermans sobre sistemas de IA, workflows de automatización, sistemas de marca y ejecución creativa con criterio de producto.'
         : 'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
-      url: absoluteRouteUrl(locale === 'es' ? '/es/case-studies' : '/case-studies'),
+      url: absoluteRouteUrl(localizedCaseStudies),
       isPartOf: { '@type': 'WebSite', '@id': `${siteConfig.url}/#website` },
       about: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
     },
@@ -34,13 +37,13 @@ function getSchemas(locale: Locale) {
           '@type': 'ListItem',
           position: 1,
           name: isSpanish ? 'Inicio' : 'Home',
-          item: absoluteRouteUrl(locale === 'es' ? '/es' : '/'),
+          item: absoluteRouteUrl(localizedHome),
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: isSpanish ? 'Casos de estudio' : 'Case Studies',
-          item: absoluteRouteUrl(locale === 'es' ? '/es/case-studies' : '/case-studies'),
+          item: absoluteRouteUrl(localizedCaseStudies),
         },
       ],
     },

@@ -3,15 +3,16 @@ import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Visuals',
+  title: 'Visuales',
   description:
-    'AI visuals, album covers, and visual concepts by Raúl Mermans, showing the image systems and creative experimentation behind his broader practice.',
+    'Visuales con IA, portadas y conceptos visuales de Raúl Mermans, mostrando los sistemas de imagen y la experimentación creativa detrás de su práctica.',
   path: '/visuals',
+  locale: 'es',
   image: {
     url: '/images/sections/visuals-bg.webp',
-    alt: 'AI visuals by Raúl Mermans',
+    alt: 'Visuales con IA de Raúl Mermans',
   },
-  keywords: ['AI visuals', 'album covers', 'visual concepts', 'creative experiments'],
+  keywords: ['visuales con IA', 'portadas', 'conceptos visuales', 'experimentos creativos'],
 })
 
 export default function VisualsLayout({
@@ -24,10 +25,10 @@ export default function VisualsLayout({
       <StructuredData
         type="CollectionPage"
         data={{
-          '@id': `${siteConfig.url}/#visuals-page`,
-          name: 'Visuals by Raúl Mermans',
+          '@id': `${siteConfig.url}/#visuals-page-es`,
+          name: 'Visuales de Raúl Mermans',
           description:
-            'AI visuals, album covers, and visual concepts by Raúl Mermans, showing the image systems and creative experimentation behind his broader practice.',
+            'Visuales con IA, portadas y conceptos visuales de Raúl Mermans, mostrando los sistemas de imagen y la experimentación creativa detrás de su práctica.',
           url: absoluteRouteUrl('/visuals'),
         }}
       />

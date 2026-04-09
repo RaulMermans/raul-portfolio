@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import OverflowLanding from './OverflowLanding'
-import { type Locale } from '@/lib/i18n'
+import { type Locale, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export function getOverflowMetadata(locale: Locale = 'en'): Metadata {
@@ -32,7 +32,7 @@ interface OverflowPageViewProps {
 
 export function OverflowPageView({ locale = 'en' }: OverflowPageViewProps) {
   const isSpanish = locale === 'es'
-  const route = locale === 'es' ? '/es/apps/overflow' : '/apps/overflow'
+  const route = localizePath('/apps/overflow', locale)
 
   return (
     <>

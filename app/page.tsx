@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
-import { type Locale, getLocaleFromPath } from '@/lib/i18n'
+import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
@@ -19,6 +19,9 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 
 function getHomeServiceSchema(locale: Locale) {
+  const localizedRoot = localizePath('/', locale)
+  const localizedPhotography = localizePath('/photography', locale)
+
   if (locale === 'es') {
     return {
       '@context': 'https://schema.org',
@@ -35,7 +38,7 @@ function getHomeServiceSchema(locale: Locale) {
             'Sistemas de IA aplicados que convierten trabajo repetitivo y cargado de criterio en ejecución fiable mediante automatización, orquestación y workflows habilitados por IA.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl('/es'),
+          url: absoluteRouteUrl(localizedRoot),
         },
         {
           '@type': 'Service',
@@ -46,7 +49,7 @@ function getHomeServiceSchema(locale: Locale) {
             'Sitios y experiencias digitales modernos, rápidos y pensados para narrativa clara, conversión y una ejecución premium.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl('/es'),
+          url: absoluteRouteUrl(localizedRoot),
         },
         {
           '@type': 'Service',
@@ -57,7 +60,7 @@ function getHomeServiceSchema(locale: Locale) {
             'Fotografía que apoya el relato de marca mediante composición, contención visual e imágenes pensadas para uso editorial y comercial.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl('/es/photography'),
+          url: absoluteRouteUrl(localizedPhotography),
         },
         {
           '@type': 'Service',
@@ -68,7 +71,7 @@ function getHomeServiceSchema(locale: Locale) {
             'Dirección creativa que conecta identidad de marca, sistemas visuales y pensamiento de campaña para que cada punto de contacto se sienta coherente e intencional.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl('/es'),
+          url: absoluteRouteUrl(localizedRoot),
         },
       ],
     }
@@ -89,7 +92,7 @@ function getHomeServiceSchema(locale: Locale) {
           'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution through automation logic, orchestration, and AI-enabled workflows.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl('/'),
+        url: absoluteRouteUrl(localizedRoot),
       },
       {
         '@type': 'Service',
@@ -100,7 +103,7 @@ function getHomeServiceSchema(locale: Locale) {
           'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl('/'),
+        url: absoluteRouteUrl(localizedRoot),
       },
       {
         '@type': 'Service',
@@ -111,7 +114,7 @@ function getHomeServiceSchema(locale: Locale) {
           'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl('/photography'),
+        url: absoluteRouteUrl(localizedPhotography),
       },
       {
         '@type': 'Service',
@@ -122,7 +125,7 @@ function getHomeServiceSchema(locale: Locale) {
           'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl('/'),
+        url: absoluteRouteUrl(localizedRoot),
       },
     ],
   }

@@ -1,8 +1,8 @@
-export const locales = ['en', 'es'] as const
+export const locales = ['es', 'en'] as const
 
 export type Locale = (typeof locales)[number]
 
-export const defaultLocale: Locale = 'en'
+export const defaultLocale: Locale = 'es'
 
 const EXTERNAL_PROTOCOL_PATTERN = /^(?:[a-z]+:)?\/\//i
 const SPECIAL_LINK_PATTERN = /^(mailto:|tel:|sms:|data:|blob:)/i
@@ -12,7 +12,10 @@ export function getLocalePrefix(locale: Locale) {
 }
 
 export function getLocaleFromPath(pathname = '/'): Locale {
-  return pathname === '/es' || pathname.startsWith('/es/') ? 'es' : defaultLocale
+  const normalized = normalizePathname(pathname)
+  const matchedLocale = locales.find((locale) => normalized === `/${locale}` || normalized.startsWith(`/${locale}/`))
+
+  return matchedLocale ?? defaultLocale
 }
 
 function splitHref(href: string) {
@@ -47,12 +50,16 @@ function normalizePathname(pathname: string) {
 export function stripLocaleFromPath(pathname = '/') {
   const normalized = normalizePathname(pathname)
 
-  if (normalized === '/es') {
-    return '/'
-  }
+  for (const locale of locales) {
+    const prefix = `/${locale}`
 
-  if (normalized.startsWith('/es/')) {
-    return normalized.slice(3) || '/'
+    if (normalized === prefix) {
+      return '/'
+    }
+
+    if (normalized.startsWith(`${prefix}/`)) {
+      return normalized.slice(prefix.length) || '/'
+    }
   }
 
   return normalized

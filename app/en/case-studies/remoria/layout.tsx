@@ -3,17 +3,17 @@ import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Caso de Estudio de Remoria',
+  title: 'Remoria Case Study',
   description:
-    'Caso de estudio de Remoria por Raúl Mermans, sobre cómo un sistema de marca, la contención visual y la infraestructura creativa escalan un mundo premium.',
+    'Remoria case study by Raúl Mermans, exploring how brand systems, visual restraint, and creative infrastructure scale a premium world.',
   path: '/case-studies/remoria',
-  locale: 'es',
+  locale: 'en',
   image: {
     url: '/images/case-studies/remoria/hero/hero.webp',
-    alt: 'Caso de estudio de Remoria por Raúl Mermans',
+    alt: 'Remoria case study by Raúl Mermans',
   },
   type: 'article',
-  keywords: ['caso de estudio de marca', 'dirección creativa', 'Remoria'],
+  keywords: ['brand system case study', 'creative direction', 'Remoria'],
   absoluteTitle: true,
 })
 
@@ -25,20 +25,20 @@ function BreadcrumbSchema() {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Inicio',
-        item: siteConfig.url,
+        name: 'Home',
+        item: `${siteConfig.url}/en`,
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Casos de estudio',
-        item: `${siteConfig.url}/case-studies`,
+        name: 'Case Studies',
+        item: `${siteConfig.url}/en/case-studies`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Remoria',
-        item: `${siteConfig.url}/case-studies/remoria`,
+        item: `${siteConfig.url}/en/case-studies/remoria`,
       },
     ],
   }
@@ -51,7 +51,7 @@ function BreadcrumbSchema() {
   )
 }
 
-export default function RemoriaLayout({
+export default function EnglishRemoriaLayout({
   children,
 }: {
   children: React.ReactNode
@@ -62,16 +62,16 @@ export default function RemoriaLayout({
       <StructuredData
         type="Article"
         data={{
-          '@id': `${siteConfig.url}/#remoria-case-study`,
-          headline: 'Caso de Estudio de Remoria',
+          '@id': `${siteConfig.url}/#remoria-case-study-en`,
+          headline: 'Remoria Case Study',
           name: 'Remoria',
           description:
-            'Caso de estudio de Remoria por Raúl Mermans, sobre cómo un sistema de marca, la contención visual y la infraestructura creativa escalan un mundo premium.',
-          url: absoluteRouteUrl('/case-studies/remoria'),
-          mainEntityOfPage: absoluteRouteUrl('/case-studies/remoria'),
+            'Remoria case study by Raúl Mermans, exploring how brand systems, visual restraint, and creative infrastructure scale a premium world.',
+          url: absoluteRouteUrl('/en/case-studies/remoria'),
+          mainEntityOfPage: absoluteRouteUrl('/en/case-studies/remoria'),
           image: absoluteUrl('/images/case-studies/remoria/hero/hero.webp'),
-          articleSection: 'Casos de estudio',
-          keywords: ['caso de estudio de marca', 'dirección creativa', 'Remoria'],
+          articleSection: 'Case Studies',
+          keywords: ['brand system case study', 'creative direction', 'Remoria'],
         }}
       />
       {children}

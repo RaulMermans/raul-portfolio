@@ -29,7 +29,7 @@ export default function SpanishVisualsLayout({
           name: 'Visuales de Raúl Mermans',
           description:
             'Visuales con IA, portadas y conceptos visuales de Raúl Mermans, mostrando los sistemas de imagen y la experimentación creativa detrás de su práctica.',
-          url: absoluteRouteUrl('/es/visuals'),
+          url: absoluteRouteUrl('/visuals'),
         }}
       />
       {children}
