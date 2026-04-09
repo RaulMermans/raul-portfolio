@@ -26,19 +26,19 @@ function BreadcrumbSchema() {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: `${siteConfig.url}/es`,
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Casos de estudio',
-        item: `${siteConfig.url}/es/case-studies`,
+        item: `${siteConfig.url}/case-studies`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'AI Sports Campaign',
-        item: `${siteConfig.url}/es/case-studies/ai-sports`,
+        item: `${siteConfig.url}/case-studies/ai-sports`,
       },
     ],
   }
@@ -62,8 +62,8 @@ export default function SpanishAISportsCampaignLayout({
           name: 'AI Sports Campaign',
           description:
             'Caso de estudio de campaña deportiva con IA por Raúl Mermans, mostrando un sistema de imágenes con n8n para casting, estilismo y dirección consistentes.',
-          url: absoluteRouteUrl('/es/case-studies/ai-sports'),
-          mainEntityOfPage: absoluteRouteUrl('/es/case-studies/ai-sports'),
+          url: absoluteRouteUrl('/case-studies/ai-sports'),
+          mainEntityOfPage: absoluteRouteUrl('/case-studies/ai-sports'),
           image: absoluteUrl('/images/case-studies/ai-sports/hero/hero.webp'),
           articleSection: 'Casos de estudio',
           keywords: ['campaña con IA', 'automatización n8n', 'sistema de imágenes'],

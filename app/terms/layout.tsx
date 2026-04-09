@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Terms of Service',
+  title: 'Términos de Servicio',
   description:
-    'Terms of Service for Raúl Mermans covering the rules, limitations, and responsibilities that apply when using this portfolio website.',
+    'Términos de Servicio de Raúl Mermans sobre las reglas, limitaciones y responsabilidades aplicables al uso de este sitio portfolio.',
   path: '/terms',
+  locale: 'es',
   noIndex: true,
 })
 

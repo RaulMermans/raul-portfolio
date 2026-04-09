@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { OverflowPageView, getOverflowMetadata } from './overflow-page-shared'
 
-export const metadata: Metadata = getOverflowMetadata()
+export const metadata: Metadata = getOverflowMetadata('es')
 
 export default function OverflowPage() {
-  return <OverflowPageView locale="en" />
+  return <OverflowPageView locale="es" />
 }

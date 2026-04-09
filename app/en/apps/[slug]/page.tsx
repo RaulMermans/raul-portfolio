@@ -4,7 +4,7 @@ import {
   type AppPageProps,
   getAppDetailMetadata,
   getAppStaticParams,
-} from '../app-detail-shared'
+} from '../../../apps/app-detail-shared'
 
 export const dynamicParams = false
 
@@ -13,9 +13,9 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: AppPageProps): Metadata {
-  return getAppDetailMetadata(params.slug, 'es')
+  return getAppDetailMetadata(params.slug, 'en')
 }
 
-export default function AppDetailPage(props: AppPageProps) {
-  return <AppDetailPageView {...props} locale="es" />
+export default function EnglishAppDetailPage(props: AppPageProps) {
+  return <AppDetailPageView {...props} locale="en" />
 }

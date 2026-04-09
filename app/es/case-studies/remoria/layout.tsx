@@ -26,19 +26,19 @@ function BreadcrumbSchema() {
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: `${siteConfig.url}/es`,
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Casos de estudio',
-        item: `${siteConfig.url}/es/case-studies`,
+        item: `${siteConfig.url}/case-studies`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Remoria',
-        item: `${siteConfig.url}/es/case-studies/remoria`,
+        item: `${siteConfig.url}/case-studies/remoria`,
       },
     ],
   }
@@ -62,8 +62,8 @@ export default function SpanishRemoriaLayout({
           name: 'Remoria',
           description:
             'Caso de estudio de Remoria por Raúl Mermans, sobre cómo un sistema de marca, la contención visual y la infraestructura creativa escalan un mundo premium.',
-          url: absoluteRouteUrl('/es/case-studies/remoria'),
-          mainEntityOfPage: absoluteRouteUrl('/es/case-studies/remoria'),
+          url: absoluteRouteUrl('/case-studies/remoria'),
+          mainEntityOfPage: absoluteRouteUrl('/case-studies/remoria'),
           image: absoluteUrl('/images/case-studies/remoria/hero/hero.webp'),
           articleSection: 'Casos de estudio',
           keywords: ['caso de estudio de marca', 'dirección creativa', 'Remoria'],

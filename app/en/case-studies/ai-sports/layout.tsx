@@ -3,17 +3,17 @@ import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Caso de Estudio de Campaña Deportiva con IA',
+  title: 'AI Sports Campaign Case Study',
   description:
-    'Caso de estudio de campaña deportiva con IA por Raúl Mermans, mostrando un sistema de imágenes con n8n para casting, estilismo y dirección consistentes.',
+    'AI sports campaign case study by Raúl Mermans, showing an n8n-driven image system for consistent casting, styling, and campaign direction.',
   path: '/case-studies/ai-sports',
-  locale: 'es',
+  locale: 'en',
   image: {
     url: '/images/case-studies/ai-sports/hero/hero.webp',
-    alt: 'Caso de estudio AI Sports Campaign por Raúl Mermans',
+    alt: 'AI Sports Campaign case study by Raúl Mermans',
   },
   type: 'article',
-  keywords: ['campaña con IA', 'automatización n8n', 'sistema de imágenes'],
+  keywords: ['AI campaign case study', 'n8n automation', 'AI image system'],
   absoluteTitle: true,
 })
 
@@ -25,20 +25,20 @@ function BreadcrumbSchema() {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Inicio',
-        item: siteConfig.url,
+        name: 'Home',
+        item: `${siteConfig.url}/en`,
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Casos de estudio',
-        item: `${siteConfig.url}/case-studies`,
+        name: 'Case Studies',
+        item: `${siteConfig.url}/en/case-studies`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'AI Sports Campaign',
-        item: `${siteConfig.url}/case-studies/ai-sports`,
+        item: `${siteConfig.url}/en/case-studies/ai-sports`,
       },
     ],
   }
@@ -51,7 +51,7 @@ function BreadcrumbSchema() {
   )
 }
 
-export default function AISportsCampaignLayout({
+export default function EnglishAISportsCampaignLayout({
   children,
 }: {
   children: React.ReactNode
@@ -62,16 +62,16 @@ export default function AISportsCampaignLayout({
       <StructuredData
         type="Article"
         data={{
-          '@id': `${siteConfig.url}/#ai-sports-case-study`,
-          headline: 'Caso de Estudio de Campaña Deportiva con IA',
+          '@id': `${siteConfig.url}/#ai-sports-case-study-en`,
+          headline: 'AI Sports Campaign Case Study',
           name: 'AI Sports Campaign',
           description:
-            'Caso de estudio de campaña deportiva con IA por Raúl Mermans, mostrando un sistema de imágenes con n8n para casting, estilismo y dirección consistentes.',
-          url: absoluteRouteUrl('/case-studies/ai-sports'),
-          mainEntityOfPage: absoluteRouteUrl('/case-studies/ai-sports'),
+            'AI sports campaign case study by Raúl Mermans, showing an n8n-driven image system for consistent casting, styling, and campaign direction.',
+          url: absoluteRouteUrl('/en/case-studies/ai-sports'),
+          mainEntityOfPage: absoluteRouteUrl('/en/case-studies/ai-sports'),
           image: absoluteUrl('/images/case-studies/ai-sports/hero/hero.webp'),
-          articleSection: 'Casos de estudio',
-          keywords: ['campaña con IA', 'automatización n8n', 'sistema de imágenes'],
+          articleSection: 'Case Studies',
+          keywords: ['AI campaign case study', 'n8n automation', 'AI image system'],
         }}
       />
       {children}

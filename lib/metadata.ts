@@ -23,27 +23,36 @@ export const siteConfig = {
   name: 'Raúl Mermans',
   siteName: 'Raúl Mermans',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com',
-  locale: 'en_US',
+  locale: 'es_ES',
   twitterHandle: '@raulmermans',
-  defaultTitle: 'Raúl Mermans — AI Systems Builder for Modern Brands',
+  defaultTitle: 'Raúl Mermans — Constructor de Sistemas de IA para Marcas Modernas',
   defaultDescription:
-    'Applied AI systems builder for modern brands, designing agents, automation, and creative infrastructure across marketing, CRM, content, and execution.',
+    'Constructor de sistemas de IA aplicados para marcas modernas, diseñando agentes, automatización e infraestructura creativa a través de marketing, CRM, contenido y ejecución.',
   defaultImage: {
     url: '/images/sections/case-studies-bg.webp',
-    alt: 'Raúl Mermans portfolio — AI systems, case studies, and creative execution',
+    alt: 'Portfolio de Raúl Mermans — sistemas de IA, casos de estudio y ejecución creativa',
   },
 } as const
 
 export const defaultKeywords = [
   'Raúl Mermans',
+  'constructor de sistemas de IA',
   'AI systems builder',
+  'sistemas de IA para marcas',
   'AI systems for brands',
+  'flujos agentivos',
   'agentic workflows',
+  'infraestructura de automatización',
   'automation infrastructure',
+  'automatización de marketing',
   'marketing automation',
+  'automatización de CRM',
   'CRM automation',
+  'infraestructura creativa',
   'creative infrastructure',
+  'herramientas de IA',
   'AI tools',
+  'prototipos de producto',
   'product prototypes',
 ]
 

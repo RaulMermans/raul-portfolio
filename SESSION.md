@@ -16,6 +16,7 @@
 - Whether to approve canonical host redirects that consolidate `http`, apex, and bare-HTTPS variants to `https://www.raulmermans.com`
 - Whether to approve a best-fit redirect map for legacy `/projects/*` URLs versus leaving unmatched URLs as proper 404 cleanup
 - Whether the Spanish legal pages should be reviewed by a lawyer or native legal copy reviewer before being treated as official text
+- Whether to keep the legacy `/es/*` Spanish alias routes as canonicalized fallback paths or replace them with hard redirects to the new base Spanish routes later
 
 ### Blockers
 - IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
@@ -27,6 +28,18 @@
 - `npm run lint -- --file app/visuals/page.tsx` was run on 2026-03-28 for a visuals-page sizing tweak and again did not return a usable result in this environment after roughly 30 seconds
 - `npm run lint -- --file app/photography/page.tsx` was run on 2026-03-28 for a photography gallery update and again did not return a usable result in this environment after roughly 30 seconds
 - `npm run lint -- --file components/Services.tsx` was run on 2026-03-28 for a homepage services CTA alignment tweak and again did not return a usable result in this environment after roughly 30 seconds
+
+### 2026-04-09 - Make Spanish the primary language
+**Goal**: Make Spanish the default language on the portfolio while keeping English available as a secondary locale.
+**Outcome**: Completed
+**Changes Made**:
+- `lib/i18n.ts`, `lib/metadata.ts`, `app/layout.tsx`, and `components/StructuredData.tsx` - switched the default locale to Spanish, generalized locale-prefix parsing for `/en/*`, updated site-wide metadata defaults, and aligned root structured data with a Spanish-primary website.
+- `app/page.tsx`, `app/case-studies/page.tsx`, `app/apps/page.tsx`, `app/apps/[slug]/page.tsx`, `app/apps/overflow/page.tsx`, `app/apps/overflow/overflow-page-shared.tsx`, `app/about/layout.tsx`, `app/case-studies/layout.tsx`, `app/case-studies/ai-sports/layout.tsx`, `app/case-studies/remoria/layout.tsx`, `app/photography/layout.tsx`, `app/visuals/layout.tsx`, `app/privacy/layout.tsx`, and `app/terms/layout.tsx` - flipped the base route metadata and schema output to Spanish so `/`, `/about`, `/case-studies`, `/apps`, `/photography`, `/visuals`, `/privacy`, and `/terms` are now the Spanish-first canonical surfaces.
+- `app/en/**` - added an English mirror route tree for the public site so English content now lives under `/en`, including the homepage, about, apps, case studies, photography, visuals, privacy, and terms routes.
+- `app/sitemap.ts`, `app/es/case-studies/ai-sports/layout.tsx`, `app/es/case-studies/remoria/layout.tsx`, `app/es/photography/layout.tsx`, and `app/es/visuals/layout.tsx` - updated sitemap output to include Spanish base routes plus `/en/*`, and aligned the legacy `/es/*` alias metadata/schema URLs with the new canonical Spanish paths.
+- `app/global-error.tsx`, `app/not-found.tsx`, and `components/NotFoundExperience.tsx` - localized the fallback error and 404 experiences so Spanish is the default UI language while `/en/*` still renders English copy.
+**Notes**: `npm run type-check` completed successfully. `npm run lint -- --file app/layout.tsx --file app/page.tsx --file app/about/layout.tsx --file app/case-studies/page.tsx --file app/case-studies/layout.tsx --file app/case-studies/ai-sports/layout.tsx --file app/case-studies/remoria/layout.tsx --file app/apps/page.tsx --file app/apps/[slug]/page.tsx --file app/apps/overflow/page.tsx --file app/apps/overflow/overflow-page-shared.tsx --file app/photography/layout.tsx --file app/visuals/layout.tsx --file app/privacy/layout.tsx --file app/terms/layout.tsx --file app/not-found.tsx --file app/global-error.tsx --file components/NotFoundExperience.tsx --file components/StructuredData.tsx --file lib/i18n.ts --file lib/metadata.ts --file app/sitemap.ts --file app/en/page.tsx --file app/en/about/layout.tsx --file app/en/about/page.tsx --file app/en/apps/page.tsx --file app/en/apps/[slug]/page.tsx --file app/en/apps/overflow/page.tsx --file app/en/case-studies/layout.tsx --file app/en/case-studies/page.tsx --file app/en/case-studies/ai-sports/layout.tsx --file app/en/case-studies/ai-sports/page.tsx --file app/en/case-studies/remoria/layout.tsx --file app/en/case-studies/remoria/page.tsx --file app/en/photography/layout.tsx --file app/en/photography/page.tsx --file app/en/privacy/page.tsx --file app/en/terms/page.tsx --file app/en/visuals/layout.tsx --file app/en/visuals/page.tsx` also completed successfully with no warnings or errors. The unrelated deleted file `public/images/photography/Services_Photography.webp` was left untouched.
+**Next Steps**: Review the new base Spanish routes and the `/en/*` mirrors in-browser, then decide whether to keep `/es/*` as canonicalized fallback aliases or replace them with hard redirects.
 
 ---
 

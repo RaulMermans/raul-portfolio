@@ -1,108 +1,30 @@
 import { MetadataRoute } from 'next'
 import { getApps } from '@/data/apps'
+import { locales, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl } from '@/lib/metadata'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: absoluteRouteUrl('/'),
+  const localizedDefinitions = [
+    { path: '/', changeFrequency: 'monthly', priority: 1 },
+    { path: '/about', changeFrequency: 'monthly', priority: 0.9 },
+    { path: '/case-studies', changeFrequency: 'monthly', priority: 0.9 },
+    { path: '/apps', changeFrequency: 'monthly', priority: 0.88 },
+    { path: '/photography', changeFrequency: 'weekly', priority: 0.75 },
+    { path: '/visuals', changeFrequency: 'weekly', priority: 0.75 },
+    { path: '/case-studies/ai-sports', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/case-studies/remoria', changeFrequency: 'monthly', priority: 0.8 },
+  ] as const
+
+  const staticRoutes: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+    localizedDefinitions.map((route) => ({
+      url: absoluteRouteUrl(localizePath(route.path, locale)),
       lastModified,
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: absoluteRouteUrl('/about'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: absoluteRouteUrl('/case-studies'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: absoluteRouteUrl('/apps'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.88,
-    },
-    {
-      url: absoluteRouteUrl('/photography'),
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.75,
-    },
-    {
-      url: absoluteRouteUrl('/visuals'),
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.75,
-    },
-    {
-      url: absoluteRouteUrl('/case-studies/ai-sports'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: absoluteRouteUrl('/case-studies/remoria'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: absoluteRouteUrl('/es'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.95,
-    },
-    {
-      url: absoluteRouteUrl('/es/about'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.88,
-    },
-    {
-      url: absoluteRouteUrl('/es/case-studies'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.88,
-    },
-    {
-      url: absoluteRouteUrl('/es/apps'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.86,
-    },
-    {
-      url: absoluteRouteUrl('/es/photography'),
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.72,
-    },
-    {
-      url: absoluteRouteUrl('/es/visuals'),
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.72,
-    },
-    {
-      url: absoluteRouteUrl('/es/case-studies/ai-sports'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.78,
-    },
-    {
-      url: absoluteRouteUrl('/es/case-studies/remoria'),
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.78,
-    },
-  ]
+      changeFrequency: route.changeFrequency,
+      priority: locale === 'es' ? route.priority : Math.max(route.priority - 0.05, 0.1),
+    }))
+  )
 
   const appRoutes: MetadataRoute.Sitemap = [...getApps('en'), ...getApps('es')].map((app) => ({
     url: absoluteRouteUrl(app.href),

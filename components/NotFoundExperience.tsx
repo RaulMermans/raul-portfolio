@@ -2,11 +2,33 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
 export default function NotFoundExperience() {
   const orbRef = useRef<HTMLDivElement>(null)
   const pageRef = useRef<HTMLElement>(null)
   const glitchWrapperRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
+  const copy =
+    locale === 'es'
+      ? {
+          back: 'Volver',
+          label: 'Escena no encontrada',
+          message:
+            'Este fotograma parece haberse salido del carrete. Si buscabas una URL antigua de proyecto, la estructura del portfolio ha cambiado. Volvamos a las páginas con mejor prueba.',
+          home: 'Volver al inicio',
+          caseStudies: 'Casos de estudio',
+        }
+      : {
+          back: 'Back',
+          label: 'Scene Not Found',
+          message:
+            "This frame seems to be missing from the reel. If you were looking for an older project URL, the portfolio structure has changed. Let's get you back to the strongest proof pages.",
+          home: 'Return Home',
+          caseStudies: 'Case Studies',
+        }
 
   useEffect(() => {
     const pageElement = pageRef.current
@@ -64,9 +86,9 @@ export default function NotFoundExperience() {
         ))}
       </div>
 
-      <Link href="/" className="back-link">
+      <Link href={localizePath('/', locale)} className="back-link">
         <span className="back-link__arrow">←</span>
-        <span>Back</span>
+        <span>{copy.back}</span>
       </Link>
 
       <div className="frame-counter" aria-hidden="true">
@@ -91,11 +113,8 @@ export default function NotFoundExperience() {
         </div>
 
         <div className="content">
-          <span className="label">Scene Not Found</span>
-          <p className="message">
-            This frame seems to be missing from the reel. If you were looking for an older project URL,
-            the portfolio structure has changed. Let&apos;s get you back to the strongest proof pages.
-          </p>
+          <span className="label">{copy.label}</span>
+          <p className="message">{copy.message}</p>
           <div
             style={{
               display: 'flex',
@@ -104,15 +123,15 @@ export default function NotFoundExperience() {
               justifyContent: 'center',
             }}
           >
-            <Link href="/" className="btn">
-              <span>Return Home</span>
+            <Link href={localizePath('/', locale)} className="btn">
+              <span>{copy.home}</span>
               <span className="btn__arrow">→</span>
             </Link>
-            <Link href="/case-studies" className="btn">
-              <span>Case Studies</span>
+            <Link href={localizePath('/case-studies', locale)} className="btn">
+              <span>{copy.caseStudies}</span>
               <span className="btn__arrow">→</span>
             </Link>
-            <Link href="/apps/overflow" className="btn">
+            <Link href={localizePath('/apps/overflow', locale)} className="btn">
               <span>Overflow</span>
               <span className="btn__arrow">→</span>
             </Link>
