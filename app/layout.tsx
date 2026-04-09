@@ -5,6 +5,7 @@ import '../styles/globals.css'
 import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, defaultKeywords, siteConfig } from '@/lib/metadata'
+import LocaleDocument from '@/components/LocaleDocument'
 // Critical bots - loaded immediately (error handling, security, env validation)
 import '@/lib/error-bot'
 import '@/lib/security-bot'
@@ -120,9 +121,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}>
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
+        <LocaleDocument />
         <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>

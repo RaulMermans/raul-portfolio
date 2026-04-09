@@ -15,56 +15,9 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale, localizePath } from '@/lib/i18n'
 import styles from './SectionCards.module.css'
-
-const sections = [
-  {
-    id: 'case-studies',
-    index: '01',
-    eyebrow: 'AI systems, automation, and brand structure',
-    title: 'Case Studies',
-    description:
-      'Case studies spanning agentic workflows, AI systems, and the brand logic that makes execution feel coherent instead of improvised.',
-    href: '/case-studies',
-    image: '/images/sections/case-studies-bg.webp',
-    accent: '#b94a53',
-  },
-  {
-    id: 'apps',
-    index: '02',
-    eyebrow: 'Prototypes, internal tools, and interface thinking',
-    title: 'Apps',
-    description:
-      'Apps, tools, and product surfaces that show how I think about workflow logic, calm UX, and applied execution.',
-    href: '/apps',
-    image: '/images/sections/apps-bg-v2.webp',
-    accent: '#3f9f8b',
-  },
-  {
-    id: 'photography',
-    index: '03',
-    eyebrow: 'Supporting craft: composition, restraint, image judgment',
-    title: 'Photography',
-    description:
-      'Photography stays in the practice as a way of sharpening taste, direction, and the visual judgment behind stronger systems.',
-    href: '/photography',
-    image: '/images/sections/photography-bg.webp',
-    accent: '#9c7847',
-  },
-  {
-    id: 'visuals',
-    index: '04',
-    eyebrow: 'AI image systems and visual experiments',
-    title: 'Visuals',
-    description:
-      'AI visuals, album covers, and image studies shaped as supporting craft for brands, concepts, and fast-moving creative execution.',
-    href: '/visuals',
-    image: '/images/sections/visuals-bg.webp',
-    accent: '#d86d43',
-  },
-] as const
-
-const loopedSections = [sections[sections.length - 1], ...sections, sections[0]]
 
 function getSlideStyle(relativeIndex: number): CSSProperties {
   const absIndex = Math.abs(relativeIndex)
@@ -96,8 +49,43 @@ function getSlideStyle(relativeIndex: number): CSSProperties {
   }
 }
 
-export default function SectionCards() {
+interface SectionCardsProps {
+  locale?: Locale
+}
+
+export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
   const router = useRouter()
+  const copy = getSiteCopy(locale).home.sectionCards
+  const sections = copy.sections.map((section) => ({
+    ...section,
+    href: localizePath(
+      section.id === 'case-studies'
+        ? '/case-studies'
+        : section.id === 'apps'
+          ? '/apps'
+          : section.id === 'photography'
+            ? '/photography'
+            : '/visuals',
+      locale,
+    ),
+    image:
+      section.id === 'case-studies'
+        ? '/images/sections/case-studies-bg.webp'
+        : section.id === 'apps'
+          ? '/images/sections/apps-bg-v2.webp'
+          : section.id === 'photography'
+            ? '/images/sections/photography-bg.webp'
+            : '/images/sections/visuals-bg.webp',
+    accent:
+      section.id === 'case-studies'
+        ? '#b94a53'
+        : section.id === 'apps'
+          ? '#3f9f8b'
+          : section.id === 'photography'
+            ? '#9c7847'
+            : '#d86d43',
+  }))
+  const loopedSections = [sections[sections.length - 1], ...sections, sections[0]]
   const gridId = useId()
   const pointerStartXRef = useRef<number | null>(null)
   const pointerDeltaXRef = useRef(0)
@@ -253,7 +241,7 @@ export default function SectionCards() {
           disabled={isTransitioning}
           className={`${styles.nav} ${styles.navPrev}`}
           aria-controls={gridId}
-          aria-label={`Previous section: ${sections[previousIndex].title}`}
+          aria-label={`${copy.prev} ${sections[previousIndex].title}`}
         >
           <svg
             width="24"
@@ -275,7 +263,7 @@ export default function SectionCards() {
           disabled={isTransitioning}
           className={`${styles.nav} ${styles.navNext}`}
           aria-controls={gridId}
-          aria-label={`Next section: ${sections[nextIndex].title}`}
+          aria-label={`${copy.next} ${sections[nextIndex].title}`}
         >
           <svg
             width="24"
@@ -298,7 +286,7 @@ export default function SectionCards() {
         className={styles.stage}
         role="region"
         aria-roledescription="carousel"
-        aria-label="Selected projects"
+        aria-label={locale === 'es' ? 'Proyectos seleccionados' : 'Selected projects'}
         tabIndex={0}
         onKeyDown={handleStageKeyDown}
         onPointerDown={handlePointerDown}
@@ -308,7 +296,7 @@ export default function SectionCards() {
         onPointerLeave={handlePointerEnd}
       >
         <p className={styles.srOnly} aria-live="polite">
-          Showing {activeIndex + 1} of {sections.length}: {sections[activeIndex].title}
+          {locale === 'es' ? 'Mostrando' : 'Showing'} {activeIndex + 1} {locale === 'es' ? 'de' : 'of'} {sections.length}: {sections[activeIndex].title}
         </p>
 
         <div className={styles.track} style={trackStyle} onTransitionEnd={handleTrackTransitionEnd}>
@@ -355,7 +343,7 @@ export default function SectionCards() {
                     </div>
 
                     <span className={styles.cta}>
-                      <span>Explore section</span>
+                      <span>{copy.viewLabel}</span>
                       <span className={styles.ctaLine} aria-hidden="true" />
                       <span className={styles.ctaArrow} aria-hidden="true">
                         ↗

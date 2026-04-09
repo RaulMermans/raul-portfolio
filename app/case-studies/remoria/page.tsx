@@ -1,7 +1,10 @@
 'use client'
 
 import { useCaseStudySetup } from '@/hooks'
-import { notFound } from 'next/navigation'
+import { notFound, usePathname } from 'next/navigation'
+import { getSiteCopy } from '@/data/site-copy'
+import { getCaseStudies } from '@/data/case-studies'
+import { getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
@@ -14,12 +17,14 @@ import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import RemoriaBrandSystem from '@/components/case-studies/RemoriaBrandSystem'
 import BoldText from '@/components/case-studies/BoldText'
 import { getCaseStudyContent } from '@/data/case-studies-content'
-import { caseStudies } from '@/data/case-studies'
 import '@/styles/remoria-brand-system.css'
 
 export default function RemoriaPage() {
-  const content = getCaseStudyContent('remoria')
-  const nextCaseStudy = caseStudies.find((cs) => cs.href === '/case-studies/ai-sports')
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
+  const copy = getSiteCopy(locale).caseStudiesUi
+  const content = getCaseStudyContent('remoria', locale)
+  const nextCaseStudy = getCaseStudies(locale).find((cs) => cs.href.endsWith('/case-studies/ai-sports'))
 
   useCaseStudySetup()
 
@@ -29,12 +34,13 @@ export default function RemoriaPage() {
 
   return (
     <>
-      <Header />
+      <Header locale={locale} />
 
       <main id="main-content" className={`case-study-page-new case-study-page-new--${content.layoutVariant ?? 'default'}`}>
         <CaseStudyHero 
           hero={content.hero} 
           accentColor={content.accentColor}
+          locale={locale}
             />
 
         {content.overview?.meta && (
@@ -46,7 +52,7 @@ export default function RemoriaPage() {
 
         {content.overview && (
           <CaseStudySection 
-            title="Overview" 
+            title={copy.overview} 
             variant="light"
             id="overview"
                       >
@@ -65,7 +71,7 @@ export default function RemoriaPage() {
 
         {content.challenge && (
           <CaseStudySection 
-            title="The Challenge" 
+            title={copy.challenge} 
             variant="dark"
             id="challenge"
           >
@@ -78,7 +84,7 @@ export default function RemoriaPage() {
               </p>
               {content.challenge.successCriteria && content.challenge.successCriteria.length > 0 && (
                 <div className="case-study-challenge__criteria">
-                  <h4 className="case-study-challenge__criteria-title">Success Criteria</h4>
+                  <h4 className="case-study-challenge__criteria-title">{copy.successCriteria}</h4>
                   <ul className="case-study-challenge__criteria-list">
                   {content.challenge.successCriteria.map((criterion, index) => (
                       <li key={index} className="case-study-challenge__criteria-item">
@@ -110,7 +116,7 @@ export default function RemoriaPage() {
 
         {content.approach && (
           <CaseStudySection 
-            title="The Approach" 
+            title={copy.approach} 
             variant="light"
             id="approach"
           >
@@ -121,7 +127,7 @@ export default function RemoriaPage() {
 
                 {content.approach.tools && content.approach.tools.length > 0 && (
                 <div className="case-study-approach__tools">
-                  <h4 className="case-study-approach__tools-title">Tools & Technologies</h4>
+                  <h4 className="case-study-approach__tools-title">{copy.tools}</h4>
                   <div className="case-study-approach__tools-list">
                       {content.approach.tools.map((tool, index) => (
                       <span key={index} className="case-study-approach__tool">
@@ -177,7 +183,7 @@ export default function RemoriaPage() {
 
         {content.results && (
           <CaseStudySection 
-            title="Results" 
+            title={copy.results} 
             variant="dark"
             id="results"
           >
@@ -198,10 +204,11 @@ export default function RemoriaPage() {
             image: nextCaseStudy.image
           } : undefined}
           accentColor={content.accentColor}
+          locale={locale}
         />
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   )
 }

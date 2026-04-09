@@ -3,10 +3,17 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale, localizePath } from '@/lib/i18n'
 import Reveal from './Reveal'
 
-export default function About() {
+interface AboutProps {
+  locale?: Locale
+}
+
+export default function About({ locale = 'en' }: AboutProps) {
   const imageRef = useRef<HTMLDivElement>(null)
+  const copy = getSiteCopy(locale).home.aboutPreview
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,28 +58,44 @@ export default function About() {
           <div className="about__frame"></div>
         </div>
         <div className="about__content">
-          <p className="label about__label reveal">About</p>
+          <p className="label about__label reveal">{copy.label}</p>
           <h2 id="about-title" className="about__headline reveal reveal-delay-1">
-            Business-minded builder. Systems-first by default.
+            {copy.title}
           </h2>
           <p className="about__text reveal reveal-delay-2">
-            I came into this work through business, then taught myself how to build the
-            systems teams actually need. Today I design <span className="highlight">AI workflows</span>,{' '}
-            <span className="highlight">automation layers</span>, and{' '}
-            <span className="highlight">product-minded interfaces</span> for marketing, CRM, content,
-            and creative execution. My edge is the combination of{' '}
-            <span className="highlight">systems thinking</span>,{' '}
-            <span className="highlight">practical implementation</span>, and{' '}
-            <span className="highlight">creative judgment</span> strong enough to keep the output
-            coherent, useful, and worth deploying.
+            {locale === 'es' ? (
+              <>
+                Llegué a este trabajo desde el negocio y luego aprendí a construir los sistemas
+                que los equipos realmente necesitan. Hoy diseño <span className="highlight">flujos de IA</span>,{' '}
+                <span className="highlight">capas de automatización</span> e{' '}
+                <span className="highlight">interfaces con mentalidad de producto</span> para marketing, CRM, contenido
+                y ejecución creativa. Mi ventaja está en la combinación de{' '}
+                <span className="highlight">pensamiento sistémico</span>,{' '}
+                <span className="highlight">implementación práctica</span> y{' '}
+                <span className="highlight">criterio creativo</span> suficiente para que el resultado
+                sea coherente, útil y digno de desplegarse.
+              </>
+            ) : (
+              <>
+                I came into this work through business, then taught myself how to build the
+                systems teams actually need. Today I design <span className="highlight">AI workflows</span>,{' '}
+                <span className="highlight">automation layers</span>, and{' '}
+                <span className="highlight">product-minded interfaces</span> for marketing, CRM, content,
+                and creative execution. My edge is the combination of{' '}
+                <span className="highlight">systems thinking</span>,{' '}
+                <span className="highlight">practical implementation</span>, and{' '}
+                <span className="highlight">creative judgment</span> strong enough to keep the output
+                coherent, useful, and worth deploying.
+              </>
+            )}
           </p>
           
           <Link 
-            href="/about" 
+            href={localizePath('/about', locale)} 
             className="btn btn--arrow reveal reveal-delay-3"
             aria-label="Read more about Raúl Mermans"
           >
-            Read More
+            {copy.cta}
           </Link>
         </div>
       </div>

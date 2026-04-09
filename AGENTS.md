@@ -76,6 +76,8 @@ export async function POST(request: NextRequest) {
 
 ### Metadata & SEO
 - Shared SEO helpers live in `lib/metadata.ts`
+- Locale utilities live in `lib/i18n.ts`; English stays on the base routes and Spanish mirrors live under `/es/*`
+- Shared translated marketing/UI copy lives in `data/site-copy.ts`
 - Prefer `buildPageMetadata()` for route-level metadata instead of duplicating title, canonical, Open Graph, Twitter, and robots config
 - Shared structured data lives in `components/StructuredData.tsx`
 - Technical SEO routes live in `app/sitemap.ts`, `app/robots.ts`, and `app/manifest.ts`

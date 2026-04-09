@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-04-03
+**Last Updated**: 2026-04-09
 
 ### Active Work
 - None currently
@@ -15,6 +15,7 @@
 - Whether to capture additional Overflow proof assets later, specifically an active workout/session screen and a broader progress overview screen for the portfolio page
 - Whether to approve canonical host redirects that consolidate `http`, apex, and bare-HTTPS variants to `https://www.raulmermans.com`
 - Whether to approve a best-fit redirect map for legacy `/projects/*` URLs versus leaving unmatched URLs as proper 404 cleanup
+- Whether the Spanish legal pages should be reviewed by a lawyer or native legal copy reviewer before being treated as official text
 
 ### Blockers
 - IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
@@ -58,6 +59,18 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-04-09 - Add Spanish site variant and language toggle
+**Goal**: Add a Spanish version of the portfolio with locale-aware copy, `/es/*` routes, and a language toggle while keeping English on the existing URLs.
+**Outcome**: Completed
+**Changes Made**:
+- `lib/i18n.ts`, `lib/metadata.ts`, `components/LocaleDocument.tsx`, `components/Header.tsx`, `components/Header.module.css`, `components/Footer.tsx`, `components/Hero.tsx`, `components/About.tsx`, `components/Services.tsx`, `components/Contact.tsx`, `components/ContactForm.tsx`, `components/Socials.tsx`, and `components/SectionCards.tsx` - added shared locale helpers, localized skip-link/html language behavior, and a reusable EN/ES header toggle with locale-aware links and shared copy.
+- `data/site-copy.ts`, `data/apps.ts`, `data/case-studies.ts`, and `data/case-studies-content.ts` - centralized bilingual marketing/app/case-study copy and localized long-form case-study/app content.
+- `app/page.tsx`, `app/about/page.tsx`, `app/case-studies/page.tsx`, `app/case-studies/ai-sports/page.tsx`, `app/case-studies/remoria/page.tsx`, `app/photography/page.tsx`, `app/visuals/page.tsx`, `app/privacy/page.tsx`, and `app/terms/page.tsx` - made public pages locale-aware, including the translated visuals gallery, legal pages, and case-study surfaces.
+- `app/apps/apps-page-shared.tsx`, `app/apps/app-detail-shared.tsx`, `app/apps/overflow/overflow-page-shared.tsx`, `app/apps/page.tsx`, `app/apps/[slug]/page.tsx`, `app/apps/overflow/page.tsx`, and the new `app/es/**` route tree - added shared app-page helpers plus Spanish route wrappers/layouts and localized metadata/structured data for `/es/*`.
+- `app/sitemap.ts` - expanded the sitemap to include Spanish public routes.
+**Notes**: `npm run type-check` completed successfully. `npm run lint -- --file app/page.tsx --file app/about/page.tsx --file app/apps/page.tsx --file app/apps/[slug]/page.tsx --file app/apps/app-detail-shared.tsx --file app/apps/overflow/page.tsx --file app/apps/overflow/overflow-page-shared.tsx --file app/visuals/page.tsx --file app/privacy/page.tsx --file app/terms/page.tsx --file app/es/page.tsx` also completed successfully with no warnings or errors. The unrelated deleted file `public/images/photography/Services_Photography.webp` was left untouched.
+**Next Steps**: Review the Spanish routes in-browser, especially the language-toggle path switching and the translated legal pages, and decide whether Spanish should remain additive under `/es/*` or become the default locale later.
 
 ### 2026-04-03 - Restore scrolling inside visuals exhibition detail view
 **Goal**: Fix the `/visuals` exhibition detail overlay so opened artwork pages can scroll again, especially in the split desktop view shown from the visuals landing page, tighten the base `/visuals` swipe behavior so vertical page scrolling wins over accidental diagonal card swipes, and explicitly constrain the desktop exhibition grid row so the right panel cannot stretch beyond the viewport.

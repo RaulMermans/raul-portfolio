@@ -5,6 +5,7 @@
 
 import type { CaseStudyContent } from '@/types/case-study'
 import { getCaseStudyImagePath } from '@/lib/case-study-images'
+import type { Locale } from '@/lib/i18n'
 
 export const caseStudiesContent: Record<string, CaseStudyContent> = {
   'ai-sports': {
@@ -306,9 +307,211 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
   },
 }
 
+const caseStudiesContentEs: Record<string, CaseStudyContent> = {
+  'ai-sports': {
+    id: 'ai-sports',
+    accentColor: 'var(--accent)',
+    layoutVariant: 'wide',
+    hero: {
+      title: 'Campaña deportiva con IA',
+      tagline: 'Un sistema de campaña con IA aplicado.',
+      subtitle: 'Diseño de sistema de IA y operaciones creativas • 2025',
+      image: {
+        src: getCaseStudyImagePath('ai-sports', 'hero', 'hero.webp'),
+        alt: 'Campaña deportiva con IA - sistema de campaña aplicado',
+        quality: 90,
+        sizes: '100vw',
+      },
+    },
+    overview: {
+      description:
+        'Hoy todo el mundo puede generar imágenes "potentes". Casi nadie puede generar **campañas consistentes**. Construí un sistema de **automatización en n8n** que toma una imagen de referencia y me permite cambiar **modelo y vestuario** manteniendo **iluminación, entorno y ADN del plano** estables. El resultado es una **coherencia de nivel campaña** producida en minutos. La **iteración** deja de ser un problema de re-shoot y se convierte en un **bucle repetible**.',
+      intentQuote: 'Convertir la consistencia de campaña de intuición a sistema operable.',
+      meta: [
+        { label: 'Tipo', value: 'Sistema de automatización con IA' },
+        { label: 'Rol', value: 'Diseño de sistema de IA y operaciones creativas' },
+        { label: 'Herramientas', value: 'n8n, API generativa de imagen, condicionamiento por referencia' },
+        {
+          label: 'Entregables',
+          value: 'Workflow en n8n, especificación de inputs, guardrails de consistencia y demos de campaña',
+        },
+      ],
+    },
+    challenge: {
+      quote: 'La IA generativa te da imágenes. No te da campañas.',
+      context:
+        'El problema base de los **workflows generativos de imagen** es el **drift**: cambias una cosa y cambia todo, desde **iluminación y textura** hasta el "mundo" completo. Eso sirve para **visuales aislados**, pero una **campaña exige continuidad**: que cada pieza parezca salir de la **misma producción**. El reto no era crear una sola imagen buena. Era construir un **workflow** donde la **escena se mantuviera constante** mientras **casting y vestuario** siguieran siendo editables.',
+      successCriteria: [
+        'Las salidas debían leerse como una sola campaña, no como generaciones separadas.',
+        'Poder cambiar modelo y vestuario sin rehacer los prompts desde cero.',
+        'Mantener estables los anclajes del plano: entorno, iluminación, encuadre y textura.',
+        'Producir variantes útiles con suficiente velocidad para iteración real de marketing.',
+      ],
+    },
+    approach: {
+      text: 'La clave era hacerlo utilizable: un **sistema**, no un póster. El insight principal fue que la **consistencia de campaña** nace de las **restricciones**, no de la creatividad por prompt. Diseñé la **automatización** alrededor de un modelo de **"constantes vs variables"**: primero fijando los **no negociables** de la imagen de referencia y después dando flexibilidad controlada a **casting y vestuario**. El **workflow** ingiere **tres inputs visuales** y los enruta por una tubería repetible que prioriza **continuidad por encima de novedad**. La **selección final** sigue siendo humana: elijo en función de **realismo, ajuste de marca y lectura del producto**. Las campañas se **editan**; no solo se generan.',
+      tools: ['n8n', 'API generativa', 'Condicionamiento por referencia', 'Esquema de prompt', 'Versionado de outputs'],
+      system: {
+        label: 'El sistema',
+        items: [
+          {
+            title: 'La variable',
+            description: 'Casting (nueva referencia de modelo) + vestuario (referencias de ropa/producto)',
+          },
+          {
+            title: 'La constante',
+            description: 'Lógica de iluminación, entorno, encuadre y pistas de textura de la foto de referencia',
+          },
+          {
+            title: 'La salida',
+            description: 'Un conjunto pequeño de variantes consistentes, listas para selección creativa',
+          },
+        ],
+      },
+      iterationProof: {
+        label: 'Prueba de iteración',
+        items: [
+          {
+            title: 'Qué cambió',
+            description: 'Separación entre "anclajes de escena" y "atributos editables" dentro de la lógica del workflow',
+          },
+          {
+            title: 'Por qué',
+            description: 'Las primeras pruebas daban imágenes fuertes, pero seguían pareciendo sesiones distintas. El drift se acumulaba rápido',
+          },
+          {
+            title: 'Regla de decisión',
+            description: 'La continuidad manda sobre lo "cool". Si cambian fondo, iluminación o sensación, el output falla. Una campaña se construye sobre repetición con variación intencional.',
+          },
+        ],
+      },
+      deliverables: [
+        {
+          name: 'Pipeline de automatización',
+          rationale: 'Convierte el proceso en un activo repetible, no en un ritual manual',
+        },
+        {
+          name: 'Especificación de 3 inputs',
+          rationale: 'Hace explícita y portable la lógica del sistema',
+        },
+        {
+          name: 'Guardrails + checklist',
+          rationale: 'Fuerza continuidad de campaña y reduce drift generativo',
+        },
+        {
+          name: 'Demo de campaña',
+          rationale: 'Demuestra el sistema bajo condiciones de revisión exigentes',
+        },
+      ],
+      images: [
+        {
+          src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-1.webp'),
+          alt: 'Campaña deportiva con IA - arquitectura del workflow',
+          quality: 90,
+          sizes: '(max-width: 768px) 100vw, 50vw',
+        },
+        {
+          src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-2.webp'),
+          alt: 'Campaña deportiva con IA - técnicas de consistencia',
+          quality: 90,
+          sizes: '(max-width: 768px) 100vw, 50vw',
+        },
+      ],
+    },
+    featureImage: {
+      src: getCaseStudyImagePath('ai-sports', 'feature', 'feature_1.webp'),
+      alt: 'Campaña deportiva con IA - imagen destacada del sistema de consistencia',
+      quality: 90,
+      sizes: '(max-width: 1400px) 100vw, 1400px',
+    },
+    gallery: caseStudiesContent['ai-sports'].gallery,
+    results: {
+      text: 'El sistema vuelve la iteración de campaña rápida y controlable: puedes adaptar casting y estilismo sin romper el mundo visual. Sustituye el "genera hasta tener suerte" por un bucle creativo repetible. Entradas dentro, variantes coherentes fuera en minutos, y la elección final se hace con criterio, no con azar. En la práctica, permite tomar decisiones de nivel campaña sin asumir el burn rate de una campaña completa.',
+      takeawayQuote: 'No es solo prompting. Es infraestructura operativa para ejecutar campañas de forma repetible.',
+    },
+  },
+  remoria: {
+    id: 'remoria',
+    accentColor: 'var(--gold)',
+    layoutVariant: 'default',
+    hero: {
+      title: 'Remoria',
+      tagline: 'Una casa de fragancias grabada en la memoria',
+      subtitle: 'Diseño de sistema de marca e infraestructura creativa • 2025',
+      image: {
+        src: getCaseStudyImagePath('remoria', 'hero', 'hero.webp'),
+        alt: 'Remoria - identidad de casa de fragancias',
+        quality: 90,
+        sizes: '100vw',
+      },
+    },
+    overview: {
+      description:
+        '**REMORIA** es una **casa de fragancias basada en relato** inspirada por **legado romano, lirismo español y calidez mediterránea**. Diseñé un mundo **visual y verbal** completo donde el aroma funciona como **reliquia**: silenciosa, íntima y precisa en lo emocional. El resultado es una **identidad de lujo contenida** construida para perdurar a través de **estructura, textura y silencio**.',
+      intentQuote: 'Hacer que la marca se sienta como un artefacto redescubierto: cálido, silencioso e inolvidable.',
+      meta: [
+        { label: 'Tipo', value: 'Identidad de marca de lujo (fragancias)' },
+        { label: 'Rol', value: 'Diseño de sistema de marca e infraestructura creativa' },
+        { label: 'Herramientas', value: 'Illustrator, Photoshop, Figma, Pinterest' },
+        {
+          label: 'Entregables',
+          value: 'Sistema de identidad visual, tono de voz, concepto de packaging, moodboard, paleta y narrativa de marca',
+        },
+      ],
+    },
+    challenge: {
+      quote: '¿Y si la memoria fuera una marca?',
+      context:
+        'El objetivo era crear una **identidad de fragancia** que comunicara **lujo sin espectáculo**, apoyada en **emoción, contención y legado** más que en tendencia. **REMORIA** debía sentirse **monumental e íntima** a la vez: **clásica en referencia, moderna en ejecución**, y suavizada por la **luz y materialidad mediterráneas**. El reto era la **coherencia**: que **tipografía, paleta, texturas y copy** cargaran el mismo peso silencioso. El éxito consistía en que la marca pudiera **sentirse antes de explicarse**.',
+      successCriteria: [
+        'Sentirse atemporal, no retro.',
+        'Señalar premium a través de contención, no de ornamento.',
+        'Construir un sistema escalable para futuras fragancias e historias.',
+      ],
+    },
+    approach: {
+      text: '**Lujo como contención**: dejar que la marca susurre, no que grite. Anclé **REMORIA** en una **estrategia narrativa** (**memoria, mito y lugar**) y traduje esos temas a un lenguaje de identidad **mínimo y escultórico**. Las **serifas de inspiración romana** daban permanencia, mientras la **calidez mediterránea** mantenía la marca humana y sensual. La **paleta** partía de **piedra, pátina y acentos dorados** para evocar **elegancia erosionada por el tiempo** sin pesadez. El **copy** se trató como la fragancia: **escaso, lírico y deliberado**. Más sugerencia que afirmación.',
+      tools: ['Adobe Illustrator', 'Photoshop', 'Figma', 'Pinterest'],
+      system: {
+        label: 'El sistema de marca',
+        items: [
+          {
+            title: 'La variable',
+            description: 'Cada narrativa de fragancia (lugar, emoción, notas)',
+          },
+          {
+            title: 'La constante',
+            description: 'Contención, estructura atemporal y elegancia táctil',
+          },
+          {
+            title: 'La salida',
+            description: 'Una identidad de lujo escalable + marco de storytelling',
+          },
+        ],
+      },
+      images: [
+        {
+          src: getCaseStudyImagePath('remoria', 'approach', 'approach-1.webp'),
+          alt: 'Variaciones del logotipo Remoria',
+        },
+        {
+          src: getCaseStudyImagePath('remoria', 'approach', 'approach-2.webp'),
+          alt: 'Sistema tipográfico de Remoria',
+        },
+      ],
+    },
+    fullBleedImages: caseStudiesContent.remoria.fullBleedImages,
+    gallery: caseStudiesContent.remoria.gallery,
+    results: {
+      text: '**REMORIA** entregó un mundo completo de **marca de lujo**: **identidad, voz y sistema estético** construidos para **escalar sin perder atmósfera**. Demuestra que la **contención emocional** puede comunicar lo **premium** con más fuerza que los signos obvios. El trabajo establece una **base para futuras fragancias** entendidas como capítulos de una misma **mitología**.',
+      takeawayQuote: 'El lujo no grita. Permanece.',
+    },
+  },
+}
+
 /**
  * Get case study content by ID
  */
-export function getCaseStudyContent(id: string): CaseStudyContent | undefined {
-  return caseStudiesContent[id]
+export function getCaseStudyContent(id: string, locale: Locale = 'en'): CaseStudyContent | undefined {
+  return locale === 'es' ? caseStudiesContentEs[id] : caseStudiesContent[id]
 }

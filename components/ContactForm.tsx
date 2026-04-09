@@ -1,35 +1,19 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { getSiteCopy } from '@/data/site-copy'
 import { trackFormSubmit } from '@/lib/gtag'
+import { type Locale } from '@/lib/i18n'
 
-const PROJECT_TYPES = [
-  { value: '', label: 'Select focus area' },
-  { value: 'ai-systems', label: 'AI Systems / Agentic Workflows' },
-  { value: 'automation-infrastructure', label: 'Automation Infrastructure' },
-  { value: 'ai-prototype', label: 'AI Prototype / Internal Tool' },
-  { value: 'brand-creative-systems', label: 'Brand / Creative System' },
-  { value: 'other', label: 'Other' },
-]
+interface ContactFormProps {
+  locale?: Locale
+}
 
-const BUDGET_RANGES = [
-  { value: '', label: 'Select budget range' },
-  { value: 'under-2500', label: 'Under €2,500' },
-  { value: '2500-5000', label: '€2,500 – €5,000' },
-  { value: '5000-10000', label: '€5,000 – €10,000' },
-  { value: 'over-10000', label: '€10,000+' },
-  { value: 'flexible', label: 'Flexible / Not sure' },
-]
-
-const TIMELINES = [
-  { value: '', label: 'Select timeline' },
-  { value: 'asap', label: 'ASAP' },
-  { value: '1-2-weeks', label: '1-2 weeks' },
-  { value: '1-month', label: '1 month' },
-  { value: 'flexible', label: 'Flexible' },
-]
-
-export default function ContactForm() {
+export default function ContactForm({ locale = 'en' }: ContactFormProps) {
+  const copy = getSiteCopy(locale).home.contactForm
+  const PROJECT_TYPES = [{ value: '', label: copy.projectTypePlaceholder }, ...copy.projectTypes]
+  const BUDGET_RANGES = [{ value: '', label: copy.budgetPlaceholder }, ...copy.budgetRanges]
+  const TIMELINES = [{ value: '', label: copy.timelinePlaceholder }, ...copy.timelines]
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -50,11 +34,11 @@ export default function ContactForm() {
     // Client-side validation
     const errs: { name?: string; email?: string } = {}
     if (formData.name.trim().length < 2) {
-      errs.name = 'Name must be at least 2 characters.'
+      errs.name = copy.errors.name
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
-      errs.email = 'Please enter a valid email address.'
+      errs.email = copy.errors.email
     }
     if (Object.keys(errs).length > 0) {
       setFieldErrors(errs)
@@ -89,7 +73,7 @@ export default function ContactForm() {
       }, 5000) // CONTACT_FORM_SUCCESS_DISPLAY_TIME from constants
     } catch (error) {
       setStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.')
+      setErrorMessage(error instanceof Error ? error.message : copy.errors.generic)
     }
   }
 
@@ -106,7 +90,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="contact-form">
       <div className="contact-form__field">
         <label htmlFor="contact-name" className="contact-form__label">
-          <span>Name</span>
+          <span>{copy.fields.name}</span>
           <span className="contact-form__required">*</span>
         </label>
         <input
@@ -119,7 +103,7 @@ export default function ContactForm() {
           aria-describedby={fieldErrors.name ? 'contact-name-error' : undefined}
           aria-invalid={!!fieldErrors.name}
           className="contact-form__input"
-          placeholder="John Doe"
+          placeholder={copy.placeholders.name}
         />
         {fieldErrors.name && (
           <span id="contact-name-error" className="contact-form__field-error" role="alert">
@@ -130,7 +114,7 @@ export default function ContactForm() {
 
       <div className="contact-form__field">
         <label htmlFor="contact-email" className="contact-form__label">
-          <span>Email</span>
+          <span>{copy.fields.email}</span>
           <span className="contact-form__required">*</span>
         </label>
         <input
@@ -143,7 +127,7 @@ export default function ContactForm() {
           aria-describedby={fieldErrors.email ? 'contact-email-error' : undefined}
           aria-invalid={!!fieldErrors.email}
           className="contact-form__input"
-          placeholder="john@example.com"
+          placeholder={copy.placeholders.email}
         />
         {fieldErrors.email && (
           <span id="contact-email-error" className="contact-form__field-error" role="alert">
@@ -154,7 +138,7 @@ export default function ContactForm() {
 
       <div className="contact-form__field">
         <label htmlFor="contact-project-type" className="contact-form__label">
-          <span>Project Focus</span>
+          <span>{copy.fields.projectFocus}</span>
         </label>
         <select
           id="contact-project-type"
@@ -174,7 +158,7 @@ export default function ContactForm() {
       <div className="contact-form__row">
         <div className="contact-form__field contact-form__field--half">
           <label htmlFor="contact-budget" className="contact-form__label">
-            <span>Budget Range</span>
+            <span>{copy.fields.budget}</span>
           </label>
           <select
             id="contact-budget"
@@ -193,7 +177,7 @@ export default function ContactForm() {
 
         <div className="contact-form__field contact-form__field--half">
           <label htmlFor="contact-timeline" className="contact-form__label">
-            <span>Timeline</span>
+            <span>{copy.fields.timeline}</span>
           </label>
           <select
             id="contact-timeline"
@@ -213,7 +197,7 @@ export default function ContactForm() {
 
       <div className="contact-form__field">
         <label htmlFor="contact-message" className="contact-form__label">
-          <span>Message</span>
+          <span>{copy.fields.message}</span>
           <span className="contact-form__required">*</span>
         </label>
         <textarea
@@ -225,7 +209,7 @@ export default function ContactForm() {
           rows={6}
           maxLength={2000}
           className="contact-form__textarea"
-          placeholder="Tell me what you're building, where execution is breaking down, and how AI, automation, or a better interface could help..."
+          placeholder={copy.placeholders.message}
         />
       </div>
 
@@ -237,11 +221,11 @@ export default function ContactForm() {
 
       {status === 'success' && (
         <div className="contact-form__success" role="alert">
-          <span>Thank you! I&apos;ll get back to you soon.</span>
+          <span>{copy.success}</span>
           <button
             type="button"
             className="contact-form__success-dismiss"
-            aria-label="Dismiss success message"
+            aria-label={copy.dismissSuccess}
             onClick={() => setStatus('idle')}
           >
             ×
@@ -250,16 +234,16 @@ export default function ContactForm() {
       )}
 
       <p className="contact-form__response-note">
-        I usually reply within 24 hours.
+        {copy.responseNote}
       </p>
 
       <button
         type="submit"
         className="contact-form__submit btn"
         disabled={status === 'loading'}
-        aria-label={status === 'loading' ? 'Sending message' : 'Send message'}
+        aria-label={status === 'loading' ? copy.sendingAria : copy.sendAria}
       >
-        {status === 'loading' ? 'Sending...' : 'Send Message'}
+        {status === 'loading' ? copy.sending : copy.send}
         {status !== 'loading' && <span className="btn__arrow">→</span>}
       </button>
     </form>

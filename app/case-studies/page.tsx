@@ -2,53 +2,59 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { getSiteCopy } from '@/data/site-copy'
+import { getCaseStudies } from '@/data/case-studies'
+import { type Locale, getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { caseStudies } from '@/data/case-studies'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
-const caseStudiesCollectionSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  '@id': `${siteConfig.url}/#case-studies-page`,
-  name: 'Case Studies',
-  description:
-    'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
-  url: absoluteRouteUrl('/case-studies'),
-  isPartOf: {
-    '@type': 'WebSite',
-    '@id': `${siteConfig.url}/#website`,
-  },
-  about: {
-    '@type': 'Person',
-    '@id': `${siteConfig.url}/#person`,
-  },
-}
-
-const caseStudiesBreadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: absoluteRouteUrl('/'),
+function getSchemas(locale: Locale) {
+  const isSpanish = locale === 'es'
+  return {
+    collection: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${siteConfig.url}/#case-studies-page`,
+      name: isSpanish ? 'Casos de estudio' : 'Case Studies',
+      description: isSpanish
+        ? 'Casos de estudio de Raúl Mermans sobre sistemas de IA, workflows de automatización, sistemas de marca y ejecución creativa con criterio de producto.'
+        : 'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
+      url: absoluteRouteUrl(locale === 'es' ? '/es/case-studies' : '/case-studies'),
+      isPartOf: { '@type': 'WebSite', '@id': `${siteConfig.url}/#website` },
+      about: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
     },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Case Studies',
-      item: absoluteRouteUrl('/case-studies'),
+    breadcrumb: {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: isSpanish ? 'Inicio' : 'Home',
+          item: absoluteRouteUrl(locale === 'es' ? '/es' : '/'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: isSpanish ? 'Casos de estudio' : 'Case Studies',
+          item: absoluteRouteUrl(locale === 'es' ? '/es/case-studies' : '/case-studies'),
+        },
+      ],
     },
-  ],
+  }
 }
 
 export default function CaseStudiesPage() {
   const router = useRouter()
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
+  const copy = getSiteCopy(locale).caseStudiesUi
+  const caseStudies = getCaseStudies(locale)
+  const schemas = getSchemas(locale)
 
   // Simple reveal animation on scroll
   useEffect(() => {
@@ -80,15 +86,15 @@ export default function CaseStudiesPage() {
 
   return (
     <>
-      <Header />
+      <Header locale={locale} />
       <main id="main-content" role="main" className="case-studies-scroll">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesCollectionSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.collection) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesBreadcrumbSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumb) }}
         />
         <section
           aria-labelledby="case-studies-heading"
@@ -109,7 +115,7 @@ export default function CaseStudiesPage() {
                 color: 'var(--ink-faint)',
               }}
             >
-              AI Systems · Automation · Creative Infrastructure
+              {copy.pageEyebrow}
             </p>
             <h1
               id="case-studies-heading"
@@ -121,7 +127,7 @@ export default function CaseStudiesPage() {
                 textTransform: 'uppercase',
               }}
             >
-              Case Studies
+              {copy.pageTitle}
             </h1>
             <p
               style={{
@@ -132,8 +138,7 @@ export default function CaseStudiesPage() {
                 color: 'var(--ink-soft)',
               }}
             >
-              Selected work showing how I design AI systems, automation workflows, and brand logic that help
-              modern teams execute with more consistency, control, and commercial clarity.
+              {copy.pageDescription}
             </p>
           </div>
         </section>
@@ -177,14 +182,14 @@ export default function CaseStudiesPage() {
                 prefetch={true}
                 onMouseEnter={() => router.prefetch(study.href)}
               >
-                View Project
+                {copy.viewProject}
                 <span className="case-study-section__cta-arrow" aria-hidden="true">→</span>
               </Link>
             </div>
           </section>
         ))}
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   )
 }

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale, localizePath } from '@/lib/i18n'
 import MagneticButton from './MagneticButton'
 import styles from './Hero.module.css'
 
@@ -12,18 +14,23 @@ const HeroBackground = dynamic(() => import('./HeroBackground'), {
   loading: () => <div className={styles.background} aria-hidden="true" />
 })
 
-export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null)
+interface HeroProps {
+  locale?: Locale
+}
 
-  const [greeting, setGreeting] = useState('WELCOME')
+export default function Hero({ locale = 'en' }: HeroProps) {
+  const heroRef = useRef<HTMLElement>(null)
+  const copy = getSiteCopy(locale).home.hero
+
+  const [greeting, setGreeting] = useState<string>(copy.greetings.morning)
 
   useEffect(() => {
     // Set greeting based on local time
     const hour = new Date().getHours()
-    if (hour < 12) setGreeting('GOOD MORNING')
-    else if (hour < 18) setGreeting('GOOD AFTERNOON')
-    else setGreeting('GOOD EVENING')
-  }, [])
+    if (hour < 12) setGreeting(copy.greetings.morning)
+    else if (hour < 18) setGreeting(copy.greetings.afternoon)
+    else setGreeting(copy.greetings.evening)
+  }, [copy.greetings.afternoon, copy.greetings.evening, copy.greetings.morning])
 
   const name = 'RAÚL'
   const surname = 'MERMANS'
@@ -72,37 +79,37 @@ export default function Hero() {
         <h1
           id="hero-title"
           className={`${styles.services} reveal reveal-delay-1`}
-          aria-label="Raúl Mermans — AI Systems · Agents · Automation"
+          aria-label={copy.ariaLabel}
         >
-          <span className={styles.service} aria-hidden="true">AI Systems</span>
+          <span className={styles.service} aria-hidden="true">{copy.services[0]}</span>
           <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">Agents</span>
+          <span className={styles.service} aria-hidden="true">{copy.services[1]}</span>
           <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">Automation</span>
+          <span className={styles.service} aria-hidden="true">{copy.services[2]}</span>
         </h1>
 
         <p className={`${styles.summary} reveal reveal-delay-2`}>
-          Designing AI systems for modern brands.
+          {copy.summary}
         </p>
 
         <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
-              href="/#work"
+              href={localizePath('/#work', locale)}
               className={`${styles.cta} ${styles.primary}`}
               data-mobile-audit="hero-cta"
             >
-              <span>View Work</span>
+              <span>{copy.primaryCta}</span>
               <span className={styles.ctaArrow}>→</span>
             </Link>
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={20}>
             <Link
-              href="/#contact"
+              href={localizePath('/#contact', locale)}
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >
-              <span>Connect</span>
+              <span>{copy.secondaryCta}</span>
             </Link>
           </MagneticButton>
         </div>
@@ -111,10 +118,10 @@ export default function Hero() {
       <button
         type="button"
         className={styles.scrollButton}
-        aria-label="Scroll to explore"
+        aria-label={copy.scrollAria}
         onClick={handleScrollToWork}
       >
-        <span className={styles.scrollText}>Explore</span>
+        <span className={styles.scrollText}>{copy.scrollLabel}</span>
         <div className={styles.scrollLine}></div>
       </button>
     </section>

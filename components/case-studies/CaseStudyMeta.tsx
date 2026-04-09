@@ -20,7 +20,7 @@ export default function CaseStudyMeta({ meta, accentColor }: CaseStudyMetaProps)
               <div 
                 className="case-study-meta-new__value"
                 style={{ 
-                  color: item.label === 'Type' || item.label === 'Role' ? accentColor : undefined 
+                  color: index < 2 ? accentColor : undefined 
                 }}
               >
                 {item.value}
@@ -32,4 +32,3 @@ export default function CaseStudyMeta({ meta, accentColor }: CaseStudyMetaProps)
     </section>
   )
 }
-

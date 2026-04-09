@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import { usePathname } from 'next/navigation'
+import { type Locale, getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
@@ -16,84 +18,120 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 // Dynamic import for non-critical component - improves INP
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 
-const homeServiceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  '@id': `${siteConfig.url}/#services`,
-  name: 'Services by Raúl Mermans',
-  itemListElement: [
-    {
-      '@type': 'Service',
-      position: 1,
-      name: 'AI Systems',
-      serviceType: 'Applied AI Systems Design',
-      description:
-        'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution through automation logic, orchestration, and AI-enabled workflows.',
-      provider: {
-        '@type': 'Person',
-        '@id': `${siteConfig.url}/#person`,
+function getHomeServiceSchema(locale: Locale) {
+  if (locale === 'es') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${siteConfig.url}/#services`,
+      name: 'Servicios de Raúl Mermans',
+      itemListElement: [
+        {
+          '@type': 'Service',
+          position: 1,
+          name: 'Sistemas de IA',
+          serviceType: 'Diseño de sistemas de IA aplicados',
+          description:
+            'Sistemas de IA aplicados que convierten trabajo repetitivo y cargado de criterio en ejecución fiable mediante automatización, orquestación y workflows habilitados por IA.',
+          provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+          areaServed: { '@type': 'Country', name: 'Spain' },
+          url: absoluteRouteUrl('/es'),
+        },
+        {
+          '@type': 'Service',
+          position: 2,
+          name: 'Desarrollo web',
+          serviceType: 'Diseño y desarrollo web',
+          description:
+            'Sitios y experiencias digitales modernos, rápidos y pensados para narrativa clara, conversión y una ejecución premium.',
+          provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+          areaServed: { '@type': 'Country', name: 'Spain' },
+          url: absoluteRouteUrl('/es'),
+        },
+        {
+          '@type': 'Service',
+          position: 3,
+          name: 'Fotografía',
+          serviceType: 'Fotografía editorial y de marca',
+          description:
+            'Fotografía que apoya el relato de marca mediante composición, contención visual e imágenes pensadas para uso editorial y comercial.',
+          provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+          areaServed: { '@type': 'Country', name: 'Spain' },
+          url: absoluteRouteUrl('/es/photography'),
+        },
+        {
+          '@type': 'Service',
+          position: 4,
+          name: 'Dirección creativa',
+          serviceType: 'Dirección creativa y sistemas de marca',
+          description:
+            'Dirección creativa que conecta identidad de marca, sistemas visuales y pensamiento de campaña para que cada punto de contacto se sienta coherente e intencional.',
+          provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+          areaServed: { '@type': 'Country', name: 'Spain' },
+          url: absoluteRouteUrl('/es'),
+        },
+      ],
+    }
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${siteConfig.url}/#services`,
+    name: 'Services by Raúl Mermans',
+    itemListElement: [
+      {
+        '@type': 'Service',
+        position: 1,
+        name: 'AI Systems',
+        serviceType: 'Applied AI Systems Design',
+        description:
+          'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution through automation logic, orchestration, and AI-enabled workflows.',
+        provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+        areaServed: { '@type': 'Country', name: 'Spain' },
+        url: absoluteRouteUrl('/'),
       },
-      areaServed: {
-        '@type': 'Country',
-        name: 'Spain',
+      {
+        '@type': 'Service',
+        position: 2,
+        name: 'Web Development',
+        serviceType: 'Web Design and Development',
+        description:
+          'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
+        provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+        areaServed: { '@type': 'Country', name: 'Spain' },
+        url: absoluteRouteUrl('/'),
       },
-      url: absoluteRouteUrl('/'),
-    },
-    {
-      '@type': 'Service',
-      position: 2,
-      name: 'Web Development',
-      serviceType: 'Web Design and Development',
-      description:
-        'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
-      provider: {
-        '@type': 'Person',
-        '@id': `${siteConfig.url}/#person`,
+      {
+        '@type': 'Service',
+        position: 3,
+        name: 'Photography',
+        serviceType: 'Brand and Editorial Photography',
+        description:
+          'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
+        provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+        areaServed: { '@type': 'Country', name: 'Spain' },
+        url: absoluteRouteUrl('/photography'),
       },
-      areaServed: {
-        '@type': 'Country',
-        name: 'Spain',
+      {
+        '@type': 'Service',
+        position: 4,
+        name: 'Creative Direction',
+        serviceType: 'Creative Direction and Brand Systems',
+        description:
+          'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
+        provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+        areaServed: { '@type': 'Country', name: 'Spain' },
+        url: absoluteRouteUrl('/'),
       },
-      url: absoluteRouteUrl('/'),
-    },
-    {
-      '@type': 'Service',
-      position: 3,
-      name: 'Photography',
-      serviceType: 'Brand and Editorial Photography',
-      description:
-        'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
-      provider: {
-        '@type': 'Person',
-        '@id': `${siteConfig.url}/#person`,
-      },
-      areaServed: {
-        '@type': 'Country',
-        name: 'Spain',
-      },
-      url: absoluteRouteUrl('/photography'),
-    },
-    {
-      '@type': 'Service',
-      position: 4,
-      name: 'Creative Direction',
-      serviceType: 'Creative Direction and Brand Systems',
-      description:
-        'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
-      provider: {
-        '@type': 'Person',
-        '@id': `${siteConfig.url}/#person`,
-      },
-      areaServed: {
-        '@type': 'Country',
-        name: 'Spain',
-      },
-      url: absoluteRouteUrl('/'),
-    },
-  ],
+    ],
+  }
 }
 
 export default function Home() {
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
+  const homeServiceSchema = getHomeServiceSchema(locale)
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -186,9 +224,9 @@ export default function Home() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(homeServiceSchema) }}
         />
-        <Header />
-        <Hero />
-        <SectionCards />
+        <Header locale={locale} />
+        <Hero locale={locale} />
+        <SectionCards locale={locale} />
         
         {/* Social Proof Section - Placeholder for future content
         * Suggested location for "Trusted By" logos or testimonial quotes
@@ -213,11 +251,11 @@ export default function Home() {
         * </section>
         */}
         
-        <About />
-        <Services />
-        <Contact />
-        <Socials />
-        <Footer />
+        <About locale={locale} />
+        <Services locale={locale} />
+        <Contact locale={locale} />
+        <Socials locale={locale} />
+        <Footer locale={locale} />
         <BackToTop />
       </main>
     </ErrorBoundary>

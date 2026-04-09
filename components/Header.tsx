@@ -2,11 +2,20 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { getSiteCopy } from '@/data/site-copy'
 import { trapFocus } from '@/lib/accessibility'
+import { type Locale, localizePath, switchLocalePath } from '@/lib/i18n'
 import styles from './Header.module.css'
 
-export default function Header() {
+interface HeaderProps {
+  locale?: Locale
+}
+
+export default function Header({ locale = 'en' }: HeaderProps) {
+  const pathname = usePathname()
+  const copy = getSiteCopy(locale).header
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
@@ -75,7 +84,11 @@ export default function Header() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
     // Only intercept hash scrolling when already on the homepage
-    if (hash.length > 1 && hash.startsWith('#') && window.location.pathname === '/') {
+    if (
+      hash.length > 1 &&
+      hash.startsWith('#') &&
+      window.location.pathname === localizePath('/', locale)
+    ) {
       e.preventDefault()
       const target = document.querySelector(hash)
       if (target) {
@@ -88,25 +101,50 @@ export default function Header() {
     closeMenu(false)
   }
 
-  const menuItems = [
-    { label: 'Work', href: '/case-studies' },
-    { label: 'About', href: '/about' },
-    { label: 'Services', href: '/#services', hash: '#services' },
-    { label: 'Contact', href: '/#contact', hash: '#contact' },
-  ]
+  const menuItems = copy.nav.map((item) => ({
+    ...item,
+    href: localizePath(item.href, locale),
+  }))
+  const activePath = pathname || localizePath('/', locale)
+  const englishPath = switchLocalePath(activePath, 'en')
+  const spanishPath = switchLocalePath(activePath, 'es')
 
   return (
     <>
-      <Link href="/" className={styles.logo}>
+      <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
         RM
       </Link>
 
       {/* Desktop Nav */}
       <nav className={styles.desktopNav} aria-label="Primary navigation">
-        <Link href="/case-studies">Case Studies</Link>
-        <Link href="/about">About</Link>
-        <Link href="/#services" onClick={(e) => handleNavClick(e, '#services')}>Services</Link>
-        <Link href="/#contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact</Link>
+        {menuItems.map((item) => {
+          const hash = 'hash' in item ? item.hash : undefined
+          return (
+          <Link
+            key={item.label}
+            href={item.href}
+            onClick={(e) => (hash ? handleNavClick(e, hash) : undefined)}
+          >
+            {item.label}
+          </Link>
+          )
+        })}
+        <div className={styles.languageToggle} role="group" aria-label={copy.toggleLabel}>
+          <Link
+            href={englishPath}
+            className={locale === 'en' ? styles.languageToggleActive : undefined}
+            aria-current={locale === 'en' ? 'page' : undefined}
+          >
+            {copy.languageShort.en}
+          </Link>
+          <Link
+            href={spanishPath}
+            className={locale === 'es' ? styles.languageToggleActive : undefined}
+            aria-current={locale === 'es' ? 'page' : undefined}
+          >
+            {copy.languageShort.es}
+          </Link>
+        </div>
       </nav>
 
       {/* Mobile Menu Button */}
@@ -116,7 +154,7 @@ export default function Header() {
         className={styles.menuButton}
         data-state={isMenuOpen ? 'open' : 'closed'}
         onClick={toggleMenu}
-        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-label={isMenuOpen ? copy.closeMenu : copy.openMenu}
         aria-expanded={isMenuOpen}
         aria-controls={menuDialogId}
         aria-haspopup="dialog"
@@ -154,20 +192,22 @@ export default function Header() {
             >
               <div className={styles.menuHeader}>
                 <p id={menuTitleId} className={styles.menuEyebrow}>
-                  Navigation
+                  {copy.mobileEyebrow}
                 </p>
                 <button
                   type="button"
                   className={styles.menuClose}
                   onClick={() => closeMenu()}
-                  aria-label="Close menu"
+                  aria-label={copy.closeMenu}
                 >
                   <span aria-hidden="true">✕</span>
                 </button>
               </div>
 
               <nav className={styles.menuNav} aria-label="Mobile navigation">
-                {menuItems.map((item, i) => (
+                {menuItems.map((item, i) => {
+                  const hash = 'hash' in item ? item.hash : undefined
+                  return (
                   <motion.div
                     key={item.label}
                     initial={{ opacity: 0, y: 20 }}
@@ -177,12 +217,13 @@ export default function Header() {
                     <Link
                       href={item.href}
                       className={styles.menuLink}
-                      onClick={(e) => item.hash ? handleNavClick(e, item.hash) : closeMenu(false)}
+                      onClick={(e) => hash ? handleNavClick(e, hash) : closeMenu(false)}
                     >
                       {item.label}
                     </Link>
                   </motion.div>
-                ))}
+                  )
+                })}
               </nav>
 
               <motion.div
@@ -191,15 +232,33 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.28, duration: 0.32 }}
               >
+                <div className={styles.mobileLanguageToggle} role="group" aria-label={copy.toggleLabel}>
+                  <Link
+                    href={englishPath}
+                    className={locale === 'en' ? styles.mobileLanguageToggleActive : undefined}
+                    aria-current={locale === 'en' ? 'page' : undefined}
+                    onClick={() => closeMenu(false)}
+                  >
+                    {copy.languageShort.en}
+                  </Link>
+                  <Link
+                    href={spanishPath}
+                    className={locale === 'es' ? styles.mobileLanguageToggleActive : undefined}
+                    aria-current={locale === 'es' ? 'page' : undefined}
+                    onClick={() => closeMenu(false)}
+                  >
+                    {copy.languageShort.es}
+                  </Link>
+                </div>
                 <p className={styles.menuMeta}>
-                  AI systems, automation, and creative infrastructure built with product sense and visual restraint.
+                  {copy.menuMeta}
                 </p>
                 <Link
-                  href="/#contact"
+                  href={localizePath('/#contact', locale)}
                   className={styles.menuCta}
                   onClick={(e) => handleNavClick(e, '#contact')}
                 >
-                  Discuss a Project
+                  {copy.menuCta}
                 </Link>
               </motion.div>
             </motion.div>
