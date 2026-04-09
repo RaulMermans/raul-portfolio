@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { type Locale, defaultLocale, localizePath } from '@/lib/i18n'
 
 export interface SeoImage {
   url: string
@@ -10,6 +11,7 @@ interface BuildPageMetadataOptions {
   description?: string
   path?: string
   canonicalPath?: string | null
+  locale?: Locale
   image?: SeoImage
   type?: 'website' | 'article' | 'profile'
   keywords?: string[]
@@ -67,11 +69,16 @@ export function resolveSeoTitle(title?: string) {
   return title ? `${title} — ${siteConfig.name}` : siteConfig.defaultTitle
 }
 
+export function localeToOpenGraphLocale(locale: Locale) {
+  return locale === 'es' ? 'es_ES' : 'en_US'
+}
+
 export function buildPageMetadata({
   title,
   description = siteConfig.defaultDescription,
   path = '/',
   canonicalPath = path,
+  locale = defaultLocale,
   image = siteConfig.defaultImage,
   type = 'website',
   keywords = [],
@@ -80,17 +87,31 @@ export function buildPageMetadata({
 }: BuildPageMetadataOptions): Metadata {
   const fullTitle = resolveSeoTitle(title)
   const imageUrl = absoluteUrl(image.url)
-  const routeUrl = absoluteRouteUrl(path)
-  const canonicalUrl = canonicalPath === null ? undefined : absoluteRouteUrl(canonicalPath)
+  const localizedPath = localizePath(path, locale)
+  const routeUrl = absoluteRouteUrl(localizedPath)
+  const canonicalUrl =
+    canonicalPath === null ? undefined : absoluteRouteUrl(localizePath(canonicalPath, locale))
+  const languageAlternates =
+    canonicalPath === null
+      ? undefined
+      : {
+          'en-US': absoluteRouteUrl(localizePath(canonicalPath, 'en')),
+          'es-ES': absoluteRouteUrl(localizePath(canonicalPath, 'es')),
+        }
 
   return {
     title: absoluteTitle ? { absolute: fullTitle } : title ?? siteConfig.defaultTitle,
     description,
     keywords: Array.from(new Set([...defaultKeywords, ...keywords])),
-    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
+    alternates: canonicalUrl
+      ? {
+          canonical: canonicalUrl,
+          languages: languageAlternates,
+        }
+      : undefined,
     openGraph: {
       type,
-      locale: siteConfig.locale,
+      locale: localeToOpenGraphLocale(locale),
       url: routeUrl,
       title: fullTitle,
       description,

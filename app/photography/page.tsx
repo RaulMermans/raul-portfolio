@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { type Locale, getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import {
@@ -163,24 +165,24 @@ function arrangeEditorialFlow(photos: Photo[]): Photo[] {
 }
 
 // Generate categories using the full image inventory for each topic.
-function getCategories() {
+function getCategories(locale: Locale) {
   const landscapeImages = arrangeEditorialFlow(PHOTOGRAPHY_IMAGES.landscape)
   const architectureImages = arrangeEditorialFlow(PHOTOGRAPHY_IMAGES.architecture)
   const streetImages = arrangeEditorialFlow(PHOTOGRAPHY_IMAGES.street)
 
   return {
     landscape: {
-      name: 'Landscape',
+      name: locale === 'es' ? 'Paisaje' : 'Landscape',
       count: landscapeImages.length,
       images: landscapeImages,
     },
     architecture: {
-      name: 'Architecture',
+      name: locale === 'es' ? 'Arquitectura' : 'Architecture',
       count: architectureImages.length,
       images: architectureImages,
     },
     street: {
-      name: 'Street',
+      name: locale === 'es' ? 'Calle' : 'Street',
       count: streetImages.length,
       images: streetImages,
     },
@@ -188,7 +190,9 @@ function getCategories() {
 }
 
 export default function PhotographyPage() {
-  const [categoriesState] = useState(() => getCategories())
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
+  const [categoriesState] = useState(() => getCategories(locale))
   const [activeCategory, setActiveCategory] = useState<CategoryType>('landscape')
   const [loadedImages, setLoadedImages] = useState<Set<string>>(() => new Set<string>())
   const bottomBarRef = useRef<HTMLElement | null>(null)
@@ -362,29 +366,29 @@ export default function PhotographyPage() {
     <>
       <div className="grain" aria-hidden="true"></div>
 
-      <Header />
+      <Header locale={locale} />
 
       {/* Masonry Gallery */}
-      <main id="main-content" role="main" className="gallery" aria-label="Photography gallery">
-        <h1 className="visually-hidden">Photography</h1>
+      <main id="main-content" role="main" className="gallery" aria-label={locale === 'es' ? 'Galería de fotografía' : 'Photography gallery'}>
+        <h1 className="visually-hidden">{locale === 'es' ? 'Fotografía' : 'Photography'}</h1>
         {/* Mobile category header */}
         <div className="photography-header-mobile">
           <div className="photography-header-mobile__inner">
             <div>
-              <p className="photography-header-mobile__eyebrow">Photography</p>
+              <p className="photography-header-mobile__eyebrow">{locale === 'es' ? 'Fotografía' : 'Photography'}</p>
               <div className="photography-header-mobile__heading">
                 <p className="photography-category-title-mobile">
-                  {categoriesState[activeCategory]?.name || 'Landscape'}
+                  {categoriesState[activeCategory]?.name || (locale === 'es' ? 'Paisaje' : 'Landscape')}
                 </p>
                 <p className="photography-category-count-mobile" aria-live="polite">
-                  {activeCount} photos
+                  {activeCount} {locale === 'es' ? 'fotos' : 'photos'}
                 </p>
               </div>
             </div>
 
             <div className="photography-mobile-filter">
               <label className="photography-mobile-filter__label" htmlFor="photography-category-select">
-                Category
+                {locale === 'es' ? 'Categoría' : 'Category'}
               </label>
               <div className="photography-mobile-filter__field">
                 <select
@@ -392,11 +396,11 @@ export default function PhotographyPage() {
                   className="photography-mobile-filter__select"
                   value={activeCategory}
                   onChange={(event) => setCategory(event.target.value as CategoryType)}
-                  aria-label="Choose photography category"
+                  aria-label={locale === 'es' ? 'Elegir categoría de fotografía' : 'Choose photography category'}
                 >
-                  <option value="landscape">Landscape</option>
-                  <option value="architecture">Architecture</option>
-                  <option value="street">Street</option>
+                  <option value="landscape">{locale === 'es' ? 'Paisaje' : 'Landscape'}</option>
+                  <option value="architecture">{locale === 'es' ? 'Arquitectura' : 'Architecture'}</option>
+                  <option value="street">{locale === 'es' ? 'Calle' : 'Street'}</option>
                 </select>
                 <span className="photography-mobile-filter__icon" aria-hidden="true">
                   ▾
@@ -447,12 +451,12 @@ export default function PhotographyPage() {
       {/* Category Overlay */}
       <div className="category-overlay">
         <p className="category-overlay__title" aria-hidden="true">
-          <span id="category-name">{categoriesState[activeCategory]?.name || 'Landscape'}</span>
+          <span id="category-name">{categoriesState[activeCategory]?.name || (locale === 'es' ? 'Paisaje' : 'Landscape')}</span>
         </p>
       </div>
 
       {/* Navigation Bar */}
-      <nav className="bottom-bar" aria-label="Gallery category navigation" role="navigation" ref={bottomBarRef}>
+      <nav className="bottom-bar" aria-label={locale === 'es' ? 'Navegación de categorías de la galería' : 'Gallery category navigation'} role="navigation" ref={bottomBarRef}>
         <div className="bottom-bar__categories" role="tablist">
           <button
             className={`category-btn ${activeCategory === 'landscape' ? 'active' : ''}`}
@@ -460,10 +464,10 @@ export default function PhotographyPage() {
             role="tab"
             aria-selected={activeCategory === 'landscape'}
             aria-controls="gallery-content"
-            aria-label="Show landscape photography"
+            aria-label={locale === 'es' ? 'Mostrar fotografía de paisaje' : 'Show landscape photography'}
             data-category="landscape"
           >
-            Landscape
+            {locale === 'es' ? 'Paisaje' : 'Landscape'}
           </button>
           <button
             className={`category-btn ${activeCategory === 'architecture' ? 'active' : ''}`}
@@ -471,10 +475,10 @@ export default function PhotographyPage() {
             role="tab"
             aria-selected={activeCategory === 'architecture'}
             aria-controls="gallery-content"
-            aria-label="Show architecture photography"
+            aria-label={locale === 'es' ? 'Mostrar fotografía de arquitectura' : 'Show architecture photography'}
             data-category="architecture"
           >
-            Architecture
+            {locale === 'es' ? 'Arquitectura' : 'Architecture'}
           </button>
           <button
             className={`category-btn ${activeCategory === 'street' ? 'active' : ''}`}
@@ -482,15 +486,15 @@ export default function PhotographyPage() {
             role="tab"
             aria-selected={activeCategory === 'street'}
             aria-controls="gallery-content"
-            aria-label="Show street photography"
+            aria-label={locale === 'es' ? 'Mostrar fotografía de calle' : 'Show street photography'}
             data-category="street"
           >
-            Street
+            {locale === 'es' ? 'Calle' : 'Street'}
           </button>
         </div>
       </nav>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   )
 }

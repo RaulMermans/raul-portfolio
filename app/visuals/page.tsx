@@ -1,7 +1,9 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { type Locale, getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { trapFocus } from '@/lib/accessibility'
@@ -23,6 +25,47 @@ interface Work {
   provenance: string
   status: string
 }
+
+const visualsCopy = {
+  en: {
+    label: 'Collection',
+    title: 'Visuals',
+    description:
+      'A curated collection of AI art, album covers, visual concepts, and digital experiments exploring the boundaries of synthetic creativity.',
+    seeProject: 'See project',
+    previousProject: 'Previous project',
+    nextProject: 'Next project',
+    closeExhibition: 'Close exhibition',
+    medium: 'Medium',
+    dimensions: 'Dimensions',
+    support: 'Support',
+    edition: 'Edition',
+    series: 'Series',
+    curatorialNote: 'Curatorial Note',
+    previous: 'Previous',
+    backToGallery: 'Back to Gallery',
+    next: 'Next',
+  },
+  es: {
+    label: 'Colección',
+    title: 'Visuales',
+    description:
+      'Una colección curada de arte con IA, portadas, conceptos visuales y experimentos digitales que exploran los límites de la creatividad sintética.',
+    seeProject: 'Ver proyecto',
+    previousProject: 'Proyecto anterior',
+    nextProject: 'Proyecto siguiente',
+    closeExhibition: 'Cerrar exposición',
+    medium: 'Medio',
+    dimensions: 'Dimensiones',
+    support: 'Soporte',
+    edition: 'Edición',
+    series: 'Serie',
+    curatorialNote: 'Nota curatorial',
+    previous: 'Anterior',
+    backToGallery: 'Volver a la galería',
+    next: 'Siguiente',
+  },
+} satisfies Record<Locale, Record<string, string>>
 
 const worksData: Work[] = [
   {
@@ -123,9 +166,114 @@ const worksData: Work[] = [
   }
 ]
 
-const works = worksData
+const worksDataEs: Work[] = [
+  {
+    title: 'Astralis',
+    year: '2024',
+    type: 'Portada de álbum',
+    catalog: 'RM-AS-24-001',
+    image: '/images/visuals/album-covers/Astralis_Cover.webp',
+    alt: 'Portada cuadrada que muestra nubes rojo-anaranjadas ardientes contra un vacío negro con motas turquesa a la izquierda, textura granulada desgastada y el texto "ASTRALIS" con etiqueta parental advisory.',
+    medium: 'Composición digital + textura de grano + tipografía',
+    dimensions: '3000 × 3000 px',
+    support: 'Archivo digital, listo para impresión a 300 dpi',
+    edition: 'Licencia comercial',
+    series: 'Música e identidad',
+    note: 'Una masa densa de nubes rojo-anaranjadas florece desde un campo casi negro, con una franja vertical de motas turquesa en el lado izquierdo. Transiciones suaves y ahumadas junto a brillos de contorno modelan las nubes, mientras un grano visible y una textura sutil de arañazos dan a la superficie un acabado gastado, casi fílmico. La tipografía mínima se apoya abajo y en horizontal, y los textos sellados aportan una sensación de lanzamiento empaquetado y explícito más que de subtítulo narrativo.',
+    provenance: 'Encargo para cliente, 2024',
+    status: 'Licenciado',
+  },
+  {
+    title: 'Astro',
+    year: '2024',
+    type: 'Portada de álbum',
+    catalog: 'RM-AO-24-002',
+    image: '/images/visuals/album-covers/Astro.webp',
+    alt: 'Portada con la palabra "ASTRO" sobre un primer plano granulado, moteado de verde, de un casco de astronauta y un rostro en sombra iluminado por luz rojo-anaranjada; etiqueta Parental Advisory abajo a la izquierda.',
+    medium: 'Composición digital + fotografía + textura de grano + tipografía',
+    dimensions: '3000 × 3000 px',
+    support: 'Archivo digital, listo para impresión a 300 dpi',
+    edition: 'Licencia comercial',
+    series: 'Música e identidad',
+    note: 'Un primer plano de un casco de astronauta domina el encuadre; la visera deja casi todo el rostro en sombra mientras un resplandor rojo-anaranjado corta mejillas y nariz. El traje aparece en tonos oliva apagados y acero, con una manguera acanalada y detalles de hardware que le dan una sensación utilitaria y retroespacial. El retrato queda dentro de una ventana de esquinas redondeadas sobre un fondo blanco limpio, mientras las motas verdes y el grano intenso añaden una textura impresa y desgastada. La tipografía mínima ("ASTRO") y el sello Parental Advisory lo empujan claramente hacia el lenguaje de portada: mitad fotograma cinematográfico, mitad objeto diseñado.',
+    provenance: 'Encargo para cliente, 2024',
+    status: 'Licenciado',
+  },
+  {
+    title: 'Gaze',
+    year: '2024',
+    type: 'Portada de álbum',
+    catalog: 'RM-GZ-24-003',
+    image: '/images/visuals/album-covers/Gaze.webp',
+    alt: 'Portada cuadrada que muestra un primer plano muy texturizado y saturado de un ojo humano con iris verde neón y tonos de piel rojo-anaranjados; etiqueta Parental Advisory en la esquina superior derecha.',
+    medium: 'Composición digital + fotografía + textura de grano + tipografía',
+    dimensions: '3000 × 3000 px',
+    support: 'Archivo digital, listo para impresión a 300 dpi',
+    edition: 'Licencia comercial',
+    series: 'Música e identidad',
+    note: 'Un solo ojo se recorta para llenar el cuadrado, convirtiendo piel, línea de pestañas e iris en un paisaje de color de bordes duros. El iris aparece en verde neón con una estructura anillada más oscura, encajado en un blanco cian frío y rodeado por tonos rojo-anaranjados que se hunden en sombra casi negra en el párpado. Un grano denso, entrecruzado y salpicado se posa sobre toda la imagen, dándole aspecto de escaneo desgastado o de tela impresa más que de fotografía limpia. El sello "Parental Advisory: Explicit Content" en la parte superior derecha completa el lenguaje de packaging y refuerza la sensación de intensidad y vigilancia.',
+    provenance: 'Encargo para cliente, 2024',
+    status: 'Licenciado',
+  },
+  {
+    title: 'Dungeon Master\'s Torch',
+    year: '2024',
+    type: 'Concepto de póster con IA',
+    catalog: 'RM-VC-24-001',
+    image: '/images/visuals/visual-concepts/D&D_world.webp',
+    alt: 'Concepto de póster con IA que muestra a un grupo avanzando entre vapor azul guiado por una antorcha, con enormes cabezas reptilianas emergiendo en secuencia, luz naranja cálida cayendo sobre cian frío.',
+    medium: 'Imagen generada con IA; póster conceptual asistido por IA',
+    dimensions: '3840 × 2160 px',
+    support: 'Archivo digital, listo para impresión a 300 dpi',
+    edition: 'Concepto único',
+    series: 'Conceptos visuales',
+    note: 'Un grupo avanza entre vapor azul guiado por una sola antorcha cuyo calor define toda la escena. Su luz raspa piedra y polvo, revelando enormes cabezas reptilianas que emergen en una procesión escalonada: hocicos, dientes y arcos óseos repitiéndose con una cadencia medida. Las figuras permanecen casi en silueta, compactas e inclinadas hacia delante, calibradas frente a la pequeña pero firme llama. El naranja cálido cae sobre cian frío con bordes abruptos, de modo que la imagen se lee como una secuencia de visibilidad: lo que toca el fuego se vuelve real; lo que no, retrocede hacia la atmósfera. La composición mantiene despejado el campo superior, dejando que la niebla actúe como una cortina en movimiento sobre los rostros de las criaturas. Sostenida a altura humana, la antorcha se vuelve herramienta de agencia: la luz como regla de juego, el peligro como aquello que espera justo fuera de su alcance.',
+    provenance: 'Exploración personal, 2024',
+    status: 'Concepto',
+  },
+  {
+    title: 'Desert Eclipse',
+    year: '2024',
+    type: 'Concepto de póster con IA',
+    catalog: 'RM-VC-24-002',
+    image: '/images/visuals/visual-concepts/Dune_poster_concept.webp',
+    alt: 'Concepto de póster con IA que muestra tres figuras coronando una duna bajo un sol eclipsado, con una oleada serpentina reuniéndose detrás en luz ámbar y sombra azul verdosa.',
+    medium: 'Imagen generada con IA; póster conceptual asistido por IA',
+    dimensions: '3840 × 2160 px',
+    support: 'Archivo digital, listo para impresión a 300 dpi',
+    edition: 'Concepto único',
+    series: 'Conceptos visuales',
+    note: 'Bajo un sol eclipsado, tres figuras coronan una cresta de dunas mientras el viento arrastra el polvo. Un campo denso de luz ámbar se encuentra con una sombra azul verdosa más fría, dando a la escena una atmósfera partida: calor en el horizonte, noche en primer plano. El eclipse funciona como un ancla gráfica dura, mientras la línea de la cresta guía el ojo en una sola diagonal ascendente. Detrás de las figuras, una enorme oleada serpentina se reúne desde la arena y la neblina; primero parece fuerza geológica y luego criatura. Estrías finas y líneas suaves de deriva sobre las dunas establecen escala sin sobrecargar de detalle, manteniendo las figuras humanas legibles a distancia. La imagen sostiene la tensión desde la contención: pocos hitos, un asentamiento lejano tragado por el aire y un paisaje que nunca termina de asentarse. Plantea la resistencia como un acto de navegación sobre terreno cambiante.',
+    provenance: 'Exploración personal, 2024',
+    status: 'Concepto',
+  },
+  {
+    title: 'Storm Rift',
+    year: '2024',
+    type: 'Concepto de póster con IA',
+    catalog: 'RM-VC-24-003',
+    image: '/images/visuals/visual-concepts/Oddisey_poster_concept.webp',
+    alt: 'Concepto de póster con IA que muestra a una figura solitaria sobre roca negra mojada con un bastón, de espaldas, mientras la lluvia cae en diagonal y una masa de tormenta se abre en una grieta luminosa sobre el mar.',
+    medium: 'Imagen generada con IA; póster conceptual asistido por IA',
+    dimensions: '3840 × 2160 px',
+    support: 'Archivo digital, listo para impresión a 300 dpi',
+    edition: 'Concepto único',
+    series: 'Conceptos visuales',
+    note: 'Una figura solitaria permanece sobre roca negra mojada, de espaldas, con un bastón largo erguido mientras la lluvia corta el encuadre en diagonal. El mar rompe con fuerza en la orilla, lanzando espuma blanca que atrapa restos de luz cálida. Más lejos, un pequeño velero navega el oleaje, reducido a silueta oscura sobre la niebla. Encima, el cielo se vuelve el motor de la imagen: una masa de tormenta densa y giratoria se abre en una grieta brillante, enviando haces inclinados hacia el agua como si una costura cortara la nube. Las placas de la armadura recogen la iluminación tangencial mientras una capa rasgada se extiende y se deshilacha, haciéndose eco de la turbulencia del mar. La paleta se mantiene en pizarra, hierro y humo, con el oro pálido de la ruptura como única certeza. La escena fija el viaje en su umbral: el clima como antagonista, la luz como dirección.',
+    provenance: 'Exploración personal, 2024',
+    status: 'Concepto',
+  },
+]
+
+function getWorksData(locale: Locale) {
+  return locale === 'es' ? worksDataEs : worksData
+}
 
 export default function VisualsPage() {
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
+  const copy = visualsCopy[locale]
+  const works = getWorksData(locale)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isExhibitionOpen, setIsExhibitionOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -170,7 +318,7 @@ export default function VisualsPage() {
     setDirection('right')
     setCurrentIndex(prev => prev + 1)
     setTimeout(() => setIsAnimating(false), 400)
-  }, [currentIndex, isAnimating])
+  }, [currentIndex, isAnimating, works.length])
 
   const openExhibition = (index: number, trigger?: HTMLElement | null) => {
     lastTriggerRef.current = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null)
@@ -217,7 +365,7 @@ export default function VisualsPage() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [closeExhibition, currentIndex, goToNext, goToPrevious, isAnimating, isExhibitionOpen])
+  }, [closeExhibition, currentIndex, goToNext, goToPrevious, isExhibitionOpen, works.length])
 
   useEffect(() => {
     if (!isExhibitionOpen || !dialogRef.current) return
@@ -357,7 +505,6 @@ export default function VisualsPage() {
 
   return (
     <>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
       {/* Decorative elements - disabled on mobile for performance */}
       <div className={styles.grain} aria-hidden="true"></div>
       {!isMobile && (
@@ -371,7 +518,7 @@ export default function VisualsPage() {
         </>
       )}
 
-      <Header />
+      <Header locale={locale} />
       
       <main className={styles.main} id="main-content" role="main" data-mobile-audit="visuals-page">
         <div className={styles.container}>
@@ -379,12 +526,12 @@ export default function VisualsPage() {
           <div className={styles.intro}>
             <p className={styles.label}>
               <span className={styles.labelLine}></span>
-              Collection
+              {copy.label}
             </p>
-            <h1 className={styles.title}>Visuals</h1>
+            <h1 className={styles.title}>{copy.title}</h1>
             <div className={styles.divider}></div>
             <p className={styles.description}>
-              A curated collection of AI art, album covers, visual concepts, and digital experiments exploring the boundaries of synthetic creativity.
+              {copy.description}
             </p>
             <p className={styles.year}>© 2024</p>
           </div>
@@ -437,7 +584,7 @@ export default function VisualsPage() {
                         <h2 className={styles.cardTitle}>{currentWork.title}</h2>
                         <p className={styles.cardMeta}>{currentWork.year} — {currentWork.type}</p>
                         <span className={styles.cardButton}>
-                          <span>See project</span>
+                          <span>{copy.seeProject}</span>
                           <span aria-hidden="true">→</span>
                         </span>
                       </div>
@@ -453,7 +600,7 @@ export default function VisualsPage() {
               className={`${styles.navButton} ${styles.navButtonPrev}`}
               onClick={goToPrevious}
               disabled={currentIndex === 0 || isAnimating}
-              aria-label="Previous project"
+              aria-label={copy.previousProject}
             >
               <span className={styles.navArrow}>←</span>
             </button>
@@ -462,7 +609,7 @@ export default function VisualsPage() {
               className={`${styles.navButton} ${styles.navButtonNext}`}
               onClick={goToNext}
               disabled={currentIndex === works.length - 1 || isAnimating}
-              aria-label="Next project"
+              aria-label={copy.nextProject}
             >
               <span className={styles.navArrow}>→</span>
             </button>
@@ -471,7 +618,7 @@ export default function VisualsPage() {
         </div>
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
 
       {/* Exhibition View */}
       {isExhibitionOpen ? (
@@ -487,7 +634,7 @@ export default function VisualsPage() {
             type="button"
             className={styles.exhibitionClose}
             onClick={() => closeExhibition()}
-            aria-label="Close exhibition"
+            aria-label={copy.closeExhibition}
           >
             ✕
           </button>
@@ -534,29 +681,29 @@ export default function VisualsPage() {
 
                     <div className={styles.exhibitionMeta}>
                       <div className={styles.exhibitionField}>
-                        <span className={styles.exhibitionLabel}>Medium</span>
+                        <span className={styles.exhibitionLabel}>{copy.medium}</span>
                         <span className={styles.exhibitionValue}>{currentWork.medium}</span>
                       </div>
                       <div className={styles.exhibitionField}>
-                        <span className={styles.exhibitionLabel}>Dimensions</span>
+                        <span className={styles.exhibitionLabel}>{copy.dimensions}</span>
                         <span className={styles.exhibitionValue}>{currentWork.dimensions}</span>
                       </div>
                       <div className={styles.exhibitionField}>
-                        <span className={styles.exhibitionLabel}>Support</span>
+                        <span className={styles.exhibitionLabel}>{copy.support}</span>
                         <span className={styles.exhibitionValue}>{currentWork.support}</span>
                       </div>
                       <div className={styles.exhibitionField}>
-                        <span className={styles.exhibitionLabel}>Edition</span>
+                        <span className={styles.exhibitionLabel}>{copy.edition}</span>
                         <span className={styles.exhibitionValue}>{currentWork.edition}</span>
                       </div>
                       <div className={`${styles.exhibitionField} ${styles.exhibitionFieldFull}`}>
-                        <span className={styles.exhibitionLabel}>Series</span>
+                        <span className={styles.exhibitionLabel}>{copy.series}</span>
                         <span className={styles.exhibitionValue}>{currentWork.series}</span>
                       </div>
                     </div>
 
                     <div className={styles.exhibitionNote}>
-                      <p className={styles.exhibitionNoteLabel}>Curatorial Note</p>
+                      <p className={styles.exhibitionNoteLabel}>{copy.curatorialNote}</p>
                       <p className={styles.exhibitionNoteText}>{currentWork.note}</p>
                     </div>
                   </>
@@ -575,14 +722,14 @@ export default function VisualsPage() {
                 }}
                 disabled={currentIndex === 0}
               >
-                <span><span aria-hidden="true">←</span> Previous</span>
+                <span><span aria-hidden="true">←</span> {copy.previous}</span>
               </button>
               <button
                 type="button"
                 className={styles.exhibitionNavButton}
                 onClick={() => closeExhibition()}
               >
-                <span>Back to Gallery</span>
+                <span>{copy.backToGallery}</span>
               </button>
               <button
                 type="button"
@@ -594,7 +741,7 @@ export default function VisualsPage() {
                 }}
                 disabled={currentIndex === works.length - 1}
               >
-                <span>Next <span aria-hidden="true">→</span></span>
+                <span>{copy.next} <span aria-hidden="true">→</span></span>
               </button>
             </nav>
           </div>

@@ -1,7 +1,14 @@
 import Link from 'next/link'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale, localizePath } from '@/lib/i18n'
 
-export default function Footer() {
+interface FooterProps {
+  locale?: Locale
+}
+
+export default function Footer({ locale = 'en' }: FooterProps) {
   const currentYear = new Date().getFullYear()
+  const copy = getSiteCopy(locale).footer
 
   return (
     <footer id="footer" className="footer">
@@ -9,7 +16,7 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <p className="footer__logo">Raúl Mermans</p>
-            <p className="footer__tagline">Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands.</p>
+            <p className="footer__tagline">{copy.tagline}</p>
             <a 
               href="mailto:raulmermans@gmail.com" 
               className="footer__email"
@@ -27,81 +34,55 @@ export default function Footer() {
           </div>
 
           <div className="footer__column">
-            <h4>Work</h4>
+            <h4>{copy.work}</h4>
             <ul>
-              <li>
-                <Link href="/case-studies">Case Studies</Link>
-              </li>
-              <li>
-                <Link href="/photography">Photography</Link>
-              </li>
-              <li>
-                <Link href="/visuals">Visuals</Link>
-              </li>
+              {copy.workLinks.map((item) => (
+                <li key={item.label}>
+                  <Link href={localizePath(item.href, locale)}>{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="footer__column">
-            <h4>Services</h4>
+            <h4>{copy.services}</h4>
             <ul>
-              <li>
-                <Link href="/#services">AI Systems</Link>
-              </li>
-              <li>
-                <Link href="/#services">Automation</Link>
-              </li>
-              <li>
-                <Link href="/#services">Prototypes</Link>
-              </li>
-              <li>
-                <Link href="/#services">Brand Systems</Link>
-              </li>
+              {copy.serviceLinks.map((item) => (
+                <li key={item.label}>
+                  <Link href={localizePath(item.href, locale)}>{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="footer__column">
-            <h4>Resources</h4>
+            <h4>{copy.resources}</h4>
             <ul>
-              <li>
-                <Link href="/about">About</Link>
-              </li>
-              <li>
-                <a 
-                  href="https://promptbase.com/profile/mangerm" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="View PromptBase profile (opens in new tab)"
-                >
-                  PromptBase Profile
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://raulmermans.gumroad.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Visit Gumroad Store (opens in new tab)"
-                >
-                  Gumroad Store
-                </a>
-              </li>
-              <li>
-                <Link href="/#contact">Contact</Link>
-              </li>
+              {copy.resourceLinks.map((item) => (
+                <li key={item.label}>
+                  {'external' in item && item.external ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer">
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link href={localizePath(item.href, locale)}>{item.label}</Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
         <div className="footer__bottom">
-          <p className="footer__copy">© {currentYear} Raúl Mermans. All rights reserved.</p>
+          <p className="footer__copy">© {currentYear} Raúl Mermans. {copy.rightsReserved}</p>
           <div className="footer__legal">
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/terms">Terms of Service</Link>
+            <Link href={localizePath('/privacy', locale)}>{copy.privacy}</Link>
+            <Link href={localizePath('/terms', locale)}>{copy.terms}</Link>
           </div>
         </div>
 
         <div className="footer__vibe">
-          <p className="footer__vibe-text">Designed and built by Raúl Mermans.</p>
+          <p className="footer__vibe-text">{copy.builtBy}</p>
         </div>
       </div>
     </footer>

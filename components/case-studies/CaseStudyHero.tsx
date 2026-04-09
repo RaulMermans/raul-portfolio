@@ -3,14 +3,18 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import type { CaseStudyHero as CaseStudyHeroType } from '@/types/case-study'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale } from '@/lib/i18n'
 
 interface CaseStudyHeroProps {
   hero: CaseStudyHeroType
   accentColor?: string
+  locale?: Locale
 }
 
-export default function CaseStudyHero({ hero, accentColor }: CaseStudyHeroProps) {
+export default function CaseStudyHero({ hero, accentColor, locale = 'en' }: CaseStudyHeroProps) {
   const heroRef = useRef<HTMLElement>(null)
+  const copy = getSiteCopy(locale).caseStudiesUi
 
   useEffect(() => {
     // Parallax effect on scroll — rAF-throttled to avoid layout thrash every frame
@@ -58,7 +62,7 @@ export default function CaseStudyHero({ hero, accentColor }: CaseStudyHeroProps)
       
       <div className="case-study-hero-new__content">
         <div className="case-study-hero-new__container">
-          <div className="case-study-hero-new__badge">Case Study</div>
+          <div className="case-study-hero-new__badge">{copy.caseStudyBadge}</div>
           <h1 className="case-study-hero-new__title">{hero.title}</h1>
           {hero.tagline && (
             <p className="case-study-hero-new__tagline">
@@ -84,9 +88,8 @@ export default function CaseStudyHero({ hero, accentColor }: CaseStudyHeroProps)
 
       <div className="case-study-hero-new__scroll-indicator">
         <div className="case-study-hero-new__scroll-line"></div>
-        <span className="case-study-hero-new__scroll-text">Scroll</span>
+        <span className="case-study-hero-new__scroll-text">{copy.scroll}</span>
       </div>
     </section>
   )
 }
-

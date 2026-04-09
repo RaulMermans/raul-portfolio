@@ -43,6 +43,7 @@
   top: max(var(--space-4), calc(env(safe-area-inset-top) + var(--space-3)));
   right: max(var(--space-4), calc(env(safe-area-inset-right) + var(--space-3)));
   display: flex;
+  align-items: center;
   gap: var(--space-1);
   padding: var(--space-1);
   border: 1px solid rgba(26, 23, 20, 0.16);
@@ -97,6 +98,30 @@
 .desktopNav a:hover::after,
 .desktopNav a:focus-visible::after {
   transform: scaleX(1);
+}
+
+.languageToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding-left: var(--space-1);
+  margin-left: var(--space-1);
+  border-left: 1px solid rgba(26, 23, 20, 0.12);
+}
+
+.desktopNav .languageToggle a::after {
+  display: none;
+}
+
+.desktopNav .languageToggle a {
+  min-width: 2.5rem;
+  justify-content: center;
+  padding-inline: var(--space-2);
+}
+
+.languageToggleActive {
+  background: rgba(26, 23, 20, 0.08);
+  color: var(--ink);
 }
 
 .menuButton {
@@ -253,6 +278,36 @@
   gap: var(--space-4);
   margin-top: auto;
   padding-top: clamp(var(--space-6), 8vh, var(--space-8));
+}
+
+.mobileLanguageToggle {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px;
+  border: 1px solid rgba(26, 23, 20, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.mobileLanguageToggle a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  min-height: 2.5rem;
+  padding: 0 var(--space-3);
+  border-radius: 999px;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: background var(--transition-base) var(--ease), color var(--transition-base) var(--ease);
+}
+
+.mobileLanguageToggleActive {
+  background: var(--ink);
+  color: var(--cream) !important;
 }
 
 .menuMeta {

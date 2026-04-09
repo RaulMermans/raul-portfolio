@@ -1,7 +1,10 @@
 'use client'
 
 import { useCaseStudySetup } from '@/hooks'
-import { notFound } from 'next/navigation'
+import { notFound, usePathname } from 'next/navigation'
+import { getSiteCopy } from '@/data/site-copy'
+import { getCaseStudies } from '@/data/case-studies'
+import { getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
@@ -13,10 +16,13 @@ import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import BoldText from '@/components/case-studies/BoldText'
 import { getCaseStudyContent } from '@/data/case-studies-content'
-import { caseStudies } from '@/data/case-studies'
+
 export default function AISportsCampaignPage() {
-  const content = getCaseStudyContent('ai-sports')
-  const nextCaseStudy = caseStudies.find((cs) => cs.href === '/case-studies/remoria')
+  const pathname = usePathname()
+  const locale = getLocaleFromPath(pathname)
+  const copy = getSiteCopy(locale).caseStudiesUi
+  const content = getCaseStudyContent('ai-sports', locale)
+  const nextCaseStudy = getCaseStudies(locale).find((cs) => cs.href.endsWith('/case-studies/remoria'))
 
   useCaseStudySetup()
 
@@ -26,13 +32,14 @@ export default function AISportsCampaignPage() {
 
   return (
     <>
-      <Header />
+      <Header locale={locale} />
 
       <main id="main-content" className={`case-study-page-new case-study-page-new--${content.layoutVariant ?? 'default'}`}>
         {/* Hero Section */}
         <CaseStudyHero 
           hero={content.hero} 
           accentColor={content.accentColor}
+          locale={locale}
             />
 
         {/* Meta Section */}
@@ -46,7 +53,7 @@ export default function AISportsCampaignPage() {
         {/* Introduction Section */}
         {content.overview && (
           <CaseStudySection 
-            title="Overview" 
+            title={copy.overview} 
             variant="light"
             id="overview"
           >
@@ -66,7 +73,7 @@ export default function AISportsCampaignPage() {
         {/* Challenge Section */}
         {content.challenge && (
           <CaseStudySection 
-            title="The Challenge" 
+            title={copy.challenge} 
             variant="dark"
             id="challenge"
           >
@@ -79,7 +86,7 @@ export default function AISportsCampaignPage() {
               </p>
               {content.challenge.successCriteria && content.challenge.successCriteria.length > 0 && (
                 <div className="case-study-challenge__criteria">
-                  <h4 className="case-study-challenge__criteria-title">Success Criteria</h4>
+                  <h4 className="case-study-challenge__criteria-title">{copy.successCriteria}</h4>
                   <ul className="case-study-challenge__criteria-list">
                   {content.challenge.successCriteria.map((criterion, index) => (
                       <li key={index} className="case-study-challenge__criteria-item">
@@ -113,7 +120,7 @@ export default function AISportsCampaignPage() {
         {/* Approach Section */}
         {content.approach && (
           <CaseStudySection 
-            title="The Approach" 
+            title={copy.approach} 
             variant="light"
             id="approach"
           >
@@ -124,7 +131,7 @@ export default function AISportsCampaignPage() {
 
                 {content.approach.tools && content.approach.tools.length > 0 && (
                 <div className="case-study-approach__tools">
-                  <h4 className="case-study-approach__tools-title">Tools & Technologies</h4>
+                  <h4 className="case-study-approach__tools-title">{copy.tools}</h4>
                   <div className="case-study-approach__tools-list">
                       {content.approach.tools.map((tool, index) => (
                       <span key={index} className="case-study-approach__tool">
@@ -196,7 +203,7 @@ export default function AISportsCampaignPage() {
         {/* Results Section */}
               {content.results && (
           <CaseStudySection 
-            title="Results" 
+            title={copy.results} 
             variant="dark"
             id="results"
           >
@@ -218,10 +225,11 @@ export default function AISportsCampaignPage() {
             image: nextCaseStudy.image
           } : undefined}
           accentColor={content.accentColor}
+          locale={locale}
         />
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { apps } from '@/data/apps'
+import { getApps } from '@/data/apps'
 import { absoluteRouteUrl } from '@/lib/metadata'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -54,9 +54,57 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: absoluteRouteUrl('/es'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.95,
+    },
+    {
+      url: absoluteRouteUrl('/es/about'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.88,
+    },
+    {
+      url: absoluteRouteUrl('/es/case-studies'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.88,
+    },
+    {
+      url: absoluteRouteUrl('/es/apps'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.86,
+    },
+    {
+      url: absoluteRouteUrl('/es/photography'),
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.72,
+    },
+    {
+      url: absoluteRouteUrl('/es/visuals'),
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.72,
+    },
+    {
+      url: absoluteRouteUrl('/es/case-studies/ai-sports'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.78,
+    },
+    {
+      url: absoluteRouteUrl('/es/case-studies/remoria'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.78,
+    },
   ]
 
-  const appRoutes: MetadataRoute.Sitemap = apps.map((app) => ({
+  const appRoutes: MetadataRoute.Sitemap = [...getApps('en'), ...getApps('es')].map((app) => ({
     url: absoluteRouteUrl(app.href),
     lastModified,
     changeFrequency: 'monthly',

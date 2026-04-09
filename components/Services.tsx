@@ -2,48 +2,31 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale, localizePath } from '@/lib/i18n'
 
-const services = [
-  {
-    number: '00-1',
-    title: 'AI Systems',
-    titleShort: 'AI Systems',
-    items: ['Agentic Workflows', 'AI Orchestration', 'Human Review Loops', 'Deployment Logic'],
-    description: 'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution. Agents, orchestration, and decision flows built for real teams, not demo theatre.',
-    image: '/images/services/Services_AI_Agents.webp',
-  },
-  {
-    number: '00-2',
-    title: 'Web Development',
-    titleShort: 'Web Dev',
-    items: ['Custom Web Design', 'Frontend Development', 'Performance Optimization', 'CMS Integration'],
-    description: 'Modern, performant web experiences crafted with precision. Every site is built with conversion in mind: fast load times, intuitive navigation, and seamless user journeys that turn visitors into clients.',
-    image: '/images/services/Services_Web_Development.webp',
-  },
-  {
-    number: '00-3',
-    title: 'Photography',
-    titleShort: 'Photography',
-    items: ['Brand Photo', 'Visual Story', 'Editorial Shoot', 'Product Photo'],
-    description: 'Visual narratives that capture the essence of brands and stories. Helping brands convert visual interest into lasting engagement through authentic imagery that connects with audiences on an emotional level.',
-    image: '/images/services/Services_Photography.webp',
-  },
-  {
-    number: '00-4',
-    title: 'Creative Direction',
-    titleShort: 'Creative Dir',
-    items: ['Brand Strategy', 'Visual Identity', 'Art Direction', 'Campaign Concepts'],
-    description: 'Strategic creative vision from concept to execution. I guide brands through the creative process, ensuring every touchpoint, from logo to campaign, tells a cohesive story that resonates with your target audience.',
-    image: '/images/services/Services_Creative_Direction.webp',
-  },
-]
+interface ServicesProps {
+  locale?: Locale
+}
 
-export default function Services() {
+export default function Services({ locale = 'en' }: ServicesProps) {
+  const copy = getSiteCopy(locale).home.services
+  const services = copy.items.map((item, index) => ({
+    ...item,
+    image:
+      index === 0
+        ? '/images/services/Services_AI_Agents.webp'
+        : index === 1
+          ? '/images/services/Services_Web_Development.webp'
+          : index === 2
+            ? '/images/services/Services_Photography.webp'
+            : '/images/services/Services_Creative_Direction.webp',
+  }))
   return (
     <section id="services" className="services" aria-labelledby="services-title">
       <div className="services__header">
         <h2 id="services-title" className="services__title">
-          Services
+          {copy.title}
         </h2>
         <div className="services__line"></div>
       </div>
@@ -105,11 +88,11 @@ export default function Services() {
             <div className="service__corner">
               <div className="service__bracket"></div>
               <Link 
-                href="/#contact" 
+                href={localizePath('/#contact', locale)} 
                 className="btn btn--arrow service__cta"
                 aria-label="Start a project - navigate to contact section"
               >
-                Start a project
+                {copy.cta}
               </Link>
             </div>
           </article>

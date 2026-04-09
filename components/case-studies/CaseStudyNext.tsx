@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale } from '@/lib/i18n'
 
 interface CaseStudy {
   title: string
@@ -14,9 +16,11 @@ interface CaseStudy {
 interface CaseStudyNextProps {
   nextCaseStudy?: CaseStudy
   accentColor?: string
+  locale?: Locale
 }
 
-export default function CaseStudyNext({ nextCaseStudy, accentColor }: CaseStudyNextProps) {
+export default function CaseStudyNext({ nextCaseStudy, accentColor, locale = 'en' }: CaseStudyNextProps) {
+  const copy = getSiteCopy(locale).caseStudiesUi
   const [showHint, setShowHint] = useState(false)
 
   useEffect(() => {
@@ -43,7 +47,7 @@ export default function CaseStudyNext({ nextCaseStudy, accentColor }: CaseStudyN
     <>
       {/* Scroll Hint - Visible when near bottom */}
       <div className={`case-study-scroll-hint ${showHint ? 'visible' : ''}`}>
-        <div className="case-study-scroll-hint__text">More Projects</div>
+        <div className="case-study-scroll-hint__text">{copy.moreProjects}</div>
         <div className="case-study-scroll-hint__arrow">↓</div>
       </div>
 
@@ -66,7 +70,7 @@ export default function CaseStudyNext({ nextCaseStudy, accentColor }: CaseStudyN
                     className="case-study-next-new__preview-img"
                   />
                   <div className="case-study-next-new__preview-overlay">
-                    <span className="case-study-next-new__preview-label">View Case Study</span>
+                    <span className="case-study-next-new__preview-label">{copy.viewCaseStudy}</span>
                   </div>
                 </div>
               </Link>
@@ -74,7 +78,7 @@ export default function CaseStudyNext({ nextCaseStudy, accentColor }: CaseStudyN
           )}
 
           <div className="case-study-next-new__content">
-            <p className="case-study-next-new__label">Next Project</p>
+            <p className="case-study-next-new__label">{copy.nextProject}</p>
             <Link 
               href={nextCaseStudy.href} 
               className="case-study-next-new__link"
@@ -91,4 +95,3 @@ export default function CaseStudyNext({ nextCaseStudy, accentColor }: CaseStudyN
     </>
   )
 }
-
