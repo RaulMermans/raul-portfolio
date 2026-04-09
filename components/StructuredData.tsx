@@ -29,7 +29,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'Person',
       '@id': `${siteConfig.url}/#person`,
       name: siteConfig.name,
-      jobTitle: 'Applied AI Systems Builder',
+      jobTitle: 'Arquitecto de Sistemas de IA Aplicada',
       description: siteConfig.defaultDescription,
       url: siteConfig.url,
       image: absoluteUrl('/images/about/profile.webp'),

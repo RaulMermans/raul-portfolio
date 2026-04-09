@@ -518,7 +518,7 @@ function getOverflowContent(locale: Locale): OverflowContent {
           callouts: [
             { title: 'Contexto de fecha', body: 'Siempre se programa en relación con un día real.', top: '21%', side: 'right' },
             { title: 'Selector de rutina', body: 'Las rutinas existentes están cerca cuando se ordena la semana.', top: '51%', side: 'left' },
-            { title: 'Compromiso directo', body: 'La acción es lo bastante clara como para que planificar no se convierta en otro workflow.', top: '73%', side: 'right' },
+            { title: 'Compromiso directo', body: 'La acción es lo bastante clara como para que planificar no se convierta en otro flujo de trabajo.', top: '73%', side: 'right' },
           ],
           detailNote: 'Aquí es donde la flexibilidad se vuelve real. La semana puede ajustarse sin sentirse rota.',
         },

@@ -167,13 +167,13 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
     {
       slug: 'overflow',
       name: 'Overflow',
-      tagline: 'Un diario de entrenamiento calmado para iPhone.',
+      tagline: 'Un diario de entrenamiento claro para iPhone.',
       shortDescription:
         'Overflow es un diario de rendimiento para iPhone. Registra entrenamientos, construye rutinas y mide progreso sin ruido.',
       cardDescription:
         'Registro de entrenamiento sin fricción, planificación de rutinas y seguimiento de progreso diseñados con contención e intención.',
       heroStatement:
-        'Entrena con confianza tranquila. Overflow reemplaza las apps fitness ruidosas por un diario calmado y bien pensado que respeta tu foco.',
+        'Entrena con claridad. Overflow sustituye las apps fitness ruidosas por un diario bien pensado que respeta tu foco.',
       status: 'App destacada',
       launchStage: 'Beta privada',
       icon: '/images/apps/overflow/icon.webp',
@@ -206,7 +206,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
           eyebrow: 'Progreso medible',
           title: 'Progreso que se puede sentir.',
           description:
-            'Volumen semanal, récords personales y rachas que significan algo. Ve tu trayectoria con datos limpios y calmados.',
+            'Volumen semanal, récords personales y rachas que significan algo. Ve tu trayectoria con datos limpios y fáciles de leer.',
         },
         {
           eyebrow: 'Reflexión tranquila',
@@ -218,7 +218,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       gallery: [
         {
           eyebrow: 'Hoy',
-          title: 'Una superficie calmada para empezar cada sesión.',
+          title: 'Una superficie clara para empezar cada sesión.',
           description:
             'Tu plan, tu racha y tu siguiente serie, todo en una sola pantalla y sin fatiga de decisión.',
           stats: ['Plan', 'Racha', 'Siguiente serie'],
@@ -241,7 +241,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       narrative: {
         title: 'Por qué existe Overflow',
         description:
-          'La mayoría de apps de entrenamiento se sienten caóticas o demasiado gamificadas. Overflow vive en el hueco: un diario calmado y estructurado con disciplina de producto por debajo.',
+          'La mayoría de apps de entrenamiento se sienten caóticas o demasiado gamificadas. Overflow ocupa ese hueco: un diario claro y estructurado con disciplina de producto por debajo.',
         bullets: [
           'Diseñada para personas que entrenan de forma constante y quieren una herramienta alineada con su foco.',
           'Cada pantalla está construida para reducir fricción, no para añadir funciones por añadir.',

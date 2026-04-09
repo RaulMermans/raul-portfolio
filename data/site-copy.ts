@@ -324,7 +324,7 @@ export const siteCopy = {
         },
         ariaLabel: 'Raúl Mermans — Sistemas de IA · Agentes · Automatización',
         services: ['Sistemas de IA', 'Agentes', 'Automatización'],
-        summary: 'Diseñando sistemas de IA para marcas modernas.',
+        summary: 'Arquitecto de Sistemas de IA para Marcas Modernas',
         primaryCta: 'Ver trabajo',
         secondaryCta: 'Conectar',
         scrollAria: 'Desplazar para explorar',
@@ -342,7 +342,7 @@ export const siteCopy = {
             eyebrow: 'Sistemas de IA, automatización y estructura de marca',
             title: 'Casos de estudio',
             description:
-              'Casos de estudio sobre flujos agentivos, sistemas de IA y la lógica de marca que hace que la ejecución se sienta coherente y no improvisada.',
+              'Casos de estudio sobre flujos de trabajo basados en agentes (agentic workflows), sistemas de IA y la lógica de marca que hace que la ejecución se sienta coherente, no improvisada.',
           },
           {
             id: 'apps',
@@ -350,7 +350,7 @@ export const siteCopy = {
             eyebrow: 'Prototipos, herramientas internas y pensamiento de interfaz',
             title: 'Apps',
             description:
-              'Apps, herramientas y superficies de producto que muestran cómo pienso la lógica de flujo, una UX calmada y una ejecución aplicada.',
+              'Apps, herramientas y superficies de producto que muestran cómo pienso la lógica de flujo, una experiencia de usuario (UX) fluida y una ejecución aplicada.',
           },
           {
             id: 'photography',
@@ -372,9 +372,9 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'Sobre mí',
-        title: 'Mentalidad de negocio. Sistemas primero por defecto.',
+        title: 'Desarrollador con visión de negocio. Los sistemas como prioridad.',
         body:
-          'Llegué a este trabajo desde el negocio y luego aprendí a construir los sistemas que los equipos realmente necesitan. Hoy diseño <span class="highlight">flujos de IA</span>, <span class="highlight">capas de automatización</span> e <span class="highlight">interfaces con mentalidad de producto</span> para marketing, CRM, contenido y ejecución creativa. Mi ventaja está en la combinación de <span class="highlight">pensamiento sistémico</span>, <span class="highlight">implementación práctica</span> y <span class="highlight">criterio creativo</span> suficiente para que el resultado sea coherente, útil y digno de desplegarse.',
+          'Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear los sistemas que los equipos realmente necesitan. Hoy diseño <span class="highlight">flujos de trabajo con IA</span>, <span class="highlight">capas de automatización</span> e <span class="highlight">interfaces orientadas a producto</span>... Mi valor diferencial es la combinación de <span class="highlight">pensamiento sistémico</span>, <span class="highlight">implementación práctica</span> y un <span class="highlight">criterio creativo</span> lo suficientemente sólido como para mantener un resultado coherente, útil y listo para desplegarse.',
         cta: 'Leer más',
       },
       services: {
@@ -385,9 +385,9 @@ export const siteCopy = {
             number: '00-1',
             title: 'Sistemas de IA',
             titleShort: 'Sist. IA',
-            items: ['Flujos agentivos', 'Orquestación de IA', 'Bucles de revisión humana', 'Lógica de despliegue'],
+            items: ['Flujos basados en agentes', 'Orquestación de IA', 'Bucles de revisión humana', 'Lógica de despliegue'],
             description:
-              'Sistemas de IA aplicados que convierten trabajo repetitivo y cargado de criterio en ejecución fiable. Agentes, orquestación y flujos de decisión pensados para equipos reales, no para demos teatrales.',
+              'Sistemas de IA aplicada que transforman el trabajo repetitivo y de alta carga cognitiva en una ejecución fiable. Agentes, orquestación y flujos de decisión construidos para equipos reales, no solo para demostraciones.',
           },
           {
             number: '00-2',
@@ -416,17 +416,17 @@ export const siteCopy = {
         ],
       },
       contact: {
-        title: 'Construyamos el sistema correcto',
+        title: 'Construyamos el sistema adecuado.',
         subtitle:
-          '¿Estás trabajando en sistemas de IA, automatización, herramientas internas u operaciones creativas? Envíame contexto. Diseño flujos e interfaces que ayudan a los equipos a ejecutar con más velocidad, consistencia y control.',
-        intro: 'Envíame un brief corto y te responderé en 24 horas.',
+          'Cuéntame tu contexto. Diseño flujos de trabajo e interfaces que ayudan a los equipos a ejecutar con mayor velocidad, consistencia y control.',
+        intro: 'Envíame un breve resumen y te responderé en menos de 24 horas.',
       },
       contactForm: {
         projectTypePlaceholder: 'Selecciona el enfoque',
         budgetPlaceholder: 'Selecciona el rango',
         timelinePlaceholder: 'Selecciona el plazo',
         projectTypes: [
-          { value: 'ai-systems', label: 'Sistemas de IA / Flujos agentivos' },
+          { value: 'ai-systems', label: 'Sistemas de IA / Flujos basados en agentes' },
           { value: 'automation-infrastructure', label: 'Infraestructura de automatización' },
           { value: 'ai-prototype', label: 'Prototipo IA / Herramienta interna' },
           { value: 'brand-creative-systems', label: 'Sistema de marca / creativo' },
@@ -483,10 +483,7 @@ export const siteCopy = {
       label: 'Sobre mí',
       title: 'Sistemas de IA aplicados, construidos con criterio',
       paragraphs: [
-        'Llegué a este trabajo desde el <span class="highlight">negocio</span> y luego aprendí a construir lo que los equipos realmente necesitan cuando la estrategia tiene que convertirse en ejecución. Hoy diseño <a href="/case-studies" class="highlight">sistemas de IA</a>, <span class="highlight">flujos agentivos</span> e <span class="highlight">infraestructura de automatización</span> para marketing, CRM, contenido y operaciones creativas.',
-        'Me interesan menos las salidas puntuales de IA que el sistema que las hace posibles: dónde se enruta el trabajo, dónde vive el criterio, qué conviene automatizar y cómo una interfaz vuelve usable todo el conjunto. Eso significa <span class="highlight">lógica de workflow</span>, <span class="highlight">orquestación</span>, <span class="highlight">herramientas internas</span> e <a href="/apps/overflow" class="highlight">implementación con mentalidad de producto</a>.',
-        'El criterio creativo sigue importando. Mi fondo en marca, visuales e imagen me sirve como <span class="highlight">control de calidad dentro del sistema</span>. Me ayuda a decidir qué debe sentirse contenido, qué debe seguir siendo humano y qué hace que un resultado sea <span class="highlight">comercialmente creíble</span> y no simplemente nuevo.',
-        'Trabajo mejor con marcas y equipos modernos que necesitan <span class="highlight">mejor ejecución</span>, <span class="highlight">mejores workflows</span> e infraestructura que realmente puedan usar. Si el problema vive entre marketing, CRM, contenido, operaciones y ejecución creativa, ahí es donde suelo aportar más.',
+        'Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear los sistemas que los equipos realmente necesitan. Hoy diseño <span class="highlight">flujos de trabajo con IA</span>, <span class="highlight">capas de automatización</span> e <span class="highlight">interfaces orientadas a producto</span>... Mi valor diferencial es la combinación de <span class="highlight">pensamiento sistémico</span>, <span class="highlight">implementación práctica</span> y un <span class="highlight">criterio creativo</span> lo suficientemente sólido como para mantener un resultado coherente, útil y listo para desplegarse.',
       ],
     },
     caseStudiesUi: {
@@ -520,7 +517,7 @@ export const siteCopy = {
         'Cada módulo está diseñado para leerse como una captura premium incluso antes de añadir pantallas definitivas, para que la página no se sienta vacía mientras la app evoluciona.',
       productStory: 'Historia de producto',
       archiveTitle: 'Más trabajo en apps',
-      archiveBody: 'Un pequeño archivo de conceptos, herramientas y software en marcha diseñados alrededor de interfaces más calmadas y claridad operativa.',
+      archiveBody: 'Un pequeño archivo de conceptos, herramientas y software en marcha diseñados alrededor de interfaces más fluidas y claridad operativa.',
     },
   },
 } as const

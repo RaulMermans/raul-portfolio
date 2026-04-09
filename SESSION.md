@@ -29,6 +29,17 @@
 - `npm run lint -- --file app/photography/page.tsx` was run on 2026-03-28 for a photography gallery update and again did not return a usable result in this environment after roughly 30 seconds
 - `npm run lint -- --file components/Services.tsx` was run on 2026-03-28 for a homepage services CTA alignment tweak and again did not return a usable result in this environment after roughly 30 seconds
 
+### 2026-04-09 - Refine Spanish localization tone across portfolio copy
+**Goal**: Remove literal or robotic Spanish copy and align the Spanish portfolio voice with a more natural IA, producto, and development tone.
+**Outcome**: Completed
+**Changes Made**:
+- `data/site-copy.ts`, `components/About.tsx`, and `app/about/page.tsx` - rewrote the Spanish profile/about copy, updated the AI systems service description, replaced `flujos agentivos` and `UX calmada`, and refreshed the contact CTA with the new messaging.
+- `lib/metadata.ts`, `app/about/layout.tsx`, `app/es/about/page.tsx`, `app/es/page.tsx`, `app/apps/apps-page-shared.tsx`, `app/case-studies/layout.tsx`, `app/es/case-studies/layout.tsx`, `app/case-studies/page.tsx`, `components/StructuredData.tsx`, and `app/page.tsx` - aligned Spanish metadata, homepage schema, and structured-data terminology with the updated localization tone.
+- `data/apps.ts` - refined the Spanish Overflow product copy where `calmado/calmada` sounded translated rather than native to the product context.
+- `SESSION.md` - recorded the localization pass for continuity.
+**Notes**: Verification after the edits used `npm run type-check` plus a targeted `npm run lint -- --file ...` run over the touched Spanish copy and metadata files.
+**Next Steps**: Review the Spanish homepage, about page, case studies page, and apps page in-browser after deploy to confirm the tone feels consistent across visible copy and SEO metadata.
+
 ### 2026-04-09 - Make Spanish the primary language
 **Goal**: Make Spanish the default language on the portfolio while keeping English available as a secondary locale.
 **Outcome**: Completed

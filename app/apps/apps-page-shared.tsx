@@ -15,7 +15,7 @@ export function getAppsPageMetadata(locale: Locale = 'en'): Metadata {
   return buildPageMetadata({
     title: isSpanish ? 'Apps y Prototipos' : 'Apps & Prototypes',
     description: isSpanish
-      ? 'Apps y prototipos de producto de Raúl Mermans, pensados para probar workflows, interfaces y nuevos modelos operativos con una ejecución calmada y orientada a producto.'
+      ? 'Apps y prototipos de producto de Raúl Mermans, pensados para explorar flujos de trabajo, interfaces y nuevos modelos operativos con una experiencia de usuario (UX) fluida y orientada a producto.'
       : 'Apps and product prototypes by Raúl Mermans, built to test workflows, interfaces, and new operating models with calm, product-minded execution.',
     path: '/apps',
     locale,
