@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { type Locale, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import OverflowLegalLinks from '@/components/overflow/OverflowLegalLinks'
 
 const ACCENT_PRIMARY = '#813E3A'
 const ACCENT_PRIMARY_SOFT = 'rgba(129, 62, 58, 0.12)'
@@ -1488,6 +1489,9 @@ export default function OverflowLanding({ locale = 'en' }: OverflowLandingProps)
                 >
                   {copy.betaSecondaryCta}
                 </Link>
+              </div>
+              <div className="mt-6 flex justify-center">
+                <OverflowLegalLinks locale={locale} />
               </div>
             </Reveal>
           </div>

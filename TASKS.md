@@ -12,6 +12,7 @@
 - [ ] Approve and implement canonical host redirects so `http://raulmermans.com`, `http://www.raulmermans.com`, and `https://raulmermans.com` consolidate to `https://www.raulmermans.com`
 - [ ] Review legacy `/projects/*` URLs and approve the redirect map versus leaving unmatched URLs as proper 404 cleanup
 - [ ] Review the Spanish legal pages before treating them as official legal text
+- [ ] Review the Overflow legal copy against the live app stack before treating it as final legal text (provider list, data retention, account deletion flow)
 
 ## Backlog
 
@@ -33,6 +34,7 @@
 ## Completed
 
 ### April 2026
+- [x] Add Overflow-specific support, privacy, and terms pages for App Store Connect
 - [x] Add a Spanish site variant under `/es/*` with a language toggle, localized metadata, translated case studies/apps pages, and translated legal pages
 
 ### March 2026
