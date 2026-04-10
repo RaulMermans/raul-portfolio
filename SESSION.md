@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-04-09
+**Last Updated**: 2026-04-10
 
 ### Active Work
 - None currently
@@ -16,6 +16,7 @@
 - Whether to approve canonical host redirects that consolidate `http`, apex, and bare-HTTPS variants to `https://www.raulmermans.com`
 - Whether to approve a best-fit redirect map for legacy `/projects/*` URLs versus leaving unmatched URLs as proper 404 cleanup
 - Whether the Spanish legal pages should be reviewed by a lawyer or native legal copy reviewer before being treated as official text
+- Whether the new Overflow app legal pages should be updated with the exact live provider stack, data-retention rules, and any self-serve account deletion flow before being treated as final legal text
 - Whether to keep the legacy `/es/*` Spanish alias routes as canonicalized fallback paths or replace them with hard redirects to the new base Spanish routes later
 
 ### Blockers
@@ -83,6 +84,16 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-04-10 - Add Overflow App Store support and legal pages
+**Goal**: Create public Overflow-specific support, privacy, and terms pages that are suitable for App Store Connect, fit the current portfolio architecture, and stay conservative about unverified legal/technical claims.
+**Outcome**: Completed
+**Changes Made**:
+- `app/overflow/overflow-legal-shared.tsx`, `app/overflow/support/page.tsx`, `app/overflow/privacy/page.tsx`, `app/overflow/terms/page.tsx`, `app/en/overflow/support/page.tsx`, `app/en/overflow/privacy/page.tsx`, `app/en/overflow/terms/page.tsx`, and `components/overflow/OverflowLegalLinks.tsx` - added shared bilingual Overflow legal/support views, route-level metadata, source-level manual-review comments for uncertain provider/deletion details, and the requested public `/overflow/*` routes with `/en/overflow/*` mirrors.
+- `app/apps/overflow/OverflowLanding.tsx`, `data/site-copy.ts`, `styles/globals.css`, and `app/sitemap.ts` - integrated the new support/legal URLs into the Overflow app page and footer resources, added minimal legal-link/card styling that reuses the existing legal-page shell, and included the new public pages in sitemap output.
+- `TASKS.md` and `SESSION.md` - recorded the new routes plus the remaining legal-review follow-up.
+**Notes**: `npm run type-check`, `npm run lint -- --file app/overflow/overflow-legal-shared.tsx --file app/overflow/support/page.tsx --file app/overflow/privacy/page.tsx --file app/overflow/terms/page.tsx --file app/en/overflow/support/page.tsx --file app/en/overflow/privacy/page.tsx --file app/en/overflow/terms/page.tsx --file components/overflow/OverflowLegalLinks.tsx --file app/apps/overflow/OverflowLanding.tsx --file data/site-copy.ts --file app/sitemap.ts`, and `npm run build` all completed successfully. The build surfaced existing unrelated lint warnings in `components/Header.tsx` and `components/SectionCards.tsx`, but the new Overflow routes compiled and were listed in the build output.
+**Next Steps**: Decide which locale-specific URLs to submit in App Store Connect, then review the Overflow legal copy against the live app stack if named providers, retention periods, or deletion mechanics become fixed.
 
 ### 2026-04-09 - Add Spanish site variant and language toggle
 **Goal**: Add a Spanish version of the portfolio with locale-aware copy, `/es/*` routes, and a language toggle while keeping English on the existing URLs.

@@ -42,6 +42,7 @@ export const siteCopy = {
       ],
       resourceLinks: [
         { label: 'About', href: '/about' },
+        { label: 'Overflow Support', href: '/overflow/support' },
         { label: 'PromptBase Profile', href: 'https://promptbase.com/profile/mangerm', external: true },
         { label: 'Gumroad Store', href: 'https://raulmermans.gumroad.com/', external: true },
         { label: 'Contact', href: '/#contact' },
@@ -303,6 +304,7 @@ export const siteCopy = {
       ],
       resourceLinks: [
         { label: 'Sobre mí', href: '/about' },
+        { label: 'Soporte de Overflow', href: '/overflow/support' },
         { label: 'Perfil de PromptBase', href: 'https://promptbase.com/profile/mangerm', external: true },
         { label: 'Tienda de Gumroad', href: 'https://raulmermans.gumroad.com/', external: true },
         { label: 'Contacto', href: '/#contact' },
