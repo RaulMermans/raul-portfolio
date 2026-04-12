@@ -3,16 +3,16 @@ import HomePage from '../page'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'AI Systems and Creative Direction',
+  title: 'AI Systems Architect for Modern Brands',
   description:
-    'Raúl Mermans designs AI systems, automation, and product layers for modern brands with creative judgment and calm execution.',
+    'AI systems architect for modern brands. Raúl Mermans designs automation, agents, and operating systems for marketing, CRM, content, and creative teams.',
   path: '/',
   locale: 'en',
   image: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Raúl Mermans portfolio',
   },
-  keywords: ['AI systems', 'automation', 'creative direction', 'portfolio'],
+  keywords: ['AI systems architect', 'automation for brands', 'AI systems for marketing', 'consulting'],
 })
 
 export default function EnglishHomePage() {

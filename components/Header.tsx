@@ -129,6 +129,13 @@ export default function Header({ locale = 'en' }: HeaderProps) {
           </Link>
           )
         })}
+        <Link
+          href={localizePath('/#contact', locale)}
+          className={styles.desktopCta}
+          onClick={(e) => handleNavClick(e, '#contact')}
+        >
+          {copy.desktopCta}
+        </Link>
         <div className={styles.languageToggle} role="group" aria-label={copy.toggleLabel}>
           <Link
             href={englishPath}

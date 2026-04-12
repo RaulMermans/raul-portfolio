@@ -7,11 +7,11 @@ import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
-import SectionCards from '@/components/SectionCards'
-import About from '@/components/About'
+import FlagshipOffer from '@/components/FlagshipOffer'
+import HomeProofs from '@/components/HomeProofs'
+import HowIWork from '@/components/HowIWork'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
-import Socials from '@/components/Socials'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
@@ -19,9 +19,6 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 
 function getHomeServiceSchema(locale: Locale) {
-  const localizedRoot = localizePath('/', locale)
-  const localizedPhotography = localizePath('/photography', locale)
-
   if (locale === 'es') {
     return {
       '@context': 'https://schema.org',
@@ -38,40 +35,40 @@ function getHomeServiceSchema(locale: Locale) {
             'Sistemas de IA aplicada que transforman el trabajo repetitivo y de alta carga cognitiva en una ejecución fiable. Agentes, orquestación y flujos de decisión construidos para equipos reales, no solo para demostraciones.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl(localizedRoot),
+          url: absoluteRouteUrl(localizePath('/services/ai-systems', locale)),
         },
         {
           '@type': 'Service',
           position: 2,
-          name: 'Desarrollo web',
-          serviceType: 'Diseño y desarrollo web',
+          name: 'Automatización',
+          serviceType: 'Automatización operativa',
           description:
-            'Sitios y experiencias digitales modernos, rápidos y pensados para narrativa clara, conversión y una ejecución premium.',
+            'Capas de automatización diseñadas para reducir coordinación manual, mejorar handoffs y mantener visibles los puntos de revisión importantes.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl(localizedRoot),
+          url: absoluteRouteUrl(localizePath('/services/automation', locale)),
         },
         {
           '@type': 'Service',
           position: 3,
-          name: 'Fotografía',
-          serviceType: 'Fotografía editorial y de marca',
+          name: 'Prototipos',
+          serviceType: 'Prototipos y herramientas internas',
           description:
-            'Fotografía que apoya el relato de marca mediante composición, contención visual e imágenes pensadas para uso editorial y comercial.',
+            'Prototipos e interfaces internas que convierten la lógica del sistema en una superficie usable para operadores y equipos reales.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl(localizedPhotography),
+          url: absoluteRouteUrl(localizePath('/services/prototypes', locale)),
         },
         {
           '@type': 'Service',
           position: 4,
-          name: 'Dirección creativa',
-          serviceType: 'Dirección creativa y sistemas de marca',
+          name: 'Sistemas de marca',
+          serviceType: 'Sistemas de marca y dirección creativa',
           description:
             'Dirección creativa que conecta identidad de marca, sistemas visuales y pensamiento de campaña para que cada punto de contacto se sienta coherente e intencional.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl(localizedRoot),
+          url: absoluteRouteUrl(localizePath('/services/brand-systems', locale)),
         },
       ],
     }
@@ -92,40 +89,40 @@ function getHomeServiceSchema(locale: Locale) {
           'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution through automation logic, orchestration, and AI-enabled workflows.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl(localizedRoot),
+        url: absoluteRouteUrl(localizePath('/services/ai-systems', locale)),
       },
       {
         '@type': 'Service',
         position: 2,
-        name: 'Web Development',
-        serviceType: 'Web Design and Development',
+        name: 'Automation',
+        serviceType: 'Operational Automation Design',
         description:
-          'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
+          'Automation layers designed to reduce manual coordination, improve handoffs, and keep the important review points visible.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl(localizedRoot),
+        url: absoluteRouteUrl(localizePath('/services/automation', locale)),
       },
       {
         '@type': 'Service',
         position: 3,
-        name: 'Photography',
-        serviceType: 'Brand and Editorial Photography',
+        name: 'Prototypes',
+        serviceType: 'Prototypes and Internal Tools',
         description:
-          'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
+          'Prototypes and internal interfaces that turn system logic into something teams can actually use, review, and trust.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl(localizedPhotography),
+        url: absoluteRouteUrl(localizePath('/services/prototypes', locale)),
       },
       {
         '@type': 'Service',
         position: 4,
-        name: 'Creative Direction',
-        serviceType: 'Creative Direction and Brand Systems',
+        name: 'Brand Systems',
+        serviceType: 'Brand Systems and Creative Direction',
         description:
           'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl(localizedRoot),
+        url: absoluteRouteUrl(localizePath('/services/brand-systems', locale)),
       },
     ],
   }
@@ -189,9 +186,7 @@ export default function Home() {
 
     requestAnimationFrame(setupRevealObserver)
 
-    // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], .about, .services, .contact, .socials'
-    const sectionElements = document.querySelectorAll(sectionSelectors)
+    const sectionElements = document.querySelectorAll('[data-home-section]')
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -229,35 +224,11 @@ export default function Home() {
         />
         <Header locale={locale} />
         <Hero locale={locale} />
-        <SectionCards locale={locale} />
-        
-        {/* Social Proof Section - Placeholder for future content
-        * Suggested location for "Trusted By" logos or testimonial quotes
-        * Uncomment and populate when client logos/testimonials are available
-        *
-        * <section className="social-proof" aria-label="Client testimonials">
-        *   <div className="social-proof__inner">
-        *     <p className="social-proof__label">Trusted By</p>
-        *     <div className="social-proof__logos">
-        *       {/* Add client logos here - recommended: 4-6 logos *}
-        *       {/* <Image src="/images/clients/logo1.svg" alt="Client Name" width={120} height={40} /> *}
-        *     </div>
-        *     <blockquote className="social-proof__testimonial">
-        *       <p className="social-proof__quote">
-        *         "Quote from a satisfied client about the quality of work and results achieved."
-        *       </p>
-        *       <cite className="social-proof__cite">
-        *         — Client Name, Company
-        *       </cite>
-        *     </blockquote>
-        *   </div>
-        * </section>
-        */}
-        
-        <About locale={locale} />
-        <Services locale={locale} />
+        <FlagshipOffer locale={locale} />
+        <HomeProofs locale={locale} />
+        <HowIWork locale={locale} />
         <Contact locale={locale} />
-        <Socials locale={locale} />
+        <Services locale={locale} />
         <Footer locale={locale} />
         <BackToTop />
       </main>
