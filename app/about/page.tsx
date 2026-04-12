@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Contact from '@/components/Contact'
-import Socials from '@/components/Socials'
 import RevealOnScroll from '@/components/RevealOnScroll'
 import { getSiteCopy } from '@/data/site-copy'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
@@ -15,16 +14,15 @@ export default function AboutPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const copy = getSiteCopy(locale).aboutPage
+
   return (
     <>
       <RevealOnScroll />
       <Header locale={locale} />
 
       <main id="main-content" role="main">
-        {/* Hero/Bio Section */}
         <section className="about-hero">
           <div className="about-hero__container">
-            {/* Image Section */}
             <div className="about-hero__image-wrapper reveal">
               <div className="about-hero__image" style={{ aspectRatio: '3/4' }}>
                 <Image
@@ -40,77 +38,71 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Content Section */}
             <div className="about-hero__content">
               <div className="about-hero__header reveal">
                 <p className="label about-hero__label">{copy.label}</p>
               </div>
 
-              <h1 className="about-hero__title reveal reveal-delay-1">
-                {copy.title}
-              </h1>
+              <h1 className="about-hero__title reveal reveal-delay-1">{copy.title}</h1>
 
               <div className="about-hero__text reveal reveal-delay-2">
                 {locale === 'es' ? (
                   <>
                     <p>
-                      Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear
-                      los sistemas que los equipos realmente necesitan. Hoy diseño{' '}
+                      Diseño sistemas de IA para equipos que ya tienen objetivos, presión real por ejecutar
+                      y demasiados pasos manuales entre ambas cosas. Mi trabajo consiste en convertir esa
+                      fricción en una arquitectura clara: qué se automatiza, qué se revisa, qué se mide y
+                      cómo se usa de verdad.
+                    </p>
+
+                    <p>
+                      Pienso con lógica de negocio y construyo con criterio de producto. Eso significa
+                      mapear cuellos de botella, definir guardrails y diseñar la capa operativa que conecta{' '}
                       <Link href={localizePath('/case-studies', locale)} className="highlight">
-                        flujos de trabajo con IA
+                        sistemas de IA
                       </Link>
-                      , <span className="highlight">capas de automatización</span> e{' '}
+                      , <span className="highlight">automatización</span> e{' '}
                       <Link href={localizePath('/apps/overflow', locale)} className="highlight">
                         interfaces orientadas a producto
                       </Link>
-                      ... Mi valor diferencial es la combinación de{' '}
-                      <span className="highlight">pensamiento sistémico</span>,{' '}
-                      <span className="highlight">implementación práctica</span> y un{' '}
-                      <span className="highlight">criterio creativo</span> lo suficientemente sólido como
-                      para mantener un resultado coherente, útil y listo para desplegarse.
+                      . Busco que el sistema no solo funcione, sino que el equipo pueda mantenerlo con más
+                      velocidad, control y consistencia.
+                    </p>
+
+                    <p>
+                      También aporto <span className="highlight">rigor creativo</span>. Mi experiencia en
+                      identidad, dirección visual e imagen me ayuda a mantener calidad dentro del sistema:
+                      para que el resultado no se sienta como una demo técnica, sino como una herramienta útil,
+                      coherente y comercialmente creíble para un equipo real.
                     </p>
                   </>
                 ) : (
                   <>
                     <p>
-                      I came into this work through <span className="highlight">business</span>, then taught
-                      myself how to build what teams actually need when strategy has to become execution.
-                      Today I design{' '}
+                      I design AI systems for teams that already have goals, pressure, and too many manual
+                      steps between the two. My work is about turning that friction into a clear operating
+                      architecture: what gets automated, what stays reviewed, what gets measured, and how the
+                      system is actually used day to day.
+                    </p>
+
+                    <p>
+                      I think with business logic and build with product judgment. That means mapping
+                      bottlenecks, defining guardrails, and shaping the operating layer that connects{' '}
                       <Link href={localizePath('/case-studies', locale)} className="highlight">
                         AI systems
                       </Link>
-                      ,{' '}
-                      <span className="highlight">agentic workflows</span>, and{' '}
-                      <span className="highlight">automation infrastructure</span> for marketing, CRM,
-                      content, and creative operations.
-                    </p>
-
-                    <p>
-                      I&apos;m less interested in one-off AI outputs than in the system behind them:
-                      where work gets routed, where judgment lives, what should be automated, and
-                      how an interface makes the whole thing usable. That means{' '}
-                      <span className="highlight">workflow logic</span>,{' '}
-                      <span className="highlight">orchestration</span>,{' '}
-                      <span className="highlight">internal tools</span>, and{' '}
+                      , <span className="highlight">automation</span>, and{' '}
                       <Link href={localizePath('/apps/overflow', locale)} className="highlight">
                         product-minded implementation
                       </Link>
-                      .
+                      . The goal is not novelty. It is better execution with more speed, control, and consistency.
                     </p>
 
                     <p>
-                      Creative taste still matters. My background in brand, visuals, and image-making
-                      is useful because it acts as <span className="highlight">quality control inside the system</span>.
-                      It helps me decide what should feel restrained, what should stay human, and what
-                      makes an output <span className="highlight">commercially credible</span> rather than merely new.
-                    </p>
-
-                    <p>
-                      I work best with modern brands and teams that need{' '}
-                      <span className="highlight">sharper execution</span>,{' '}
-                      <span className="highlight">better workflows</span>, and infrastructure they can
-                      actually use. If the problem sits between marketing, CRM, content, operations,
-                      and creative execution, that&apos;s usually where I&apos;m most useful.
+                      Creative rigor still matters. My background in brand systems, visuals, and image-making
+                      acts as <span className="highlight">quality control inside the system</span>. It helps me
+                      decide what should stay human, what should feel restrained, and what makes an output
+                      commercially credible for a real team instead of just impressive in a demo.
                     </p>
                   </>
                 )}
@@ -119,15 +111,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
         <Contact locale={locale} />
-
-        {/* Socials Section */}
-        <Socials locale={locale} />
-
       </main>
 
-      {/* Footer */}
       <Footer locale={locale} />
     </>
   )

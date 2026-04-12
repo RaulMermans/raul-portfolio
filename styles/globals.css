@@ -1322,6 +1322,51 @@ html.homepage .footer {
   width: 100% !important;
 }
 
+.contact__steps {
+  width: 100%;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0;
+}
+
+.contact__step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid rgba(26, 23, 20, 0.08);
+  text-align: left;
+}
+
+.contact__step:last-child {
+  border-bottom: 1px solid rgba(26, 23, 20, 0.08);
+}
+
+.contact__step-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 999px;
+  background: rgba(196, 30, 58, 0.08);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.contact__step-text {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
 .contact__cta {
   margin-bottom: var(--space-8) !important;
   min-width: 220px !important;
@@ -1515,7 +1560,6 @@ html.homepage .footer {
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--ink-muted);
-  font-style: italic;
 }
 
 .contact-form {
@@ -1810,6 +1854,10 @@ html.homepage .footer {
     min-width: auto;
     width: 100%;
     max-width: 300px;
+  }
+
+  .contact__steps {
+    margin-bottom: var(--space-4);
   }
 
   .contact__divider {

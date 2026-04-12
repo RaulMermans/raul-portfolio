@@ -32,7 +32,7 @@
   z-index: 1;
   display: flex;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1080px;
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -41,97 +41,35 @@
   text-align: center;
 }
 
-.greeting {
+.eyebrow {
   margin: 0 0 var(--space-4);
   font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-sm);
-  font-style: italic;
+  font-size: var(--text-xs);
   font-weight: 500;
-  letter-spacing: var(--tracking-wider);
+  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.82;
-  transition: color 0.3s var(--ease), transform 0.3s var(--ease), opacity 0.3s var(--ease);
+  color: var(--ink-muted);
 }
 
-.greeting:hover,
-.greeting:focus-visible {
-  color: var(--accent);
-  transform: translateY(-2px);
-  opacity: 1;
-}
-
-.name {
-  margin: 0 0 var(--space-4);
+.title {
+  max-width: 14ch;
+  margin: 0 0 var(--space-5);
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(3.75rem, 12vw, 10rem);
-  line-height: 0.88;
+  font-size: clamp(4rem, 11vw, 8rem);
+  line-height: 0.9;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--ink);
 }
 
-.line {
-  display: block;
-  overflow: hidden;
-}
-
-.letter {
-  display: inline-block;
-  transform: translateY(100%) rotateX(90deg);
-  opacity: 0;
-  animation: revealLetter3D 0.9s var(--ease) forwards;
-}
-
-@keyframes revealLetter3D {
-  0% {
-    transform: translateY(100%) rotateX(90deg);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0) rotateX(0);
-    opacity: 1;
-  }
-}
-
-.services {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  margin: 0 0 var(--space-5);
-  flex-wrap: wrap;
-}
-
-.service,
-.divider {
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-}
-
-.service {
-  color: var(--ink-muted);
-}
-
-.divider {
-  color: var(--ink-faint);
-}
-
 .summary {
-  max-width: 52rem;
+  max-width: 42rem;
   margin: 0 0 var(--space-6);
   color: var(--ink);
   font-family: var(--font-body), "DM Sans", sans-serif;
-  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  font-size: clamp(1rem, 1.7vw, 1.18rem);
   line-height: 1.75;
-  opacity: 0.82;
+  opacity: 0.88;
 }
 
 .ctaGroup {
@@ -226,59 +164,6 @@
   transform: translateX(4px);
 }
 
-.scrollButton {
-  position: absolute;
-  left: 50%;
-  bottom: calc(env(safe-area-inset-bottom) + var(--space-4));
-  transform: translateX(-50%);
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  min-width: var(--touch-min);
-  min-height: var(--touch-min);
-  padding: var(--space-2);
-  border: 0;
-  background: transparent;
-  color: var(--ink-faint);
-  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
-}
-
-.scrollButton:hover,
-.scrollButton:focus-visible {
-  transform: translateX(-50%) translateY(-3px);
-  color: var(--ink);
-}
-
-.scrollText {
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-}
-
-.scrollLine {
-  width: 2px;
-  height: 40px;
-  border-radius: 999px;
-  background: linear-gradient(to bottom, var(--ink-faint) 0%, rgba(196, 30, 58, 0.35) 50%, transparent 100%);
-  animation: scrollPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes scrollPulse {
-  0%,
-  100% {
-    transform: scaleY(0.8);
-    opacity: 0.35;
-  }
-
-  50% {
-    transform: scaleY(1.08);
-    opacity: 0.8;
-  }
-}
-
 @media (max-width: 768px) {
   .hero {
     align-items: stretch;
@@ -294,26 +179,16 @@
     padding: clamp(var(--space-8), 10vh, var(--space-12)) 0 clamp(4rem, 10vh, 5rem);
   }
 
-  .greeting {
+  .eyebrow {
     margin-bottom: var(--space-3);
     font-size: clamp(0.75rem, 2.5vw, 0.875rem);
   }
 
-  .name {
+  .title {
     margin-bottom: var(--space-3);
-    font-size: clamp(3rem, 18vw, 5.5rem);
+    font-size: clamp(3.4rem, 18vw, 5.8rem);
     line-height: 0.9;
     word-break: break-word;
-  }
-
-  .services {
-    gap: var(--space-2);
-    margin-bottom: var(--space-4);
-  }
-
-  .service,
-  .divider {
-    font-size: clamp(0.75rem, 2vw, 0.8125rem);
   }
 
   .summary {
@@ -332,10 +207,6 @@
     width: min(100%, 20rem);
     padding-inline: var(--space-5);
   }
-
-  .scrollButton {
-    bottom: calc(env(safe-area-inset-bottom) + var(--space-3));
-  }
 }
 
 @media (max-width: 420px) {
@@ -343,8 +214,8 @@
     padding-top: var(--space-7);
   }
 
-  .name {
-    font-size: clamp(2.75rem, 18vw, 4.5rem);
+  .title {
+    font-size: clamp(3rem, 18vw, 4.8rem);
   }
 
   .cta {
