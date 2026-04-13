@@ -27,14 +27,14 @@
 - [ ] Review bundle size
 
 ### Content
+- [ ] Update about page copy
 - [ ] Add new photography images
 - [ ] Write case study for new project
 
 ## Completed
 
 ### April 2026
-- [x] Reframe the homepage around a single AI systems flagship offer, add early proof/process sections, tighten footer hierarchy, and scaffold `/services/*` plus `/lab`
-- [x] Update about page copy
+- [x] Keep the AI systems repositioning work limited to SEO metadata improvements without changing the homepage or about-page UI
 - [x] Add Overflow-specific support, privacy, and terms pages for App Store Connect
 - [x] Add a Spanish site variant under `/es/*` with a language toggle, localized metadata, translated case studies/apps pages, and translated legal pages
 

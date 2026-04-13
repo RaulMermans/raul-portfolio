@@ -9,14 +9,14 @@ export const siteCopy = {
         { label: 'Case Studies', href: '/case-studies' },
         { label: 'About', href: '/about' },
         { label: 'Services', href: '/#services', hash: '#services' },
+        { label: 'Contact', href: '/#contact', hash: '#contact' },
       ],
       mobileEyebrow: 'Navigation',
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       menuMeta:
         'AI systems, automation, and creative infrastructure built with product sense and visual restraint.',
-      menuCta: 'Start a Project',
-      desktopCta: 'Start a Project',
+      menuCta: 'Discuss a Project',
       toggleLabel: 'Language switcher',
       languageShort: {
         en: 'EN',
@@ -25,25 +25,27 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'AI systems architect for modern brands. I design automation, agents, and operating logic for teams that need cleaner execution.',
-      work: 'Explore',
+        'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands.',
+      work: 'Work',
       services: 'Services',
-      resources: 'Contact',
+      resources: 'Resources',
       workLinks: [
         { label: 'Case Studies', href: '/case-studies' },
-        { label: 'About', href: '/about' },
-        { label: 'Lab', href: '/lab' },
+        { label: 'Photography', href: '/photography' },
+        { label: 'Visuals', href: '/visuals' },
       ],
       serviceLinks: [
-        { label: 'AI Systems', href: '/services/ai-systems' },
-        { label: 'Automation', href: '/services/automation' },
-        { label: 'Prototypes', href: '/services/prototypes' },
-        { label: 'Brand Systems', href: '/services/brand-systems' },
+        { label: 'AI Systems', href: '/#services' },
+        { label: 'Automation', href: '/#services' },
+        { label: 'Prototypes', href: '/#services' },
+        { label: 'Brand Systems', href: '/#services' },
       ],
       resourceLinks: [
-        { label: 'Start a Project', href: '/#contact' },
-        { label: 'LinkedIn', href: 'https://linkedin.com/in/raulmermans', external: true },
-        { label: 'Email', href: 'mailto:raulmermans@gmail.com', external: true },
+        { label: 'About', href: '/about' },
+        { label: 'Overflow Support', href: '/overflow/support' },
+        { label: 'PromptBase Profile', href: 'https://promptbase.com/profile/mangerm', external: true },
+        { label: 'Gumroad Store', href: 'https://raulmermans.gumroad.com/', external: true },
+        { label: 'Contact', href: '/#contact' },
       ],
       rightsReserved: 'All rights reserved.',
       privacy: 'Privacy Policy',
@@ -55,58 +57,18 @@ export const siteCopy = {
         serviceListName: 'Services by Raúl Mermans',
       },
       hero: {
-        eyebrow: 'AI Systems · Agents · Automation',
-        title: 'AI Systems Architect for Modern Brands',
-        ariaLabel: 'AI Systems Architect for Modern Brands',
-        summary:
-          'I design AI systems for marketing, CRM, content, and creative operations. Less repetitive work. More speed, control, and consistency.',
-        primaryCta: 'Start a Project',
-        secondaryCta: 'View Case Studies',
-      },
-      proofs: {
-        label: 'Proof',
-        title: 'Selected work that shows how the system changes execution.',
-        subtitle:
-          'Compact snapshots from existing case studies. No vanity metrics, just the operating shift each project created.',
-        projectTypeLabel: 'Project type',
-        problemLabel: 'Problem',
-        builtLabel: 'What was built',
-        resultLabel: 'Business implication',
-        cta: 'Read case study',
-      },
-      howIWork: {
-        label: 'How I Work',
-        title: 'A clear engagement model from diagnosis to deployment.',
-        subtitle:
-          'Short phases, direct decisions, and enough structure to move quickly without making the system fragile.',
-        steps: [
-          {
-            number: '01',
-            title: 'Diagnose',
-            description: 'I map the workflow, the bottlenecks, and where judgment still needs to stay human.',
-          },
-          {
-            number: '02',
-            title: 'Design',
-            description: 'I define the system logic, guardrails, interfaces, and roles that make the setup usable.',
-          },
-          {
-            number: '03',
-            title: 'Build',
-            description: 'I implement the automation, agents, prompting structures, and product layer required to run it.',
-          },
-          {
-            number: '04',
-            title: 'Refine',
-            description: 'We test with real usage, tighten weak handoffs, and deploy the version the team can actually keep using.',
-          },
-        ],
-      },
-      supportingCapabilities: {
-        label: 'Supporting Capabilities',
-        title: 'Supporting capabilities that reinforce the system when the work needs them.',
-        subtitle:
-          'Prototypes, brand systems, photography, web surfaces, and experiments stay in the mix as supporting craft, not competing flagship offers.',
+        greetings: {
+          morning: 'GOOD MORNING',
+          afternoon: 'GOOD AFTERNOON',
+          evening: 'GOOD EVENING',
+        },
+        ariaLabel: 'Raúl Mermans — AI Systems · Agents · Automation',
+        services: ['AI Systems', 'Agents', 'Automation'],
+        summary: 'Designing AI systems for modern brands.',
+        primaryCta: 'View Work',
+        secondaryCta: 'Connect',
+        scrollAria: 'Scroll to explore',
+        scrollLabel: 'Explore',
       },
       sectionCards: {
         prev: 'Previous section:',
@@ -194,15 +156,10 @@ export const siteCopy = {
         ],
       },
       contact: {
-        title: 'Tell me what your team needs to build',
+        title: "Let's Build the Right System",
         subtitle:
-          'If you are rethinking marketing, CRM, content, or creative operations, send the context. I will tell you where the leverage is, whether there is a fit, and what scope makes sense.',
-        intro: 'A short brief is enough to start.',
-        steps: [
-          'You share the context',
-          'I assess fit and scope',
-          'You get a clear reply in under 24h',
-        ],
+          'Working on AI systems, automation, internal tools, or creative operations? Send context. I design workflows and interfaces that help teams execute with more speed, consistency, and control.',
+        intro: "Send a short brief and I'll get back to you within 24 hours.",
       },
       contactForm: {
         projectTypePlaceholder: 'Select focus area',
@@ -264,7 +221,7 @@ export const siteCopy = {
     },
     aboutPage: {
       label: 'About',
-      title: 'AI Systems Built With Business Logic and Creative Judgment',
+      title: 'Applied AI Systems, Built With Taste',
       paragraphs: [
         'I came into this work through <span class="highlight">business</span>, then taught myself how to build what teams actually need when strategy has to become execution. Today I design <a href="/case-studies" class="highlight">AI systems</a>, <span class="highlight">agentic workflows</span>, and <span class="highlight">automation infrastructure</span> for marketing, CRM, content, and creative operations.',
         'I&apos;m less interested in one-off AI outputs than in the system behind them: where work gets routed, where judgment lives, what should be automated, and how an interface makes the whole thing usable. That means <span class="highlight">workflow logic</span>, <span class="highlight">orchestration</span>, <span class="highlight">internal tools</span>, and <a href="/apps/overflow" class="highlight">product-minded implementation</a>.',
@@ -314,14 +271,14 @@ export const siteCopy = {
         { label: 'Casos', href: '/case-studies' },
         { label: 'Sobre mí', href: '/about' },
         { label: 'Servicios', href: '/#services', hash: '#services' },
+        { label: 'Contacto', href: '/#contact', hash: '#contact' },
       ],
       mobileEyebrow: 'Navegación',
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú',
       menuMeta:
         'Sistemas de IA, automatización e infraestructura creativa construidos con criterio de producto y contención visual.',
-      menuCta: 'Empezar un proyecto',
-      desktopCta: 'Empezar un proyecto',
+      menuCta: 'Hablar de un proyecto',
       toggleLabel: 'Selector de idioma',
       languageShort: {
         en: 'EN',
@@ -330,25 +287,27 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Arquitecto de sistemas de IA para marcas modernas. Diseño automatización, agentes y lógica operativa para equipos que necesitan una ejecución más clara.',
-      work: 'Explorar',
+        'Constructor de sistemas de IA aplicados, diseñando agentes, automatización e infraestructura creativa para marcas modernas.',
+      work: 'Trabajo',
       services: 'Servicios',
-      resources: 'Contacto',
+      resources: 'Recursos',
       workLinks: [
         { label: 'Casos de estudio', href: '/case-studies' },
-        { label: 'Sobre mí', href: '/about' },
-        { label: 'Lab', href: '/lab' },
+        { label: 'Fotografía', href: '/photography' },
+        { label: 'Visuales', href: '/visuals' },
       ],
       serviceLinks: [
-        { label: 'Sistemas de IA', href: '/services/ai-systems' },
-        { label: 'Automatización', href: '/services/automation' },
-        { label: 'Prototipos', href: '/services/prototypes' },
-        { label: 'Sistemas de marca', href: '/services/brand-systems' },
+        { label: 'Sistemas de IA', href: '/#services' },
+        { label: 'Automatización', href: '/#services' },
+        { label: 'Prototipos', href: '/#services' },
+        { label: 'Sistemas de marca', href: '/#services' },
       ],
       resourceLinks: [
-        { label: 'Empezar un proyecto', href: '/#contact' },
-        { label: 'LinkedIn', href: 'https://linkedin.com/in/raulmermans', external: true },
-        { label: 'Email', href: 'mailto:raulmermans@gmail.com', external: true },
+        { label: 'Sobre mí', href: '/about' },
+        { label: 'Soporte de Overflow', href: '/overflow/support' },
+        { label: 'Perfil de PromptBase', href: 'https://promptbase.com/profile/mangerm', external: true },
+        { label: 'Tienda de Gumroad', href: 'https://raulmermans.gumroad.com/', external: true },
+        { label: 'Contacto', href: '/#contact' },
       ],
       rightsReserved: 'Todos los derechos reservados.',
       privacy: 'Política de privacidad',
@@ -360,58 +319,18 @@ export const siteCopy = {
         serviceListName: 'Servicios de Raúl Mermans',
       },
       hero: {
-        eyebrow: 'Sistemas de IA · Agentes · Automatización',
-        title: 'Arquitecto de Sistemas de IA para Marcas Modernas',
-        ariaLabel: 'Arquitecto de Sistemas de IA para Marcas Modernas',
-        summary:
-          'Diseño sistemas de IA para marketing, CRM, contenido y operaciones creativas. Menos trabajo repetitivo. Más velocidad, control y consistencia.',
-        primaryCta: 'Empezar un proyecto',
-        secondaryCta: 'Ver casos',
-      },
-      proofs: {
-        label: 'Prueba',
-        title: 'Trabajo seleccionado que muestra cómo el sistema cambia la ejecución.',
-        subtitle:
-          'Snapshots compactos de casos existentes. Sin métricas vacías, solo el cambio operativo que generó cada proyecto.',
-        projectTypeLabel: 'Tipo de proyecto',
-        problemLabel: 'Problema',
-        builtLabel: 'Qué se construyó',
-        resultLabel: 'Implicación de negocio',
-        cta: 'Leer caso',
-      },
-      howIWork: {
-        label: 'Cómo trabajo',
-        title: 'Un modelo de trabajo claro, desde el diagnóstico hasta el despliegue.',
-        subtitle:
-          'Fases cortas, decisiones directas y la estructura suficiente para avanzar rápido sin volver frágil el sistema.',
-        steps: [
-          {
-            number: '01',
-            title: 'Diagnóstico',
-            description: 'Mapeo el workflow, los cuellos de botella y dónde el juicio debe seguir siendo humano.',
-          },
-          {
-            number: '02',
-            title: 'Diseño',
-            description: 'Defino la lógica del sistema, los guardrails, las interfaces y los roles que lo vuelven usable.',
-          },
-          {
-            number: '03',
-            title: 'Construir',
-            description: 'Implemento la automatización, los agentes, las estructuras de prompting y la capa de producto necesaria para operarlo.',
-          },
-          {
-            number: '04',
-            title: 'Refinar',
-            description: 'Probamos con uso real, ajustamos handoffs débiles y desplegamos la versión que el equipo sí puede mantener.',
-          },
-        ],
-      },
-      supportingCapabilities: {
-        label: 'Capacidades de apoyo',
-        title: 'Capacidades complementarias que refuerzan el sistema cuando el trabajo las necesita.',
-        subtitle:
-          'Prototipos, sistemas de marca, fotografía, superficies web y experimentación siguen presentes como oficio de apoyo, no como ofertas principales que compiten entre sí.',
+        greetings: {
+          morning: 'BUENOS DÍAS',
+          afternoon: 'BUENAS TARDES',
+          evening: 'BUENAS NOCHES',
+        },
+        ariaLabel: 'Raúl Mermans — Sistemas de IA · Agentes · Automatización',
+        services: ['Sistemas de IA', 'Agentes', 'Automatización'],
+        summary: 'Arquitecto de Sistemas de IA para Marcas Modernas',
+        primaryCta: 'Ver trabajo',
+        secondaryCta: 'Conectar',
+        scrollAria: 'Desplazar para explorar',
+        scrollLabel: 'Explorar',
       },
       sectionCards: {
         prev: 'Sección anterior:',
@@ -499,15 +418,10 @@ export const siteCopy = {
         ],
       },
       contact: {
-        title: 'Cuéntame qué necesita construir tu equipo',
+        title: 'Construyamos el sistema adecuado.',
         subtitle:
-          'Si estás replanteando marketing, CRM, contenido u operaciones creativas, compárteme el contexto. Te diré dónde está el margen de mejora, si hay encaje y qué alcance tiene sentido.',
-        intro: 'Con un brief breve es suficiente para empezar.',
-        steps: [
-          'Me compartes el contexto',
-          'Valoro encaje y alcance',
-          'Recibes respuesta clara en menos de 24h',
-        ],
+          'Cuéntame tu contexto. Diseño flujos de trabajo e interfaces que ayudan a los equipos a ejecutar con mayor velocidad, consistencia y control.',
+        intro: 'Envíame un breve resumen y te responderé en menos de 24 horas.',
       },
       contactForm: {
         projectTypePlaceholder: 'Selecciona el enfoque',
@@ -569,7 +483,7 @@ export const siteCopy = {
     },
     aboutPage: {
       label: 'Sobre mí',
-      title: 'Sistemas de IA con lógica de negocio y criterio creativo',
+      title: 'Sistemas de IA aplicados, construidos con criterio',
       paragraphs: [
         'Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear los sistemas que los equipos realmente necesitan. Hoy diseño <span class="highlight">flujos de trabajo con IA</span>, <span class="highlight">capas de automatización</span> e <span class="highlight">interfaces orientadas a producto</span>... Mi valor diferencial es la combinación de <span class="highlight">pensamiento sistémico</span>, <span class="highlight">implementación práctica</span> y un <span class="highlight">criterio creativo</span> lo suficientemente sólido como para mantener un resultado coherente, útil y listo para desplegarse.',
       ],

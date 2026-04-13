@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-04-12
+**Last Updated**: 2026-04-13
 
 ### Active Work
 - None currently
@@ -29,17 +29,6 @@
 - `npm run lint -- --file app/visuals/page.tsx` was run on 2026-03-28 for a visuals-page sizing tweak and again did not return a usable result in this environment after roughly 30 seconds
 - `npm run lint -- --file app/photography/page.tsx` was run on 2026-03-28 for a photography gallery update and again did not return a usable result in this environment after roughly 30 seconds
 - `npm run lint -- --file components/Services.tsx` was run on 2026-03-28 for a homepage services CTA alignment tweak and again did not return a usable result in this environment after roughly 30 seconds
-
-### 2026-04-12 - Reframe homepage around flagship AI systems consulting offer
-**Goal**: Make the site read as a premium consulting website centered on one flagship offer, "Arquitecto de Sistemas de IA para Marcas Modernas", without breaking bilingual routing, case studies, or contact behavior.
-**Outcome**: Completed
-**Changes Made**:
-- `app/page.tsx`, `components/Hero.tsx`, `components/Hero.module.css`, `components/FlagshipOffer.tsx`, `components/HomeProofs.tsx`, `components/HowIWork.tsx`, `components/Services.tsx`, `components/HomeSections.module.css`, `components/Contact.tsx`, `components/Header.tsx`, `components/Header.module.css`, `components/Footer.tsx`, `styles/globals.css`, `data/site-copy.ts`, `data/services.ts`, and `data/home-proofs.ts` - rebuilt the homepage hierarchy around the flagship AI systems offer, moved proof earlier, added a concise process section, tightened contact framing, added a desktop nav CTA, and demoted secondary capabilities into a quieter supporting section.
-- `app/about/page.tsx`, `app/about/layout.tsx`, `app/en/about/layout.tsx`, and `app/en/page.tsx` - tightened About and English homepage metadata/copy so the positioning emphasizes business logic, practical implementation, and creative judgment rather than broad portfolio breadth.
-- `app/services/service-page-shared.tsx`, `app/services/[slug]/page.tsx`, `app/en/services/[slug]/page.tsx`, `components/ServicePage.module.css`, `app/lab/lab-page-shared.tsx`, `app/lab/page.tsx`, `app/en/lab/page.tsx`, and `app/sitemap.ts` - added localized service-page scaffolding for `/services/ai-systems`, `/services/automation`, `/services/prototypes`, and `/services/brand-systems`, plus a separate `/lab` area for experimental/product links and sitemap coverage.
-- `TASKS.md` - recorded the homepage/service/about work for continuity.
-**Notes**: Attempts to verify with `npm run type-check`, targeted `npm run lint -- --file ...`, and `npm run build` all launched correctly but stalled in this environment with idle processes and no usable completion result, which is consistent with earlier verification hangs already recorded in this repo.
-**Next Steps**: Review the homepage, About page, `/services/*`, and `/lab` in-browser to confirm desktop/mobile rhythm, nav CTA balance, and footer hierarchy feel correct with the existing visual system.
 
 ### 2026-04-09 - Refine Spanish localization tone across portfolio copy
 **Goal**: Remove literal or robotic Spanish copy and align the Spanish portfolio voice with a more natural IA, producto, and development tone.
@@ -265,6 +254,16 @@ When starting work, update this section:
 - `SESSION.md` - recorded the carousel redesign and the verification limitations for continuity.
 **Notes**: This pass intentionally moved away from the previous dark overlay card treatment because the boxed glass panel was making the component feel generic. The new carousel is designed to read like a looping coverflow rather than a simple linear slider, but it still needs an in-browser visual pass because local script checks and localhost boot both stalled again in this environment.
 **Next Steps**: Review the homepage locally on desktop and mobile, focusing on side-card peek amount, title sizing, swipe feel, and whether the new cream/editorial treatment fits the rest of the homepage.
+
+### 2026-04-13 - Revert AI systems redesign and keep SEO-only updates
+**Goal**: Remove the homepage/about/service UX redesign from the AI systems positioning branch while preserving the non-visual SEO and discoverability improvements that sharpen search positioning.
+**Outcome**: Completed
+**Changes Made**:
+- `app/en/page.tsx`, `app/about/layout.tsx`, and `app/en/about/layout.tsx` - kept the stronger English home metadata and the tighter Spanish/English about metadata so the branch still improves search positioning without changing the visible page composition.
+- `app/page.tsx`, `app/about/page.tsx`, `components/Hero.tsx`, `components/Services.tsx`, `components/Header.tsx`, `components/Footer.tsx`, `components/Contact.tsx`, `styles/globals.css`, and the temporary service/lab/homeproof component files - reverted the UX/UI-heavy homepage, about, navigation, footer, contact, and route-scaffolding changes back out of the branch.
+- `TASKS.md` and `SESSION.md` - recorded the rollback so future sessions do not assume the AI systems redesign is still active.
+**Notes**: The rollback was applied as a local `git revert --no-commit` of the mixed redesign commit, followed by a manual patch-back of only the metadata deltas worth keeping. The unrelated deleted file `public/images/photography/Services_Photography.webp` remained untouched and outside the change scope.
+**Next Steps**: If stronger visibility work is still wanted later, tackle it as a dedicated SEO/content pass with scoped metadata, internal linking, structured data, and route strategy changes that do not alter the current homepage UX.
 
 ### 2026-03-22 - Add repo-level UI UX Lead agent workflow
 **Goal**: Create a durable repo-level UX/UI agent entry point so future design work consistently routes through the strongest design skill stack.
