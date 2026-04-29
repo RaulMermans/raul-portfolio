@@ -230,7 +230,7 @@ export default function Home() {
         <Header locale={locale} />
         <Hero locale={locale} />
         <SectionCards locale={locale} />
-
+        
         {/* Social Proof Section - Placeholder for future content
         * Suggested location for "Trusted By" logos or testimonial quotes
         * Uncomment and populate when client logos/testimonials are available
@@ -253,7 +253,7 @@ export default function Home() {
         *   </div>
         * </section>
         */}
-
+        
         <About locale={locale} />
         <Services locale={locale} />
         <Contact locale={locale} />

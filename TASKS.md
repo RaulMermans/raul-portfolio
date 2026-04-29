@@ -34,7 +34,6 @@
 ## Completed
 
 ### April 2026
-- [x] Keep the AI systems repositioning work limited to SEO metadata improvements without changing the homepage or about-page UI
 - [x] Add Overflow-specific support, privacy, and terms pages for App Store Connect
 - [x] Add a Spanish site variant under `/es/*` with a language toggle, localized metadata, translated case studies/apps pages, and translated legal pages
 

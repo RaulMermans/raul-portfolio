@@ -76,7 +76,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
         window.scrollTo({ top: lock.scrollY, behavior: 'auto' })
       }
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen, closeMenu])
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
@@ -106,65 +106,83 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     href: localizePath(item.href, locale),
   }))
   const activePath = pathname || localizePath('/', locale)
+  const isSpanish = locale === 'es'
   const englishPath = switchLocalePath(activePath, 'en')
   const spanishPath = switchLocalePath(activePath, 'es')
+  const isActiveItem = (href: string) => {
+    const normalizedHref = href.split('#')[0] || localizePath('/', locale)
+    if (normalizedHref === localizePath('/', locale)) {
+      return activePath === normalizedHref
+    }
+    return activePath === normalizedHref || activePath.startsWith(`${normalizedHref}/`)
+  }
 
   return (
     <>
-      <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
-        RM
-      </Link>
+      <header className={styles.headerBar}>
+        <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
+          <span className={styles.logoMark}>RM</span>
+          <span className={styles.logoText}>Raúl Mermans</span>
+        </Link>
 
-      {/* Desktop Nav */}
-      <nav className={styles.desktopNav} aria-label="Primary navigation">
-        {menuItems.map((item) => {
-          const hash = 'hash' in item ? item.hash : undefined
-          return (
-          <Link
-            key={item.label}
-            href={item.href}
-            onClick={(e) => (hash ? handleNavClick(e, hash) : undefined)}
-          >
-            {item.label}
-          </Link>
-          )
-        })}
-        <div className={styles.languageToggle} role="group" aria-label={copy.toggleLabel}>
-          <Link
-            href={englishPath}
-            className={locale === 'en' ? styles.languageToggleActive : undefined}
-            aria-current={locale === 'en' ? 'page' : undefined}
-          >
-            {copy.languageShort.en}
-          </Link>
-          <Link
-            href={spanishPath}
-            className={locale === 'es' ? styles.languageToggleActive : undefined}
-            aria-current={locale === 'es' ? 'page' : undefined}
-          >
-            {copy.languageShort.es}
-          </Link>
+        {/* Desktop Nav */}
+        <nav className={styles.desktopNav} aria-label={isSpanish ? 'Navegación principal' : 'Primary navigation'}>
+          {menuItems.map((item, index) => {
+            const hash = 'hash' in item ? item.hash : undefined
+            const isActive = isActiveItem(item.href)
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={isActive ? styles.desktopNavActive : undefined}
+                aria-current={isActive ? 'page' : undefined}
+                onClick={(e) => (hash ? handleNavClick(e, hash) : undefined)}
+              >
+                <span className={styles.desktopNavIndex}>{String(index + 1).padStart(2, '0')}</span>
+                <span>{item.label}</span>
+              </Link>
+            )
+          })}
+        </nav>
+
+        <div className={styles.headerMeta}>
+          <p className={styles.headerStatus}>{isSpanish ? 'Disponible' : 'Available'}</p>
+          <div className={styles.languageToggle} role="group" aria-label={copy.toggleLabel}>
+            <Link
+              href={englishPath}
+              className={locale === 'en' ? styles.languageToggleActive : undefined}
+              aria-current={locale === 'en' ? 'page' : undefined}
+            >
+              {copy.languageShort.en}
+            </Link>
+            <Link
+              href={spanishPath}
+              className={locale === 'es' ? styles.languageToggleActive : undefined}
+              aria-current={locale === 'es' ? 'page' : undefined}
+            >
+              {copy.languageShort.es}
+            </Link>
+          </div>
         </div>
-      </nav>
 
-      {/* Mobile Menu Button */}
-      <button
-        ref={menuBtnRef}
-        type="button"
-        className={styles.menuButton}
-        data-state={isMenuOpen ? 'open' : 'closed'}
-        onClick={toggleMenu}
-        aria-label={isMenuOpen ? copy.closeMenu : copy.openMenu}
-        aria-expanded={isMenuOpen}
-        aria-controls={menuDialogId}
-        aria-haspopup="dialog"
-      >
-        <span className={styles.menuButtonInner} aria-hidden="true">
-          <span className={styles.menuButtonLine}></span>
-          <span className={styles.menuButtonLine}></span>
-          <span className={styles.menuButtonLine}></span>
-        </span>
-      </button>
+        {/* Mobile Menu Button */}
+        <button
+          ref={menuBtnRef}
+          type="button"
+          className={styles.menuButton}
+          data-state={isMenuOpen ? 'open' : 'closed'}
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? copy.closeMenu : copy.openMenu}
+          aria-expanded={isMenuOpen}
+          aria-controls={menuDialogId}
+          aria-haspopup="dialog"
+        >
+          <span className={styles.menuButtonInner} aria-hidden="true">
+            <span className={styles.menuButtonLine}></span>
+            <span className={styles.menuButtonLine}></span>
+          </span>
+        </button>
+      </header>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>

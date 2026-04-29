@@ -5,7 +5,7 @@
 ## Current Focus
 
 **Status**: Idle
-**Last Updated**: 2026-04-13
+**Last Updated**: 2026-04-10
 
 ### Active Work
 - None currently
@@ -254,16 +254,6 @@ When starting work, update this section:
 - `SESSION.md` - recorded the carousel redesign and the verification limitations for continuity.
 **Notes**: This pass intentionally moved away from the previous dark overlay card treatment because the boxed glass panel was making the component feel generic. The new carousel is designed to read like a looping coverflow rather than a simple linear slider, but it still needs an in-browser visual pass because local script checks and localhost boot both stalled again in this environment.
 **Next Steps**: Review the homepage locally on desktop and mobile, focusing on side-card peek amount, title sizing, swipe feel, and whether the new cream/editorial treatment fits the rest of the homepage.
-
-### 2026-04-13 - Revert AI systems redesign and keep SEO-only updates
-**Goal**: Remove the homepage/about/service UX redesign from the AI systems positioning branch while preserving the non-visual SEO and discoverability improvements that sharpen search positioning.
-**Outcome**: Completed
-**Changes Made**:
-- `app/en/page.tsx`, `app/about/layout.tsx`, and `app/en/about/layout.tsx` - kept the stronger English home metadata and the tighter Spanish/English about metadata so the branch still improves search positioning without changing the visible page composition.
-- `app/page.tsx`, `app/about/page.tsx`, `components/Hero.tsx`, `components/Services.tsx`, `components/Header.tsx`, `components/Footer.tsx`, `components/Contact.tsx`, `styles/globals.css`, and the temporary service/lab/homeproof component files - reverted the UX/UI-heavy homepage, about, navigation, footer, contact, and route-scaffolding changes back out of the branch.
-- `TASKS.md` and `SESSION.md` - recorded the rollback so future sessions do not assume the AI systems redesign is still active.
-**Notes**: The rollback was applied as a local `git revert --no-commit` of the mixed redesign commit, followed by a manual patch-back of only the metadata deltas worth keeping. The unrelated deleted file `public/images/photography/Services_Photography.webp` remained untouched and outside the change scope.
-**Next Steps**: If stronger visibility work is still wanted later, tackle it as a dedicated SEO/content pass with scoped metadata, internal linking, structured data, and route strategy changes that do not alter the current homepage UX.
 
 ### 2026-03-22 - Add repo-level UI UX Lead agent workflow
 **Goal**: Create a durable repo-level UX/UI agent entry point so future design work consistently routes through the strongest design skill stack.

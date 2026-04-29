@@ -1,15 +1,32 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { getSiteCopy } from '@/data/site-copy'
-import { getCaseStudies } from '@/data/case-studies'
+import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
+
+type CategoryProject = {
+  title: string
+  description: string
+  label: string
+  image: string
+  href?: string
+}
+
+type CaseStudyCategory = {
+  id: string
+  title: string
+  eyebrow: string
+  description: string
+  projects: CategoryProject[]
+}
+
+const placeholderImage = '/images/case-studies/case-studies-thumbnail.webp'
 
 function getSchemas(locale: Locale) {
   const isSpanish = locale === 'es'
@@ -50,47 +67,147 @@ function getSchemas(locale: Locale) {
   }
 }
 
+function findStudy(caseStudies: CaseStudy[], hrefPart: string) {
+  return caseStudies.find((study) => study.href.includes(hrefPart))
+}
+
+function getCategories(locale: Locale, caseStudies: CaseStudy[]): CaseStudyCategory[] {
+  const isSpanish = locale === 'es'
+  const aiSports = findStudy(caseStudies, 'ai-sports')
+  const remoria = findStudy(caseStudies, 'remoria')
+
+  return [
+    {
+      id: 'ai-systems-agents',
+      title: isSpanish ? 'Sistemas de IA y agentes' : 'AI Systems & Agents',
+      eyebrow: isSpanish ? 'Nueva categoría' : 'New category',
+      description: isSpanish
+        ? 'Agentes y sistemas aplicados que convierten análisis, auditoría y decisiones repetibles en flujos utilizables.'
+        : 'Applied agents and systems that turn analysis, audits, and repeatable decisions into usable workflows.',
+      projects: [
+        {
+          title: 'Data Brief AI',
+          label: isSpanish ? 'Agente de investigación' : 'Research agent',
+          description: isSpanish
+            ? 'Sistema para transformar entradas dispersas en briefs estructurados, accionables y listos para decisión.'
+            : 'A system for turning scattered inputs into structured, actionable briefs ready for decision-making.',
+          image: placeholderImage,
+        },
+        {
+          title: 'Website Auditor',
+          label: isSpanish ? 'Agente de auditoría' : 'Audit agent',
+          description: isSpanish
+            ? 'Flujo de auditoría para detectar oportunidades de UX, SEO, rendimiento y contenido en una web.'
+            : 'An audit workflow for surfacing UX, SEO, performance, and content opportunities across a website.',
+          image: placeholderImage,
+        },
+      ],
+    },
+    {
+      id: 'campaign-systems',
+      title: isSpanish ? 'Sistemas de campaña' : 'Campaign Systems',
+      eyebrow: isSpanish ? 'Ejecución creativa' : 'Creative execution',
+      description: isSpanish
+        ? 'Infraestructura para mantener consistencia visual, narrativa y operativa en campañas de ritmo rápido.'
+        : 'Infrastructure for keeping visual, narrative, and operational consistency inside fast-moving campaigns.',
+      projects: aiSports
+        ? [
+            {
+              title: aiSports.title,
+              label: aiSports.subtitle ?? (isSpanish ? 'Sistema de campaña con IA' : 'AI campaign system'),
+              description: aiSports.description,
+              image: aiSports.image,
+              href: aiSports.href,
+            },
+          ]
+        : [],
+    },
+    {
+      id: 'brand-systems',
+      title: isSpanish ? 'Sistemas de marca' : 'Brand Systems',
+      eyebrow: isSpanish ? 'Identidad escalable' : 'Scalable identity',
+      description: isSpanish
+        ? 'Identidades, reglas visuales y lógica de marca pensadas para escalar sin perder precisión.'
+        : 'Identities, visual rules, and brand logic designed to scale without losing precision.',
+      projects: remoria
+        ? [
+            {
+              title: remoria.title,
+              label: remoria.subtitle ?? (isSpanish ? 'Sistema de marca' : 'Brand system'),
+              description: remoria.description,
+              image: remoria.image,
+              href: remoria.href,
+            },
+          ]
+        : [],
+    },
+  ]
+}
+
+function ProjectCard({
+  project,
+  viewProject,
+  comingSoon,
+  priority,
+}: {
+  project: CategoryProject
+  viewProject: string
+  comingSoon: string
+  priority?: boolean
+}) {
+  const content = (
+    <>
+      <div className="case-study-category-card__media">
+        <Image
+          src={project.image}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          quality={82}
+          className="case-study-category-card__image"
+          priority={priority}
+        />
+      </div>
+      <div className="case-study-category-card__body">
+        <p className="case-study-category-card__label">{project.label}</p>
+        <h3 className="case-study-category-card__title">{project.title}</h3>
+        <p className="case-study-category-card__description">{project.description}</p>
+        <span className="case-study-category-card__cta">
+          {project.href ? viewProject : comingSoon}
+          {project.href ? <span aria-hidden="true">→</span> : null}
+        </span>
+      </div>
+    </>
+  )
+
+  if (project.href) {
+    return (
+      <Link href={project.href} className="case-study-category-card">
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <article className="case-study-category-card case-study-category-card--soon" aria-label={`${project.title} — ${comingSoon}`}>
+      {content}
+    </article>
+  )
+}
+
 export default function CaseStudiesPage() {
-  const router = useRouter()
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
-  const sectionsRef = useRef<(HTMLElement | null)[]>([])
   const copy = getSiteCopy(locale).caseStudiesUi
   const caseStudies = getCaseStudies(locale)
+  const categories = getCategories(locale, caseStudies)
   const schemas = getSchemas(locale)
-
-  // Simple reveal animation on scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
-    )
-
-    const timer = setTimeout(() => {
-      sectionsRef.current.forEach((section) => {
-        if (section) {
-          const content = section.querySelector('.case-study-section__content')
-          if (content) observer.observe(content)
-        }
-      })
-    }, 0)
-
-    return () => {
-      clearTimeout(timer)
-      observer.disconnect()
-    }
-  }, [])
+  const isSpanish = locale === 'es'
 
   return (
     <>
       <Header locale={locale} />
-      <main id="main-content" role="main" className="case-studies-scroll">
+      <main id="main-content" role="main" className="case-studies-index">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.collection) }}
@@ -99,98 +216,52 @@ export default function CaseStudiesPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumb) }}
         />
-        <section
-          aria-labelledby="case-studies-heading"
-          style={{
-            padding: 'calc(var(--header-height) + 4rem) clamp(1.5rem, 4vw, 4rem) 4rem',
-            background: 'var(--cream)',
-            color: 'var(--ink)',
-          }}
-        >
-          <div style={{ maxWidth: '54rem', margin: '0 auto' }}>
-            <p
-              style={{
-                margin: 0,
-                fontFamily: 'var(--font-mono), "Space Mono", monospace',
-                fontSize: '0.72rem',
-                letterSpacing: '0.28em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-faint)',
-              }}
-            >
-              {copy.pageEyebrow}
-            </p>
-            <h1
-              id="case-studies-heading"
-              style={{
-                margin: '1rem 0 1.25rem',
-                fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif',
-                fontSize: 'clamp(3.4rem, 8vw, 6.4rem)',
-                lineHeight: 0.9,
-                textTransform: 'uppercase',
-              }}
-            >
+        <section className="case-studies-index__hero" aria-labelledby="case-studies-heading">
+          <div className="case-studies-index__hero-copy">
+            <p className="case-studies-index__eyebrow">{copy.pageEyebrow}</p>
+            <h1 id="case-studies-heading" className="case-studies-index__title">
               {copy.pageTitle}
             </h1>
-            <p
-              style={{
-                margin: 0,
-                maxWidth: '44rem',
-                fontSize: '1.08rem',
-                lineHeight: 1.8,
-                color: 'var(--ink-soft)',
-              }}
-            >
-              {copy.pageDescription}
-            </p>
+            <p className="case-studies-index__description">{copy.pageDescription}</p>
           </div>
+          <nav className="case-studies-index__nav" aria-label={isSpanish ? 'Categorías de casos' : 'Case study categories'}>
+            {categories.map((category) => (
+              <a key={category.id} href={`#${category.id}`} className="case-studies-index__nav-link">
+                {category.title}
+              </a>
+            ))}
+          </nav>
         </section>
-        {caseStudies.map((study, index) => (
-          <section
-            key={study.id}
-            ref={(el) => { sectionsRef.current[index] = el }}
-            className="case-study-section"
-            aria-labelledby={`case-study-title-${study.id}`}
-          >
-            {/* Full-bleed Background Image */}
-            <div className="case-study-section__media">
-              <Image
-                src={study.image}
-                alt={`${study.title} — ${study.subtitle ?? 'Case study'}`}
-                fill
-                quality={80}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-                className="case-study-section__image"
-                priority={index === 0}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-              />
-              <div className="case-study-section__gradient" aria-hidden="true" />
-            </div>
 
-            {/* Content */}
-            <div className="case-study-section__content">
-              <h2 
-                id={`case-study-title-${study.id}`}
-                className="case-study-section__title"
-              >
-                {study.title}
-              </h2>
-              <p className="case-study-section__description">
-                {study.description}
-              </p>
-              <Link
-                href={study.href}
-                className="case-study-section__cta"
-                prefetch={true}
-                onMouseEnter={() => router.prefetch(study.href)}
-              >
-                {copy.viewProject}
-                <span className="case-study-section__cta-arrow" aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </section>
-        ))}
+        <div className="case-study-categories" aria-label={isSpanish ? 'Categorías de casos de estudio' : 'Case study categories'}>
+          {categories.map((category, categoryIndex) => (
+            <section
+              key={category.id}
+              id={category.id}
+              className="case-study-category"
+              aria-labelledby={`${category.id}-heading`}
+            >
+              <div className="case-study-category__header">
+                <p className="case-study-category__eyebrow">{category.eyebrow}</p>
+                <h2 id={`${category.id}-heading`} className="case-study-category__title">
+                  {category.title}
+                </h2>
+                <p className="case-study-category__description">{category.description}</p>
+              </div>
+              <div className="case-study-category__grid">
+                {category.projects.map((project, projectIndex) => (
+                  <ProjectCard
+                    key={project.title}
+                    project={project}
+                    viewProject={copy.viewProject}
+                    comingSoon={isSpanish ? 'Próximamente' : 'Coming soon'}
+                    priority={categoryIndex === 0 && projectIndex === 0}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
       </main>
       <Footer locale={locale} />
     </>
