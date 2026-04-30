@@ -10,72 +10,55 @@ export default function Footer({ locale = 'en' }: FooterProps) {
   const currentYear = new Date().getFullYear()
   const copy = getSiteCopy(locale).footer
   const isSpanish = locale === 'es'
-  const emailLabel = isSpanish ? 'Enviar email a Raúl Mermans' : 'Send email to Raúl Mermans'
-  const contactLabel = isSpanish ? 'Contacto directo' : 'Direct contact'
-  const socialLabel = isSpanish ? 'Social' : 'Social'
-  const availability = isSpanish
-    ? 'Disponible para sistemas de IA, automatización y dirección creativa.'
-    : 'Available for AI systems, automation, and creative direction.'
   const topLabel = isSpanish ? 'Volver arriba' : 'Back to top'
   const externalLabel = isSpanish ? 'Abre en una pestaña nueva' : 'Opens in a new tab'
+  const elsewhereLabel = isSpanish ? 'En otros sitios' : 'Elsewhere'
+  const studioLabel = isSpanish ? 'Estudio' : 'Studio'
+  const studioLinks = [
+    { label: isSpanish ? 'Sobre mí' : 'About', href: '/about' },
+    { label: 'Contact', href: '/#contact', hash: '#contact' },
+    { label: isSpanish ? 'Disponibilidad' : 'Availability', href: '/#contact', hash: '#contact' },
+    { label: 'Press', href: 'mailto:raulmermans@gmail.com' },
+  ]
+  const socialLinks = [
+    { label: 'Instagram', href: 'https://www.instagram.com/raulmeermans/' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/raulmermans' },
+    { label: 'Unsplash', href: 'https://unsplash.com/@raulmermans' },
+    { label: 'X / Twitter', href: 'https://twitter.com/raulmermans' },
+  ]
 
   return (
     <footer id="footer" className="footer">
       <div className="footer__inner">
-        <div className="footer__masthead" aria-label="Raúl Mermans">
-          <Link href={localizePath('/', locale)} className="footer__wordmark">
-            Raúl Mermans
-          </Link>
-          <a href="#main-content" className="footer__top-link">
-            {topLabel}
-          </a>
-        </div>
-
         <div className="footer__top">
-          <section className="footer__brand" aria-labelledby="footer-brand-heading">
-            <p id="footer-brand-heading" className="footer__eyebrow">
-              {contactLabel}
-            </p>
-            <p className="footer__tagline">{copy.tagline}</p>
-            <p className="footer__availability">{availability}</p>
-            <a href="mailto:raulmermans@gmail.com" className="footer__email" aria-label={emailLabel}>
-              <span>raulmermans@gmail.com</span>
-              <span aria-hidden="true">→</span>
+          <div className="footer__top-panel footer__back-panel">
+            <a href="#main-content" className="footer__back-top" aria-label={topLabel}>
+              <span className="footer__arrow" aria-hidden="true" />
+              <span>{topLabel}</span>
             </a>
-          </section>
+          </div>
 
           <nav className="footer__nav" aria-label={isSpanish ? 'Navegación del pie de página' : 'Footer navigation'}>
             <div className="footer__column">
-              <h2>{copy.work}</h2>
+              <h2>{elsewhereLabel}</h2>
               <ul>
-                {copy.workLinks.map((item) => (
-                  <li key={item.label}>
-                    <Link href={localizePath(item.href, locale)}>{item.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="footer__column">
-              <h2>{copy.services}</h2>
-              <ul>
-                {copy.serviceLinks.map((item) => (
-                  <li key={item.label}>
-                    <Link href={localizePath(item.href, locale)}>{item.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="footer__column">
-              <h2>{copy.resources}</h2>
-              <ul>
-                {copy.resourceLinks.map((item) => (
-                  <li key={item.label}>
-                    {'external' in item && item.external ? (
-                      <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.label}. ${externalLabel}`}>
+                {socialLinks.map((item) => (
+                  <li key={item.href}>
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.label}. ${externalLabel}`}>
                         {item.label}
-                      </a>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="footer__column">
+              <h2>{studioLabel}</h2>
+              <ul>
+                {studioLinks.map((item) => (
+                  <li key={item.label}>
+                    {item.href.startsWith('mailto:') ? (
+                      <a href={item.href}>{item.label}</a>
                     ) : (
                       <Link href={localizePath(item.href, locale)}>{item.label}</Link>
                     )}
@@ -83,41 +66,30 @@ export default function Footer({ locale = 'en' }: FooterProps) {
                 ))}
               </ul>
             </div>
-
-            <div className="footer__column">
-              <h2>{socialLabel}</h2>
-              <ul>
-                <li>
-                  <a href="https://www.instagram.com/raulmeermans/" target="_blank" rel="noopener noreferrer" aria-label={`Instagram. ${externalLabel}`}>
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a href="https://linkedin.com/in/raulmermans" target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn. ${externalLabel}`}>
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a href="https://unsplash.com/@raulmermans" target="_blank" rel="noopener noreferrer" aria-label={`Unsplash. ${externalLabel}`}>
-                    Unsplash
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/raulmermans" target="_blank" rel="noopener noreferrer" aria-label={`X. ${externalLabel}`}>
-                    X
-                  </a>
-                </li>
-              </ul>
-            </div>
           </nav>
         </div>
 
         <div className="footer__bottom">
-          <p className="footer__vibe-text">{copy.builtBy}</p>
-          <p className="footer__copy">© {currentYear} Raúl Mermans. {copy.rightsReserved}</p>
-          <div className="footer__legal">
-            <Link href={localizePath('/privacy', locale)}>{copy.privacy}</Link>
-            <Link href={localizePath('/terms', locale)}>{copy.terms}</Link>
+          <div className="footer__name-lockup" aria-label={`Raúl Mermans ${currentYear}`}>
+            <span>Raúl</span>
+            <span>
+              Mermans
+              <sup>©{currentYear}</sup>
+            </span>
+          </div>
+
+          <div className="footer__meta">
+            <p>
+              {copy.builtBy}
+            </p>
+            <p>
+              {isSpanish ? 'Con base en Madrid' : 'Based in Madrid'}
+              <span aria-hidden="true">18:33</span>
+            </p>
+            <div className="footer__legal">
+              <Link href={localizePath('/privacy', locale)}>{copy.privacy}</Link>
+              <Link href={localizePath('/terms', locale)}>{copy.terms}</Link>
+            </div>
           </div>
         </div>
       </div>
