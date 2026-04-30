@@ -2210,7 +2210,7 @@ html.homepage .footer {
 .footer__top {
   display: grid;
   grid-template-columns: 0.38fr 0.62fr;
-  min-height: clamp(20rem, 38vw, 30rem);
+  min-height: clamp(12rem, 20vw, 16.5rem);
   border-bottom: 1px solid rgba(245, 240, 235, 0.2);
 }
 
@@ -2229,14 +2229,14 @@ html.homepage .footer {
 .footer__back-panel {
   display: flex;
   align-items: flex-start;
-  padding-top: clamp(1rem, 2vw, 2rem);
+  padding-top: clamp(0.6rem, 1.1vw, 1.1rem);
 }
 
 .footer__back-top {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1.8rem, 4vw, 3rem);
+  gap: clamp(0.75rem, 1.45vw, 1.15rem);
   color: var(--cream);
   text-decoration: none;
   transition: color 180ms var(--ease), transform 180ms var(--ease);
@@ -2251,8 +2251,8 @@ html.homepage .footer {
 .footer__arrow {
   position: relative;
   display: block;
-  width: clamp(7.5rem, 13vw, 11.5rem);
-  height: clamp(10rem, 17vw, 15.5rem);
+  width: clamp(4.1rem, 6.3vw, 5.9rem);
+  height: clamp(5.55rem, 8.25vw, 7.85rem);
 }
 
 .footer__arrow::before {
@@ -2281,8 +2281,8 @@ html.homepage .footer {
 .footer__back-top span:last-child {
   color: rgba(245, 240, 235, 0.28);
   font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: 0.82rem;
-  letter-spacing: 0.55em;
+  font-size: 0.6rem;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
 }
 
@@ -2292,16 +2292,16 @@ html.homepage .footer {
 }
 
 .footer__column h2 {
-  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  margin: 0 0 clamp(0.9rem, 1.9vw, 1.55rem);
   color: rgba(245, 240, 235, 0.28);
-  font-size: 0.82rem;
+  font-size: 0.62rem;
   font-weight: 400;
-  letter-spacing: 0.52em;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
 }
 
 .footer__column {
-  padding: clamp(1.25rem, 3vw, 2.75rem) clamp(2rem, 5vw, 4rem);
+  padding: clamp(0.8rem, 1.6vw, 1.45rem) clamp(1.2rem, 3.2vw, 2.4rem);
   border-right: 1px solid rgba(245, 240, 235, 0.2);
 }
 
@@ -2321,10 +2321,10 @@ html.homepage .footer {
 
 .footer__column a {
   display: inline-flex;
-  min-height: clamp(3.7rem, 6vw, 5.05rem);
+  min-height: clamp(2.15rem, 3.35vw, 2.9rem);
   align-items: center;
   color: rgba(245, 240, 235, 0.8);
-  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  font-size: clamp(0.92rem, 1.15vw, 1.08rem);
   line-height: 1.35;
   text-decoration: none;
   position: relative;
@@ -2334,7 +2334,7 @@ html.homepage .footer {
 .footer__column a::after {
   content: '';
   position: absolute;
-  bottom: 0.7rem;
+  bottom: 0.3rem;
   left: 0;
   width: 0;
   height: 1px;
@@ -2694,7 +2694,7 @@ html.homepage .footer {
   }
 
   .footer__back-panel {
-    min-height: 16rem;
+    min-height: 11.5rem;
     justify-content: center;
   }
 
@@ -2703,7 +2703,7 @@ html.homepage .footer {
   }
 
   .footer__column {
-    padding: var(--space-6) 0;
+    padding: var(--space-5) 0;
     border-top: 1px solid rgba(245, 240, 235, 0.2);
   }
 
@@ -6298,13 +6298,44 @@ a[href^="/"]:hover {
 
 .case-studies-index--menu {
   min-height: 100svh;
-  padding-top: calc(var(--header-height) + 2rem);
+  padding-top: calc(var(--header-height) + clamp(3rem, 7vw, 6rem));
+}
+
+.case-studies-index__intro {
+  display: grid;
+  gap: clamp(0.85rem, 1.8vw, 1.35rem);
+  padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(2.25rem, 5vw, 4.5rem);
+}
+
+.case-studies-index__eyebrow {
+  margin: 0;
+  color: var(--ink-faint);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.case-studies-index__title {
+  margin: 0;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(4.25rem, 11vw, 11rem);
+  font-weight: 400;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.case-studies-index__lede {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.7;
 }
 
 .case-study-category-menu {
   display: grid;
-  min-height: calc(100svh - var(--header-height) - 2rem);
-  grid-template-rows: repeat(3, minmax(12rem, 1fr));
+  grid-template-rows: repeat(3, minmax(clamp(7.5rem, 15vw, 13rem), auto));
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
@@ -6313,7 +6344,7 @@ a[href^="/"]:hover {
   display: grid;
   min-width: 0;
   place-items: center;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 4rem);
+  padding: clamp(1.45rem, 3.6vw, 3rem) clamp(1rem, 4vw, 4rem);
   border-bottom: 1px solid var(--ink);
   color: var(--ink);
   text-align: center;
@@ -6326,11 +6357,11 @@ a[href^="/"]:hover {
 }
 
 .case-study-category-menu__row span {
-  max-width: 12ch;
+  max-width: 13ch;
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(4.5rem, 11.6vw, 13rem);
+  font-size: clamp(3.25rem, 7.8vw, 8.9rem);
   font-weight: 400;
-  line-height: 0.86;
+  line-height: 0.9;
   text-transform: uppercase;
 }
 
@@ -6515,16 +6546,23 @@ a[href^="/"]:hover {
 
 @media (max-width: 720px) {
   .case-studies-index--menu {
-    padding-top: calc(var(--header-height) + 1rem);
+    padding-top: calc(var(--header-height) + 2.5rem);
+  }
+
+  .case-studies-index__intro {
+    padding-inline: 1.25rem;
+  }
+
+  .case-studies-index__title {
+    font-size: clamp(4rem, 20vw, 6.5rem);
   }
 
   .case-study-category-menu {
-    min-height: calc(100svh - var(--header-height) - 1rem);
-    grid-template-rows: repeat(3, minmax(10rem, 1fr));
+    grid-template-rows: repeat(3, minmax(8rem, auto));
   }
 
   .case-study-category-menu__row span {
-    font-size: clamp(4rem, 22vw, 7rem);
+    font-size: clamp(3rem, 16vw, 5.1rem);
   }
 
   .case-study-category-detail {

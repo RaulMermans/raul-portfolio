@@ -105,6 +105,13 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     ...item,
     href: localizePath(item.href, locale),
   }))
+  const desktopItemOrder = ['Case Studies', 'About', 'Services', 'Contact', 'Casos', 'Sobre mí', 'Servicios', 'Contacto']
+  const desktopMenuItems = [...menuItems].sort((a, b) => {
+    const aIndex = desktopItemOrder.indexOf(a.label)
+    const bIndex = desktopItemOrder.indexOf(b.label)
+
+    return (aIndex === -1 ? desktopItemOrder.length : aIndex) - (bIndex === -1 ? desktopItemOrder.length : bIndex)
+  })
   const activePath = pathname || localizePath('/', locale)
   const isSpanish = locale === 'es'
   const englishPath = switchLocalePath(activePath, 'en')
@@ -126,7 +133,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
 
         {/* Desktop Nav */}
         <nav className={styles.desktopNav} aria-label={isSpanish ? 'Navegación principal' : 'Primary navigation'}>
-          {menuItems.map((item) => {
+          {desktopMenuItems.map((item) => {
             const hash = 'hash' in item ? item.hash : undefined
             const isActive = isActiveItem(item.href)
             return (
