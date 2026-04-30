@@ -121,13 +121,12 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     <>
       <header className={styles.headerBar}>
         <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
-          <span className={styles.logoMark}>RM</span>
-          <span className={styles.logoText}>Raúl Mermans</span>
+          RM
         </Link>
 
         {/* Desktop Nav */}
         <nav className={styles.desktopNav} aria-label={isSpanish ? 'Navegación principal' : 'Primary navigation'}>
-          {menuItems.map((item, index) => {
+          {menuItems.map((item) => {
             const hash = 'hash' in item ? item.hash : undefined
             const isActive = isActiveItem(item.href)
             return (
@@ -138,7 +137,6 @@ export default function Header({ locale = 'en' }: HeaderProps) {
                 aria-current={isActive ? 'page' : undefined}
                 onClick={(e) => (hash ? handleNavClick(e, hash) : undefined)}
               >
-                <span className={styles.desktopNavIndex}>{String(index + 1).padStart(2, '0')}</span>
                 <span>{item.label}</span>
               </Link>
             )
@@ -146,7 +144,6 @@ export default function Header({ locale = 'en' }: HeaderProps) {
         </nav>
 
         <div className={styles.headerMeta}>
-          <p className={styles.headerStatus}>{isSpanish ? 'Disponible' : 'Available'}</p>
           <div className={styles.languageToggle} role="group" aria-label={copy.toggleLabel}>
             <Link
               href={englishPath}
