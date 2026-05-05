@@ -36,7 +36,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   return [
     {
       slug: 'ai-systems-agents',
-      title: 'AI Systems & Agents',
+      title: isSpanish ? 'Sistemas de IA y agentes' : 'AI Systems & Agents',
       eyebrow: isSpanish ? 'Nueva categoría' : 'New category',
       description: isSpanish
         ? 'Agentes y sistemas aplicados que convierten análisis, auditoría y decisiones repetibles en flujos utilizables.'
@@ -63,7 +63,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
     },
     {
       slug: 'campaign-systems',
-      title: 'Campaign Systems',
+      title: isSpanish ? 'Sistemas de campaña' : 'Campaign Systems',
       eyebrow: isSpanish ? 'Ejecución creativa' : 'Creative execution',
       description: isSpanish
         ? 'Infraestructura para mantener consistencia visual, narrativa y operativa en campañas de ritmo rápido.'
@@ -83,7 +83,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
     },
     {
       slug: 'brand-systems',
-      title: 'Brand Systems',
+      title: isSpanish ? 'Sistemas de marca' : 'Brand Systems',
       eyebrow: isSpanish ? 'Identidad escalable' : 'Scalable identity',
       description: isSpanish
         ? 'Identidades, reglas visuales y lógica de marca pensadas para escalar sin perder precisión.'
