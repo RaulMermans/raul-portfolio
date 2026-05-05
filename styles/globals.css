@@ -2586,8 +2586,8 @@ html.homepage .footer {
 
 .footer__bottom {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
-  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.5fr);
+  gap: clamp(2rem, 5vw, 5rem);
   align-items: end;
   min-height: clamp(24rem, 42vw, 37rem);
   padding-top: clamp(3rem, 6vw, 5rem);
@@ -2614,16 +2614,19 @@ html.homepage .footer {
 
 .footer__meta {
   display: grid;
+  width: min(100%, 36rem);
+  justify-self: end;
   justify-items: end;
-  gap: 0.75rem;
+  gap: clamp(0.85rem, 1.4vw, 1.25rem);
   padding-bottom: clamp(0.5rem, 2vw, 2rem);
   color: rgba(245, 240, 235, 0.78);
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.08rem, 1.85vw, 1.6rem);
   line-height: 1.4;
   text-align: right;
 }
 
 .footer__meta p {
+  width: 100%;
   margin: 0;
 }
 
@@ -2643,10 +2646,11 @@ html.homepage .footer {
 
 .footer__legal {
   display: inline-flex;
+  width: 100%;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
+  gap: clamp(1rem, 2vw, 2rem);
+  justify-content: space-between;
+  margin-top: 0.25rem;
 }
 
 .footer__legal a {
@@ -6298,39 +6302,22 @@ a[href^="/"]:hover {
 
 .case-studies-index--menu {
   min-height: 100svh;
-  padding-top: calc(var(--header-height) + clamp(3rem, 7vw, 6rem));
+  padding-top: calc(var(--header-height) + clamp(2.4rem, 5vw, 4.5rem));
 }
 
 .case-studies-index__intro {
   display: grid;
-  gap: clamp(0.85rem, 1.8vw, 1.35rem);
-  padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(2.25rem, 5vw, 4.5rem);
-}
-
-.case-studies-index__eyebrow {
-  margin: 0;
-  color: var(--ink-faint);
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(1.65rem, 3.6vw, 3rem);
 }
 
 .case-studies-index__title {
   margin: 0;
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(4.25rem, 11vw, 11rem);
+  font-size: clamp(4.1rem, 10.2vw, 10rem);
   font-weight: 400;
-  line-height: 0.86;
+  line-height: 0.9;
+  letter-spacing: 0;
   text-transform: uppercase;
-}
-
-.case-studies-index__lede {
-  max-width: 42rem;
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: clamp(1rem, 1.4vw, 1.12rem);
-  line-height: 1.7;
 }
 
 .case-study-category-menu {

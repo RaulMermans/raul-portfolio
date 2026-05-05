@@ -67,15 +67,9 @@ export default function CaseStudiesPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumb) }}
         />
         <section className="case-studies-index__intro" aria-labelledby="case-studies-heading">
-          <p className="case-studies-index__eyebrow">{isSpanish ? 'Trabajo seleccionado' : 'Selected work'}</p>
           <h1 id="case-studies-heading" className="case-studies-index__title">
             {isSpanish ? 'Casos de estudio' : 'Case Studies'}
           </h1>
-          <p className="case-studies-index__lede">
-            {isSpanish
-              ? 'Sistemas de IA, campañas e identidad organizados por tipo de trabajo.'
-              : 'AI systems, campaigns, and identity work organized by system type.'}
-          </p>
         </section>
 
         <nav className="case-study-category-menu" aria-label={isSpanish ? 'Categorías de casos de estudio' : 'Case study categories'}>
