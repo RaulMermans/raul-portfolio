@@ -1159,3 +1159,512 @@ main.case-study-page-new {
     /* Minimal bottom padding on desktop */
   }
 }
+
+/* =============================================
+   DATABRIEF AI CASE STUDY
+   ============================================= */
+.case-study-page-new--data-brief {
+  --data-brief-line: rgba(245, 240, 235, 0.14);
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.data-brief-hero {
+  position: relative;
+  display: grid;
+  min-height: 88svh;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  align-items: end;
+  gap: 2rem;
+  overflow: hidden;
+  padding: calc(var(--header-height) + 4rem) clamp(1.25rem, 5rem, 5rem) 4rem;
+  background:
+    linear-gradient(135deg, rgba(26, 23, 20, 0.92), rgba(26, 23, 20, 0.76)),
+    radial-gradient(circle at 78% 18%, rgba(196, 30, 58, 0.18), transparent 30rem),
+    var(--ink);
+  color: var(--cream);
+}
+
+.data-brief-hero__grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  pointer-events: none;
+}
+
+.data-brief-hero__grid span {
+  border-left: 1px solid var(--data-brief-line);
+}
+
+.data-brief-hero__content,
+.data-brief-hero__panel {
+  position: relative;
+  z-index: 1;
+}
+
+.data-brief-hero__content {
+  max-width: 58rem;
+}
+
+.data-brief-back,
+.data-brief-eyebrow,
+.data-brief-card__file,
+.data-brief-button,
+.data-brief-text-link,
+.data-brief-tags span {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.data-brief-back {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: rgba(245, 240, 235, 0.72);
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
+.data-brief-back:hover,
+.data-brief-back:focus-visible {
+  color: var(--cream);
+}
+
+.data-brief-eyebrow {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.data-brief-hero__title,
+.data-brief-section h2 {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.data-brief-hero__title {
+  max-width: 11ch;
+  margin: 0;
+  color: var(--cream);
+  font-size: 6.5rem;
+  line-height: 0.86;
+}
+
+.data-brief-hero__subtitle {
+  max-width: 48rem;
+  margin: 1.5rem 0 0;
+  color: rgba(245, 240, 235, 0.94);
+  font-size: 1.25rem;
+  line-height: 1.55;
+}
+
+.data-brief-hero__description {
+  max-width: 52rem;
+  margin: 1.25rem 0 0;
+  color: rgba(245, 240, 235, 0.78);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.data-brief-tags,
+.data-brief-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.data-brief-tags {
+  margin-top: 1.75rem;
+}
+
+.data-brief-tags span {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  border: 1px solid rgba(245, 240, 235, 0.18);
+  border-radius: 999px;
+  padding: 0 0.8rem;
+  color: rgba(245, 240, 235, 0.76);
+  font-size: 0.68rem;
+}
+
+.data-brief-actions {
+  margin-top: 2rem;
+}
+
+.data-brief-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(245, 240, 235, 0.28);
+  border-radius: 8px;
+  padding: 0 1rem;
+  color: var(--cream);
+  font-size: 0.72rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.data-brief-button--primary,
+.data-brief-button:hover,
+.data-brief-button:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--cream);
+}
+
+.data-brief-button:focus-visible,
+.data-brief-text-link:focus-visible,
+.data-brief-back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.data-brief-hero__panel {
+  align-self: center;
+}
+
+.data-brief-terminal {
+  border: 1px solid rgba(245, 240, 235, 0.18);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(26, 23, 20, 0.72);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.22);
+}
+
+.data-brief-terminal__bar {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  padding: 0.8rem;
+}
+
+.data-brief-terminal__bar span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(245, 240, 235, 0.42);
+}
+
+.data-brief-terminal__body {
+  padding: 1.25rem;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.9;
+}
+
+.data-brief-terminal__body p {
+  margin: 0;
+  color: rgba(245, 240, 235, 0.82);
+}
+
+.data-brief-section {
+  padding: 5rem clamp(1.25rem, 5rem, 5rem);
+}
+
+.data-brief-section--light {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.data-brief-section--cream {
+  background: var(--cream-warm);
+  color: var(--ink);
+}
+
+.data-brief-section--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.data-brief-section--closing {
+  background: var(--accent);
+  color: var(--cream);
+}
+
+.data-brief-section__container {
+  max-width: var(--case-study-container);
+  margin: 0 auto;
+}
+
+.data-brief-two-column {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1fr);
+  gap: 3rem;
+}
+
+.data-brief-section h2 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: 3.75rem;
+  line-height: 0.9;
+}
+
+.data-brief-section p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.data-brief-section--dark p,
+.data-brief-section--closing p {
+  color: rgba(245, 240, 235, 0.82);
+}
+
+.data-brief-section__lede {
+  margin-top: 1.5rem !important;
+}
+
+.data-brief-copy-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.data-brief-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 2.5rem 0;
+}
+
+.data-brief-flow span {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: 0 0.9rem;
+  background: var(--cream-light);
+  color: var(--ink);
+  font-size: 0.86rem;
+}
+
+.data-brief-flow span:not(:last-child)::after {
+  content: "→";
+  margin-left: 0.7rem;
+  color: var(--accent);
+}
+
+.data-brief-card-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.data-brief-card-grid--workflow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.data-brief-card-grid--datasets {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.data-brief-card,
+.data-brief-feature,
+.data-brief-preview {
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  background: rgba(250, 248, 245, 0.76);
+}
+
+.data-brief-card {
+  padding: 1.25rem;
+}
+
+.data-brief-card h3 {
+  margin: 0 0 0.8rem;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.data-brief-card p {
+  font-size: 0.94rem;
+}
+
+.data-brief-card__file {
+  margin-bottom: 1rem !important;
+  color: var(--accent) !important;
+  font-size: 0.68rem !important;
+}
+
+.data-brief-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.data-brief-feature {
+  display: flex;
+  min-height: 5.5rem;
+  align-items: end;
+  padding: 1rem;
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.data-brief-text-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: 1rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
+.data-brief-text-link:hover {
+  color: var(--ink);
+}
+
+.data-brief-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.data-brief-preview {
+  overflow: hidden;
+  margin: 0;
+}
+
+.data-brief-preview__placeholder {
+  display: grid;
+  min-height: 13rem;
+  place-items: center;
+  border-bottom: 1px solid var(--cream-dark);
+  background:
+    linear-gradient(90deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
+    var(--cream-light);
+  background-size: 1rem 1rem;
+}
+
+.data-brief-preview__placeholder span {
+  border: 1px solid var(--cream-dark);
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.data-brief-preview figcaption {
+  padding: 1rem;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.data-brief-list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.data-brief-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: rgba(245, 240, 235, 0.84);
+  line-height: 1.7;
+}
+
+.data-brief-list--light li {
+  color: var(--ink-soft);
+}
+
+.data-brief-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  left: 0;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.data-brief-section--closing h2 {
+  max-width: 18ch;
+  color: var(--cream);
+}
+
+.data-brief-section--closing p {
+  max-width: 45rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 1180px) {
+  .data-brief-hero,
+  .data-brief-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .data-brief-hero__panel {
+    align-self: auto;
+  }
+
+  .data-brief-card-grid--workflow,
+  .data-brief-feature-grid,
+  .data-brief-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .data-brief-hero {
+    min-height: auto;
+    padding: calc(var(--header-height) + 2.5rem) 1.25rem 3rem;
+  }
+
+  .data-brief-hero__title {
+    font-size: 4.2rem;
+  }
+
+  .data-brief-hero__subtitle {
+    font-size: 1.08rem;
+  }
+
+  .data-brief-section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .data-brief-section h2 {
+    font-size: 2.9rem;
+  }
+
+  .data-brief-card-grid--workflow,
+  .data-brief-card-grid--datasets,
+  .data-brief-feature-grid,
+  .data-brief-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-brief-actions {
+    flex-direction: column;
+  }
+
+  .data-brief-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-brief-button {
+    transition-duration: 0.01ms !important;
+  }
+}

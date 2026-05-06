@@ -1,0 +1,13 @@
+purchase_date,item,category,quantity,unit_price,currency,payment_method,city
+2026-01-03,Running socks,Sports,2,12.99,USD,Credit Card,Madrid
+2026-01-05,USB-C cable,Electronics,1,9.49,USD,Debit Card,Barcelona
+2026-01-08,Protein powder,Health,1,34.95,USD,Credit Card,Madrid
+2026-01-10,Notebook,Office,3,4.5,USD,Credit Card,Valencia
+2026-01-14,Desk lamp,Home,1,27.99,USD,Gift Card,Sevilla
+2026-01-18,Trail shoes,Sports,1,89.0,USD,Credit Card,Madrid
+2026-01-22,Coffee beans,Grocery,2,14.25,USD,Debit Card,Bilbao
+2026-01-25,Phone stand,Electronics,1,16.75,USD,Credit Card,Barcelona
+2026-01-28,Yoga mat,Sports,1,31.5,USD,Credit Card,Madrid
+2026-02-02,Sketch markers,Office,6,2.75,USD,Debit Card,Valencia
+2026-02-06,Water bottle,Sports,1,18.99,USD,Credit Card,Sevilla
+2026-02-09,External SSD,Electronics,1,119.0,USD,Credit Card,Madrid

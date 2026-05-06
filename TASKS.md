@@ -29,9 +29,11 @@
 ### Content
 - [ ] Update about page copy
 - [ ] Add new photography images
-- [ ] Write case study for new project
 
 ## Completed
+
+### May 2026
+- [x] Add DataBrief AI bounded AI analytics workflow case study
 
 ### April 2026
 - [x] Add Overflow-specific support, privacy, and terms pages for App Store Connect
