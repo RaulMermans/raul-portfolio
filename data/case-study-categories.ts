@@ -32,6 +32,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const caseStudies = getCaseStudies(locale)
   const aiSports = findStudy(caseStudies, 'ai-sports')
   const remoria = findStudy(caseStudies, 'remoria')
+  const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
 
   return [
     {
@@ -43,14 +44,22 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         : 'Applied agents and systems that turn analysis, audits, and repeatable decisions into usable workflows.',
       href: localizePath('/case-studies/ai-systems-agents', locale),
       projects: [
-        {
-          title: 'Data Brief AI',
-          label: isSpanish ? 'Agente de investigación' : 'Research agent',
-          description: isSpanish
-            ? 'Sistema para transformar entradas dispersas en briefs estructurados, accionables y listos para decisión.'
-            : 'A system for turning scattered inputs into structured, actionable briefs ready for decision-making.',
-          image: placeholderImage,
-        },
+        dataBriefAi
+          ? {
+              title: dataBriefAi.title,
+              label: dataBriefAi.subtitle ?? (isSpanish ? 'Flujo analítico con IA' : 'AI analytics workflow'),
+              description: dataBriefAi.description,
+              image: dataBriefAi.image,
+              href: dataBriefAi.href,
+            }
+          : {
+              title: 'DataBrief AI',
+              label: isSpanish ? 'Flujo analítico con IA' : 'AI analytics workflow',
+              description: isSpanish
+                ? 'Flujo acotado para convertir hojas de cálculo en informes fundamentados.'
+                : 'A bounded workflow for turning spreadsheets into grounded reports.',
+              image: placeholderImage,
+            },
         {
           title: 'Website Auditor',
           label: isSpanish ? 'Agente de auditoría' : 'Audit agent',

@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/overflow/terms', changeFrequency: 'monthly', priority: 0.44 },
     { path: '/photography', changeFrequency: 'weekly', priority: 0.75 },
     { path: '/visuals', changeFrequency: 'weekly', priority: 0.75 },
+    { path: '/case-studies/data-brief-ai', changeFrequency: 'monthly', priority: 0.82 },
     { path: '/case-studies/ai-sports', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/case-studies/remoria', changeFrequency: 'monthly', priority: 0.8 },
   ] as const

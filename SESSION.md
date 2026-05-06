@@ -4,11 +4,11 @@
 
 ## Current Focus
 
-**Status**: Idle
-**Last Updated**: 2026-04-10
+**Status**: Completed
+**Last Updated**: 2026-05-06
 
 ### Active Work
-- None currently
+- Added the DataBrief AI case study page/card, dataset downloads, metadata, and sitemap entry
 
 ### Pending Decisions
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
@@ -20,6 +20,7 @@
 - Whether to keep the legacy `/es/*` Spanish alias routes as canonicalized fallback paths or replace them with hard redirects to the new base Spanish routes later
 
 ### Blockers
+- Local Node-based verification commands for this session did not return usable output: `npm run type-check` timed out after 90 seconds, targeted ESLint timed out after 60 seconds, and targeted `tsc` timed out after 60 seconds.
 - IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
 - `NEXT_PUBLIC_SITE_URL=https://www.raulmermans.com npm run build` timed out locally after 60 seconds without producing `.next/` or `out/`
 - `npm run type-check` and `npm run lint` both launched for the Overflow landing-page redesign on 2026-03-22 but did not finish in this environment after extended waits, so verification remained inconclusive
@@ -84,6 +85,18 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-06 - Add DataBrief AI case study
+**Goal**: Add a polished portfolio case study for DataBrief AI that frames it as a bounded AI analytics workflow prototype, not production SaaS or a fully autonomous agent.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `data/case-studies.ts` and `data/case-study-categories.ts` - added DataBrief AI as a real AI Systems / Analytics Workflow case-study card with GitHub/live-demo-ready routing.
+- `app/case-studies/data-brief-ai/page.tsx`, `app/case-studies/data-brief-ai/layout.tsx`, `app/en/case-studies/data-brief-ai/*`, and `app/es/case-studies/data-brief-ai/*` - added the new case-study route, localized mirrors, metadata, breadcrumbs, and article structured data.
+- `styles/case-study-new.css` - added the DataBrief-specific hero, workflow, cards, dataset, preview-placeholder, limitation, and closing styles.
+- `public/assets/case-studies/data-brief-ai/amazon-purchases-sample.csv` and `public/assets/case-studies/data-brief-ai/Marketing.csv` - added downloadable example datasets for the case study.
+- `app/sitemap.ts`, `TASKS.md`, and `SESSION.md` - added the new route to sitemap output and recorded the completed task/session.
+**Notes**: Framing was kept conservative: bounded workflow, controlled Python execution, bounded repair, portfolio prototype, no production-ready or enterprise-security claims. Node-based verification stalled in this environment: `npm run type-check` timed out after 90 seconds, targeted ESLint timed out after 60 seconds, and targeted `tsc` timed out after 60 seconds. Non-Node file/copy checks completed.
+**Next Steps**: Review `/case-studies/data-brief-ai` and `/en/case-studies/data-brief-ai` in-browser once the local dev server is available, especially mobile section spacing and the output placeholder blocks.
 
 ### 2026-04-10 - Add Overflow App Store support and legal pages
 **Goal**: Create public Overflow-specific support, privacy, and terms pages that are suitable for App Store Connect, fit the current portfolio architecture, and stay conservative about unverified legal/technical claims.
