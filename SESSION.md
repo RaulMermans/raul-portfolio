@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-06
 
 ### Active Work
-- Added the DataBrief AI case study page/card, dataset downloads, metadata, and sitemap entry
+- Reduced the vertical gap between the case studies landing title and category cards
 
 ### Pending Decisions
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
@@ -85,6 +85,15 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-06 - Tighten case studies landing title spacing
+**Goal**: Reduce the oversized gap between the `Casos de estudio` title and the category cards on `/case-studies/`.
+**Outcome**: Completed with verification limitation
+**Changes Made**:
+- `styles/globals.css` - overrode the case studies index intro section min-height so the global full-viewport `section` rule no longer pushes the category menu below the fold.
+- `SESSION.md` - recorded the spacing fix and local verification limitation.
+**Notes**: `git diff --check -- styles/globals.css` completed successfully. `npm run lint -- --file app/case-studies/page.tsx` could not run because the local Next CLI crashes while loading `semver` under Node 24 before ESLint starts.
+**Next Steps**: Re-run targeted lint with the project’s expected Node runtime once the local Node/Next CLI issue is resolved, then review `/case-studies/` visually after deploy.
 
 ### 2026-05-06 - Add DataBrief AI case study
 **Goal**: Add a polished portfolio case study for DataBrief AI that frames it as a bounded AI analytics workflow prototype, not production SaaS or a fully autonomous agent.

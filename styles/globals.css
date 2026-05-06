@@ -6307,6 +6307,7 @@ a[href^="/"]:hover {
 
 .case-studies-index__intro {
   display: grid;
+  min-height: auto;
   padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(1.65rem, 3.6vw, 3rem);
 }
 
