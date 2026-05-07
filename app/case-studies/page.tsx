@@ -53,6 +53,10 @@ export default function CaseStudiesPage() {
   const categories = getCaseStudyCategories(locale)
   const schemas = getSchemas(locale)
   const isSpanish = locale === 'es'
+  const introCopy = isSpanish
+    ? 'Elige una línea de trabajo para ver los proyectos, sistemas y decisiones detrás de cada caso.'
+    : 'Choose a workstream to see the projects, systems, and decisions behind each case.'
+  const categoryAction = isSpanish ? 'Ver proyectos' : 'View projects'
 
   return (
     <>
@@ -70,12 +74,28 @@ export default function CaseStudiesPage() {
           <h1 id="case-studies-heading" className="case-studies-index__title">
             {isSpanish ? 'Casos de estudio' : 'Case Studies'}
           </h1>
+          <p className="case-studies-index__prompt">{introCopy}</p>
         </section>
 
         <nav className="case-study-category-menu" aria-label={isSpanish ? 'Categorías de casos de estudio' : 'Case study categories'}>
-          {categories.map((category) => (
-            <Link key={category.slug} href={category.href} className="case-study-category-menu__row">
-              <span>{category.title}</span>
+          {categories.map((category, index) => (
+            <Link
+              key={category.slug}
+              href={category.href}
+              className="case-study-category-menu__row"
+              aria-label={isSpanish ? `Ver proyectos de ${category.title}` : `View ${category.title} projects`}
+            >
+              <span className="case-study-category-menu__index" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className="case-study-category-menu__content">
+                <span className="case-study-category-menu__eyebrow">{category.eyebrow}</span>
+                <span className="case-study-category-menu__title">{category.title}</span>
+              </span>
+              <span className="case-study-category-menu__action" aria-hidden="true">
+                <span>{categoryAction}</span>
+                <span className="case-study-category-menu__arrow">→</span>
+              </span>
             </Link>
           ))}
         </nav>
