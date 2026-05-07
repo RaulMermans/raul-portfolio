@@ -1165,6 +1165,7 @@ main.case-study-page-new {
    ============================================= */
 .case-study-page-new--data-brief {
   --data-brief-line: rgba(245, 240, 235, 0.14);
+  --data-brief-section-pad: clamp(3.75rem, 7vw, 6.25rem);
   background: var(--cream);
   color: var(--ink);
 }
@@ -1172,12 +1173,12 @@ main.case-study-page-new {
 .data-brief-hero {
   position: relative;
   display: grid;
-  min-height: 88svh;
-  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
-  align-items: end;
-  gap: 2rem;
+  min-height: 78svh;
+  grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.58fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
   overflow: hidden;
-  padding: calc(var(--header-height) + 4rem) clamp(1.25rem, 5rem, 5rem) 4rem;
+  padding: calc(var(--header-height) + 3.5rem) clamp(1.25rem, 5vw, 5rem) 3.5rem;
   background:
     linear-gradient(135deg, rgba(26, 23, 20, 0.92), rgba(26, 23, 20, 0.76)),
     radial-gradient(circle at 78% 18%, rgba(196, 30, 58, 0.18), transparent 30rem),
@@ -1204,7 +1205,7 @@ main.case-study-page-new {
 }
 
 .data-brief-hero__content {
-  max-width: 58rem;
+  max-width: 54rem;
 }
 
 .data-brief-back,
@@ -1251,24 +1252,60 @@ main.case-study-page-new {
   max-width: 11ch;
   margin: 0;
   color: var(--cream);
-  font-size: 6.5rem;
-  line-height: 0.86;
+  font-size: clamp(4.4rem, 8vw, 7.4rem);
+  line-height: 0.88;
 }
 
 .data-brief-hero__subtitle {
-  max-width: 48rem;
-  margin: 1.5rem 0 0;
+  max-width: 43rem;
+  margin: 1.25rem 0 0;
   color: rgba(245, 240, 235, 0.94);
-  font-size: 1.25rem;
-  line-height: 1.55;
+  font-size: clamp(1.08rem, 1.6vw, 1.32rem);
+  line-height: 1.5;
 }
 
 .data-brief-hero__description {
-  max-width: 52rem;
-  margin: 1.25rem 0 0;
+  max-width: 43rem;
+  margin: 1rem 0 0;
   color: rgba(245, 240, 235, 0.78);
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.7;
+}
+
+.data-brief-hero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  max-width: 43rem;
+  margin: 1.5rem 0 0;
+  border: 1px solid rgba(245, 240, 235, 0.14);
+  background: rgba(245, 240, 235, 0.14);
+}
+
+.data-brief-hero__facts div {
+  min-width: 0;
+  padding: 0.85rem;
+  background: rgba(26, 23, 20, 0.62);
+}
+
+.data-brief-hero__facts dt,
+.data-brief-hero__facts dd {
+  margin: 0;
+}
+
+.data-brief-hero__facts dt {
+  color: rgba(245, 240, 235, 0.5);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.data-brief-hero__facts dd {
+  margin-top: 0.35rem;
+  color: var(--cream);
+  font-size: 0.88rem;
+  line-height: 1.35;
 }
 
 .data-brief-tags,
@@ -1279,7 +1316,7 @@ main.case-study-page-new {
 }
 
 .data-brief-tags {
-  margin-top: 1.75rem;
+  margin-top: 1rem;
 }
 
 .data-brief-tags span {
@@ -1294,7 +1331,7 @@ main.case-study-page-new {
 }
 
 .data-brief-actions {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .data-brief-button {
@@ -1365,7 +1402,7 @@ main.case-study-page-new {
 }
 
 .data-brief-section {
-  padding: 5rem clamp(1.25rem, 5rem, 5rem);
+  padding: var(--data-brief-section-pad) clamp(1.25rem, 5vw, 5rem);
 }
 
 .data-brief-section--light {
@@ -1395,22 +1432,30 @@ main.case-study-page-new {
 
 .data-brief-two-column {
   display: grid;
-  grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1fr);
-  gap: 3rem;
+  grid-template-columns: minmax(13rem, 0.44fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.data-brief-section__header {
+  display: grid;
+  gap: 1rem;
+  max-width: 57rem;
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
 }
 
 .data-brief-section h2 {
-  max-width: 12ch;
+  max-width: 15ch;
   margin: 0;
-  font-size: 3.75rem;
-  line-height: 0.9;
+  font-size: clamp(2.35rem, 4.8vw, 4.7rem);
+  line-height: 0.94;
 }
 
 .data-brief-section p {
   margin: 0;
   color: var(--ink-soft);
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.72;
 }
 
 .data-brief-section--dark p,
@@ -1424,14 +1469,67 @@ main.case-study-page-new {
 
 .data-brief-copy-stack {
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
+  max-width: 58rem;
+}
+
+.data-brief-section--intro {
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.data-brief-story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.data-brief-story-card {
+  display: grid;
+  align-content: start;
+  min-height: 17rem;
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: clamp(1.25rem, 2vw, 1.65rem);
+  background: var(--cream-light);
+}
+
+.data-brief-story-card--dark {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.data-brief-story-card span {
+  margin-bottom: 2.25rem;
+  color: var(--accent);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.data-brief-story-card h3 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2rem, 3.4vw, 3.2rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.data-brief-story-card p {
+  font-size: 0.96rem;
+}
+
+.data-brief-story-card--dark p {
+  color: rgba(245, 240, 235, 0.82);
 }
 
 .data-brief-flow {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-  margin: 2.5rem 0;
+  margin: 0 0 2.5rem;
 }
 
 .data-brief-flow span {
@@ -1458,6 +1556,7 @@ main.case-study-page-new {
 }
 
 .data-brief-card-grid--workflow {
+  counter-reset: data-brief-step;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
@@ -1475,7 +1574,24 @@ main.case-study-page-new {
 }
 
 .data-brief-card {
+  position: relative;
+  min-height: 10.5rem;
   padding: 1.25rem;
+}
+
+.data-brief-card-grid--workflow .data-brief-card {
+  counter-increment: data-brief-step;
+}
+
+.data-brief-card-grid--workflow .data-brief-card::before {
+  content: counter(data-brief-step, decimal-leading-zero);
+  display: block;
+  margin-bottom: 1.4rem;
+  color: var(--accent);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
 .data-brief-card h3 {
@@ -1499,7 +1615,6 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
-  margin-top: 2rem;
 }
 
 .data-brief-feature {
@@ -1531,6 +1646,34 @@ main.case-study-page-new {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 2rem;
+}
+
+.data-brief-output-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.data-brief-output-card {
+  min-height: 14rem;
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: clamp(1.25rem, 2vw, 1.6rem);
+  background: var(--cream-light);
+}
+
+.data-brief-output-card h3 {
+  max-width: 10ch;
+  margin: 0 0 1rem;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.3rem, 3.8vw, 3.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.data-brief-output-card p {
+  font-size: 0.96rem;
 }
 
 .data-brief-preview {
@@ -1619,8 +1762,10 @@ main.case-study-page-new {
   }
 
   .data-brief-card-grid--workflow,
+  .data-brief-story-grid,
   .data-brief-feature-grid,
-  .data-brief-preview-grid {
+  .data-brief-preview-grid,
+  .data-brief-output-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1632,7 +1777,7 @@ main.case-study-page-new {
   }
 
   .data-brief-hero__title {
-    font-size: 4.2rem;
+    font-size: clamp(3.6rem, 18vw, 4.8rem);
   }
 
   .data-brief-hero__subtitle {
@@ -1644,13 +1789,19 @@ main.case-study-page-new {
   }
 
   .data-brief-section h2 {
-    font-size: 2.9rem;
+    font-size: clamp(2.45rem, 13vw, 3.4rem);
+  }
+
+  .data-brief-hero__facts {
+    grid-template-columns: 1fr;
   }
 
   .data-brief-card-grid--workflow,
   .data-brief-card-grid--datasets,
+  .data-brief-story-grid,
   .data-brief-feature-grid,
-  .data-brief-preview-grid {
+  .data-brief-preview-grid,
+  .data-brief-output-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1665,6 +1816,553 @@ main.case-study-page-new {
 
 @media (prefers-reduced-motion: reduce) {
   .data-brief-button {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =============================================
+   DATABRIEF AI REDESIGN OVERRIDES
+   ============================================= */
+.case-study-page-new--data-brief {
+  --data-brief-section-pad: clamp(4rem, 7vw, 6.5rem);
+  --data-brief-card-radius: 8px;
+  --data-brief-muted: rgba(26, 23, 20, 0.62);
+  background: var(--cream);
+}
+
+.case-study-page-new--data-brief .data-brief-section {
+  min-height: auto;
+}
+
+.data-brief-hero {
+  min-height: auto;
+  grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 0.78fr);
+  align-items: center;
+  padding: calc(var(--header-height) + clamp(3rem, 6vw, 5.5rem)) clamp(1.25rem, 5vw, 5rem) clamp(2.75rem, 6vw, 5rem);
+  background:
+    linear-gradient(135deg, rgba(26, 23, 20, 0.96), rgba(26, 23, 20, 0.82)),
+    radial-gradient(circle at 74% 16%, rgba(196, 30, 58, 0.2), transparent 31rem),
+    var(--ink);
+}
+
+.data-brief-hero__content {
+  max-width: 58rem;
+}
+
+.data-brief-back {
+  margin-bottom: clamp(1.25rem, 2vw, 2rem);
+}
+
+.data-brief-hero__title {
+  max-width: 8ch;
+  font-size: clamp(5rem, 10vw, 10.5rem);
+}
+
+.data-brief-hero__subtitle {
+  max-width: 52rem;
+  margin-top: 1.35rem;
+  font-size: clamp(1.32rem, 2.45vw, 2.1rem);
+  line-height: 1.24;
+}
+
+.data-brief-hero__description {
+  max-width: 47rem;
+  color: rgba(245, 240, 235, 0.76);
+}
+
+.data-brief-hero__visual {
+  position: relative;
+  z-index: 1;
+}
+
+.data-brief-tags {
+  max-width: 50rem;
+  margin-top: 1.35rem;
+}
+
+.data-brief-tags span {
+  min-height: 2.2rem;
+  background: rgba(245, 240, 235, 0.05);
+}
+
+.data-brief-actions {
+  gap: 0.7rem;
+}
+
+.data-brief-button {
+  border-radius: var(--data-brief-card-radius);
+}
+
+.data-brief-mini-nav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 20;
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  border-top: 1px solid rgba(26, 23, 20, 0.14);
+  border-bottom: 1px solid rgba(26, 23, 20, 0.14);
+  padding: 0.65rem clamp(1.25rem, 5vw, 5rem);
+  background: rgba(245, 240, 235, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-brief-mini-nav a {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  border: 1px solid rgba(26, 23, 20, 0.12);
+  border-radius: 999px;
+  padding: 0 0.85rem;
+  color: var(--ink-muted);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.data-brief-mini-nav a:hover,
+.data-brief-mini-nav a:focus-visible {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.data-brief-section {
+  scroll-margin-top: calc(var(--header-height) + 4.5rem);
+}
+
+.data-brief-section__header {
+  max-width: 64rem;
+}
+
+.data-brief-section h2 {
+  max-width: 16ch;
+}
+
+.data-brief-question {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--ink) !important;
+  font-size: clamp(1.12rem, 1.6vw, 1.35rem) !important;
+  line-height: 1.5 !important;
+}
+
+.data-brief-section--proof {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.data-brief-section--proof .data-brief-eyebrow,
+.data-brief-section--proof h2 {
+  color: var(--cream);
+}
+
+.data-brief-section--proof .data-brief-section__header p {
+  max-width: 54rem;
+  color: rgba(245, 240, 235, 0.78);
+}
+
+.data-brief-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.data-brief-proof-card {
+  display: grid;
+  min-height: 18rem;
+  align-content: end;
+  border: 1px solid rgba(245, 240, 235, 0.16);
+  border-radius: var(--data-brief-card-radius);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background:
+    linear-gradient(135deg, rgba(196, 30, 58, 0.2), transparent 42%),
+    rgba(245, 240, 235, 0.06);
+}
+
+.data-brief-proof-card span,
+.data-brief-callout span {
+  color: rgba(245, 240, 235, 0.58);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.data-brief-proof-card h3 {
+  max-width: 16ch;
+  margin: 1rem 0;
+  color: var(--cream);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.6rem, 5vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.data-brief-proof-card p {
+  color: rgba(245, 240, 235, 0.78);
+}
+
+.data-brief-flow {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 0;
+  overflow-x: auto;
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--data-brief-card-radius);
+  background: var(--cream-light);
+}
+
+.data-brief-flow span {
+  min-width: 8.5rem;
+  min-height: 4.25rem;
+  justify-content: center;
+  border: 0;
+  border-right: 1px solid var(--cream-dark);
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.data-brief-flow span:last-child {
+  border-right: 0;
+}
+
+.data-brief-flow span:not(:last-child)::after {
+  content: "";
+  margin: 0;
+}
+
+.data-brief-card-grid--workflow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+
+.data-brief-card-grid--architecture {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.data-brief-card {
+  border-radius: var(--data-brief-card-radius);
+  background: var(--cream-light);
+}
+
+.data-brief-card h3 {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(1.75rem, 2.6vw, 2.8rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.data-brief-card--architecture {
+  min-height: 17rem;
+  align-content: end;
+}
+
+.data-brief-card--dataset {
+  min-height: auto;
+}
+
+.data-brief-card--dataset h4 {
+  margin: 1.35rem 0 0.75rem;
+  color: var(--ink);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.data-brief-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.data-brief-preview-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.data-brief-preview {
+  border-radius: var(--data-brief-card-radius);
+  background: var(--cream-light);
+}
+
+.data-brief-preview__frame {
+  padding: clamp(0.8rem, 2vw, 1.25rem);
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.data-brief-preview figcaption {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+}
+
+.data-brief-preview figcaption span {
+  color: var(--ink);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.data-brief-report {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgba(245, 240, 235, 0.14);
+  border-radius: 10px;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  background:
+    linear-gradient(180deg, rgba(250, 248, 245, 0.98), rgba(237, 230, 221, 0.96)),
+    var(--cream-light);
+  color: var(--ink);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.24);
+}
+
+.data-brief-report--compact {
+  min-height: 18rem;
+  border-color: var(--cream-dark);
+  box-shadow: none;
+}
+
+.data-brief-report__topline,
+.data-brief-report__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.data-brief-report__topline span {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.data-brief-report__topline strong,
+.data-brief-report__status span,
+.data-brief-report__metrics span,
+.data-brief-export-list span {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.data-brief-report__topline strong {
+  border: 1px solid rgba(34, 197, 94, 0.36);
+  border-radius: 999px;
+  padding: 0.45rem 0.7rem;
+  background: rgba(34, 197, 94, 0.12);
+  color: #237a45;
+}
+
+.data-brief-report__status span {
+  color: var(--ink-muted);
+}
+
+.data-brief-report__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.data-brief-report__metrics article {
+  display: grid;
+  gap: 0.45rem;
+  min-height: 8rem;
+  align-content: end;
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: 0.9rem;
+  background: var(--cream);
+}
+
+.data-brief-report__metrics strong {
+  color: var(--ink);
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  line-height: 1;
+}
+
+.data-brief-report__metrics em,
+.data-brief-report__note,
+.data-brief-report__findings p {
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+  font-style: normal;
+  line-height: 1.55;
+}
+
+.data-brief-report__note {
+  border-left: 3px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+.data-brief-report__findings {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.data-brief-report__findings p {
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: 0.85rem;
+  background: var(--cream);
+}
+
+.data-brief-report__findings .data-brief-report__limitation {
+  border-color: rgba(196, 30, 58, 0.26);
+  background: rgba(196, 30, 58, 0.07);
+  color: var(--ink);
+}
+
+.data-brief-chart {
+  display: flex;
+  height: 12rem;
+  align-items: end;
+  gap: 0.7rem;
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: 1rem;
+  background:
+    linear-gradient(180deg, transparent 74%, rgba(26, 23, 20, 0.08) 75%),
+    var(--cream);
+  background-size: 100% 25%;
+}
+
+.data-brief-chart span {
+  flex: 1;
+  border-radius: 999px 999px 0 0;
+  background: var(--accent);
+  opacity: 0.78;
+}
+
+.data-brief-export-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.data-brief-export-list span {
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  padding: 1rem;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.data-brief-callout {
+  display: grid;
+  gap: 0.5rem;
+  border: 1px solid rgba(245, 240, 235, 0.18);
+  border-radius: var(--data-brief-card-radius);
+  padding: 1rem;
+  background: rgba(245, 240, 235, 0.08);
+}
+
+.data-brief-callout strong {
+  color: var(--cream);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.data-brief-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.data-brief-stack span {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  border: 1px solid var(--cream-dark);
+  border-radius: 999px;
+  padding: 0 1rem;
+  background: var(--cream-light);
+  color: var(--ink);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.data-brief-section--closing .data-brief-eyebrow {
+  color: rgba(245, 240, 235, 0.68);
+}
+
+.data-brief-section--closing .data-brief-actions {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 1180px) {
+  .data-brief-hero,
+  .data-brief-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .data-brief-card-grid--architecture,
+  .data-brief-card-grid--workflow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .data-brief-hero {
+    padding-top: calc(var(--header-height) + 2.5rem);
+  }
+
+  .data-brief-hero__title {
+    font-size: clamp(4.3rem, 19vw, 6.2rem);
+  }
+
+  .data-brief-hero__subtitle {
+    font-size: 1.2rem;
+  }
+
+  .data-brief-report__metrics,
+  .data-brief-proof-grid,
+  .data-brief-card-grid--datasets,
+  .data-brief-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .data-brief-mini-nav {
+    top: 0;
+  }
+
+  .data-brief-card-grid--architecture,
+  .data-brief-card-grid--workflow {
+    grid-template-columns: 1fr;
+  }
+
+  .data-brief-flow {
+    display: flex;
+  }
+
+  .data-brief-card__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-brief-mini-nav a,
+  .data-brief-chart span {
     transition-duration: 0.01ms !important;
   }
 }

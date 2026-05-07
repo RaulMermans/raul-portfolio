@@ -5,10 +5,10 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-06
+**Last Updated**: 2026-05-07
 
 ### Active Work
-- Added the DataBrief AI case study page/card, dataset downloads, metadata, and sitemap entry
+- Redesigned the DataBrief AI case-study landing page into a visual portfolio story
 
 ### Pending Decisions
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
@@ -85,6 +85,35 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-07 - Redesign DataBrief AI case study landing
+**Goal**: Transform `/case-studies/data-brief-ai/` from a documentation-style case study into a sharper, more visual portfolio story that makes the bounded analytics workflow and unsupported-metric refusal clear within 30 seconds.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `app/case-studies/data-brief-ai/page.tsx` - rebuilt the page around an outcome-first hero, sticky mini-navigation, problem/proof/workflow/output/dataset/limitations/CTA sections, report-output mockups, dataset cards, architecture cards, and conservative bounded-workflow framing.
+- `styles/case-study-new.css` - added scoped DataBrief redesign overrides for the hero, mini-nav, report mockups, proof cards, workflow rail, architecture/dataset/output cards, stack pills, responsive behavior, and reduced-motion handling.
+- `SESSION.md` - recorded the redesign and verification notes.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `case-study-builder`, `nextjs-app-router`, `accessibility-enforcer`, `animation-system`, `image-manager`, and `performance-guardian`. The UI-UX Pro Max search script returned bento/card hierarchy guidance. No real DataBrief screenshots were present in `public/`, so the page uses intentional report-output mockups rather than unfinished placeholders.
+**Next Steps**: Review the page in-browser on desktop and mobile, then replace mockups with real report screenshots if/when final screenshots are available.
+
+### 2026-05-07 - Improve case studies landing selection UX
+**Goal**: Make `/case-studies/` clearer as a category-selection screen by reducing the option title hierarchy, adding orientation copy, and making the hover/focus interaction more distinctive.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `app/case-studies/page.tsx` - added a short bilingual prompt under the page title, enriched each category link with an index, eyebrow, visible action cue, arrow, and explicit accessible label.
+- `styles/globals.css` - reduced category title scale below the main page title, tightened row height, added a left-to-right dark selection sweep, directional content/arrow motion, responsive rules, and reduced-motion handling.
+- `SESSION.md` - recorded the UX/UI pass and local verification limitations.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `case-study-builder`, `accessibility-enforcer`, and `animation-system`. The UI-UX Pro Max search script timed out while reading its local CSV data. `git diff --check -- app/case-studies/page.tsx styles/globals.css` passed. `npm run lint -- --file app/case-studies/page.tsx` failed before linting because Next CLI crashes while loading `semver`; `npm run type-check` was stopped after more than three minutes without output.
+**Next Steps**: Review `/case-studies/` in-browser on desktop and mobile once the local Next CLI issue is resolved or after deployment, especially the hover/focus sweep and mobile row density.
+
+### 2026-05-06 - Tighten case studies landing title spacing
+**Goal**: Reduce the oversized gap between the `Casos de estudio` title and the category cards on `/case-studies/`.
+**Outcome**: Completed with verification limitation
+**Changes Made**:
+- `styles/globals.css` - overrode the case studies index intro section min-height so the global full-viewport `section` rule no longer pushes the category menu below the fold.
+- `SESSION.md` - recorded the spacing fix and local verification limitation.
+**Notes**: `git diff --check -- styles/globals.css` completed successfully. `npm run lint -- --file app/case-studies/page.tsx` could not run because the local Next CLI crashes while loading `semver` under Node 24 before ESLint starts.
+**Next Steps**: Re-run targeted lint with the project’s expected Node runtime once the local Node/Next CLI issue is resolved, then review `/case-studies/` visually after deploy.
 
 ### 2026-05-06 - Add DataBrief AI case study
 **Goal**: Add a polished portfolio case study for DataBrief AI that frames it as a bounded AI analytics workflow prototype, not production SaaS or a fully autonomous agent.
