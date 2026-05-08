@@ -4,7 +4,7 @@ import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/
 
 const title = 'DataBrief AI — Bounded AI Analytics Workflow'
 const description =
-  'Technical case study for DataBrief AI, a bounded AI analytics workflow prototype that turns CSV/XLSX uploads into grounded business reports.'
+  'Technical case study for DataBrief AI, a bounded AI analytics workflow that turns CSV/XLSX uploads into grounded business reports.'
 
 export const metadata: Metadata = buildPageMetadata({
   title,

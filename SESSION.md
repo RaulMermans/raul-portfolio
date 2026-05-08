@@ -5,12 +5,13 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-07
+**Last Updated**: 2026-05-08
 
 ### Active Work
-- Redesigned the DataBrief AI case-study landing page into a visual portfolio story
+- Final UX/UI and copy polish for the DataBrief AI case-study page
 
 ### Pending Decisions
+- Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
 - Whether to capture additional Overflow proof assets later, specifically an active workout/session screen and a broader progress overview screen for the portfolio page
 - Whether to approve canonical host redirects that consolidate `http`, apex, and bare-HTTPS variants to `https://www.raulmermans.com`
@@ -85,6 +86,17 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-08 - Final DataBrief AI case-study polish
+**Goal**: Make `/case-studies/data-brief-ai/` feel polished, confident, visual, and portfolio-ready while preserving the bounded AI analytics workflow narrative.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `app/case-studies/data-brief-ai/page.tsx` - updated hero positioning, CTAs, tags, mini-nav labels, proof cards, workflow copy, architecture caveats, output preview labels, dataset copy/download links, design decision, limits framing, final lesson, and closing CTA.
+- `styles/case-study-new.css` - refined the DataBrief hero preview caption and proof-card detail styling while preserving the scoped visual system.
+- `app/case-studies/data-brief-ai/layout.tsx`, `app/en/case-studies/data-brief-ai/layout.tsx`, and `app/es/case-studies/data-brief-ai/layout.tsx` - removed prototype wording from the route metadata descriptions.
+- `SESSION.md` - recorded this polish pass and remaining asset need.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `case-study-builder`, `design-system`, `visual-hierarchy`, `accessibility-enforcer`, `nextjs-app-router`, `animation-system`, `performance-guardian`, `image-manager`, and `seo-optimizer`. `git diff --check` passed. Targeted lint, direct ESLint, type-check, and the local dev server all stalled without usable output in this environment and were stopped.
+**Next Steps**: Review the page in-browser after the local Next CLI/dev-server issue is resolved, then replace representative report mockups with actual DataBrief screenshots if final run assets become available.
 
 ### 2026-05-07 - Redesign DataBrief AI case study landing
 **Goal**: Transform `/case-studies/data-brief-ai/` from a documentation-style case study into a sharper, more visual portfolio story that makes the bounded analytics workflow and unsupported-metric refusal clear within 30 seconds.

@@ -1873,6 +1873,17 @@ main.case-study-page-new {
 .data-brief-hero__visual {
   position: relative;
   z-index: 1;
+  margin: 0;
+}
+
+.data-brief-hero__visual figcaption {
+  margin-top: 0.8rem;
+  color: rgba(245, 240, 235, 0.62);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.55;
+  text-transform: uppercase;
 }
 
 .data-brief-tags {
@@ -2007,6 +2018,20 @@ main.case-study-page-new {
 
 .data-brief-proof-card p {
   color: rgba(245, 240, 235, 0.78);
+}
+
+.data-brief-proof-card__details {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.data-brief-proof-card__details p {
+  margin: 0;
+}
+
+.data-brief-proof-card__details strong {
+  color: var(--cream);
+  font-weight: 600;
 }
 
 .data-brief-flow {
@@ -2220,7 +2245,7 @@ main.case-study-page-new {
   background: var(--cream);
 }
 
-.data-brief-report__findings .data-brief-report__limitation {
+.data-brief-report__findings .data-brief-report__caveat {
   border-color: rgba(196, 30, 58, 0.26);
   background: rgba(196, 30, 58, 0.07);
   color: var(--ink);

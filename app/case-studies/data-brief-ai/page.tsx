@@ -22,7 +22,7 @@ const tags = [
   'Python',
   'Controlled Execution',
   'Evaluation Loop',
-  'Portfolio Prototype',
+  'Technical Case Study',
 ]
 
 const navItems = [
@@ -31,7 +31,7 @@ const navItems = [
   ['Workflow', '#workflow'],
   ['Output', '#output'],
   ['Datasets', '#datasets'],
-  ['Limitations', '#limitations'],
+  ['Limits', '#limits'],
   ['Links', '#links'],
 ] as const
 
@@ -42,8 +42,8 @@ const workflowSteps = [
   ['Route', 'Dataset signals determine the analysis path.'],
   ['Plan', 'A bounded KPI and chart plan is generated.'],
   ['Execute', 'Controlled Python analysis creates metrics and artifacts.'],
-  ['Evaluate + Repair', 'Output is checked for unsupported or ungrounded claims.'],
-  ['Report', 'KPIs, findings, charts, recommendations, and limitations are rendered.'],
+  ['Evaluate + Repair', 'Output is checked and recoverable failures are repaired.'],
+  ['Report', 'KPIs, findings, charts, recommendations, and caveats are rendered.'],
   ['Export', 'Report, findings JSON, and analysis script are downloadable.'],
 ] as const
 
@@ -61,7 +61,7 @@ const architectureCards = [
   {
     title: 'Evaluation Layer',
     description:
-      'Checks whether findings are grounded, repairs recoverable issues, and exposes limitations.',
+      'Checks whether findings are grounded, repairs recoverable issues, and exposes caveats.',
   },
   {
     title: 'Export Layer',
@@ -79,12 +79,12 @@ const outputPreviews = [
   {
     label: 'B',
     title: 'Top findings + data quality checks',
-    caption: 'Findings include source references, while unsupported metrics are shown as limitations.',
+    caption: 'Unsupported metrics are shown as caveats instead of being silently calculated.',
   },
   {
     label: 'C',
     title: 'Charts',
-    caption: 'Visual artifacts are generated from the uploaded file and tied to the report.',
+    caption: 'Charts are generated from the uploaded file and tied to report artifacts.',
   },
   {
     label: 'D',
@@ -105,12 +105,12 @@ const stackItems = [
 ]
 
 const limitations = [
-  'It is not production SaaS.',
+  'It is not positioned as production SaaS.',
   'It is not a fully autonomous AI agent.',
   'It does not implement OS-level sandbox isolation.',
-  'It does not enrich data with external web sources.',
+  'It does not enrich uploads with external web sources.',
   'Output quality depends on detectable column roles and dataset structure.',
-  'Marketing campaign routing is a future improvement.',
+  'Dedicated campaign-performance routing is a future domain extension.',
 ]
 
 function ReportMockup({ variant = 'hero' }: { variant?: 'hero' | 'findings' | 'charts' | 'exports' }) {
@@ -124,7 +124,7 @@ function ReportMockup({ variant = 'hero' }: { variant?: 'hero' | 'findings' | 'c
         <div className="data-brief-report__findings">
           <p>Highest spend appears in household and grocery categories.</p>
           <p>Missing values and duplicate rows are surfaced before interpretation.</p>
-          <p className="data-brief-report__limitation">Unavailable: true order-level metrics.</p>
+          <p className="data-brief-report__caveat">Unavailable: true order-level metrics.</p>
         </div>
       </div>
     )
@@ -225,18 +225,18 @@ export default function DataBriefAiPage() {
             </p>
             <p className="data-brief-hero__description">
               DataBrief AI analyzes CSV/XLSX files through semantic role detection, controlled Python execution, bounded
-              repair, and report export. The system is designed to produce useful business summaries while making
-              unsupported metrics explicit.
+              repair, and report export. The system is designed to surface what the data supports and make unsupported
+              metrics explicit.
             </p>
             <div className="data-brief-actions" aria-label="Project links">
               <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
-                Live Demo
+                Live Demo →
               </a>
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
-                GitHub
+                GitHub →
               </a>
               <a href="#datasets" className="data-brief-button">
-                Download Sample Datasets
+                View Example Datasets
               </a>
             </div>
             <div className="data-brief-tags" aria-label="Project tags">
@@ -245,9 +245,10 @@ export default function DataBriefAiPage() {
               ))}
             </div>
           </div>
-          <div className="data-brief-hero__visual" aria-label="Report output preview">
+          <figure className="data-brief-hero__visual" aria-label="Report output preview">
             <ReportMockup />
-          </div>
+            <figcaption>Representative report preview based on the ecommerce sample.</figcaption>
+          </figure>
         </section>
 
         <nav className="data-brief-mini-nav" aria-label="DataBrief AI page sections">
@@ -297,12 +298,26 @@ export default function DataBriefAiPage() {
               <article className="data-brief-proof-card">
                 <span>Unsupported claim avoided</span>
                 <h3>“Order Count” / “Average Order Value”</h3>
-                <p>No order ID detected.</p>
+                <div className="data-brief-proof-card__details">
+                  <p>
+                    <strong>Reason:</strong> No order ID detected.
+                  </p>
+                  <p>
+                    <strong>Outcome:</strong> Reported as purchase-line analysis instead.
+                  </p>
+                </div>
               </article>
               <article className="data-brief-proof-card">
                 <span>Unsupported claim avoided</span>
                 <h3>“Return/cancel rate = 0%”</h3>
-                <p>No return, refund, cancel, or status field detected.</p>
+                <div className="data-brief-proof-card__details">
+                  <p>
+                    <strong>Reason:</strong> No return, refund, cancel, or status field detected.
+                  </p>
+                  <p>
+                    <strong>Outcome:</strong> Marked unavailable instead of inferred.
+                  </p>
+                </div>
               </article>
             </div>
           </div>
@@ -352,6 +367,7 @@ export default function DataBriefAiPage() {
             <div className="data-brief-section__header">
               <p className="data-brief-eyebrow">Output</p>
               <h2 id="data-brief-output">Report output</h2>
+              <p>Representative UI preview.</p>
             </div>
             <div className="data-brief-preview-grid">
               {outputPreviews.map((preview) => (
@@ -410,11 +426,11 @@ export default function DataBriefAiPage() {
                 <p className="data-brief-card__file">Marketing.csv</p>
                 <h3>Marketing Campaign Sample</h3>
                 <p>A campaign-performance file used to test broader business reporting.</p>
-                <h4>What it revealed</h4>
+                <h4>What it demonstrates</h4>
                 <ul className="data-brief-list data-brief-list--light">
-                  <li>revenue and spend analysis works</li>
-                  <li>campaign charts are useful</li>
-                  <li>future routing should classify marketing datasets separately</li>
+                  <li>revenue and spend analysis</li>
+                  <li>campaign-level charting</li>
+                  <li>identified an expansion path for campaign-performance analysis</li>
                 </ul>
                 <div className="data-brief-card__actions">
                   <a href={marketingDatasetUrl} download className="data-brief-text-link">
@@ -438,8 +454,8 @@ export default function DataBriefAiPage() {
             <div className="data-brief-copy-stack">
               <p>
                 Spreadsheet analysis has a known structure: inspect the file, profile it, identify fields, run analysis,
-                validate outputs, and generate a report. A more open-ended agentic design would add flexibility, but
-                also more unpredictability.
+                validate outputs, and generate a report. A fully autonomous agent would add flexibility, but also more
+                unpredictability.
               </p>
               <p>
                 DataBrief AI uses agentic patterns — routing, evaluation, bounded repair, and grounded generation —
@@ -467,11 +483,11 @@ export default function DataBriefAiPage() {
           </div>
         </section>
 
-        <section id="limitations" className="data-brief-section data-brief-section--dark" aria-labelledby="data-brief-limitations">
+        <section id="limits" className="data-brief-section data-brief-section--dark" aria-labelledby="data-brief-limits">
           <div className="data-brief-section__container data-brief-two-column">
             <div>
-              <p className="data-brief-eyebrow">Limitations</p>
-              <h2 id="data-brief-limitations">What this prototype does not claim</h2>
+              <p className="data-brief-eyebrow">Limits</p>
+              <h2 id="data-brief-limits">What this system intentionally does not claim</h2>
             </div>
             <ul className="data-brief-list">
               {limitations.map((limitation) => (
@@ -489,13 +505,14 @@ export default function DataBriefAiPage() {
             </div>
             <div className="data-brief-copy-stack">
               <p>
-                DataBrief AI clarified a simple AI product principle: autonomy is not always the highest-value feature.
-                For structured tasks like spreadsheet analysis, the stronger architecture is often a bounded workflow
-                with clear validation, execution limits, and explicit refusal of unsupported claims.
+                The value of the project is its restraint: it shows how an AI system can be useful by staying inside
+                clear boundaries instead of pretending to do everything.
               </p>
               <p>
-                The project is not interesting because it tries to “do everything.” It is interesting because it shows
-                how an AI system can be useful while staying inside clear boundaries.
+                DataBrief AI clarified a simple AI product principle: autonomy is not always the highest-value feature.
+                For structured tasks like spreadsheet analysis, a bounded workflow with clear validation, execution
+                limits, and explicit refusal of unsupported claims can create a more trustworthy experience than a
+                free-form agent.
               </p>
             </div>
           </div>
@@ -506,18 +523,17 @@ export default function DataBriefAiPage() {
             <p className="data-brief-eyebrow">Links</p>
             <h2 id="data-brief-closing">Explore the project</h2>
             <p>
-              DataBrief AI is a portfolio prototype exploring reliable AI workflow architecture for spreadsheet
-              analysis.
+              DataBrief AI is a technical case study in reliable AI workflow architecture for spreadsheet analysis.
             </p>
             <div className="data-brief-actions">
               <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
-                Open Live Demo
+                Open Live Demo →
               </a>
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
-                View GitHub
+                View GitHub →
               </a>
               <a href="#datasets" className="data-brief-button">
-                Download Example Datasets
+                View Example Datasets
               </a>
             </div>
           </div>
