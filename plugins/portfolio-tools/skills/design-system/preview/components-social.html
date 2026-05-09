@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .social { width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,0.25); display:inline-flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream); transition:all 0.3s cubic-bezier(0.16,1,0.3,1); }
+  .social:hover, .social.hover { border-color:var(--accent); color:var(--accent); background:rgba(196,30,58,0.08); }
+  .chip { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border:1px solid var(--ink); font-family:var(--font-mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink); }
+  .chip.dark { background:var(--ink); color:var(--cream); border-color:var(--ink); }
+  .chip.accent { border-color:var(--accent); color:var(--accent); }
+</style></head>
+<body><div class="card dark">
+  <div class="mono on-dark">Social · 44px hairline circle · 2-letter label (no icon font)</div>
+  <div style="display:flex;gap:12px;margin-top:14px">
+    <span class="social">IG</span>
+    <span class="social hover">LI</span>
+    <span class="social">UN</span>
+    <span class="social">X</span>
+    <span class="social">BE</span>
+  </div>
+  <div class="mono on-dark" style="margin-top:22px">Chips · hairline · uppercase mono · used for tags + meta</div>
+  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+    <span class="chip" style="background:transparent;border-color:rgba(255,255,255,0.4);color:var(--cream)">Orchestration</span>
+    <span class="chip" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:var(--cream)">Agents</span>
+    <span class="chip accent">Case Study</span>
+  </div>
+</div></body></html>

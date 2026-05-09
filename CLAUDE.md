@@ -268,7 +268,7 @@ Skills are guidance documents that MUST be consulted before making changes. **Th
 
 | Skill | Read When | Location |
 |-------|-----------|----------|
-| **design-system** | Any UI/CSS changes | `plugins/portfolio-tools/skills/design-system/SKILL.md` |
+| **design-system** | Any UI/CSS changes — real brand tokens (ink/cream/accent palette, Bebas/DM Sans/Space Mono/Source Serif 4, JSX UI kit) | `plugins/portfolio-tools/skills/design-system/SKILL.md` |
 | **visual-hierarchy** | Layout, spacing, decluttering | `plugins/portfolio-tools/skills/visual-hierarchy/SKILL.md` |
 | **security-auditor** | API routes, auth, user input | `plugins/portfolio-tools/skills/security-auditor/SKILL.md` |
 | **case-study-builder** | Case study pages | `plugins/portfolio-tools/skills/case-study-builder/SKILL.md` |
@@ -312,11 +312,19 @@ plugins/portfolio-tools/
 ### Quick Reference (from design-system skill)
 ```css
 /* Always use variables, not hardcoded values */
-color: var(--color-text-primary);      /* NOT #0f172a */
-padding: var(--space-4);               /* NOT 16px */
-border-radius: var(--radius-lg);       /* NOT 8px */
-font-size: var(--text-base);           /* NOT 1rem */
+color: var(--ink);                     /* NOT #1A1714 */
+color: var(--ink-muted);               /* NOT #6B635A */
+background: var(--cream);             /* NOT #F5F0EB */
+background: var(--cream-warm);        /* NOT #EDE6DD */
+color: var(--accent);                 /* NOT #C41E3A */
+font-family: var(--font-display);     /* Bebas Neue */
+font-family: var(--font-body);        /* DM Sans */
+font-family: var(--font-mono);        /* Space Mono */
+font-family: var(--font-reading);     /* Source Serif 4 */
 ```
+
+Full token reference → `plugins/portfolio-tools/skills/design-system/colors_and_type.css`
+Component patterns → `plugins/portfolio-tools/skills/design-system/ui_kits/portfolio/`
 
 See `plugins/portfolio-tools/skills/design-system/SKILL.md` for full color palette, typography scale, and component patterns.
 

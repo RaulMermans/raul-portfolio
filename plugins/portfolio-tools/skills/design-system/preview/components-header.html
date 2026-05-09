@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .nav { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border:1px solid var(--border); background:var(--cream); }
+  .logo { font-family:var(--font-display); font-size:32px; line-height:1; letter-spacing:-0.02em; color:var(--ink); }
+  .links { display:flex; gap:28px; }
+  .link { font-family:var(--font-mono); font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-muted); position:relative; }
+  .link.active { color:var(--ink); }
+  .link::after { content:''; position:absolute; left:0; bottom:-6px; height:1.5px; width:100%; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+  .link.active::after { transform:scaleX(1); }
+  .lang { display:flex; gap:6px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-muted); }
+  .lang .on { color:var(--ink); }
+</style></head>
+<body><div class="card" style="padding:24px 32px">
+  <div class="mono">Header · fixed 80px · logo · links · lang switch</div>
+  <div class="nav" style="margin-top:12px">
+    <div class="logo">RM</div>
+    <div class="links">
+      <span class="link active">Work</span>
+      <span class="link">Services</span>
+      <span class="link">About</span>
+      <span class="link">Contact</span>
+    </div>
+    <div class="lang"><span class="on">EN</span><span>·</span><span>ES</span></div>
+  </div>
+</div></body></html>
