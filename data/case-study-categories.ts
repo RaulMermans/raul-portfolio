@@ -2,7 +2,7 @@ import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import type { Locale } from '@/lib/i18n'
 import { localizePath } from '@/lib/i18n'
 
-export type CaseStudyCategorySlug = 'ai-systems-agents' | 'campaign-systems' | 'brand-systems'
+export type CaseStudyCategorySlug = 'ai-systems-agents' | 'campaign-systems' | 'brand-systems' | 'data-systems'
 
 export type CategoryProject = {
   title: string
@@ -33,6 +33,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const aiSports = findStudy(caseStudies, 'ai-sports')
   const remoria = findStudy(caseStudies, 'remoria')
   const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
+  const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
 
   return [
     {
@@ -106,6 +107,26 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
               description: remoria.description,
               image: remoria.image,
               href: remoria.href,
+            },
+          ]
+        : [],
+    },
+    {
+      slug: 'data-systems',
+      title: isSpanish ? 'Inteligencia de negocio' : 'Business intelligence',
+      eyebrow: isSpanish ? 'Sistemas de datos' : 'Data systems',
+      description: isSpanish
+        ? 'Dashboards, benchmarks e interfaces de lectura estratégica que transforman datos estructurados en decisiones claras.'
+        : 'Dashboards, benchmark interfaces, and strategic-reading systems that transform structured data into clear decisions.',
+      href: localizePath('/case-studies/data-systems', locale),
+      projects: benchmarkDashboard
+        ? [
+            {
+              title: benchmarkDashboard.title,
+              label: benchmarkDashboard.subtitle ?? (isSpanish ? 'Data product / Benchmark system' : 'Data product / Benchmark system'),
+              description: benchmarkDashboard.description,
+              image: benchmarkDashboard.image,
+              href: benchmarkDashboard.href,
             },
           ]
         : [],

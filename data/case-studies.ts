@@ -17,6 +17,17 @@ export const MOODS = ['All', 'minimal', 'bold', 'editorial', 'tech'] as const
 const caseStudyEntries = {
   en: [
     {
+      id: 3,
+      slug: 'benchmark-dashboard',
+      title: 'Benchmark Dashboard Template',
+      description:
+        'A reusable intelligence interface built with React, Vite, Tailwind CSS, and Recharts. Transforms mock benchmark data into rankings, trends, comparisons, events, and forecast scenarios.',
+      image: '/images/case-studies/case-studies-thumbnail.webp',
+      color: 'var(--color-0)',
+      subtitle: 'Data product / Business intelligence dashboard',
+      mood: ['minimal', 'tech'],
+    },
+    {
       id: 0,
       slug: 'ai-sports',
       title: 'AI Sports Campaign',
@@ -51,6 +62,17 @@ const caseStudyEntries = {
     },
   ],
   es: [
+    {
+      id: 3,
+      slug: 'benchmark-dashboard',
+      title: 'Benchmark Dashboard Template',
+      description:
+        'Una interfaz de inteligencia reutilizable construida con React, Vite, Tailwind CSS y Recharts. Transforma datos mock de benchmark en rankings, tendencias, comparativas, eventos y escenarios de forecast.',
+      image: '/images/case-studies/case-studies-thumbnail.webp',
+      color: 'var(--color-0)',
+      subtitle: 'Data product / Business intelligence dashboard',
+      mood: ['minimal', 'tech'],
+    },
     {
       id: 0,
       slug: 'ai-sports',
