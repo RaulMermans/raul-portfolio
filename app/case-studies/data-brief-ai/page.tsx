@@ -487,7 +487,7 @@ export default function DataBriefAiPage() {
           <div className="data-brief-section__container data-brief-two-column">
             <div>
               <p className="data-brief-eyebrow">Limits</p>
-              <h2 id="data-brief-limits">What this system intentionally does not claim</h2>
+              <h2 id="data-brief-limits">System boundaries</h2>
             </div>
             <ul className="data-brief-list">
               {limitations.map((limitation) => (
