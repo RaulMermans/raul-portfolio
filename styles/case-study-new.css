@@ -2762,3 +2762,125 @@ main.case-study-page-new {
     animation: none;
   }
 }
+
+/* Mockup view tabs */
+.benchmark-mockup__tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.benchmark-mockup__tab {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(245, 240, 235, 0.14);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(245, 240, 235, 0.45);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.benchmark-mockup__tab--active {
+  border-color: var(--accent);
+  background: rgba(196, 30, 58, 0.16);
+  color: rgba(245, 240, 235, 0.88);
+}
+
+/* Hero mock-data disclaimer */
+.benchmark-hero__mock-notice {
+  max-width: 44rem;
+  margin: 1rem 0 0;
+  color: rgba(245, 240, 235, 0.48);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+/* Feature card grid (3-column) */
+.benchmark-feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.5rem;
+}
+
+/* Demo section mock-data badge */
+.benchmark-demo-notice {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(245, 240, 235, 0.18);
+  border-radius: 999px;
+  background: rgba(245, 240, 235, 0.06);
+  color: rgba(245, 240, 235, 0.5);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Field definitions below code block */
+.benchmark-field-defs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 2rem;
+  padding: 0;
+}
+
+.benchmark-field-defs > div {
+  padding: 1rem;
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  background: var(--cream-light);
+}
+
+.benchmark-field-defs dt {
+  margin-bottom: 0.4rem;
+}
+
+.benchmark-field-defs dt code {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.benchmark-field-defs dd {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+/* Connectors section label */
+.benchmark-connectors-label {
+  margin: 0 0 0.75rem;
+  color: var(--ink-muted);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Responsive additions */
+@media (max-width: 1180px) {
+  .benchmark-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .benchmark-field-defs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .benchmark-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benchmark-field-defs {
+    grid-template-columns: 1fr;
+  }
+}
