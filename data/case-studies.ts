@@ -3,6 +3,7 @@ import { localizePath } from '@/lib/i18n'
 
 export interface CaseStudy {
   id: number
+  slug: string
   title: string
   description: string
   image: string
@@ -112,6 +113,7 @@ const caseStudyEntries = {
 export function getCaseStudies(locale: Locale): CaseStudy[] {
   return caseStudyEntries[locale].map((study) => ({
     id: study.id,
+    slug: study.slug,
     title: study.title,
     description: study.description,
     image: study.image,

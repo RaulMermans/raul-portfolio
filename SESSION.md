@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-13
 
 ### Active Work
-- Cleaned up the DataBrief AI case-study landing for lower visual noise and clearer bounded-workflow proof
+- Reworked the case studies landing into a direct randomized project gallery with category filters
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -21,6 +21,7 @@
 - Whether to keep the legacy `/es/*` Spanish alias routes as canonicalized fallback paths or replace them with hard redirects to the new base Spanish routes later
 
 ### Blockers
+- Local verification for the case studies gallery redesign remained partially blocked: `npm run type-check` and targeted `npm run lint -- --file app/case-studies/page.tsx --file data/case-studies.ts` stalled without diagnostics and were killed; `npm run dev -- --hostname 127.0.0.1 --port 3000` bound to port 3000 but `/case-studies/` did not return a response before `curl` timed out.
 - Local Node-based verification commands for this session did not return usable output: `npm run type-check` timed out after 90 seconds, targeted ESLint timed out after 60 seconds, and targeted `tsc` timed out after 60 seconds.
 - IONOS Hosting Plus does not provide a Node.js runtime, and the repo still contains server-side features that may block a complete static export
 - `NEXT_PUBLIC_SITE_URL=https://www.raulmermans.com npm run build` timed out locally after 60 seconds without producing `.next/` or `out/`
@@ -86,6 +87,17 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-13 - Redesign case studies landing as project gallery
+**Goal**: Replace the `/case-studies/` category-first landing with a direct project gallery inspired by the supplied reference HTML, while preserving filtering by the existing category taxonomy.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `app/case-studies/page.tsx` - replaced the category menu with a project-first gallery, client-side category filters, session-based random ordering, and localized Spanish/English interface copy.
+- `data/case-studies.ts` - exposed each case study slug on the returned card model for stronger project identity in gallery contexts.
+- `styles/globals.css` - added the editorial masonry gallery system, filter toolbar, varied tile aspect ratios, hover/focus reveals, responsive column behavior, and reduced-motion handling.
+- `TASKS.md` and `SESSION.md` - recorded the completed landing redesign and local verification limits.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `case-study-builder`, `nextjs-app-router`, `accessibility-enforcer`, and `performance-guardian`. Also checked the live `/case-studies/` page and the supplied `/Users/raulm/Downloads/Case Studies.html`; the referenced `CaseStudiesGrid.jsx` companion file was not present in Downloads, so the visible HTML/CSS pattern was adapted into the repo. `git diff --check` passed and a lightweight TSX transpile parse passed. `npm run type-check` and targeted `npm run lint -- --file app/case-studies/page.tsx --file data/case-studies.ts` stalled without diagnostics and were killed. `npm run dev -- --hostname 127.0.0.1 --port 3000` bound to port 3000, but `/case-studies/` did not return a response before a 10-second curl timeout.
+**Next Steps**: Review `/case-studies/` and `/en/case-studies/` in-browser once the local Next runtime responds, especially masonry rhythm, mobile filter wrapping, and project image crops.
 
 ### 2026-05-13 - Simplify DataBrief AI case-study landing
 **Goal**: Apply the same visual-noise cleanup to `/case-studies/data-brief-ai/` by improving negative space, hierarchy, and product proof clarity.

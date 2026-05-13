@@ -33,6 +33,7 @@
 ## Completed
 
 ### May 2026
+- [x] Redesign `/case-studies/` as a direct randomized project gallery with category filters
 - [x] Add DataBrief AI bounded AI analytics workflow case study
 
 ### April 2026
