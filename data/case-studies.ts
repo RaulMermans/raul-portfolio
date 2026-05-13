@@ -55,7 +55,7 @@ const caseStudyEntries = {
       title: 'DataBrief AI',
       description:
         'A bounded AI analytics workflow that turns CSV/XLSX uploads into structured, grounded business reports through semantic role detection, controlled Python execution, bounded repair, and exportable outputs.',
-      image: '/images/case-studies/case-studies-thumbnail.webp',
+      image: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
       color: 'var(--accent)',
       subtitle: 'AI Systems / Analytics Workflow',
       mood: ['minimal', 'tech'],
@@ -101,7 +101,7 @@ const caseStudyEntries = {
       title: 'DataBrief AI',
       description:
         'Un flujo de analítica con IA acotado que convierte CSV/XLSX en informes de negocio estructurados y fundamentados mediante detección semántica, ejecución controlada de Python, reparación limitada y exportaciones.',
-      image: '/images/case-studies/case-studies-thumbnail.webp',
+      image: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
       color: 'var(--accent)',
       subtitle: 'Sistemas de IA / Flujo analítico',
       mood: ['minimal', 'tech'],

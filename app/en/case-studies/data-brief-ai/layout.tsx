@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
   path: '/case-studies/data-brief-ai',
   locale: 'en',
   image: {
-    url: '/images/case-studies/case-studies-thumbnail.webp',
+    url: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
     alt: 'DataBrief AI case study by Raúl Mermans',
   },
   type: 'article',
@@ -72,7 +72,7 @@ export default function EnglishDataBriefAiLayout({
           description,
           url: absoluteRouteUrl('/en/case-studies/data-brief-ai'),
           mainEntityOfPage: absoluteRouteUrl('/en/case-studies/data-brief-ai'),
-          image: absoluteUrl('/images/case-studies/case-studies-thumbnail.webp'),
+          image: absoluteUrl('/images/case-studies/data-brief-ai/thumb/thumb.webp'),
           articleSection: 'Case Studies',
           keywords: [
             'DataBrief AI',

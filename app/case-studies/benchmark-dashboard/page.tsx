@@ -13,33 +13,26 @@ const demoUrl = 'https://benchmark-dashboard-smoky.vercel.app/'
 const githubUrl = 'https://github.com/RaulMermans/benchmark_dashboard'
 
 const tags = [
-  'React',
-  'Vite',
-  'Tailwind CSS',
+  'React/Vite',
   'Recharts',
-  'Mock data',
+  'Synthetic data',
   'API-ready',
-  'Open source',
   'Data product',
 ]
 
 const navItems = [
-  ['Qué hace', '#que-hace'],
-  ['Cómo funciona', '#como-funciona'],
-  ['Demo pública', '#demo'],
+  ['Resumen', '#overview'],
+  ['Flujo', '#flow'],
+  ['Pantallas', '#screens'],
   ['Datos', '#conexion'],
-  ['Casos de uso', '#casos'],
-  ['Construcción', '#construccion'],
   ['Resultado', '#resultado'],
 ] as const
 
 const featureCards = [
-  { title: 'Rankings', description: 'Ordena entidades por métrica, score o periodo.' },
-  { title: 'Comparativas', description: 'Compara varias entidades en la misma vista.' },
-  { title: 'Tendencias', description: 'Muestra evolución mensual y cambios de performance.' },
-  { title: 'Eventos', description: 'Añade contexto a subidas, caídas o cambios relevantes.' },
-  { title: 'Forecast', description: 'Visualiza escenarios de evolución futura.' },
-  { title: 'Data adapter', description: 'Conecta la interfaz a distintas fuentes de datos.' },
+  { title: 'Ranking cockpit', description: 'Ordena entidades por revenue, visitas, share, crecimiento o score.' },
+  { title: 'Lectura de tendencia', description: 'Muestra evolución con vistas de share, growth e indexed performance.' },
+  { title: 'Capa de contexto', description: 'Añade eventos, señales y perfiles alrededor de las métricas.' },
+  { title: 'Forecast surface', description: 'Compara escenarios base, agresivos y conservadores.' },
 ]
 
 const systemSteps = [
@@ -65,60 +58,40 @@ const systemSteps = [
   },
 ]
 
-const connectors = [
-  'Google Sheets',
-  'Apps Script',
-  'n8n',
-  'Make',
-  'Zapier',
-  'Supabase',
-  'PostgreSQL',
-  'BigQuery',
-  'Airtable',
-  'API propia',
-  'JSON estático',
-]
-
-const useCases = [
-  'Benchmark competitivo',
-  'Seguimiento de performance por canal',
-  'Reporting ejecutivo',
-  'Comparación de mercados',
-  'Dashboard de campañas',
-  'Análisis de portfolio de productos',
-  'Seguimiento de KPIs por unidad de negocio',
+const proofPoints = [
+  { value: '12', label: 'Vistas de dashboard' },
+  { value: '3', label: 'Escenarios de forecast' },
+  { value: '0', label: 'Datos privados expuestos' },
 ]
 
 const buildBullets = [
-  'React + Vite',
-  'Tailwind CSS',
-  'Recharts',
-  'Generador de datos mock',
-  'Fallback local en JSON',
-  'Conector opcional por variable de entorno',
-  'Audit script para detectar referencias privadas',
-  'Deploy listo para Vercel',
-]
-
-const publicSafeBullets = [
-  'Datos mock',
-  'Sin marcas reales',
-  'Sin endpoints privados',
-  'Sin credenciales',
-  'Sin información confidencial',
-  'Repositorio público con README técnico',
-  'Demo pública segura si se mantiene sin endpoint privado',
+  'Interfaz React/Vite con Tailwind y visualizaciones en Recharts.',
+  'Fallback local en JSON y conector opcional mediante VITE_BENCHMARK_API_URL.',
+  'Generador de datos sintéticos y auditoría pública antes de publicar.',
 ]
 
 const resultBullets = [
-  'Dashboard funcional construido en React/Vite',
-  'Visualización con Recharts',
-  'Datos mock/sintéticos',
-  'Generador de dataset demo',
-  'Documentación pública',
-  'Conector API-ready',
-  'Deploy compatible con Vercel',
-  'Repositorio público seguro para portfolio',
+  'Plantilla reutilizable para benchmark, market share, growth y forecast reporting.',
+  'Modo demo público que muestra el producto sin exponer datos de clientes o competidores.',
+  'Contrato de datos claro para Sheets, bases de datos, warehouses o cualquier API JSON.',
+]
+
+const dashboardSlots = [
+  {
+    title: 'Vista ejecutiva',
+    description: 'Espacio principal para KPIs, resumen de mercado y señales estratégicas.',
+    frame: 'overview',
+  },
+  {
+    title: 'Rankings y perfiles',
+    description: 'Espacio secundario para rankings, perfiles de entidad y battle cards.',
+    frame: 'ranking',
+  },
+  {
+    title: 'Forecast y eventos',
+    description: 'Espacio secundario para escenarios, overlays y contexto temporal.',
+    frame: 'forecast',
+  },
 ]
 
 const dataContract = `{
@@ -147,14 +120,23 @@ function BenchmarkMockup() {
   return (
     <div className="benchmark-mockup">
       <div className="benchmark-mockup__bar">
-        <div className="benchmark-mockup__dots">
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-        </div>
         <span className="benchmark-mockup__label">Benchmark Dashboard — Datos mock</span>
       </div>
       <div className="benchmark-mockup__body">
+        <div className="benchmark-metrics" aria-label="Indicadores de ejemplo">
+          <div className="benchmark-metric">
+            <span className="benchmark-metric__label">Entidades</span>
+            <strong className="benchmark-metric__value">48</strong>
+          </div>
+          <div className="benchmark-metric">
+            <span className="benchmark-metric__label">Score medio</span>
+            <strong className="benchmark-metric__value">76</strong>
+          </div>
+          <div className="benchmark-metric">
+            <span className="benchmark-metric__label">Tendencia</span>
+            <strong className="benchmark-metric__value">+4</strong>
+          </div>
+        </div>
         <div className="benchmark-mockup__tabs" aria-label="Vistas del dashboard">
           {mockFeatureTabs.map((tab) => (
             <span
@@ -186,6 +168,31 @@ function BenchmarkMockup() {
   )
 }
 
+function DashboardSlot({ slot }: { slot: (typeof dashboardSlots)[number] }) {
+  return (
+    <article className={`benchmark-shot benchmark-shot--${slot.frame}`}>
+      <div className="benchmark-shot__frame" aria-hidden="true">
+        <div className="benchmark-shot__topline" />
+        <div className="benchmark-shot__grid">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="benchmark-shot__chart">
+          <i />
+          <i />
+          <i />
+        </div>
+      </div>
+      <div className="benchmark-shot__copy">
+        <h3>{slot.title}</h3>
+        <p>{slot.description}</p>
+      </div>
+    </article>
+  )
+}
+
 export default function BenchmarkDashboardPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
@@ -212,18 +219,17 @@ export default function BenchmarkDashboardPage() {
               Benchmark Dashboard Template
             </h1>
             <p className="benchmark-hero__subtitle">
-              Una plantilla de dashboard para comparar entidades, seguir métricas de benchmark y
-              visualizar datos de negocio desde JSON, Google Sheets, bases de datos o APIs.
+              Un dashboard público y reutilizable para convertir datos de benchmark en lectura
+              ejecutiva.
             </p>
             <p className="benchmark-hero__description">
-              Construí este proyecto como una plantilla pública para convertir datos estructurados
-              en un dashboard claro y navegable. Permite comparar entidades, revisar rankings,
-              analizar tendencias, añadir eventos y probar escenarios de forecast sin depender de
-              hojas de cálculo extensas.
+              El sistema toma un payload JSON normalizado y lo transforma en rankings, market share,
+              crecimiento, forecast, perfiles y señales estratégicas. La versión pública usa datos
+              sintéticos para enseñar la arquitectura sin exponer información privada.
             </p>
             <p className="benchmark-hero__mock-notice">
-              La demo pública utiliza datos mock/sintéticos. No contiene datos reales de empresas,
-              clientes, competidores ni mercados.
+              Solo modo demo: entidades sintéticas, valores sintéticos, sin datos de clientes ni
+              competidores reales.
             </p>
             <div className="data-brief-actions" aria-label="Project links">
               <a
@@ -264,21 +270,28 @@ export default function BenchmarkDashboardPage() {
           ))}
         </nav>
 
-        {/* ── QUÉ HACE ── */}
+        {/* ── OVERVIEW ── */}
         <section
-          id="que-hace"
-          className="data-brief-section data-brief-section--light"
-          aria-labelledby="benchmark-que-hace"
+          id="overview"
+          className="data-brief-section data-brief-section--light benchmark-section"
+          aria-labelledby="benchmark-overview"
         >
           <div className="data-brief-section__container">
-            <div className="data-brief-section__header">
-              <p className="data-brief-eyebrow">Funcionalidades</p>
-              <h2 id="benchmark-que-hace">Qué hace</h2>
+            <div className="benchmark-section-heading">
+              <p className="data-brief-eyebrow">Resumen</p>
+              <h2 id="benchmark-overview">De lógica de spreadsheet a superficie ejecutiva</h2>
               <p>
-                Benchmark Dashboard Template convierte un dataset estructurado en una vista visual
-                de benchmark. El usuario puede revisar qué entidades lideran, cómo evolucionan las
-                métricas, qué eventos explican cambios y cómo se proyectan distintos escenarios.
+                El caso ahora prioriza la forma del producto: un cockpit de benchmark reutilizable
+                que convierte filas estructuradas en vistas de comparación, evolución y decisión.
               </p>
+            </div>
+            <div className="benchmark-proof-strip" aria-label="Puntos clave del proyecto">
+              {proofPoints.map((point) => (
+                <div key={point.label}>
+                  <strong>{point.value}</strong>
+                  <span>{point.label}</span>
+                </div>
+              ))}
             </div>
             <div className="data-brief-card-grid benchmark-feature-grid">
               {featureCards.map((card) => (
@@ -291,21 +304,19 @@ export default function BenchmarkDashboardPage() {
           </div>
         </section>
 
-        {/* ── CÓMO FUNCIONA ── */}
+        {/* ── FLOW ── */}
         <section
-          id="como-funciona"
-          className="data-brief-section data-brief-section--cream"
-          aria-labelledby="benchmark-como-funciona"
+          id="flow"
+          className="data-brief-section data-brief-section--cream benchmark-section"
+          aria-labelledby="benchmark-flow"
         >
           <div className="data-brief-section__container">
-            <div className="data-brief-section__header">
+            <div className="benchmark-section-heading">
               <p className="data-brief-eyebrow">Arquitectura</p>
-              <h2 id="benchmark-como-funciona">Cómo funciona</h2>
+              <h2 id="benchmark-flow">Un sistema de cuatro capas</h2>
               <p>
-                El proyecto separa la fuente de datos de la interfaz. La app puede funcionar con un
-                JSON local o con un endpoint externo. Mientras los datos respeten el contrato
-                esperado, el dashboard puede alimentarse desde Google Sheets, una base de datos, un
-                warehouse o una API propia.
+                La arquitectura se explica con más aire: fuente de datos, contrato, normalización y
+                vistas del dashboard. Cada capa es visible sin convertir la página en documentación.
               </p>
             </div>
             <div className="benchmark-diagram" aria-label="Flujo del sistema">
@@ -329,44 +340,26 @@ export default function BenchmarkDashboardPage() {
           </div>
         </section>
 
-        {/* ── DEMO PÚBLICA ── */}
+        {/* ── DASHBOARD PROOF ── */}
         <section
-          id="demo"
-          className="data-brief-section data-brief-section--dark"
-          aria-labelledby="benchmark-demo"
+          id="screens"
+          className="data-brief-section data-brief-section--dark benchmark-section benchmark-section--screens"
+          aria-labelledby="benchmark-screens"
         >
-          <div className="data-brief-section__container data-brief-two-column">
-            <div>
-              <p className="data-brief-eyebrow">Demo pública</p>
-              <h2 id="benchmark-demo">Ver el dashboard en acción</h2>
-            </div>
-            <div className="data-brief-copy-stack">
+          <div className="data-brief-section__container">
+            <div className="benchmark-section-heading">
+              <p className="data-brief-eyebrow">Prueba visual</p>
+              <h2 id="benchmark-screens">Preparado para recibir screenshots reales</h2>
               <p>
-                La demo desplegada en Vercel usa únicamente datos mock. Sirve para probar la
-                navegación, la estructura visual y el comportamiento del dashboard sin exponer
-                información confidencial.
+                Hasta que entren las capturas finales, la página usa marcos de dashboard contenidos
+                que reservan espacio para la interfaz real. Los módulos están pensados para overview,
+                ranking/perfiles y forecast/eventos.
               </p>
-              <div className="benchmark-demo-notice" aria-label="Aviso sobre datos mock">
-                Datos mock / Sin información real
-              </div>
-              <div className="data-brief-actions">
-                <a
-                  href={demoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="data-brief-button data-brief-button--primary"
-                >
-                  Abrir demo →
-                </a>
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="data-brief-button"
-                >
-                  Ver código →
-                </a>
-              </div>
+            </div>
+            <div className="benchmark-shot-grid">
+              {dashboardSlots.map((slot) => (
+                <DashboardSlot key={slot.title} slot={slot} />
+              ))}
             </div>
           </div>
         </section>
@@ -374,117 +367,40 @@ export default function BenchmarkDashboardPage() {
         {/* ── CONEXIÓN DE DATOS ── */}
         <section
           id="conexion"
-          className="data-brief-section data-brief-section--cream"
+          className="data-brief-section data-brief-section--cream benchmark-section"
           aria-labelledby="benchmark-conexion"
         >
-          <div className="data-brief-section__container">
-            <div className="data-brief-section__header">
-              <p className="data-brief-eyebrow">Integración</p>
-              <h2 id="benchmark-conexion">Conecta tus propios datos</h2>
-              <p>
-                El dashboard está pensado para aceptar datos externos. Puedes reemplazar el JSON
-                incluido o conectar un endpoint mediante una variable de entorno.
-              </p>
-            </div>
-            <div className="benchmark-code-block" aria-label="Contrato de datos del dashboard">
-              <div className="benchmark-code-block__bar">
-                <span>data-contract.json</span>
-              </div>
-              <pre>{dataContract}</pre>
-            </div>
-            <dl className="benchmark-field-defs">
-              <div>
-                <dt><code>interface</code></dt>
-                <dd>Filas principales de métricas y entidades.</dd>
-              </div>
-              <div>
-                <dt><code>events</code></dt>
-                <dd>Eventos o notas que añaden contexto.</dd>
-              </div>
-              <div>
-                <dt><code>dictionary</code></dt>
-                <dd>Definiciones, categorías o metadata opcional.</dd>
-              </div>
-            </dl>
-            <p className="benchmark-connectors-label">Fuentes compatibles</p>
-            <div className="benchmark-connectors" aria-label="Fuentes de datos compatibles">
-              {connectors.map((c) => (
-                <span key={c}>{c}</span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── CASOS DE USO ── */}
-        <section
-          id="casos"
-          className="data-brief-section data-brief-section--light"
-          aria-labelledby="benchmark-casos"
-        >
-          <div className="data-brief-section__container">
-            <div className="data-brief-section__header">
-              <p className="data-brief-eyebrow">Aplicaciones</p>
-              <h2 id="benchmark-casos">Casos de uso</h2>
-              <p>
-                Esta estructura puede adaptarse a distintos contextos donde hay que comparar
-                entidades y leer evolución.
-              </p>
-            </div>
-            <div className="benchmark-connectors" aria-label="Casos de uso">
-              {useCases.map((uc) => (
-                <span key={uc}>{uc}</span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── CONSTRUCCIÓN ── */}
-        <section
-          id="construccion"
-          className="data-brief-section data-brief-section--dark"
-          aria-labelledby="benchmark-construccion"
-        >
           <div className="data-brief-section__container data-brief-two-column">
-            <div>
-              <p className="data-brief-eyebrow">Stack técnico</p>
-              <h2 id="benchmark-construccion">Construcción</h2>
-            </div>
-            <div className="data-brief-copy-stack">
+            <div className="benchmark-section-heading benchmark-section-heading--sticky">
+              <p className="data-brief-eyebrow">Contrato de datos</p>
+              <h2 id="benchmark-conexion">Conectable sin llenar la página de ruido</h2>
               <p>
-                El proyecto está construido como una plantilla pública y deployable. La prioridad
-                fue mantener una arquitectura simple, fácil de adaptar y segura para publicar.
+                El dashboard puede funcionar con JSON local o un endpoint externo. En portfolio
+                basta con mostrar el contrato y la lógica de integración, no todas las fuentes
+                posibles como una pared de chips.
               </p>
-              <ul className="data-brief-list">
-                {buildBullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
             </div>
-          </div>
-        </section>
-
-        {/* ── VERSIÓN PÚBLICA ── */}
-        <section
-          id="version-publica"
-          className="data-brief-section data-brief-section--cream"
-          aria-labelledby="benchmark-version-publica"
-        >
-          <div className="data-brief-section__container data-brief-two-column">
-            <div>
-              <p className="data-brief-eyebrow">Seguridad</p>
-              <h2 id="benchmark-version-publica">Versión pública</h2>
-            </div>
-            <div className="data-brief-copy-stack">
-              <p>
-                La versión publicada está separada de cualquier contexto privado. No incluye logos
-                reales, endpoints privados, datos de clientes, competidores reales ni información
-                comercial. Todo el contenido de la demo se genera con datos sintéticos.
-              </p>
-              <ul className="data-brief-list data-brief-list--light">
-                {publicSafeBullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
+            <div className="benchmark-data-stack">
+              <div className="benchmark-code-block" aria-label="Contrato de datos del dashboard">
+                <div className="benchmark-code-block__bar">
+                  <span>data-contract.json</span>
+                </div>
+                <pre>{dataContract}</pre>
+              </div>
+              <dl className="benchmark-field-defs">
+                <div>
+                  <dt><code>interface</code></dt>
+                  <dd>Filas principales para métricas, entidades y periodos.</dd>
+                </div>
+                <div>
+                  <dt><code>events</code></dt>
+                  <dd>Anotaciones opcionales para campañas, lanzamientos o contexto.</dd>
+                </div>
+                <div>
+                  <dt><code>dictionary</code></dt>
+                  <dd>Definiciones y metadata opcional para la capa de interfaz.</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </section>
@@ -492,51 +408,37 @@ export default function BenchmarkDashboardPage() {
         {/* ── RESULTADO ── */}
         <section
           id="resultado"
-          className="data-brief-section data-brief-section--dark"
+          className="data-brief-section data-brief-section--dark benchmark-section benchmark-section--result"
           aria-labelledby="benchmark-resultado"
         >
-          <div className="data-brief-section__container data-brief-two-column">
-            <div>
-              <p className="data-brief-eyebrow">Resultado</p>
-              <h2 id="benchmark-resultado">Una plantilla deployable y pública</h2>
-            </div>
-            <div className="data-brief-copy-stack">
-              <p>
-                El resultado es una plantilla de dashboard que demuestra cómo convertir datos de
-                benchmark en una herramienta visual, conectable y deployable. Funciona como demo
-                pública, punto de partida para un dashboard interno o base para un sistema de
-                reporting conectado a datos reales.
-              </p>
-              <ul className="data-brief-list">
-                {resultBullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-              <aside className="data-brief-callout">
-                <span>Conclusión</span>
-                <strong>
-                  Un proyecto pensado para mostrar producto, datos y ejecución técnica sin depender
-                  de información privada.
-                </strong>
-              </aside>
-            </div>
-          </div>
-        </section>
-
-        {/* ── LINKS / CTA ── */}
-        <section
-          id="links"
-          className="data-brief-section data-brief-section--closing"
-          aria-labelledby="benchmark-links"
-        >
           <div className="data-brief-section__container">
-            <p className="data-brief-eyebrow">Links</p>
-            <h2 id="benchmark-links">Explorar el proyecto</h2>
-            <p>
-              Benchmark Dashboard Template es una plantilla pública para convertir datos de
-              benchmark en un dashboard visual, conectable y deployable. Datos mock incluidos,
-              conector API-ready, deploy listo para Vercel.
-            </p>
+            <div className="benchmark-section-heading">
+              <p className="data-brief-eyebrow">Resultado</p>
+              <h2 id="benchmark-resultado">Una plantilla pública con criterio de trabajo privado</h2>
+              <p>
+                La landing debe sentirse como una página de producto, no como un volcado técnico:
+                arquitectura suficiente para confiar, espacio visual para inspeccionar y salidas
+                claras hacia demo y repositorio.
+              </p>
+            </div>
+            <div className="benchmark-result-grid">
+              <article>
+                <h3>Construcción</h3>
+                <ul className="data-brief-list">
+                  {buildBullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+              <article>
+                <h3>Resultado</h3>
+                <ul className="data-brief-list">
+                  {resultBullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
             <div className="data-brief-actions">
               <a
                 href={demoUrl}
@@ -555,6 +457,13 @@ export default function BenchmarkDashboardPage() {
                 Ver repositorio →
               </a>
             </div>
+            <aside className="data-brief-callout">
+              <span>Conclusión</span>
+              <strong>
+                Un producto de benchmark seguro para portfolio que muestra diseño de dashboard,
+                modelado de datos y disciplina de despliegue sin depender de información privada.
+              </strong>
+            </aside>
           </div>
         </section>
 

@@ -2392,6 +2392,359 @@ main.case-study-page-new {
   }
 }
 
+/* DataBrief AI cleanup — reduced density and clearer proof rhythm */
+.case-study-page-new--data-brief {
+  --data-brief-section-pad: clamp(5.5rem, 9vw, 8rem);
+}
+
+.case-study-page-new--data-brief .data-brief-section {
+  padding-top: var(--data-brief-section-pad);
+  padding-bottom: var(--data-brief-section-pad);
+}
+
+.case-study-page-new--data-brief .data-brief-section__container {
+  max-width: 70rem;
+}
+
+.case-study-page-new--data-brief .data-brief-mini-nav {
+  max-width: 58rem;
+  margin: -1.25rem auto 0;
+  border: 1px solid rgba(26, 23, 20, 0.12);
+  border-radius: var(--data-brief-card-radius);
+  padding: 0.5rem;
+}
+
+.case-study-page-new--data-brief .data-brief-mini-nav a {
+  border-color: transparent;
+  background: transparent;
+}
+
+.data-brief-hero {
+  grid-template-columns: minmax(0, 0.78fr) minmax(23rem, 0.82fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem)) clamp(1.25rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
+}
+
+.data-brief-hero__content {
+  max-width: 50rem;
+}
+
+.data-brief-hero__title {
+  max-width: 7ch;
+}
+
+.data-brief-hero__subtitle {
+  max-width: 42rem;
+}
+
+.data-brief-hero__description {
+  max-width: 39rem;
+}
+
+.case-study-page-new--data-brief .data-brief-tags {
+  max-width: 32rem;
+}
+
+.case-study-page-new--data-brief .data-brief-tags span {
+  min-height: 2rem;
+  border-color: rgba(245, 240, 235, 0.12);
+  color: rgba(245, 240, 235, 0.66);
+}
+
+.data-brief-refresh-heading {
+  max-width: 48rem;
+}
+
+.data-brief-refresh-heading h2 {
+  max-width: 13ch;
+}
+
+.data-brief-refresh-heading p {
+  max-width: 44rem;
+}
+
+.data-brief-section--overview .data-brief-refresh-heading {
+  margin-bottom: clamp(2.75rem, 5vw, 4.25rem);
+}
+
+.data-brief-refusal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.data-brief-refusal-card,
+.data-brief-principle-card {
+  display: grid;
+  min-height: 24rem;
+  align-content: space-between;
+  gap: 1.5rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  background: var(--cream);
+}
+
+.data-brief-refusal-card span,
+.data-brief-principle-card span {
+  color: rgba(26, 23, 20, 0.54);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.data-brief-refusal-card h3,
+.data-brief-principle-card strong {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.45rem, 4vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.data-brief-refusal-card dl {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.data-brief-refusal-card dl div {
+  border-top: 1px solid rgba(26, 23, 20, 0.12);
+  padding-top: 0.85rem;
+}
+
+.data-brief-refusal-card dt {
+  margin-bottom: 0.35rem;
+  color: var(--accent);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.data-brief-refusal-card dd {
+  margin: 0;
+  color: rgba(26, 23, 20, 0.66);
+  line-height: 1.6;
+}
+
+.data-brief-principle-card {
+  background: var(--ink);
+}
+
+.data-brief-principle-card span {
+  color: rgba(245, 240, 235, 0.58);
+}
+
+.data-brief-principle-card strong {
+  color: var(--cream);
+}
+
+.data-brief-principle-card p {
+  color: rgba(245, 240, 235, 0.68);
+}
+
+.case-study-page-new--data-brief .data-brief-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(2.5rem, 5vw, 4rem) 0 1px;
+  border-radius: 0;
+}
+
+.case-study-page-new--data-brief .data-brief-flow span {
+  min-width: 0;
+  min-height: 5rem;
+}
+
+.data-brief-phase-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.data-brief-phase-card {
+  min-height: 17rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: var(--cream-light);
+}
+
+.data-brief-phase-card h3 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.data-brief-phase-card p {
+  margin-top: 1.25rem;
+}
+
+.data-brief-output-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: 1px;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.data-brief-output-main,
+.data-brief-output-list {
+  margin: 0;
+  background: var(--cream-light);
+}
+
+.data-brief-output-main {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.data-brief-output-main figcaption {
+  color: var(--ink-muted);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.data-brief-output-list {
+  display: grid;
+  gap: 1px;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.data-brief-output-list article {
+  display: grid;
+  align-content: space-between;
+  min-height: 11rem;
+  padding: clamp(1.15rem, 2vw, 1.5rem);
+  background: var(--cream-light);
+}
+
+.data-brief-output-list span {
+  color: var(--accent);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.data-brief-output-list h3 {
+  margin: 1.25rem 0 0.6rem;
+  color: var(--ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.data-brief-card-grid--datasets {
+  gap: 1px;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.case-study-page-new--data-brief .data-brief-card--dataset {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.data-brief-section--result .data-brief-refresh-heading h2 {
+  color: var(--cream);
+}
+
+.data-brief-section--result .data-brief-refresh-heading p {
+  color: rgba(245, 240, 235, 0.74);
+}
+
+.data-brief-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  background: rgba(245, 240, 235, 0.16);
+}
+
+.data-brief-result-grid article {
+  min-height: 18rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  background: rgba(245, 240, 235, 0.06);
+}
+
+.data-brief-result-grid h3 {
+  margin: 0;
+  color: var(--cream);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.data-brief-result-grid p {
+  margin-top: 1.25rem;
+}
+
+.data-brief-boundary-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  border-top: 1px solid rgba(245, 240, 235, 0.16);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.data-brief-boundary-panel .data-brief-eyebrow {
+  color: rgba(245, 240, 235, 0.58);
+}
+
+.data-brief-section--result .data-brief-actions {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 1180px) {
+  .data-brief-refusal-grid,
+  .data-brief-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-brief-phase-grid,
+  .case-study-page-new--data-brief .data-brief-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .case-study-page-new--data-brief .data-brief-mini-nav {
+    margin-top: 0;
+  }
+
+  .data-brief-output-showcase,
+  .data-brief-boundary-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .case-study-page-new--data-brief .data-brief-flow,
+  .data-brief-phase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-page-new--data-brief .data-brief-flow span {
+    min-height: 4rem;
+  }
+}
+
 /* =============================================
    BENCHMARK DASHBOARD CASE STUDY
    ============================================= */
@@ -2882,5 +3235,493 @@ main.case-study-page-new {
 
   .benchmark-field-defs {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Benchmark Dashboard refresh — calmer hierarchy and screenshot-ready proof slots */
+.case-study-page-new--benchmark .data-brief-back {
+  color: rgba(26, 23, 20, 0.62);
+}
+
+.case-study-page-new--benchmark .data-brief-mini-nav {
+  max-width: 62rem;
+  margin: -1.5rem auto 0;
+  border-color: rgba(26, 23, 20, 0.12);
+  background: rgba(245, 240, 235, 0.92);
+}
+
+.case-study-page-new--benchmark .data-brief-mini-nav a {
+  color: rgba(26, 23, 20, 0.62);
+}
+
+.case-study-page-new--benchmark .data-brief-mini-nav a:hover,
+.case-study-page-new--benchmark .data-brief-mini-nav a:focus-visible {
+  background: rgba(26, 23, 20, 0.06);
+  color: var(--ink);
+}
+
+.benchmark-hero {
+  grid-template-columns: minmax(0, 0.78fr) minmax(24rem, 0.9fr);
+  align-items: end;
+  gap: clamp(3rem, 7vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem)) clamp(1.25rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
+  border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.benchmark-hero__content {
+  max-width: 50rem;
+}
+
+.benchmark-hero__title {
+  max-width: 13ch;
+  color: var(--ink);
+  font-size: clamp(3.8rem, 7vw, 8rem);
+}
+
+.benchmark-hero__subtitle {
+  max-width: 42rem;
+  margin-top: 1.7rem;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.benchmark-hero__description {
+  max-width: 40rem;
+  margin-top: 1.1rem;
+  color: rgba(26, 23, 20, 0.68);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.benchmark-hero__mock-notice {
+  max-width: 34rem;
+  color: rgba(26, 23, 20, 0.5);
+}
+
+.case-study-page-new--benchmark .data-brief-tags {
+  max-width: 34rem;
+  margin-top: 1.25rem;
+}
+
+.case-study-page-new--benchmark .data-brief-tags span {
+  border-color: rgba(26, 23, 20, 0.1);
+  background: rgba(26, 23, 20, 0.035);
+  color: rgba(26, 23, 20, 0.62);
+}
+
+.benchmark-hero__visual figcaption {
+  color: rgba(26, 23, 20, 0.46);
+}
+
+.benchmark-mockup {
+  border-color: rgba(26, 23, 20, 0.12);
+  border-radius: 8px;
+  background: var(--cream-light);
+  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+}
+
+.benchmark-mockup__bar {
+  justify-content: space-between;
+  border-bottom-color: rgba(26, 23, 20, 0.1);
+  padding: 0.85rem 1rem;
+}
+
+.benchmark-mockup__label {
+  color: rgba(26, 23, 20, 0.46);
+}
+
+.benchmark-mockup__body {
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.benchmark-metric {
+  border-color: rgba(26, 23, 20, 0.1);
+  background: var(--cream);
+}
+
+.benchmark-metric__label {
+  color: rgba(26, 23, 20, 0.45);
+}
+
+.benchmark-metric__value {
+  color: var(--ink);
+}
+
+.benchmark-mockup__tab {
+  border-color: transparent;
+  background: rgba(26, 23, 20, 0.05);
+  color: rgba(26, 23, 20, 0.48);
+}
+
+.benchmark-mockup__tab--active {
+  border-color: rgba(26, 23, 20, 0.16);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.benchmark-ranking {
+  border-color: rgba(26, 23, 20, 0.1);
+  background: var(--cream);
+}
+
+.benchmark-ranking__header {
+  border-bottom-color: rgba(26, 23, 20, 0.09);
+  color: rgba(26, 23, 20, 0.45);
+}
+
+.benchmark-ranking__row {
+  border-bottom-color: rgba(26, 23, 20, 0.07);
+}
+
+.benchmark-ranking__pos,
+.benchmark-ranking__score {
+  color: rgba(26, 23, 20, 0.5);
+}
+
+.benchmark-ranking__name {
+  color: rgba(26, 23, 20, 0.78);
+}
+
+.benchmark-ranking__bar-track {
+  background: rgba(26, 23, 20, 0.08);
+}
+
+.benchmark-section {
+  padding: clamp(5.5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem);
+}
+
+.benchmark-section .data-brief-section__container {
+  max-width: 70rem;
+}
+
+.benchmark-section-heading {
+  max-width: 48rem;
+}
+
+.benchmark-section-heading h2 {
+  max-width: 12ch;
+}
+
+.benchmark-section-heading p {
+  max-width: 44rem;
+}
+
+.benchmark-section-heading--sticky {
+  align-self: start;
+  position: sticky;
+  top: calc(var(--header-height) + 2rem);
+}
+
+.benchmark-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: clamp(2.5rem, 5vw, 4rem) 0;
+  border-top: 1px solid rgba(26, 23, 20, 0.12);
+  border-bottom: 1px solid rgba(26, 23, 20, 0.12);
+}
+
+.benchmark-proof-strip div {
+  padding: 1.35rem 1.5rem;
+  border-right: 1px solid rgba(26, 23, 20, 0.1);
+}
+
+.benchmark-proof-strip div:last-child {
+  border-right: 0;
+}
+
+.benchmark-proof-strip strong {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.benchmark-proof-strip span {
+  display: block;
+  margin-top: 0.5rem;
+  color: rgba(26, 23, 20, 0.58);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.benchmark-feature-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 0;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.benchmark-feature-grid .data-brief-card,
+.benchmark-system-card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.benchmark-feature-grid .data-brief-card {
+  min-height: 13rem;
+  background: var(--cream);
+}
+
+.benchmark-diagram {
+  margin: clamp(2rem, 4vw, 3rem) 0 1px;
+  border-color: rgba(26, 23, 20, 0.1);
+  border-radius: 0;
+  background: rgba(26, 23, 20, 0.035);
+}
+
+.benchmark-system-grid {
+  gap: 1px;
+  margin-top: 0;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.benchmark-system-card {
+  min-height: 15rem;
+  background: var(--cream-light);
+}
+
+.benchmark-section--screens .benchmark-section-heading h2,
+.benchmark-section--result .benchmark-section-heading h2 {
+  color: var(--cream);
+}
+
+.benchmark-shot-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1px;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  background: rgba(245, 240, 235, 0.18);
+}
+
+.benchmark-shot {
+  display: grid;
+  min-height: 24rem;
+  align-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.25rem, 2.8vw, 2rem);
+  background: var(--ink);
+}
+
+.benchmark-shot:first-child {
+  grid-row: span 2;
+  min-height: 38rem;
+}
+
+.benchmark-shot__frame {
+  display: grid;
+  gap: 1rem;
+  min-height: 18rem;
+  border: 1px solid rgba(245, 240, 235, 0.16);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  background: rgba(245, 240, 235, 0.04);
+}
+
+.benchmark-shot:first-child .benchmark-shot__frame {
+  min-height: 28rem;
+}
+
+.benchmark-shot__topline {
+  width: 42%;
+  height: 0.7rem;
+  background: rgba(245, 240, 235, 0.28);
+}
+
+.benchmark-shot__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.benchmark-shot__grid span {
+  min-height: 3.5rem;
+  border: 1px solid rgba(245, 240, 235, 0.12);
+  background: rgba(245, 240, 235, 0.06);
+}
+
+.benchmark-shot__chart {
+  position: relative;
+  min-height: 9rem;
+  overflow: hidden;
+  border: 1px solid rgba(245, 240, 235, 0.12);
+  background:
+    linear-gradient(rgba(245, 240, 235, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 240, 235, 0.06) 1px, transparent 1px);
+  background-size: 100% 33.333%, 20% 100%;
+}
+
+.benchmark-shot__chart i {
+  position: absolute;
+  bottom: 18%;
+  width: 28%;
+  height: 2px;
+  background: rgba(245, 240, 235, 0.58);
+  transform-origin: left center;
+}
+
+.benchmark-shot__chart i:nth-child(1) {
+  left: 10%;
+  transform: rotate(-8deg);
+}
+
+.benchmark-shot__chart i:nth-child(2) {
+  left: 36%;
+  bottom: 32%;
+  transform: rotate(12deg);
+}
+
+.benchmark-shot__chart i:nth-child(3) {
+  left: 62%;
+  bottom: 44%;
+  transform: rotate(-5deg);
+}
+
+.benchmark-shot__copy h3 {
+  margin: 0;
+  color: var(--cream);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.benchmark-shot__copy p {
+  max-width: 32rem;
+  margin: 0.65rem 0 0;
+  color: rgba(245, 240, 235, 0.58);
+}
+
+.benchmark-data-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.benchmark-code-block {
+  margin-bottom: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.benchmark-code-block pre {
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.benchmark-field-defs {
+  grid-template-columns: 1fr;
+  gap: 1px;
+  margin: 0;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.benchmark-field-defs > div {
+  border: 0;
+  border-radius: 0;
+}
+
+.benchmark-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  background: rgba(245, 240, 235, 0.16);
+}
+
+.benchmark-result-grid article {
+  min-height: 18rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--ink);
+}
+
+.benchmark-result-grid h3 {
+  margin: 0 0 1.5rem;
+  color: var(--cream);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.benchmark-section--result .data-brief-actions {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.benchmark-section--result .data-brief-callout {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 1180px) {
+  .benchmark-hero {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .benchmark-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .case-study-page-new--benchmark .data-brief-mini-nav {
+    margin-top: 0;
+  }
+
+  .benchmark-section-heading--sticky {
+    position: static;
+  }
+
+  .benchmark-proof-strip,
+  .benchmark-shot-grid,
+  .benchmark-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benchmark-proof-strip div {
+    border-right: 0;
+    border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+  }
+
+  .benchmark-proof-strip div:last-child {
+    border-bottom: 0;
+  }
+
+  .benchmark-shot:first-child {
+    grid-row: auto;
+    min-height: 30rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .benchmark-hero {
+    padding: calc(var(--header-height) + 3rem) 1.25rem 4rem;
+  }
+
+  .benchmark-feature-grid,
+  .benchmark-system-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benchmark-metrics,
+  .benchmark-shot__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benchmark-shot,
+  .benchmark-shot:first-child {
+    min-height: 0;
+  }
+
+  .benchmark-shot__frame,
+  .benchmark-shot:first-child .benchmark-shot__frame {
+    min-height: 16rem;
   }
 }

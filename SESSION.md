@@ -5,10 +5,10 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-08
+**Last Updated**: 2026-05-13
 
 ### Active Work
-- Final UX/UI and copy polish for the DataBrief AI case-study page
+- Cleaned up the DataBrief AI case-study landing for lower visual noise and clearer bounded-workflow proof
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -86,6 +86,37 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-13 - Simplify DataBrief AI case-study landing
+**Goal**: Apply the same visual-noise cleanup to `/case-studies/data-brief-ai/` by improving negative space, hierarchy, and product proof clarity.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `app/case-studies/data-brief-ai/page.tsx` - reduced the landing from many dense sections into five stronger sections: overview/refusal proof, four-phase workflow, output showcase, example datasets, and consolidated result/boundaries/CTA.
+- `styles/case-study-new.css` - added scoped DataBrief cleanup styles for a tighter mini-nav, wider section rhythm, refusal-proof cards, four-phase workflow grid, calmer output showcase, dataset spacing, and result/boundary panels.
+- `SESSION.md` - recorded the UX/UI pass and local verification limits.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `case-study-builder`, `accessibility-enforcer`, `nextjs-app-router`, and `performance-guardian`. `git diff --check` passed and a lightweight TypeScript TSX transpile parse passed. `npm run lint -- --file app/case-studies/data-brief-ai/page.tsx` failed with `ETIMEDOUT: connection timed out, read`; `npm run type-check` stalled without diagnostics and was stopped; `npm run dev -- --hostname 127.0.0.1 --port 3000` did not bind to localhost and was stopped.
+**Next Steps**: Review `/case-studies/data-brief-ai/` in-browser once local Next CLI/dev-server behavior is fixed, especially the hero density, proof-card rhythm, and mobile output showcase.
+
+### 2026-05-13 - Simplify Benchmark Dashboard case-study landing
+**Goal**: Reduce visual noise and improve negative space, hierarchy, and screenshot readiness on `/case-studies/benchmark-dashboard/`.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `app/case-studies/benchmark-dashboard/page.tsx` - reduced the page from many dense sections to five stronger sections: hero, overview, architecture flow, dashboard proof slots, data contract, and consolidated result/CTA.
+- `styles/case-study-new.css` - added scoped Benchmark refresh styles for a calmer cream hero, lighter mockup, restrained mini-nav, proof strip, screenshot-ready dashboard frames, cleaner data contract, and consolidated result grid.
+- `SESSION.md` - recorded the UX/UI pass and local verification limits.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `case-study-builder`, `accessibility-enforcer`, `nextjs-app-router`, and `performance-guardian`. Also inspected the referenced `benchmark_dashboard` repo README and source structure for product scope: ranking, share, growth, forecast, events, profiles, synthetic data, connector fallback, and public-readiness audit. `git diff --check` passed and a lightweight TypeScript TSX transpile parse passed. `npm run lint -- --file app/case-studies/benchmark-dashboard/page.tsx`, `npm run type-check`, and `npm run dev -- --hostname 127.0.0.1 --port 3000` stalled without diagnostics or a listening localhost port and were stopped.
+**Next Steps**: Review `/case-studies/benchmark-dashboard/` in-browser once local Next CLI/dev-server behavior is fixed, especially mobile spacing and the screenshot placeholder rhythm.
+
+### 2026-05-13 - Replace DataBrief AI thumbnail
+**Goal**: Use the supplied `databriefAI_thumbnail.webp` image as the DataBrief AI case-study thumbnail.
+**Outcome**: Completed with verification limitations
+**Changes Made**:
+- `public/images/case-studies/data-brief-ai/thumb/thumb.webp` - added the supplied WebP thumbnail asset using the repo's case-study image path convention.
+- `data/case-studies.ts` - updated the English and Spanish DataBrief AI card entries to use the new thumbnail path.
+- `app/case-studies/data-brief-ai/layout.tsx`, `app/en/case-studies/data-brief-ai/layout.tsx`, and `app/es/case-studies/data-brief-ai/layout.tsx` - updated metadata and article structured-data images to use the same DataBrief thumbnail.
+- `SESSION.md` - recorded the asset replacement for continuity.
+**Notes**: Consulted `image-manager` and `case-study-builder`. The supplied thumbnail is a valid 1254x1254 WebP. `git diff --check` passed, and focused path/file checks confirmed the new image references. `npm run type-check` and targeted `npm run lint -- --file ...` were stopped after stalling without diagnostics, matching the existing local verification limitation.
+**Next Steps**: Review the DataBrief card on `/case-studies` and the category pages in-browser to confirm the square artwork crops as intended.
 
 ### 2026-05-08 - Final DataBrief AI case-study polish
 **Goal**: Make `/case-studies/data-brief-ai/` feel polished, confident, visual, and portfolio-ready while preserving the bounded AI analytics workflow narrative.
