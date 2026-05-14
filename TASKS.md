@@ -33,6 +33,10 @@
 ## Completed
 
 ### May 2026
+- [x] Remove intermediate case-study category landing pages
+- [x] Replace DataBrief AI sample-data section with software architecture narrative
+- [x] Center DataBrief AI mini-nav and widen case-study text measure
+- [x] Fix case-study navbar contrast on dark hero backgrounds
 - [x] Redesign `/case-studies/` as a direct randomized project gallery with category filters
 - [x] Add DataBrief AI bounded AI analytics workflow case study
 

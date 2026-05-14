@@ -209,10 +209,10 @@ export default function BenchmarkDashboardPage() {
         <section className="benchmark-hero" aria-labelledby="benchmark-title">
           <div className="benchmark-hero__content">
             <Link
-              href={localizePath('/case-studies/data-systems', locale)}
+              href={localizePath('/case-studies', locale)}
               className="data-brief-back"
             >
-              ← Sistemas de datos
+              {locale === 'es' ? '← Casos de estudio' : '← Case Studies'}
             </Link>
             <p className="data-brief-eyebrow">Data product / Benchmark dashboard</p>
             <h1 id="benchmark-title" className="benchmark-hero__title">

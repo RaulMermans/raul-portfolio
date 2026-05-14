@@ -43,7 +43,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
       description: isSpanish
         ? 'Agentes y sistemas aplicados que convierten análisis, auditoría y decisiones repetibles en flujos utilizables.'
         : 'Applied agents and systems that turn analysis, audits, and repeatable decisions into usable workflows.',
-      href: localizePath('/case-studies/ai-systems-agents', locale),
+      href: localizePath('/case-studies', locale),
       projects: [
         dataBriefAi
           ? {
@@ -78,7 +78,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
       description: isSpanish
         ? 'Infraestructura para mantener consistencia visual, narrativa y operativa en campañas de ritmo rápido.'
         : 'Infrastructure for keeping visual, narrative, and operational consistency inside fast-moving campaigns.',
-      href: localizePath('/case-studies/campaign-systems', locale),
+      href: localizePath('/case-studies', locale),
       projects: aiSports
         ? [
             {
@@ -98,7 +98,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
       description: isSpanish
         ? 'Identidades, reglas visuales y lógica de marca pensadas para escalar sin perder precisión.'
         : 'Identities, visual rules, and brand logic designed to scale without losing precision.',
-      href: localizePath('/case-studies/brand-systems', locale),
+      href: localizePath('/case-studies', locale),
       projects: remoria
         ? [
             {
@@ -118,7 +118,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
       description: isSpanish
         ? 'Dashboards, benchmarks e interfaces de lectura estratégica que transforman datos estructurados en decisiones claras.'
         : 'Dashboards, benchmark interfaces, and strategic-reading systems that transform structured data into clear decisions.',
-      href: localizePath('/case-studies/data-systems', locale),
+      href: localizePath('/case-studies', locale),
       projects: benchmarkDashboard
         ? [
             {

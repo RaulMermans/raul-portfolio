@@ -11,8 +11,6 @@ import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 
 const githubUrl = 'https://github.com/RaulMermans/DataBrief-AI.git'
 const demoUrl = 'https://data-brief-ai-sigma.vercel.app'
-const amazonDatasetUrl = '/assets/case-studies/data-brief-ai/amazon-purchases-sample.csv'
-const marketingDatasetUrl = '/assets/case-studies/data-brief-ai/Marketing.csv'
 
 const tags = [
   'Bounded AI',
@@ -26,7 +24,7 @@ const navItems = [
   ['Overview', '#overview'],
   ['Workflow', '#workflow'],
   ['Output', '#output'],
-  ['Datasets', '#datasets'],
+  ['Architecture', '#architecture'],
   ['Result', '#result'],
 ] as const
 
@@ -49,16 +47,16 @@ const workflowPhases = [
     description: 'Read rows, columns, types, missing values, duplicates, and semantic field roles.',
   },
   {
-    title: 'Plan',
-    description: 'Build a bounded KPI and chart plan from what the uploaded dataset can support.',
+    title: 'Route + Plan',
+    description: 'Classify the dataset domain and build a bounded KPI/chart plan from supported signals only.',
   },
   {
     title: 'Execute',
     description: 'Run controlled Python analysis to create metrics, charts, and structured artifacts.',
   },
   {
-    title: 'Evaluate',
-    description: 'Check groundedness, repair recoverable failures, expose caveats, and package exports.',
+    title: 'Evaluate + Export',
+    description: 'Classify execution results, repair only recoverable failures, ground the report, and package exports.',
   },
 ] as const
 
@@ -75,10 +73,43 @@ const outputPreviews = [
   },
   {
     label: 'C',
-    title: 'Charts + exports',
-    caption: 'Charts, Markdown, findings JSON, and generated analysis code stay tied to the run.',
+    title: 'Artifacts + exports',
+    caption: 'Report Markdown, findings JSON, charts, and generated analysis code stay tied to the run.',
   },
 ]
+
+const softwareLayers = [
+  {
+    title: 'HTTP boundary',
+    description:
+      'FastAPI accepts CSV/XLSX uploads, validates size and format, creates a run record, and exposes status, artifact, and export endpoints without leaking host paths.',
+  },
+  {
+    title: 'Semantic profiling',
+    description:
+      'The backend profiles rows, columns, missing values, duplicates, inferred types, and semantic roles before deciding what analysis path is allowed.',
+  },
+  {
+    title: 'Controlled execution',
+    description:
+      'Template-generated Python is checked with AST import rules and suspicious-pattern guards, then run in an isolated subprocess with time and resource limits.',
+  },
+  {
+    title: 'Evaluation loop',
+    description:
+      'Execution results are classified as success, recoverable, or unrecoverable. Recoverable failures get at most two deterministic repair attempts.',
+  },
+  {
+    title: 'Grounded report',
+    description:
+      'The report generator builds KPIs, findings, warnings, recommendations, and caveats from computed outputs only, then revises unsupported claims in one pass.',
+  },
+  {
+    title: 'Run store',
+    description:
+      'SQLite tracks run status, route, plan, evaluation, retry count, generated code, report payload, expiry, and export metadata for each upload.',
+  },
+] as const
 
 const stackItems = [
   'Next.js frontend',
@@ -217,8 +248,8 @@ export default function DataBriefAiPage() {
       <main id="main-content" className="case-study-page-new case-study-page-new--data-brief">
         <section className="data-brief-hero" aria-labelledby="data-brief-title">
           <div className="data-brief-hero__content">
-            <Link href={localizePath('/case-studies/ai-systems-agents', locale)} className="data-brief-back">
-              Back to AI Systems
+            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
+              {locale === 'es' ? 'Volver a casos' : 'Back to Case Studies'}
             </Link>
             <p className="data-brief-eyebrow">AI Systems / Analytics Workflow</p>
             <h1 id="data-brief-title" className="data-brief-hero__title">
@@ -240,8 +271,8 @@ export default function DataBriefAiPage() {
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
                 GitHub →
               </a>
-              <a href="#datasets" className="data-brief-button">
-                View Example Datasets
+              <a href="#workflow" className="data-brief-button">
+                How It Works
               </a>
             </div>
             <div className="data-brief-tags" aria-label="Project tags">
@@ -252,7 +283,7 @@ export default function DataBriefAiPage() {
           </div>
           <figure className="data-brief-hero__visual" aria-label="Report output preview">
             <ReportMockup />
-            <figcaption>Representative report preview based on the ecommerce sample.</figcaption>
+            <figcaption>Representative report preview showing supported metrics and explicit caveats.</figcaption>
           </figure>
         </section>
 
@@ -310,8 +341,9 @@ export default function DataBriefAiPage() {
               <p className="data-brief-eyebrow">Workflow</p>
               <h2 id="data-brief-workflow">Four phases, clear boundaries</h2>
               <p>
-                The original nine-step flow is still there, but the landing now presents it as a calmer system:
-                profile the file, plan supported analysis, execute in a controlled runtime, and evaluate the output.
+                The software keeps a strict pipeline behind the simplified presentation: validate the upload, profile
+                the dataset, route the domain, plan supported analysis, execute generated Python, evaluate the result,
+                repair only recoverable failures, then package the report and exports.
               </p>
             </div>
             <div className="data-brief-flow" aria-label="DataBrief AI workflow">
@@ -343,7 +375,7 @@ export default function DataBriefAiPage() {
             <div className="data-brief-output-showcase">
               <figure className="data-brief-output-main">
                 <ReportMockup />
-                <figcaption>Representative ecommerce run. Unsupported order-level metrics are explicitly flagged.</figcaption>
+                <figcaption>Representative run preview. Unsupported order-level metrics are explicitly flagged.</figcaption>
               </figure>
               <div className="data-brief-output-list">
                 {outputPreviews.map((preview) => (
@@ -358,56 +390,24 @@ export default function DataBriefAiPage() {
           </div>
         </section>
 
-        <section id="datasets" className="data-brief-section data-brief-section--light" aria-labelledby="data-brief-datasets">
+        <section id="architecture" className="data-brief-section data-brief-section--light" aria-labelledby="data-brief-architecture">
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
-              <p className="data-brief-eyebrow">Example datasets</p>
-              <h2 id="data-brief-datasets">Two files that test the boundaries</h2>
+              <p className="data-brief-eyebrow">Architecture</p>
+              <h2 id="data-brief-architecture">The software is a bounded pipeline, not a chatbot wrapper</h2>
               <p>
-                The sample datasets stay visible, but the section now reads as proof of behavior rather than a long
-                download block.
+                The system is organized around explicit service boundaries: profile first, route from detectable
+                signals, generate analysis code from templates, run it under guardrails, evaluate the result, and
+                expose artifacts through stable export endpoints.
               </p>
             </div>
-            <div className="data-brief-card-grid data-brief-card-grid--datasets">
-              <article className="data-brief-card data-brief-card--dataset">
-                <p className="data-brief-card__file">amazon-purchases-sample.csv</p>
-                <h3>Amazon Purchases Sample</h3>
-                <p>A messy ecommerce-style file used to test semantic safeguards.</p>
-                <h4>What it demonstrates</h4>
-                <ul className="data-brief-list data-brief-list--light">
-                  <li>avoids fake order count</li>
-                  <li>avoids fake AOV</li>
-                  <li>marks return/cancel rate unavailable</li>
-                  <li>surfaces missing values and duplicates</li>
-                </ul>
-                <div className="data-brief-card__actions">
-                  <a href={amazonDatasetUrl} download className="data-brief-text-link">
-                    Download Amazon sample
-                  </a>
-                  <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-text-link">
-                    View GitHub
-                  </a>
-                </div>
-              </article>
-              <article className="data-brief-card data-brief-card--dataset">
-                <p className="data-brief-card__file">Marketing.csv</p>
-                <h3>Marketing Campaign Sample</h3>
-                <p>A campaign-performance file used to test broader business reporting.</p>
-                <h4>What it demonstrates</h4>
-                <ul className="data-brief-list data-brief-list--light">
-                  <li>revenue and spend analysis</li>
-                  <li>campaign-level charting</li>
-                  <li>identified an expansion path for campaign-performance analysis</li>
-                </ul>
-                <div className="data-brief-card__actions">
-                  <a href={marketingDatasetUrl} download className="data-brief-text-link">
-                    Download Marketing sample
-                  </a>
-                  <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-text-link">
-                    View GitHub
-                  </a>
-                </div>
-              </article>
+            <div className="data-brief-card-grid data-brief-card-grid--architecture data-brief-card-grid--software">
+              {softwareLayers.map((layer) => (
+                <article key={layer.title} className="data-brief-card data-brief-card--architecture">
+                  <h3>{layer.title}</h3>
+                  <p>{layer.description}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -455,8 +455,8 @@ export default function DataBriefAiPage() {
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
                 View GitHub →
               </a>
-              <a href="#datasets" className="data-brief-button">
-                View Example Datasets
+              <a href="#architecture" className="data-brief-button">
+                View Architecture
               </a>
             </div>
           </div>

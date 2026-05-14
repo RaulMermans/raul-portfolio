@@ -5,10 +5,10 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-13
+**Last Updated**: 2026-05-14
 
 ### Active Work
-- Reworked the case studies landing into a direct randomized project gallery with category filters
+- Removed intermediate case-study category landing pages so case studies return to the main aggregator
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,47 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-14 - Remove intermediate case-study category landings
+**Goal**: Delete the category middle landings such as `/case-studies/ai-systems-agents/` so navigation moves between individual case studies and the main `/case-studies/` aggregator.
+**Outcome**: Completed with local browser limitation
+**Changes Made**:
+- `app/case-studies/*-systems/page.tsx`, `app/es/case-studies/*-systems/page.tsx`, `app/en/case-studies/*-systems/page.tsx`, and `app/case-studies/category-page-shared.tsx` - removed the category landing route pages and shared category page renderer.
+- `data/case-study-categories.ts` - changed category `href` values to the main aggregator path so any remaining internal use resolves to `/case-studies` instead of a middle route.
+- `app/case-studies/data-brief-ai/page.tsx` and `app/case-studies/benchmark-dashboard/page.tsx` - changed hero back links to the case-study aggregator.
+- `app/case-studies/benchmark-dashboard/layout.tsx`, `app/es/case-studies/benchmark-dashboard/layout.tsx`, and `app/en/case-studies/benchmark-dashboard/layout.tsx` - removed the category breadcrumb item.
+- `TASKS.md` and `SESSION.md` - recorded the completed route cleanup.
+**Notes**: Consulted `ui-ux-lead`, `case-study-builder`, `nextjs-app-router`, `design-system`, `visual-hierarchy`, and `accessibility-enforcer`. Also checked the live `/case-studies/ai-systems-agents/` page, which confirmed the middle-landing pattern. The main `/case-studies` in-page filters remain because they do not create a separate landing step. `rg` confirmed no remaining source references to `/case-studies/ai-systems-agents`, `/case-studies/campaign-systems`, `/case-studies/brand-systems`, `/case-studies/data-systems`, or `category-page-shared`. `git diff --check` passed for the touched files, and focused TSX transpile checks passed. Targeted lint failed before linting because local `node_modules/next/dist/compiled/p-limit/package.json` is truncated/corrupt.
+**Next Steps**: After repairing local `node_modules`, run targeted lint/type-check and visually confirm that individual case studies link back to `/case-studies`.
+
+### 2026-05-14 - Replace DataBrief AI sample-data section with software architecture
+**Goal**: Remove sample-dataset emphasis from the DataBrief AI case study and make the page focus on how the software works.
+**Outcome**: Completed with local browser limitation
+**Changes Made**:
+- `app/case-studies/data-brief-ai/page.tsx` - removed the dataset download constants, dataset nav item, sample-data section, and dataset CTAs; added an Architecture section covering the HTTP boundary, semantic profiling, controlled execution, evaluation loop, grounded report generation, and run store.
+- `styles/case-study-new.css` - added a scoped three-column software architecture grid for the new six-card section.
+- `TASKS.md` and `SESSION.md` - recorded the completed architecture refocus.
+**Notes**: Consulted `ui-ux-lead`, `case-study-builder`, `nextjs-app-router`, `design-system`, `visual-hierarchy`, and `accessibility-enforcer`. Cloned and inspected `https://github.com/RaulMermans/DataBrief-AI.git`, especially `README.md`, `docs/architecture.md`, `docs/case-study.md`, and backend service boundaries, then treated that external source as implementation context rather than trusted copy. `git diff --check -- app/case-studies/data-brief-ai/page.tsx styles/case-study-new.css TASKS.md SESSION.md` passed, a focused TSX transpile check passed, and a search confirmed the removed sample/dataset labels and anchors no longer exist in the rendered page source. Targeted `npm run lint -- --file app/case-studies/data-brief-ai/page.tsx` failed before linting because local `node_modules/next/dist/compiled/find-up/package.json` is truncated/corrupt.
+**Next Steps**: After repairing local `node_modules`, visually confirm `/case-studies/data-brief-ai/` and rerun targeted lint/type-check through the repo scripts.
+
+### 2026-05-14 - Center DataBrief AI nav and widen text measure
+**Goal**: Center the DataBrief AI sticky mini-nav and let the case-study text use more horizontal space without losing negative space.
+**Outcome**: Completed with local browser limitation
+**Changes Made**:
+- `styles/case-study-new.css` - widened the DataBrief section container, hero copy, lede/heading measure, tag wrap area, and report preview width; centered the sticky mini-nav on desktop and kept it left-scrollable on smaller screens.
+- `TASKS.md` and `SESSION.md` - recorded the completed polish pass.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `accessibility-enforcer`, and `case-study-builder`. Also opened the live `/case-studies/data-brief-ai/` page to confirm the current mini-nav and text-measure issue. `git diff --check -- styles/case-study-new.css` passed. Browser/dev-server verification remained blocked by the existing corrupt local Next dependency state.
+**Next Steps**: After repairing `node_modules`, visually confirm `/case-studies/data-brief-ai/` at desktop and mobile widths, especially the centered mini-nav, hero report alignment, and paragraph line length.
+
+### 2026-05-14 - Fix case-study navbar contrast
+**Goal**: Make the shared navbar visible on case-study pages whose first viewport uses a dark hero background.
+**Outcome**: Completed with local browser limitation
+**Changes Made**:
+- `components/Header.tsx` - detects `/case-studies` routes and marks the shared header with a case-study surface variant.
+- `components/Header.module.css` - adds a translucent cream header surface, ink navigation text, and visible mobile menu button styling for case-study routes.
+- `TASKS.md` and `SESSION.md` - recorded the completed contrast fix.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `accessibility-enforcer`, `case-study-builder`, and `nextjs-app-router`. `git diff --check -- components/Header.tsx components/Header.module.css` passed, and `npm run type-check` passed. `npm run lint -- --file components/Header.tsx` failed before linting because the local Next binary/compiled semver package is broken (`Unexpected end of JSON input` in `node_modules/next/dist/compiled/semver/package.json`), matching the repo's existing local Next CLI verification issue. Dev-server/browser verification was blocked because `next dev` also failed before startup with a truncated `node_modules/next/node_modules/styled-jsx/package.json`.
+**Next Steps**: After reinstalling/fixing `node_modules`, rerun targeted lint and visually confirm `/case-studies/data-brief-ai/` plus `/case-studies/benchmark-dashboard/` on desktop and mobile.
 
 ### 2026-05-13 - Redesign case studies landing as project gallery
 **Goal**: Replace the `/case-studies/` category-first landing with a direct project gallery inspired by the supplied reference HTML, while preserving filtering by the existing category taxonomy.

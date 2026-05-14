@@ -2073,6 +2073,19 @@ main.case-study-page-new {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.case-study-page-new--data-brief .data-brief-card-grid--software {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.case-study-page-new--data-brief .data-brief-card-grid--software .data-brief-card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .data-brief-card {
   border-radius: var(--data-brief-card-radius);
   background: var(--cream-light);
@@ -2403,11 +2416,12 @@ main.case-study-page-new {
 }
 
 .case-study-page-new--data-brief .data-brief-section__container {
-  max-width: 70rem;
+  max-width: 76rem;
 }
 
 .case-study-page-new--data-brief .data-brief-mini-nav {
-  max-width: 58rem;
+  justify-content: center;
+  max-width: 64rem;
   margin: -1.25rem auto 0;
   border: 1px solid rgba(26, 23, 20, 0.12);
   border-radius: var(--data-brief-card-radius);
@@ -2420,13 +2434,13 @@ main.case-study-page-new {
 }
 
 .data-brief-hero {
-  grid-template-columns: minmax(0, 0.78fr) minmax(23rem, 0.82fr);
-  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(23rem, 0.84fr);
+  gap: clamp(2.5rem, 5.5vw, 6rem);
   padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem)) clamp(1.25rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
 }
 
 .data-brief-hero__content {
-  max-width: 50rem;
+  max-width: 57rem;
 }
 
 .data-brief-hero__title {
@@ -2434,15 +2448,24 @@ main.case-study-page-new {
 }
 
 .data-brief-hero__subtitle {
-  max-width: 42rem;
+  max-width: 49rem;
 }
 
 .data-brief-hero__description {
-  max-width: 39rem;
+  max-width: 46rem;
+}
+
+.case-study-page-new--data-brief .data-brief-hero__visual {
+  width: min(100%, 58rem);
+  justify-self: center;
+}
+
+.case-study-page-new--data-brief .data-brief-hero__visual .data-brief-report {
+  margin-inline: auto;
 }
 
 .case-study-page-new--data-brief .data-brief-tags {
-  max-width: 32rem;
+  max-width: 43rem;
 }
 
 .case-study-page-new--data-brief .data-brief-tags span {
@@ -2452,15 +2475,15 @@ main.case-study-page-new {
 }
 
 .data-brief-refresh-heading {
-  max-width: 48rem;
+  max-width: 58rem;
 }
 
 .data-brief-refresh-heading h2 {
-  max-width: 13ch;
+  max-width: 15ch;
 }
 
 .data-brief-refresh-heading p {
-  max-width: 44rem;
+  max-width: 55rem;
 }
 
 .data-brief-section--overview .data-brief-refresh-heading {
@@ -2605,6 +2628,11 @@ main.case-study-page-new {
   padding: clamp(1rem, 2.5vw, 1.75rem);
 }
 
+.case-study-page-new--data-brief .data-brief-output-main .data-brief-report {
+  width: min(100%, 58rem);
+  margin-inline: auto;
+}
+
 .data-brief-output-main figcaption {
   color: var(--ink-muted);
   font-family: var(--font-mono), "Space Mono", monospace;
@@ -2725,6 +2753,7 @@ main.case-study-page-new {
 
 @media (max-width: 860px) {
   .case-study-page-new--data-brief .data-brief-mini-nav {
+    justify-content: flex-start;
     margin-top: 0;
   }
 

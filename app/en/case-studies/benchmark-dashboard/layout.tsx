@@ -47,12 +47,6 @@ function BreadcrumbSchema() {
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Data systems',
-        item: `${siteConfig.url}/en/case-studies/data-systems`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 4,
         name: 'Benchmark Dashboard Template',
         item: `${siteConfig.url}/en/case-studies/benchmark-dashboard`,
       },

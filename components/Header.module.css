@@ -16,6 +16,15 @@
   box-shadow: none;
 }
 
+.headerBar[data-surface="case-studies"] {
+  border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+  background:
+    linear-gradient(180deg, rgba(245, 240, 235, 0.92), rgba(245, 240, 235, 0.78));
+  box-shadow: 0 18px 48px rgba(26, 23, 20, 0.08);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  backdrop-filter: blur(18px) saturate(120%);
+}
+
 .logo {
   display: inline-flex;
   width: fit-content;
@@ -193,6 +202,34 @@
 
 .menuButton[data-state="open"] .menuButtonLine:nth-child(2) {
   transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.headerBar[data-surface="case-studies"] .logo {
+  color: var(--ink);
+}
+
+.headerBar[data-surface="case-studies"] .desktopNav a {
+  color: rgba(26, 23, 20, 0.7);
+}
+
+.headerBar[data-surface="case-studies"] .desktopNav a:hover,
+.headerBar[data-surface="case-studies"] .desktopNav a:focus-visible,
+.headerBar[data-surface="case-studies"] .desktopNavActive {
+  color: var(--ink);
+}
+
+.headerBar[data-surface="case-studies"] .languageToggle a {
+  color: rgba(26, 23, 20, 0.5);
+}
+
+.headerBar[data-surface="case-studies"] .languageToggleActive {
+  color: var(--ink) !important;
+}
+
+.headerBar[data-surface="case-studies"] .menuButton {
+  border-color: rgba(26, 23, 20, 0.16);
+  background: rgba(26, 23, 20, 0.08);
+  color: var(--ink);
 }
 
 .menuOverlay {
