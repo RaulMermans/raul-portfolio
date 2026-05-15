@@ -3,10 +3,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import { type FormEvent, useEffect, useMemo, useState } from 'react'
 import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import { getCaseStudyCategories, type CaseStudyCategorySlug } from '@/data/case-study-categories'
-import { type Locale, getLocaleFromPath, localizePath, switchLocalePath } from '@/lib/i18n'
+import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
 type FilterKey = 'all' | CaseStudyCategorySlug
@@ -114,12 +116,7 @@ export default function CaseStudiesPage() {
   const readCase = isSpanish ? 'Ver caso' : 'Read case'
   const resultLabel = isSpanish ? 'Mostrando' : 'Showing'
   const seeLabel = isSpanish ? 'Quiero ver...' : 'I want to see...'
-  const closeLabel = isSpanish ? 'Cerrar casos de estudio' : 'Close case studies'
   const goLabel = isSpanish ? 'Ir a los casos filtrados' : 'Go to filtered case studies'
-  const languageLabel = isSpanish ? 'Cambiar idioma' : 'Switch language'
-  const activePath = pathname || localizePath('/case-studies', locale)
-  const englishPath = switchLocalePath(activePath, 'en')
-  const spanishPath = switchLocalePath(activePath, 'es')
 
   const studyCategoryMap = useMemo(() => {
     const map = new Map<string, Array<{ slug: CaseStudyCategorySlug; title: string; label: string }>>()
@@ -171,6 +168,7 @@ export default function CaseStudiesPage() {
 
   return (
     <>
+      <Header locale={locale} />
       <main id="main-content" role="main" className="case-studies-index case-studies-index--browser">
         <script
           type="application/ld+json"
@@ -213,17 +211,6 @@ export default function CaseStudiesPage() {
             <span aria-hidden="true"> · </span>
             {introCopy}
           </p>
-          <div className="case-study-browser__language" role="group" aria-label={languageLabel}>
-            <Link href={englishPath} aria-current={locale === 'en' ? 'page' : undefined}>
-              EN
-            </Link>
-            <Link href={spanishPath} aria-current={locale === 'es' ? 'page' : undefined}>
-              ES
-            </Link>
-          </div>
-          <Link href={localizePath('/', locale)} className="case-study-browser__close" aria-label={closeLabel}>
-            <span aria-hidden="true">✕</span>
-          </Link>
         </section>
 
         <section id="case-study-grid" className="case-study-project-grid" aria-label={isSpanish ? 'Proyectos' : 'Projects'}>
@@ -268,6 +255,7 @@ export default function CaseStudiesPage() {
           })}
         </section>
       </main>
+      <Footer locale={locale} />
     </>
   )
 }

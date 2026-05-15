@@ -33,6 +33,7 @@
 ## Completed
 
 ### May 2026
+- [x] Restore global Header/Footer on case-studies landing and soften project image cards
 - [x] Restore global Header/Footer on About landing and document global chrome rule
 - [x] Redesign the About landing with localized Spanish and English editorial versions
 - [x] Audit Spanish and English landing parity and restore missing language counterparts

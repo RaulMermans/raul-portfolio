@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-15
 
 ### Active Work
-- Restored the universal Header/Footer on the About landing and documented the global chrome rule
+- Restored universal Header/Footer on the case-studies landing and softened project image cards
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,16 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-15 - Restore global chrome on case-studies landing
+**Goal**: Apply the universal Header/Footer rule to the case-studies landing and make the project grid closer to the rounded reference, with images adapting to their frames instead of being hard-cropped.
+**Outcome**: Completed with local runtime limitation
+**Changes Made**:
+- `app/case-studies/page.tsx` - added the shared `Header` and `Footer`; removed the custom in-page language switcher and close button so global site chrome owns those interactions.
+- `styles/globals.css` - moved the browser filter below the fixed global header, simplified its grid, rounded the filter control and project image frames, switched project images to `object-fit: contain` with inner padding, and reduced hover scale so artwork edges stay visible.
+- `TASKS.md` and `SESSION.md` - recorded the completed correction.
+**Verification**: `git diff --check -- app/case-studies/page.tsx styles/globals.css` passed. A focused TSX transpile syntax check for `app/case-studies/page.tsx` passed. `npm run lint -- --file app/case-studies/page.tsx` failed before linting because the local Next runtime threw `_semver.default.lt is not a function`; `npm run type-check` produced no diagnostics before the bounded runner stopped it.
+**Next Steps**: After repairing local `node_modules`, visually review `/case-studies`, `/en/case-studies`, and `/es/case-studies` at desktop and mobile widths, especially header spacing, footer placement, rounded frames, and contained artwork.
 
 ### 2026-05-15 - Restore global chrome on About landing
 **Goal**: Ensure supplied landing-page HTML never replaces the site's universal header/footer and fix the About redesign to use shared site chrome.
