@@ -772,7 +772,7 @@ export default function AboutPage() {
               </div>
               <div className="about-stack-grid">
                 {copy.stack.groups.map(([label, items]) => (
-                  <div key={label}>
+                  <div key={label as string}>
                     <p>{label}</p>
                     {items.map((item) => (
                       <span key={item}>{item}</span>
