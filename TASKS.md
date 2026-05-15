@@ -33,6 +33,8 @@
 ## Completed
 
 ### May 2026
+- [x] Audit Spanish and English landing parity and restore missing language counterparts
+- [x] Rework `/case-studies/` into an immersive masonry browser interface with the Raúl Mermans design system
 - [x] Remove intermediate case-study category landing pages
 - [x] Replace DataBrief AI sample-data section with software architecture narrative
 - [x] Center DataBrief AI mini-nav and widen case-study text measure

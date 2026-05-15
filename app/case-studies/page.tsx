@@ -3,12 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useMemo, useState } from 'react'
+import { type FormEvent, useEffect, useMemo, useState } from 'react'
 import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import { getCaseStudyCategories, type CaseStudyCategorySlug } from '@/data/case-study-categories'
-import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import { type Locale, getLocaleFromPath, localizePath, switchLocalePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
 type FilterKey = 'all' | CaseStudyCategorySlug
@@ -115,6 +113,13 @@ export default function CaseStudiesPage() {
   const allLabel = isSpanish ? 'Todos' : 'All'
   const readCase = isSpanish ? 'Ver caso' : 'Read case'
   const resultLabel = isSpanish ? 'Mostrando' : 'Showing'
+  const seeLabel = isSpanish ? 'Quiero ver...' : 'I want to see...'
+  const closeLabel = isSpanish ? 'Cerrar casos de estudio' : 'Close case studies'
+  const goLabel = isSpanish ? 'Ir a los casos filtrados' : 'Go to filtered case studies'
+  const languageLabel = isSpanish ? 'Cambiar idioma' : 'Switch language'
+  const activePath = pathname || localizePath('/case-studies', locale)
+  const englishPath = switchLocalePath(activePath, 'en')
+  const spanishPath = switchLocalePath(activePath, 'es')
 
   const studyCategoryMap = useMemo(() => {
     const map = new Map<string, Array<{ slug: CaseStudyCategorySlug; title: string; label: string }>>()
@@ -159,10 +164,14 @@ export default function CaseStudiesPage() {
     setOrderedStudies(shuffleCaseStudies(caseStudies, locale))
   }, [caseStudies, locale])
 
+  const handleBrowserSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    document.getElementById('case-study-grid')?.scrollIntoView({ block: 'start' })
+  }
+
   return (
     <>
-      <Header locale={locale} />
-      <main id="main-content" role="main" className="case-studies-index case-studies-index--gallery">
+      <main id="main-content" role="main" className="case-studies-index case-studies-index--browser">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.collection) }}
@@ -171,43 +180,53 @@ export default function CaseStudiesPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumb) }}
         />
-        <section className="case-studies-index__intro" aria-labelledby="case-studies-heading">
-          <p className="case-studies-index__eyebrow">{isSpanish ? 'Trabajo seleccionado' : 'Selected work'}</p>
-          <div className="case-studies-index__hero-grid">
-            <h1 id="case-studies-heading" className="case-studies-index__title">
-              {isSpanish ? 'Casos de estudio' : 'Case Studies'}
-            </h1>
-            <p className="case-studies-index__prompt">{introCopy}</p>
-          </div>
-          <div className="case-studies-index__toolbar" aria-label={filterLabel}>
-            <div className="case-studies-index__filters">
-              <button
-                type="button"
-                className={`case-studies-index__filter ${activeFilter === 'all' ? 'is-active' : ''}`}
-                aria-pressed={activeFilter === 'all'}
-                onClick={() => setActiveFilter('all')}
-              >
-                {allLabel}
-              </button>
+        <section className="case-study-browser__chrome" aria-labelledby="case-studies-heading">
+          <h1 id="case-studies-heading" className="visually-hidden">
+            {isSpanish ? 'Casos de estudio' : 'Case Studies'}
+          </h1>
+          <form className="case-study-browser__control" aria-label={filterLabel} onSubmit={handleBrowserSubmit}>
+            <label className="visually-hidden" htmlFor="case-study-filter">
+              {filterLabel}
+            </label>
+            <span className="case-study-browser__placeholder" aria-hidden="true">
+              {seeLabel}
+            </span>
+            <select
+              id="case-study-filter"
+              className="case-study-browser__select"
+              value={activeFilter}
+              onChange={(event) => setActiveFilter(event.target.value as FilterKey)}
+            >
+              <option value="all">{allLabel}</option>
               {categoryFilters.map((category) => (
-                <button
-                  key={category.slug}
-                  type="button"
-                  className={`case-studies-index__filter ${activeFilter === category.slug ? 'is-active' : ''}`}
-                  aria-pressed={activeFilter === category.slug}
-                  onClick={() => setActiveFilter(category.slug)}
-                >
+                <option key={category.slug} value={category.slug}>
                   {category.title}
-                </button>
+                </option>
               ))}
-            </div>
-            <p className="case-studies-index__count" aria-live="polite">
-              {resultLabel} {visibleStudies.length}/{caseStudies.length}
-            </p>
+            </select>
+            <button type="submit" className="case-study-browser__submit" aria-label={goLabel}>
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+          <p className="case-study-browser__summary" aria-live="polite">
+            {resultLabel} {visibleStudies.length}/{caseStudies.length}
+            <span aria-hidden="true"> · </span>
+            {introCopy}
+          </p>
+          <div className="case-study-browser__language" role="group" aria-label={languageLabel}>
+            <Link href={englishPath} aria-current={locale === 'en' ? 'page' : undefined}>
+              EN
+            </Link>
+            <Link href={spanishPath} aria-current={locale === 'es' ? 'page' : undefined}>
+              ES
+            </Link>
           </div>
+          <Link href={localizePath('/', locale)} className="case-study-browser__close" aria-label={closeLabel}>
+            <span aria-hidden="true">✕</span>
+          </Link>
         </section>
 
-        <section className="case-study-project-grid" aria-label={isSpanish ? 'Proyectos' : 'Projects'}>
+        <section id="case-study-grid" className="case-study-project-grid" aria-label={isSpanish ? 'Proyectos' : 'Projects'}>
           {visibleStudies.map((study, index) => {
             const studyCategories = studyCategoryMap.get(study.href) ?? []
             const primaryLabel = studyCategories[0]?.label ?? study.subtitle ?? readCase
@@ -249,7 +268,6 @@ export default function CaseStudiesPage() {
           })}
         </section>
       </main>
-      <Footer locale={locale} />
     </>
   )
 }

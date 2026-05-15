@@ -5,10 +5,10 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-14
+**Last Updated**: 2026-05-15
 
 ### Active Work
-- Removed intermediate case-study category landing pages so case studies return to the main aggregator
+- Audited Spanish and English landing parity, restored missing English counterparts, and added the case-study browser language switch
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,27 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-15 - Audit landing language parity
+**Goal**: Confirm public landings have Spanish and English counterparts and that language switches map each route to its matching localized route.
+**Outcome**: Completed with local runtime limitation
+**Changes Made**:
+- `app/en/case-studies/ai-sports/*`, `app/en/case-studies/data-brief-ai/*`, `app/en/case-studies/remoria/*`, and `app/en/overflow/privacy/page.tsx` - restored the missing English route wrappers/metadata layouts so tracked Spanish/base routes have English counterparts again.
+- `app/case-studies/page.tsx` and `styles/globals.css` - added a compact EN/ES switch to the immersive case-study browser because that page no longer uses the shared header.
+- `app/sitemap.ts` - added the localized Benchmark Dashboard route to the sitemap definitions.
+- `TASKS.md` and `SESSION.md` - recorded the completed parity audit.
+**Notes**: Consulted `nextjs-app-router` and `seo-optimizer`. A tracked-route audit confirmed no tracked base route is missing an `/en` counterpart, and a switch-path audit found no static route mismatches. A separate all-local-files audit still reports the untracked `app/case-studies/ai-systems-agents/` and `app/case-studies/data-systems/` pages as base-only; they also import missing `category-page-shared`, so they should be removed or explicitly converted to redirects if they are meant to stay. `git diff --check` passed and a lightweight TS/TSX transpile syntax check passed. Targeted `npm run lint` failed before linting because the local Next package has invalid compiled package JSON under `node_modules/next/dist/compiled/p-limit/package.json`. `npm run type-check` produced no diagnostics after 30 seconds and was stopped.
+**Next Steps**: Decide whether to delete the two untracked category-route folders or convert them to localized redirects, then repair/reinstall `node_modules` and rerun lint/type-check.
+
+### 2026-05-15 - Rework case studies landing as immersive masonry browser
+**Goal**: Make `/case-studies/` feel like the supplied compact visual browser interface while keeping the portfolio's cream/ink/crimson design system.
+**Outcome**: Completed with local runtime limitation
+**Changes Made**:
+- `app/case-studies/page.tsx` - replaced the large title/filter stack plus shared header/footer with a focused browser chrome: localized select control, submit arrow, live result count, visually hidden route heading, close link back home, and the existing case-study data/filtering behavior.
+- `styles/globals.css` - added the browser chrome system, tighter image-first masonry spacing, compact captions, focus states, responsive behavior, and reduced-motion coverage.
+- `TASKS.md` and `SESSION.md` - recorded the completed UI pass and verification limits.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `case-study-builder`, `nextjs-app-router`, and `accessibility-enforcer`; also ran the UI-UX Pro Max design-system search. Checked the live [case studies page](https://www.raulmermans.com/case-studies/), which is still category-first in production. `git diff --check -- app/case-studies/page.tsx styles/globals.css` passed, and a lightweight TSX transpile syntax check passed. `npm run lint -- --file app/case-studies/page.tsx` failed before linting because `node_modules/next/dist/compiled/find-up/package.json` is invalid. `npm run type-check` produced no diagnostics but did not finish in this environment and was stopped. `npm run dev -- --hostname 127.0.0.1 --port 3000` failed before startup because the local Next CLI reported `mod.nextDev is not a function` under Node 24.
+**Next Steps**: Repair/reinstall local `node_modules` or use the repo's expected Node runtime, then rerun targeted lint/type-check and visually review `/case-studies/` plus `/en/case-studies/` at desktop and mobile widths.
 
 ### 2026-05-14 - Remove intermediate case-study category landings
 **Goal**: Delete the category middle landings such as `/case-studies/ai-systems-agents/` so navigation moves between individual case studies and the main `/case-studies/` aggregator.
