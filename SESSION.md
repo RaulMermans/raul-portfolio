@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-15
 
 ### Active Work
-- Completed the localized About landing redesign for Spanish base routes and the English `/en/about` mirror
+- Restored the universal Header/Footer on the About landing and documented the global chrome rule
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,17 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-15 - Restore global chrome on About landing
+**Goal**: Ensure supplied landing-page HTML never replaces the site's universal header/footer and fix the About redesign to use shared site chrome.
+**Outcome**: Completed
+**Changes Made**:
+- `app/about/page.tsx` - removed the custom fixed About nav/language switcher and custom footer columns; wrapped the redesigned body with the shared `Header` and `Footer`; kept the end-of-page email CTA as a normal body section.
+- `components/Header.tsx` and `components/Header.module.css` - added a shared dark-surface header variant for About routes so the universal header remains readable on the dark editorial hero.
+- `CLAUDE.md`, `.cursor/rules/ui-ux-design.mdc`, and `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md` - documented that public page redesigns must always keep `components/Header.tsx` and `components/Footer.tsx`, treating supplied HTML chrome as reference only.
+- `TASKS.md` and `SESSION.md` - recorded the correction.
+**Verification**: `git diff --check -- app/about/page.tsx styles/globals.css components/Header.tsx components/Header.module.css CLAUDE.md .cursor/rules/ui-ux-design.mdc plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md TASKS.md SESSION.md` passed. A focused TSX transpile syntax check for `app/about/page.tsx` and `components/Header.tsx` passed. Targeted `npm run lint -- --file app/about/page.tsx --file components/Header.tsx` and `npm run type-check` produced no diagnostics before the bounded runner stopped them, matching the existing local verification limitation.
+**Next Steps**: After repairing local `node_modules`, visually review `/about`, `/en/about`, and `/es/about` to confirm global header contrast, mobile menu behavior, and global footer placement.
 
 ### 2026-05-15 - Redesign About landing
 **Goal**: Replace the compact About page with the supplied editorial landing direction, including localized Spanish and English versions, scroll motion, bento notes, timeline, capabilities, brand proof, learning chips, and contact CTA.

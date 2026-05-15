@@ -7975,78 +7975,10 @@ body:has(.case-studies-main) .page-transition {
   background: var(--about-red-bright);
 }
 
-.about-landing__nav {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 80;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 22px 36px;
-  color: #fff;
-  font-family: var(--about-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  mix-blend-mode: difference;
-}
-
-.about-landing__logo {
-  min-width: 44px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--about-display);
-  font-size: 26px;
-  letter-spacing: 0.04em;
-  line-height: 1;
-}
-
-.about-landing__logo span {
-  color: var(--about-red-bright);
-}
-
-.about-landing__nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-}
-
-.about-landing__nav a {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  opacity: 0.72;
-  transition: opacity 0.25s var(--about-ease), color 0.25s var(--about-ease);
-}
-
-.about-landing__nav a:hover,
-.about-landing__nav a:focus-visible,
-.about-landing__lang a[aria-current='page'] {
-  opacity: 1;
-}
-
-.about-landing__nav a:focus-visible,
-.about-footer a:focus-visible,
+.about-contact-panel a:focus-visible,
 .about-chip-cloud span:focus-visible {
   outline: 2px solid var(--about-red-bright);
   outline-offset: 4px;
-}
-
-.about-landing__lang {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.about-landing__lang a + a::before {
-  content: '·';
-  margin-right: 10px;
-  color: var(--about-ink-muted);
 }
 
 .about-landing__scroll-hint {
@@ -8295,8 +8227,7 @@ body:has(.case-studies-main) .page-transition {
 .about-landing__eyebrow,
 .about-note__head,
 .about-capability__top p,
-.about-footer__cta p,
-.about-footer h3 {
+.about-contact-panel__cta p {
   color: var(--about-ink-muted);
   font-family: var(--about-mono);
   font-size: 10px;
@@ -9182,22 +9113,21 @@ body:has(.case-studies-main) .page-transition {
   user-select: none;
 }
 
-.about-footer {
+.about-contact-panel {
   position: relative;
   padding: 120px 36px 60px;
   border-top: 1px solid var(--about-line);
   background: var(--about-bg);
 }
 
-.about-footer__cta {
+.about-contact-panel__cta {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
   gap: 60px;
   align-items: end;
-  margin-bottom: 80px;
 }
 
-.about-footer__cta h2 {
+.about-contact-panel__cta h2 {
   margin: 0;
   color: var(--about-ink);
   font-family: var(--about-display);
@@ -9206,15 +9136,15 @@ body:has(.case-studies-main) .page-transition {
   line-height: 0.86;
 }
 
-.about-footer__cta > div {
+.about-contact-panel__cta > div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
 }
 
-.about-footer__cta p,
-.about-footer__cta span {
+.about-contact-panel__cta p,
+.about-contact-panel__cta span {
   margin: 0;
   color: var(--about-ink-muted);
   font-family: var(--about-mono);
@@ -9223,7 +9153,7 @@ body:has(.case-studies-main) .page-transition {
   text-transform: uppercase;
 }
 
-.about-footer__cta a {
+.about-contact-panel__cta a {
   border-bottom: 1px solid var(--about-line-2);
   padding-bottom: 6px;
   color: var(--about-ink);
@@ -9233,60 +9163,9 @@ body:has(.case-studies-main) .page-transition {
   transition: color 0.25s var(--about-ease), border-color 0.25s var(--about-ease);
 }
 
-.about-footer__cta a:hover {
+.about-contact-panel__cta a:hover {
   border-color: var(--about-red-bright);
   color: var(--about-red-bright);
-}
-
-.about-footer__cols {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  border-top: 1px solid var(--about-line);
-  padding-top: 32px;
-}
-
-.about-footer h3 {
-  margin: 0 0 14px;
-}
-
-.about-footer ul {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.about-footer li,
-.about-footer a {
-  color: var(--about-ink);
-  font-family: var(--about-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.about-footer a {
-  color: var(--about-ink-dim);
-  transition: color 0.2s var(--about-ease);
-}
-
-.about-footer a:hover {
-  color: var(--about-red-bright);
-}
-
-.about-footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  margin-top: 60px;
-  color: var(--about-ink-muted);
-  font-family: var(--about-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
 }
 
 @keyframes aboutScrollDrop {
@@ -9368,14 +9247,6 @@ body:has(.case-studies-main) .page-transition {
 }
 
 @media (max-width: 900px) {
-  .about-landing__nav {
-    padding: 18px 22px;
-  }
-
-  .about-landing__nav-links {
-    display: none;
-  }
-
   .about-landing__hero,
   .about-landing__story,
   .about-timeline,
@@ -9422,7 +9293,7 @@ body:has(.case-studies-main) .page-transition {
   .about-landing__story-grid,
   .about-timeline__head,
   .about-practice__head,
-  .about-footer__cta {
+  .about-contact-panel__cta {
     grid-template-columns: 1fr;
     gap: 30px;
   }
@@ -9481,16 +9352,8 @@ body:has(.case-studies-main) .page-transition {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .about-footer {
+  .about-contact-panel {
     padding: 82px 22px 42px;
-  }
-
-  .about-footer__cols {
-    grid-template-columns: 1fr;
-  }
-
-  .about-footer__bottom {
-    flex-direction: column;
   }
 
   .about-marquee div {

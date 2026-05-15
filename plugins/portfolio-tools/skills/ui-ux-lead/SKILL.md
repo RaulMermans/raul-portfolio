@@ -56,6 +56,7 @@ The default bar is not "looks nicer." The bar is:
 ## Non-Negotiables
 
 - Do not rely on `ui-ux-pro-max` alone; pair it with `design-system` and `visual-hierarchy`.
+- Keep the shared `components/Header.tsx` and `components/Footer.tsx` as the universal site chrome on public pages. Supplied HTML/mockup headers, navs, language switchers, footers, and footer CTAs are reference only unless the task explicitly asks to edit the global components.
 - Prefer fewer, stronger sections over many medium-strength sections.
 - Prefer progressive disclosure over dumping all rationale at once.
 - Prefer one strong visual system per page over multiple competing patterns.

@@ -3,9 +3,10 @@
 import { useEffect, useMemo, useRef } from 'react'
 import type { CSSProperties } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { getLocaleFromPath, localizePath, switchLocalePath } from '@/lib/i18n'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import { getLocaleFromPath } from '@/lib/i18n'
 
 type TextPair = {
   en: string
@@ -22,12 +23,6 @@ type TimelineItem = {
 
 const pageCopy = {
   en: {
-    nav: {
-      work: 'Work',
-      about: 'About',
-      trajectory: 'Trajectory',
-      contact: 'Contact',
-    },
     heroMeta: [
       ['Role', 'Creative Technologist'],
       ['Practice', 'Cultural Architect'],
@@ -243,15 +238,8 @@ const pageCopy = {
     quote: <>Culture is<br />infrastructure.<br /><span>Build it</span> like<br />you mean it.</>,
     ctaTitle: <>Let&apos;s make <span className="about-landing__serif">something</span> work.</>,
     contactMeta: ['Available Q3 2026', 'Madrid · Remote · EU'],
-    footerMeta: ['© 2026 Raúl Mermans García', 'Built · Madrid · 2026'],
   },
   es: {
-    nav: {
-      work: 'Trabajo',
-      about: 'Sobre mi',
-      trajectory: 'Trayectoria',
-      contact: 'Contacto',
-    },
     heroMeta: [
       ['Rol', 'Tecnologo creativo'],
       ['Practica', 'Arquitecto cultural'],
@@ -467,7 +455,6 @@ const pageCopy = {
     quote: <>La cultura es<br />infraestructura.<br /><span>Construyela</span><br />con intencion.</>,
     ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
     contactMeta: ['Disponible T3 2026', 'Madrid · Remoto · UE'],
-    footerMeta: ['© 2026 Raúl Mermans García', 'Construido · Madrid · 2026'],
   },
 }
 
@@ -626,40 +613,20 @@ export default function AboutPage() {
   const locale = getLocaleFromPath(pathname)
   const copy = pageCopy[locale]
   const { timelineRef, progressRef, hintRef, ghostRef } = useAboutLandingMotion()
-  const englishPath = switchLocalePath(pathname || '/about', 'en')
-  const spanishPath = switchLocalePath(pathname || '/about', 'es')
   const doubledMarquee = useMemo(() => [...copy.marquee, ...copy.marquee], [copy.marquee])
 
   return (
-    <main id="main-content" className="about-landing" role="main">
-      <div ref={progressRef} className="about-landing__progress" aria-hidden="true" />
+    <>
+      <Header locale={locale} />
+      <main id="main-content" className="about-landing" role="main">
+        <div ref={progressRef} className="about-landing__progress" aria-hidden="true" />
 
-      <nav className="about-landing__nav" aria-label={locale === 'es' ? 'Navegacion de sobre mi' : 'About page navigation'}>
-        <Link href={localizePath('/', locale)} className="about-landing__logo" aria-label={locale === 'es' ? 'Inicio' : 'Home'}>
-          RM<span>.</span>
-        </Link>
-        <div className="about-landing__nav-links">
-          <Link href={localizePath('/case-studies', locale)}>{copy.nav.work}</Link>
-          <a href="#about-story">{copy.nav.about}</a>
-          <a href="#trajectory">{copy.nav.trajectory}</a>
-          <a href="#about-contact">{copy.nav.contact}</a>
+        <div ref={hintRef} className="about-landing__scroll-hint" aria-hidden="true">
+          <span />
+          {locale === 'es' ? 'Scroll' : 'Scroll'}
         </div>
-        <div className="about-landing__lang" role="group" aria-label={locale === 'es' ? 'Selector de idioma' : 'Language switcher'}>
-          <Link href={englishPath} aria-current={locale === 'en' ? 'page' : undefined}>
-            EN
-          </Link>
-          <Link href={spanishPath} aria-current={locale === 'es' ? 'page' : undefined}>
-            ES
-          </Link>
-        </div>
-      </nav>
 
-      <div ref={hintRef} className="about-landing__scroll-hint" aria-hidden="true">
-        <span />
-        {locale === 'es' ? 'Scroll' : 'Scroll'}
-      </div>
-
-      <section className="about-landing__hero" id="top" aria-labelledby="about-landing-title">
+        <section className="about-landing__hero" id="top" aria-labelledby="about-landing-title">
         <div className="about-landing__container">
           <div className="about-landing__meta-grid" data-about-reveal>
             {copy.heroMeta.map(([label, value]) => (
@@ -938,53 +905,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <footer className="about-footer" id="about-contact">
+      <section className="about-contact-panel" id="about-contact" aria-labelledby="about-contact-title">
         <div className="about-landing__container">
-          <div className="about-footer__cta">
-            <h2 data-about-reveal>{copy.ctaTitle}</h2>
+          <div className="about-contact-panel__cta">
+            <h2 id="about-contact-title" data-about-reveal>{copy.ctaTitle}</h2>
             <div data-about-reveal>
               <p>{copy.contactMeta[0]}</p>
               <a href="mailto:raulmermans@gmail.com">raulmermans@gmail.com →</a>
               <span>{copy.contactMeta[1]}</span>
             </div>
           </div>
-
-          <div className="about-footer__cols">
-            <div>
-              <h3>{locale === 'es' ? 'Servicios' : 'Services'}</h3>
-              <ul>
-                <li><Link href={localizePath('/#services', locale)}>{locale === 'es' ? 'Sistemas de IA' : 'AI Systems'}</Link></li>
-                <li><Link href={localizePath('/#services', locale)}>{locale === 'es' ? 'Automatizacion' : 'Automation'}</Link></li>
-                <li><Link href={localizePath('/#services', locale)}>{locale === 'es' ? 'CRM y lifecycle' : 'CRM & Lifecycle'}</Link></li>
-                <li><Link href={localizePath('/#services', locale)}>{locale === 'es' ? 'Direccion creativa' : 'Creative Direction'}</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3>{locale === 'es' ? 'Estudio' : 'Studio'}</h3>
-              <ul>
-                <li><a href="#about-story">{copy.nav.about}</a></li>
-                <li><a href="#about-contact">{copy.nav.contact}</a></li>
-                <li><Link href={localizePath('/case-studies', locale)}>{copy.nav.work}</Link></li>
-                <li><Link href={localizePath('/apps/overflow', locale)}>Overflow</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3>{locale === 'es' ? 'En otros sitios' : 'Elsewhere'}</h3>
-              <ul>
-                <li><a href="https://www.linkedin.com/in/raulmermans/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
-                <li><a href="https://github.com/RaulMermans" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
-                <li><a href="https://www.instagram.com/raulmeermans/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
-                <li><a href="https://unsplash.com/@raulmermans" target="_blank" rel="noopener noreferrer">Unsplash ↗</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="about-footer__bottom">
-            <span>{copy.footerMeta[0]}</span>
-            <span>{copy.footerMeta[1]}</span>
-          </div>
         </div>
-      </footer>
-    </main>
+      </section>
+      </main>
+      <Footer locale={locale} />
+    </>
   )
 }

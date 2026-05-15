@@ -114,6 +114,8 @@ export default function Header({ locale = 'en' }: HeaderProps) {
   })
   const activePath = pathname || localizePath('/', locale)
   const isCaseStudiesRoute = activePath.includes('/case-studies')
+  const isAboutRoute = activePath.includes('/about')
+  const surface = isCaseStudiesRoute ? 'case-studies' : isAboutRoute ? 'dark' : undefined
   const isSpanish = locale === 'es'
   const englishPath = switchLocalePath(activePath, 'en')
   const spanishPath = switchLocalePath(activePath, 'es')
@@ -127,7 +129,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
 
   return (
     <>
-      <header className={styles.headerBar} data-surface={isCaseStudiesRoute ? 'case-studies' : undefined}>
+      <header className={styles.headerBar} data-surface={surface}>
         <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
           RM
         </Link>

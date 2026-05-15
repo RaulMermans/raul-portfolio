@@ -168,6 +168,10 @@ curl -I https://www.raulmermans.com/api/health
 
 **Before editing:** Read files first, check patterns, review `next.config.js` if touching caching
 
+### Global Header/Footer Rule
+
+The shared `components/Header.tsx` and `components/Footer.tsx` are the permanent site chrome. Always keep them on public landing/page redesigns, even when a supplied HTML mockup includes a different header, nav, language switcher, footer, contact footer, or page chrome. Treat imported HTML headers/footers as visual reference only; adapt the body content between the global Header and Footer instead.
+
 **File rules:**
 - ✅ Use Edit (not Write) for existing files, minimal diffs, preserve indentation
 - ❌ Don't add comments/docs, refactor unrelated code, or create unnecessary files

@@ -25,6 +25,14 @@
   backdrop-filter: blur(18px) saturate(120%);
 }
 
+.headerBar[data-surface="dark"] {
+  border-bottom: 1px solid rgba(245, 240, 235, 0.08);
+  background:
+    linear-gradient(180deg, rgba(22, 19, 15, 0.86), rgba(22, 19, 15, 0.46));
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  backdrop-filter: blur(18px) saturate(120%);
+}
+
 .logo {
   display: inline-flex;
   width: fit-content;
@@ -208,8 +216,20 @@
   color: var(--ink);
 }
 
+.headerBar[data-surface="dark"] .logo {
+  color: var(--cream);
+}
+
 .headerBar[data-surface="case-studies"] .desktopNav a {
   color: rgba(26, 23, 20, 0.7);
+}
+
+.headerBar[data-surface="dark"] .desktopNav a {
+  color: rgba(245, 240, 235, 0.72);
+}
+
+.headerBar[data-surface="dark"] .desktopNav a::before {
+  background: rgba(245, 240, 235, 0.1);
 }
 
 .headerBar[data-surface="case-studies"] .desktopNav a:hover,
@@ -218,18 +238,42 @@
   color: var(--ink);
 }
 
+.headerBar[data-surface="dark"] .desktopNav a:hover,
+.headerBar[data-surface="dark"] .desktopNav a:focus-visible,
+.headerBar[data-surface="dark"] .desktopNavActive {
+  color: var(--cream);
+}
+
 .headerBar[data-surface="case-studies"] .languageToggle a {
   color: rgba(26, 23, 20, 0.5);
+}
+
+.headerBar[data-surface="dark"] .languageToggle a {
+  color: rgba(245, 240, 235, 0.58);
+}
+
+.headerBar[data-surface="dark"] .languageToggle a + a::before {
+  color: rgba(245, 240, 235, 0.34);
 }
 
 .headerBar[data-surface="case-studies"] .languageToggleActive {
   color: var(--ink) !important;
 }
 
+.headerBar[data-surface="dark"] .languageToggleActive {
+  color: var(--cream) !important;
+}
+
 .headerBar[data-surface="case-studies"] .menuButton {
   border-color: rgba(26, 23, 20, 0.16);
   background: rgba(26, 23, 20, 0.08);
   color: var(--ink);
+}
+
+.headerBar[data-surface="dark"] .menuButton {
+  border-color: rgba(245, 240, 235, 0.18);
+  background: rgba(245, 240, 235, 0.1);
+  color: var(--cream);
 }
 
 .menuOverlay {

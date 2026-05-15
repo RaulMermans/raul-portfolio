@@ -59,6 +59,10 @@ When a task involves any of the following, you **must** invoke the UI UX Lead wo
 | Design systems | Colors, typography, spacing, tokens |
 | Frontend architecture | Layout patterns, responsive behavior, animations |
 
+## Global Header/Footer Constraint
+
+The shared `components/Header.tsx` and `components/Footer.tsx` always remain the public site chrome. If a supplied HTML landing page, mockup, or reference includes its own header, nav, language switcher, footer, or footer CTA, ignore that chrome and adapt only the body/page content between the global Header and Footer. Do not replace, duplicate, hide, or visually override the universal Header/Footer unless the user explicitly asks to change the global components themselves.
+
 ## Required Process
 
 1. **Read the UI UX Lead skill** – Parse `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`.
