@@ -97,7 +97,7 @@ const pageCopy = {
         ['Code', ['Claude Code', 'OpenAI Codex', 'React · Next.js', 'Python · TypeScript']],
         ['Automation', ['n8n', 'MCP · Agentic AI', 'Retrieval · Chroma', 'Prompt engineering']],
         ['Visual', ['Photoshop', 'Illustrator', 'Figma', 'Image models']],
-      ],
+      ] as [string, string[]][],
     },
     marquee: [
       'Applied AI',
@@ -314,7 +314,7 @@ const pageCopy = {
         ['Codigo', ['Claude Code', 'OpenAI Codex', 'React · Next.js', 'Python · TypeScript']],
         ['Automatizacion', ['n8n', 'MCP · IA agentica', 'Retrieval · Chroma', 'Prompt engineering']],
         ['Visual', ['Photoshop', 'Illustrator', 'Figma', 'Modelos de imagen']],
-      ],
+      ] as [string, string[]][],
     },
     marquee: [
       'IA aplicada',
@@ -772,7 +772,7 @@ export default function AboutPage() {
               </div>
               <div className="about-stack-grid">
                 {copy.stack.groups.map(([label, items]) => (
-                  <div key={label as string}>
+                  <div key={label}>
                     <p>{label}</p>
                     {items.map((item) => (
                       <span key={item}>{item}</span>
