@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-15
 
 ### Active Work
-- Audited Spanish and English landing parity, restored missing English counterparts, and added the case-study browser language switch
+- Completed the localized About landing redesign for Spanish base routes and the English `/en/about` mirror
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,17 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-15 - Redesign About landing
+**Goal**: Replace the compact About page with the supplied editorial landing direction, including localized Spanish and English versions, scroll motion, bento notes, timeline, capabilities, brand proof, learning chips, and contact CTA.
+**Outcome**: Completed with local runtime limitation
+**Changes Made**:
+- `app/about/page.tsx` - rebuilt the route as a localized client page that serves Spanish on `/about` and `/es/about`, English on `/en/about`, with custom page chrome, language switcher, hero title reveal, scroll progress, bento notes, timeline, capability grid, brands, learning chips, pull quote, and footer CTA.
+- `styles/globals.css` - added a scoped dark editorial About design system with responsive layouts, reveal states, map pings, marquee, timeline fill, hover states, focus states, and reduced-motion support.
+- `TASKS.md` and `SESSION.md` - recorded the completed About redesign.
+**Notes**: Consulted `ui-ux-lead`, `ui-ux-pro-max`, `design-system`, `visual-hierarchy`, `nextjs-app-router`, `accessibility-enforcer`, `animation-system`, and `performance-guardian`; ran the UI-UX Pro Max design-system search. Also checked the live `/about/` page and the supplied `/Users/raulm/Downloads/about.html`, adapting the design manually into React and omitting the external placeholder script/custom element.
+**Verification**: `git diff --check -- app/about/page.tsx styles/globals.css` passed, and a TypeScript TSX transpile syntax check passed. `npm run lint -- --file app/about/page.tsx` failed before linting because the local Next runtime threw `_interop_require_default._ is not a function`; direct ESLint stalled until the bounded runner stopped it. `npm run type-check` produced no diagnostics before the bounded runner stopped it. `npm run dev -- --hostname 127.0.0.1 --port 3000` failed before startup because `node_modules/next/dist/compiled/conf/package.json` is truncated/corrupt.
+**Next Steps**: Repair/reinstall `node_modules`, then rerun targeted lint/type-check and visually review `/about`, `/en/about`, and `/es/about` at desktop and mobile widths.
 
 ### 2026-05-15 - Audit landing language parity
 **Goal**: Confirm public landings have Spanish and English counterparts and that language switches map each route to its matching localized route.
