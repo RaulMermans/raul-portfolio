@@ -12,87 +12,7 @@ import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 const demoUrl = 'https://benchmark-dashboard-smoky.vercel.app/'
 const githubUrl = 'https://github.com/RaulMermans/benchmark_dashboard'
 
-const tags = [
-  'React/Vite',
-  'Recharts',
-  'Synthetic data',
-  'API-ready',
-  'Data product',
-]
-
-const navItems = [
-  ['Resumen', '#overview'],
-  ['Flujo', '#flow'],
-  ['Pantallas', '#screens'],
-  ['Datos', '#conexion'],
-  ['Resultado', '#resultado'],
-] as const
-
-const featureCards = [
-  { title: 'Ranking cockpit', description: 'Ordena entidades por revenue, visitas, share, crecimiento o score.' },
-  { title: 'Lectura de tendencia', description: 'Muestra evolución con vistas de share, growth e indexed performance.' },
-  { title: 'Capa de contexto', description: 'Añade eventos, señales y perfiles alrededor de las métricas.' },
-  { title: 'Forecast surface', description: 'Compara escenarios base, agresivos y conservadores.' },
-]
-
-const systemSteps = [
-  {
-    num: '01',
-    title: 'Fuente de datos',
-    description: 'JSON local, Google Sheets, base de datos, warehouse o API.',
-  },
-  {
-    num: '02',
-    title: 'Contrato',
-    description: 'El endpoint devuelve interface, events y dictionary.',
-  },
-  {
-    num: '03',
-    title: 'Normalización',
-    description: 'La app traduce filas y métricas a un formato consistente.',
-  },
-  {
-    num: '04',
-    title: 'Visualización',
-    description: 'El dashboard muestra rankings, tendencias, eventos, comparativas y forecast.',
-  },
-]
-
-const proofPoints = [
-  { value: '12', label: 'Vistas de dashboard' },
-  { value: '3', label: 'Escenarios de forecast' },
-  { value: '0', label: 'Datos privados expuestos' },
-]
-
-const buildBullets = [
-  'Interfaz React/Vite con Tailwind y visualizaciones en Recharts.',
-  'Fallback local en JSON y conector opcional mediante VITE_BENCHMARK_API_URL.',
-  'Generador de datos sintéticos y auditoría pública antes de publicar.',
-]
-
-const resultBullets = [
-  'Plantilla reutilizable para benchmark, market share, growth y forecast reporting.',
-  'Modo demo público que muestra el producto sin exponer datos de clientes o competidores.',
-  'Contrato de datos claro para Sheets, bases de datos, warehouses o cualquier API JSON.',
-]
-
-const dashboardSlots = [
-  {
-    title: 'Vista ejecutiva',
-    description: 'Espacio principal para KPIs, resumen de mercado y señales estratégicas.',
-    frame: 'overview',
-  },
-  {
-    title: 'Rankings y perfiles',
-    description: 'Espacio secundario para rankings, perfiles de entidad y battle cards.',
-    frame: 'ranking',
-  },
-  {
-    title: 'Forecast y eventos',
-    description: 'Espacio secundario para escenarios, overlays y contexto temporal.',
-    frame: 'forecast',
-  },
-]
+const tags = ['React/Vite', 'Recharts', 'Synthetic data', 'API-ready', 'Data product']
 
 const dataContract = `{
   "ok": true,
@@ -106,96 +26,236 @@ const dataContract = `{
   }
 }`
 
-const mockRankingRows = [
-  { name: 'Entidad A', score: '94', pct: 94 },
-  { name: 'Entidad B', score: '87', pct: 87 },
-  { name: 'Entidad C', score: '81', pct: 81 },
-  { name: 'Entidad D', score: '74', pct: 74 },
-  { name: 'Entidad E', score: '68', pct: 68 },
-]
-
-const mockFeatureTabs = ['Ranking', 'Tendencias', 'Eventos', 'Forecast']
-
-function BenchmarkMockup() {
-  return (
-    <div className="benchmark-mockup">
-      <div className="benchmark-mockup__bar">
-        <span className="benchmark-mockup__label">Benchmark Dashboard — Datos mock</span>
-      </div>
-      <div className="benchmark-mockup__body">
-        <div className="benchmark-metrics" aria-label="Indicadores de ejemplo">
-          <div className="benchmark-metric">
-            <span className="benchmark-metric__label">Entidades</span>
-            <strong className="benchmark-metric__value">48</strong>
-          </div>
-          <div className="benchmark-metric">
-            <span className="benchmark-metric__label">Score medio</span>
-            <strong className="benchmark-metric__value">76</strong>
-          </div>
-          <div className="benchmark-metric">
-            <span className="benchmark-metric__label">Tendencia</span>
-            <strong className="benchmark-metric__value">+4</strong>
-          </div>
-        </div>
-        <div className="benchmark-mockup__tabs" aria-label="Vistas del dashboard">
-          {mockFeatureTabs.map((tab) => (
-            <span
-              key={tab}
-              className={`benchmark-mockup__tab${tab === 'Ranking' ? ' benchmark-mockup__tab--active' : ''}`}
-            >
-              {tab}
-            </span>
-          ))}
-        </div>
-        <div className="benchmark-ranking" aria-label="Ranking de ejemplo con datos mock">
-          <div className="benchmark-ranking__header">
-            <span>Ranking</span>
-            <span>Score</span>
-          </div>
-          {mockRankingRows.map((row, i) => (
-            <div key={row.name} className="benchmark-ranking__row">
-              <span className="benchmark-ranking__pos">{i + 1}</span>
-              <span className="benchmark-ranking__name">{row.name}</span>
-              <div className="benchmark-ranking__bar-track">
-                <div className="benchmark-ranking__bar-fill" style={{ width: `${row.pct}%` }} />
-              </div>
-              <span className="benchmark-ranking__score">{row.score}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function DashboardSlot({ slot }: { slot: (typeof dashboardSlots)[number] }) {
-  return (
-    <article className={`benchmark-shot benchmark-shot--${slot.frame}`}>
-      <div className="benchmark-shot__frame" aria-hidden="true">
-        <div className="benchmark-shot__topline" />
-        <div className="benchmark-shot__grid">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="benchmark-shot__chart">
-          <i />
-          <i />
-          <i />
-        </div>
-      </div>
-      <div className="benchmark-shot__copy">
-        <h3>{slot.title}</h3>
-        <p>{slot.description}</p>
-      </div>
-    </article>
-  )
+const content = {
+  en: {
+    back: '← Case Studies',
+    heroSubtitle: 'A public, reusable dashboard for turning benchmark data into executive reads.',
+    heroDescription:
+      'The system takes a normalized JSON payload and transforms it into rankings, market share, growth, forecast, profiles, and strategic signals. The public version uses synthetic data to demonstrate the architecture without exposing private information.',
+    heroMockNotice:
+      'Demo mode only: synthetic entities, synthetic values — no real client or competitor data.',
+    heroCTA: 'View live demo →',
+    heroCTASecondary: 'View repository →',
+    heroFigcaption: 'Executive dashboard view. All data is synthetic.',
+    heroFigAriaLabel: 'Executive dashboard view with synthetic data',
+    heroImgAlt:
+      'Benchmark Dashboard executive view: market KPIs, share, and strategic signals',
+    nav: [
+      ['Overview', '#overview'],
+      ['Flow', '#flow'],
+      ['Screens', '#screens'],
+      ['Data', '#conexion'],
+      ['Result', '#resultado'],
+    ] as const,
+    overviewEyebrow: 'Overview',
+    overviewH2: 'From spreadsheet logic to executive surface',
+    overviewP:
+      'The product form is front and center: a reusable benchmark cockpit that turns structured rows into comparison, trend, and decision views.',
+    proofPoints: [
+      { value: '12', label: 'Dashboard views' },
+      { value: '3', label: 'Forecast scenarios' },
+      { value: '0', label: 'Private data exposed' },
+    ],
+    featureCards: [
+      { title: 'Ranking cockpit', description: 'Rank entities by revenue, visits, share, growth, or score.' },
+      { title: 'Trend reading', description: 'Displays evolution with share, growth, and indexed performance views.' },
+      { title: 'Context layer', description: 'Adds events, signals, and profiles around the metrics.' },
+      { title: 'Forecast surface', description: 'Compare base, aggressive, and conservative scenarios.' },
+    ],
+    flowEyebrow: 'Architecture',
+    flowH2: 'A four-layer system',
+    flowP:
+      'Data source, contract, normalization, and dashboard views. Each layer is visible without turning the page into documentation.',
+    flowDiagram: ['Data source', 'JSON contract', 'Normalization', 'Dashboard views'],
+    systemSteps: [
+      { num: '01', title: 'Data source', description: 'Local JSON, Google Sheets, database, warehouse, or API.' },
+      { num: '02', title: 'Contract', description: 'The endpoint returns interface, events, and dictionary.' },
+      { num: '03', title: 'Normalization', description: 'The app translates rows and metrics into a consistent format.' },
+      { num: '04', title: 'Visualization', description: 'The dashboard displays rankings, trends, events, comparisons, and forecasts.' },
+    ],
+    screensEyebrow: 'Visual proof',
+    screensH2: 'Five views, one data source',
+    screensP:
+      'Ranking, competitive map, indexed momentum, forecast, and entity profile. Each view consumes the same JSON payload and converts it into a different read: who leads, how they\'re positioned, how fast they\'re growing, and what to expect ahead.',
+    gallery: [
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
+        alt: 'Period ranking and market share distribution by revenue',
+        label: 'Rankings',
+        caption: 'Real-time ranking by revenue, visits, or share. Market share distribution in a donut chart with per-entity breakdown.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/competitive_map.webp',
+        alt: 'Competitive map: positioning by traffic volume and revenue efficiency',
+        label: 'Competitive map',
+        caption: 'Scatter by volume vs. efficiency. Quadrants to identify leaders, niches, and under-monetized traffic.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
+        alt: 'Indexed growth race across multiple competitors',
+        label: 'Indexed momentum',
+        caption: 'Growth relative to 100 from a shared starting point. Detects who\'s accelerating and who\'s losing ground.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
+        alt: 'Forecast of visits and revenue by competitor',
+        label: 'Forecast',
+        caption: 'Visit and revenue projections per entity with base, aggressive, and conservative scenarios. Interactive series filter.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
+        alt: 'Individual entity profile with revenue, visits, share and ranking KPIs',
+        label: 'Entity profile',
+        caption: 'Individual company view: revenue, visits, share, ranking, and efficiency for any selected period.',
+      },
+    ],
+    dataEyebrow: 'Data contract',
+    dataH2: 'Connectable without filling the page with noise',
+    dataP:
+      'The dashboard works with local JSON or an external endpoint. For portfolio purposes, it\'s enough to show the contract and integration logic — not every possible data source as a wall of chips.',
+    fieldDefs: [
+      { key: 'interface', label: 'Primary rows for metrics, entities, and periods.' },
+      { key: 'events', label: 'Optional annotations for campaigns, launches, or context.' },
+      { key: 'dictionary', label: 'Optional definitions and metadata for the interface layer.' },
+    ],
+    resultEyebrow: 'Result',
+    resultH2: 'A public template with private-work standards',
+    resultP:
+      'The page should feel like a product page, not a technical dump: enough architecture to trust, visual space to inspect, and clear paths to demo and repository.',
+    buildH3: 'Build',
+    buildBullets: [
+      'React/Vite interface with Tailwind and Recharts visualizations.',
+      'Local JSON fallback and optional connector via VITE_BENCHMARK_API_URL.',
+      'Synthetic data generator and public audit before publishing.',
+    ],
+    outcomeH3: 'Outcome',
+    outcomeBullets: [
+      'Reusable template for benchmark, market share, growth, and forecast reporting.',
+      'Public demo mode that shows the product without exposing client or competitor data.',
+      'Clear data contract for Sheets, databases, warehouses, or any JSON API.',
+    ],
+    calloutLabel: 'Takeaway',
+    calloutText:
+      'A portfolio-safe benchmark product that demonstrates dashboard design, data modelling, and deployment discipline without relying on private information.',
+  },
+  es: {
+    back: '← Casos de estudio',
+    heroSubtitle:
+      'Un dashboard público y reutilizable para convertir datos de benchmark en lectura ejecutiva.',
+    heroDescription:
+      'El sistema toma un payload JSON normalizado y lo transforma en rankings, market share, crecimiento, forecast, perfiles y señales estratégicas. La versión pública usa datos sintéticos para enseñar la arquitectura sin exponer información privada.',
+    heroMockNotice:
+      'Solo modo demo: entidades sintéticas, valores sintéticos, sin datos de clientes ni competidores reales.',
+    heroCTA: 'Ver demo público →',
+    heroCTASecondary: 'Ver repositorio →',
+    heroFigcaption: 'Vista ejecutiva del dashboard. Todos los datos son sintéticos.',
+    heroFigAriaLabel: 'Vista ejecutiva del dashboard con datos sintéticos',
+    heroImgAlt:
+      'Vista ejecutiva del Benchmark Dashboard: KPIs de mercado, share y señales estratégicas',
+    nav: [
+      ['Resumen', '#overview'],
+      ['Flujo', '#flow'],
+      ['Pantallas', '#screens'],
+      ['Datos', '#conexion'],
+      ['Resultado', '#resultado'],
+    ] as const,
+    overviewEyebrow: 'Resumen',
+    overviewH2: 'De lógica de spreadsheet a superficie ejecutiva',
+    overviewP:
+      'El caso prioriza la forma del producto: un cockpit de benchmark reutilizable que convierte filas estructuradas en vistas de comparación, evolución y decisión.',
+    proofPoints: [
+      { value: '12', label: 'Vistas de dashboard' },
+      { value: '3', label: 'Escenarios de forecast' },
+      { value: '0', label: 'Datos privados expuestos' },
+    ],
+    featureCards: [
+      { title: 'Ranking cockpit', description: 'Ordena entidades por revenue, visitas, share, crecimiento o score.' },
+      { title: 'Lectura de tendencia', description: 'Muestra evolución con vistas de share, growth e indexed performance.' },
+      { title: 'Capa de contexto', description: 'Añade eventos, señales y perfiles alrededor de las métricas.' },
+      { title: 'Forecast surface', description: 'Compara escenarios base, agresivos y conservadores.' },
+    ],
+    flowEyebrow: 'Arquitectura',
+    flowH2: 'Un sistema de cuatro capas',
+    flowP:
+      'Fuente de datos, contrato, normalización y vistas del dashboard. Cada capa es visible sin convertir la página en documentación.',
+    flowDiagram: ['Fuente de datos', 'Contrato JSON', 'Normalización', 'Vistas del dashboard'],
+    systemSteps: [
+      { num: '01', title: 'Fuente de datos', description: 'JSON local, Google Sheets, base de datos, warehouse o API.' },
+      { num: '02', title: 'Contrato', description: 'El endpoint devuelve interface, events y dictionary.' },
+      { num: '03', title: 'Normalización', description: 'La app traduce filas y métricas a un formato consistente.' },
+      { num: '04', title: 'Visualización', description: 'El dashboard muestra rankings, tendencias, eventos, comparativas y forecast.' },
+    ],
+    screensEyebrow: 'Prueba visual',
+    screensH2: 'Cinco vistas, una sola fuente de datos',
+    screensP:
+      'Ranking, mapa competitivo, momentum indexado, forecast y perfil de entidad. Cada vista consume el mismo payload JSON y lo convierte en una lectura diferente: quién lidera, cómo se posiciona, a qué velocidad crece y qué esperar hacia adelante.',
+    gallery: [
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
+        alt: 'Rankings y distribución de cuota de mercado por revenue',
+        label: 'Rankings',
+        caption: 'Clasificación en tiempo real por revenue, visitas o share. Distribución de cuota en donut con desglose por entidad.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/competitive_map.webp',
+        alt: 'Mapa competitivo: posicionamiento por tráfico y eficiencia de revenue',
+        label: 'Mapa competitivo',
+        caption: 'Scatter por volumen vs. eficiencia. Cuadrantes para identificar líderes, nichos y tráfico no monetizado.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
+        alt: 'Carrera de crecimiento indexado de múltiples competidores',
+        label: 'Momentum indexado',
+        caption: 'Crecimiento relativo a 100 desde un punto de partida compartido. Detecta quién acelera y quién cede terreno.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
+        alt: 'Forecast de visitas y revenue por competidor',
+        label: 'Forecast',
+        caption: 'Proyección de visitas y revenue por entidad con escenarios base, agresivo y conservador. Filtro de series interactivo.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
+        alt: 'Perfil individual de entidad con KPIs de revenue, visitas y share',
+        label: 'Perfil de entidad',
+        caption: 'Vista individual por empresa: revenue, visitas, share, ranking y eficiencia para cualquier periodo seleccionado.',
+      },
+    ],
+    dataEyebrow: 'Contrato de datos',
+    dataH2: 'Conectable sin llenar la página de ruido',
+    dataP:
+      'El dashboard puede funcionar con JSON local o un endpoint externo. En portfolio basta con mostrar el contrato y la lógica de integración, no todas las fuentes posibles como una pared de chips.',
+    fieldDefs: [
+      { key: 'interface', label: 'Filas principales para métricas, entidades y periodos.' },
+      { key: 'events', label: 'Anotaciones opcionales para campañas, lanzamientos o contexto.' },
+      { key: 'dictionary', label: 'Definiciones y metadata opcional para la capa de interfaz.' },
+    ],
+    resultEyebrow: 'Resultado',
+    resultH2: 'Una plantilla pública con criterio de trabajo privado',
+    resultP:
+      'La página debe sentirse como una página de producto, no como un volcado técnico: arquitectura suficiente para confiar, espacio visual para inspeccionar y salidas claras hacia demo y repositorio.',
+    buildH3: 'Construcción',
+    buildBullets: [
+      'Interfaz React/Vite con Tailwind y visualizaciones en Recharts.',
+      'Fallback local en JSON y conector opcional mediante VITE_BENCHMARK_API_URL.',
+      'Generador de datos sintéticos y auditoría pública antes de publicar.',
+    ],
+    outcomeH3: 'Resultado',
+    outcomeBullets: [
+      'Plantilla reutilizable para benchmark, market share, growth y forecast reporting.',
+      'Modo demo público que muestra el producto sin exponer datos de clientes o competidores.',
+      'Contrato de datos claro para Sheets, bases de datos, warehouses o cualquier API JSON.',
+    ],
+    calloutLabel: 'Conclusión',
+    calloutText:
+      'Un producto de benchmark seguro para portfolio que muestra diseño de dashboard, modelado de datos y disciplina de despliegue sin depender de información privada.',
+  },
 }
 
 export default function BenchmarkDashboardPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
+  const t = content[locale]
   const caseStudies = getCaseStudies(locale)
   const nextCaseStudy = caseStudies.find((cs) => cs.href.includes('data-brief-ai'))
 
@@ -205,48 +265,26 @@ export default function BenchmarkDashboardPage() {
     <>
       <Header locale={locale} />
       <main id="main-content" className="case-study-page-new case-study-page-new--benchmark">
+
         {/* ── HERO ── */}
         <section className="benchmark-hero" aria-labelledby="benchmark-title">
           <div className="benchmark-hero__content">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              {locale === 'es' ? '← Casos de estudio' : '← Case Studies'}
+            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
+              {t.back}
             </Link>
             <p className="data-brief-eyebrow">Data product / Benchmark dashboard</p>
             <h1 id="benchmark-title" className="benchmark-hero__title">
               Benchmark Dashboard Template
             </h1>
-            <p className="benchmark-hero__subtitle">
-              Un dashboard público y reutilizable para convertir datos de benchmark en lectura
-              ejecutiva.
-            </p>
-            <p className="benchmark-hero__description">
-              El sistema toma un payload JSON normalizado y lo transforma en rankings, market share,
-              crecimiento, forecast, perfiles y señales estratégicas. La versión pública usa datos
-              sintéticos para enseñar la arquitectura sin exponer información privada.
-            </p>
-            <p className="benchmark-hero__mock-notice">
-              Solo modo demo: entidades sintéticas, valores sintéticos, sin datos de clientes ni
-              competidores reales.
-            </p>
+            <p className="benchmark-hero__subtitle">{t.heroSubtitle}</p>
+            <p className="benchmark-hero__description">{t.heroDescription}</p>
+            <p className="benchmark-hero__mock-notice">{t.heroMockNotice}</p>
             <div className="data-brief-actions" aria-label="Project links">
-              <a
-                href={demoUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="data-brief-button data-brief-button--primary"
-              >
-                Ver demo público →
+              <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+                {t.heroCTA}
               </a>
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="data-brief-button"
-              >
-                Ver repositorio →
+              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+                {t.heroCTASecondary}
               </a>
             </div>
             <div className="data-brief-tags" aria-label="Project tags">
@@ -255,15 +293,20 @@ export default function BenchmarkDashboardPage() {
               ))}
             </div>
           </div>
-          <figure className="benchmark-hero__visual" aria-label="Dashboard preview con datos mock">
-            <BenchmarkMockup />
-            <figcaption>Vista representativa del dashboard. Todos los datos son sintéticos.</figcaption>
+          <figure className="benchmark-hero__visual" aria-label={t.heroFigAriaLabel}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/benchmark-dashboard/gallery/executive_home.webp"
+              alt={t.heroImgAlt}
+              className="benchmark-hero__screenshot"
+            />
+            <figcaption>{t.heroFigcaption}</figcaption>
           </figure>
         </section>
 
         {/* ── MINI NAV ── */}
         <nav className="data-brief-mini-nav" aria-label="Secciones de la página">
-          {navItems.map(([label, href]) => (
+          {t.nav.map(([label, href]) => (
             <a key={href} href={href}>
               {label}
             </a>
@@ -278,15 +321,12 @@ export default function BenchmarkDashboardPage() {
         >
           <div className="data-brief-section__container">
             <div className="benchmark-section-heading">
-              <p className="data-brief-eyebrow">Resumen</p>
-              <h2 id="benchmark-overview">De lógica de spreadsheet a superficie ejecutiva</h2>
-              <p>
-                El caso ahora prioriza la forma del producto: un cockpit de benchmark reutilizable
-                que convierte filas estructuradas en vistas de comparación, evolución y decisión.
-              </p>
+              <p className="data-brief-eyebrow">{t.overviewEyebrow}</p>
+              <h2 id="benchmark-overview">{t.overviewH2}</h2>
+              <p>{t.overviewP}</p>
             </div>
-            <div className="benchmark-proof-strip" aria-label="Puntos clave del proyecto">
-              {proofPoints.map((point) => (
+            <div className="benchmark-proof-strip" aria-label="Key project stats">
+              {t.proofPoints.map((point) => (
                 <div key={point.label}>
                   <strong>{point.value}</strong>
                   <span>{point.label}</span>
@@ -294,7 +334,7 @@ export default function BenchmarkDashboardPage() {
               ))}
             </div>
             <div className="data-brief-card-grid benchmark-feature-grid">
-              {featureCards.map((card) => (
+              {t.featureCards.map((card) => (
                 <article key={card.title} className="data-brief-card">
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
@@ -312,24 +352,22 @@ export default function BenchmarkDashboardPage() {
         >
           <div className="data-brief-section__container">
             <div className="benchmark-section-heading">
-              <p className="data-brief-eyebrow">Arquitectura</p>
-              <h2 id="benchmark-flow">Un sistema de cuatro capas</h2>
-              <p>
-                La arquitectura se explica con más aire: fuente de datos, contrato, normalización y
-                vistas del dashboard. Cada capa es visible sin convertir la página en documentación.
-              </p>
+              <p className="data-brief-eyebrow">{t.flowEyebrow}</p>
+              <h2 id="benchmark-flow">{t.flowH2}</h2>
+              <p>{t.flowP}</p>
             </div>
-            <div className="benchmark-diagram" aria-label="Flujo del sistema">
-              <span>Fuente de datos</span>
-              <span className="benchmark-diagram__arrow">→</span>
-              <span>Contrato JSON</span>
-              <span className="benchmark-diagram__arrow">→</span>
-              <span>Normalización</span>
-              <span className="benchmark-diagram__arrow">→</span>
-              <span>Vistas del dashboard</span>
+            <div className="benchmark-diagram" aria-label="System flow">
+              {t.flowDiagram.map((step, i) => (
+                <>
+                  <span key={step}>{step}</span>
+                  {i < t.flowDiagram.length - 1 && (
+                    <span key={`arrow-${i}`} className="benchmark-diagram__arrow">→</span>
+                  )}
+                </>
+              ))}
             </div>
             <div className="data-brief-card-grid benchmark-system-grid">
-              {systemSteps.map((step) => (
+              {t.systemSteps.map((step) => (
                 <article key={step.num} className="data-brief-card benchmark-system-card">
                   <span className="data-brief-eyebrow">{step.num}</span>
                   <h3>{step.title}</h3>
@@ -340,31 +378,56 @@ export default function BenchmarkDashboardPage() {
           </div>
         </section>
 
-        {/* ── DASHBOARD PROOF ── */}
+        {/* ── SCREENS ── */}
         <section
           id="screens"
-          className="data-brief-section data-brief-section--dark benchmark-section benchmark-section--screens"
+          className="data-brief-section data-brief-section--light benchmark-section"
           aria-labelledby="benchmark-screens"
         >
           <div className="data-brief-section__container">
             <div className="benchmark-section-heading">
-              <p className="data-brief-eyebrow">Prueba visual</p>
-              <h2 id="benchmark-screens">Preparado para recibir screenshots reales</h2>
-              <p>
-                Hasta que entren las capturas finales, la página usa marcos de dashboard contenidos
-                que reservan espacio para la interfaz real. Los módulos están pensados para overview,
-                ranking/perfiles y forecast/eventos.
-              </p>
+              <p className="data-brief-eyebrow">{t.screensEyebrow}</p>
+              <h2 id="benchmark-screens">{t.screensH2}</h2>
+              <p>{t.screensP}</p>
             </div>
-            <div className="benchmark-shot-grid">
-              {dashboardSlots.map((slot) => (
-                <DashboardSlot key={slot.title} slot={slot} />
-              ))}
+            <div className="benchmark-gallery">
+              <div className="benchmark-gallery__pair">
+                {t.gallery.slice(0, 2).map((screen) => (
+                  <figure key={screen.label} className="benchmark-screen">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={screen.src} alt={screen.alt} loading="lazy" />
+                    <figcaption>
+                      <span className="data-brief-eyebrow">{screen.label}</span>
+                      <p>{screen.caption}</p>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+              <figure className="benchmark-screen benchmark-screen--full">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={t.gallery[2].src} alt={t.gallery[2].alt} loading="lazy" />
+                <figcaption>
+                  <span className="data-brief-eyebrow">{t.gallery[2].label}</span>
+                  <p>{t.gallery[2].caption}</p>
+                </figcaption>
+              </figure>
+              <div className="benchmark-gallery__pair">
+                {t.gallery.slice(3).map((screen) => (
+                  <figure key={screen.label} className="benchmark-screen">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={screen.src} alt={screen.alt} loading="lazy" />
+                    <figcaption>
+                      <span className="data-brief-eyebrow">{screen.label}</span>
+                      <p>{screen.caption}</p>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ── CONEXIÓN DE DATOS ── */}
+        {/* ── DATA CONTRACT ── */}
         <section
           id="conexion"
           className="data-brief-section data-brief-section--cream benchmark-section"
@@ -372,40 +435,30 @@ export default function BenchmarkDashboardPage() {
         >
           <div className="data-brief-section__container data-brief-two-column">
             <div className="benchmark-section-heading benchmark-section-heading--sticky">
-              <p className="data-brief-eyebrow">Contrato de datos</p>
-              <h2 id="benchmark-conexion">Conectable sin llenar la página de ruido</h2>
-              <p>
-                El dashboard puede funcionar con JSON local o un endpoint externo. En portfolio
-                basta con mostrar el contrato y la lógica de integración, no todas las fuentes
-                posibles como una pared de chips.
-              </p>
+              <p className="data-brief-eyebrow">{t.dataEyebrow}</p>
+              <h2 id="benchmark-conexion">{t.dataH2}</h2>
+              <p>{t.dataP}</p>
             </div>
             <div className="benchmark-data-stack">
-              <div className="benchmark-code-block" aria-label="Contrato de datos del dashboard">
+              <div className="benchmark-code-block" aria-label="Data contract">
                 <div className="benchmark-code-block__bar">
                   <span>data-contract.json</span>
                 </div>
                 <pre>{dataContract}</pre>
               </div>
               <dl className="benchmark-field-defs">
-                <div>
-                  <dt><code>interface</code></dt>
-                  <dd>Filas principales para métricas, entidades y periodos.</dd>
-                </div>
-                <div>
-                  <dt><code>events</code></dt>
-                  <dd>Anotaciones opcionales para campañas, lanzamientos o contexto.</dd>
-                </div>
-                <div>
-                  <dt><code>dictionary</code></dt>
-                  <dd>Definiciones y metadata opcional para la capa de interfaz.</dd>
-                </div>
+                {t.fieldDefs.map((field) => (
+                  <div key={field.key}>
+                    <dt><code>{field.key}</code></dt>
+                    <dd>{field.label}</dd>
+                  </div>
+                ))}
               </dl>
             </div>
           </div>
         </section>
 
-        {/* ── RESULTADO ── */}
+        {/* ── RESULT ── */}
         <section
           id="resultado"
           className="data-brief-section data-brief-section--dark benchmark-section benchmark-section--result"
@@ -413,56 +466,39 @@ export default function BenchmarkDashboardPage() {
         >
           <div className="data-brief-section__container">
             <div className="benchmark-section-heading">
-              <p className="data-brief-eyebrow">Resultado</p>
-              <h2 id="benchmark-resultado">Una plantilla pública con criterio de trabajo privado</h2>
-              <p>
-                La landing debe sentirse como una página de producto, no como un volcado técnico:
-                arquitectura suficiente para confiar, espacio visual para inspeccionar y salidas
-                claras hacia demo y repositorio.
-              </p>
+              <p className="data-brief-eyebrow">{t.resultEyebrow}</p>
+              <h2 id="benchmark-resultado">{t.resultH2}</h2>
+              <p>{t.resultP}</p>
             </div>
             <div className="benchmark-result-grid">
               <article>
-                <h3>Construcción</h3>
+                <h3>{t.buildH3}</h3>
                 <ul className="data-brief-list">
-                  {buildBullets.map((bullet) => (
+                  {t.buildBullets.map((bullet) => (
                     <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
               </article>
               <article>
-                <h3>Resultado</h3>
+                <h3>{t.outcomeH3}</h3>
                 <ul className="data-brief-list">
-                  {resultBullets.map((bullet) => (
+                  {t.outcomeBullets.map((bullet) => (
                     <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
               </article>
             </div>
             <div className="data-brief-actions">
-              <a
-                href={demoUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="data-brief-button data-brief-button--primary"
-              >
-                Ver demo público →
+              <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+                {t.heroCTA}
               </a>
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="data-brief-button"
-              >
-                Ver repositorio →
+              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+                {t.heroCTASecondary}
               </a>
             </div>
             <aside className="data-brief-callout">
-              <span>Conclusión</span>
-              <strong>
-                Un producto de benchmark seguro para portfolio que muestra diseño de dashboard,
-                modelado de datos y disciplina de despliegue sin depender de información privada.
-              </strong>
+              <span>{t.calloutLabel}</span>
+              <strong>{t.calloutText}</strong>
             </aside>
           </div>
         </section>

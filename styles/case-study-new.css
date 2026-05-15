@@ -2848,6 +2848,13 @@ main.case-study-page-new {
   text-transform: uppercase;
 }
 
+.benchmark-hero__screenshot {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
 /* Dashboard mockup */
 .benchmark-mockup {
   border: 1px solid rgba(245, 240, 235, 0.18);
@@ -3752,5 +3759,60 @@ main.case-study-page-new {
   .benchmark-shot__frame,
   .benchmark-shot:first-child .benchmark-shot__frame {
     min-height: 16rem;
+  }
+}
+
+/* ── Benchmark gallery (real screenshots) ─────────────────────────── */
+
+.benchmark-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+}
+
+.benchmark-gallery__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.benchmark-screen {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.benchmark-screen img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid rgba(26, 23, 20, 0.1);
+  box-shadow: 0 2px 16px rgba(26, 23, 20, 0.08);
+}
+
+.benchmark-screen figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.benchmark-screen figcaption .data-brief-eyebrow {
+  margin: 0;
+}
+
+.benchmark-screen figcaption p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-family: var(--font-body), "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  max-width: 48ch;
+}
+
+@media (max-width: 640px) {
+  .benchmark-gallery__pair {
+    grid-template-columns: 1fr;
   }
 }
