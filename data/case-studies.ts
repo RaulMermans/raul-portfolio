@@ -24,7 +24,7 @@ const caseStudyEntries = {
       slug: 'benchmark-dashboard',
       title: 'Benchmark Dashboard Template',
       description:
-        'A reusable intelligence interface built with React, Vite, Tailwind CSS, and Recharts. Transforms mock benchmark data into rankings, trends, comparisons, events, and forecast scenarios.',
+        'Reusable dashboard template for rankings, trends, and forecasts.',
       image: '/images/case-studies/benchmark-dashboard/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
@@ -37,7 +37,7 @@ const caseStudyEntries = {
       slug: 'ai-sports',
       title: 'AI Sports Campaign',
       description:
-        'An AI campaign system built in n8n to keep casting, wardrobe, and art direction consistent across fast-moving sports marketing outputs.',
+        'n8n campaign workflow for consistent casting and art direction.',
       image: '/images/case-studies/ai-sports/thumb/thumb.webp',
       imageWidth: 2752,
       imageHeight: 1536,
@@ -50,7 +50,7 @@ const caseStudyEntries = {
       slug: 'remoria',
       title: 'Remoria',
       description:
-        'A brand system case study showing how identity logic, restraint, and creative infrastructure can scale a premium world without losing coherence.',
+        'Luxury brand system built around identity, restraint, and story.',
       image: '/images/case-studies/remoria/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
@@ -63,7 +63,7 @@ const caseStudyEntries = {
       slug: 'data-brief-ai',
       title: 'DataBrief AI',
       description:
-        'A bounded AI analytics workflow that turns CSV/XLSX uploads into structured, grounded business reports through semantic role detection, controlled Python execution, bounded repair, and exportable outputs.',
+        'Bounded AI workflow for grounded spreadsheet reports.',
       image: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
       imageWidth: 1254,
       imageHeight: 1254,
@@ -78,7 +78,7 @@ const caseStudyEntries = {
       slug: 'benchmark-dashboard',
       title: 'Benchmark Dashboard Template',
       description:
-        'Una interfaz de inteligencia reutilizable construida con React, Vite, Tailwind CSS y Recharts. Transforma datos mock de benchmark en rankings, tendencias, comparativas, eventos y escenarios de forecast.',
+        'Dashboard reutilizable para rankings, tendencias y forecast.',
       image: '/images/case-studies/benchmark-dashboard/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
@@ -91,7 +91,7 @@ const caseStudyEntries = {
       slug: 'ai-sports',
       title: 'Campaña deportiva con IA',
       description:
-        'Un sistema de campaña con IA construido en n8n para mantener consistentes el casting, el vestuario y la dirección de arte en piezas de marketing deportivo de ritmo rápido.',
+        'Flujo en n8n para campañas con casting y dirección consistentes.',
       image: '/images/case-studies/ai-sports/thumb/thumb.webp',
       imageWidth: 2752,
       imageHeight: 1536,
@@ -104,7 +104,7 @@ const caseStudyEntries = {
       slug: 'remoria',
       title: 'Remoria',
       description:
-        'Un caso de sistema de marca que muestra cómo la lógica de identidad, la contención y la infraestructura creativa pueden escalar un mundo premium sin perder coherencia.',
+        'Sistema de marca premium basado en identidad, contención y relato.',
       image: '/images/case-studies/remoria/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
@@ -117,7 +117,7 @@ const caseStudyEntries = {
       slug: 'data-brief-ai',
       title: 'DataBrief AI',
       description:
-        'Un flujo de analítica con IA acotado que convierte CSV/XLSX en informes de negocio estructurados y fundamentados mediante detección semántica, ejecución controlada de Python, reparación limitada y exportaciones.',
+        'Flujo de IA acotado para informes fundamentados desde CSV/XLSX.',
       image: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
       imageWidth: 1254,
       imageHeight: 1254,

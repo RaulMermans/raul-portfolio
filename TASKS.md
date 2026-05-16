@@ -33,6 +33,8 @@
 ## Completed
 
 ### May 2026
+- [x] Shorten case-study card descriptions and enforce design-system card fonts
+- [x] Widen case-study heading and main copy measures
 - [x] Randomize bottom next-case-study recommendations
 - [x] Adapt DataBrief AI case-study layout toward the Benchmark format
 - [x] Widen DataBrief AI case-study desktop content rhythm

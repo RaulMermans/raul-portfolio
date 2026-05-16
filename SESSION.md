@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-16
 
 ### Active Work
-- Bottom next-case-study recommendations randomized
+- Case-study card descriptions shortened and card font clarified
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,26 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-16 - Shorten case-study cards and enforce card fonts
+**Goal**: Make case-study listing descriptions intentionally short enough for two lines instead of relying on an ellipsis, and ensure card text uses the design-system fonts.
+**Outcome**: Completed with local lint limitation
+**Changes Made**:
+- `data/case-studies.ts` - rewrote English and Spanish case-study listing descriptions into concise card-specific copy designed to fit within two lines.
+- `styles/globals.css` - explicitly set `.case-study-project-tile__description` to the design-system body font (`var(--font-body)`, DM Sans fallback), matching the title/body card treatment while preserving Space Mono for meta labels.
+- `TASKS.md` and `SESSION.md` - recorded the completed card copy/font correction.
+**Verification**: `git diff --check -- data/case-studies.ts styles/globals.css styles/case-study-new.css TASKS.md SESSION.md` passed. A focused TS transpile syntax check for `data/case-studies.ts` passed. Targeted `npm run lint -- --file data/case-studies.ts` produced no diagnostics before the bounded runner stopped it, matching the existing local Next tooling limitation.
+**Next Steps**: Visually review `/case-studies`, `/en/case-studies`, and `/es/case-studies` at desktop and mobile widths to confirm no card teaser shows an ellipsis.
+
+### 2026-05-16 - Widen case-study text measures
+**Goal**: Let main case-study heading/copy blocks flow wider across case-study pages, especially DataBrief AI headings such as "The product promise is restraint", without simply pushing content left.
+**Outcome**: Completed with local lint limitation
+**Changes Made**:
+- `styles/case-study-new.css` - widened shared case-study narrative text caps for intro, challenge, approach, and results sections from `1100px` to `min(100%, 74rem)`.
+- `styles/case-study-new.css` - widened DataBrief and Benchmark section heading wrappers from `48rem`/`12ch` to `min(100%, 78rem)`/`18ch`, and widened their section paragraph caps to `min(100%, 72rem)`.
+- `TASKS.md` and `SESSION.md` - recorded the completed text-measure adjustment.
+**Verification**: `git diff --check -- styles/case-study-new.css` passed. Targeted `npm run lint -- --file styles/case-study-new.css` produced no diagnostics before the bounded runner stopped it, matching the existing local Next tooling limitation.
+**Next Steps**: After repairing local `node_modules`, visually review DataBrief, Benchmark, Remoria, and AI Sports case-study sections on desktop and mobile.
 
 ### 2026-05-16 - Randomize next case-study recommendations
 **Goal**: Make the bottom "next case study" module choose a random case study instead of using fixed page-to-page links.
