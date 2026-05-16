@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-16
 
 ### Active Work
-- Case-study card descriptions shortened and card font clarified
+- Benchmark case-study CTA visibility and Spanish grammar corrected
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,16 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-16 - Fix Benchmark CTA contrast and Spanish grammar
+**Goal**: Make the secondary Benchmark case-study CTA visible on the light hero surface and correct awkward Spanish button/demo wording.
+**Outcome**: Completed
+**Changes Made**:
+- `app/case-studies/benchmark-dashboard/page.tsx` - changed the Spanish CTA to `Ver la demo pública`, added the article to `Ver el repositorio`, and cleaned up the demo-mode phrasing.
+- `styles/case-study-new.css` - added Benchmark-specific light-surface button contrast while preserving cream-on-dark treatment inside the result section.
+- `TASKS.md` and `SESSION.md` - recorded the completed CTA visibility and grammar pass.
+**Verification**: Focused syntax and whitespace checks were run after the edit. Targeted lint remains subject to the local Next tooling limitation already documented in this session file.
+**Next Steps**: Visually review the Benchmark hero and result CTA row on `/case-studies/benchmark-dashboard`, `/en/case-studies/benchmark-dashboard`, and `/es/case-studies/benchmark-dashboard`.
 
 ### 2026-05-16 - Shorten case-study cards and enforce card fonts
 **Goal**: Make case-study listing descriptions intentionally short enough for two lines instead of relying on an ellipsis, and ensure card text uses the design-system fonts.

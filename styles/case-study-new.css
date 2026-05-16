@@ -3409,6 +3409,20 @@ main.case-study-page-new {
   color: rgba(26, 23, 20, 0.5);
 }
 
+.case-study-page-new--benchmark .data-brief-button {
+  border-color: rgba(26, 23, 20, 0.16);
+  background: transparent;
+  color: var(--ink);
+}
+
+.case-study-page-new--benchmark .data-brief-button--primary,
+.case-study-page-new--benchmark .data-brief-button:hover,
+.case-study-page-new--benchmark .data-brief-button:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--cream);
+}
+
 .case-study-page-new--benchmark .data-brief-tags {
   max-width: 34rem;
   margin-top: 1.25rem;
@@ -3523,6 +3537,11 @@ main.case-study-page-new {
   align-self: start;
   position: sticky;
   top: calc(var(--header-height) + 2rem);
+}
+
+.benchmark-section--result .data-brief-button {
+  border-color: rgba(245, 240, 235, 0.28);
+  color: var(--cream);
 }
 
 .benchmark-proof-strip {

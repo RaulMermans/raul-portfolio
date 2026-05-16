@@ -144,9 +144,9 @@ const content = {
     heroDescription:
       'El sistema toma un payload JSON normalizado y lo transforma en rankings, market share, crecimiento, forecast, perfiles y señales estratégicas. La versión pública usa datos sintéticos para enseñar la arquitectura sin exponer información privada.',
     heroMockNotice:
-      'Solo modo demo: entidades sintéticas, valores sintéticos, sin datos de clientes ni competidores reales.',
-    heroCTA: 'Ver demo público →',
-    heroCTASecondary: 'Ver repositorio →',
+      'Solo en modo demo: entidades sintéticas, valores sintéticos, sin datos de clientes ni competidores reales.',
+    heroCTA: 'Ver la demo pública →',
+    heroCTASecondary: 'Ver el repositorio →',
     heroFigcaption: 'Vista ejecutiva del dashboard. Todos los datos son sintéticos.',
     heroFigAriaLabel: 'Vista ejecutiva del dashboard con datos sintéticos',
     heroImgAlt:
@@ -242,7 +242,7 @@ const content = {
     outcomeH3: 'Resultado',
     outcomeBullets: [
       'Plantilla reutilizable para benchmark, market share, growth y forecast reporting.',
-      'Modo demo público que muestra el producto sin exponer datos de clientes o competidores.',
+      'Demo pública que muestra el producto sin exponer datos de clientes o competidores.',
       'Contrato de datos claro para Sheets, bases de datos, warehouses o cualquier API JSON.',
     ],
     calloutLabel: 'Conclusión',
