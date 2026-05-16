@@ -5,10 +5,10 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-15
+**Last Updated**: 2026-05-16
 
 ### Active Work
-- Restored universal Header/Footer on the case-studies landing and softened project image cards
+- Benchmark case-study desktop content rhythm widened
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,35 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-16 - Widen Benchmark case-study content
+**Goal**: Reduce the large lateral margins on the Benchmark Dashboard case study and bring its desktop content width closer to the broader Remoria case-study rhythm.
+**Outcome**: Completed with local lint limitation
+**Changes Made**:
+- `styles/case-study-new.css` - reduced Benchmark hero and section horizontal padding, widened Benchmark section containers from `70rem` to `92rem`, and expanded the Benchmark mini-nav to the same wider desktop measure.
+- `TASKS.md` and `SESSION.md` - recorded the completed width adjustment.
+**Verification**: `git diff --check -- styles/case-study-new.css` passed. Targeted `npm run lint -- --file app/case-studies/benchmark-dashboard/page.tsx` failed before linting because `node_modules/next/dist/compiled/ci-info/package.json` is truncated/corrupt.
+**Next Steps**: After repairing local `node_modules`, visually review `/case-studies/benchmark-dashboard`, `/en/case-studies/benchmark-dashboard`, and `/es/case-studies/benchmark-dashboard` at desktop and mobile widths.
+
+### 2026-05-16 - Align Benchmark hero and mini-nav rhythm
+**Goal**: Make the Benchmark Dashboard hero screenshot feel level with the left content and make the in-page mini-nav use the available horizontal space with a balanced middle arrangement.
+**Outcome**: Completed with local lint limitation
+**Changes Made**:
+- `styles/case-study-new.css` - changed the Benchmark hero grid from bottom alignment to centered cross-axis alignment, widened the Benchmark mini-nav, distributed its five links across equal columns, and kept the mobile nav as horizontal flex scrolling.
+- `TASKS.md` and `SESSION.md` - recorded the completed Benchmark layout polish.
+**Verification**: `git diff --check -- styles/case-study-new.css` passed. Targeted `npm run lint -- --file app/case-studies/benchmark-dashboard/page.tsx` failed before linting because `node_modules/next/dist/compiled/zod/package.json` is truncated/corrupt.
+**Next Steps**: After repairing local `node_modules`, visually review `/case-studies/benchmark-dashboard`, `/en/case-studies/benchmark-dashboard`, and `/es/case-studies/benchmark-dashboard` at desktop and mobile widths.
+
+### 2026-05-16 - Let case-study images define card height
+**Goal**: Remove the visible outer image box on the case-studies landing, let thumbnails render at their true aspect-ratio height, keep rounded corners on the image itself, preserve the randomized gallery feel, and cap descriptions at two lines.
+**Outcome**: Completed with local lint/type-check limitation
+**Changes Made**:
+- `data/case-studies.ts` - added explicit thumbnail dimensions to each case study so Next/Image can reserve the real image aspect ratio.
+- `app/case-studies/page.tsx` - switched project thumbnails from `fill` mode to intrinsic `width`/`height` rendering.
+- `styles/globals.css` - removed the visible padded outer frame/aspect-ratio variants, moved the rounded border onto the image, and clamped project descriptions to two lines.
+- `TASKS.md` and `SESSION.md` - recorded the completed visual correction.
+**Verification**: `git diff --check -- app/case-studies/page.tsx data/case-studies.ts styles/globals.css` passed. A Node image-size check confirmed the stored dimensions match the WebP thumbnails. Targeted `npm run lint -- --file app/case-studies/page.tsx --file data/case-studies.ts` failed before linting because `node_modules/next/dist/compiled/find-up/package.json` is truncated/corrupt; `npm run type-check` produced no diagnostics before the bounded runner stopped it.
+**Next Steps**: After repairing local `node_modules`, visually review `/case-studies`, `/en/case-studies`, and `/es/case-studies` at desktop and mobile widths.
 
 ### 2026-05-15 - Restore global chrome on case-studies landing
 **Goal**: Apply the universal Header/Footer rule to the case-studies landing and make the project grid closer to the rounded reference, with images adapting to their frames instead of being hard-cropped.

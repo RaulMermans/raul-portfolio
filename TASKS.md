@@ -33,6 +33,9 @@
 ## Completed
 
 ### May 2026
+- [x] Widen Benchmark case-study desktop content rhythm
+- [x] Align Benchmark hero image and widen the Benchmark case-study mini-nav
+- [x] Let case-study project images define their own rounded card height
 - [x] Restore global Header/Footer on case-studies landing and soften project image cards
 - [x] Restore global Header/Footer on About landing and document global chrome rule
 - [x] Redesign the About landing with localized Spanish and English editorial versions

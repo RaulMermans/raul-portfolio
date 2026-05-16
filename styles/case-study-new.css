@@ -3282,13 +3282,20 @@ main.case-study-page-new {
 }
 
 .case-study-page-new--benchmark .data-brief-mini-nav {
-  max-width: 62rem;
+  width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 92rem);
+  max-width: none;
   margin: -1.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1vw, 0.85rem);
+  padding-inline: clamp(0.65rem, 1.2vw, 1rem);
   border-color: rgba(26, 23, 20, 0.12);
   background: rgba(245, 240, 235, 0.92);
 }
 
 .case-study-page-new--benchmark .data-brief-mini-nav a {
+  justify-content: center;
+  min-width: 0;
   color: rgba(26, 23, 20, 0.62);
 }
 
@@ -3300,9 +3307,9 @@ main.case-study-page-new {
 
 .benchmark-hero {
   grid-template-columns: minmax(0, 0.78fr) minmax(24rem, 0.9fr);
-  align-items: end;
+  align-items: center;
   gap: clamp(3rem, 7vw, 7rem);
-  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem)) clamp(1.25rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem)) clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid rgba(26, 23, 20, 0.1);
   background: var(--cream);
   color: var(--ink);
@@ -3429,11 +3436,12 @@ main.case-study-page-new {
 }
 
 .benchmark-section {
-  padding: clamp(5.5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(5.5rem, 9vw, 8rem) clamp(1.25rem, 3vw, 3rem);
 }
 
 .benchmark-section .data-brief-section__container {
-  max-width: 70rem;
+  width: 100%;
+  max-width: 92rem;
 }
 
 .benchmark-section-heading {
@@ -3710,7 +3718,10 @@ main.case-study-page-new {
 
 @media (max-width: 860px) {
   .case-study-page-new--benchmark .data-brief-mini-nav {
+    width: auto;
+    display: flex;
     margin-top: 0;
+    padding-inline: 1.25rem;
   }
 
   .benchmark-section-heading--sticky {

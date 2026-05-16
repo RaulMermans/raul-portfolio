@@ -231,7 +231,8 @@ export default function CaseStudiesPage() {
                   <Image
                     src={study.image}
                     alt=""
-                    fill
+                    width={study.imageWidth}
+                    height={study.imageHeight}
                     sizes="(max-width: 560px) 100vw, (max-width: 880px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     className="case-study-project-tile__image"
                     priority={index < 2}
