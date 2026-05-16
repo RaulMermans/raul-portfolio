@@ -3777,6 +3777,17 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: start;
+}
+
+/* rankings (1.598:1) + competitive map (1.981:1) → ratio 1.981/1.598 = 1.24 */
+.benchmark-gallery__pair--market {
+  grid-template-columns: 1fr 1.24fr;
+}
+
+/* forecast (1.618:1) + indexed momentum (1.779:1) → ratio 1.779/1.618 = 1.1 */
+.benchmark-gallery__pair--trend {
+  grid-template-columns: 1fr 1.1fr;
 }
 
 .benchmark-screen {

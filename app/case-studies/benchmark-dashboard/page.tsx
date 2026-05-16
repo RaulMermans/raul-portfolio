@@ -76,7 +76,7 @@ const content = {
     screensEyebrow: 'Visual proof',
     screensH2: 'Five views, one data source',
     screensP:
-      'Ranking, competitive map, indexed momentum, forecast, and entity profile. Each view consumes the same JSON payload and converts it into a different read: who leads, how they\'re positioned, how fast they\'re growing, and what to expect ahead.',
+      'Rankings and competitive map show where each player stands. Forecast and indexed momentum reveal who\'s moving and where things are heading. Entity profile drills into any single brand — all from the same payload.',
     gallery: [
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
@@ -91,16 +91,16 @@ const content = {
         caption: 'Scatter by volume vs. efficiency. Quadrants to identify leaders, niches, and under-monetized traffic.',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
-        alt: 'Indexed growth race across multiple competitors',
-        label: 'Indexed momentum',
-        caption: 'Growth relative to 100 from a shared starting point. Detects who\'s accelerating and who\'s losing ground.',
-      },
-      {
         src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
         alt: 'Forecast of visits and revenue by competitor',
         label: 'Forecast',
         caption: 'Visit and revenue projections per entity with base, aggressive, and conservative scenarios. Interactive series filter.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
+        alt: 'Indexed growth race across multiple competitors',
+        label: 'Indexed momentum',
+        caption: 'Growth relative to 100 from a shared starting point. Detects who\'s accelerating and who\'s losing ground.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
@@ -188,7 +188,7 @@ const content = {
     screensEyebrow: 'Prueba visual',
     screensH2: 'Cinco vistas, una sola fuente de datos',
     screensP:
-      'Ranking, mapa competitivo, momentum indexado, forecast y perfil de entidad. Cada vista consume el mismo payload JSON y lo convierte en una lectura diferente: quién lidera, cómo se posiciona, a qué velocidad crece y qué esperar hacia adelante.',
+      'Rankings y mapa competitivo muestran dónde se sitúa cada jugador. Forecast y momentum indexado revelan quién se mueve y hacia dónde. El perfil de entidad profundiza en cualquier marca — todo desde el mismo payload.',
     gallery: [
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
@@ -203,16 +203,16 @@ const content = {
         caption: 'Scatter por volumen vs. eficiencia. Cuadrantes para identificar líderes, nichos y tráfico no monetizado.',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
-        alt: 'Carrera de crecimiento indexado de múltiples competidores',
-        label: 'Momentum indexado',
-        caption: 'Crecimiento relativo a 100 desde un punto de partida compartido. Detecta quién acelera y quién cede terreno.',
-      },
-      {
         src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
         alt: 'Forecast de visitas y revenue por competidor',
         label: 'Forecast',
         caption: 'Proyección de visitas y revenue por entidad con escenarios base, agresivo y conservador. Filtro de series interactivo.',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
+        alt: 'Carrera de crecimiento indexado de múltiples competidores',
+        label: 'Momentum indexado',
+        caption: 'Crecimiento relativo a 100 desde un punto de partida compartido. Detecta quién acelera y quién cede terreno.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
@@ -391,7 +391,9 @@ export default function BenchmarkDashboardPage() {
               <p>{t.screensP}</p>
             </div>
             <div className="benchmark-gallery">
-              <div className="benchmark-gallery__pair">
+              {/* Pair A — market position: rankings (1.598:1) + competitive map (1.981:1)
+                  Column ratio 1fr/1.24fr gives both images the same display height */}
+              <div className="benchmark-gallery__pair benchmark-gallery__pair--market">
                 {t.gallery.slice(0, 2).map((screen) => (
                   <figure key={screen.label} className="benchmark-screen">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -403,16 +405,10 @@ export default function BenchmarkDashboardPage() {
                   </figure>
                 ))}
               </div>
-              <figure className="benchmark-screen benchmark-screen--full">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={t.gallery[2].src} alt={t.gallery[2].alt} loading="lazy" />
-                <figcaption>
-                  <span className="data-brief-eyebrow">{t.gallery[2].label}</span>
-                  <p>{t.gallery[2].caption}</p>
-                </figcaption>
-              </figure>
-              <div className="benchmark-gallery__pair">
-                {t.gallery.slice(3).map((screen) => (
+              {/* Pair B — dynamics: forecast (1.618:1) + indexed momentum (1.779:1)
+                  Column ratio 1fr/1.1fr gives both images the same display height */}
+              <div className="benchmark-gallery__pair benchmark-gallery__pair--trend">
+                {t.gallery.slice(2, 4).map((screen) => (
                   <figure key={screen.label} className="benchmark-screen">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={screen.src} alt={screen.alt} loading="lazy" />
@@ -423,6 +419,15 @@ export default function BenchmarkDashboardPage() {
                   </figure>
                 ))}
               </div>
+              {/* Full-width strip — entity profile (3.325:1, too wide for a pair) */}
+              <figure className="benchmark-screen benchmark-screen--full">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={t.gallery[4].src} alt={t.gallery[4].alt} loading="lazy" />
+                <figcaption>
+                  <span className="data-brief-eyebrow">{t.gallery[4].label}</span>
+                  <p>{t.gallery[4].caption}</p>
+                </figcaption>
+              </figure>
             </div>
           </div>
         </section>
