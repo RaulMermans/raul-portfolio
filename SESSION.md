@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-16
 
 ### Active Work
-- Benchmark case-study desktop content rhythm widened
+- Bottom next-case-study recommendations randomized
 
 ### Pending Decisions
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
@@ -87,6 +87,36 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-16 - Randomize next case-study recommendations
+**Goal**: Make the bottom "next case study" module choose a random case study instead of using fixed page-to-page links.
+**Outcome**: Completed with local script limitation
+**Changes Made**:
+- `components/case-studies/CaseStudyNext.tsx` - added client-side random selection via `currentHref`, so the module chooses from the shared case-study list after mount and avoids hydration mismatch.
+- `data/case-studies.ts` - changed `getRandomCaseStudy()` to return a fresh random available case study and exclude the current page by normalized path, including localized route variants.
+- `app/case-studies/ai-sports/page.tsx`, `app/case-studies/remoria/page.tsx`, `app/case-studies/data-brief-ai/page.tsx`, and `app/case-studies/benchmark-dashboard/page.tsx` - removed hardcoded next-project lookups and passed the current pathname to `CaseStudyNext`.
+- `TASKS.md` and `SESSION.md` - recorded the completed randomization.
+**Verification**: `git diff --check -- components/case-studies/CaseStudyNext.tsx data/case-studies.ts app/case-studies/ai-sports/page.tsx app/case-studies/remoria/page.tsx app/case-studies/data-brief-ai/page.tsx app/case-studies/benchmark-dashboard/page.tsx styles/case-study-new.css TASKS.md SESSION.md` passed. Focused TSX/TS transpile syntax checks passed for the touched component, helper, and case-study pages. `npm run type-check` and targeted `npm run lint -- --file ...` produced no diagnostics before the bounded runner stopped them, matching the existing local Next/TypeScript tooling limitation.
+**Next Steps**: After repairing local `node_modules`, rerun type-check/lint and visually confirm the next-case-study block on `/case-studies/*`, `/en/case-studies/*`, and `/es/case-studies/*`.
+
+### 2026-05-16 - Adapt DataBrief AI toward Benchmark format
+**Goal**: Make the DataBrief AI case study follow the Benchmark Dashboard layout language more closely while preserving its content and technical story.
+**Outcome**: Completed with local lint limitation
+**Changes Made**:
+- `app/case-studies/data-brief-ai/page.tsx` - changed the Output section from warm cream to light so the section alternation matches the Benchmark product-page rhythm more closely.
+- `styles/case-study-new.css` - converted the DataBrief hero from a dark technical surface to a cream product hero with ink text, light-background buttons/tags, softer report proof styling, Benchmark-like title/section heading measures, flatter proof/card rhythm, and preserved mobile horizontal nav behavior.
+- `TASKS.md` and `SESSION.md` - recorded the completed layout adaptation.
+**Verification**: `git diff --check -- app/case-studies/data-brief-ai/page.tsx styles/case-study-new.css` passed. A focused TSX transpile syntax check for `app/case-studies/data-brief-ai/page.tsx` passed. Targeted `npm run lint -- --file app/case-studies/data-brief-ai/page.tsx` produced no diagnostics before the bounded runner stopped it, matching the existing local Next dependency/tooling limitation.
+**Next Steps**: After repairing local `node_modules`, visually review `/case-studies/data-brief-ai`, `/en/case-studies/data-brief-ai`, and `/es/case-studies/data-brief-ai` at desktop and mobile widths.
+
+### 2026-05-16 - Widen DataBrief AI case-study content
+**Goal**: Apply the same broader desktop rhythm used on Benchmark to constrained case-study pages, especially DataBrief AI, while leaving already-wide layouts such as Remoria and AI Sports unchanged.
+**Outcome**: Completed with local lint limitation
+**Changes Made**:
+- `styles/case-study-new.css` - widened DataBrief AI section containers from `76rem` to `92rem`, reduced section and hero horizontal padding, and expanded the DataBrief mini-nav to the same wider five-column desktop measure while preserving mobile horizontal scrolling.
+- `TASKS.md` and `SESSION.md` - recorded the completed DataBrief width adjustment.
+**Verification**: `git diff --check -- styles/case-study-new.css` passed. Targeted `npm run lint -- --file app/case-studies/data-brief-ai/page.tsx` failed before linting because `node_modules/next/dist/compiled/@edge-runtime/ponyfill/package.json` is truncated/corrupt.
+**Next Steps**: After repairing local `node_modules`, visually review `/case-studies/data-brief-ai`, `/en/case-studies/data-brief-ai`, and `/es/case-studies/data-brief-ai` at desktop and mobile widths.
 
 ### 2026-05-16 - Widen Benchmark case-study content
 **Goal**: Reduce the large lateral margins on the Benchmark Dashboard case study and bring its desktop content width closer to the broader Remoria case-study rhythm.

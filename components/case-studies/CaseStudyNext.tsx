@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getRandomCaseStudy } from '@/data/case-studies'
 import { getSiteCopy } from '@/data/site-copy'
 import { type Locale } from '@/lib/i18n'
 
@@ -15,16 +16,25 @@ interface CaseStudy {
 
 interface CaseStudyNextProps {
   nextCaseStudy?: CaseStudy
+  currentHref?: string
   accentColor?: string
   locale?: Locale
 }
 
-export default function CaseStudyNext({ nextCaseStudy, accentColor, locale = 'en' }: CaseStudyNextProps) {
+export default function CaseStudyNext({ nextCaseStudy, currentHref, accentColor, locale = 'en' }: CaseStudyNextProps) {
   const copy = getSiteCopy(locale).caseStudiesUi
+  const [randomNextCaseStudy, setRandomNextCaseStudy] = useState<CaseStudy | undefined>(undefined)
   const [showHint, setShowHint] = useState(false)
+  const selectedNextCaseStudy = randomNextCaseStudy ?? nextCaseStudy
 
   useEffect(() => {
-    if (!nextCaseStudy) return
+    if (!currentHref) return
+
+    setRandomNextCaseStudy(getRandomCaseStudy(currentHref, locale))
+  }, [currentHref, locale])
+
+  useEffect(() => {
+    if (!selectedNextCaseStudy) return
 
     const handleScroll = () => {
       const scrollPosition = window.innerHeight + window.scrollY
@@ -39,9 +49,9 @@ export default function CaseStudyNext({ nextCaseStudy, accentColor, locale = 'en
     handleScroll() // Check initial position
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [nextCaseStudy])
+  }, [selectedNextCaseStudy])
 
-  if (!nextCaseStudy) return null
+  if (!selectedNextCaseStudy) return null
 
   return (
     <>
@@ -56,13 +66,13 @@ export default function CaseStudyNext({ nextCaseStudy, accentColor, locale = 'en
           <div className="case-study-next-new__divider"></div>
           
           {/* Preview Image with Peek Effect */}
-          {nextCaseStudy.image && (
+          {selectedNextCaseStudy.image && (
             <div className="case-study-next-new__preview">
-              <Link href={nextCaseStudy.href} className="case-study-next-new__preview-link">
+              <Link href={selectedNextCaseStudy.href} className="case-study-next-new__preview-link">
                 <div className="case-study-next-new__preview-image">
                   <Image
-                    src={nextCaseStudy.image}
-                    alt={`${nextCaseStudy.title} preview`}
+                    src={selectedNextCaseStudy.image}
+                    alt={`${selectedNextCaseStudy.title} preview`}
                     fill
                     quality={85}
                     sizes="(max-width: 768px) 100vw, 500px"
@@ -80,12 +90,12 @@ export default function CaseStudyNext({ nextCaseStudy, accentColor, locale = 'en
           <div className="case-study-next-new__content">
             <p className="case-study-next-new__label">{copy.nextProject}</p>
             <Link 
-              href={nextCaseStudy.href} 
+              href={selectedNextCaseStudy.href}
               className="case-study-next-new__link"
             >
-              <h2 className="case-study-next-new__title">{nextCaseStudy.title}</h2>
-              {nextCaseStudy.subtitle && (
-                <p className="case-study-next-new__subtitle">{nextCaseStudy.subtitle}</p>
+              <h2 className="case-study-next-new__title">{selectedNextCaseStudy.title}</h2>
+              {selectedNextCaseStudy.subtitle && (
+                <p className="case-study-next-new__subtitle">{selectedNextCaseStudy.subtitle}</p>
               )}
               <div className="case-study-next-new__arrow">→</div>
             </Link>

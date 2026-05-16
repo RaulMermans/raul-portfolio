@@ -1,5 +1,5 @@
 import type { Locale } from '@/lib/i18n'
-import { localizePath } from '@/lib/i18n'
+import { localizePath, stripLocaleFromPath } from '@/lib/i18n'
 
 export interface CaseStudy {
   id: number
@@ -146,35 +146,13 @@ export function getCaseStudies(locale: Locale): CaseStudy[] {
 
 export function getRandomCaseStudy(currentHref: string, locale: Locale): CaseStudy {
   const caseStudies = getCaseStudies(locale)
+  const currentPath = stripLocaleFromPath(currentHref)
+  const available = caseStudies.filter((cs) => stripLocaleFromPath(cs.href) !== currentPath)
 
-  if (typeof window === 'undefined') {
-    const available = caseStudies.filter((cs) => cs.href !== currentHref)
-    return available[0] || caseStudies[0]
-  }
-
-  const storageKey = `next-case-study-${locale}-${currentHref}`
-  const stored = sessionStorage.getItem(storageKey)
-
-  if (stored) {
-    try {
-      const parsed = JSON.parse(stored)
-      const found = caseStudies.find((cs) => cs.href === parsed.href && cs.href !== currentHref)
-      if (found) {
-        return found
-      }
-    } catch {
-      // Ignore invalid stored state.
-    }
-  }
-
-  const available = caseStudies.filter((cs) => cs.href !== currentHref)
   if (available.length === 0) {
     return caseStudies[0]
   }
 
   const randomIndex = Math.floor(Math.random() * available.length)
-  const selected = available[randomIndex]
-  sessionStorage.setItem(storageKey, JSON.stringify(selected))
-
-  return selected
+  return available[randomIndex]
 }

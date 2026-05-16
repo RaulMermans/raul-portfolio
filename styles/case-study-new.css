@@ -2413,30 +2413,50 @@ main.case-study-page-new {
 .case-study-page-new--data-brief .data-brief-section {
   padding-top: var(--data-brief-section-pad);
   padding-bottom: var(--data-brief-section-pad);
+  padding-inline: clamp(1.25rem, 3vw, 3rem);
+}
+
+.case-study-page-new--data-brief .data-brief-back {
+  color: rgba(26, 23, 20, 0.62);
+}
+
+.case-study-page-new--data-brief .data-brief-back:hover,
+.case-study-page-new--data-brief .data-brief-back:focus-visible {
+  color: var(--ink);
 }
 
 .case-study-page-new--data-brief .data-brief-section__container {
-  max-width: 76rem;
+  width: 100%;
+  max-width: 92rem;
 }
 
 .case-study-page-new--data-brief .data-brief-mini-nav {
-  justify-content: center;
-  max-width: 64rem;
+  width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 92rem);
+  max-width: none;
   margin: -1.25rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1vw, 0.85rem);
   border: 1px solid rgba(26, 23, 20, 0.12);
   border-radius: var(--data-brief-card-radius);
   padding: 0.5rem;
 }
 
 .case-study-page-new--data-brief .data-brief-mini-nav a {
+  justify-content: center;
+  min-width: 0;
   border-color: transparent;
   background: transparent;
 }
 
 .data-brief-hero {
   grid-template-columns: minmax(0, 0.9fr) minmax(23rem, 0.84fr);
+  align-items: center;
   gap: clamp(2.5rem, 5.5vw, 6rem);
-  padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem)) clamp(1.25rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem)) clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
+  border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+  background: var(--cream);
+  color: var(--ink);
 }
 
 .data-brief-hero__content {
@@ -2444,15 +2464,21 @@ main.case-study-page-new {
 }
 
 .data-brief-hero__title {
-  max-width: 7ch;
+  max-width: 10ch;
+  color: var(--ink);
+  font-size: clamp(3.8rem, 7vw, 8rem);
 }
 
 .data-brief-hero__subtitle {
   max-width: 49rem;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  line-height: 1.25;
 }
 
 .data-brief-hero__description {
   max-width: 46rem;
+  color: rgba(26, 23, 20, 0.68);
 }
 
 .case-study-page-new--data-brief .data-brief-hero__visual {
@@ -2462,6 +2488,26 @@ main.case-study-page-new {
 
 .case-study-page-new--data-brief .data-brief-hero__visual .data-brief-report {
   margin-inline: auto;
+  border-color: rgba(26, 23, 20, 0.1);
+  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+}
+
+.case-study-page-new--data-brief .data-brief-hero__visual figcaption {
+  color: rgba(26, 23, 20, 0.46);
+}
+
+.case-study-page-new--data-brief .data-brief-button {
+  border-color: rgba(26, 23, 20, 0.16);
+  background: transparent;
+  color: var(--ink);
+}
+
+.case-study-page-new--data-brief .data-brief-button--primary,
+.case-study-page-new--data-brief .data-brief-button:hover,
+.case-study-page-new--data-brief .data-brief-button:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--cream);
 }
 
 .case-study-page-new--data-brief .data-brief-tags {
@@ -2470,20 +2516,21 @@ main.case-study-page-new {
 
 .case-study-page-new--data-brief .data-brief-tags span {
   min-height: 2rem;
-  border-color: rgba(245, 240, 235, 0.12);
-  color: rgba(245, 240, 235, 0.66);
+  border-color: rgba(26, 23, 20, 0.1);
+  background: rgba(26, 23, 20, 0.035);
+  color: rgba(26, 23, 20, 0.62);
 }
 
 .data-brief-refresh-heading {
-  max-width: 58rem;
+  max-width: 48rem;
 }
 
 .data-brief-refresh-heading h2 {
-  max-width: 15ch;
+  max-width: 12ch;
 }
 
 .data-brief-refresh-heading p {
-  max-width: 55rem;
+  max-width: 44rem;
 }
 
 .data-brief-section--overview .data-brief-refresh-heading {
@@ -2505,6 +2552,10 @@ main.case-study-page-new {
   gap: 1.5rem;
   padding: clamp(1.35rem, 3vw, 2rem);
   background: var(--cream);
+}
+
+.data-brief-refusal-card {
+  min-height: 20rem;
 }
 
 .data-brief-refusal-card span,
@@ -2591,6 +2642,10 @@ main.case-study-page-new {
   min-height: 17rem;
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
   background: var(--cream-light);
+}
+
+.case-study-page-new--data-brief .data-brief-phase-card {
+  min-height: 15rem;
 }
 
 .data-brief-phase-card h3 {
@@ -2708,6 +2763,11 @@ main.case-study-page-new {
   background: rgba(245, 240, 235, 0.06);
 }
 
+.case-study-page-new--data-brief .data-brief-section--result .data-brief-button {
+  border-color: rgba(245, 240, 235, 0.28);
+  color: var(--cream);
+}
+
 .data-brief-result-grid h3 {
   margin: 0;
   color: var(--cream);
@@ -2753,8 +2813,11 @@ main.case-study-page-new {
 
 @media (max-width: 860px) {
   .case-study-page-new--data-brief .data-brief-mini-nav {
+    width: auto;
+    display: flex;
     justify-content: flex-start;
     margin-top: 0;
+    padding-inline: 1.25rem;
   }
 
   .data-brief-output-showcase,

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCaseStudySetup } from '@/hooks'
-import { getCaseStudies } from '@/data/case-studies'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -256,8 +255,6 @@ export default function BenchmarkDashboardPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const t = content[locale]
-  const caseStudies = getCaseStudies(locale)
-  const nextCaseStudy = caseStudies.find((cs) => cs.href.includes('data-brief-ai'))
 
   useCaseStudySetup()
 
@@ -509,7 +506,7 @@ export default function BenchmarkDashboardPage() {
         </section>
 
         <CaseStudyNext
-          nextCaseStudy={nextCaseStudy}
+          currentHref={pathname}
           accentColor="var(--color-0)"
           locale={locale}
         />

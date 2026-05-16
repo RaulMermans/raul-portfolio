@@ -3,7 +3,6 @@
 import { useCaseStudySetup } from '@/hooks'
 import { notFound, usePathname } from 'next/navigation'
 import { getSiteCopy } from '@/data/site-copy'
-import { getCaseStudies } from '@/data/case-studies'
 import { getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -24,7 +23,6 @@ export default function RemoriaPage() {
   const locale = getLocaleFromPath(pathname)
   const copy = getSiteCopy(locale).caseStudiesUi
   const content = getCaseStudyContent('remoria', locale)
-  const nextCaseStudy = getCaseStudies(locale).find((cs) => cs.href.endsWith('/case-studies/ai-sports'))
 
   useCaseStudySetup()
 
@@ -199,10 +197,7 @@ export default function RemoriaPage() {
         )}
 
         <CaseStudyNext 
-          nextCaseStudy={nextCaseStudy ? {
-            ...nextCaseStudy,
-            image: nextCaseStudy.image
-          } : undefined}
+          currentHref={pathname}
           accentColor={content.accentColor}
           locale={locale}
         />

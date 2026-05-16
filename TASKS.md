@@ -33,6 +33,9 @@
 ## Completed
 
 ### May 2026
+- [x] Randomize bottom next-case-study recommendations
+- [x] Adapt DataBrief AI case-study layout toward the Benchmark format
+- [x] Widen DataBrief AI case-study desktop content rhythm
 - [x] Widen Benchmark case-study desktop content rhythm
 - [x] Align Benchmark hero image and widen the Benchmark case-study mini-nav
 - [x] Let case-study project images define their own rounded card height

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCaseStudySetup } from '@/hooks'
-import { getCaseStudies } from '@/data/case-studies'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -237,8 +236,6 @@ function ReportMockup({ variant = 'hero' }: { variant?: 'hero' | 'findings' | 'c
 export default function DataBriefAiPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
-  const caseStudies = getCaseStudies(locale)
-  const nextCaseStudy = caseStudies.find((caseStudy) => caseStudy.href.includes('ai-sports'))
 
   useCaseStudySetup()
 
@@ -362,7 +359,7 @@ export default function DataBriefAiPage() {
           </div>
         </section>
 
-        <section id="output" className="data-brief-section data-brief-section--cream" aria-labelledby="data-brief-output">
+        <section id="output" className="data-brief-section data-brief-section--light" aria-labelledby="data-brief-output">
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">Output</p>
@@ -463,7 +460,7 @@ export default function DataBriefAiPage() {
         </section>
 
         <CaseStudyNext
-          nextCaseStudy={nextCaseStudy}
+          currentHref={pathname}
           accentColor="var(--accent)"
           locale={locale}
         />
