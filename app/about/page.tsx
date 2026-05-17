@@ -8,11 +8,6 @@ import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { getLocaleFromPath } from '@/lib/i18n'
 
-type TextPair = {
-  en: string
-  es: string
-}
-
 type TimelineItem = {
   date: string
   title: string
@@ -23,12 +18,6 @@ type TimelineItem = {
 
 const pageCopy = {
   en: {
-    heroMeta: [
-      ['Role', 'Creative Technologist'],
-      ['Practice', 'Cultural Architect'],
-      ['Based', 'Madrid'],
-      ['Status', 'Available Q3 2026'],
-    ],
     portraitMeta: ['Portrait', 'Madrid 2026'],
     heroTag:
       'I build systems where brand, code, and culture meet. Translating intent into agentic workflows, customer journeys, and internal tools that quietly run the show.',
@@ -46,8 +35,8 @@ const pageCopy = {
       kicker: 'Geography',
       meta: '3 cities, 5 languages',
       cities: [
+        ['Málaga', '36.7N · 4.4W', 'home'],
         ['Madrid', '40.4N · 3.7W', 'now'],
-        ['Brussels', '50.8N · 4.4E', 'roots'],
         ['Orlando', '28.5N · 81.4W', 'exchange'],
       ],
     },
@@ -147,20 +136,20 @@ const pageCopy = {
         tags: ['USA', 'Service marketing'],
       },
       {
-        date: 'Jul 2025',
-        title: 'Graduated',
-        org: 'IE University · BBA, Marketing',
-        desc:
-          'Closed the chapter with a marketing concentration, an exchange semester, and four years of practical project work behind me.',
-        tags: ['Graduated', 'Marketing'],
-      },
-      {
         date: 'Jun 2025',
         title: 'Freelance · AI & Automation',
         org: 'Independent practice · Madrid',
         desc:
           'Started prototyping lightweight apps and internal tools through AI-assisted development, agentic workflows, Codex, Claude Code, and n8n.',
         tags: ['Codex', 'n8n', 'Agentic', 'SaaS'],
+      },
+      {
+        date: 'Jul 2025',
+        title: 'Graduated',
+        org: 'IE University · BBA, Marketing',
+        desc:
+          'Closed the chapter with a marketing concentration, an exchange semester, and four years of practical project work behind me.',
+        tags: ['Graduated', 'Marketing'],
       },
       {
         date: 'Aug 2025',
@@ -233,49 +222,40 @@ const pageCopy = {
         tools: ['Workshops', 'Adoption'],
       },
     ],
-    brandsTitle: <>Worked with <span className="about-landing__serif">or for</span></>,
-    learningTitle: <>Always <span className="about-landing__serif">learning</span><br />something new.</>,
-    quote: <>Culture is<br />infrastructure.<br /><span>Build it</span> like<br />you mean it.</>,
     ctaTitle: <>Let&apos;s make <span className="about-landing__serif">something</span> work.</>,
     contactMeta: ['Available Q3 2026', 'Madrid · Remote · EU'],
   },
   es: {
-    heroMeta: [
-      ['Rol', 'Tecnologo creativo'],
-      ['Practica', 'Arquitecto cultural'],
-      ['Base', 'Madrid'],
-      ['Estado', 'Disponible T3 2026'],
-    ],
     portraitMeta: ['Retrato', 'Madrid 2026'],
     heroTag:
-      'Construyo sistemas donde marca, codigo y cultura se encuentran. Traduzco intencion en flujos con agentes, journeys de cliente y herramientas internas que hacen que la operacion funcione.',
-    current: ['Ahora', 'CRM e IA', 'Perfumerias Primor', '+ Independiente', 'Sistemas agenticos y SaaS'],
-    aboutEyebrow: 'Sobre mi',
-    aboutTitle: <>La <span className="about-landing__serif">version</span><br />corta de la historia.</>,
+      'Construyo sistemas donde marca, código y cultura se encuentran. Traduzco intención en flujos con agentes, journeys de cliente y herramientas internas que hacen que la operación funcione.',
+    current: ['Ahora', 'CRM e IA', 'Perfumerias Primor', '+ Independiente', 'Sistemas agénticos y SaaS'],
+    aboutEyebrow: 'Sobre mí',
+    aboutTitle: <>La <span className="about-landing__serif">versión</span><br />corta de la historia.</>,
     lede:
-      'Mitad espanol, mitad belga. Pienso como disenador, construyo como ingeniero y leo como curador. Casi todo lo que hago vive entre esas tres formas de mirar.',
+      'Mitad español, mitad belga. Pienso como diseñador, construyo como ingeniero y leo como curador. Casi todo lo que hago vive entre esas tres formas de mirar.',
     body: [
-      'Creci moviendome entre idiomas y paises, asi que nunca he encajado demasiado bien en una sola disciplina. La empresa me dio el lenguaje para entender marca y estrategia. El codigo y la IA me dieron la capacidad de llevarlas a produccion.',
-      'Me interesa el punto donde oficio y computacion se cruzan: prototipos que se sienten hechos a mano, sistemas visuales que escalan sin perder acento y herramientas que respetan a la gente que las usa.',
-      'Curioso por defecto, inquieto por costumbre. Siempre leyendo demasiados libros, viendo demasiadas peliculas y probando el siguiente medio que aparece.',
+      'Crecí moviéndome entre idiomas y países, así que nunca he encajado demasiado bien en una sola disciplina. La empresa me dio el lenguaje para entender marca y estrategia. El código y la IA me dieron la capacidad de llevarlas a producción.',
+      'Me interesa el punto donde oficio y computación se cruzan: prototipos que se sienten hechos a mano, sistemas visuales que escalan sin perder acento y herramientas que respetan a la gente que las usa.',
+      'Curioso por defecto, inquieto por costumbre. Siempre leyendo demasiados libros, viendo demasiadas películas y probando el siguiente medio que aparece.',
     ],
     geography: {
-      kicker: 'Geografia',
+      kicker: 'Geografía',
       meta: '3 ciudades, 5 idiomas',
       cities: [
+        ['Málaga', '36.7N · 4.4W', 'origen'],
         ['Madrid', '40.4N · 3.7W', 'ahora'],
-        ['Bruselas', '50.8N · 4.4E', 'raices'],
         ['Orlando', '28.5N · 81.4W', 'intercambio'],
       ],
     },
     languages: {
       title: 'Idiomas',
       items: [
-        ['ES', 'Espanol', 'Nativo', 5],
-        ['EN', 'Ingles', 'Nativo', 5],
-        ['NL', 'Neerlandes', 'Basico', 2],
-        ['DE', 'Aleman', 'Basico', 2],
-        ['IT', 'Italiano', 'Basico', 2],
+        ['ES', 'Español', 'Nativo', 5],
+        ['EN', 'Inglés', 'Nativo', 5],
+        ['NL', 'Neerlandés', 'Básico', 2],
+        ['DE', 'Alemán', 'Básico', 2],
+        ['IT', 'Italiano', 'Básico', 2],
       ] as const,
     },
     notes: [
@@ -283,14 +263,14 @@ const pageCopy = {
         className: 'about-note--read',
         kicker: 'Lectura',
         image: '/images/visuals/album-covers/Gaze.webp',
-        title: 'Estrategia, ficcion, manuales',
+        title: 'Estrategia, ficción, manuales',
         body: 'Libros que afinan criterio, sistemas y los bordes entre ambos.',
       },
       {
         className: 'about-note--watch',
         kicker: 'Pantalla',
         image: '/images/photography/street/Street12.webp',
-        title: 'Cine en rotacion',
+        title: 'Cine en rotación',
         body: 'Planos tranquilos, rituales de cliente y cualquier lenguaje visual preciso.',
       },
       {
@@ -298,45 +278,45 @@ const pageCopy = {
         kicker: 'Sonido',
         image: '/images/visuals/album-covers/Astralis_Cover.webp',
         title: 'En bucle',
-        body: 'Ambient, jazz, flamenco fusion y cosas que mantienen la sala en movimiento.',
+        body: 'Ambient, jazz, flamenco fusión y cosas que mantienen la sala en movimiento.',
       },
       {
         className: 'about-note--photo',
-        kicker: 'Fotografia',
+        kicker: 'Fotografía',
         image: '/images/photography/street/Street6.webp',
         title: 'Del archivo',
-        body: 'Calle, luz y esos pequenos accidentes que hacen util una ciudad.',
+        body: 'Calle, luz y esos pequeños accidentes que hacen útil una ciudad.',
       },
     ],
     stack: {
       title: 'En la mesa',
       groups: [
-        ['Codigo', ['Claude Code', 'OpenAI Codex', 'React · Next.js', 'Python · TypeScript']],
-        ['Automatizacion', ['n8n', 'MCP · IA agentica', 'Retrieval · Chroma', 'Prompt engineering']],
+        ['Código', ['Claude Code', 'OpenAI Codex', 'React · Next.js', 'Python · TypeScript']],
+        ['Automatización', ['n8n', 'MCP · IA agéntica', 'Retrieval · Chroma', 'Prompt engineering']],
         ['Visual', ['Photoshop', 'Illustrator', 'Figma', 'Modelos de imagen']],
       ] as [string, string[]][],
     },
     marquee: [
       'IA aplicada',
-      'Flujos agenticos',
-      'Direccion creativa',
+      'Flujos agénticos',
+      'Dirección creativa',
       'OpenAI Codex',
       'n8n',
       'Sistemas de marca',
       'Herramientas generativas',
       'Prompt engineering',
-      'Direccion de arte',
+      'Dirección de arte',
     ],
     timelineTitle: <>Trayectoria <span className="about-landing__serif">hasta ahora</span>.</>,
     timelineIntro:
-      'Cinco anos moviendome entre marca, tecnologia y el tejido operativo que las conecta, desde una carrera de marketing en Madrid hasta sistemas agenticos para infraestructura cultural viva.',
+      'Cinco años moviéndome entre marca, tecnología y el tejido operativo que las conecta, desde una carrera de marketing en Madrid hasta sistemas agénticos para infraestructura cultural viva.',
     timeline: [
       {
         date: 'Sep 2021',
         title: 'Inicio en IE University',
         org: 'BBA · Marketing',
         desc:
-          'Madrid. Beca IE High Potential Award. Primer contacto con programacion, IT orientado a negocio y analitica de marketing digital.',
+          'Madrid. Beca IE High Potential Award. Primer contacto con programación, IT orientado a negocio y analítica de marketing digital.',
         tags: ['Madrid', 'Beca', 'BBA'],
       },
       {
@@ -344,7 +324,7 @@ const pageCopy = {
         title: 'IE Marketing Lab',
         org: 'Project Leader · 8+ empresas',
         desc:
-          'Lidere un equipo de cinco personas entregando soluciones de marketing para empresas colaboradoras. Estrategia, cliente real y ejecucion con fecha limite.',
+          'Lideré un equipo de cinco personas entregando soluciones de marketing para empresas colaboradoras. Estrategia, cliente real y ejecución con fecha límite.',
         tags: ['Liderazgo', 'Estrategia', 'Cliente'],
       },
       {
@@ -352,7 +332,7 @@ const pageCopy = {
         title: 'WeFeel App Challenge',
         org: 'Branding & Marketing Trainee',
         desc:
-          'Presente recomendaciones de negocio sobre marca, propuesta de valor y direccion de producto. Tres fueron aprobadas para implementacion.',
+          'Presenté recomendaciones de negocio sobre marca, propuesta de valor y dirección de producto. Tres fueron aprobadas para implementación.',
         tags: ['Marca', 'Pitch', 'Adoptado'],
       },
       {
@@ -360,62 +340,62 @@ const pageCopy = {
         title: 'Intercambio · UCF',
         org: 'University of Central Florida · Orlando',
         desc:
-          'Un semestre fuera que afino mi intuicion sobre experiencia de cliente y dio otra perspectiva cultural al service marketing.',
+          'Un semestre fuera que afinó mi intuición sobre experiencia de cliente y dio otra perspectiva cultural al service marketing.',
         tags: ['USA', 'Service marketing'],
       },
       {
-        date: 'Jul 2025',
-        title: 'Graduacion',
-        org: 'IE University · BBA, Marketing',
+        date: 'Jun 2025',
+        title: 'Freelance · IA y automatización',
+        org: 'Práctica independiente · Madrid',
         desc:
-          'Cierre de etapa con concentracion en marketing, intercambio internacional y cuatro anos de proyectos practicos detras.',
-        tags: ['Graduado', 'Marketing'],
+          'Empiezo a prototipar apps ligeras y herramientas internas con desarrollo asistido por IA, flujos agénticos, Codex, Claude Code y n8n.',
+        tags: ['Codex', 'n8n', 'Agéntico', 'SaaS'],
       },
       {
-        date: 'Jun 2025',
-        title: 'Freelance · IA y automatizacion',
-        org: 'Practica independiente · Madrid',
+        date: 'Jul 2025',
+        title: 'Graduación',
+        org: 'IE University · BBA, Marketing',
         desc:
-          'Empiezo a prototipar apps ligeras y herramientas internas con desarrollo asistido por IA, flujos agenticos, Codex, Claude Code y n8n.',
-        tags: ['Codex', 'n8n', 'Agentico', 'SaaS'],
+          'Cierre de etapa con concentración en marketing, intercambio internacional y cuatro años de proyectos prácticos detrás.',
+        tags: ['Graduado', 'Marketing'],
       },
       {
         date: 'Aug 2025',
         title: 'Perfumerias Primor',
         org: 'CRM Specialist · AI Automation & Brand Growth',
         desc:
-          'CRM y lifecycle para una base de mas de 8M de usuarios, colaboracion con marcas de lujo y adopcion interna de IA.',
+          'CRM y lifecycle para una base de más de 8M de usuarios, colaboración con marcas de lujo y adopción interna de IA.',
         tags: ['Connectif', 'Lifecycle', '8M+ usuarios', 'Lujo'],
       },
       {
         date: 'Ahora',
         title: 'Construyendo lo siguiente',
-        org: 'IA agentica · SaaS GEO/AEO · Creative ops',
+        org: 'IA agéntica · SaaS GEO/AEO · Creative ops',
         desc:
-          'Profundizando en sistemas agenticos, retrieval, fluidez con IA y el ciclo practico de lanzar, medir y aprender.',
-        tags: ['Agentico', 'Skills', 'Retrieval'],
+          'Profundizando en sistemas agénticos, retrieval, fluidez con IA y el ciclo práctico de lanzar, medir y aprender.',
+        tags: ['Agéntico', 'Skills', 'Retrieval'],
       },
     ] satisfies TimelineItem[],
-    practiceTitle: <>Una <span className="about-landing__serif">practica</span>, no un cargo.</>,
+    practiceTitle: <>Una <span className="about-landing__serif">práctica</span>, no un cargo.</>,
     practiceIntro:
-      'Dos mitades del mismo trabajo. En la parte tecnica, IA aplicada y sistemas agenticos. En la parte de marca, direccion creativa para los productos, campanas y rituales que esos sistemas sostienen.',
+      'Dos mitades del mismo trabajo. En la parte técnica, IA aplicada y sistemas agénticos. En la parte de marca, dirección creativa para los productos, campañas y rituales que esos sistemas sostienen.',
     capabilities: [
       {
         number: '01',
-        kicker: 'Practica principal',
-        title: <>IA <span>agentica</span><br />y automatizacion.</>,
+        kicker: 'Práctica principal',
+        title: <>IA <span>agéntica</span><br />y automatización.</>,
         body:
-          'Sistemas de varios pasos para creative ops: ideacion de campanas, variacion de assets, pipelines generativos y handoffs entre equipos.',
+          'Sistemas de varios pasos para creative ops: ideación de campañas, variación de assets, pipelines generativos y handoffs entre equipos.',
         tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Retrieval'],
         featured: true,
       },
       {
         number: '02',
         kicker: 'Creativo',
-        title: <>Direccion<br /><span>creativa</span>.</>,
+        title: <>Dirección<br /><span>creativa</span>.</>,
         body:
-          'Direccion de arte, voz de marca e identidad visual para productos digitales y campanas. La capa de criterio que mantiene humano el sistema.',
-        tools: ['Identidad', 'Voz', 'Direccion de arte'],
+          'Dirección de arte, voz de marca e identidad visual para productos digitales y campañas. La capa de criterio que mantiene humano el sistema.',
+        tools: ['Identidad', 'Voz', 'Dirección de arte'],
       },
       {
         number: '03',
@@ -430,7 +410,7 @@ const pageCopy = {
         kicker: 'Marca',
         title: <>Marca como<br /><span>sistema</span>.</>,
         body:
-          'Traducir posicionamiento en sistemas operativos que lo transportan, para que la salida siga sonando a marca.',
+          'Traducir posicionamiento en los sistemas que lo transportan, para que la salida siga sonando a marca.',
         tools: ['Lujo', 'Posicionamiento', 'Sistemas'],
       },
       {
@@ -438,38 +418,22 @@ const pageCopy = {
         kicker: 'Generativo',
         title: <>Sistemas <span>visuales</span> generativos.</>,
         body:
-          'Pipelines que producen variaciones visuales consistentes con campana, manteniendo direccion de arte, luz y continuidad.',
-        tools: ['n8n', 'Modelos de imagen', 'Style locks', 'Variacion de assets'],
+          'Pipelines que producen variaciones visuales consistentes con campaña, manteniendo dirección de arte, luz y continuidad.',
+        tools: ['n8n', 'Modelos de imagen', 'Style locks', 'Variación de assets'],
       },
       {
         number: '06',
         kicker: 'Fluidez',
-        title: <>Ensenar<br />el <span>bucle</span>.</>,
+        title: <>Enseñar<br />el <span>bucle</span>.</>,
         body:
           'Encontrar donde la IA ayuda de verdad, prototipar el flujo y formar al equipo en los usos que se quedan.',
-        tools: ['Workshops', 'Adopcion'],
+        tools: ['Workshops', 'Adopción'],
       },
     ],
-    brandsTitle: <>He trabajado <span className="about-landing__serif">con o para</span></>,
-    learningTitle: <>Siempre <span className="about-landing__serif">aprendiendo</span><br />algo nuevo.</>,
-    quote: <>La cultura es<br />infraestructura.<br /><span>Construyela</span><br />con intencion.</>,
     ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
     contactMeta: ['Disponible T3 2026', 'Madrid · Remoto · UE'],
   },
 }
-
-const brands = ['DIOR', 'LANCOME', 'GIORGIO ARMANI', 'PRIMOR', 'IE UNIVERSITY', 'WEFEEL', 'UCF', '+ MORE']
-
-const courses: TextPair[] = [
-  { en: 'Agentic AI', es: 'IA agentica' },
-  { en: 'Agent Skills · Anthropic', es: 'Agent Skills · Anthropic' },
-  { en: 'Advanced Retrieval · Chroma', es: 'Retrieval avanzado · Chroma' },
-  { en: 'AI Fluency · Frameworks', es: 'Fluidez IA · Frameworks' },
-  { en: 'Generative AI · Applications', es: 'IA generativa · Aplicaciones' },
-  { en: 'Brand Management', es: 'Gestion de marca' },
-  { en: 'Google Digital Marketing', es: 'Google Digital Marketing' },
-  { en: 'Service Marketing · UCF', es: 'Service Marketing · UCF' },
-]
 
 function useAboutLandingMotion() {
   const timelineRef = useRef<HTMLDivElement>(null)
@@ -567,6 +531,16 @@ function useAboutLandingMotion() {
 }
 
 function MapGraphic() {
+  // Equirectangular projection: x = (lon + 180) * 1000/360, y = (90 - lat) * 500/180
+  // Málaga:  36.72°N, 4.42°W → (488, 148)
+  // Madrid:  40.42°N, 3.70°W → (490, 138)
+  // Orlando: 28.54°N, 81.38°W → (274, 171)
+  const cities: [number, number][] = [
+    [488, 148],
+    [490, 138],
+    [274, 171],
+  ]
+
   return (
     <svg className="about-map" viewBox="0 0 1000 500" aria-hidden="true" focusable="false">
       <defs>
@@ -575,29 +549,46 @@ function MapGraphic() {
         </pattern>
       </defs>
       <g className="about-map__land">
-        <path d="M120,90 C200,70 260,75 295,130 C310,180 280,220 250,250 C220,265 180,260 150,240 C115,210 90,170 95,130 Z" />
-        <path d="M305,55 C335,50 360,65 365,90 C365,110 340,118 315,112 C295,105 290,75 305,55 Z" />
-        <path d="M210,250 C220,270 230,290 245,295 C260,290 268,275 260,260 Z" />
-        <path d="M260,295 C295,300 320,335 310,385 C295,425 270,440 250,425 C235,400 230,360 240,325 Z" />
-        <path d="M470,105 C520,95 555,100 575,125 C570,150 545,165 510,165 C485,160 460,140 460,120 Z" />
-        <path d="M455,115 C465,108 475,115 472,130 C465,138 452,135 450,125 Z" />
-        <path d="M490,180 C550,178 595,200 605,250 C600,305 570,355 525,365 C495,355 475,320 475,275 C475,235 480,205 490,180 Z" />
-        <path d="M575,150 C615,150 635,170 630,195 C615,210 590,205 575,195 Z" />
-        <path d="M580,90 C680,70 770,75 840,110 C870,145 855,195 810,215 C740,225 660,215 615,195 C580,170 565,130 580,90 Z" />
-        <path d="M695,200 C725,200 740,225 725,265 C710,280 695,275 685,255 C680,230 685,210 695,200 Z" />
-        <path d="M770,235 C800,232 830,245 830,265 C815,275 790,275 775,265 Z" />
-        <path d="M810,275 C830,275 840,290 825,302 C805,302 800,290 810,275 Z" />
-        <path d="M870,150 C885,145 895,160 885,180 C870,180 862,165 870,150 Z" />
-        <path d="M790,335 C860,330 905,345 905,375 C895,400 855,410 810,400 C785,385 780,355 790,335 Z" />
+        {/* North America */}
+        <path d="M 33,100 L 67,53 L 125,56 L 236,31 L 275,22 L 306,28 L 348,88 L 334,122 L 308,130 L 295,135 L 289,147 L 289,153 L 280,172 L 278,181 C 272,191 264,193 258,188 C 250,182 244,172 250,167 C 240,172 231,176 231,178 C 221,186 215,196 222,200 L 255,210 L 258,222 C 248,230 238,232 228,228 C 214,222 206,212 208,200 C 198,196 190,190 186,183 C 177,172 172,160 175,156 C 165,146 159,138 161,147 C 157,131 153,118 152,112 C 143,98 131,88 131,92 C 100,89 78,89 75,92 C 56,96 42,98 33,100 Z" />
+        {/* Greenland */}
+        <path d="M 328,25 C 345,18 365,18 382,25 C 403,35 418,53 414,70 C 408,86 390,92 370,86 C 350,78 333,63 326,48 Z" />
+        {/* South America */}
+        <path d="M 265,228 L 284,220 L 300,216 L 320,212 L 338,216 L 356,224 L 372,235 L 390,250 L 406,273 L 415,297 L 414,326 L 406,356 L 394,386 L 378,413 L 361,432 L 344,442 L 327,436 L 311,420 L 295,398 L 278,370 L 267,339 L 259,306 L 256,273 L 256,246 Z" />
+        {/* Iceland */}
+        <path d="M 428,70 L 435,64 L 444,62 L 452,66 L 452,75 L 444,80 L 435,80 Z" />
+        {/* Britain */}
+        <path d="M 476,108 L 472,100 L 472,90 L 477,85 L 485,84 L 493,88 L 496,98 L 494,108 L 488,114 Z" />
+        <path d="M 460,116 L 458,108 L 463,103 L 469,104 L 472,113 L 468,119 Z" />
+        {/* Scandinavia */}
+        <path d="M 492,108 L 496,98 L 504,88 L 511,78 L 514,68 L 512,58 L 505,54 L 497,58 L 490,68 L 489,82 L 490,97 Z" />
+        <path d="M 516,86 L 527,76 L 537,66 L 549,56 L 561,48 L 573,44 L 583,47 L 582,56 L 571,64 L 558,73 L 544,81 L 528,87 Z" />
+        <path d="M 585,48 L 597,44 L 609,43 L 619,46 L 619,55 L 608,58 L 596,56 L 586,51 Z" />
+        {/* Europe & Iberian Peninsula */}
+        <path d="M 468,162 L 466,148 L 468,134 L 472,126 L 478,120 L 488,116 L 496,116 L 508,113 L 520,110 L 532,107 L 540,110 L 538,120 L 530,128 L 521,132 L 529,131 L 541,126 L 551,120 L 558,113 L 565,106 L 573,98 L 584,90 L 597,86 L 613,83 L 631,83 L 649,87 L 661,95 L 662,108 L 655,118 L 640,126 L 625,131 L 610,139 L 597,148 L 584,157 L 570,161 L 555,161 L 540,153 L 530,162 L 517,172 L 501,178 L 484,174 Z" />
+        {/* Africa */}
+        <path d="M 412,162 L 420,156 L 432,153 L 448,153 L 462,158 L 470,165 L 476,174 L 480,187 L 476,200 L 462,222 L 449,247 L 440,273 L 438,301 L 440,329 L 449,355 L 461,373 L 477,382 L 497,382 L 513,373 L 526,355 L 536,331 L 539,302 L 535,274 L 526,250 L 517,231 L 514,215 L 521,204 L 534,198 L 547,200 L 558,210 L 562,225 L 558,242 L 546,256 L 544,270 L 549,283 L 559,291 L 571,291 L 583,281 L 593,264 L 604,249 L 619,243 L 631,247 L 638,260 L 626,277 L 611,285 L 594,293 L 578,308 L 562,332 L 548,356 L 535,377 L 525,391 L 514,394 L 501,388 L 488,382 Z" />
+        {/* Middle East / Arabia */}
+        <path d="M 560,156 L 578,152 L 596,148 L 612,144 L 628,147 L 640,154 L 649,165 L 649,179 L 644,199 L 633,217 L 622,227 L 610,231 L 598,227 L 588,216 L 577,204 L 566,191 L 561,176 Z" />
+        {/* Indian subcontinent */}
+        <path d="M 656,158 L 672,154 L 690,151 L 706,151 L 720,158 L 729,169 L 731,183 L 725,205 L 714,225 L 703,243 L 693,261 L 687,274 L 683,275 L 679,267 L 674,250 L 667,231 L 659,212 L 654,192 L 652,174 Z" />
+        {/* Asia — Russia / China */}
+        <path d="M 560,90 L 584,85 L 612,80 L 645,76 L 680,72 L 716,68 L 750,64 L 784,62 L 818,62 L 850,65 L 880,70 L 907,76 L 930,83 L 950,91 L 960,103 L 953,116 L 938,126 L 918,135 L 900,143 L 882,149 L 868,159 L 857,173 L 857,189 L 863,203 L 870,216 L 873,231 L 866,243 L 853,253 L 836,259 L 818,261 L 803,256 L 790,248 L 780,234 L 773,219 L 763,208 L 750,200 L 736,195 L 720,192 L 706,189 L 692,185 L 680,179 L 668,173 L 657,163 L 644,156 L 627,149 L 610,146 L 595,149 L 578,153 L 560,157 L 553,150 L 550,141 L 553,132 L 559,125 L 561,115 L 560,103 Z" />
+        {/* SE Asia peninsula */}
+        <path d="M 778,234 L 793,227 L 808,222 L 823,218 L 833,211 L 836,201 L 830,191 L 819,186 L 807,185 L 795,189 L 785,199 L 777,212 Z" />
+        <path d="M 806,259 L 819,269 L 829,282 L 833,295 L 830,307 L 820,313 L 809,309 L 800,296 L 798,280 L 800,266 Z" />
+        {/* Japan */}
+        <path d="M 881,126 L 888,119 L 896,117 L 905,120 L 907,130 L 904,140 L 895,144 L 886,139 Z" />
+        <path d="M 896,116 L 901,109 L 909,105 L 917,108 L 919,116 L 915,124 L 906,126 Z" />
+        {/* Australia */}
+        <path d="M 808,303 L 826,297 L 847,292 L 869,293 L 889,301 L 905,313 L 916,330 L 920,350 L 917,370 L 908,388 L 896,403 L 879,413 L 858,414 L 838,409 L 818,401 L 800,387 L 788,369 L 781,348 L 780,328 L 784,312 L 795,303 Z" />
       </g>
       <g className="about-map__cities">
-        <path className="about-map__trail" d="M240,200 Q380,80 510,122" />
-        <path className="about-map__trail" d="M510,122 Q508,135 506,152" />
-        {[
-          [506, 152],
-          [510, 122],
-          [240, 200],
-        ].map(([cx, cy], index) => (
+        {/* Trail: Málaga ↔ Madrid (short, within Spain) */}
+        <path className="about-map__trail" d="M 490,138 L 488,148" />
+        {/* Trail: Spain → Orlando (Atlantic crossing) */}
+        <path className="about-map__trail" d="M 489,143 Q 382,178 274,171" />
+        {cities.map(([cx, cy], index) => (
           <g className="about-map__city" key={`${cx}-${cy}`} style={{ '--ping-delay': `${index * 0.55}s` } as CSSProperties}>
             <circle cx={cx} cy={cy} r="22" className="about-map__halo" />
             <circle cx={cx} cy={cy} r="5" className="about-map__pin" />
@@ -628,15 +619,6 @@ export default function AboutPage() {
 
         <section className="about-landing__hero" id="top" aria-labelledby="about-landing-title">
         <div className="about-landing__container">
-          <div className="about-landing__meta-grid" data-about-reveal>
-            {copy.heroMeta.map(([label, value]) => (
-              <div key={label}>
-                {label}
-                <b>{value}</b>
-              </div>
-            ))}
-          </div>
-
           <div className="about-landing__stage">
             <h1 id="about-landing-title" className="about-landing__name">
               <span ref={ghostRef} className="about-landing__name-ghost" aria-hidden="true">
@@ -861,51 +843,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-brands" aria-labelledby="about-brands-title">
-        <div className="about-landing__container">
-          <h2 id="about-brands-title" data-about-reveal>
-            {copy.brandsTitle}
-          </h2>
-          <div className="about-brand-grid" data-about-reveal>
-            {brands.map((brand) => (
-              <div key={brand}>
-                <span>{brand}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="about-learning" aria-labelledby="about-learning-title">
-        <div className="about-landing__container">
-          <h2 id="about-learning-title" data-about-reveal>
-            {copy.learningTitle}
-          </h2>
-          <div className="about-chip-cloud" data-about-reveal>
-            {courses.map((course, index) => (
-              <span key={course.en}>
-                {course[locale]}
-                <i>{index < 4 ? '04·26' : index === 4 ? '02·26' : index === 5 ? '07·25' : '07·24'}</i>
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="about-pull" aria-labelledby="about-pull-title">
-        <div className="about-landing__container">
-          <div aria-hidden="true">“</div>
-          <blockquote id="about-pull-title" data-about-reveal>
-            {copy.quote}
-          </blockquote>
-          <cite data-about-reveal>
-            <b>{locale === 'es' ? 'Principio de trabajo' : 'Working principle'}</b>
-            Raúl Mermans, 2026
-          </cite>
-        </div>
-      </section>
-
-      <section className="about-contact-panel" id="about-contact" aria-labelledby="about-contact-title">
+      <section className=”about-contact-panel” id="about-contact" aria-labelledby="about-contact-title">
         <div className="about-landing__container">
           <div className="about-contact-panel__cta">
             <h2 id="about-contact-title" data-about-reveal>{copy.ctaTitle}</h2>
