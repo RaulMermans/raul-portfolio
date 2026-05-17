@@ -272,6 +272,7 @@ Skills are guidance documents that MUST be consulted before making changes. **Th
 
 | Skill | Read When | Location |
 |-------|-----------|----------|
+| **new-page-checklist** | ⚠️ ANY new page or route — SEO, i18n structure, sitemap, a11y, common bugs. Read this first, always. | `plugins/portfolio-tools/skills/new-page-checklist/SKILL.md` |
 | **design-system** | Any UI/CSS changes — real brand tokens (ink/cream/accent palette, Bebas/DM Sans/Space Mono/Source Serif 4, JSX UI kit) | `plugins/portfolio-tools/skills/design-system/SKILL.md` |
 | **visual-hierarchy** | Layout, spacing, decluttering | `plugins/portfolio-tools/skills/visual-hierarchy/SKILL.md` |
 | **security-auditor** | API routes, auth, user input | `plugins/portfolio-tools/skills/security-auditor/SKILL.md` |
