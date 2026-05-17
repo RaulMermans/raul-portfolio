@@ -91,10 +91,10 @@ export default function About({ locale = 'en' }: AboutProps) {
             )}
           </p>
           
-          <Link 
-            href={localizePath('/about', locale)} 
+          <Link
+            href={localizePath('/about', locale)}
             className="btn btn--arrow reveal reveal-delay-3"
-            aria-label="Read more about Raúl Mermans"
+            aria-label={locale === 'es' ? 'Leer más sobre Raúl Mermans' : 'Read more about Raúl Mermans'}
           >
             {copy.cta}
           </Link>

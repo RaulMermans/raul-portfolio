@@ -87,6 +87,8 @@ export const metadata: Metadata = {
       {
         url: absoluteUrl(siteConfig.defaultImage.url),
         alt: siteConfig.defaultImage.alt,
+        width: 1200,
+        height: 630,
       },
     ],
   },

@@ -20,6 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/case-studies/benchmark-dashboard', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/case-studies/ai-sports', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/case-studies/remoria', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/case-studies/ai-systems-agents', changeFrequency: 'monthly', priority: 0.78 },
+    { path: '/case-studies/data-systems', changeFrequency: 'monthly', priority: 0.78 },
+    { path: '/case-studies/brand-systems', changeFrequency: 'monthly', priority: 0.78 },
   ] as const
 
   const staticRoutes: MetadataRoute.Sitemap = locales.flatMap((locale) =>

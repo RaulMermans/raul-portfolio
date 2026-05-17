@@ -64,7 +64,7 @@ export const siteCopy = {
         },
         ariaLabel: 'Raúl Mermans — AI Systems · Agents · Automation',
         services: ['AI Systems', 'Agents', 'Automation'],
-        summary: 'Designing AI systems for modern brands.',
+        summary: 'Applied AI systems, automation, and product-minded web for brands that need reliable execution — not demo theatre.',
         primaryCta: 'View Work',
         secondaryCta: 'Connect',
         scrollAria: 'Scroll to explore',

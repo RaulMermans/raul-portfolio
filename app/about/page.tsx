@@ -843,7 +843,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className=”about-contact-panel” id="about-contact" aria-labelledby="about-contact-title">
+      <section className="about-contact-panel" id="about-contact" aria-labelledby="about-contact-title">
         <div className="about-landing__container">
           <div className="about-contact-panel__cta">
             <h2 id="about-contact-title" data-about-reveal>{copy.ctaTitle}</h2>

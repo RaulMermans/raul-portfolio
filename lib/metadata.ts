@@ -4,6 +4,8 @@ import { type Locale, defaultLocale, localizePath } from '@/lib/i18n'
 export interface SeoImage {
   url: string
   alt: string
+  width?: number
+  height?: number
 }
 
 interface BuildPageMetadataOptions {
@@ -129,6 +131,8 @@ export function buildPageMetadata({
         {
           url: imageUrl,
           alt: image.alt,
+          width: image.width ?? 1200,
+          height: image.height ?? 630,
         },
       ],
     },
