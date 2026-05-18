@@ -8303,20 +8303,10 @@ body:has(.case-studies-main) .page-transition {
   grid-row: span 2;
 }
 
-.about-note--read,
-.about-note--watch,
-.about-note--listen {
-  grid-column: span 4;
-}
-
-.about-note--photo {
-  grid-column: span 5;
-  grid-row: span 2;
-}
-
-.about-note--stack {
-  grid-column: span 7;
-  grid-row: span 2;
+.about-note--work {
+  grid-column: span 3;
+  text-decoration: none;
+  color: inherit;
 }
 
 .about-map {
@@ -8463,10 +8453,9 @@ body:has(.case-studies-main) .page-transition {
   background: var(--about-bg-3);
 }
 
-.about-note--photo .about-note__image {
+.about-note--work .about-note__image {
   flex: 1;
-  min-height: 240px;
-  aspect-ratio: 3 / 4;
+  min-height: 180px;
 }
 
 .about-note__meta h3 {
@@ -8488,52 +8477,6 @@ body:has(.case-studies-main) .page-transition {
   line-height: 1.35;
 }
 
-.about-stack-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  flex: 1;
-  margin-top: auto;
-  border-top: 1px solid var(--about-line);
-}
-
-.about-stack-grid div {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 18px;
-  border-right: 1px solid var(--about-line);
-}
-
-.about-stack-grid div:first-child {
-  padding-left: 0;
-}
-
-.about-stack-grid div:last-child {
-  border-right: 0;
-  padding-right: 0;
-}
-
-.about-stack-grid p {
-  margin: 0 0 8px;
-  color: var(--about-red-bright);
-  font-family: var(--about-mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-.about-stack-grid span {
-  color: var(--about-ink);
-  font-family: var(--about-display);
-  font-size: 20px;
-  line-height: 1.1;
-  transition: color 0.25s var(--about-ease), transform 0.25s var(--about-ease);
-}
-
-.about-stack-grid span:hover {
-  color: var(--about-red-bright);
-  transform: translateX(4px);
-}
 
 .about-marquee {
   overflow: hidden;
@@ -9163,29 +9106,9 @@ body:has(.case-studies-main) .page-transition {
 
   .about-note--map,
   .about-note--lang,
-  .about-note--read,
-  .about-note--watch,
-  .about-note--listen,
-  .about-note--photo,
-  .about-note--stack {
+  .about-note--work {
     grid-column: span 6;
     grid-row: auto;
-  }
-
-  .about-stack-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-stack-grid div,
-  .about-stack-grid div:first-child,
-  .about-stack-grid div:last-child {
-    border-right: 0;
-    border-bottom: 1px solid var(--about-line);
-    padding: 14px 0;
-  }
-
-  .about-stack-grid div:last-child {
-    border-bottom: 0;
   }
 
   .about-capabilities {
