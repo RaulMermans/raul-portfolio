@@ -5,12 +5,13 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-16
+**Last Updated**: 2026-05-18
 
 ### Active Work
-- Benchmark case-study CTA visibility and Spanish grammar corrected
+- Website Audit Agent case study added with localized routes and portfolio listing/category data
 
 ### Pending Decisions
+- Whether to convert the generated Website Audit Agent thumbnail from PNG to WebP after local image tooling supports reliable WebP output
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
 - Whether to capture additional Overflow proof assets later, specifically an active workout/session screen and a broader progress overview screen for the portfolio page
@@ -87,6 +88,18 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-18 - Add Website Audit Agent case study
+**Goal**: Create a V1 portfolio case study for the Website Audit Agent / Website Auditor AI audit workflow.
+**Outcome**: Completed with local verification limitation
+**Changes Made**:
+- `data/case-studies.ts` and `data/case-study-categories.ts` - added localized Website Audit Agent entries and replaced the AI Systems & Agents placeholder with the real case-study link.
+- `app/case-studies/website-auditor/*`, `app/en/case-studies/website-auditor/*`, and `app/es/case-studies/website-auditor/*` - added the locale-aware custom case-study page and metadata layouts.
+- `styles/case-study-new.css` - added scoped Website Auditor report, workflow, evidence, access-boundary, stack, and limitations styling.
+- `public/images/case-studies/website-auditor/thumb/thumb.png` - added a generated portfolio-safe thumbnail after local WebP writing was not reliable.
+- `app/sitemap.ts` - added the localized Website Audit Agent route.
+**Verification**: `git diff --check` passed for touched tracked files. A focused TypeScript transpile syntax check passed for 9 touched TS/TSX files. A route/data/image existence check passed. `npm run lint`, `npm run type-check`, `npm run test:e2e`, and `npm run build` started but produced no diagnostics/progress before bounded stops, matching the existing local Next tooling limitation documented in this session file. `npm test` is not defined in `package.json`.
+**Next Steps**: After local Next tooling is repaired, rerun lint/type-check/build and visually review `/case-studies/website-auditor`, `/en/case-studies/website-auditor`, and `/es/case-studies/website-auditor`.
 
 ### 2026-05-16 - Fix Benchmark CTA contrast and Spanish grammar
 **Goal**: Make the secondary Benchmark case-study CTA visible on the light hero surface and correct awkward Spanish button/demo wording.

@@ -71,6 +71,19 @@ const caseStudyEntries = {
       subtitle: 'AI Systems / Analytics Workflow',
       mood: ['minimal', 'tech'],
     },
+    {
+      id: 4,
+      slug: 'website-auditor',
+      title: 'Website Audit Agent',
+      description:
+        'Evidence-backed audit workflow for UX, SEO, performance, content, and prospect intelligence.',
+      image: '/images/case-studies/website-auditor/thumb/thumb.png',
+      imageWidth: 800,
+      imageHeight: 600,
+      color: 'var(--accent)',
+      subtitle: 'AI Systems / Audit Workflow',
+      mood: ['minimal', 'tech'],
+    },
   ],
   es: [
     {
@@ -123,6 +136,19 @@ const caseStudyEntries = {
       imageHeight: 1254,
       color: 'var(--accent)',
       subtitle: 'Sistemas de IA / Flujo analítico',
+      mood: ['minimal', 'tech'],
+    },
+    {
+      id: 4,
+      slug: 'website-auditor',
+      title: 'Website Audit Agent',
+      description:
+        'Flujo de auditoría basado en evidencia para UX, SEO, rendimiento, contenido e inteligencia comercial.',
+      image: '/images/case-studies/website-auditor/thumb/thumb.png',
+      imageWidth: 800,
+      imageHeight: 600,
+      color: 'var(--accent)',
+      subtitle: 'Sistemas de IA / Flujo de auditoría',
       mood: ['minimal', 'tech'],
     },
   ],

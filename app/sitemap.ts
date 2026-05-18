@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/photography', changeFrequency: 'weekly', priority: 0.75 },
     { path: '/visuals', changeFrequency: 'weekly', priority: 0.75 },
     { path: '/case-studies/data-brief-ai', changeFrequency: 'monthly', priority: 0.82 },
+    { path: '/case-studies/website-auditor', changeFrequency: 'monthly', priority: 0.82 },
     { path: '/case-studies/benchmark-dashboard', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/case-studies/ai-sports', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/case-studies/remoria', changeFrequency: 'monthly', priority: 0.8 },

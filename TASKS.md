@@ -33,6 +33,7 @@
 ## Completed
 
 ### May 2026
+- [x] Add Website Audit Agent evidence-backed AI audit workflow case study
 - [x] Fix Benchmark case-study CTA visibility and Spanish CTA grammar
 - [x] Shorten case-study card descriptions and enforce design-system card fonts
 - [x] Widen case-study heading and main copy measures

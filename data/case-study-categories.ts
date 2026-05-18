@@ -33,6 +33,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const aiSports = findStudy(caseStudies, 'ai-sports')
   const remoria = findStudy(caseStudies, 'remoria')
   const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
+  const websiteAuditor = findStudy(caseStudies, 'website-auditor')
   const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
 
   return [
@@ -61,14 +62,22 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
                 : 'A bounded workflow for turning spreadsheets into grounded reports.',
               image: placeholderImage,
             },
-        {
-          title: 'Website Auditor',
-          label: isSpanish ? 'Agente de auditoría' : 'Audit agent',
-          description: isSpanish
-            ? 'Flujo de auditoría para detectar oportunidades de UX, SEO, rendimiento y contenido en una web.'
-            : 'An audit workflow for surfacing UX, SEO, performance, and content opportunities across a website.',
-          image: placeholderImage,
-        },
+        websiteAuditor
+          ? {
+              title: websiteAuditor.title,
+              label: websiteAuditor.subtitle ?? (isSpanish ? 'Flujo de auditoría con IA' : 'AI audit workflow'),
+              description: websiteAuditor.description,
+              image: websiteAuditor.image,
+              href: websiteAuditor.href,
+            }
+          : {
+              title: 'Website Audit Agent',
+              label: isSpanish ? 'Flujo de auditoría con IA' : 'AI audit workflow',
+              description: isSpanish
+                ? 'Flujo de auditoría basado en evidencia para UX, SEO, rendimiento, contenido e inteligencia comercial.'
+                : 'Evidence-backed audit workflow for UX, SEO, performance, content, and prospect intelligence.',
+              image: placeholderImage,
+            },
       ],
     },
     {
