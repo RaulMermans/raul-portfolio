@@ -33,6 +33,7 @@
 ## Completed
 
 ### May 2026
+- [x] Align case-study result CTA button styling for GitHub/external links
 - [x] Refine case-studies and About landing hierarchy with the new UI reference workflow
 - [x] Install UI reference submodules and add skills for shadcn/ui, Magic UI, and Motion Primitives
 - [x] Add Website Audit Agent evidence-backed AI audit workflow case study

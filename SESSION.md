@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-19
 
 ### Active Work
-- Case-studies and About landing hierarchy refined using the new UI reference workflow
+- Case-study result CTA button styling aligned for primary GitHub/external links
 
 ### Pending Decisions
 - Whether to approve task-specific dependency additions when a future UI implementation needs shadcn/ui, Magic UI, Motion Primitives, Radix, or Motion packages at runtime
@@ -89,6 +89,15 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-19 - Align case-study result CTA styling
+**Goal**: Check case-study button consistency, especially `View GitHub` CTAs, and fix any mismatched button hierarchy.
+**Outcome**: Completed with focused CSS verification
+**Changes Made**:
+- `styles/case-study-new.css` - narrowed dark result-section button overrides to secondary buttons only, so primary CTAs keep the same crimson accent border/background used elsewhere while secondary buttons stay cream-outline until hover/focus.
+- `TASKS.md` and `SESSION.md` - recorded the completed CTA consistency pass.
+**Verification**: `git diff --check -- styles/case-study-new.css` passed, and the updated selectors were inspected directly.
+**Next Steps**: Visually compare the result CTAs on DataBrief AI, Benchmark Dashboard, and Website Audit Agent after the next deploy or local dev-server pass.
 
 ### 2026-05-19 - Refine case-studies and About landing hierarchy
 **Goal**: Improve the case-studies landing and About landing using the new UI reference skills without adding runtime UI dependencies.

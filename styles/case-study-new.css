@@ -2763,8 +2763,17 @@ main.case-study-page-new {
   background: rgba(245, 240, 235, 0.06);
 }
 
-.case-study-page-new--data-brief .data-brief-section--result .data-brief-button {
+.case-study-page-new--data-brief .data-brief-section--result .data-brief-button:not(.data-brief-button--primary) {
   border-color: rgba(245, 240, 235, 0.28);
+  background: transparent;
+  color: var(--cream);
+}
+
+.case-study-page-new--data-brief .data-brief-section--result .data-brief-button--primary,
+.case-study-page-new--data-brief .data-brief-section--result .data-brief-button:not(.data-brief-button--primary):hover,
+.case-study-page-new--data-brief .data-brief-section--result .data-brief-button:not(.data-brief-button--primary):focus-visible {
+  border-color: var(--accent);
+  background: var(--accent);
   color: var(--cream);
 }
 
@@ -3539,8 +3548,17 @@ main.case-study-page-new {
   top: calc(var(--header-height) + 2rem);
 }
 
-.benchmark-section--result .data-brief-button {
+.benchmark-section--result .data-brief-button:not(.data-brief-button--primary) {
   border-color: rgba(245, 240, 235, 0.28);
+  background: transparent;
+  color: var(--cream);
+}
+
+.benchmark-section--result .data-brief-button--primary,
+.benchmark-section--result .data-brief-button:not(.data-brief-button--primary):hover,
+.benchmark-section--result .data-brief-button:not(.data-brief-button--primary):focus-visible {
+  border-color: var(--accent);
+  background: var(--accent);
   color: var(--cream);
 }
 
