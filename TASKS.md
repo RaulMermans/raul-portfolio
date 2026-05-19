@@ -33,6 +33,8 @@
 ## Completed
 
 ### May 2026
+- [x] Refine case-studies and About landing hierarchy with the new UI reference workflow
+- [x] Install UI reference submodules and add skills for shadcn/ui, Magic UI, and Motion Primitives
 - [x] Add Website Audit Agent evidence-backed AI audit workflow case study
 - [x] Fix Benchmark case-study CTA visibility and Spanish CTA grammar
 - [x] Shorten case-study card descriptions and enforce design-system card fonts

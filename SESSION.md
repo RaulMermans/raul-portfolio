@@ -5,12 +5,13 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-18
+**Last Updated**: 2026-05-19
 
 ### Active Work
-- Website Audit Agent case study added with localized routes and portfolio listing/category data
+- Case-studies and About landing hierarchy refined using the new UI reference workflow
 
 ### Pending Decisions
+- Whether to approve task-specific dependency additions when a future UI implementation needs shadcn/ui, Magic UI, Motion Primitives, Radix, or Motion packages at runtime
 - Whether to convert the generated Website Audit Agent thumbnail from PNG to WebP after local image tooling supports reliable WebP output
 - Whether to replace the current representative DataBrief report mockups with actual run screenshots when final assets are available
 - Whether to convert the current Next.js app to full static export for IONOS or keep Railway for the server-side pieces
@@ -88,6 +89,29 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-19 - Refine case-studies and About landing hierarchy
+**Goal**: Improve the case-studies landing and About landing using the new UI reference skills without adding runtime UI dependencies.
+**Outcome**: Completed with focused local verification
+**Changes Made**:
+- `app/case-studies/page.tsx` - added a localized visible browser header with stronger positioning copy and compact project/workstream/system stats above the existing filter control.
+- `app/about/page.tsx` - added a localized three-card practice summary in the hero so the page communicates AI systems, brand/product, and creative proof before the longer story.
+- `styles/globals.css` - styled the new header and proof-card surfaces using the existing cream/ink/crimson design system, hairline borders, restrained hover motion, and responsive stacking.
+- `TASKS.md` and `SESSION.md` - recorded the completed polish pass.
+**Verification**: Focused syntax and diff validation were run for the touched UI files; full Next lint/type-check/build remain subject to the local tooling stalls already documented in Blockers.
+**Next Steps**: Review `/case-studies`, `/en/case-studies`, `/about`, and `/en/about` in-browser once the local dev server/tooling responds reliably.
+
+### 2026-05-18 - Install UI reference libraries and skills
+**Goal**: Add shadcn/ui, Magic UI, and Motion Primitives as local references for richer future UI work, plus Markdown skill guidance for when to use each.
+**Outcome**: Completed
+**Changes Made**:
+- `.gitmodules` and `vendor/ui-references/*` - installed `shadcn-ui/ui`, `magicuidesign/magicui`, and `ibelick/motion-primitives` as reference-only Git submodules.
+- `plugins/portfolio-tools/skills/ui-library-integrator/SKILL.md` - added the routing skill for selecting the right UI reference library.
+- `plugins/portfolio-tools/skills/shadcn-ui-reference/SKILL.md`, `plugins/portfolio-tools/skills/magicui-reference/SKILL.md`, and `plugins/portfolio-tools/skills/motion-primitives-reference/SKILL.md` - added focused usage guardrails.
+- `plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`, `AGENTS.md`, `CLAUDE.md`, and `.cursor/rules/ui-ux-design.mdc` - documented the new reference workflow and no-direct-import/dependency guardrails.
+- `TASKS.md` and `SESSION.md` - recorded the completed setup.
+**Verification**: Confirmed submodule clones exist and resolved their commit SHAs. `git diff --check` passed on touched docs/skill files. No production app code or `package.json` dependency was changed.
+**Next Steps**: On a future UI task, consult `ui-library-integrator` after the default UI UX Lead workflow and only add runtime dependencies when explicitly approved for that task.
 
 ### 2026-05-18 - Add Website Audit Agent case study
 **Goal**: Create a V1 portfolio case study for the Website Audit Agent / Website Auditor AI audit workflow.

@@ -174,7 +174,7 @@ Before implementing ANY task, read the relevant skill(s):
 
 | Task Type | Required Skill(s) |
 |-----------|-------------------|
-| UI/CSS changes, landing pages, dashboards, product UI, design systems | **`plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`** (default UX/UI orchestration skill), **`ai-skills/ui-ux-pro-max/`** (UI-UX Pro Max — read SKILL.md, run search.py for design system), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md` |
+| UI/CSS changes, landing pages, dashboards, product UI, design systems | **`plugins/portfolio-tools/skills/ui-ux-lead/SKILL.md`** (default UX/UI orchestration skill), **`ai-skills/ui-ux-pro-max/`** (UI-UX Pro Max — read SKILL.md, run search.py for design system), `design-system/SKILL.md`, `visual-hierarchy/SKILL.md`, `ui-library-integrator/SKILL.md` when shadcn/ui, Magic UI, or Motion Primitives references could help |
 | Case study work | `case-study-builder/SKILL.md` |
 | New components | `component-scaffolder/SKILL.md`, `design-system/SKILL.md` |
 | API routes | `api-route-builder/SKILL.md`, `security-auditor/SKILL.md` |
@@ -209,7 +209,17 @@ This is the repo's default high-level design entry point. It is responsible for 
 - `ai-skills/ui-ux-pro-max/`
 - `design-system/SKILL.md`
 - `visual-hierarchy/SKILL.md`
+- `ui-library-integrator/SKILL.md` when external UI references could improve component structure, visual polish, or motion
 - supporting skills such as `case-study-builder`, `nextjs-app-router`, `accessibility-enforcer`, `animation-system`, and `performance-guardian` when relevant
+
+### Optional UI Reference Libraries
+
+Reference-only submodules are installed under `vendor/ui-references/`:
+- `shadcn-ui` for accessible component architecture and primitives.
+- `magicui` for premium landing-page, bento, marquee, and showcase patterns.
+- `motion-primitives` for refined React motion and transition patterns.
+
+Use `plugins/portfolio-tools/skills/ui-library-integrator/SKILL.md` first, then the focused `shadcn-ui-reference`, `magicui-reference`, or `motion-primitives-reference` skill. Do not import directly from `vendor/ui-references/*` or add package dependencies unless the user explicitly approves that task-specific dependency change.
 
 **Default rule**: if a task meaningfully changes how a page or component looks, reads, flows, or feels, invoke `ui-ux-lead` first and treat it as mandatory.
 

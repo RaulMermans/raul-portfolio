@@ -29,6 +29,7 @@ plugins/portfolio-tools/agents/ui-ux-lead.md
 ```
 
 The UI UX Lead workflow is the repo-standard orchestration layer. It requires the agent to consult `ui-ux-pro-max` together with the project design skills instead of treating design work as isolated styling.
+For richer component, marketing UI, or motion references, consult `plugins/portfolio-tools/skills/ui-library-integrator/SKILL.md`; it routes to the local shadcn/ui, Magic UI, and Motion Primitives reference repositories.
 
 ## Skill Location
 
@@ -45,6 +46,8 @@ Key paths:
 - **SKILL.md**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md`
 - **Search script**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/scripts/search.py`
 - **Design datasets**: `ai-skills/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/data/`
+- **UI library integrator**: `plugins/portfolio-tools/skills/ui-library-integrator/SKILL.md`
+- **Reference repos**: `vendor/ui-references/shadcn-ui`, `vendor/ui-references/magicui`, `vendor/ui-references/motion-primitives`
 
 ## Mandatory Consultation
 
@@ -83,15 +86,22 @@ The shared `components/Header.tsx` and `components/Footer.tsx` always remain the
    - `plugins/portfolio-tools/skills/design-system/SKILL.md`
    - `plugins/portfolio-tools/skills/visual-hierarchy/SKILL.md`
 
-6. **Apply guidance** – Use the combined guidance to generate structured frontend code with coherent spacing, hierarchy, copy density, and interaction design.
+6. **Use optional UI references when useful** – If the task would benefit from external components or motion, read:
+   - `plugins/portfolio-tools/skills/ui-library-integrator/SKILL.md`
+   - Then one of `shadcn-ui-reference`, `magicui-reference`, or `motion-primitives-reference`
+
+7. **Apply guidance** – Use the combined guidance to generate structured frontend code with coherent spacing, hierarchy, copy density, and interaction design.
 
 ## Integration with Project Skills
 
 This skill **complements** (does not replace) the project's existing skills:
 - `design-system/SKILL.md` – Design tokens and CSS variables
 - `visual-hierarchy/SKILL.md` – Layout and decluttering
+- `ui-library-integrator/SKILL.md` – Reference-only use of shadcn/ui, Magic UI, and Motion Primitives
 
 For UI tasks: invoke `ui-ux-lead`, then consult the required project skills and UI-UX Pro Max through that workflow.
+
+Do not import directly from `vendor/ui-references/*` or add dependencies from those projects without explicit approval for that task.
 
 ## Pre-Delivery Checklist (from skill)
 

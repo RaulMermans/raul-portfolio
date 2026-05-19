@@ -35,6 +35,7 @@ If the request changes how something looks, reads, feels, or is navigated, start
    - `plugins/portfolio-tools/skills/accessibility-enforcer/SKILL.md` for contrast, semantics, and reduced motion
    - `plugins/portfolio-tools/skills/animation-system/SKILL.md` when motion matters
    - `plugins/portfolio-tools/skills/performance-guardian/SKILL.md` for image-heavy or animation-heavy pages
+   - `plugins/portfolio-tools/skills/ui-library-integrator/SKILL.md` when shadcn/ui, Magic UI, or Motion Primitives could improve component structure, visual polish, or motion
 4. State the consulted skills at the start of the work.
 5. Before shipping, explicitly check:
    - hierarchy and scanability
@@ -62,6 +63,7 @@ The default bar is not "looks nicer." The bar is:
 - Prefer one strong visual system per page over multiple competing patterns.
 - For app pages, use real product proof before abstract positioning.
 - Keep motion subtle and structural unless the user explicitly asks for something more theatrical.
+- Treat `vendor/ui-references/*` as reference material only. Do not import from those repositories or add their dependencies without explicit approval for that task.
 
 ## Deliverable Expectations
 
@@ -77,6 +79,7 @@ For substantial UI work, the result should usually include:
 - [ ] `ui-ux-pro-max` consulted
 - [ ] `design-system` consulted
 - [ ] `visual-hierarchy` consulted
+- [ ] `ui-library-integrator` consulted when external UI references would help
 - [ ] supporting skills consulted where relevant
 - [ ] top of page answers the core user questions quickly
 - [ ] no repeated explanation blocks

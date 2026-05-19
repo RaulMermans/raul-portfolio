@@ -1,0 +1,9 @@
+[submodule "vendor/ui-references/shadcn-ui"]
+	path = vendor/ui-references/shadcn-ui
+	url = https://github.com/shadcn-ui/ui.git
+[submodule "vendor/ui-references/magicui"]
+	path = vendor/ui-references/magicui
+	url = https://github.com/magicuidesign/magicui.git
+[submodule "vendor/ui-references/motion-primitives"]
+	path = vendor/ui-references/motion-primitives
+	url = https://github.com/ibelick/motion-primitives.git

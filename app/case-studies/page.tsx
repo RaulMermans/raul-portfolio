@@ -111,6 +111,10 @@ export default function CaseStudiesPage() {
   const introCopy = isSpanish
     ? 'Todos los proyectos aparecen directamente. Filtra por línea de trabajo cuando quieras acotar el tipo de sistema.'
     : 'All projects appear directly. Filter by workstream when you want to narrow the kind of system.'
+  const browserTitle = isSpanish ? 'Casos de estudio' : 'Case Studies'
+  const browserLead = isSpanish
+    ? 'Sistemas, interfaces y trabajo de marca construidos alrededor de prueba, contención y ejecución.'
+    : 'Systems, interfaces, and brand work built around proof, restraint, and execution.'
   const filterLabel = isSpanish ? 'Filtrar casos de estudio' : 'Filter case studies'
   const allLabel = isSpanish ? 'Todos' : 'All'
   const readCase = isSpanish ? 'Ver caso' : 'Read case'
@@ -148,6 +152,21 @@ export default function CaseStudiesPage() {
     [caseStudies, categories],
   )
 
+  const browserStats = [
+    {
+      value: caseStudies.length.toString().padStart(2, '0'),
+      label: isSpanish ? 'proyectos' : 'projects',
+    },
+    {
+      value: categoryFilters.length.toString().padStart(2, '0'),
+      label: isSpanish ? 'líneas de trabajo' : 'workstreams',
+    },
+    {
+      value: 'AI',
+      label: isSpanish ? 'sistemas primero' : 'systems first',
+    },
+  ]
+
   const visibleStudies = useMemo(() => {
     if (activeFilter === 'all') return orderedStudies
 
@@ -179,38 +198,52 @@ export default function CaseStudiesPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumb) }}
         />
         <section className="case-study-browser__chrome" aria-labelledby="case-studies-heading">
-          <h1 id="case-studies-heading" className="visually-hidden">
-            {isSpanish ? 'Casos de estudio' : 'Case Studies'}
-          </h1>
-          <form className="case-study-browser__control" aria-label={filterLabel} onSubmit={handleBrowserSubmit}>
-            <label className="visually-hidden" htmlFor="case-study-filter">
-              {filterLabel}
-            </label>
-            <span className="case-study-browser__placeholder" aria-hidden="true">
-              {seeLabel}
-            </span>
-            <select
-              id="case-study-filter"
-              className="case-study-browser__select"
-              value={activeFilter}
-              onChange={(event) => setActiveFilter(event.target.value as FilterKey)}
-            >
-              <option value="all">{allLabel}</option>
-              {categoryFilters.map((category) => (
-                <option key={category.slug} value={category.slug}>
-                  {category.title}
-                </option>
+          <div className="case-study-browser__intro">
+            <p className="case-study-browser__eyebrow">
+              {isSpanish ? 'Portfolio seleccionado' : 'Selected portfolio'}
+            </p>
+            <h1 id="case-studies-heading">{browserTitle}</h1>
+            <p>{browserLead}</p>
+            <dl className="case-study-browser__stats" aria-label={isSpanish ? 'Resumen de casos' : 'Case study summary'}>
+              {browserStats.map((stat) => (
+                <div key={`${stat.value}-${stat.label}`}>
+                  <dt>{stat.label}</dt>
+                  <dd>{stat.value}</dd>
+                </div>
               ))}
-            </select>
-            <button type="submit" className="case-study-browser__submit" aria-label={goLabel}>
-              <span aria-hidden="true">→</span>
-            </button>
-          </form>
-          <p className="case-study-browser__summary" aria-live="polite">
-            {resultLabel} {visibleStudies.length}/{caseStudies.length}
-            <span aria-hidden="true"> · </span>
-            {introCopy}
-          </p>
+            </dl>
+          </div>
+          <div className="case-study-browser__actions">
+            <form className="case-study-browser__control" aria-label={filterLabel} onSubmit={handleBrowserSubmit}>
+              <label className="visually-hidden" htmlFor="case-study-filter">
+                {filterLabel}
+              </label>
+              <span className="case-study-browser__placeholder" aria-hidden="true">
+                {seeLabel}
+              </span>
+              <select
+                id="case-study-filter"
+                className="case-study-browser__select"
+                value={activeFilter}
+                onChange={(event) => setActiveFilter(event.target.value as FilterKey)}
+              >
+                <option value="all">{allLabel}</option>
+                {categoryFilters.map((category) => (
+                  <option key={category.slug} value={category.slug}>
+                    {category.title}
+                  </option>
+                ))}
+              </select>
+              <button type="submit" className="case-study-browser__submit" aria-label={goLabel}>
+                <span aria-hidden="true">→</span>
+              </button>
+            </form>
+            <p className="case-study-browser__summary" aria-live="polite">
+              {resultLabel} {visibleStudies.length}/{caseStudies.length}
+              <span aria-hidden="true"> · </span>
+              {introCopy}
+            </p>
+          </div>
         </section>
 
         <section id="case-study-grid" className="case-study-project-grid" aria-label={isSpanish ? 'Proyectos' : 'Projects'}>

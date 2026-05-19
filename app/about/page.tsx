@@ -24,6 +24,23 @@ const pageCopy = {
     heroTag:
       'I build systems where brand, code, and culture meet. Translating intent into agentic workflows, customer journeys, and internal tools that quietly run the show.',
     current: ['Currently', 'CRM & AI', 'Perfumerias Primor', '+ Independent', 'Agentic systems & SaaS'],
+    proof: [
+      {
+        number: '01',
+        title: 'AI systems',
+        body: 'Agentic workflows, retrieval, CRM automation, and internal tools.',
+      },
+      {
+        number: '02',
+        title: 'Brand + product',
+        body: 'Interfaces and identity systems shaped around operational logic.',
+      },
+      {
+        number: '03',
+        title: 'Creative proof',
+        body: 'Photography, visuals, campaigns, and generative direction.',
+      },
+    ],
     aboutEyebrow: 'About',
     aboutTitle: <>A short <span className="about-landing__serif">version</span><br />of the story.</>,
     lede:
@@ -224,6 +241,23 @@ const pageCopy = {
     heroTag:
       'Construyo sistemas donde marca, código y cultura se encuentran. Traduzco intención en flujos con agentes, journeys de cliente y herramientas internas que hacen que la operación funcione.',
     current: ['Ahora', 'CRM e IA', 'Perfumerias Primor', '+ Independiente', 'Sistemas agénticos y SaaS'],
+    proof: [
+      {
+        number: '01',
+        title: 'Sistemas de IA',
+        body: 'Flujos agénticos, retrieval, automatización CRM y herramientas internas.',
+      },
+      {
+        number: '02',
+        title: 'Marca + producto',
+        body: 'Interfaces e identidad diseñadas alrededor de lógica operativa.',
+      },
+      {
+        number: '03',
+        title: 'Prueba creativa',
+        body: 'Fotografía, visuales, campañas y dirección generativa.',
+      },
+    ],
     aboutEyebrow: 'Sobre mí',
     aboutTitle: <>La <span className="about-landing__serif">versión</span><br />corta de la historia.</>,
     lede:
@@ -660,6 +694,20 @@ export default function AboutPage() {
               <b>{copy.current[3]}</b>
               {copy.current[4]}
             </div>
+          </div>
+
+          <div
+            className="about-landing__proof"
+            aria-label={locale === 'es' ? 'Resumen de práctica' : 'Practice summary'}
+            data-about-reveal
+          >
+            {copy.proof.map((item) => (
+              <article className="about-landing__proof-card" key={item.number}>
+                <span>{item.number}</span>
+                <h2>{item.title}</h2>
+                <p>{item.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

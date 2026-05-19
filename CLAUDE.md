@@ -287,8 +287,14 @@ Skills are guidance documents that MUST be consulted before making changes. **Th
 | **nextjs-app-router** | Next.js patterns | `plugins/portfolio-tools/skills/nextjs-app-router/SKILL.md` |
 | **deployment-verifier** | Deployment checks | `plugins/portfolio-tools/skills/deployment-verifier/SKILL.md` |
 | **frontend-developer** | General frontend | `plugins/portfolio-tools/skills/frontend-developer/SKILL.md` |
+| **ui-library-integrator** | Optional richer UI references: shadcn/ui, Magic UI, Motion Primitives | `plugins/portfolio-tools/skills/ui-library-integrator/SKILL.md` |
+| **shadcn-ui-reference** | Accessible component primitives and architecture references | `plugins/portfolio-tools/skills/shadcn-ui-reference/SKILL.md` |
+| **magicui-reference** | Premium landing, bento, marquee, and showcase references | `plugins/portfolio-tools/skills/magicui-reference/SKILL.md` |
+| **motion-primitives-reference** | Refined React motion and transition references | `plugins/portfolio-tools/skills/motion-primitives-reference/SKILL.md` |
 
 **Always list which skills you consulted at the start of your work.**
+
+Reference-only UI repositories are installed under `vendor/ui-references/`. Treat them as examples to adapt into the portfolio design system, not production import paths. Do not add their dependencies unless the user explicitly approves that specific change.
 
 ### Specialist Agents
 
