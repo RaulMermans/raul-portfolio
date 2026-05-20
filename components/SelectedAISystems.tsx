@@ -2,14 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import { getSiteCopy } from '@/data/site-copy'
-import { type Locale, localizePath } from '@/lib/i18n'
+import { type Locale } from '@/lib/i18n'
 
 interface SelectedAISystemsProps {
   locale?: Locale
 }
 
 const selectedSlugs = ['data-brief-ai', 'website-auditor', 'benchmark-dashboard'] as const
-const githubUrl = 'https://github.com/RaulMermans'
 
 export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsProps) {
   const copy = getSiteCopy(locale).home.selectedAiSystems
@@ -19,29 +18,8 @@ export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsPr
     .filter((study): study is CaseStudy => Boolean(study))
 
   return (
-    <section id="selected-ai-systems" className="selected-ai-systems" aria-labelledby="selected-ai-systems-title">
+    <section id="selected-ai-systems" className="selected-ai-systems" aria-label={copy.eyebrow}>
       <div className="selected-ai-systems__inner">
-        <div className="selected-ai-systems__header reveal">
-          <p className="selected-ai-systems__eyebrow">{copy.eyebrow}</p>
-          <h2 id="selected-ai-systems-title">{copy.title}</h2>
-          <p>{copy.description}</p>
-          <div className="selected-ai-systems__actions">
-            <Link href={localizePath('/case-studies', locale)} className="selected-ai-systems__link selected-ai-systems__link--primary">
-              {copy.viewAll}
-              <span aria-hidden="true">→</span>
-            </Link>
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="selected-ai-systems__link"
-            >
-              {copy.githubCta}
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-
         <div className="selected-ai-systems__grid">
           {selectedStudies.map((study, index) => {
             const cardCopy = copy.cards[study.slug as keyof typeof copy.cards]

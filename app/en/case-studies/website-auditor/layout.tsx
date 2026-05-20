@@ -5,7 +5,7 @@ import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/
 const title = 'Website Audit Agent — Evidence-Based AI Audit Workflow'
 const description =
   'Technical case study for Website Audit Agent, an evidence-backed AI audit workflow that separates deterministic scoring from bounded LLM synthesis.'
-const image = '/images/case-studies/website-auditor/thumb/thumb.png'
+const image = '/images/case-studies/website-auditor/thumb/thumb.webp'
 const keywords = [
   'website audit agent',
   'AI audit workflow',

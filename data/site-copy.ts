@@ -360,7 +360,7 @@ export const siteCopy = {
         ariaLabel: 'Raúl Mermans — Sistemas de IA · Agentes · Automatización',
         services: ['Sistemas de IA', 'Agentes', 'Automatización'],
         summary:
-          'Sistemas de IA aplicada para marcas, equipos y operaciones creativas. Diseño flujos con agentes, herramientas de automatización y productos internos de IA donde la fiabilidad, la inteligencia de marca y la disciplina de ejecución importan más que el teatro de demo.',
+          'Sistemas de IA aplicada para marcas, equipos y operaciones creativas. Diseño flujos agentic, herramientas de automatización y productos internos de IA donde la fiabilidad, la inteligencia de marca y la disciplina de ejecución importan más que el teatro de demo.',
         primaryCta: 'Ver sistemas de IA',
         secondaryCta: 'Ver GitHub',
         tertiaryCta: 'Contacto',

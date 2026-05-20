@@ -7,7 +7,6 @@ import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
-import SelectedAISystems from '@/components/SelectedAISystems'
 import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
 import Services from '@/components/Services'
@@ -252,7 +251,6 @@ export default function Home() {
         />
         <Header locale={locale} />
         <Hero locale={locale} />
-        <SelectedAISystems locale={locale} />
         <SectionCards locale={locale} />
         
         {/* Social Proof Section - Placeholder for future content

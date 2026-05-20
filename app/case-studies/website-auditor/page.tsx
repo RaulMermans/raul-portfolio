@@ -135,7 +135,7 @@ const content = {
     reportH2: 'A private audit report built from accepted evidence',
     reportP:
       'The report surface is intentionally internal. It presents scores, confidence, evidence labels, and top findings without exposing the private Vercel deployment as a public demo.',
-    reportFigcaption: 'Accepted evidence card. Representative, not a live audit result.',
+    reportFigcaption: 'Representative finding card. Not a live audit result.',
     findingCard: {
       issueLabel: 'Issue',
       issue: 'Primary CTA is visible but weakly reinforced above the fold.',
@@ -355,7 +355,7 @@ const content = {
     reportH2: 'Un informe privado construido desde evidencia aceptada',
     reportP:
       'La superficie de informe es deliberadamente interna. Presenta scores, confianza, etiquetas de evidencia y hallazgos principales sin exponer el despliegue privado de Vercel como demo pública.',
-    reportFigcaption: 'Tarjeta de evidencia aceptada. Representativa, no es un resultado de auditoría en vivo.',
+    reportFigcaption: 'Tarjeta representativa de hallazgo. No es un resultado de auditoría en vivo.',
     findingCard: {
       issueLabel: 'Hallazgo',
       issue: 'El CTA principal es visible, pero está débilmente reforzado above the fold.',
@@ -435,25 +435,35 @@ const content = {
     resultCTAWorkflow: 'Revisar flujo',
     report: {
       title: 'Website Audit Agent',
-      status: 'Complete',
-      capture: 'Rendered browser',
-      confidence: 'High',
+      status: 'Completo',
+      capture: 'Navegador renderizado',
+      confidence: 'Alta',
       scores: [
         ['UX', '82'],
         ['SEO', '74'],
-        ['Performance', '68'],
-        ['Content', '79'],
-        ['Accessibility', '71'],
+        ['Rendimiento', '68'],
+        ['Contenido', '79'],
+        ['Accesibilidad', '71'],
       ] as const,
-      findingLabel: 'Top finding',
-      finding: 'Primary CTA is visible but not consistently reinforced above the fold.',
-      evidenceLabel: 'Evidence label',
+      findingLabel: 'Hallazgo principal',
+      finding: 'El CTA principal es visible, pero no está reforzado de forma consistente above the fold.',
+      evidenceLabel: 'Etiqueta de evidencia',
       evidence: 'Observed',
     },
   },
 }
 
-type ReportText = typeof content.en.report
+type ReportText = {
+  title: string
+  status: string
+  capture: string
+  confidence: string
+  scores: ReadonlyArray<readonly [string, string]>
+  findingLabel: string
+  finding: string
+  evidenceLabel: string
+  evidence: string
+}
 type FindingCardText = typeof content.en.findingCard
 
 function AuditReportMockup({ text }: { text: ReportText }) {
