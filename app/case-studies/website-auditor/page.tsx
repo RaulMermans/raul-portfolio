@@ -18,13 +18,14 @@ const content = {
     heroSubtitle:
       'An evidence-backed website audit workflow that turns public websites into structured UX, SEO, performance, content, and prospect-intelligence reports.',
     heroDescription:
-      'The system captures public website evidence, stores page snapshots, applies deterministic scoring, and then lets a bounded LLM layer synthesize accepted findings into internal acquisition intelligence.',
+      'The goal was to turn website review from subjective opinion into a repeatable evidence workflow, while keeping AI useful but bounded.',
     heroCTAGithub: 'View GitHub →',
     heroCTAHow: 'How it works',
     heroFigcaption: 'Representative preview. Not a live audit result.',
     heroFigAriaLabel: 'Website Audit Agent representative report preview',
     tags: ['Rule-first audit engine', 'Browser-first capture', 'Bounded LLM synthesis', 'Private internal tool'],
     nav: [
+      ['Problem', '#problem'],
       ['Overview', '#overview'],
       ['Workflow', '#workflow'],
       ['Evidence', '#evidence'],
@@ -33,6 +34,12 @@ const content = {
       ['Boundaries', '#boundaries'],
     ] as const,
     navAriaLabel: 'Website Audit Agent page sections',
+    problemEyebrow: 'Problem',
+    problemH2: 'The problem with AI audits is trust.',
+    problemP:
+      'AI website-audit tools often collapse observation, scoring, and interpretation into one opaque model response. That makes the output fast, but difficult to trust.',
+    problemPrinciple:
+      'Website Audit Agent was designed around the opposite principle: before the model says anything, the system must capture evidence, classify confidence, and define what is actually known.',
     overviewEyebrow: 'Overview',
     overviewH2: 'The audit truth is deterministic. The AI is interpretive.',
     overviewP:
@@ -108,10 +115,39 @@ const content = {
     agentP:
       'This is a hybrid workflow-agent system. The deterministic shell owns capture, scoring, persistence, status, and report assembly. The LLM layer owns summary, prioritization, explanation, and prospect intelligence. The Prospect Audit Agent does not browse freely, rewrite findings, or create scores.',
     agentDiagram: ['Deterministic Audit Engine', 'Accepted Findings', 'Prospect Audit Agent', 'Internal Intelligence'],
+    llmBoundaryH3: 'What the LLM can and cannot do',
+    llmAllowedTitle: 'Allowed',
+    llmBlockedTitle: 'Blocked',
+    llmAllowedItems: [
+      'Summarize accepted findings.',
+      'Prioritize recommendations.',
+      'Translate audit evidence into internal prospect intelligence.',
+      'Explain why a finding matters commercially.',
+    ],
+    llmBlockedItems: [
+      'Create audit findings.',
+      'Modify category scores.',
+      'Invent metrics.',
+      'Present inferred claims as measured truth.',
+      'Make unsupported revenue claims.',
+    ],
     reportEyebrow: 'Report surface',
     reportH2: 'A private audit report built from accepted evidence',
     reportP:
       'The report surface is intentionally internal. It presents scores, confidence, evidence labels, and top findings without exposing the private Vercel deployment as a public demo.',
+    reportFigcaption: 'Accepted evidence card. Representative, not a live audit result.',
+    findingCard: {
+      issueLabel: 'Issue',
+      issue: 'Primary CTA is visible but weakly reinforced above the fold.',
+      categoryLabel: 'Category',
+      category: 'UX / Conversion',
+      evidenceLabel: 'Evidence',
+      evidence: 'Observed',
+      sourceLabel: 'Source',
+      source: 'Rendered browser capture',
+      synthesisLabel: 'Synthesis status',
+      synthesis: 'Allowed — based on accepted evidence only.',
+    },
     safetyEyebrow: 'Safety / Access boundary',
     safetyH2: 'Public repository. Private operating surface.',
     safetyP:
@@ -127,7 +163,7 @@ const content = {
     resultEyebrow: 'Result',
     resultH2: 'A useful AI system because it stays inside its lane.',
     resultP:
-      'The value is not broad autonomy. It is a repeatable audit workflow where deterministic truth and interpretive synthesis remain separate.',
+      'The result is a private acquisition workflow that can turn a public website URL into a structured internal report with evidence labels, category scores, and prioritized findings.',
     resultCards: [
       {
         title: 'Repeatable audit pipeline',
@@ -202,13 +238,14 @@ const content = {
     heroSubtitle:
       'Un flujo de auditoría web basado en evidencia que convierte sitios públicos en informes estructurados de UX, SEO, rendimiento, contenido e inteligencia comercial.',
     heroDescription:
-      'El sistema captura evidencia pública del sitio, almacena snapshots, aplica scoring determinista y después permite que una capa LLM acotada sintetice los hallazgos aceptados en inteligencia interna de adquisición.',
+      'El objetivo era convertir la revisión web —normalmente subjetiva— en un flujo repetible basado en evidencia, manteniendo la IA útil pero acotada.',
     heroCTAGithub: 'Ver GitHub →',
     heroCTAHow: 'Cómo funciona',
     heroFigcaption: 'Vista representativa. No es un resultado de auditoría en vivo.',
     heroFigAriaLabel: 'Vista representativa del informe de Website Audit Agent',
     tags: ['Motor rule-first', 'Captura browser-first', 'Síntesis LLM acotada', 'Herramienta interna privada'],
     nav: [
+      ['Problema', '#problem'],
       ['Resumen', '#overview'],
       ['Flujo', '#workflow'],
       ['Evidencia', '#evidence'],
@@ -217,6 +254,12 @@ const content = {
       ['Límites', '#boundaries'],
     ] as const,
     navAriaLabel: 'Secciones de la página Website Audit Agent',
+    problemEyebrow: 'Problema',
+    problemH2: 'El problema de las auditorías con IA es la confianza.',
+    problemP:
+      'Muchas herramientas de auditoría web con IA mezclan observación, scoring e interpretación en una sola respuesta opaca del modelo. El resultado puede ser rápido, pero difícil de confiar.',
+    problemPrinciple:
+      'Website Audit Agent se diseñó alrededor del principio contrario: antes de que el modelo diga nada, el sistema debe capturar evidencia, clasificar confianza y definir qué se sabe realmente.',
     overviewEyebrow: 'Resumen',
     overviewH2: 'La verdad de auditoría es determinista. La IA interpreta.',
     overviewP:
@@ -292,10 +335,39 @@ const content = {
     agentP:
       'Es un sistema híbrido workflow-agent. El shell determinista controla captura, scoring, persistencia, estado y ensamblaje del informe. La capa LLM controla resumen, priorización, explicación e inteligencia comercial. El Prospect Audit Agent no navega libremente, no reescribe hallazgos y no crea scores.',
     agentDiagram: ['Motor determinista de auditoría', 'Hallazgos aceptados', 'Prospect Audit Agent', 'Inteligencia interna'],
+    llmBoundaryH3: 'Qué puede y qué no puede hacer el LLM',
+    llmAllowedTitle: 'Permitido',
+    llmBlockedTitle: 'Bloqueado',
+    llmAllowedItems: [
+      'Sintetizar hallazgos aceptados.',
+      'Priorizar recomendaciones.',
+      'Traducir evidencia de auditoría en inteligencia comercial interna.',
+      'Explicar por qué un hallazgo importa comercialmente.',
+    ],
+    llmBlockedItems: [
+      'Crear hallazgos de auditoría.',
+      'Modificar scores de categoría.',
+      'Inventar métricas.',
+      'Presentar inferencias como verdad medida.',
+      'Hacer afirmaciones de ingresos sin soporte.',
+    ],
     reportEyebrow: 'Informe',
     reportH2: 'Un informe privado construido desde evidencia aceptada',
     reportP:
       'La superficie de informe es deliberadamente interna. Presenta scores, confianza, etiquetas de evidencia y hallazgos principales sin exponer el despliegue privado de Vercel como demo pública.',
+    reportFigcaption: 'Tarjeta de evidencia aceptada. Representativa, no es un resultado de auditoría en vivo.',
+    findingCard: {
+      issueLabel: 'Hallazgo',
+      issue: 'El CTA principal es visible, pero está débilmente reforzado above the fold.',
+      categoryLabel: 'Categoría',
+      category: 'UX / Conversión',
+      evidenceLabel: 'Evidencia',
+      evidence: 'Observed',
+      sourceLabel: 'Fuente',
+      source: 'Captura renderizada en navegador',
+      synthesisLabel: 'Estado de síntesis',
+      synthesis: 'Permitida — basada solo en evidencia aceptada.',
+    },
     safetyEyebrow: 'Seguridad / Límite de acceso',
     safetyH2: 'Repositorio público. Superficie operativa privada.',
     safetyP:
@@ -311,7 +383,7 @@ const content = {
     resultEyebrow: 'Resultado',
     resultH2: 'Un sistema de IA útil porque se mantiene dentro de sus límites.',
     resultP:
-      'El valor no está en una autonomía amplia. Está en un flujo repetible donde la verdad determinista y la síntesis interpretativa permanecen separadas.',
+      'El resultado es un flujo privado de adquisición capaz de convertir una URL pública en un informe interno estructurado con etiquetas de evidencia, scores por categoría y hallazgos priorizados.',
     resultCards: [
       {
         title: 'Pipeline repetible',
@@ -382,6 +454,7 @@ const content = {
 }
 
 type ReportText = typeof content.en.report
+type FindingCardText = typeof content.en.findingCard
 
 function AuditReportMockup({ text }: { text: ReportText }) {
   return (
@@ -408,6 +481,38 @@ function AuditReportMockup({ text }: { text: ReportText }) {
         <em>
           {text.evidenceLabel}: {text.evidence}
         </em>
+      </div>
+    </div>
+  )
+}
+
+function AcceptedEvidenceCard({ text }: { text: FindingCardText }) {
+  return (
+    <div className="website-auditor-finding-card">
+      <div className="website-auditor-finding-card__header">
+        <span>{text.evidence}</span>
+        <strong>{text.synthesisLabel}</strong>
+      </div>
+      <div className="website-auditor-finding-card__issue">
+        <span>{text.issueLabel}</span>
+        <p>{text.issue}</p>
+      </div>
+      <dl className="website-auditor-finding-card__meta">
+        <div>
+          <dt>{text.categoryLabel}</dt>
+          <dd>{text.category}</dd>
+        </div>
+        <div>
+          <dt>{text.evidenceLabel}</dt>
+          <dd>{text.evidence}</dd>
+        </div>
+        <div>
+          <dt>{text.sourceLabel}</dt>
+          <dd>{text.source}</dd>
+        </div>
+      </dl>
+      <div className="website-auditor-finding-card__status">
+        <span>{text.synthesis}</span>
       </div>
     </div>
   )
@@ -462,6 +567,25 @@ export default function WebsiteAuditorPage() {
             </a>
           ))}
         </nav>
+
+        <section
+          id="problem"
+          className="data-brief-section data-brief-section--cream website-auditor-problem-section"
+          aria-labelledby="website-auditor-problem"
+        >
+          <div className="data-brief-section__container">
+            <div className="website-auditor-problem-panel">
+              <div className="data-brief-refresh-heading">
+                <p className="data-brief-eyebrow">{t.problemEyebrow}</p>
+                <h2 id="website-auditor-problem">{t.problemH2}</h2>
+              </div>
+              <div className="website-auditor-problem-copy">
+                <p>{t.problemP}</p>
+                <p>{t.problemPrinciple}</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section
           id="overview"
@@ -551,6 +675,27 @@ export default function WebsiteAuditorPage() {
                 <span key={item}>{item}</span>
               ))}
             </div>
+            <div className="website-auditor-llm-boundary" aria-labelledby="website-auditor-llm-boundary-title">
+              <h3 id="website-auditor-llm-boundary-title">{t.llmBoundaryH3}</h3>
+              <div className="website-auditor-llm-boundary__grid">
+                <article className="website-auditor-llm-boundary__column website-auditor-llm-boundary__column--allowed">
+                  <h4>{t.llmAllowedTitle}</h4>
+                  <ul>
+                    {t.llmAllowedItems.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+                <article className="website-auditor-llm-boundary__column website-auditor-llm-boundary__column--blocked">
+                  <h4>{t.llmBlockedTitle}</h4>
+                  <ul>
+                    {t.llmBlockedItems.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -566,8 +711,8 @@ export default function WebsiteAuditorPage() {
               <p>{t.reportP}</p>
             </div>
             <figure className="data-brief-output-main website-auditor-report-surface">
-              <AuditReportMockup text={t.report} />
-              <figcaption>{t.heroFigcaption}</figcaption>
+              <AcceptedEvidenceCard text={t.findingCard} />
+              <figcaption>{t.reportFigcaption}</figcaption>
             </figure>
           </div>
         </section>

@@ -216,6 +216,22 @@
   color: var(--cream);
 }
 
+.tertiary {
+  min-width: 132px;
+  border-color: rgba(26, 23, 20, 0.34);
+  color: rgba(26, 23, 20, 0.76);
+}
+
+.tertiary::before {
+  background: var(--ink);
+}
+
+.tertiary:hover,
+.tertiary:focus-visible {
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
 .ctaArrow {
   display: inline-block;
   transition: transform 0.4s var(--ease);

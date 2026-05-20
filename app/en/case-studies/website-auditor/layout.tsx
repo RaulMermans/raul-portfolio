@@ -23,7 +23,7 @@ export const metadata: Metadata = buildPageMetadata({
   locale: 'en',
   image: {
     url: image,
-    alt: 'Website Audit Agent case study by Raul Mermans',
+    alt: 'Website Audit Agent case study by Raúl Mermans',
   },
   type: 'article',
   keywords,

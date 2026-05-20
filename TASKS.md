@@ -33,6 +33,8 @@
 ## Completed
 
 ### May 2026
+- [x] Rebalance portfolio hierarchy toward applied AI systems and agentic workflows
+- [x] Refine Website Audit Agent case study problem framing, LLM boundaries, and report proof
 - [x] Align case-study result CTA button styling for GitHub/external links
 - [x] Refine case-studies and About landing hierarchy with the new UI reference workflow
 - [x] Install UI reference submodules and add skills for shadcn/ui, Magic UI, and Motion Primitives

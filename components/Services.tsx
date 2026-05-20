@@ -11,16 +11,16 @@ interface ServicesProps {
 
 export default function Services({ locale = 'en' }: ServicesProps) {
   const copy = getSiteCopy(locale).home.services
+  const serviceImages = [
+    '/images/services/Services_AI_Agents.webp',
+    '/images/services/Services_AI_Agents.webp',
+    '/images/services/Services_Web_Development.webp',
+    '/images/services/Services_Creative_Direction.webp',
+    '/images/services/Services_Photography.webp',
+  ]
   const services = copy.items.map((item, index) => ({
     ...item,
-    image:
-      index === 0
-        ? '/images/services/Services_AI_Agents.webp'
-        : index === 1
-          ? '/images/services/Services_Web_Development.webp'
-          : index === 2
-            ? '/images/services/Services_Photography.webp'
-            : '/images/services/Services_Creative_Direction.webp',
+    image: serviceImages[index] ?? serviceImages[0],
   }))
   return (
     <section id="services" className="services" aria-labelledby="services-title">
@@ -90,7 +90,7 @@ export default function Services({ locale = 'en' }: ServicesProps) {
               <Link 
                 href={localizePath('/#contact', locale)} 
                 className="btn btn--arrow service__cta"
-                aria-label="Start a project - navigate to contact section"
+                aria-label={locale === 'es' ? 'Empezar un proyecto - ir a contacto' : 'Start a project - navigate to contact section'}
               >
                 {copy.cta}
               </Link>

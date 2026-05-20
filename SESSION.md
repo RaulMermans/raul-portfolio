@@ -8,7 +8,7 @@
 **Last Updated**: 2026-05-19
 
 ### Active Work
-- Case-study result CTA button styling aligned for primary GitHub/external links
+- Portfolio hierarchy rebalanced toward applied AI systems and agentic workflows
 
 ### Pending Decisions
 - Whether to approve task-specific dependency additions when a future UI implementation needs shadcn/ui, Magic UI, Motion Primitives, Radix, or Motion packages at runtime
@@ -89,6 +89,31 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-19 - Rebalance portfolio toward applied AI systems
+**Goal**: Improve the full portfolio after a strategic audit so AI systems, agentic workflows, automation, and internal tools become the primary signal while preserving brand/culture/creative direction as Raul's differentiating edge.
+**Outcome**: Completed with local Next tooling limitation
+**Changes Made**:
+- `data/site-copy.ts`, `components/Hero.tsx`, `components/Hero.module.css`, `components/SelectedAISystems.tsx`, and `styles/globals.css` - sharpened homepage positioning, added a localized Selected AI Systems section featuring DataBrief AI, Website Audit Agent, and Benchmark Dashboard, and added a restrained GitHub CTA.
+- `app/page.tsx`, `components/Services.tsx`, and `components/StructuredData.tsx` - reframed services as AI Systems, Automation/Internal Tools, Web/Product Prototypes, Brand Systems/Creative Direction, and quieter Creative Practice.
+- `app/case-studies/page.tsx` - preserved the randomized gallery but pins Website Audit Agent directly after DataBrief AI when both are present.
+- `app/about/page.tsx`, `components/About.tsx`, `app/about/layout.tsx`, `app/en/about/layout.tsx`, and `app/es/about/page.tsx` - tightened About around AI systems, product logic, brand intelligence, Primor/CRM credibility, and a quieter creative practice.
+- `components/Footer.tsx` and `components/Socials.tsx` - surfaced GitHub as a public proof link without adding extra CTA clutter.
+- `app/es/case-studies/ai-systems-agents/*` and `app/es/case-studies/data-systems/*` - added missing Spanish category wrapper routes that were already referenced by the sitemap.
+- `app/case-studies/website-auditor/layout.tsx`, `app/en/case-studies/website-auditor/layout.tsx`, `app/es/case-studies/website-auditor/layout.tsx`, `app/case-studies/data-brief-ai/layout.tsx`, `app/es/case-studies/data-brief-ai/layout.tsx`, and `lib/metadata.ts` - corrected Spanish accents and strengthened SEO positioning for AI systems and key case studies.
+- `TASKS.md` and `SESSION.md` - recorded the completed strategic refinement.
+**Verification**: Direct TS/TSX transpile checks passed for changed app/component/data files. Route/image existence checks passed for the requested `/case-studies`, `/en/case-studies`, and `/es/case-studies` Website Auditor/DataBrief routes plus the added Spanish category routes and key thumbnails. Static assertions confirmed Website Auditor is in case-study data, the AI category, and pinned near DataBrief. Full `npm run lint`, `npm run type-check`, `npm run build`, and `git diff --check` started but did not complete or emit diagnostics before being stopped, matching the local tooling stalls already documented in this file.
+**Next Steps**: Rerun full Next verification once the local tooling hang is repaired, then visually review `/`, `/en`, `/es`, `/case-studies`, `/en/case-studies`, `/es/case-studies`, `/about`, `/en/about`, and `/es/about`.
+
+### 2026-05-19 - Refine Website Audit Agent case-study narrative
+**Goal**: Make the Website Audit Agent case study feel less like an architecture memo and more like a strong portfolio case study while preserving deterministic-audit and bounded-LLM positioning.
+**Outcome**: Completed with local Next tooling limitation
+**Changes Made**:
+- `app/case-studies/website-auditor/page.tsx` - added localized Problem copy, tightened the hero "why" statement, added a localized LLM allowed/blocked boundary block, replaced the repeated report mock with an accepted-evidence finding card, and made the Result section more concrete.
+- `styles/case-study-new.css` - added scoped styling for the Problem panel, truth-boundary LLM diagram, accepted-evidence card, and seven-item mini-nav while preserving the existing case-study visual system.
+- `TASKS.md` and `SESSION.md` - recorded the completed refinement.
+**Verification**: `git diff --check -- app/case-studies/website-auditor/page.tsx styles/case-study-new.css` passed. A direct TypeScript transpile check for `app/case-studies/website-auditor/page.tsx` passed. Full `npm run lint`, `npm run type-check`, `npm run build`, focused ESLint, focused tsc, and a PostCSS parse check launched but did not complete or emit diagnostics before being stopped, matching the local tooling stalls already documented in this file.
+**Next Steps**: Rerun `npm run lint`, `npm run type-check`, and `npm run build` after the local Next/tooling hang is repaired, then visually review `/case-studies/website-auditor`, `/en/case-studies/website-auditor`, and `/es/case-studies/website-auditor`.
 
 ### 2026-05-19 - Align case-study result CTA styling
 **Goal**: Check case-study button consistency, especially `View GitHub` CTAs, and fix any mismatched button hierarchy.
