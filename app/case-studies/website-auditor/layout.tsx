@@ -2,17 +2,18 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'Website Audit Agent — Flujo de Auditoría IA Basado en Evidencia'
+const title = 'Website Audit Agent — Evidence-Based AI Audit Workflow'
 const description =
-  'Caso técnico de Website Audit Agent, un flujo de auditoría web basado en evidencia que separa scoring determinista y síntesis LLM acotada.'
-const image = '/images/case-studies/website-auditor/thumb/thumb.webp'
+  'Caso tecnico de Website Audit Agent, un flujo de auditoria web basado en evidencia que separa scoring determinista y sintesis LLM acotada.'
+const image = '/images/case-studies/website-auditor/thumb/thumb.png'
 const keywords = [
   'website audit agent',
-  'flujo de auditoría IA',
-  'scoring determinista',
-  'síntesis LLM acotada',
-  'inteligencia comercial',
-  'sistema de IA basado en evidencia',
+  'AI audit workflow',
+  'agentic workflow',
+  'deterministic scoring',
+  'bounded LLM synthesis',
+  'prospect intelligence',
+  'evidence-based AI system',
 ]
 
 export const metadata: Metadata = buildPageMetadata({
@@ -22,7 +23,7 @@ export const metadata: Metadata = buildPageMetadata({
   locale: 'es',
   image: {
     url: image,
-    alt: 'Caso de estudio Website Audit Agent por Raúl Mermans',
+    alt: 'Website Audit Agent case study by Raul Mermans',
   },
   type: 'article',
   keywords,

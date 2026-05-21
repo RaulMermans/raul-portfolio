@@ -27,9 +27,9 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com',
   locale: 'es_ES',
   twitterHandle: '@raulmermans',
-  defaultTitle: 'Raúl Mermans — Sistemas de IA Aplicada para Marcas y Equipos',
+  defaultTitle: 'Raúl Mermans — Arquitecto de Sistemas de IA para Marcas Modernas',
   defaultDescription:
-    'Sistemas de IA aplicada, flujos con agentes y herramientas internas para marcas y equipos, construidos con lógica de producto e inteligencia de marca.',
+    'Arquitecto de sistemas de IA aplicada para marcas modernas. Diseño agentes, automatización e infraestructura creativa para marketing, CRM, contenido y ejecución.',
   defaultImage: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Portfolio de Raúl Mermans — sistemas de IA, casos de estudio y ejecución creativa',

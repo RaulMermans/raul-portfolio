@@ -5,7 +5,7 @@ import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/
 const title = 'Website Audit Agent — Evidence-Based AI Audit Workflow'
 const description =
   'Technical case study for Website Audit Agent, an evidence-backed AI audit workflow that separates deterministic scoring from bounded LLM synthesis.'
-const image = '/images/case-studies/website-auditor/thumb/thumb.webp'
+const image = '/images/case-studies/website-auditor/thumb/thumb.png'
 const keywords = [
   'website audit agent',
   'AI audit workflow',
@@ -23,7 +23,7 @@ export const metadata: Metadata = buildPageMetadata({
   locale: 'en',
   image: {
     url: image,
-    alt: 'Website Audit Agent case study by Raúl Mermans',
+    alt: 'Website Audit Agent case study by Raul Mermans',
   },
   type: 'article',
   keywords,

@@ -97,10 +97,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 2,
-          name: 'Automation and Internal Tools',
-          serviceType: 'Operational Automation and Internal Interfaces',
+          name: 'Web Development',
+          serviceType: 'Web Design and Development',
           description:
-            'Automation systems and internal tools for marketing, CRM, content, and creative operations with human review where it matters.',
+            'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -113,10 +113,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 3,
-          name: 'Web and Product Prototypes',
-          serviceType: 'Web Design and Product Prototyping',
+          name: 'Photography',
+          serviceType: 'Brand and Editorial Photography',
           description:
-            'Product-minded web experiences and prototypes built to make workflows, offers, and technical ideas usable, credible, and ready for iteration.',
+            'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -129,26 +129,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 4,
-          name: 'Brand Systems and Creative Direction',
+          name: 'Creative Direction',
           serviceType: 'Creative Direction and Brand Systems',
           description:
-            'Creative direction connecting brand intelligence, visual systems, and campaign thinking so every tool feels coherent, adoptable, and commercially credible.',
-          provider: {
-            '@type': 'Person',
-            '@id': `${siteConfig.url}/#person`,
-          },
-          areaServed: {
-            '@type': 'Country',
-            name: 'Spain',
-          },
-        },
-        {
-          '@type': 'Service',
-          position: 5,
-          name: 'Creative Practice',
-          serviceType: 'Photography, Image Systems, and Visual Research',
-          description:
-            'Photography and image-making as a supporting visual practice for composition, cultural reading, and brand judgment.',
+            'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,

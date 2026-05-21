@@ -64,36 +64,11 @@ export const siteCopy = {
         },
         ariaLabel: 'Raúl Mermans — AI Systems · Agents · Automation',
         services: ['AI Systems', 'Agents', 'Automation'],
-        summary:
-          'Applied AI systems for brands, teams, and creative operations. I design agentic workflows, automation tools, and internal AI products where reliability, brand intelligence, and execution discipline matter more than demo theatre.',
-        primaryCta: 'View AI Systems Work',
-        secondaryCta: 'View GitHub',
-        tertiaryCta: 'Contact',
+        summary: 'Applied AI systems, automation, and product-minded web for brands that need reliable execution — not demo theatre.',
+        primaryCta: 'View Work',
+        secondaryCta: 'Connect',
         scrollAria: 'Scroll to explore',
         scrollLabel: 'Explore',
-      },
-      selectedAiSystems: {
-        eyebrow: 'Selected AI Systems',
-        title: 'Applied systems, not isolated prompts.',
-        description:
-          'A tighter selection of AI work where deterministic logic, evidence, interfaces, and bounded model behavior turn into usable internal tools.',
-        viewCase: 'View case',
-        viewAll: 'View all case studies',
-        githubCta: 'View GitHub',
-        cards: {
-          'data-brief-ai': {
-            label: 'Bounded analytics workflow',
-            proof: 'CSV/XLSX reports with schema checks, controlled execution, and explainable outputs.',
-          },
-          'website-auditor': {
-            label: 'Evidence-backed audit workflow',
-            proof: 'Deterministic capture and scoring first; LLM synthesis only after evidence is accepted.',
-          },
-          'benchmark-dashboard': {
-            label: 'Data product proof',
-            proof: 'A reusable benchmark interface for rankings, forecasts, strategic signals, and decision-ready reading.',
-          },
-        },
       },
       sectionCards: {
         prev: 'Previous section:',
@@ -137,9 +112,9 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'About',
-        title: 'AI systems builder with brand intelligence.',
+        title: 'Business-minded builder. Systems-first by default.',
         body:
-          'I work at the intersection of <span class="highlight">AI systems</span>, <span class="highlight">brand strategy</span>, and <span class="highlight">product execution</span>, building tools and workflows that are technically structured, commercially useful, and culturally aware.',
+          'I came into this work through business, then taught myself how to build the systems teams actually need. Today I design <span class="highlight">AI workflows</span>, <span class="highlight">automation layers</span>, and <span class="highlight">product-minded interfaces</span> for marketing, CRM, content, and creative execution. My edge is the combination of <span class="highlight">systems thinking</span>, <span class="highlight">practical implementation</span>, and <span class="highlight">creative judgment</span> strong enough to keep the output coherent, useful, and worth deploying.',
         cta: 'Read More',
       },
       services: {
@@ -150,41 +125,33 @@ export const siteCopy = {
             number: '00-1',
             title: 'AI Systems',
             titleShort: 'AI Systems',
-            items: ['Agentic Workflows', 'Bounded LLM Synthesis', 'Human Review Loops', 'Evidence Workflows'],
+            items: ['Agentic Workflows', 'AI Orchestration', 'Human Review Loops', 'Deployment Logic'],
             description:
-              'Applied AI systems for teams that need repeatable execution: agentic workflows, evidence capture, deterministic rules, and AI layers that stay inside clear boundaries.',
+              'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution. Agents, orchestration, and decision flows built for real teams, not demo theatre.',
           },
           {
             number: '00-2',
-            title: 'Automation / Internal Tools',
-            titleShort: 'Automation',
-            items: ['Workflow Mapping', 'CRM Automation', 'Internal Dashboards', 'Ops Interfaces'],
+            title: 'Web Development',
+            titleShort: 'Web Dev',
+            items: ['Custom Web Design', 'Frontend Development', 'Performance Optimization', 'CMS Integration'],
             description:
-              'Automation systems and internal tools that remove manual drag from marketing, CRM, content, and creative operations while keeping humans in the decision loop.',
+              'Modern, performant web experiences crafted with precision. Every site is built with conversion in mind: fast load times, intuitive navigation, and seamless user journeys that turn visitors into clients.',
           },
           {
             number: '00-3',
-            title: 'Web / Product Prototypes',
-            titleShort: 'Product Web',
-            items: ['Next.js Builds', 'Product Surfaces', 'Prototype UX', 'Performance'],
+            title: 'Photography',
+            titleShort: 'Photography',
+            items: ['Brand Photo', 'Visual Story', 'Editorial Shoot', 'Product Photo'],
             description:
-              'Product-minded web experiences and prototypes built to make workflows, offers, and technical ideas usable, credible, and ready for iteration.',
+              'Visual narratives that capture the essence of brands and stories. Helping brands convert visual interest into lasting engagement through authentic imagery that connects with audiences on an emotional level.',
           },
           {
             number: '00-4',
-            title: 'Brand Systems / Creative Direction',
-            titleShort: 'Brand Systems',
-            items: ['Brand Intelligence', 'Visual Identity', 'Creative Systems', 'Campaign Logic'],
+            title: 'Creative Direction',
+            titleShort: 'Creative Dir',
+            items: ['Brand Strategy', 'Visual Identity', 'Art Direction', 'Campaign Concepts'],
             description:
-              'Brand strategy and creative direction as the intelligence layer around the system: positioning, taste, visual rules, and cultural context that make tools adoptable.',
-          },
-          {
-            number: '00-5',
-            title: 'Creative Practice',
-            titleShort: 'Practice',
-            items: ['Photography', 'Image Systems', 'Visual Research', 'Cultural Reading'],
-            description:
-              'Photography and image-making stay as a quieter visual practice: a way to sharpen composition, cultural awareness, and the taste behind stronger AI and brand systems.',
+              'Strategic creative vision from concept to execution. I guide brands through the creative process, ensuring every touchpoint, from logo to campaign, tells a cohesive story that resonates with your target audience.',
           },
         ],
       },
@@ -248,7 +215,7 @@ export const siteCopy = {
       socials: {
         label: 'Connect',
         title: "Let's Connect",
-        selectedLinks: 'Proof links',
+        selectedLinks: 'Selected Links',
         location: 'Spain · Available Worldwide',
       },
     },
@@ -359,36 +326,11 @@ export const siteCopy = {
         },
         ariaLabel: 'Raúl Mermans — Sistemas de IA · Agentes · Automatización',
         services: ['Sistemas de IA', 'Agentes', 'Automatización'],
-        summary:
-          'Sistemas de IA aplicada para marcas, equipos y operaciones creativas. Diseño flujos agentic, herramientas de automatización y productos internos de IA donde la fiabilidad, la inteligencia de marca y la disciplina de ejecución importan más que el teatro de demo.',
-        primaryCta: 'Ver sistemas de IA',
-        secondaryCta: 'Ver GitHub',
-        tertiaryCta: 'Contacto',
+        summary: 'Arquitecto de Sistemas de IA para Marcas Modernas',
+        primaryCta: 'Ver trabajo',
+        secondaryCta: 'Conectar',
         scrollAria: 'Desplazar para explorar',
         scrollLabel: 'Explorar',
-      },
-      selectedAiSystems: {
-        eyebrow: 'Sistemas de IA seleccionados',
-        title: 'Sistemas aplicados, no prompts aislados.',
-        description:
-          'Una selección más directa de trabajo con IA donde lógica determinista, evidencia, interfaces y modelos acotados se convierten en herramientas internas utilizables.',
-        viewCase: 'Ver caso',
-        viewAll: 'Ver todos los casos',
-        githubCta: 'Ver GitHub',
-        cards: {
-          'data-brief-ai': {
-            label: 'Flujo analítico acotado',
-            proof: 'Informes desde CSV/XLSX con validación de esquema, ejecución controlada y outputs explicables.',
-          },
-          'website-auditor': {
-            label: 'Auditoría basada en evidencia',
-            proof: 'Captura y scoring determinista primero; síntesis LLM solo después de aceptar evidencia.',
-          },
-          'benchmark-dashboard': {
-            label: 'Prueba de producto de datos',
-            proof: 'Interfaz benchmark reutilizable para rankings, forecasts, señales estratégicas y lectura orientada a decisión.',
-          },
-        },
       },
       sectionCards: {
         prev: 'Sección anterior:',
@@ -432,9 +374,9 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'Sobre mí',
-        title: 'Constructor de sistemas de IA con inteligencia de marca.',
+        title: 'Desarrollador con visión de negocio. Los sistemas como prioridad.',
         body:
-          'Trabajo en la intersección entre <span class="highlight">sistemas de IA</span>, <span class="highlight">estrategia de marca</span> y <span class="highlight">ejecución de producto</span>, construyendo herramientas y flujos técnicamente sólidos, comercialmente útiles y culturalmente conscientes.',
+          'Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear los sistemas que los equipos realmente necesitan. Hoy diseño <span class="highlight">flujos de trabajo con IA</span>, <span class="highlight">capas de automatización</span> e <span class="highlight">interfaces orientadas a producto</span>... Mi valor diferencial es la combinación de <span class="highlight">pensamiento sistémico</span>, <span class="highlight">implementación práctica</span> y un <span class="highlight">criterio creativo</span> lo suficientemente sólido como para mantener un resultado coherente, útil y listo para desplegarse.',
         cta: 'Leer más',
       },
       services: {
@@ -445,41 +387,33 @@ export const siteCopy = {
             number: '00-1',
             title: 'Sistemas de IA',
             titleShort: 'Sist. IA',
-            items: ['Flujos con agentes', 'Síntesis LLM acotada', 'Bucles de revisión humana', 'Flujos de evidencia'],
+            items: ['Flujos basados en agentes', 'Orquestación de IA', 'Bucles de revisión humana', 'Lógica de despliegue'],
             description:
-              'Sistemas de IA aplicada para equipos que necesitan ejecución repetible: flujos con agentes, captura de evidencia, reglas deterministas y capas de IA con límites claros.',
+              'Sistemas de IA aplicada que transforman el trabajo repetitivo y de alta carga cognitiva en una ejecución fiable. Agentes, orquestación y flujos de decisión construidos para equipos reales, no solo para demostraciones.',
           },
           {
             number: '00-2',
-            title: 'Automatización / Herramientas internas',
-            titleShort: 'Automatización',
-            items: ['Mapeo de flujos', 'Automatización CRM', 'Dashboards internos', 'Interfaces operativas'],
+            title: 'Desarrollo web',
+            titleShort: 'Web',
+            items: ['Diseño web a medida', 'Desarrollo frontend', 'Optimización de rendimiento', 'Integración CMS'],
             description:
-              'Sistemas de automatización y herramientas internas que reducen fricción manual en marketing, CRM, contenido y operaciones creativas sin sacar a las personas del bucle de decisión.',
+              'Experiencias web modernas y rápidas, construidas con precisión. Cada sitio está pensado para convertir: carga rápida, navegación clara y recorridos fluidos que convierten visitas en clientes.',
           },
           {
             number: '00-3',
-            title: 'Web / Prototipos de producto',
-            titleShort: 'Producto web',
-            items: ['Builds en Next.js', 'Superficies de producto', 'UX de prototipo', 'Rendimiento'],
+            title: 'Fotografía',
+            titleShort: 'Foto',
+            items: ['Foto de marca', 'Narrativa visual', 'Editorial', 'Producto'],
             description:
-              'Experiencias web y prototipos con criterio de producto, pensados para hacer utilizables, creíbles e iterables los flujos, ofertas e ideas técnicas.',
+              'Narrativas visuales que capturan la esencia de marcas e historias. Ayudo a convertir interés visual en conexión duradera mediante imágenes auténticas que generan resonancia emocional.',
           },
           {
             number: '00-4',
-            title: 'Sistemas de marca / Dirección creativa',
-            titleShort: 'Marca',
-            items: ['Inteligencia de marca', 'Identidad visual', 'Sistemas creativos', 'Lógica de campaña'],
+            title: 'Dirección creativa',
+            titleShort: 'Dir. creativa',
+            items: ['Estrategia de marca', 'Identidad visual', 'Dirección de arte', 'Conceptos de campaña'],
             description:
-              'Estrategia de marca y dirección creativa como capa de inteligencia alrededor del sistema: posicionamiento, gusto, reglas visuales y contexto cultural para que las herramientas se adopten.',
-          },
-          {
-            number: '00-5',
-            title: 'Práctica creativa',
-            titleShort: 'Práctica',
-            items: ['Fotografía', 'Sistemas de imagen', 'Investigación visual', 'Lectura cultural'],
-            description:
-              'La fotografía y la imagen quedan como práctica visual de apoyo: una forma de afinar composición, lectura cultural y el criterio detrás de mejores sistemas de IA y marca.',
+              'Visión creativa estratégica desde el concepto hasta la ejecución. Guío a las marcas en el proceso creativo para que cada punto de contacto, del logo a la campaña, cuente una historia coherente.',
           },
         ],
       },
@@ -543,7 +477,7 @@ export const siteCopy = {
       socials: {
         label: 'Conectar',
         title: 'Hablemos',
-        selectedLinks: 'Pruebas públicas',
+        selectedLinks: 'Enlaces seleccionados',
         location: 'España · Disponible en todo el mundo',
       },
     },
