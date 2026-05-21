@@ -33,8 +33,6 @@
 ## Completed
 
 ### May 2026
-- [x] Square case-study CTA buttons and tighten Website Auditor boundaries spacing
-- [x] Replace the Automation service thumbnail with the supplied low-code work automation image
 - [x] Rebalance portfolio hierarchy toward applied AI systems and agentic workflows
 - [x] Refine Website Audit Agent case study problem framing, LLM boundaries, and report proof
 - [x] Align case-study result CTA button styling for GitHub/external links

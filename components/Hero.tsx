@@ -14,6 +14,8 @@ const HeroBackground = dynamic(() => import('./HeroBackground'), {
   loading: () => <div className={styles.background} aria-hidden="true" />
 })
 
+const githubUrl = 'https://github.com/RaulMermans'
+
 interface HeroProps {
   locale?: Locale
 }
@@ -95,7 +97,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
         <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
-              href={localizePath('/#work', locale)}
+              href={localizePath('/case-studies', locale)}
               className={`${styles.cta} ${styles.primary}`}
               data-mobile-audit="hero-cta"
             >
@@ -104,12 +106,24 @@ export default function Hero({ locale = 'en' }: HeroProps) {
             </Link>
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={20}>
-            <Link
-              href={localizePath('/#contact', locale)}
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >
               <span>{copy.secondaryCta}</span>
+              <span className={styles.ctaArrow}>↗</span>
+            </a>
+          </MagneticButton>
+          <MagneticButton className={styles.ctaWrapper} intensity={18}>
+            <Link
+              href={localizePath('/#contact', locale)}
+              className={`${styles.cta} ${styles.tertiary}`}
+              data-mobile-audit="hero-cta"
+            >
+              <span>{copy.tertiaryCta}</span>
             </Link>
           </MagneticButton>
         </div>

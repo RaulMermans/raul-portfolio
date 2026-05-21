@@ -13,7 +13,7 @@ export default function Services({ locale = 'en' }: ServicesProps) {
   const copy = getSiteCopy(locale).home.services
   const serviceImages = [
     '/images/services/Services_AI_Agents.webp',
-    '/images/services/Services_Automation.webp',
+    '/images/services/Services_AI_Agents.webp',
     '/images/services/Services_Web_Development.webp',
     '/images/services/Services_Creative_Direction.webp',
     '/images/services/Services_Photography.webp',
