@@ -5,10 +5,10 @@
 ## Current Focus
 
 **Status**: Completed
-**Last Updated**: 2026-05-19
+**Last Updated**: 2026-05-20
 
 ### Active Work
-- Portfolio hierarchy rebalanced toward applied AI systems and agentic workflows
+- Squared case-study CTA buttons and tightened Website Auditor boundaries spacing
 
 ### Pending Decisions
 - Whether to approve task-specific dependency additions when a future UI implementation needs shadcn/ui, Magic UI, Motion Primitives, Radix, or Motion packages at runtime
@@ -89,6 +89,25 @@ When starting work, update this section:
 ---
 
 ## Recent Sessions
+
+### 2026-05-20 - Align case-study CTA boxes and Website Auditor spacing
+**Goal**: Make the Website Auditor boundary-section CTAs match the sharper case-study button language and reduce the awkward wide spacing between the limits list and CTA boxes.
+**Outcome**: Completed
+**Changes Made**:
+- `styles/case-study-new.css` - squared the shared `data-brief-button` case-study CTA style and collapsed the Website Auditor boundaries panel into a tighter single-column rhythm with actions below the list.
+- `TASKS.md` and `SESSION.md` - recorded the completed UI alignment.
+**Verification**: Focused CSS diff and syntax checks were run for the case-study CSS change. Full Next lint/type-check/build remain subject to the local tooling stalls already documented in Blockers.
+**Next Steps**: Visually review Website Audit Agent, DataBrief AI, and Benchmark Dashboard result CTAs after the next successful local or deployed render.
+
+### 2026-05-20 - Replace Automation service thumbnail
+**Goal**: Use the supplied low-code work automation image as the Automation/Internal Tools thumbnail in the homepage services section.
+**Outcome**: Completed
+**Changes Made**:
+- `public/images/services/Services_Automation.webp` - added the supplied WebP asset to the services image directory.
+- `components/Services.tsx` - pointed the second services image slot, Automation/Internal Tools, to the new asset.
+- `TASKS.md` and `SESSION.md` - recorded the completed thumbnail update.
+**Verification**: Focused asset/path and syntax checks were run for the service thumbnail change. Full Next lint/type-check/build remain subject to the local tooling stalls already documented in Blockers.
+**Next Steps**: Visually review the services section on desktop after the next successful local or deployed render.
 
 ### 2026-05-19 - Rebalance portfolio toward applied AI systems
 **Goal**: Improve the full portfolio after a strategic audit so AI systems, agentic workflows, automation, and internal tools become the primary signal while preserving brand/culture/creative direction as Raul's differentiating edge.

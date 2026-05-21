@@ -22,8 +22,8 @@ const pageCopy = {
   en: {
     portraitMeta: ['Portrait', 'Madrid 2026'],
     heroTag:
-      'I work at the intersection of AI systems, brand strategy, and product execution — building tools and workflows that are technically structured, commercially useful, and culturally aware.',
-    current: ['Currently', 'CRM & AI', 'Perfumerías Primor', '+ Independent', 'Internal AI tools'],
+      'I build systems where brand, code, and culture meet. Translating intent into agentic workflows, customer journeys, and internal tools that quietly run the show.',
+    current: ['Currently', 'CRM & AI', 'Perfumerias Primor', '+ Independent', 'Agentic systems & SaaS'],
     proof: [
       {
         number: '01',
@@ -44,11 +44,11 @@ const pageCopy = {
     aboutEyebrow: 'About',
     aboutTitle: <>A short <span className="about-landing__serif">version</span><br />of the story.</>,
     lede:
-      'My work sits between AI systems, product logic, and brand intelligence. The creative side is not a separate lane; it is the taste and adoption layer around the tools.',
+      'Half-Spanish, half-Belgian. I think like a designer, build like an engineer, and read like a curator. Most of what I make sits between those three.',
     body: [
-      'Business school gave me the vocabulary for brand, growth, and customer behavior. Code and AI gave me the ability to turn that thinking into interfaces, automations, and productized workflows.',
-      'At Primor, I work close to CRM, lifecycle execution, luxury partners, and internal AI adoption. Independently, I build applied AI systems for reporting, audits, prospect intelligence, creative operations, and internal tools.',
-      'The multicultural and visual side still matters: it helps me read tone, context, trust, and taste. That is useful when an AI workflow has to be adopted by real people, not just pass a demo.',
+      'I grew up moving between languages and countries, which is probably why I dislike single-discipline thinking. Business school gave me the vocabulary for brand and strategy. Code and AI gave me the means to actually ship them.',
+      'The work I care about is where craft meets computation: prototypes that feel hand-made, visual systems that scale without losing their accent, and tools that respect the people using them.',
+      'Curious by default, restless by habit. Always reading too many books, watching too many films, and tinkering with whatever the new medium happens to be.',
     ],
     geography: {
       kicker: 'Geography',
@@ -74,8 +74,15 @@ const pageCopy = {
         kicker: 'Case Studies',
         href: '/case-studies',
         image: '/images/case-studies/case-studies-thumbnail.webp',
-        title: 'AI systems work',
-        body: 'Evidence-backed workflows, bounded AI tools, and productized systems built for real teams.',
+        title: 'Brand, product & AI',
+        body: 'Brand systems, product design, and AI-powered tools built for real teams.',
+      },
+      {
+        kicker: 'Photography',
+        href: '/photography',
+        image: '/images/photography/street/Street6.webp',
+        title: 'From the archive',
+        body: 'Street, light, and the small accidents that make a city feel usable.',
       },
       {
         kicker: 'Apps',
@@ -90,13 +97,6 @@ const pageCopy = {
         image: '/images/visuals/album-covers/Astralis_Cover.webp',
         title: 'Art direction & image',
         body: 'Album covers, poster concepts, and generative experiments.',
-      },
-      {
-        kicker: 'Photography',
-        href: '/photography',
-        image: '/images/photography/street/Street6.webp',
-        title: 'From the archive',
-        body: 'Street, light, and visual judgment as a quieter creative practice.',
       },
     ],
     marquee: [
@@ -164,7 +164,7 @@ const pageCopy = {
       },
       {
         date: 'Aug 2025',
-        title: 'Perfumerías Primor',
+        title: 'Perfumerias Primor',
         org: 'CRM Specialist · AI Automation & Brand Growth',
         desc:
           'Lead CRM and lifecycle execution for an 8M+ user database, partner with luxury houses, and support internal AI adoption.',
@@ -181,14 +181,14 @@ const pageCopy = {
     ] satisfies TimelineItem[],
     practiceTitle: <>A <span className="about-landing__serif">practice</span>, not a job title.</>,
     practiceIntro:
-      'One practice with a clear hierarchy: applied AI systems first, supported by product logic, brand intelligence, and creative direction.',
+      'Two halves of the same job. On the engineering side, applied AI and agentic systems. On the brand side, creative direction for the products, campaigns, and rituals those systems power.',
     capabilities: [
       {
         number: '01',
         kicker: 'Lead practice',
         title: <>Agentic <span>AI</span><br />& automation.</>,
         body:
-          'Multi-step systems for audits, reporting, prospect intelligence, CRM, creative ops, and the handoffs between them.',
+          'Multi-step systems for creative ops: campaign ideation, asset variation, generative pipelines, and the handoffs between them.',
         tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Retrieval'],
         featured: true,
       },
@@ -235,13 +235,12 @@ const pageCopy = {
     ],
     ctaTitle: <>Let&apos;s make <span className="about-landing__serif">something</span> work.</>,
     contactMeta: ['Available Q3 2026', 'Madrid · Remote · EU'],
-    githubCta: 'View GitHub',
   },
   es: {
     portraitMeta: ['Retrato', 'Madrid 2026'],
     heroTag:
-      'Trabajo en la intersección entre sistemas de IA, estrategia de marca y ejecución de producto — construyendo herramientas y flujos técnicamente sólidos, comercialmente útiles y culturalmente conscientes.',
-    current: ['Ahora', 'CRM e IA', 'Perfumerías Primor', '+ Independiente', 'Herramientas internas de IA'],
+      'Construyo sistemas donde marca, código y cultura se encuentran. Traduzco intención en flujos con agentes, journeys de cliente y herramientas internas que hacen que la operación funcione.',
+    current: ['Ahora', 'CRM e IA', 'Perfumerias Primor', '+ Independiente', 'Sistemas agénticos y SaaS'],
     proof: [
       {
         number: '01',
@@ -262,11 +261,11 @@ const pageCopy = {
     aboutEyebrow: 'Sobre mí',
     aboutTitle: <>La <span className="about-landing__serif">versión</span><br />corta de la historia.</>,
     lede:
-      'Mi trabajo vive entre sistemas de IA, lógica de producto e inteligencia de marca. La parte creativa no es una línea separada: es la capa de criterio y adopción alrededor de las herramientas.',
+      'Mitad español, mitad belga. Pienso como diseñador, construyo como ingeniero y leo como curador. Casi todo lo que hago vive entre esas tres formas de mirar.',
     body: [
-      'La empresa me dio el lenguaje para entender marca, crecimiento y comportamiento de cliente. El código y la IA me dieron la capacidad de convertir ese pensamiento en interfaces, automatizaciones y flujos productizados.',
-      'En Primor trabajo cerca de CRM, lifecycle, marcas de lujo y adopción interna de IA. De forma independiente construyo sistemas de IA aplicada para reporting, auditorías, inteligencia comercial, operaciones creativas y herramientas internas.',
-      'La parte multicultural y visual sigue importando: me ayuda a leer tono, contexto, confianza y gusto. Eso es útil cuando un flujo de IA tiene que ser adoptado por personas reales, no solo funcionar en una demo.',
+      'Crecí moviéndome entre idiomas y países, así que nunca he encajado demasiado bien en una sola disciplina. La empresa me dio el lenguaje para entender marca y estrategia. El código y la IA me dieron la capacidad de llevarlas a producción.',
+      'Me interesa el punto donde oficio y computación se cruzan: prototipos que se sienten hechos a mano, sistemas visuales que escalan sin perder acento y herramientas que respetan a la gente que las usa.',
+      'Curioso por defecto, inquieto por costumbre. Siempre leyendo demasiados libros, viendo demasiadas películas y probando el siguiente medio que aparece.',
     ],
     geography: {
       kicker: 'Geografía',
@@ -292,8 +291,15 @@ const pageCopy = {
         kicker: 'Proyectos',
         href: '/case-studies',
         image: '/images/case-studies/case-studies-thumbnail.webp',
-        title: 'Trabajo en sistemas de IA',
-        body: 'Flujos basados en evidencia, herramientas de IA acotadas y sistemas productizados para equipos reales.',
+        title: 'Marca, producto & IA',
+        body: 'Sistemas de marca, diseño de producto y herramientas con IA para equipos reales.',
+      },
+      {
+        kicker: 'Fotografía',
+        href: '/photography',
+        image: '/images/photography/street/Street6.webp',
+        title: 'Del archivo',
+        body: 'Calle, luz y esos pequeños accidentes que hacen útil una ciudad.',
       },
       {
         kicker: 'Apps',
@@ -308,13 +314,6 @@ const pageCopy = {
         image: '/images/visuals/album-covers/Astralis_Cover.webp',
         title: 'Dirección de arte',
         body: 'Portadas, conceptos de póster y experimentos generativos.',
-      },
-      {
-        kicker: 'Fotografía',
-        href: '/photography',
-        image: '/images/photography/street/Street6.webp',
-        title: 'Del archivo',
-        body: 'Calle, luz y criterio visual como práctica creativa más silenciosa.',
       },
     ],
     marquee: [
@@ -382,7 +381,7 @@ const pageCopy = {
       },
       {
         date: 'Aug 2025',
-        title: 'Perfumerías Primor',
+        title: 'Perfumerias Primor',
         org: 'CRM Specialist · AI Automation & Brand Growth',
         desc:
           'CRM y lifecycle para una base de más de 8M de usuarios, colaboración con marcas de lujo y adopción interna de IA.',
@@ -399,14 +398,14 @@ const pageCopy = {
     ] satisfies TimelineItem[],
     practiceTitle: <>Una <span className="about-landing__serif">práctica</span>, no un cargo.</>,
     practiceIntro:
-      'Una práctica con una jerarquía clara: sistemas de IA aplicada primero, apoyados por lógica de producto, inteligencia de marca y dirección creativa.',
+      'Dos mitades del mismo trabajo. En la parte técnica, IA aplicada y sistemas agénticos. En la parte de marca, dirección creativa para los productos, campañas y rituales que esos sistemas sostienen.',
     capabilities: [
       {
         number: '01',
         kicker: 'Práctica principal',
         title: <>IA <span>agéntica</span><br />y automatización.</>,
         body:
-          'Sistemas de varios pasos para auditorías, reporting, inteligencia comercial, CRM, creative ops y los handoffs entre equipos.',
+          'Sistemas de varios pasos para creative ops: ideación de campañas, variación de assets, pipelines generativos y handoffs entre equipos.',
         tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Retrieval'],
         featured: true,
       },
@@ -453,7 +452,6 @@ const pageCopy = {
     ],
     ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
     contactMeta: ['Disponible T3 2026', 'Madrid · Remoto · UE'],
-    githubCta: 'Ver GitHub',
   },
 }
 
@@ -881,7 +879,6 @@ export default function AboutPage() {
             <div data-about-reveal>
               <p>{copy.contactMeta[0]}</p>
               <a href="mailto:raulmermans@gmail.com">raulmermans@gmail.com →</a>
-              <a href="https://github.com/RaulMermans" target="_blank" rel="noopener noreferrer">{copy.githubCta} ↗</a>
               <span>{copy.contactMeta[1]}</span>
             </div>
           </div>

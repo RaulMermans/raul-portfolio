@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'DataBrief AI — Flujo de Analítica con IA Acotada'
+const title = 'DataBrief AI — Bounded AI Analytics Workflow'
 const description =
-  'Caso técnico de DataBrief AI, un flujo de analítica con IA acotada que convierte CSV/XLSX en informes de negocio fundamentados.'
+  'Technical case study for DataBrief AI, a bounded AI analytics workflow that turns CSV/XLSX uploads into grounded business reports.'
 
 export const metadata: Metadata = buildPageMetadata({
   title,
@@ -18,10 +18,10 @@ export const metadata: Metadata = buildPageMetadata({
   type: 'article',
   keywords: [
     'DataBrief AI',
-    'flujo de IA acotado',
-    'analítica con IA',
-    'ejecución Python controlada',
-    'detección semántica de roles',
+    'bounded AI workflow',
+    'AI analytics workflow',
+    'controlled Python execution',
+    'semantic role detection',
   ],
   absoluteTitle: true,
 })
@@ -76,9 +76,9 @@ export default function DataBriefAiLayout({
           articleSection: 'Casos de estudio',
           keywords: [
             'DataBrief AI',
-            'flujo de analítica con IA acotada',
-            'ejecución Python controlada',
-            'detección semántica de roles',
+            'bounded AI analytics workflow',
+            'controlled Python execution',
+            'semantic role detection',
           ],
         }}
       />

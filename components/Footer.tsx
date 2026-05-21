@@ -16,12 +16,11 @@ export default function Footer({ locale = 'en' }: FooterProps) {
   const studioLabel = isSpanish ? 'Estudio' : 'Studio'
   const studioLinks = [
     { label: isSpanish ? 'Sobre mí' : 'About', href: '/about' },
-    { label: isSpanish ? 'Contacto' : 'Contact', href: '/#contact', hash: '#contact' },
+    { label: 'Contact', href: '/#contact', hash: '#contact' },
     { label: isSpanish ? 'Disponibilidad' : 'Availability', href: '/#contact', hash: '#contact' },
     { label: 'Press', href: 'mailto:raulmermans@gmail.com' },
   ]
   const socialLinks = [
-    { label: 'GitHub', href: 'https://github.com/RaulMermans' },
     { label: 'Instagram', href: 'https://www.instagram.com/raulmeermans/' },
     { label: 'LinkedIn', href: 'https://linkedin.com/in/raulmermans' },
     { label: 'Unsplash', href: 'https://unsplash.com/@raulmermans' },

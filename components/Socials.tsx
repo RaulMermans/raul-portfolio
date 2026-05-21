@@ -10,8 +10,6 @@ interface SocialsProps {
 
 export default function Socials({ locale = 'en' }: SocialsProps) {
   const copy = getSiteCopy(locale).home.socials
-  const isSpanish = locale === 'es'
-  const newTab = isSpanish ? 'abre en una pestaña nueva' : 'opens in new tab'
   return (
     <section id="socials" className="socials" aria-labelledby="socials-title">
       <div className="socials__glow" aria-hidden="true"></div>
@@ -23,21 +21,10 @@ export default function Socials({ locale = 'en' }: SocialsProps) {
         
         <ul className="socials__links reveal reveal-delay-2">
           <li>
-            <a
-              href="https://github.com/RaulMermans"
-              className="link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={isSpanish ? `Visitar GitHub de Raúl Mermans (${newTab})` : `Visit Raúl Mermans on GitHub (${newTab})`}
-            >
-              GitHub
-            </a>
-          </li>
-          <li>
             <a 
               href="mailto:raulmermans@gmail.com" 
               className="link" 
-              aria-label={isSpanish ? 'Enviar email a Raúl Mermans' : 'Send email to Raúl Mermans'}
+              aria-label="Send email to Raúl Mermans"
             >
               Email
             </a>
@@ -48,7 +35,7 @@ export default function Socials({ locale = 'en' }: SocialsProps) {
               className="link" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label={isSpanish ? `Visitar Instagram de Raúl Mermans (${newTab})` : `Visit Raúl Mermans on Instagram (${newTab})`}
+              aria-label="Visit Raúl Mermans on Instagram (opens in new tab)"
             >
               Instagram
             </a>
@@ -59,7 +46,7 @@ export default function Socials({ locale = 'en' }: SocialsProps) {
               className="link" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label={isSpanish ? `Visitar LinkedIn de Raúl Mermans (${newTab})` : `Visit Raúl Mermans on LinkedIn (${newTab})`}
+              aria-label="Visit Raúl Mermans on LinkedIn (opens in new tab)"
             >
               LinkedIn
             </a>
@@ -70,7 +57,7 @@ export default function Socials({ locale = 'en' }: SocialsProps) {
               className="link" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label={isSpanish ? `Visitar Unsplash de Raúl Mermans (${newTab})` : `Visit Raúl Mermans on Unsplash (${newTab})`}
+              aria-label="Visit Raúl Mermans on Unsplash (opens in new tab)"
             >
               Unsplash
             </a>
@@ -88,7 +75,7 @@ export default function Socials({ locale = 'en' }: SocialsProps) {
                 className="btn" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                aria-label={isSpanish ? `Ver perfil de PromptBase (${newTab})` : `View PromptBase profile (${newTab})`}
+                aria-label="View PromptBase profile (opens in new tab)"
               >
                 PromptBase Profile
               </a>
@@ -99,7 +86,7 @@ export default function Socials({ locale = 'en' }: SocialsProps) {
                 className="btn" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                aria-label={isSpanish ? `Visitar tienda de Gumroad (${newTab})` : `Visit Gumroad Store (${newTab})`}
+                aria-label="Visit Gumroad Store (opens in new tab)"
               >
                 Gumroad Store
               </a>

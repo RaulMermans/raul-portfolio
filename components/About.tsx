@@ -65,17 +65,28 @@ export default function About({ locale = 'en' }: AboutProps) {
           <p className="about__text reveal reveal-delay-2">
             {locale === 'es' ? (
               <>
-                Trabajo en la intersección entre <span className="highlight">sistemas de IA</span>,{' '}
-                <span className="highlight">estrategia de marca</span> y{' '}
-                <span className="highlight">ejecución de producto</span>, construyendo herramientas y flujos
-                técnicamente sólidos, comercialmente útiles y culturalmente conscientes.
+                Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear
+                los sistemas que los equipos realmente necesitan. Hoy diseño{' '}
+                <span className="highlight">flujos de trabajo con IA</span>,{' '}
+                <span className="highlight">capas de automatización</span> e{' '}
+                <span className="highlight">interfaces orientadas a producto</span>... Mi valor diferencial
+                es la combinación de{' '}
+                <span className="highlight">pensamiento sistémico</span>,{' '}
+                <span className="highlight">implementación práctica</span> y{' '}
+                <span className="highlight">criterio creativo</span> lo suficientemente sólido como para
+                mantener un resultado coherente, útil y listo para desplegarse.
               </>
             ) : (
               <>
-                I work at the intersection of <span className="highlight">AI systems</span>,{' '}
-                <span className="highlight">brand strategy</span>, and{' '}
-                <span className="highlight">product execution</span>, building tools and workflows that are
-                technically structured, commercially useful, and culturally aware.
+                I came into this work through business, then taught myself how to build the
+                systems teams actually need. Today I design <span className="highlight">AI workflows</span>,{' '}
+                <span className="highlight">automation layers</span>, and{' '}
+                <span className="highlight">product-minded interfaces</span> for marketing, CRM, content,
+                and creative execution. My edge is the combination of{' '}
+                <span className="highlight">systems thinking</span>,{' '}
+                <span className="highlight">practical implementation</span>, and{' '}
+                <span className="highlight">creative judgment</span> strong enough to keep the output
+                coherent, useful, and worth deploying.
               </>
             )}
           </p>

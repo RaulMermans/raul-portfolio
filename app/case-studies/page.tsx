@@ -14,23 +14,6 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 type FilterKey = 'all' | CaseStudyCategorySlug
 
 const tileVariants = ['portrait', 'landscape', 'square', 'tall'] as const
-const pinnedAiPair = ['data-brief-ai', 'website-auditor'] as const
-
-function keepWebsiteAuditorNearDataBrief(studies: CaseStudy[]) {
-  const dataBriefIndex = studies.findIndex((study) => study.slug === pinnedAiPair[0])
-  const websiteAuditorIndex = studies.findIndex((study) => study.slug === pinnedAiPair[1])
-
-  if (dataBriefIndex === -1 || websiteAuditorIndex === -1 || websiteAuditorIndex === dataBriefIndex + 1) {
-    return studies
-  }
-
-  const nextStudies = [...studies]
-  const [websiteAuditor] = nextStudies.splice(websiteAuditorIndex, 1)
-  const nextDataBriefIndex = nextStudies.findIndex((study) => study.slug === pinnedAiPair[0])
-  nextStudies.splice(nextDataBriefIndex + 1, 0, websiteAuditor)
-
-  return nextStudies
-}
 
 function shuffleCaseStudies(studies: CaseStudy[], locale: Locale) {
   const storageKey = `case-studies-order-${locale}`
@@ -51,11 +34,9 @@ function shuffleCaseStudies(studies: CaseStudy[], locale: Locale) {
         currentHrefs.every((href) => storedHrefs.includes(href))
 
       if (hasSameProjects) {
-        const restoredStudies = storedHrefs
+        return storedHrefs
           .map((href) => studies.find((study) => study.href === href))
           .filter((study): study is CaseStudy => Boolean(study))
-
-        return keepWebsiteAuditorNearDataBrief(restoredStudies)
       }
     } catch {
       // Ignore invalid session state and create a fresh order below.
@@ -76,7 +57,7 @@ function shuffleCaseStudies(studies: CaseStudy[], locale: Locale) {
     // Session storage is an enhancement; the shuffled in-memory order still works.
   }
 
-  return keepWebsiteAuditorNearDataBrief(shuffled)
+  return shuffled
 }
 
 function getSchemas(locale: Locale) {

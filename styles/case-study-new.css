@@ -1340,7 +1340,7 @@ main.case-study-page-new {
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(245, 240, 235, 0.28);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0 1rem;
   color: var(--cream);
   font-size: 0.72rem;
@@ -4435,7 +4435,14 @@ main.case-study-page-new {
 }
 
 .website-auditor-boundaries-panel {
-  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.website-auditor-boundaries-panel .data-brief-list {
+  max-width: 76rem;
 }
 
 .website-auditor-boundaries-panel .data-brief-actions {
