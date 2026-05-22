@@ -11,13 +11,7 @@
     "type-check": "tsc --noEmit",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots",
-    "analyze": "ANALYZE=true next build",
-    "verify": "node scripts/verify-deployment.js",
-    "bot:status": "node scripts/bot-status.js",
-    "improve": "node scripts/auto-improve.js",
-    "suggest": "node scripts/suggest-improvements.js",
-    "orchestrate": "node scripts/orchestrate-improvements.js",
-    "deploy:pm": "node scripts/deploy-project-manager.js"
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
@@ -31,7 +25,6 @@
     "react-dom": "^18.2.0",
     "react-parallax-tilt": "^1.7.319",
     "react-simple-maps": "^3.0.0",
-    "resend": "^6.6.0",
     "sharp": "^0.33.5",
     "swiper": "^12.1.2",
     "tailwind-merge": "^2.0.0",

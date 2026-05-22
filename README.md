@@ -1,92 +1,60 @@
-# Raúl Mermans Portfolio
+# Raul Mermans Portfolio
 
-A modern, responsive portfolio website built with Next.js 14, TypeScript, and optimized for performance.
+This repository contains the source code for Raul Mermans' personal portfolio: a Next.js-based portfolio system for case studies, creative strategy, brand systems, and AI/product work.
 
-## 🚀 Quick Start
+## Tech Stack
+
+- Next.js 14 with the App Router
+- TypeScript
+- Tailwind CSS and custom global CSS
+- Static export-ready build output
+
+## Key Features
+
+- Portfolio homepage with localized Spanish and English content
+- Case study system for AI systems, automation, brand, and product work
+- Photography and visual archive sections
+- App and prototype pages with shared metadata helpers
+- Static-safe contact flow using the visitor's email client
+- SEO helpers, sitemap, robots, manifest, and structured data
+
+## Case Study System
+
+Case studies are driven by route files under `app/case-studies/` and shared data in `data/`. Each case study combines narrative copy, project metadata, localized UI text, and assets from `public/images/case-studies/`.
+
+The public repository keeps the portfolio implementation visible while preserving ownership of the creative assets and project narratives.
+
+## Local Setup
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
+```
 
-# Build for production
+Open `http://localhost:3000` to view the site locally.
+
+## Build
+
+```bash
+npm run lint
+npm run type-check
 npm run build
-
-# Start production server
-npm start
 ```
 
-## 📁 Project Structure
+The project is configured for static export via `next.config.js`.
 
-```
-raul-portfolio/
-├── app/                    # Next.js App Router (pages & API routes)
-│   ├── about/             # About page
-│   ├── case-studies/      # Case studies pages
-│   ├── photography/       # Photography gallery
-│   ├── visuals/           # Visuals gallery
-│   └── api/               # API routes
-├── components/            # React components
-├── lib/                   # Utilities & bots
-├── public/                # Static assets
-│   └── images/           # Image assets
-│       ├── case-studies/ # Case study images
-│       ├── photography/  # Photography images
-│       └── visuals/      # Visuals images
-├── styles/                # Global CSS
-└── types/                 # TypeScript definitions
-```
+## Environment
 
-## 🖼️ Adding Images
+`.env.example` lists the public template variables. Do not commit real `.env` files.
 
-### Case Studies
-Upload images to: `public/images/case-studies/{case-study-name}/`
-- See README.md in each case study folder for exact filenames
+## License
 
-### Photography
-Upload images to: `public/images/photography/{category}/`
-- Categories: `architecture/`, `landscape/`, `street/`
+Source code is licensed under MIT. Creative assets, photography, case study imagery, copywriting, brand systems, project narratives, and personal identity materials are not open licensed.
 
-### Visuals
-Upload images to: `public/images/visuals/{category}/`
-- Categories: `ai-art/`, `album-covers/`, `client-work/`, `experiments/`
+## Asset Usage
 
-## 🔧 Configuration
+Do not copy, redistribute, remix, reuse, or commercially use the visual assets, photography, case study materials, or personal identity work without explicit written permission.
 
-### Environment Variables
-Copy `.env.example` to `.env.local` and fill in:
-- `NEXT_PUBLIC_SITE_URL` - Your site URL
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` - Google Analytics Measurement ID (format: G-XXXXXXXXXX) (optional)
-- `RESEND_API_KEY` - For contact form (optional)
-- `CONTACT_EMAIL` - Contact form recipient
-- `FROM_EMAIL` - Sender email
+## Public Repo Note
 
-## 🚀 Deployment
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for IONOS deployment (auto-deploy via GitHub Actions on push to main).
-
-## 📚 Documentation
-
-See [docs/README.md](./docs/README.md) for detailed documentation.
-
-## 📝 Scripts
-
-- `npm run dev` - Development server
-- `npm run build` - Production build
-- `npm run start` - Production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - TypeScript type checking
-
-## 🛠️ Tech Stack
-
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** CSS Modules + Global CSS
-- **Deployment:** IONOS + GitHub Actions
-- **Email:** Resend (contact form)
-
-## 📄 License
-
-MIT
+This repository is published as a portfolio source reference. It is not a starter template, client deliverable, or reusable asset pack.

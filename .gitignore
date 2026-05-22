@@ -1,19 +1,22 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.js
 
 # testing
-/coverage
+coverage/
+playwright-report/
+test-results/
 
 # next.js
 /.next/
-/out/
+out/
 
 # production
 /build
+dist/
 
 # misc
 .DS_Store
@@ -23,12 +26,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
+* 2.*
 
 # local env files
-.env*.local
 .env
-.env.production
-.env.staging
+.env.*
+!.env.example
 
 # secrets / credentials (catch-all patterns)
 *.pem
@@ -50,9 +54,25 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+.cursor/
+.claude-plugin/
 *.swp
 *.swo
 *~
+
+# agent/internal workflow files
+ai-skills/
+plugins/
+SESSION.md
+TASKS.md
+CLAUDE.md
+AGENTS.md
+PRIVACY_PROTECTION.md
+DEPLOYMENT.md
+.github/workflows/deploy.yml
+ENV_SETUP.md
+IMAGES_STATUS.md
+PROJECT_STRUCTURE.md
 
 # OS
 Thumbs.db

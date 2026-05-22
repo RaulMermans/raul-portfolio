@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
+import { PUBLIC_CONTACT_EMAIL, PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import DisableScrollSnap from '@/components/DisableScrollSnap'
@@ -171,7 +172,7 @@ export default function PrivacyPolicy() {
                   <p>Si tienes alguna duda sobre esta Política de Privacidad, puedes escribirnos a:</p>
                   <ul>
                     <li>
-                      Email: <a href="mailto:raulmermans@gmail.com">raulmermans@gmail.com</a>
+                      Email: <a href={PUBLIC_CONTACT_MAILTO}>{PUBLIC_CONTACT_EMAIL}</a>
                     </li>
                     <li>Ubicación: Madrid, España</li>
                   </ul>
@@ -315,7 +316,7 @@ export default function PrivacyPolicy() {
                   <p>If you have any questions about this Privacy Policy, please contact us:</p>
                   <ul>
                     <li>
-                      Email: <a href="mailto:raulmermans@gmail.com">raulmermans@gmail.com</a>
+                      Email: <a href={PUBLIC_CONTACT_MAILTO}>{PUBLIC_CONTACT_EMAIL}</a>
                     </li>
                     <li>Location: Madrid, Spain</li>
                   </ul>

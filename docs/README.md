@@ -1,15 +1,10 @@
 # Documentation
 
-## Essential Guides
-
-- **[Contact Form Setup](./guides/CONTACT_FORM_SETUP.md)** - Configure Resend email service
-- **[Deployment Guide](../DEPLOYMENT.md)** - IONOS deployment via GitHub Actions
-
 ## Project Structure
 
-- **`app/`** - Next.js pages and API routes
+- **`app/`** - Next.js App Router pages
 - **`components/`** - React components
-- **`lib/`** - Utility functions and bots
+- **`lib/`** - Utility functions and shared helpers
 - **`public/`** - Static assets (images, fonts)
 - **`styles/`** - Global CSS
 - **`types/`** - TypeScript definitions

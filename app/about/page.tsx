@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation'
 import { ComposableMap, Geographies, Geography, Marker, Line } from 'react-simple-maps'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import { PUBLIC_CONTACT_EMAIL, PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
 type TimelineItem = {
@@ -880,7 +881,7 @@ export default function AboutPage() {
             <h2 id="about-contact-title" data-about-reveal>{copy.ctaTitle}</h2>
             <div data-about-reveal>
               <p>{copy.contactMeta[0]}</p>
-              <a href="mailto:raulmermans@gmail.com">raulmermans@gmail.com →</a>
+              <a href={PUBLIC_CONTACT_MAILTO}>{PUBLIC_CONTACT_EMAIL} →</a>
               <a href="https://github.com/RaulMermans" target="_blank" rel="noopener noreferrer">{copy.githubCta} ↗</a>
               <span>{copy.contactMeta[1]}</span>
             </div>

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getSiteCopy } from '@/data/site-copy'
+import { PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
 import { type Locale, localizePath } from '@/lib/i18n'
 
 interface FooterProps {
@@ -18,7 +19,7 @@ export default function Footer({ locale = 'en' }: FooterProps) {
     { label: isSpanish ? 'Sobre mí' : 'About', href: '/about' },
     { label: isSpanish ? 'Contacto' : 'Contact', href: '/#contact', hash: '#contact' },
     { label: isSpanish ? 'Disponibilidad' : 'Availability', href: '/#contact', hash: '#contact' },
-    { label: 'Press', href: 'mailto:raulmermans@gmail.com' },
+    { label: 'Press', href: PUBLIC_CONTACT_MAILTO },
   ]
   const socialLinks = [
     { label: 'GitHub', href: 'https://github.com/RaulMermans' },

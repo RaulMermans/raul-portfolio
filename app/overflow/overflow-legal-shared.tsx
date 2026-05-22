@@ -4,11 +4,12 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import DisableScrollSnap from '@/components/DisableScrollSnap'
 import OverflowLegalLinks from '@/components/overflow/OverflowLegalLinks'
+import { PUBLIC_CONTACT_EMAIL } from '@/lib/contact'
 import { type Locale, localizePath } from '@/lib/i18n'
 import { buildPageMetadata } from '@/lib/metadata'
 
 const LAST_UPDATED = '2026-04-10'
-const SUPPORT_EMAIL = 'raulmermans@gmail.com'
+const SUPPORT_EMAIL = PUBLIC_CONTACT_EMAIL
 const TESTFLIGHT_URL = 'https://testflight.apple.com/join/t7jQjsCx'
 
 export type OverflowLegalPageKind = 'support' | 'privacy' | 'terms'

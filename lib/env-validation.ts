@@ -10,17 +10,8 @@ interface EnvConfig {
 }
 
 const envConfig: EnvConfig = {
-  required: ['NEXT_PUBLIC_SITE_URL'],
-  optional: [
-    'NEXT_PUBLIC_GA_MEASUREMENT_ID',
-    'RESEND_API_KEY',
-    'CONTACT_EMAIL',
-    'FROM_EMAIL',
-  ],
-  defaults: {
-    CONTACT_EMAIL: 'raulmermans@gmail.com',
-    FROM_EMAIL: 'onboarding@resend.dev',
-  },
+  required: [],
+  optional: ['CONTACT_EMAIL', 'NEXT_PUBLIC_GA_MEASUREMENT_ID', 'NEXT_PUBLIC_SITE_URL'],
 }
 
 /**
@@ -35,16 +26,6 @@ export function validateEnv(): { valid: boolean; missing: string[]; warnings: st
   for (const key of envConfig.required) {
     if (!process.env[key]) {
       missing.push(key)
-    }
-  }
-
-  // Check optional but recommended variables
-  if (process.env.NODE_ENV === 'production') {
-    if (!process.env.RESEND_API_KEY) {
-      warnings.push('RESEND_API_KEY not set - contact form will not work in production')
-    }
-    if (!process.env.CONTACT_EMAIL) {
-      warnings.push('CONTACT_EMAIL not set - using default')
     }
   }
 
@@ -80,9 +61,6 @@ export function getEnv(key: string, fallback?: string): string {
   const value = process.env[key]
   if (value) return value
   if (fallback) return fallback
-  if (envConfig.defaults && envConfig.defaults[key]) {
-    return envConfig.defaults[key]
-  }
   return ''
 }
 
@@ -101,4 +79,3 @@ if (typeof window === 'undefined') {
     }
   }
 }
-

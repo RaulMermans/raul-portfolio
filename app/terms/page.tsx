@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
+import { PUBLIC_CONTACT_EMAIL, PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import DisableScrollSnap from '@/components/DisableScrollSnap'
@@ -160,7 +161,7 @@ export default function TermsOfService() {
                   <p>Si tienes preguntas sobre estos Términos de Servicio, puedes contactarnos en:</p>
                   <ul>
                     <li>
-                      Email: <a href="mailto:raulmermans@gmail.com">raulmermans@gmail.com</a>
+                      Email: <a href={PUBLIC_CONTACT_MAILTO}>{PUBLIC_CONTACT_EMAIL}</a>
                     </li>
                     <li>Ubicación: Madrid, España</li>
                   </ul>
@@ -293,7 +294,7 @@ export default function TermsOfService() {
                   <p>If you have any questions about these Terms of Service, please contact us:</p>
                   <ul>
                     <li>
-                      Email: <a href="mailto:raulmermans@gmail.com">raulmermans@gmail.com</a>
+                      Email: <a href={PUBLIC_CONTACT_MAILTO}>{PUBLIC_CONTACT_EMAIL}</a>
                     </li>
                     <li>Location: Madrid, Spain</li>
                   </ul>

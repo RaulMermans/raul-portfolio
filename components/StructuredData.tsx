@@ -4,6 +4,7 @@
  */
 
 import { absoluteRouteUrl, absoluteUrl, siteConfig } from '@/lib/metadata'
+import { PUBLIC_CONTACT_EMAIL } from '@/lib/contact'
 
 interface StructuredDataProps {
   type:
@@ -38,7 +39,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         'https://linkedin.com/in/raulmermans',
         'https://unsplash.com/@raulmermans',
       ],
-      email: 'raulmermans@gmail.com',
+      email: PUBLIC_CONTACT_EMAIL,
       address: {
         '@type': 'PostalAddress',
         addressCountry: 'ES',

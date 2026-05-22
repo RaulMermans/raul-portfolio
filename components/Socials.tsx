@@ -1,6 +1,7 @@
 'use client'
 
 import { getSiteCopy } from '@/data/site-copy'
+import { PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
 import Reveal from './Reveal'
 import { type Locale } from '@/lib/i18n'
 
@@ -35,7 +36,7 @@ export default function Socials({ locale = 'en' }: SocialsProps) {
           </li>
           <li>
             <a 
-              href="mailto:raulmermans@gmail.com" 
+              href={PUBLIC_CONTACT_MAILTO}
               className="link" 
               aria-label={isSpanish ? 'Enviar email a Raúl Mermans' : 'Send email to Raúl Mermans'}
             >

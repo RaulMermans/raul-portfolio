@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 import { getSiteCopy } from '@/data/site-copy'
+import { PUBLIC_CONTACT_EMAIL } from '@/lib/contact'
 import { trackFormSubmit } from '@/lib/gtag'
 import { type Locale } from '@/lib/i18n'
 
@@ -48,24 +49,22 @@ export default function ContactForm({ locale = 'en' }: ContactFormProps) {
     setStatus('loading')
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
+      const subject = `Project inquiry from ${formData.name.trim()}`
+      const body = [
+        `Name: ${formData.name.trim()}`,
+        `Email: ${formData.email.trim()}`,
+        formData.projectType ? `Project focus: ${formData.projectType}` : '',
+        formData.budget ? `Budget range: ${formData.budget}` : '',
+        formData.timeline ? `Timeline: ${formData.timeline}` : '',
+        '',
+        formData.message.trim(),
+      ].filter(Boolean).join('\n')
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Something went wrong')
-      }
+      window.location.href = `mailto:${PUBLIC_CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 
       setStatus('success')
       setFormData({ name: '', email: '', projectType: '', budget: '', timeline: '', message: '' })
-      // Track form submission in Google Analytics
-      trackFormSubmit('contact_form')
+      trackFormSubmit('contact_mailto')
       
       // Reset success message after configured time
       setTimeout(() => {
