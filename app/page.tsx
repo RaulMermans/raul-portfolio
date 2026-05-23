@@ -43,10 +43,10 @@ function getHomeServiceSchema(locale: Locale) {
         {
           '@type': 'Service',
           position: 2,
-          name: 'Desarrollo web',
-          serviceType: 'Diseño y desarrollo web',
+          name: 'Automatización y herramientas internas',
+          serviceType: 'Automatización operativa e interfaces internas',
           description:
-            'Sitios y experiencias digitales modernos, rápidos y pensados para narrativa clara, conversión y una ejecución premium.',
+            'Sistemas de automatización y herramientas internas para marketing, CRM, contenido y operaciones creativas con revisión humana donde importa.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(localizedRoot),
@@ -54,24 +54,35 @@ function getHomeServiceSchema(locale: Locale) {
         {
           '@type': 'Service',
           position: 3,
-          name: 'Fotografía',
-          serviceType: 'Fotografía editorial y de marca',
+          name: 'Web y prototipos de producto',
+          serviceType: 'Diseño web y prototipos de producto',
           description:
-            'Fotografía que apoya el relato de marca mediante composición, contención visual e imágenes pensadas para uso editorial y comercial.',
+            'Experiencias web y prototipos de producto construidos para hacer utilizables e iterables los flujos, ofertas e ideas técnicas.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
-          url: absoluteRouteUrl(localizedPhotography),
+          url: absoluteRouteUrl(localizedRoot),
         },
         {
           '@type': 'Service',
           position: 4,
-          name: 'Dirección creativa',
+          name: 'Sistemas de marca y dirección creativa',
           serviceType: 'Dirección creativa y sistemas de marca',
           description:
-            'Dirección creativa que conecta identidad de marca, sistemas visuales y pensamiento de campaña para que cada punto de contacto se sienta coherente e intencional.',
+            'Dirección creativa que conecta inteligencia de marca, sistemas visuales y pensamiento de campaña para que cada herramienta sea coherente y adoptable.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(localizedRoot),
+        },
+        {
+          '@type': 'Service',
+          position: 5,
+          name: 'Práctica creativa',
+          serviceType: 'Fotografía, sistemas de imagen e investigación visual',
+          description:
+            'Fotografía e imagen como práctica visual de apoyo para reforzar composición, lectura cultural y criterio de marca.',
+          provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+          areaServed: { '@type': 'Country', name: 'Spain' },
+          url: absoluteRouteUrl(localizedPhotography),
         },
       ],
     }
@@ -97,10 +108,10 @@ function getHomeServiceSchema(locale: Locale) {
       {
         '@type': 'Service',
         position: 2,
-        name: 'Web Development',
-        serviceType: 'Web Design and Development',
+        name: 'Automation and Internal Tools',
+        serviceType: 'Operational Automation and Internal Interfaces',
         description:
-          'Modern, performance-minded websites and digital experiences designed for clear storytelling, conversion, and premium execution.',
+          'Automation systems and internal tools for marketing, CRM, content, and creative operations with human review where it matters.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(localizedRoot),
@@ -108,24 +119,35 @@ function getHomeServiceSchema(locale: Locale) {
       {
         '@type': 'Service',
         position: 3,
-        name: 'Photography',
-        serviceType: 'Brand and Editorial Photography',
+        name: 'Web and Product Prototypes',
+        serviceType: 'Web Design and Product Prototyping',
         description:
-          'Photography that supports brand storytelling through composition, visual restraint, and imagery shaped for editorial and commercial use.',
+          'Product-minded web experiences and prototypes built to make workflows, offers, and technical ideas usable, credible, and ready for iteration.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
-        url: absoluteRouteUrl(localizedPhotography),
+        url: absoluteRouteUrl(localizedRoot),
       },
       {
         '@type': 'Service',
         position: 4,
-        name: 'Creative Direction',
+        name: 'Brand Systems and Creative Direction',
         serviceType: 'Creative Direction and Brand Systems',
         description:
-          'Creative direction spanning brand identity, visual systems, and campaign thinking so every touchpoint feels coherent, intentional, and commercially credible.',
+          'Creative direction connecting brand intelligence, visual systems, and campaign thinking so every tool feels coherent, adoptable, and commercially credible.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(localizedRoot),
+      },
+      {
+        '@type': 'Service',
+        position: 5,
+        name: 'Creative Practice',
+        serviceType: 'Photography, Image Systems, and Visual Research',
+        description:
+          'Photography and image-making as a supporting visual practice for composition, cultural reading, and brand judgment.',
+        provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+        areaServed: { '@type': 'Country', name: 'Spain' },
+        url: absoluteRouteUrl(localizedPhotography),
       },
     ],
   }

@@ -11,12 +11,20 @@ interface ServicesProps {
 
 export default function Services({ locale = 'en' }: ServicesProps) {
   const copy = getSiteCopy(locale).home.services
-  const serviceImages = [
-    '/images/services/Services_AI_Agents.webp',
-    '/images/services/Services_Automation.webp',
-    '/images/services/Services_Web_Development.webp',
-    '/images/services/Services_Creative_Direction.webp',
-    '/images/services/Services_Photography.webp',
+  const serviceImages: Array<{
+    src: string
+    fit?: 'cover' | 'contain'
+    backgroundColor?: string
+  }> = [
+    { src: '/images/services/Services_AI_Agents.webp' },
+    {
+      src: '/images/services/Services_Automation.webp',
+      fit: 'contain',
+      backgroundColor: '#000',
+    },
+    { src: '/images/services/Services_Web_Development.webp' },
+    { src: '/images/services/Services_Creative_Direction.webp' },
+    { src: '/images/services/Services_Photography.webp' },
   ]
   const services = copy.items.map((item, index) => ({
     ...item,
@@ -57,7 +65,7 @@ export default function Services({ locale = 'en' }: ServicesProps) {
                 </div>
                 <div className="service__image">
                   <Image
-                    src={service.image}
+                    src={service.image.src}
                     alt={`${service.title} service illustration`}
                     width={300}
                     height={225}
@@ -70,7 +78,8 @@ export default function Services({ locale = 'en' }: ServicesProps) {
                     style={{ 
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
+                      objectFit: service.image.fit ?? 'cover',
+                      backgroundColor: service.image.backgroundColor,
                       display: 'block'
                     }}
                     onError={(e) => {

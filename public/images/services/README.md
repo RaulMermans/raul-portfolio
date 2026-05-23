@@ -4,10 +4,11 @@ This folder contains images for each service in the Services section.
 
 ## Current Images
 
-- `ai-agents.webp` - Image for AI Agents service
-- `web-development.webp` - Image for Web Development service
-- `photography.webp` - Image for Photography service
-- `creative-direction.webp` - Image for Creative Direction service
+- `Services_AI_Agents.webp` - Image for AI Systems service
+- `Services_Automation.webp` - Image for Automation / Internal Tools service
+- `Services_Web_Development.webp` - Image for Web / Product Prototypes service
+- `Services_Creative_Direction.webp` - Image for Brand Systems / Creative Direction service
+- `Services_Photography.webp` - Image for Creative Practice service
 
 ## How to Add/Replace Images
 
@@ -22,4 +23,3 @@ This folder contains images for each service in the Services section.
 - Size: At least 600px wide
 - Aspect ratio: 3:2 or 4:3 landscape orientation
 - File size: Keep under 200KB if possible (Next.js will optimize)
-
