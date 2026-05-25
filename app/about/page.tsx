@@ -21,7 +21,6 @@ type TimelineItem = {
 
 const pageCopy = {
   en: {
-    portraitMeta: ['Portrait', 'Madrid 2026'],
     heroTag:
       'I work at the intersection of AI systems, brand strategy, and product execution — building tools and workflows that are technically structured, commercially useful, and culturally aware.',
     current: ['Currently', 'CRM & AI', 'Perfumerías Primor', '+ Independent', 'Internal AI tools'],
@@ -239,35 +238,34 @@ const pageCopy = {
     githubCta: 'View GitHub',
   },
   es: {
-    portraitMeta: ['Retrato', 'Madrid 2026'],
     heroTag:
-      'Trabajo en la intersección entre sistemas de IA, estrategia de marca y ejecución de producto — construyendo herramientas y flujos técnicamente sólidos, comercialmente útiles y culturalmente conscientes.',
-    current: ['Ahora', 'CRM e IA', 'Perfumerías Primor', '+ Independiente', 'Herramientas internas de IA'],
+      'Trabajo en la intersección entre sistemas de IA, estrategia de marca y ejecución de producto: diseño herramientas y flujos con estructura técnica, utilidad comercial y sensibilidad cultural.',
+    current: ['Ahora', 'CRM + IA', 'Perfumerías Primor', '+ Proyectos propios', 'Herramientas internas con IA'],
     proof: [
       {
         number: '01',
         title: 'Sistemas de IA',
-        body: 'Flujos agénticos, retrieval, automatización CRM y herramientas internas.',
+        body: 'Flujos con agentes, recuperación de información, automatización CRM y herramientas internas.',
       },
       {
         number: '02',
         title: 'Marca + producto',
-        body: 'Interfaces e identidad diseñadas alrededor de lógica operativa.',
+        body: 'Interfaces y sistemas de identidad construidos desde la lógica operativa.',
       },
       {
         number: '03',
-        title: 'Prueba creativa',
-        body: 'Fotografía, visuales, campañas y dirección generativa.',
+        title: 'Criterio creativo',
+        body: 'Fotografía, visuales, campañas y dirección generativa con intención.',
       },
     ],
     aboutEyebrow: 'Sobre mí',
     aboutTitle: <>La <span className="about-landing__serif">versión</span><br />corta de la historia.</>,
     lede:
-      'Mi trabajo vive entre sistemas de IA, lógica de producto e inteligencia de marca. La parte creativa no es una línea separada: es la capa de criterio y adopción alrededor de las herramientas.',
+      'Mi trabajo se mueve entre sistemas de IA, lógica de producto e inteligencia de marca. La parte creativa no va por separado: es la capa de criterio que hace que las herramientas se entiendan, se adopten y mantengan coherencia.',
     body: [
-      'La empresa me dio el lenguaje para entender marca, crecimiento y comportamiento de cliente. El código y la IA me dieron la capacidad de convertir ese pensamiento en interfaces, automatizaciones y flujos productizados.',
-      'En Primor trabajo cerca de CRM, lifecycle, marcas de lujo y adopción interna de IA. De forma independiente construyo sistemas de IA aplicada para reporting, auditorías, inteligencia comercial, operaciones creativas y herramientas internas.',
-      'La parte multicultural y visual sigue importando: me ayuda a leer tono, contexto, confianza y gusto. Eso es útil cuando un flujo de IA tiene que ser adoptado por personas reales, no solo funcionar en una demo.',
+      'Mi formación en negocio me dio vocabulario para entender marca, crecimiento y comportamiento de cliente. El código y la IA me dieron los medios para convertir esa forma de pensar en interfaces, automatizaciones y flujos listos para usarse.',
+      'En Primor trabajo muy cerca de CRM, ciclo de vida de cliente, marcas de lujo y adopción interna de IA. En paralelo, diseño sistemas de IA aplicada para informes, auditorías, inteligencia comercial, operaciones creativas y herramientas internas.',
+      'La mirada multicultural y visual sigue siendo importante: me ayuda a leer tono, contexto, confianza y gusto. Eso importa cuando un flujo de IA tiene que ser adoptado por personas reales, no solo funcionar en una demo.',
     ],
     geography: {
       kicker: 'Geografía',
@@ -293,14 +291,14 @@ const pageCopy = {
         kicker: 'Proyectos',
         href: '/case-studies',
         image: '/images/case-studies/case-studies-thumbnail.webp',
-        title: 'Trabajo en sistemas de IA',
-        body: 'Flujos basados en evidencia, herramientas de IA acotadas y sistemas productizados para equipos reales.',
+        title: 'Sistemas de IA aplicados',
+        body: 'Flujos basados en evidencia, herramientas de IA bien delimitadas y sistemas preparados para equipos reales.',
       },
       {
         kicker: 'Apps',
         href: '/apps',
         image: '/images/sections/apps-bg-v2.webp',
-        title: 'Herramientas que valen',
+        title: 'Herramientas que merece la pena usar',
         body: 'Apps ligeras y herramientas internas construidas con desarrollo asistido por IA.',
       },
       {
@@ -314,37 +312,37 @@ const pageCopy = {
         kicker: 'Fotografía',
         href: '/photography',
         image: '/images/photography/street/Street6.webp',
-        title: 'Del archivo',
-        body: 'Calle, luz y criterio visual como práctica creativa más silenciosa.',
+        title: 'Desde el archivo',
+        body: 'Calle, luz y criterio visual como una práctica creativa más silenciosa.',
       },
     ],
     marquee: [
       'IA aplicada',
-      'Flujos agénticos',
+      'Flujos con agentes',
       'Dirección creativa',
       'OpenAI Codex',
       'n8n',
       'Sistemas de marca',
       'Herramientas generativas',
-      'Prompt engineering',
+      'Ingeniería de prompts',
       'Dirección de arte',
     ],
     timelineTitle: <>Trayectoria <span className="about-landing__serif">hasta ahora</span>.</>,
     timelineIntro:
-      'Cinco años moviéndome entre marca, tecnología y el tejido operativo que las conecta, desde una carrera de marketing en Madrid hasta sistemas agénticos para infraestructura cultural viva.',
+      'Cinco años moviéndome entre marca, tecnología y el tejido operativo que las conecta: desde un grado en Marketing en Madrid hasta sistemas con agentes para proyectos culturales en funcionamiento.',
     timeline: [
       {
         date: 'Sep 2021',
         title: 'Inicio en IE University',
         org: 'BBA · Marketing',
         desc:
-          'Madrid. Beca IE High Potential Award. Primer contacto con programación, IT orientado a negocio y analítica de marketing digital.',
+          'Madrid. Beca IE High Potential Award. Primer contacto con programación, tecnología aplicada a negocio y analítica de marketing digital.',
         tags: ['Madrid', 'Beca', 'BBA'],
       },
       {
         date: 'Mar 2023',
         title: 'IE Marketing Lab',
-        org: 'Project Leader · 8+ empresas',
+        org: 'Project Leader · más de 8 empresas',
         desc:
           'Lideré un equipo de cinco personas entregando soluciones de marketing para empresas colaboradoras. Estrategia, cliente real y ejecución con fecha límite.',
         tags: ['Liderazgo', 'Estrategia', 'Cliente'],
@@ -354,31 +352,31 @@ const pageCopy = {
         title: 'WeFeel App Challenge',
         org: 'Branding & Marketing Trainee',
         desc:
-          'Presenté recomendaciones de negocio sobre marca, propuesta de valor y dirección de producto. Tres fueron aprobadas para implementación.',
-        tags: ['Marca', 'Pitch', 'Adoptado'],
+          'Presenté recomendaciones de negocio sobre marca, propuesta de valor y dirección de producto. Tres de ellas fueron aprobadas para implementarse.',
+        tags: ['Marca', 'Presentación', 'Aprobado'],
       },
       {
         date: 'Jan 2024',
         title: 'Intercambio · UCF',
         org: 'University of Central Florida · Orlando',
         desc:
-          'Un semestre fuera que afinó mi intuición sobre experiencia de cliente y dio otra perspectiva cultural al service marketing.',
-        tags: ['USA', 'Service marketing'],
+          'Un semestre fuera que afinó mi intuición sobre experiencia de cliente y me dio otra perspectiva cultural del marketing de servicios.',
+        tags: ['EE. UU.', 'Marketing de servicios'],
       },
       {
         date: 'Jun 2025',
         title: 'Freelance · IA y automatización',
         org: 'Práctica independiente · Madrid',
         desc:
-          'Empiezo a prototipar apps ligeras y herramientas internas con desarrollo asistido por IA, flujos agénticos, Codex, Claude Code y n8n.',
-        tags: ['Codex', 'n8n', 'Agéntico', 'SaaS'],
+          'Empecé a prototipar apps ligeras y herramientas internas con desarrollo asistido por IA, flujos con agentes, Codex, Claude Code y n8n.',
+        tags: ['Codex', 'n8n', 'Agentes', 'SaaS'],
       },
       {
         date: 'Jul 2025',
         title: 'Graduación',
         org: 'IE University · BBA, Marketing',
         desc:
-          'Cierre de etapa con concentración en marketing, intercambio internacional y cuatro años de proyectos prácticos detrás.',
+          'Cerré la etapa con una concentración en marketing, un intercambio internacional y cuatro años de proyectos prácticos detrás.',
         tags: ['Graduado', 'Marketing'],
       },
       {
@@ -386,29 +384,29 @@ const pageCopy = {
         title: 'Perfumerías Primor',
         org: 'CRM Specialist · AI Automation & Brand Growth',
         desc:
-          'CRM y lifecycle para una base de más de 8M de usuarios, colaboración con marcas de lujo y adopción interna de IA.',
-        tags: ['Connectif', 'Lifecycle', '8M+ usuarios', 'Lujo'],
+          'CRM y ciclo de vida de cliente para una base de más de 8M de usuarios, colaboración con marcas de lujo y apoyo a la adopción interna de IA.',
+        tags: ['Connectif', 'Ciclo de vida', '8M+ usuarios', 'Lujo'],
       },
       {
         date: 'Ahora',
         title: 'Construyendo lo siguiente',
-        org: 'IA agéntica · SaaS GEO/AEO · Creative ops',
+        org: 'IA con agentes · SaaS GEO/AEO · Operaciones creativas',
         desc:
-          'Profundizando en sistemas agénticos, retrieval, fluidez con IA y el ciclo práctico de lanzar, medir y aprender.',
-        tags: ['Agéntico', 'Skills', 'Retrieval'],
+          'Profundizando en sistemas con agentes, recuperación de información, fluidez con IA y el ciclo práctico de lanzar, medir y aprender.',
+        tags: ['Agentes', 'Habilidades', 'Recuperación'],
       },
     ] satisfies TimelineItem[],
     practiceTitle: <>Una <span className="about-landing__serif">práctica</span>, no un cargo.</>,
     practiceIntro:
-      'Una práctica con una jerarquía clara: sistemas de IA aplicada primero, apoyados por lógica de producto, inteligencia de marca y dirección creativa.',
+      'Una práctica con una jerarquía clara: primero sistemas de IA aplicada, apoyados por lógica de producto, inteligencia de marca y dirección creativa.',
     capabilities: [
       {
         number: '01',
         kicker: 'Práctica principal',
-        title: <>IA <span>agéntica</span><br />y automatización.</>,
+        title: <>IA con <span>agentes</span><br />y automatización.</>,
         body:
-          'Sistemas de varios pasos para auditorías, reporting, inteligencia comercial, CRM, creative ops y los handoffs entre equipos.',
-        tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Retrieval'],
+          'Sistemas de varios pasos para auditorías, informes, inteligencia comercial, CRM, operaciones creativas y traspasos entre equipos.',
+        tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Recuperación'],
         featured: true,
       },
       {
@@ -432,7 +430,7 @@ const pageCopy = {
         kicker: 'Marca',
         title: <>Marca como<br /><span>sistema</span>.</>,
         body:
-          'Traducir posicionamiento en los sistemas que lo transportan, para que la salida siga sonando a marca.',
+          'Convertir el posicionamiento en sistemas que lo sostienen, para que cada salida siga sonando a marca.',
         tools: ['Lujo', 'Posicionamiento', 'Sistemas'],
       },
       {
@@ -440,16 +438,16 @@ const pageCopy = {
         kicker: 'Generativo',
         title: <>Sistemas <span>visuales</span> generativos.</>,
         body:
-          'Pipelines que producen variaciones visuales consistentes con campaña, manteniendo dirección de arte, luz y continuidad.',
-        tools: ['n8n', 'Modelos de imagen', 'Style locks', 'Variación de assets'],
+          'Flujos que producen variaciones visuales coherentes con la campaña, manteniendo dirección de arte, luz y continuidad.',
+        tools: ['n8n', 'Modelos de imagen', 'Bloqueos de estilo', 'Variación de recursos'],
       },
       {
         number: '06',
         kicker: 'Fluidez',
         title: <>Enseñar<br />el <span>bucle</span>.</>,
         body:
-          'Encontrar donde la IA ayuda de verdad, prototipar el flujo y formar al equipo en los usos que se quedan.',
-        tools: ['Workshops', 'Adopción'],
+          'Detectar dónde la IA ayuda de verdad, prototipar el flujo y formar al equipo en los usos que se consolidan.',
+        tools: ['Talleres', 'Adopción'],
       },
     ],
     ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
@@ -681,10 +679,6 @@ export default function AboutPage() {
                   sizes="(max-width: 900px) 240px, 260px"
                 />
               </div>
-              <figcaption>
-                <span>{copy.portraitMeta[0]}</span>
-                <span>{copy.portraitMeta[1]}</span>
-              </figcaption>
             </figure>
           </div>
 

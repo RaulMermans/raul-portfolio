@@ -127,9 +127,6 @@ export default function CaseStudiesPage() {
   const [orderedStudies, setOrderedStudies] = useState(caseStudies)
   const schemas = getSchemas(locale)
   const isSpanish = locale === 'es'
-  const introCopy = isSpanish
-    ? 'Todos los proyectos aparecen directamente. Filtra por línea de trabajo cuando quieras acotar el tipo de sistema.'
-    : 'All projects appear directly. Filter by workstream when you want to narrow the kind of system.'
   const browserTitle = isSpanish ? 'Casos de estudio' : 'Case Studies'
   const browserLead = isSpanish
     ? 'Sistemas, interfaces y trabajo de marca construidos alrededor de prueba, contención y ejecución.'
@@ -137,7 +134,6 @@ export default function CaseStudiesPage() {
   const filterLabel = isSpanish ? 'Filtrar casos de estudio' : 'Filter case studies'
   const allLabel = isSpanish ? 'Todos' : 'All'
   const readCase = isSpanish ? 'Ver caso' : 'Read case'
-  const resultLabel = isSpanish ? 'Mostrando' : 'Showing'
   const seeLabel = isSpanish ? 'Quiero ver...' : 'I want to see...'
   const goLabel = isSpanish ? 'Ir a los casos filtrados' : 'Go to filtered case studies'
 
@@ -170,21 +166,6 @@ export default function CaseStudiesPage() {
       ),
     [caseStudies, categories],
   )
-
-  const browserStats = [
-    {
-      value: caseStudies.length.toString().padStart(2, '0'),
-      label: isSpanish ? 'proyectos' : 'projects',
-    },
-    {
-      value: categoryFilters.length.toString().padStart(2, '0'),
-      label: isSpanish ? 'líneas de trabajo' : 'workstreams',
-    },
-    {
-      value: 'AI',
-      label: isSpanish ? 'sistemas primero' : 'systems first',
-    },
-  ]
 
   const visibleStudies = useMemo(() => {
     if (activeFilter === 'all') return orderedStudies
@@ -223,14 +204,6 @@ export default function CaseStudiesPage() {
             </p>
             <h1 id="case-studies-heading">{browserTitle}</h1>
             <p>{browserLead}</p>
-            <dl className="case-study-browser__stats" aria-label={isSpanish ? 'Resumen de casos' : 'Case study summary'}>
-              {browserStats.map((stat) => (
-                <div key={`${stat.value}-${stat.label}`}>
-                  <dt>{stat.label}</dt>
-                  <dd>{stat.value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
           <div className="case-study-browser__actions">
             <form className="case-study-browser__control" aria-label={filterLabel} onSubmit={handleBrowserSubmit}>
@@ -257,11 +230,6 @@ export default function CaseStudiesPage() {
                 <span aria-hidden="true">→</span>
               </button>
             </form>
-            <p className="case-study-browser__summary" aria-live="polite">
-              {resultLabel} {visibleStudies.length}/{caseStudies.length}
-              <span aria-hidden="true"> · </span>
-              {introCopy}
-            </p>
           </div>
         </section>
 
