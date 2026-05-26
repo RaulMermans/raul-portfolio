@@ -4,7 +4,9 @@ This is a static portfolio website.
 
 ## Secrets
 
-No secrets should be committed. Deployment credentials are stored in GitHub Secrets.
+No secrets should be committed to this repository. Deployment credentials live in GitHub Secrets and are not stored in source files.
+
+If a credential is exposed, it must be revoked or deleted at the provider. Removed secrets may still exist in Git history, so any leaked credential should be treated as compromised.
 
 ## Contact
 
