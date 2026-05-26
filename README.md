@@ -43,6 +43,24 @@ npm run build
 
 The project is configured for static export via `next.config.js`.
 
+## Deployment
+
+This portfolio deploys from pushes to `main`.
+
+The GitHub Actions workflow builds the static Next.js export and uploads the generated `out/` directory to the configured IONOS destination via SFTP.
+
+Deployment credentials are stored in GitHub Secrets and are not committed to the repository.
+
+Required GitHub Secrets:
+
+- `SFTP_HOST`
+- `SFTP_USER`
+- `SFTP_PASSWORD`
+- `SFTP_PORT`
+- `SFTP_REMOTE_PATH`
+
+Local/private deployment helper scripts are intentionally ignored.
+
 ## Environment
 
 `.env.example` lists the public template variables. Do not commit real `.env` files.

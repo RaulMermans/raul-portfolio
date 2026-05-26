@@ -4,6 +4,7 @@ import {
   useCallback,
   useEffect,
   useId,
+  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -55,37 +56,43 @@ interface SectionCardsProps {
 
 export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
   const router = useRouter()
-  const copy = getSiteCopy(locale).home.sectionCards
-  const sections = copy.sections.map((section) => ({
-    ...section,
-    href: localizePath(
-      section.id === 'case-studies'
-        ? '/case-studies'
-        : section.id === 'apps'
-          ? '/apps'
-          : section.id === 'photography'
-            ? '/photography'
-            : '/visuals',
-      locale,
-    ),
-    image:
-      section.id === 'case-studies'
-        ? '/images/sections/case-studies-bg.webp'
-        : section.id === 'apps'
-          ? '/images/sections/apps-bg-v2.webp'
-          : section.id === 'photography'
-            ? '/images/sections/photography-bg.webp'
-            : '/images/sections/visuals-bg.webp',
-    accent:
-      section.id === 'case-studies'
-        ? '#b94a53'
-        : section.id === 'apps'
-          ? '#3f9f8b'
-          : section.id === 'photography'
-            ? '#9c7847'
-            : '#d86d43',
-  }))
-  const loopedSections = [sections[sections.length - 1], ...sections, sections[0]]
+  const copy = useMemo(() => getSiteCopy(locale).home.sectionCards, [locale])
+  const sections = useMemo(
+    () => copy.sections.map((section) => ({
+      ...section,
+      href: localizePath(
+        section.id === 'case-studies'
+          ? '/case-studies'
+          : section.id === 'apps'
+            ? '/apps'
+            : section.id === 'photography'
+              ? '/photography'
+              : '/visuals',
+        locale,
+      ),
+      image:
+        section.id === 'case-studies'
+          ? '/images/sections/case-studies-bg.webp'
+          : section.id === 'apps'
+            ? '/images/sections/apps-bg-v2.webp'
+            : section.id === 'photography'
+              ? '/images/sections/photography-bg.webp'
+              : '/images/sections/visuals-bg.webp',
+      accent:
+        section.id === 'case-studies'
+          ? '#b94a53'
+          : section.id === 'apps'
+            ? '#3f9f8b'
+            : section.id === 'photography'
+              ? '#9c7847'
+              : '#d86d43',
+    })),
+    [copy.sections, locale]
+  )
+  const loopedSections = useMemo(
+    () => [sections[sections.length - 1], ...sections, sections[0]],
+    [sections]
+  )
   const gridId = useId()
   const pointerStartXRef = useRef<number | null>(null)
   const pointerDeltaXRef = useRef(0)
@@ -101,8 +108,10 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
   const nextIndex = (activeIndex + 1) % sections.length
 
   useEffect(() => {
+    const rafIds = rafIdsRef.current
+
     return () => {
-      rafIdsRef.current.forEach((id) => window.cancelAnimationFrame(id))
+      rafIds.forEach((id) => window.cancelAnimationFrame(id))
     }
   }, [])
 
@@ -110,7 +119,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
     ;[activeIndex, previousIndex, nextIndex].forEach((index) => {
       router.prefetch(sections[index].href)
     })
-  }, [activeIndex, nextIndex, previousIndex, router])
+  }, [activeIndex, nextIndex, previousIndex, router, sections])
 
   const finishWrapReset = useCallback((nextVisualIndex: number) => {
     setTransitionsEnabled(false)

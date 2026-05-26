@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
+      SFTP_HOST: ${{ secrets.SFTP_HOST || secrets.SFTP_SERVER }}
+      SFTP_USER: ${{ secrets.SFTP_USER || secrets.SFTP_USERNAME }}
+      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH || '/' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,9 +40,9 @@ jobs:
       - name: Deploy to IONOS via SFTP
         uses: wangyucode/sftp-upload-action@v2.0.2
         with:
-          host: ${{ secrets.SFTP_SERVER }}
-          username: ${{ secrets.SFTP_USERNAME }}
+          host: ${{ env.SFTP_HOST }}
+          username: ${{ env.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
           localDir: ./out/
-          remoteDir: /
+          remoteDir: ${{ env.SFTP_REMOTE_PATH }}

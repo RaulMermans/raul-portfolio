@@ -34,6 +34,11 @@ yarn-error.log*
 .env.*
 !.env.example
 
+# Local/private deployment helpers
+deploy.sh
+scripts/*.local.sh
+.env.deploy
+
 # secrets / credentials (catch-all patterns)
 *.pem
 *.key
