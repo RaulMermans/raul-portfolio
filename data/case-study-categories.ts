@@ -32,6 +32,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const caseStudies = getCaseStudies(locale)
   const aiSports = findStudy(caseStudies, 'ai-sports')
   const remoria = findStudy(caseStudies, 'remoria')
+  const raulPortfolio = findStudy(caseStudies, 'raul-portfolio')
   const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
   const websiteAuditor = findStudy(caseStudies, 'website-auditor')
   const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
@@ -108,17 +109,30 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         ? 'Identidades, reglas visuales y lógica de marca pensadas para escalar sin perder precisión.'
         : 'Identities, visual rules, and brand logic designed to scale without losing precision.',
       href: localizePath('/case-studies', locale),
-      projects: remoria
-        ? [
-            {
-              title: remoria.title,
-              label: remoria.subtitle ?? (isSpanish ? 'Sistema de marca' : 'Brand system'),
-              description: remoria.description,
-              image: remoria.image,
-              href: remoria.href,
-            },
-          ]
-        : [],
+      projects: [
+        ...(raulPortfolio
+          ? [
+              {
+                title: raulPortfolio.title,
+                label: raulPortfolio.subtitle ?? (isSpanish ? 'Sistema de marca personal' : 'Personal brand system'),
+                description: raulPortfolio.description,
+                image: raulPortfolio.image,
+                href: raulPortfolio.href,
+              },
+            ]
+          : []),
+        ...(remoria
+          ? [
+              {
+                title: remoria.title,
+                label: remoria.subtitle ?? (isSpanish ? 'Sistema de marca' : 'Brand system'),
+                description: remoria.description,
+                image: remoria.image,
+                href: remoria.href,
+              },
+            ]
+          : []),
+      ],
     },
     {
       slug: 'data-systems',

@@ -4506,3 +4506,418 @@ main.case-study-page-new {
     transform: translateX(-50%) rotate(90deg);
   }
 }
+
+/* Raul Portfolio case study — editorial identity system */
+.case-study-page-new--portfolio {
+  --portfolio-ink: #1a1714;
+  --portfolio-cream: #f5f0eb;
+  --portfolio-paper: #fbf8f3;
+  --portfolio-line: rgba(26, 23, 20, 0.12);
+  background: var(--portfolio-cream);
+  color: var(--portfolio-ink);
+}
+
+.case-study-page-new--portfolio .data-brief-back {
+  color: rgba(26, 23, 20, 0.62);
+}
+
+.case-study-page-new--portfolio .data-brief-back:hover,
+.case-study-page-new--portfolio .data-brief-back:focus-visible {
+  color: var(--portfolio-ink);
+}
+
+.case-study-page-new--portfolio .data-brief-mini-nav {
+  width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 92rem);
+  max-width: none;
+  margin: -1.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.45rem, 1vw, 0.75rem);
+  border-color: var(--portfolio-line);
+  background: rgba(245, 240, 235, 0.94);
+}
+
+.case-study-page-new--portfolio .data-brief-mini-nav a {
+  justify-content: center;
+  min-width: 0;
+  color: rgba(26, 23, 20, 0.62);
+}
+
+.case-study-page-new--portfolio .data-brief-mini-nav a:hover,
+.case-study-page-new--portfolio .data-brief-mini-nav a:focus-visible {
+  background: rgba(26, 23, 20, 0.06);
+  color: var(--portfolio-ink);
+}
+
+.portfolio-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(22rem, 0.86fr);
+  align-items: center;
+  gap: clamp(3rem, 7vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem)) clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
+  border-bottom: 1px solid var(--portfolio-line);
+  background: var(--portfolio-cream);
+}
+
+.portfolio-hero__content {
+  max-width: 54rem;
+}
+
+.portfolio-hero__title {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--portfolio-ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(4rem, 8vw, 9rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.portfolio-hero__subtitle {
+  max-width: 43rem;
+  margin: 1.7rem 0 0;
+  color: var(--portfolio-ink);
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.portfolio-hero__description {
+  max-width: 42rem;
+  margin: 1.1rem 0 0;
+  color: rgba(26, 23, 20, 0.68);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.case-study-page-new--portfolio .data-brief-button {
+  border-color: rgba(26, 23, 20, 0.16);
+  background: transparent;
+  color: var(--portfolio-ink);
+}
+
+.case-study-page-new--portfolio .data-brief-button--primary,
+.case-study-page-new--portfolio .data-brief-button:hover,
+.case-study-page-new--portfolio .data-brief-button:focus-visible {
+  border-color: var(--color-1);
+  background: var(--color-1);
+  color: var(--cream);
+}
+
+.case-study-page-new--portfolio .data-brief-tags {
+  max-width: 44rem;
+  margin-top: 1.25rem;
+}
+
+.case-study-page-new--portfolio .data-brief-tags span {
+  border-color: rgba(26, 23, 20, 0.1);
+  background: rgba(26, 23, 20, 0.035);
+  color: rgba(26, 23, 20, 0.62);
+}
+
+.portfolio-hero__system {
+  display: grid;
+  gap: 1px;
+  padding: 1px;
+  background: var(--portfolio-line);
+  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+}
+
+.portfolio-frame,
+.portfolio-frame-grid span {
+  background: var(--portfolio-paper);
+}
+
+.portfolio-frame {
+  display: grid;
+  min-height: clamp(16rem, 28vw, 28rem);
+  align-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.portfolio-frame span,
+.portfolio-frame-grid span {
+  color: rgba(26, 23, 20, 0.48);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.portfolio-frame strong {
+  max-width: 14ch;
+  color: var(--portfolio-ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.portfolio-frame-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+}
+
+.portfolio-frame-grid span {
+  display: grid;
+  min-height: 7rem;
+  place-items: end start;
+  padding: 1rem;
+}
+
+.portfolio-section {
+  padding: clamp(5.5rem, 9vw, 8rem) clamp(1.25rem, 3vw, 3rem);
+}
+
+.portfolio-section--light {
+  background: var(--portfolio-paper);
+}
+
+.portfolio-section--cream {
+  background: var(--portfolio-cream);
+}
+
+.portfolio-section--dark {
+  background: var(--portfolio-ink);
+  color: var(--portfolio-cream);
+}
+
+.portfolio-section__container {
+  width: 100%;
+  max-width: 92rem;
+  margin: 0 auto;
+}
+
+.portfolio-section-heading {
+  max-width: min(100%, 78rem);
+}
+
+.portfolio-section-heading h2 {
+  max-width: 19ch;
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(3.4rem, 6vw, 7rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.portfolio-section-heading p {
+  max-width: min(100%, 68rem);
+  color: rgba(26, 23, 20, 0.66);
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.7;
+}
+
+.portfolio-section--dark .portfolio-section-heading p,
+.portfolio-section--dark .data-brief-eyebrow {
+  color: rgba(245, 240, 235, 0.66);
+}
+
+.portfolio-card-grid {
+  display: grid;
+  gap: 1px;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  background: var(--portfolio-line);
+}
+
+.portfolio-card-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portfolio-card-grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.portfolio-card {
+  min-height: 14rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  background: var(--portfolio-paper);
+}
+
+.portfolio-section--dark .portfolio-card-grid {
+  background: rgba(245, 240, 235, 0.16);
+}
+
+.portfolio-section--dark .portfolio-card {
+  background: rgba(245, 240, 235, 0.06);
+}
+
+.portfolio-card h3 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.portfolio-card p {
+  margin: 1rem 0 0;
+  color: rgba(26, 23, 20, 0.64);
+  line-height: 1.65;
+}
+
+.portfolio-section--dark .portfolio-card p {
+  color: rgba(245, 240, 235, 0.66);
+}
+
+.portfolio-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(22rem, 0.9fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.portfolio-layer-list {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  background: rgba(245, 240, 235, 0.16);
+}
+
+.portfolio-layer-list div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.35fr) 1fr;
+  gap: 1rem;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  background: rgba(245, 240, 235, 0.06);
+}
+
+.portfolio-layer-list dt,
+.portfolio-wireframe-list span {
+  color: rgba(245, 240, 235, 0.54);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.portfolio-layer-list dd {
+  margin: 0;
+  color: var(--portfolio-cream);
+}
+
+.portfolio-wireframe-list {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding: 1px;
+  list-style: none;
+  background: var(--portfolio-line);
+}
+
+.portfolio-wireframe-list li {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  align-items: center;
+  gap: 1rem;
+  min-height: 5.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--portfolio-paper);
+}
+
+.portfolio-wireframe-list span {
+  color: rgba(26, 23, 20, 0.42);
+}
+
+.portfolio-wireframe-list strong {
+  color: var(--portfolio-ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.portfolio-system-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  background: var(--portfolio-line);
+}
+
+.portfolio-system-grid article {
+  min-height: 22rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--portfolio-paper);
+}
+
+.portfolio-system-grid h3,
+.portfolio-links h3 {
+  margin: 0 0 1.5rem;
+  color: inherit;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.portfolio-section--outcome .portfolio-card {
+  min-height: 12rem;
+}
+
+.portfolio-links {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid rgba(245, 240, 235, 0.16);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.portfolio-section--dark .data-brief-button:not(.data-brief-button--primary) {
+  border-color: rgba(245, 240, 235, 0.28);
+  background: transparent;
+  color: var(--portfolio-cream);
+}
+
+.portfolio-section--dark .data-brief-button--primary,
+.portfolio-section--dark .data-brief-button:not(.data-brief-button--primary):hover,
+.portfolio-section--dark .data-brief-button:not(.data-brief-button--primary):focus-visible {
+  border-color: var(--color-1);
+  background: var(--color-1);
+  color: var(--cream);
+}
+
+@media (max-width: 1180px) {
+  .portfolio-hero,
+  .portfolio-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-card-grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .case-study-page-new--portfolio .data-brief-mini-nav {
+    width: auto;
+    display: flex;
+    margin-top: 0;
+    padding-inline: 1.25rem;
+  }
+
+  .portfolio-hero {
+    padding: calc(var(--header-height) + 3rem) 1.25rem 4rem;
+  }
+
+  .portfolio-frame-grid,
+  .portfolio-card-grid--three,
+  .portfolio-card-grid--four,
+  .portfolio-system-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-layer-list div,
+  .portfolio-wireframe-list li {
+    grid-template-columns: 1fr;
+  }
+}

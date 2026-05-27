@@ -20,6 +20,19 @@ export const MOODS = ['All', 'minimal', 'bold', 'editorial', 'tech'] as const
 const caseStudyEntries = {
   en: [
     {
+      id: 5,
+      slug: 'raul-portfolio',
+      title: 'Raul Mermans Portfolio',
+      description:
+        'Personal brand system for strategy, AI/product work, photography, and visual experimentation.',
+      image: '/images/case-studies/case-studies-thumbnail.webp',
+      imageWidth: 3000,
+      imageHeight: 2000,
+      color: 'var(--color-1)',
+      subtitle: 'Brand Systems / Digital Identity / Portfolio Architecture',
+      mood: ['minimal', 'editorial'],
+    },
+    {
       id: 3,
       slug: 'benchmark-dashboard',
       title: 'Benchmark Dashboard Template',
@@ -86,6 +99,19 @@ const caseStudyEntries = {
     },
   ],
   es: [
+    {
+      id: 5,
+      slug: 'raul-portfolio',
+      title: 'Raul Mermans Portfolio',
+      description:
+        'Sistema de marca personal para estrategia, trabajo de IA/producto, fotografía y experimentación visual.',
+      image: '/images/case-studies/case-studies-thumbnail.webp',
+      imageWidth: 3000,
+      imageHeight: 2000,
+      color: 'var(--color-1)',
+      subtitle: 'Sistemas de marca / Identidad digital / Arquitectura de portfolio',
+      mood: ['minimal', 'editorial'],
+    },
     {
       id: 3,
       slug: 'benchmark-dashboard',
