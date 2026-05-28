@@ -2,26 +2,26 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'Raul Mermans Portfolio — Sistema de portfolio de marca personal'
+const title = 'Raul Mermans Portfolio — Personal Brand Portfolio System'
 const description =
-  'Caso de estudio de Raul Mermans Portfolio, un sistema de identidad digital para estrategia, trabajo de IA/producto, fotografía y experimentación visual.'
+  'Case study for Raul Mermans Portfolio, a digital identity and case-study system for strategy, AI/product work, photography, and visual experimentation.'
 
 export const metadata: Metadata = buildPageMetadata({
   title,
   description,
   path: '/case-studies/raul-portfolio',
-  locale: 'es',
+  locale: 'en',
   image: {
     url: '/images/case-studies/case-studies-thumbnail.webp',
-    alt: 'Caso de estudio de Raul Mermans Portfolio',
+    alt: 'Raul Mermans Portfolio case study',
   },
   type: 'article',
   keywords: [
     'Raul Mermans Portfolio',
-    'sistema de marca personal',
-    'identidad digital',
-    'arquitectura de portfolio',
-    'diseño web editorial',
+    'personal brand system',
+    'digital identity',
+    'portfolio architecture',
+    'editorial web design',
   ],
   absoluteTitle: true,
 })
@@ -34,20 +34,20 @@ function BreadcrumbSchema() {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Inicio',
-        item: siteConfig.url,
+        name: 'Home',
+        item: `${siteConfig.url}/en`,
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Casos de estudio',
-        item: `${siteConfig.url}/case-studies`,
+        name: 'Case Studies',
+        item: `${siteConfig.url}/en/case-studies`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Raul Mermans Portfolio',
-        item: `${siteConfig.url}/case-studies/raul-portfolio`,
+        item: `${siteConfig.url}/en/case-studies/raul-portfolio`,
       },
     ],
   }
@@ -55,7 +55,7 @@ function BreadcrumbSchema() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 }
 
-export default function RaulPortfolioLayout({
+export default function EnglishRaulPortfolioLayout({
   children,
 }: {
   children: React.ReactNode
@@ -66,19 +66,19 @@ export default function RaulPortfolioLayout({
       <StructuredData
         type="Article"
         data={{
-          '@id': `${siteConfig.url}/#raul-portfolio-case-study`,
+          '@id': `${siteConfig.url}/#raul-portfolio-case-study-en`,
           headline: title,
           name: 'Raul Mermans Portfolio',
           description,
-          url: absoluteRouteUrl('/case-studies/raul-portfolio'),
-          mainEntityOfPage: absoluteRouteUrl('/case-studies/raul-portfolio'),
+          url: absoluteRouteUrl('/en/case-studies/raul-portfolio'),
+          mainEntityOfPage: absoluteRouteUrl('/en/case-studies/raul-portfolio'),
           image: absoluteUrl('/images/case-studies/case-studies-thumbnail.webp'),
-          articleSection: 'Casos de estudio',
+          articleSection: 'Case Studies',
           keywords: [
-            'sistema de marca personal',
-            'identidad digital',
-            'arquitectura de portfolio',
-            'diseño web editorial',
+            'personal brand system',
+            'digital identity',
+            'portfolio architecture',
+            'editorial web design',
           ],
         }}
       />

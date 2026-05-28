@@ -11,15 +11,6 @@ import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 const liveUrl = 'https://www.raulmermans.com'
 const githubUrl = 'https://github.com/RaulMermans/raul-portfolio'
 
-const tags = [
-  'Personal Brand',
-  'Portfolio System',
-  'Editorial Web',
-  'Case Study Architecture',
-  'Visual Identity',
-  'Creative Direction',
-]
-
 const content = {
   en: {
     back: '← Case Studies',
@@ -30,6 +21,20 @@ const content = {
       'This portfolio was built as a digital identity system: a structured environment for presenting brand strategy, cultural storytelling, AI/product work, photography, and visual experimentation through an editorial lens.',
     liveCta: 'Visit live site →',
     githubCta: 'View GitHub repository →',
+    linksLabel: 'Project links',
+    tagsLabel: 'Project tags',
+    systemLabel: 'Portfolio system diagram',
+    systemPrimary: 'Identity',
+    systemSecondary: 'Strategy / AI / Photography / Visuals',
+    systemAreas: ['Case studies', 'Archive', 'About', 'GitHub'],
+    tags: [
+      'Personal Brand',
+      'Portfolio System',
+      'Editorial Web',
+      'Case Study Architecture',
+      'Visual Identity',
+      'Creative Direction',
+    ],
     nav: [
       ['Challenge', '#challenge'],
       ['Intent', '#intent'],
@@ -119,6 +124,20 @@ const content = {
       'Este portfolio fue construido como un sistema de identidad digital: un entorno estructurado para presentar estrategia de marca, relato cultural, trabajo de IA/producto, fotografía y experimentación visual desde una mirada editorial.',
     liveCta: 'Visitar sitio en vivo →',
     githubCta: 'Ver repositorio en GitHub →',
+    linksLabel: 'Enlaces del proyecto',
+    tagsLabel: 'Etiquetas del proyecto',
+    systemLabel: 'Diagrama del sistema de portfolio',
+    systemPrimary: 'Identidad',
+    systemSecondary: 'Estrategia / IA / Fotografía / Visuales',
+    systemAreas: ['Casos de estudio', 'Archivo', 'Sobre mí', 'GitHub'],
+    tags: [
+      'Marca personal',
+      'Sistema de portfolio',
+      'Web editorial',
+      'Arquitectura de casos',
+      'Identidad visual',
+      'Dirección creativa',
+    ],
     nav: [
       ['Reto', '#challenge'],
       ['Intención', '#intent'],
@@ -223,7 +242,7 @@ export default function RaulPortfolioPage() {
             </h1>
             <p className="portfolio-hero__subtitle">{t.heroSubtitle}</p>
             <p className="portfolio-hero__description">{t.heroDescription}</p>
-            <div className="data-brief-actions" aria-label="Project links">
+            <div className="data-brief-actions" aria-label={t.linksLabel}>
               <a href={liveUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
                 {t.liveCta}
               </a>
@@ -231,22 +250,21 @@ export default function RaulPortfolioPage() {
                 {t.githubCta}
               </a>
             </div>
-            <div className="data-brief-tags" aria-label="Project tags">
-              {tags.map((tag) => (
+            <div className="data-brief-tags" aria-label={t.tagsLabel}>
+              {t.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
           </div>
-          <div className="portfolio-hero__system" aria-label="Portfolio system diagram">
+          <div className="portfolio-hero__system" aria-label={t.systemLabel}>
             <div className="portfolio-frame portfolio-frame--large">
-              <span>Identity</span>
-              <strong>Strategy / AI / Photography / Visuals</strong>
+              <span>{t.systemPrimary}</span>
+              <strong>{t.systemSecondary}</strong>
             </div>
             <div className="portfolio-frame-grid">
-              <span>Case studies</span>
-              <span>Archive</span>
-              <span>About</span>
-              <span>GitHub</span>
+              {t.systemAreas.map((area) => (
+                <span key={area}>{area}</span>
+              ))}
             </div>
           </div>
         </section>

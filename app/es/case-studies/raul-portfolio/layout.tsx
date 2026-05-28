@@ -55,7 +55,7 @@ function BreadcrumbSchema() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 }
 
-export default function RaulPortfolioLayout({
+export default function SpanishRaulPortfolioLayout({
   children,
 }: {
   children: React.ReactNode
@@ -66,7 +66,7 @@ export default function RaulPortfolioLayout({
       <StructuredData
         type="Article"
         data={{
-          '@id': `${siteConfig.url}/#raul-portfolio-case-study`,
+          '@id': `${siteConfig.url}/#raul-portfolio-case-study-es`,
           headline: title,
           name: 'Raul Mermans Portfolio',
           description,
