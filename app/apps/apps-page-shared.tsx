@@ -75,14 +75,12 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
           <div
             style={{
               display: 'flex',
-              gap: '40px',
+              flexWrap: 'wrap',
+              gap: 'clamp(24px, 7vw, 40px)',
               alignItems: 'flex-start',
               justifyContent: 'center',
-              overflowX: 'auto',
               maxWidth: '100%',
               paddingBottom: '8px',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
             } as CSSProperties}
           >
             {apps.map((app) => (
@@ -103,8 +101,8 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
               >
                 <div
                   style={{
-                    width: 200,
-                    height: 200,
+                    width: 'clamp(132px, 38vw, 200px)',
+                    aspectRatio: '1 / 1',
                     borderRadius: '26.6%',
                     overflow: 'hidden',
                     background: app.icon

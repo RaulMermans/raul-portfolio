@@ -66,7 +66,7 @@ export const siteCopy = {
         services: ['AI Systems', 'Agents', 'Automation'],
         summary:
           'Applied AI systems for brands, teams, and creative operations. I design agentic workflows, automation tools, and internal AI products where reliability, brand intelligence, and execution discipline matter more than demo theatre.',
-        primaryCta: 'View AI Systems Work',
+        primaryCta: 'View Case Studies',
         secondaryCta: 'View GitHub',
         tertiaryCta: 'Contact',
         scrollAria: 'Scroll to explore',
@@ -361,7 +361,7 @@ export const siteCopy = {
         services: ['Sistemas de IA', 'Agentes', 'Automatización'],
         summary:
           'Sistemas de IA aplicada para marcas, equipos y operaciones creativas. Diseño flujos agentic, herramientas de automatización y productos internos de IA donde la fiabilidad, la inteligencia de marca y la disciplina de ejecución importan más que el teatro de demo.',
-        primaryCta: 'Ver sistemas de IA',
+        primaryCta: 'Ver casos de estudio',
         secondaryCta: 'Ver GitHub',
         tertiaryCta: 'Contacto',
         scrollAria: 'Desplazar para explorar',

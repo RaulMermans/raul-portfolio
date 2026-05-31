@@ -867,11 +867,11 @@ function StickyShowcase({ beats, copy }: { beats: StoryBeat[]; copy: OverflowCon
         </Reveal>
 
         <div className="mt-10 lg:hidden">
-          <div className="overflow-x-auto pb-2">
+          <div className="max-w-full pb-2">
             <div
               role="tablist"
               aria-label={copy.storyTabsAriaLabel}
-              className="flex min-w-max gap-2"
+              className="flex max-w-full flex-wrap gap-2"
             >
               {beats.map((beat) => {
                 const isActive = beat.id === activeBeat.id

@@ -13,8 +13,7 @@ interface CaseStudyCategoryPageProps {
 }
 
 const muted = 'rgba(26, 23, 20, 0.45)'
-const bodyColor = 'rgba(26, 23, 20, 0.65)'
-const displayFont = 'var(--font-display), "Bebas Neue", Impact, sans-serif'
+const bodyColor = 'rgba(26, 23, 20, 0.72)'
 
 export default function CaseStudyCategoryPage({ categorySlug }: CaseStudyCategoryPageProps) {
   const pathname = usePathname()
@@ -31,77 +30,69 @@ export default function CaseStudyCategoryPage({ categorySlug }: CaseStudyCategor
   return (
     <>
       <Header locale={locale} />
-      <main id="main-content" style={{ background: 'var(--cream)', color: 'var(--ink)', minHeight: '100vh' }}>
-        <section style={{ borderBottom: '1px solid var(--cream-dark)' }}>
-          <div style={{ maxWidth: 1400, margin: '0 auto', padding: 'clamp(7rem, 12vw, 10rem) 2.5rem 4rem' }}>
-            <Link
-              href={localizePath('/case-studies', locale)}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.3em', color: muted, marginBottom: '2rem', textDecoration: 'none' }}
-            >
-              {backLabel}
-            </Link>
+      <main id="main-content" className="case-study-category-detail">
+        <header className="case-study-category-detail__header">
+          <Link href={localizePath('/case-studies', locale)} className="case-study-category-detail__back">
+            {backLabel}
+          </Link>
 
-            <p style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.32em', color: muted, marginBottom: '1rem' }}>
-              {category.eyebrow}
-            </p>
-            <h1
-              style={{ fontFamily: displayFont, fontSize: 'clamp(3.5rem, 8vw, 7rem)', textTransform: 'uppercase', lineHeight: 0.9, color: 'var(--ink)', marginBottom: '1.5rem' }}
-            >
-              {category.title}
-            </h1>
-            <p style={{ maxWidth: '56ch', fontSize: '1.1rem', lineHeight: 1.7, color: bodyColor }}>
-              {category.description}
-            </p>
-          </div>
-        </section>
+          <p className="case-study-category-detail__eyebrow">{category.eyebrow}</p>
+          <h1 className="case-study-category-detail__title">{category.title}</h1>
+          <p className="case-study-category-detail__description">{category.description}</p>
+        </header>
 
-        <section style={{ maxWidth: 1400, margin: '0 auto', padding: '4rem 2.5rem 6rem' }}>
-          <p style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.32em', color: muted, marginBottom: '2rem' }}>
+        <section aria-labelledby="case-study-category-projects">
+          <p id="case-study-category-projects" className="case-study-category-detail__eyebrow">
             {projectsLabel}
           </p>
 
           {category.projects.length > 0 ? (
-            <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 380px), 1fr))' }}>
-              {category.projects.map((project) => (
-                <article
-                  key={project.title}
-                  style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-light)', borderRadius: 0 }}
-                >
-                  <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden' }}>
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} project preview`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      style={{ objectFit: 'cover' }}
-                      quality={80}
-                    />
-                  </div>
-                  <div style={{ padding: '1.5rem' }}>
-                    <p style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.28em', color: muted, marginBottom: '0.75rem' }}>
-                      {project.label}
-                    </p>
-                    <h2 style={{ fontFamily: displayFont, fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', textTransform: 'uppercase', lineHeight: 0.95, color: 'var(--ink)', marginBottom: '1rem' }}>
-                      {project.title}
-                    </h2>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.7, color: bodyColor, marginBottom: '1.5rem' }}>
-                      {project.description}
-                    </p>
-                    {project.href ? (
-                      <Link
-                        href={project.href}
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid currentColor', paddingBottom: '0.25rem' }}
-                      >
-                        {locale === 'es' ? 'Ver caso →' : 'View case →'}
-                      </Link>
-                    ) : (
-                      <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2em', color: muted }}>
-                        {locale === 'es' ? 'Próximamente' : 'Coming soon'}
+            <div className="case-study-category-detail__grid">
+              {category.projects.map((project) => {
+                const cardContent = (
+                  <>
+                    <span className="case-study-category-card__media">
+                      <Image
+                        src={project.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="case-study-category-card__image"
+                        quality={80}
+                      />
+                    </span>
+                    <div className="case-study-category-card__body">
+                      <p className="case-study-category-card__label">{project.label}</p>
+                      <h2 className="case-study-category-card__title">{project.title}</h2>
+                      <p className="case-study-category-card__description">{project.description}</p>
+                      <span className="case-study-category-card__cta">
+                        {project.href
+                          ? locale === 'es'
+                            ? 'Ver caso'
+                            : 'View case'
+                          : locale === 'es'
+                            ? 'Próximamente'
+                            : 'Coming soon'}
+                        {project.href ? <span aria-hidden="true">→</span> : null}
                       </span>
-                    )}
-                  </div>
-                </article>
-              ))}
+                    </div>
+                  </>
+                )
+
+                if (!project.href) {
+                  return (
+                    <article key={project.title} className="case-study-category-card case-study-category-card--soon">
+                      {cardContent}
+                    </article>
+                  )
+                }
+
+                return (
+                  <Link key={project.title} href={project.href} className="case-study-category-card">
+                    {cardContent}
+                  </Link>
+                )
+              })}
             </div>
           ) : (
             <div style={{ border: '1px dashed var(--cream-dark)', padding: '3rem', maxWidth: 600 }}>
