@@ -3363,7 +3363,7 @@ main.case-study-page-new {
   max-width: none;
   margin: -1.5rem auto 0;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: clamp(0.5rem, 1vw, 0.85rem);
   padding-inline: clamp(0.65rem, 1.2vw, 1rem);
   border-color: rgba(26, 23, 20, 0.12);
@@ -3776,6 +3776,36 @@ main.case-study-page-new {
 .benchmark-field-defs > div {
   border: 0;
   border-radius: 0;
+}
+
+.benchmark-safety-stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.benchmark-validation-panel {
+  display: grid;
+  gap: 1px;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.benchmark-validation-panel code {
+  display: flex;
+  align-items: center;
+  min-height: 4.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--ink);
+  color: rgba(245, 240, 235, 0.84);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: clamp(0.82rem, 1.6vw, 1rem);
+  line-height: 1.4;
+}
+
+.benchmark-safety-list {
+  margin: 0;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: 1px solid rgba(26, 23, 20, 0.12);
+  background: var(--cream-light);
 }
 
 .benchmark-result-grid {

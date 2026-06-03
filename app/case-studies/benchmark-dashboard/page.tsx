@@ -1,5 +1,6 @@
 'use client'
 
+import { Fragment } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCaseStudySetup } from '@/hooks'
@@ -8,10 +9,10 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 
-const demoUrl = 'https://benchmark-dashboard-smoky.vercel.app/'
+const demoUrl = 'https://benchmark-dashboard-tb47.vercel.app/'
 const githubUrl = 'https://github.com/RaulMermans/benchmark_dashboard'
 
-const tags = ['React/Vite', 'Recharts', 'Synthetic data', 'API-ready', 'Data product']
+const tags = ['React/Vite', 'Benchmark engine', 'Adapters', 'View models', 'Synthetic data']
 
 const dataContract = `{
   "ok": true,
@@ -28,226 +29,257 @@ const dataContract = `{
 const content = {
   en: {
     back: '← Case Studies',
-    heroSubtitle: 'A public, reusable dashboard for turning benchmark data into executive reads.',
+    heroEyebrow: 'Data product / Benchmark intelligence framework',
+    heroTitle: 'Benchmark Intelligence Framework',
+    heroSubtitle:
+      'A public-safe competitive intelligence dashboard framework that turns structured benchmark data into executive rankings, share analysis, growth views, forecasts, profiles, and strategic signals.',
     heroDescription:
-      'The system takes a normalized JSON payload and transforms it into rankings, market share, growth, forecast, profiles, and strategic signals. The public version uses synthetic data to demonstrate the architecture without exposing private information.',
+      'The project evolved from a visual dashboard into a reusable frontend intelligence framework: data contract first, calculation logic separated from presentation, and portfolio-ready validation around every public artifact.',
     heroMockNotice:
-      'Demo mode only: synthetic entities, synthetic values — no real client or competitor data.',
+      'Demo mode only: synthetic entities, synthetic values, public-safe labels — no real client, competitor, logo, or private source data.',
     heroCTA: 'View live demo →',
     heroCTASecondary: 'View repository →',
-    heroFigcaption: 'Executive dashboard view. All data is synthetic.',
-    heroFigAriaLabel: 'Executive dashboard view with synthetic data',
+    heroFigcaption: 'Executive summary, KPI cards, share movement, and strategic signal cards. Synthetic demo data only.',
+    heroFigAriaLabel: 'Executive dashboard summary with synthetic benchmark data',
     heroImgAlt:
-      'Benchmark Dashboard executive view: market KPIs, share, and strategic signals',
+      'Benchmark intelligence dashboard executive summary with synthetic revenue, share, and strategic signal cards',
     nav: [
-      ['Overview', '#overview'],
-      ['Flow', '#flow'],
+      ['Changed', '#overview'],
+      ['Architecture', '#flow'],
       ['Screens', '#screens'],
       ['Data', '#conexion'],
+      ['Safety', '#safety'],
       ['Result', '#resultado'],
     ] as const,
-    overviewEyebrow: 'Overview',
-    overviewH2: 'From spreadsheet logic to executive surface',
+    overviewEyebrow: 'What changed',
+    overviewH2: 'From dashboard surface to reusable intelligence framework',
     overviewP:
-      'The product form is front and center: a reusable benchmark cockpit that turns structured rows into comparison, trend, and decision views.',
+      'The current product is not just a static dashboard. It separates data logic from presentation logic so benchmark rows can move through validation, calculations, view-model builders, and then into a polished executive interface.',
     proofPoints: [
-      { value: '12', label: 'Dashboard views' },
-      { value: '3', label: 'Forecast scenarios' },
+      { value: '1', label: 'Explicit data contract' },
+      { value: '3', label: 'Release validation checks' },
       { value: '0', label: 'Private data exposed' },
     ],
     featureCards: [
-      { title: 'Ranking cockpit', description: 'Rank entities by revenue, visits, share, growth, or score.' },
-      { title: 'Trend reading', description: 'Displays evolution with share, growth, and indexed performance views.' },
-      { title: 'Context layer', description: 'Adds events, signals, and profiles around the metrics.' },
-      { title: 'Forecast surface', description: 'Compare base, aggressive, and conservative scenarios.' },
+      { title: 'Benchmark engine', description: 'Calculates share, rank, growth, efficiency, aggregations, and executive comparisons outside the UI layer.' },
+      { title: 'Source adapters', description: 'Converts mock JSON or simpler monthly rows into the same benchmark payload contract.' },
+      { title: 'View models', description: 'Builds chart, table, profile, event, and summary structures before React renders the interface.' },
+      { title: 'Public discipline', description: 'Keeps the demo portfolio-safe with synthetic data, validation scripts, and public-readiness checks.' },
     ],
     flowEyebrow: 'Architecture',
-    flowH2: 'A four-layer system',
+    flowH2: 'A framework pipeline, not a one-off screen',
     flowP:
-      'Data source, contract, normalization, and dashboard views. Each layer is visible without turning the page into documentation.',
-    flowDiagram: ['Data source', 'JSON contract', 'Normalization', 'Dashboard views'],
+      'The framework keeps ingestion, validation, benchmark calculation, view-model preparation, and interface rendering as distinct layers. That makes the demo replaceable without changing the dashboard experience.',
+    flowDiagram: ['Monthly data / mock JSON', 'Adapter', 'Schema validator', 'Benchmark engine', 'View models', 'React + Vite dashboard', 'Vercel deployment'],
     systemSteps: [
-      { num: '01', title: 'Data source', description: 'Local JSON, Google Sheets, database, warehouse, or API.' },
-      { num: '02', title: 'Contract', description: 'The endpoint returns interface, events, and dictionary.' },
-      { num: '03', title: 'Normalization', description: 'The app translates rows and metrics into a consistent format.' },
-      { num: '04', title: 'Visualization', description: 'The dashboard displays rankings, trends, events, comparisons, and forecasts.' },
+      { num: '01', title: 'Data source', description: 'Mock JSON or user-provided monthly benchmark rows.' },
+      { num: '02', title: 'Adapter', description: 'Transforms simple rows into the framework payload shape.' },
+      { num: '03', title: 'Schema validator', description: 'Checks that interface, events, and dictionary data satisfy the contract.' },
+      { num: '04', title: 'Benchmark engine', description: 'Normalizes rows and calculates ranks, shares, growth, efficiency, and aggregations.' },
+      { num: '05', title: 'View models', description: 'Prepares chart-ready, table-ready, profile-ready, and summary-ready data.' },
+      { num: '06', title: 'Dashboard UI', description: 'Renders the executive React/Vite interface and deploys safely on Vercel.' },
     ],
     screensEyebrow: 'Visual proof',
-    screensH2: 'Five views, one data source',
+    screensH2: 'Executive views from one benchmark contract',
     screensP:
-      'Rankings and competitive map show where each player stands. Forecast and indexed momentum reveal who\'s moving and where things are heading. Entity profile drills into any single brand — all from the same payload.',
+      'The screenshots show the product evidence: rankings, market-share distribution, indexed momentum, forecast scenarios, competitive mapping, event context, profile cards, and executive signals generated from the same structured payload.',
     gallery: [
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
-        alt: 'Period ranking and market share distribution by revenue',
-        label: 'Rankings',
-        caption: 'Real-time ranking by revenue, visits, or share. Market share distribution in a donut chart with per-entity breakdown.',
+        alt: 'Synthetic benchmark ranking table with market-share distribution by revenue',
+        label: 'Benchmark rankings + market share',
+        caption: 'Period ranking and share distribution from the interface rows, useful for executive comparison without exposing real company data.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/competitive_map.webp',
-        alt: 'Competitive map: positioning by traffic volume and revenue efficiency',
+        alt: 'Synthetic competitive map plotting traffic volume against revenue efficiency',
         label: 'Competitive map',
-        caption: 'Scatter by volume vs. efficiency. Quadrants to identify leaders, niches, and under-monetized traffic.',
+        caption: 'Positioning view that turns normalized metrics into a volume-versus-efficiency map for market-structure reading.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
-        alt: 'Forecast of visits and revenue by competitor',
-        label: 'Forecast',
-        caption: 'Visit and revenue projections per entity with base, aggressive, and conservative scenarios. Interactive series filter.',
+        alt: 'Synthetic forecast scenarios for visits and revenue by benchmark entity',
+        label: 'Forecast scenarios',
+        caption: 'Scenario view for projected visits and revenue, separated from the underlying benchmark calculations.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
-        alt: 'Indexed growth race across multiple competitors',
-        label: 'Indexed momentum',
-        caption: 'Growth relative to 100 from a shared starting point. Detects who\'s accelerating and who\'s losing ground.',
+        alt: 'Synthetic indexed growth momentum chart across benchmark entities',
+        label: 'Growth / indexed momentum',
+        caption: 'Indexed performance view that makes acceleration and relative momentum visible from a common baseline.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
-        alt: 'Individual entity profile with revenue, visits, share and ranking KPIs',
-        label: 'Entity profile',
-        caption: 'Individual company view: revenue, visits, share, ranking, and efficiency for any selected period.',
+        alt: 'Synthetic benchmark profile card with revenue, visits, share, rank, and efficiency KPIs',
+        label: 'Profile cards',
+        caption: 'Profile-level readout for a selected entity, with KPIs and ranking context prepared by the view-model layer.',
       },
     ],
     dataEyebrow: 'Data contract',
-    dataH2: 'Connectable without filling the page with noise',
+    dataH2: 'One payload shape powers the framework',
     dataP:
-      'The dashboard works with local JSON or an external endpoint. For portfolio purposes, it\'s enough to show the contract and integration logic — not every possible data source as a wall of chips.',
+      '`data.interface` is the source of truth. The public dashboard can run from mock JSON or user-provided monthly rows routed through an adapter, as long as the payload validates before it reaches the benchmark engine.',
     fieldDefs: [
-      { key: 'interface', label: 'Primary rows for metrics, entities, and periods.' },
-      { key: 'events', label: 'Optional annotations for campaigns, launches, or context.' },
-      { key: 'dictionary', label: 'Optional definitions and metadata for the interface layer.' },
+      { key: 'interface', label: 'Source-of-truth rows for dates, entities, markets, revenue, visits, ranks, shares, growth, and forecast fields.' },
+      { key: 'events', label: 'Optional public-safe annotations for launches, changes, or context overlays.' },
+      { key: 'dictionary', label: 'Optional definitions and metadata used to explain the interface layer.' },
+    ],
+    safetyEyebrow: 'Public-safe build discipline',
+    safetyH2: 'Synthetic data is part of the product design',
+    safetyP:
+      'The public repo is intentionally demonstrative: generated mock companies, synthetic values, empty public env examples, and no private source URLs. That constraint makes the case study publishable without weakening the engineering story.',
+    validationChecks: ['pnpm test', 'pnpm validate:data', 'pnpm audit:public'],
+    safetyBullets: [
+      'No real client data, competitor data, logos, or private API URLs.',
+      'Adapters support replaceable inputs while preserving the same validated contract.',
+      'Public-readiness checks make synthetic-data discipline visible before release.',
     ],
     resultEyebrow: 'Result',
-    resultH2: 'A public template with private-work standards',
+    resultH2: 'A reusable, portfolio-safe intelligence framework',
     resultP:
-      'The page should feel like a product page, not a technical dump: enough architecture to trust, visual space to inspect, and clear paths to demo and repository.',
+      'The outcome is a reusable executive dashboard framework for competitive intelligence prototypes, analytics UX, and data-product storytelling.',
     buildH3: 'Build',
     buildBullets: [
-      'React/Vite interface with Tailwind and Recharts visualizations.',
-      'Local JSON fallback and optional connector via VITE_BENCHMARK_API_URL.',
-      'Synthetic data generator and public audit before publishing.',
+      'React/Vite executive interface supported by schema validation, benchmark calculations, source adapters, and view-model builders.',
+      'Centralized configuration for focus company, benchmark company, enabled views, currency, locale, and defaults.',
+      'Synthetic mock-data policy and release checks before public publishing.',
     ],
     outcomeH3: 'Outcome',
     outcomeBullets: [
-      'Reusable template for benchmark, market share, growth, and forecast reporting.',
-      'Public demo mode that shows the product without exposing client or competitor data.',
-      'Clear data contract for Sheets, databases, warehouses, or any JSON API.',
+      'Reusable framework for rankings, market share, growth, forecasts, event overlays, profiles, and executive signals.',
+      'Portfolio-safe demo that shows the product without exposing real clients, competitors, or private infrastructure.',
+      'Clear data contract for mock JSON or user-provided benchmark rows.',
     ],
     calloutLabel: 'Takeaway',
     calloutText:
-      'A portfolio-safe benchmark product that demonstrates dashboard design, data modelling, and deployment discipline without relying on private information.',
+      'A serious data-product case study: architecture, interface proof, and public-safety constraints working together.',
   },
   es: {
     back: '← Casos de estudio',
+    heroEyebrow: 'Producto de datos / Framework de inteligencia benchmark',
+    heroTitle: 'Benchmark Intelligence Framework',
     heroSubtitle:
-      'Un dashboard público y reutilizable para convertir datos de benchmark en lectura ejecutiva.',
+      'Un framework público y seguro de inteligencia competitiva que convierte datos estructurados de benchmark en rankings ejecutivos, análisis de cuota, crecimiento, forecasts, perfiles y señales estratégicas.',
     heroDescription:
-      'El sistema toma un payload JSON normalizado y lo transforma en rankings, market share, crecimiento, forecast, perfiles y señales estratégicas. La versión pública usa datos sintéticos para enseñar la arquitectura sin exponer información privada.',
+      'El proyecto evolucionó de un dashboard visual a un framework frontend reutilizable: contrato de datos primero, lógica de cálculo separada de la presentación y validación pensada para publicar sin exponer información privada.',
     heroMockNotice:
-      'Solo en modo demo: entidades sintéticas, valores sintéticos, sin datos de clientes ni competidores reales.',
+      'Solo en modo demo: entidades sintéticas, valores sintéticos y etiquetas públicas; sin datos reales de clientes, competidores, logos ni fuentes privadas.',
     heroCTA: 'Ver la demo pública →',
     heroCTASecondary: 'Ver el repositorio →',
-    heroFigcaption: 'Vista ejecutiva del dashboard. Todos los datos son sintéticos.',
-    heroFigAriaLabel: 'Vista ejecutiva del dashboard con datos sintéticos',
+    heroFigcaption: 'Resumen ejecutivo, KPI cards, movimiento de share y señales estratégicas. Solo datos sintéticos.',
+    heroFigAriaLabel: 'Resumen ejecutivo del dashboard con datos sintéticos de benchmark',
     heroImgAlt:
-      'Vista ejecutiva del Benchmark Dashboard: KPIs de mercado, share y señales estratégicas',
+      'Resumen ejecutivo del dashboard de inteligencia benchmark con revenue, share y señales estratégicas sintéticas',
     nav: [
-      ['Resumen', '#overview'],
-      ['Flujo', '#flow'],
+      ['Cambio', '#overview'],
+      ['Arquitectura', '#flow'],
       ['Pantallas', '#screens'],
       ['Datos', '#conexion'],
+      ['Seguridad', '#safety'],
       ['Resultado', '#resultado'],
     ] as const,
-    overviewEyebrow: 'Resumen',
-    overviewH2: 'De lógica de spreadsheet a superficie ejecutiva',
+    overviewEyebrow: 'Qué cambió',
+    overviewH2: 'De superficie de dashboard a framework reutilizable de inteligencia',
     overviewP:
-      'El caso prioriza la forma del producto: un cockpit de benchmark reutilizable que convierte filas estructuradas en vistas de comparación, evolución y decisión.',
+      'El producto actual no es solo un dashboard estático. Separa la lógica de datos de la lógica de presentación para que las filas de benchmark pasen por validación, cálculos, view models y después por una interfaz ejecutiva pulida.',
     proofPoints: [
-      { value: '12', label: 'Vistas de dashboard' },
-      { value: '3', label: 'Escenarios de forecast' },
+      { value: '1', label: 'Contrato de datos explícito' },
+      { value: '3', label: 'Checks de validación' },
       { value: '0', label: 'Datos privados expuestos' },
     ],
     featureCards: [
-      { title: 'Ranking cockpit', description: 'Ordena entidades por revenue, visitas, share, crecimiento o score.' },
-      { title: 'Lectura de tendencia', description: 'Muestra evolución con vistas de share, growth e indexed performance.' },
-      { title: 'Capa de contexto', description: 'Añade eventos, señales y perfiles alrededor de las métricas.' },
-      { title: 'Forecast surface', description: 'Compara escenarios base, agresivos y conservadores.' },
+      { title: 'Benchmark engine', description: 'Calcula share, rank, crecimiento, eficiencia, agregaciones y comparativas ejecutivas fuera de la capa UI.' },
+      { title: 'Source adapters', description: 'Convierte mock JSON o filas mensuales simples en el mismo contrato de payload benchmark.' },
+      { title: 'View models', description: 'Prepara estructuras para charts, tablas, perfiles, eventos y resúmenes antes de renderizar React.' },
+      { title: 'Disciplina pública', description: 'Mantiene la demo segura para portfolio con datos sintéticos, scripts de validación y auditoría pública.' },
     ],
     flowEyebrow: 'Arquitectura',
-    flowH2: 'Un sistema de cuatro capas',
+    flowH2: 'Un pipeline de framework, no una pantalla aislada',
     flowP:
-      'Fuente de datos, contrato, normalización y vistas del dashboard. Cada capa es visible sin convertir la página en documentación.',
-    flowDiagram: ['Fuente de datos', 'Contrato JSON', 'Normalización', 'Vistas del dashboard'],
+      'El framework mantiene separadas la ingesta, validación, cálculo de benchmark, preparación de view models y renderizado de interfaz. Así la demo puede reemplazarse sin cambiar la experiencia del dashboard.',
+    flowDiagram: ['Datos mensuales / mock JSON', 'Adapter', 'Schema validator', 'Benchmark engine', 'View models', 'React + Vite dashboard', 'Vercel deployment'],
     systemSteps: [
-      { num: '01', title: 'Fuente de datos', description: 'JSON local, Google Sheets, base de datos, warehouse o API.' },
-      { num: '02', title: 'Contrato', description: 'El endpoint devuelve interface, events y dictionary.' },
-      { num: '03', title: 'Normalización', description: 'La app traduce filas y métricas a un formato consistente.' },
-      { num: '04', title: 'Visualización', description: 'El dashboard muestra rankings, tendencias, eventos, comparativas y forecast.' },
+      { num: '01', title: 'Fuente de datos', description: 'Mock JSON o filas mensuales de benchmark aportadas por el usuario.' },
+      { num: '02', title: 'Adapter', description: 'Transforma filas simples en la forma de payload del framework.' },
+      { num: '03', title: 'Schema validator', description: 'Comprueba que interface, events y dictionary cumplen el contrato.' },
+      { num: '04', title: 'Benchmark engine', description: 'Normaliza filas y calcula rankings, shares, crecimiento, eficiencia y agregaciones.' },
+      { num: '05', title: 'View models', description: 'Prepara datos listos para charts, tablas, perfiles y resumen ejecutivo.' },
+      { num: '06', title: 'Dashboard UI', description: 'Renderiza la interfaz ejecutiva React/Vite y despliega de forma segura en Vercel.' },
     ],
     screensEyebrow: 'Prueba visual',
-    screensH2: 'Cinco vistas, una sola fuente de datos',
+    screensH2: 'Vistas ejecutivas desde un único contrato benchmark',
     screensP:
-      'Rankings y mapa competitivo muestran dónde se sitúa cada jugador. Forecast y momentum indexado revelan quién se mueve y hacia dónde. El perfil de entidad profundiza en cualquier marca — todo desde el mismo payload.',
+      'Las capturas muestran la evidencia del producto: rankings, distribución de share, momentum indexado, escenarios de forecast, mapa competitivo, contexto de eventos, perfiles y señales ejecutivas generadas desde el mismo payload estructurado.',
     gallery: [
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
-        alt: 'Rankings y distribución de cuota de mercado por revenue',
-        label: 'Rankings',
-        caption: 'Clasificación en tiempo real por revenue, visitas o share. Distribución de cuota en donut con desglose por entidad.',
+        alt: 'Tabla de ranking benchmark sintético con distribución de cuota de mercado por revenue',
+        label: 'Benchmark rankings + market share',
+        caption: 'Ranking por periodo y distribución de share desde las filas de interface, útil para comparación ejecutiva sin datos reales de compañías.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/competitive_map.webp',
-        alt: 'Mapa competitivo: posicionamiento por tráfico y eficiencia de revenue',
+        alt: 'Mapa competitivo sintético que cruza volumen de tráfico y eficiencia de revenue',
         label: 'Mapa competitivo',
-        caption: 'Scatter por volumen vs. eficiencia. Cuadrantes para identificar líderes, nichos y tráfico no monetizado.',
+        caption: 'Vista de posicionamiento que convierte métricas normalizadas en lectura de volumen frente a eficiencia.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
-        alt: 'Forecast de visitas y revenue por competidor',
-        label: 'Forecast',
-        caption: 'Proyección de visitas y revenue por entidad con escenarios base, agresivo y conservador. Filtro de series interactivo.',
+        alt: 'Escenarios de forecast sintéticos para visitas y revenue por entidad benchmark',
+        label: 'Escenarios de forecast',
+        caption: 'Vista de escenarios para visitas y revenue proyectados, separada de los cálculos de benchmark de base.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
-        alt: 'Carrera de crecimiento indexado de múltiples competidores',
-        label: 'Momentum indexado',
-        caption: 'Crecimiento relativo a 100 desde un punto de partida compartido. Detecta quién acelera y quién cede terreno.',
+        alt: 'Gráfico sintético de momentum de crecimiento indexado entre entidades benchmark',
+        label: 'Growth / indexed momentum',
+        caption: 'Vista de performance indexada para hacer visible aceleración y momentum relativo desde una base común.',
       },
       {
         src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
-        alt: 'Perfil individual de entidad con KPIs de revenue, visitas y share',
-        label: 'Perfil de entidad',
-        caption: 'Vista individual por empresa: revenue, visitas, share, ranking y eficiencia para cualquier periodo seleccionado.',
+        alt: 'Profile card benchmark sintética con KPIs de revenue, visitas, share, ranking y eficiencia',
+        label: 'Profile cards',
+        caption: 'Lectura de perfil para una entidad seleccionada, con KPIs y contexto de ranking preparado por la capa de view models.',
       },
     ],
     dataEyebrow: 'Contrato de datos',
-    dataH2: 'Conectable sin llenar la página de ruido',
+    dataH2: 'Un único payload alimenta el framework',
     dataP:
-      'El dashboard puede funcionar con JSON local o un endpoint externo. En portfolio basta con mostrar el contrato y la lógica de integración, no todas las fuentes posibles como una pared de chips.',
+      '`data.interface` es la fuente de verdad. El dashboard público puede funcionar con mock JSON o filas mensuales aportadas por el usuario a través de un adapter, siempre que el payload valide antes de llegar al benchmark engine.',
     fieldDefs: [
-      { key: 'interface', label: 'Filas principales para métricas, entidades y periodos.' },
-      { key: 'events', label: 'Anotaciones opcionales para campañas, lanzamientos o contexto.' },
-      { key: 'dictionary', label: 'Definiciones y metadata opcional para la capa de interfaz.' },
+      { key: 'interface', label: 'Filas fuente para fechas, entidades, mercados, revenue, visitas, rankings, shares, crecimiento y campos de forecast.' },
+      { key: 'events', label: 'Anotaciones opcionales y seguras para overlays de lanzamientos, cambios o contexto.' },
+      { key: 'dictionary', label: 'Definiciones y metadata opcional para explicar la capa de interface.' },
+    ],
+    safetyEyebrow: 'Disciplina pública de build',
+    safetyH2: 'Los datos sintéticos son parte del diseño del producto',
+    safetyP:
+      'El repo público es deliberadamente demostrativo: compañías mock generadas, valores sintéticos, ejemplos de env vacíos y ninguna URL privada. Esa restricción hace publicable el caso sin debilitar la historia técnica.',
+    validationChecks: ['pnpm test', 'pnpm validate:data', 'pnpm audit:public'],
+    safetyBullets: [
+      'Sin datos reales de clientes, competidores, logos ni URLs privadas.',
+      'Los adapters permiten reemplazar inputs preservando el mismo contrato validado.',
+      'Los checks de publicación hacen visible la disciplina de datos sintéticos antes del release.',
     ],
     resultEyebrow: 'Resultado',
-    resultH2: 'Una plantilla pública con criterio de trabajo privado',
+    resultH2: 'Un framework de inteligencia reutilizable y seguro para portfolio',
     resultP:
-      'La página debe sentirse como una página de producto, no como un volcado técnico: arquitectura suficiente para confiar, espacio visual para inspeccionar y salidas claras hacia demo y repositorio.',
+      'El resultado es un framework de dashboard ejecutivo reutilizable para prototipos de inteligencia competitiva, analytics UX y storytelling de producto de datos.',
     buildH3: 'Construcción',
     buildBullets: [
-      'Interfaz React/Vite con Tailwind y visualizaciones en Recharts.',
-      'Fallback local en JSON y conector opcional mediante VITE_BENCHMARK_API_URL.',
-      'Generador de datos sintéticos y auditoría pública antes de publicar.',
+      'Interfaz ejecutiva React/Vite apoyada en validación de schema, cálculos benchmark, source adapters y view-model builders.',
+      'Configuración centralizada para focus company, benchmark company, vistas activas, moneda, locale y defaults.',
+      'Política de mock data sintética y checks de release antes de publicar.',
     ],
     outcomeH3: 'Resultado',
     outcomeBullets: [
-      'Plantilla reutilizable para benchmark, market share, growth y forecast reporting.',
-      'Demo pública que muestra el producto sin exponer datos de clientes o competidores.',
-      'Contrato de datos claro para Sheets, bases de datos, warehouses o cualquier API JSON.',
+      'Framework reutilizable para rankings, market share, crecimiento, forecasts, event overlays, perfiles y señales ejecutivas.',
+      'Demo segura para portfolio que muestra el producto sin exponer clientes, competidores o infraestructura privada.',
+      'Contrato de datos claro para mock JSON o filas benchmark aportadas por el usuario.',
     ],
     calloutLabel: 'Conclusión',
     calloutText:
-      'Un producto de benchmark seguro para portfolio que muestra diseño de dashboard, modelado de datos y disciplina de despliegue sin depender de información privada.',
+      'Un caso serio de producto de datos: arquitectura, prueba visual y restricciones públicas trabajando juntas.',
   },
 }
 
@@ -269,9 +301,9 @@ export default function BenchmarkDashboardPage() {
             <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
               {t.back}
             </Link>
-            <p className="data-brief-eyebrow">Data product / Benchmark dashboard</p>
+            <p className="data-brief-eyebrow">{t.heroEyebrow}</p>
             <h1 id="benchmark-title" className="benchmark-hero__title">
-              Benchmark Dashboard Template
+              {t.heroTitle}
             </h1>
             <p className="benchmark-hero__subtitle">{t.heroSubtitle}</p>
             <p className="benchmark-hero__description">{t.heroDescription}</p>
@@ -355,12 +387,12 @@ export default function BenchmarkDashboardPage() {
             </div>
             <div className="benchmark-diagram" aria-label="System flow">
               {t.flowDiagram.map((step, i) => (
-                <>
+                <Fragment key={step}>
                   <span key={step}>{step}</span>
                   {i < t.flowDiagram.length - 1 && (
                     <span key={`arrow-${i}`} className="benchmark-diagram__arrow">→</span>
                   )}
-                </>
+                </Fragment>
               ))}
             </div>
             <div className="data-brief-card-grid benchmark-system-grid">
@@ -456,6 +488,33 @@ export default function BenchmarkDashboardPage() {
                   </div>
                 ))}
               </dl>
+            </div>
+          </div>
+        </section>
+
+        {/* ── PUBLIC SAFETY ── */}
+        <section
+          id="safety"
+          className="data-brief-section data-brief-section--light benchmark-section benchmark-section--safety"
+          aria-labelledby="benchmark-safety"
+        >
+          <div className="data-brief-section__container data-brief-two-column">
+            <div className="benchmark-section-heading benchmark-section-heading--sticky">
+              <p className="data-brief-eyebrow">{t.safetyEyebrow}</p>
+              <h2 id="benchmark-safety">{t.safetyH2}</h2>
+              <p>{t.safetyP}</p>
+            </div>
+            <div className="benchmark-safety-stack">
+              <div className="benchmark-validation-panel" aria-label="Public release validation commands">
+                {t.validationChecks.map((check) => (
+                  <code key={check}>{check}</code>
+                ))}
+              </div>
+              <ul className="data-brief-list benchmark-safety-list">
+                {t.safetyBullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
