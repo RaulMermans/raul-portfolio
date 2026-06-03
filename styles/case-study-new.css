@@ -2913,6 +2913,9 @@ main.case-study-page-new {
   position: relative;
   z-index: 1;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .benchmark-hero__visual figcaption {
@@ -2927,7 +2930,9 @@ main.case-study-page-new {
 
 .benchmark-hero__screenshot {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: min(72vh, 56rem);
   height: auto;
   object-fit: unset;
   border-radius: 8px;
@@ -3913,34 +3918,30 @@ main.case-study-page-new {
 /* ── Benchmark gallery (real screenshots) ─────────────────────────── */
 
 .benchmark-gallery {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(1rem, 2vw, 1.5rem);
   margin-top: clamp(2.75rem, 5vw, 4rem);
 }
 
-.benchmark-gallery__pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1rem, 2vw, 1.5rem);
-  align-items: start;
-}
-
-/* rankings (1.598:1) + competitive map (1.981:1) → ratio 1.981/1.598 = 1.24 */
-.benchmark-gallery__pair--market {
-  grid-template-columns: 1fr 1.24fr;
-}
-
-/* forecast (1.618:1) + indexed momentum (1.779:1) → ratio 1.779/1.618 = 1.1 */
-.benchmark-gallery__pair--trend {
-  grid-template-columns: 1fr 1.1fr;
-}
-
 .benchmark-screen {
+  grid-column: span 6;
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+}
+
+.benchmark-screen--wide {
+  grid-column: 1 / -1;
+}
+
+.benchmark-screen--large {
+  grid-column: span 7;
+}
+
+.benchmark-screen--tall {
+  grid-column: span 5;
 }
 
 .benchmark-screen img {
@@ -3972,9 +3973,11 @@ main.case-study-page-new {
   max-width: 48ch;
 }
 
-@media (max-width: 640px) {
-  .benchmark-gallery__pair {
-    grid-template-columns: 1fr;
+@media (max-width: 980px) {
+  .benchmark-screen,
+  .benchmark-screen--large,
+  .benchmark-screen--tall {
+    grid-column: 1 / -1;
   }
 }
 

@@ -82,37 +82,70 @@ const content = {
     screensEyebrow: 'Visual proof',
     screensH2: 'Executive views from one benchmark contract',
     screensP:
-      'The screenshots show the product evidence: rankings, market-share distribution, indexed momentum, forecast scenarios, competitive mapping, event context, profile cards, and executive signals generated from the same structured payload.',
+      'The updated interface now reads like a benchmark operating room: view selectors, period availability, rankings, momentum, player profiles, head-to-head comparison, and forecast paths generated from the same structured payload.',
     gallery: [
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
-        alt: 'Synthetic benchmark ranking table with market-share distribution by revenue',
-        label: 'Benchmark rankings + market share',
-        caption: 'Period ranking and share distribution from the interface rows, useful for executive comparison without exposing real company data.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/view_selector.webp',
+        alt: 'Benchmark dashboard navigation with Panel principal, Players, Battle Arena, and Forecast tabs',
+        label: 'View selector',
+        caption: 'The interface is organized around executive modes: market overview, player profiles, head-to-head battle, and forecast workspace.',
+        layout: 'wide',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/competitive_map.webp',
-        alt: 'Synthetic competitive map plotting traffic volume against revenue efficiency',
-        label: 'Competitive map',
-        caption: 'Positioning view that turns normalized metrics into a volume-versus-efficiency map for market-structure reading.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/time_selector.webp',
+        alt: 'Benchmark dashboard time selector showing year mode and data availability by metric',
+        label: 'Time and data availability',
+        caption: 'The context panel makes the selected period explicit and shows which metrics are available before the benchmark engine renders a view.',
+        layout: 'tall',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
-        alt: 'Synthetic forecast scenarios for visits and revenue by benchmark entity',
-        label: 'Forecast scenarios',
-        caption: 'Scenario view for projected visits and revenue, separated from the underlying benchmark calculations.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/competitive_ranking.webp',
+        alt: 'Synthetic competitive ranking table with revenue distribution chart',
+        label: 'Competitive ranking',
+        caption: 'Period ranking and distribution from the interface rows, useful for executive comparison without exposing real company data.',
+        layout: 'large',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
+        src: '/images/case-studies/benchmark-dashboard/gallery/momentum.webp',
         alt: 'Synthetic indexed growth momentum chart across benchmark entities',
-        label: 'Growth / indexed momentum',
-        caption: 'Indexed performance view that makes acceleration and relative momentum visible from a common baseline.',
+        label: 'Growth momentum',
+        caption: 'Separates added volume from relative growth so the measured market stays a reference, not a second dashboard.',
+        layout: 'tall',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
-        alt: 'Synthetic benchmark profile card with revenue, visits, share, rank, and efficiency KPIs',
-        label: 'Profile cards',
-        caption: 'Profile-level readout for a selected entity, with KPIs and ranking context prepared by the view-model layer.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/player_view.webp',
+        alt: 'Synthetic player profile page with executive snapshot and KPI cards',
+        label: 'Player profile',
+        caption: 'Profile-level readout for a selected entity, with executive summary, KPI cards, rank, share, and efficiency context.',
+        layout: 'tall',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/player_graph.webp',
+        alt: 'Synthetic player graph with selectable benchmark series and revenue history',
+        label: 'Player graph',
+        caption: 'A focused graph workspace lets the user compare a player against market average or selected peers across historical metrics.',
+        layout: 'large',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/battle_arena.webp',
+        alt: 'Synthetic battle arena comparing two benchmark players across visits, revenue, share, and efficiency',
+        label: 'Battle arena',
+        caption: 'Head-to-head comparison turns benchmark rows into a clear player-versus-player reading across scale, share, growth, and efficiency.',
+        layout: 'tall',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/forecast_market.webp',
+        alt: 'Synthetic market projection page with projected visits and revenue by player',
+        label: 'Market forecast',
+        caption: 'Forecast workspace separates projected periods from observed history and keeps forecast values clearly labelled.',
+        layout: 'large',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/forecast_player.webp',
+        alt: 'Synthetic observed history and forecast line chart for a benchmark player',
+        label: 'Player forecast',
+        caption: 'Player-level projection shows observed history, the last observed date, and a dashed forecast path for future periods.',
+        layout: 'wide',
       },
     ],
     dataEyebrow: 'Data contract',
@@ -209,37 +242,70 @@ const content = {
     screensEyebrow: 'Prueba visual',
     screensH2: 'Vistas ejecutivas desde un único contrato benchmark',
     screensP:
-      'Las capturas muestran la evidencia del producto: rankings, distribución de share, momentum indexado, escenarios de forecast, mapa competitivo, contexto de eventos, perfiles y señales ejecutivas generadas desde el mismo payload estructurado.',
+      'La interfaz actualizada funciona como una sala de control de benchmark: selector de vistas, disponibilidad por periodo, rankings, momentum, perfiles, comparación cara a cara y forecast desde el mismo payload estructurado.',
     gallery: [
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/period_ranking.webp',
-        alt: 'Tabla de ranking benchmark sintético con distribución de cuota de mercado por revenue',
-        label: 'Benchmark rankings + market share',
-        caption: 'Ranking por periodo y distribución de share desde las filas de interface, útil para comparación ejecutiva sin datos reales de compañías.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/view_selector.webp',
+        alt: 'Navegación del dashboard benchmark con pestañas Panel principal, Players, Battle Arena y Forecast',
+        label: 'Selector de vistas',
+        caption: 'La interfaz se organiza por modos ejecutivos: overview de mercado, perfiles, batalla cara a cara y espacio de forecast.',
+        layout: 'wide',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/competitive_map.webp',
-        alt: 'Mapa competitivo sintético que cruza volumen de tráfico y eficiencia de revenue',
-        label: 'Mapa competitivo',
-        caption: 'Vista de posicionamiento que convierte métricas normalizadas en lectura de volumen frente a eficiencia.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/time_selector.webp',
+        alt: 'Selector temporal del dashboard benchmark con modo año y disponibilidad de métricas',
+        label: 'Tiempo y disponibilidad',
+        caption: 'El panel de contexto explicita el periodo seleccionado y muestra qué métricas están disponibles antes de renderizar la lectura.',
+        layout: 'tall',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/forecast.webp',
-        alt: 'Escenarios de forecast sintéticos para visitas y revenue por entidad benchmark',
-        label: 'Escenarios de forecast',
-        caption: 'Vista de escenarios para visitas y revenue proyectados, separada de los cálculos de benchmark de base.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/competitive_ranking.webp',
+        alt: 'Ranking competitivo sintético con tabla de facturación y gráfico de distribución',
+        label: 'Ranking competitivo',
+        caption: 'Ranking por periodo y distribución desde las filas de interface, útil para comparación ejecutiva sin datos reales de compañías.',
+        layout: 'large',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/index_growth.webp',
+        src: '/images/case-studies/benchmark-dashboard/gallery/momentum.webp',
         alt: 'Gráfico sintético de momentum de crecimiento indexado entre entidades benchmark',
-        label: 'Growth / indexed momentum',
-        caption: 'Vista de performance indexada para hacer visible aceleración y momentum relativo desde una base común.',
+        label: 'Momentum de crecimiento',
+        caption: 'Separa volumen añadido y crecimiento relativo para que el mercado medido funcione como referencia, no como otra lectura aislada.',
+        layout: 'tall',
       },
       {
-        src: '/images/case-studies/benchmark-dashboard/gallery/own_brand_stats.webp',
-        alt: 'Profile card benchmark sintética con KPIs de revenue, visitas, share, ranking y eficiencia',
-        label: 'Profile cards',
-        caption: 'Lectura de perfil para una entidad seleccionada, con KPIs y contexto de ranking preparado por la capa de view models.',
+        src: '/images/case-studies/benchmark-dashboard/gallery/player_view.webp',
+        alt: 'Perfil sintético de player con executive snapshot y tarjetas KPI',
+        label: 'Player profile',
+        caption: 'Lectura individual para una entidad seleccionada, con resumen ejecutivo, KPIs, ranking, share y eficiencia.',
+        layout: 'tall',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/player_graph.webp',
+        alt: 'Gráfica sintética de player con selección de series benchmark e histórico de facturación',
+        label: 'Player graph',
+        caption: 'Un espacio de gráfica enfocado permite comparar un player contra el promedio de mercado o peers seleccionados.',
+        layout: 'large',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/battle_arena.webp',
+        alt: 'Battle Arena sintética comparando dos players por visitas, facturación, cuota y eficiencia',
+        label: 'Battle arena',
+        caption: 'La comparación cara a cara convierte filas benchmark en una lectura directa de escala, cuota, crecimiento y eficiencia.',
+        layout: 'tall',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/forecast_market.webp',
+        alt: 'Proyección sintética de mercado con visitas y facturación proyectadas por player',
+        label: 'Forecast de mercado',
+        caption: 'El espacio de forecast separa periodos proyectados del histórico observado y etiqueta con claridad los valores forecast.',
+        layout: 'large',
+      },
+      {
+        src: '/images/case-studies/benchmark-dashboard/gallery/forecast_player.webp',
+        alt: 'Histórico observado y forecast sintético de un player benchmark',
+        label: 'Forecast por player',
+        caption: 'La proyección individual muestra histórico observado, último dato observado y una ruta forecast punteada para periodos futuros.',
+        layout: 'wide',
       },
     ],
     dataEyebrow: 'Contrato de datos',
@@ -420,43 +486,19 @@ export default function BenchmarkDashboardPage() {
               <p>{t.screensP}</p>
             </div>
             <div className="benchmark-gallery">
-              {/* Pair A — market position: rankings (1.598:1) + competitive map (1.981:1)
-                  Column ratio 1fr/1.24fr gives both images the same display height */}
-              <div className="benchmark-gallery__pair benchmark-gallery__pair--market">
-                {t.gallery.slice(0, 2).map((screen) => (
-                  <figure key={screen.label} className="benchmark-screen">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={screen.src} alt={screen.alt} loading="lazy" />
-                    <figcaption>
-                      <span className="data-brief-eyebrow">{screen.label}</span>
-                      <p>{screen.caption}</p>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-              {/* Pair B — dynamics: forecast (1.618:1) + indexed momentum (1.779:1)
-                  Column ratio 1fr/1.1fr gives both images the same display height */}
-              <div className="benchmark-gallery__pair benchmark-gallery__pair--trend">
-                {t.gallery.slice(2, 4).map((screen) => (
-                  <figure key={screen.label} className="benchmark-screen">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={screen.src} alt={screen.alt} loading="lazy" />
-                    <figcaption>
-                      <span className="data-brief-eyebrow">{screen.label}</span>
-                      <p>{screen.caption}</p>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-              {/* Full-width strip — entity profile (3.325:1, too wide for a pair) */}
-              <figure className="benchmark-screen benchmark-screen--full">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={t.gallery[4].src} alt={t.gallery[4].alt} loading="lazy" />
-                <figcaption>
-                  <span className="data-brief-eyebrow">{t.gallery[4].label}</span>
-                  <p>{t.gallery[4].caption}</p>
-                </figcaption>
-              </figure>
+              {t.gallery.map((screen) => (
+                <figure
+                  key={screen.label}
+                  className={`benchmark-screen benchmark-screen--${screen.layout}`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={screen.src} alt={screen.alt} loading="lazy" />
+                  <figcaption>
+                    <span className="data-brief-eyebrow">{screen.label}</span>
+                    <p>{screen.caption}</p>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>
