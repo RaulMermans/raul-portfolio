@@ -2932,7 +2932,7 @@ main.case-study-page-new {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: min(72vh, 56rem);
+  max-height: min(58vh, 42rem);
   height: auto;
   object-fit: unset;
   border-radius: 8px;
@@ -3813,6 +3813,14 @@ main.case-study-page-new {
   background: var(--cream-light);
 }
 
+.benchmark-safety-list li {
+  color: rgba(26, 23, 20, 0.74);
+}
+
+.benchmark-safety-list li::before {
+  background: var(--accent);
+}
+
 .benchmark-result-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3921,7 +3929,8 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(1rem, 2vw, 1.5rem);
-  margin-top: clamp(2.75rem, 5vw, 4rem);
+  width: min(100%, 78rem);
+  margin: clamp(2.75rem, 5vw, 4rem) auto 0;
 }
 
 .benchmark-screen {
@@ -3933,7 +3942,7 @@ main.case-study-page-new {
 }
 
 .benchmark-screen--wide {
-  grid-column: 1 / -1;
+  grid-column: 2 / -2;
 }
 
 .benchmark-screen--large {
@@ -3947,11 +3956,27 @@ main.case-study-page-new {
 .benchmark-screen img {
   display: block;
   width: 100%;
+  max-height: 42rem;
   height: auto;
-  object-fit: unset;
+  object-fit: contain;
+  background: rgba(245, 240, 235, 0.56);
   border-radius: 6px;
   border: 1px solid rgba(26, 23, 20, 0.1);
   box-shadow: 0 2px 16px rgba(26, 23, 20, 0.08);
+}
+
+.benchmark-screen--wide img {
+  max-height: 34rem;
+}
+
+.benchmark-screen--large img {
+  max-height: 46rem;
+}
+
+.benchmark-screen--tall img {
+  width: min(100%, 30rem);
+  max-height: 48rem;
+  align-self: center;
 }
 
 .benchmark-screen figcaption {
@@ -3975,9 +4000,14 @@ main.case-study-page-new {
 
 @media (max-width: 980px) {
   .benchmark-screen,
+  .benchmark-screen--wide,
   .benchmark-screen--large,
   .benchmark-screen--tall {
     grid-column: 1 / -1;
+  }
+
+  .benchmark-screen--tall img {
+    width: min(100%, 34rem);
   }
 }
 
