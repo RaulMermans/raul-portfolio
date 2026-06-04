@@ -8,9 +8,45 @@ import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import {
+  CommercialCaseStudyClosing,
+  CommercialCaseStudyIntro,
+  type CommercialCaseStudyContent,
+} from '@/components/case-studies/CommercialCaseStudySections'
 
 const demoUrl = 'https://benchmark-dashboard-tb47.vercel.app/'
 const githubUrl = 'https://github.com/RaulMermans/benchmark_dashboard'
+
+const commercialContent: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Type', value: 'Competitive intelligence framework' },
+    { label: 'Use case', value: 'Benchmarking, market context, positioning analysis, executive dashboards' },
+    { label: 'Role', value: 'Product logic, dashboard architecture, data contract design, frontend implementation' },
+    { label: 'Stack', value: 'React, Vite, benchmark engine, adapters, view models, synthetic data, Vercel' },
+    { label: 'Status', value: 'Live demo and GitHub available; public-safe synthetic data only' },
+  ],
+  links: [
+    { label: 'View Prototype', href: demoUrl, external: true },
+    { label: 'View GitHub', href: githubUrl, external: true },
+  ],
+  businessContext:
+    'Competitor research often becomes a mix of disconnected screenshots, manually assembled tables, and hard-to-repeat analysis. This project explores how structured benchmark data can become a reusable intelligence surface for clearer market context and positioning decisions.',
+  systemSummary:
+    'The framework uses a defined payload contract, adapters, schema validation, benchmark calculations, view-model builders, and a React/Vite dashboard. It is deliberately public-safe: demo data is synthetic, private sources are excluded, and validation checks protect the portfolio artifact.',
+  systemItems: [
+    { title: 'Inputs', description: 'Mock JSON or monthly benchmark rows shaped into a validated interface, events, and dictionary contract.' },
+    { title: 'Workflow', description: 'Adapter, schema validation, benchmark engine, view-model generation, dashboard rendering, and release checks.' },
+    { title: 'Processing logic', description: 'Ranks, share, growth, efficiency, forecasts, player profiles, and comparisons are calculated outside the UI layer.' },
+    { title: 'Output', description: 'Executive dashboard views for market overview, profiles, head-to-head comparison, forecasts, and strategic signals.' },
+    { title: 'Guardrails', description: 'Synthetic-data discipline, no real client or competitor data, and public-readiness validation before publishing.' },
+  ],
+  whyItMatters:
+    'Competitive intelligence becomes more valuable when the research logic is repeatable. This framework defines inputs, calculations, view models, and public-safety constraints so benchmark analysis can move beyond one-off decks and into a reusable operating surface.',
+  clientRelevance:
+    'A client-facing version could help brand, ecommerce, marketing, or strategy teams compare markets, structure competitor research, monitor positioning signals, and produce clearer executive readouts without rebuilding the analysis from scratch.',
+  ctaCopy:
+    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+}
 
 const tags = ['React/Vite', 'Benchmark engine', 'Adapters', 'View models', 'Synthetic data']
 
@@ -37,8 +73,8 @@ const content = {
       'The project evolved from a visual dashboard into a reusable frontend intelligence framework: data contract first, calculation logic separated from presentation, and portfolio-ready validation around every public artifact.',
     heroMockNotice:
       'Demo mode only: synthetic entities, synthetic values, public-safe labels — no real client, competitor, logo, or private source data.',
-    heroCTA: 'View live demo →',
-    heroCTASecondary: 'View repository →',
+    heroCTA: 'View Prototype →',
+    heroCTASecondary: 'View GitHub →',
     heroFigcaption: 'Executive summary, KPI cards, share movement, and strategic signal cards. Synthetic demo data only.',
     heroFigAriaLabel: 'Executive dashboard summary with synthetic benchmark data',
     heroImgAlt:
@@ -408,6 +444,8 @@ export default function BenchmarkDashboardPage() {
           ))}
         </nav>
 
+        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+
         {/* ── OVERVIEW ── */}
         <section
           id="overview"
@@ -605,6 +643,8 @@ export default function BenchmarkDashboardPage() {
             </aside>
           </div>
         </section>
+
+        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
 
         <CaseStudyNext
           currentHref={pathname}

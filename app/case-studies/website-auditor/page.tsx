@@ -5,10 +5,43 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import {
+  CommercialCaseStudyClosing,
+  CommercialCaseStudyIntro,
+  type CommercialCaseStudyContent,
+} from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
 const githubUrl = 'https://github.com/RaulMermans/website-auditor'
+
+const commercialContent: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Type', value: 'Evidence-based AI audit workflow' },
+    { label: 'Use case', value: 'Website diagnostics, UX/SEO/conversion review, internal prospect intelligence' },
+    { label: 'Role', value: 'System architecture, workflow logic, product framing, frontend/backend implementation' },
+    { label: 'Stack', value: 'Next.js, TypeScript, Postgres, pg-boss, Playwright, Gemini, Vercel' },
+    { label: 'Status', value: 'Private internal prototype with public GitHub available' },
+  ],
+  links: [{ label: 'View GitHub', href: githubUrl, external: true }],
+  businessContext:
+    'Website reviews are high-friction because teams need evidence, prioritization, and commercial interpretation, not generic AI feedback. This project explores how AI can support faster diagnostics while keeping measurement, observation, and inference separate.',
+  systemSummary:
+    'The system takes a public URL, captures rendered or static evidence, persists the run, applies deterministic scoring, and only then passes accepted findings into an AI synthesis layer. The report keeps evidence labels visible so recommendations can be reviewed instead of blindly trusted.',
+  systemItems: [
+    { title: 'Inputs', description: 'Public website URLs and captured page evidence from browser-first or static collection.' },
+    { title: 'Workflow', description: 'URL intake, capture, evidence storage, deterministic scoring, bounded synthesis, and internal report assembly.' },
+    { title: 'Processing logic', description: 'Rules create audit findings and scores before the model summarizes accepted evidence.' },
+    { title: 'Output', description: 'Private report with scores, confidence, evidence labels, top findings, and prioritized recommendations.' },
+    { title: 'Guardrails', description: 'The LLM cannot create findings, modify scores, invent metrics, or present inferred claims as measured truth.' },
+  ],
+  whyItMatters:
+    'AI audits become risky when they collapse evidence and interpretation into one model response. This system defines clear inputs, accepted evidence, deterministic scoring, and reviewable AI synthesis, which makes the recommendations more useful for teams that need repeatable diagnostics.',
+  clientRelevance:
+    'A client-facing version could help marketing, ecommerce, CRM, or growth teams standardize site audits, speed up UX/SEO/conversion diagnostics, and turn messy website observations into clearer decision support.',
+  ctaCopy:
+    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+}
 
 const content = {
   en: {
@@ -20,7 +53,7 @@ const content = {
     heroDescription:
       'The goal was to turn website review from subjective opinion into a repeatable evidence workflow, while keeping AI useful but bounded.',
     heroCTAGithub: 'View GitHub →',
-    heroCTAHow: 'How it works',
+    heroCTAHow: 'View System Logic',
     heroFigcaption: 'Representative preview. Not a live audit result.',
     heroFigAriaLabel: 'Website Audit Agent representative report preview',
     tags: ['Rule-first audit engine', 'Browser-first capture', 'Bounded LLM synthesis', 'Private internal tool'],
@@ -212,7 +245,7 @@ const content = {
       'Future work includes evals, model comparison, observability, and real audit examples.',
     ],
     resultCTAGithub: 'View GitHub →',
-    resultCTAWorkflow: 'Review workflow',
+    resultCTAWorkflow: 'View System Logic',
     report: {
       title: 'Website Audit Agent',
       status: 'Complete',
@@ -578,6 +611,8 @@ export default function WebsiteAuditorPage() {
           ))}
         </nav>
 
+        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+
         <section
           id="problem"
           className="data-brief-section data-brief-section--cream website-auditor-problem-section"
@@ -815,6 +850,8 @@ export default function WebsiteAuditorPage() {
             </div>
           </div>
         </section>
+
+        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
 
         <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
       </main>

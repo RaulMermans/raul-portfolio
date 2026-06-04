@@ -6,6 +6,9 @@ export interface CaseStudy {
   slug: string
   title: string
   description: string
+  commercialRelevance?: string
+  tags?: string[]
+  cta?: string
   image: string
   imageWidth: number
   imageHeight: number
@@ -24,7 +27,11 @@ const caseStudyEntries = {
       slug: 'raul-portfolio',
       title: 'Raul Mermans Portfolio',
       description:
-        'Personal brand system for strategy, AI/product work, photography, and visual experimentation.',
+        'Digital identity system that structures AI/product work, brand strategy, photography, and visual experimentation into one coherent portfolio.',
+      commercialRelevance:
+        'For teams that need a clearer way to present multidisciplinary capability, technical proof, and brand judgment without fragmenting the story.',
+      tags: ['Portfolio System', 'Brand Architecture', 'Technical Proof'],
+      cta: 'View Case Study',
       image: '/images/case-studies/case-studies-thumbnail.webp',
       imageWidth: 3000,
       imageHeight: 2000,
@@ -37,7 +44,11 @@ const caseStudyEntries = {
       slug: 'benchmark-dashboard',
       title: 'Benchmark Dashboard Template',
       description:
-        'Reusable dashboard template for rankings, trends, and forecasts.',
+        'Competitive intelligence framework for comparing brands, markets, and positioning signals through structured research and dashboard logic.',
+      commercialRelevance:
+        'For teams that need clearer market context, sharper positioning, and repeatable competitor analysis.',
+      tags: ['Benchmarking', 'Market Intelligence', 'Brand Strategy'],
+      cta: 'View System Logic',
       image: '/images/case-studies/benchmark-dashboard/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
@@ -50,7 +61,11 @@ const caseStudyEntries = {
       slug: 'ai-sports',
       title: 'AI Sports Campaign',
       description:
-        'n8n campaign workflow for consistent casting and art direction.',
+        'AI campaign workflow that keeps scene, lighting, and art-direction logic stable while controlled casting and wardrobe variables change.',
+      commercialRelevance:
+        'For creative and brand teams that need faster campaign iteration without losing visual continuity or review control.',
+      tags: ['AI Campaign System', 'Creative Operations', 'Brand Consistency'],
+      cta: 'View Case Study',
       image: '/images/case-studies/ai-sports/thumb/thumb.webp',
       imageWidth: 2752,
       imageHeight: 1536,
@@ -63,7 +78,11 @@ const caseStudyEntries = {
       slug: 'remoria',
       title: 'Remoria',
       description:
-        'Luxury brand system built around identity, restraint, and story.',
+        'Luxury fragrance brand system built around identity, restraint, verbal worldbuilding, and scalable creative rules.',
+      commercialRelevance:
+        'For brand teams that need a coherent identity system that can guide future product stories, content, packaging, and creative direction.',
+      tags: ['Brand System', 'Creative Direction', 'Luxury Identity'],
+      cta: 'View Case Study',
       image: '/images/case-studies/remoria/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
@@ -76,7 +95,11 @@ const caseStudyEntries = {
       slug: 'data-brief-ai',
       title: 'DataBrief AI',
       description:
-        'Bounded AI workflow for grounded spreadsheet reports.',
+        'AI reporting system that transforms spreadsheet inputs into structured, evidence-based business briefs without unsupported metrics.',
+      commercialRelevance:
+        'For teams that need faster reporting, clearer summaries, and more reliable decision support from messy CSV or XLSX files.',
+      tags: ['AI Reporting', 'Data Analysis', 'Decision Support'],
+      cta: 'View System Logic',
       image: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
       imageWidth: 1254,
       imageHeight: 1254,
@@ -89,7 +112,11 @@ const caseStudyEntries = {
       slug: 'website-auditor',
       title: 'Website Audit Agent',
       description:
-        'Evidence-backed audit workflow for UX, SEO, performance, content, and prospect intelligence.',
+        'Website audit system that separates deterministic evidence from AI synthesis to produce more reliable UX, SEO, and conversion recommendations.',
+      commercialRelevance:
+        'For teams that need faster site diagnostics without relying on generic, unsupported AI feedback.',
+      tags: ['Website Audit', 'AI Evaluation', 'Conversion'],
+      cta: 'View System Logic',
       image: '/images/case-studies/website-auditor/thumb/thumb.webp',
       imageWidth: 1672,
       imageHeight: 941,
@@ -186,6 +213,9 @@ export function getCaseStudies(locale: Locale): CaseStudy[] {
     slug: study.slug,
     title: study.title,
     description: study.description,
+    commercialRelevance: study.commercialRelevance,
+    tags: study.tags,
+    cta: study.cta,
     image: study.image,
     imageWidth: study.imageWidth,
     imageHeight: study.imageHeight,

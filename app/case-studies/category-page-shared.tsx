@@ -69,7 +69,7 @@ export default function CaseStudyCategoryPage({ categorySlug }: CaseStudyCategor
                         {project.href
                           ? locale === 'es'
                             ? 'Ver caso'
-                            : 'View case'
+                            : 'View System Logic'
                           : locale === 'es'
                             ? 'Próximamente'
                             : 'Coming soon'}

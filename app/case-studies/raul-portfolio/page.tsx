@@ -5,11 +5,47 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import {
+  CommercialCaseStudyClosing,
+  CommercialCaseStudyIntro,
+  type CommercialCaseStudyContent,
+} from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
 const liveUrl = 'https://www.raulmermans.com'
 const githubUrl = 'https://github.com/RaulMermans/raul-portfolio'
+
+const commercialContent: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Type', value: 'Personal brand and portfolio system' },
+    { label: 'Use case', value: 'Positioning, case-study architecture, proof navigation, technical transparency' },
+    { label: 'Role', value: 'Brand system design, information architecture, frontend implementation, content strategy' },
+    { label: 'Stack', value: 'Next.js, TypeScript, static export, GitHub Actions, IONOS hosting' },
+    { label: 'Status', value: 'Live site and public GitHub available' },
+  ],
+  links: [
+    { label: 'View Prototype', href: liveUrl, external: true },
+    { label: 'View GitHub', href: githubUrl, external: true },
+  ],
+  businessContext:
+    'A multidisciplinary offer can become difficult to evaluate when brand, technical work, visuals, and product thinking are presented as separate fragments. This project explores how a portfolio can operate as a coherent commercial system rather than a static resume.',
+  systemSummary:
+    'The site organizes identity, case studies, service language, visual archives, and GitHub transparency into a repeatable content architecture. The system uses restrained UX, consistent navigation, and modular case-study patterns so future AI systems, brand work, and prototypes can be added without breaking the positioning.',
+  systemItems: [
+    { title: 'Inputs', description: 'Service positioning, case-study proof, visual work, photography, GitHub links, and contact intent.' },
+    { title: 'Workflow', description: 'Orient the visitor, show proof, group work by category, deepen through case studies, and route qualified briefs to contact.' },
+    { title: 'Processing logic', description: 'Information architecture and content hierarchy decide what the visitor sees first and how proof is framed.' },
+    { title: 'Output', description: 'A live portfolio system with commercial positioning, case-study pages, visual archive, and project brief path.' },
+    { title: 'Guardrails', description: 'Minimal visual language, consistent CTA logic, and public-safe technical transparency preserve credibility.' },
+  ],
+  whyItMatters:
+    'The same system logic applies to client-facing brand and product surfaces: define the workflow, structure the proof, control the narrative, and make the next action clear. The value is not decoration; it is commercial clarity made usable.',
+  clientRelevance:
+    'A similar system could help founders, brands, agencies, or internal teams turn scattered capabilities, prototypes, and strategic work into a coherent digital surface that supports evaluation and next-step decisions.',
+  ctaCopy:
+    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+}
 
 const content = {
   en: {
@@ -19,8 +55,8 @@ const content = {
       'A personal brand system for strategy, AI/product case studies, photography, and visual experimentation.',
     heroDescription:
       'This portfolio was built as a digital identity system: a structured environment for presenting brand strategy, cultural storytelling, AI/product work, photography, and visual experimentation through an editorial lens.',
-    liveCta: 'Visit live site →',
-    githubCta: 'View GitHub repository →',
+    liveCta: 'View Prototype →',
+    githubCta: 'View GitHub →',
     linksLabel: 'Project links',
     tagsLabel: 'Project tags',
     systemLabel: 'Portfolio system diagram',
@@ -277,6 +313,8 @@ export default function RaulPortfolioPage() {
           ))}
         </nav>
 
+        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+
         <section id="challenge" className="portfolio-section portfolio-section--light" aria-labelledby="portfolio-challenge">
           <div className="portfolio-section__container">
             <div className="portfolio-section-heading">
@@ -403,6 +441,8 @@ export default function RaulPortfolioPage() {
             </div>
           </div>
         </section>
+
+        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
 
         <CaseStudyNext currentHref={pathname} accentColor="var(--color-1)" locale={locale} />
       </main>

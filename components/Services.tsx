@@ -99,7 +99,7 @@ export default function Services({ locale = 'en' }: ServicesProps) {
               <Link 
                 href={localizePath('/#contact', locale)} 
                 className="btn btn--arrow service__cta"
-                aria-label={locale === 'es' ? 'Empezar un proyecto - ir a contacto' : 'Start a project - navigate to contact section'}
+                aria-label={locale === 'es' ? 'Empezar un proyecto - ir a contacto' : 'Start project brief - navigate to contact section'}
               >
                 {copy.cta}
               </Link>

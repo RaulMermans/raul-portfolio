@@ -49,7 +49,7 @@ export default function ContactForm({ locale = 'en' }: ContactFormProps) {
     setStatus('loading')
 
     try {
-      const subject = `Project inquiry from ${formData.name.trim()}`
+      const subject = `Project brief from ${formData.name.trim()}`
       const body = [
         `Name: ${formData.name.trim()}`,
         `Email: ${formData.email.trim()}`,

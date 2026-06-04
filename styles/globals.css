@@ -6916,6 +6916,39 @@ a[href^="/"]:hover {
   -webkit-line-clamp: 2;
 }
 
+.case-study-project-tile__description--commercial {
+  color: rgba(26, 23, 20, 0.56);
+  font-size: clamp(0.8rem, 0.9vw, 0.92rem);
+  -webkit-line-clamp: 3;
+}
+
+.case-study-project-tile__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.case-study-project-tile__tags span,
+.case-study-project-tile__cta {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.case-study-project-tile__tags span {
+  border: 1px solid rgba(26, 23, 20, 0.16);
+  color: rgba(26, 23, 20, 0.58);
+  padding: 0.24rem 0.4rem;
+}
+
+.case-study-project-tile__cta {
+  color: var(--ink);
+  margin-top: 0.1rem;
+}
+
 .case-study-project-tile:hover .case-study-project-tile__image,
 .case-study-project-tile:focus-visible .case-study-project-tile__image {
   filter: grayscale(0%) brightness(1.04) contrast(1.02);

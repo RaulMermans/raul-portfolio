@@ -15,8 +15,8 @@ export const siteCopy = {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       menuMeta:
-        'AI systems, automation, and creative infrastructure built with product sense and visual restraint.',
-      menuCta: 'Discuss a Project',
+        'Applied AI systems, automation layers, and creative infrastructure for marketing, CRM, ecommerce, and brand teams.',
+      menuCta: 'Start Project Brief',
       toggleLabel: 'Language switcher',
       languageShort: {
         en: 'EN',
@@ -25,7 +25,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Applied AI systems builder designing agents, automation, and creative infrastructure for modern brands.',
+        'Applied AI systems for marketing, CRM, ecommerce, creative, and brand teams.',
       work: 'Work',
       services: 'Services',
       resources: 'Resources',
@@ -63,12 +63,12 @@ export const siteCopy = {
           evening: 'GOOD EVENING',
         },
         ariaLabel: 'Raúl Mermans — AI Systems · Agents · Automation',
-        services: ['AI Systems', 'Agents', 'Automation'],
+        services: ['Applied AI Systems', 'Marketing + CRM', 'Creative Teams'],
         summary:
-          'Applied AI systems for brands, teams, and creative operations. I design agentic workflows, automation tools, and internal AI products where reliability, brand intelligence, and execution discipline matter more than demo theatre.',
-        primaryCta: 'View Case Studies',
-        secondaryCta: 'View GitHub',
-        tertiaryCta: 'Contact',
+          'I design agentic workflows, automation layers, and internal AI tools for teams that need faster execution without losing quality, control, or brand coherence. The work sits between strategy, system design, and implementation: mapping the workflow, defining the logic, building the prototype, and creating the guardrails that make AI useful in real operating contexts.',
+        primaryCta: 'Request an AI Workflow Audit',
+        secondaryCta: 'View Case Studies',
+        tertiaryCta: 'View GitHub',
         scrollAria: 'Scroll to explore',
         scrollLabel: 'Explore',
       },
@@ -77,7 +77,7 @@ export const siteCopy = {
         title: 'Applied systems, not isolated prompts.',
         description:
           'A tighter selection of AI work where deterministic logic, evidence, interfaces, and bounded model behavior turn into usable internal tools.',
-        viewCase: 'View case',
+        viewCase: 'View System Logic',
         viewAll: 'View all case studies',
         githubCta: 'View GitHub',
         cards: {
@@ -140,43 +140,43 @@ export const siteCopy = {
         title: 'AI systems builder with brand intelligence.',
         body:
           'I work at the intersection of <span class="highlight">AI systems</span>, <span class="highlight">brand strategy</span>, and <span class="highlight">product execution</span>, building tools and workflows that are technically structured, commercially useful, and culturally aware.',
-        cta: 'Read More',
+        cta: 'View Profile',
       },
       services: {
         title: 'Services',
-        cta: 'Start a project',
+        cta: 'Start Project Brief',
         items: [
           {
             number: '00-1',
             title: 'AI Systems',
             titleShort: 'AI Systems',
-            items: ['Agentic Workflows', 'Bounded LLM Synthesis', 'Human Review Loops', 'Evidence Workflows'],
+            items: ['Structured AI-assisted processes', 'Internal tools for reporting or research', 'Human review and reliability controls', 'Useful systems beyond isolated prompts'],
             description:
-              'Applied AI systems for teams that need repeatable execution: agentic workflows, evidence capture, deterministic rules, and AI layers that stay inside clear boundaries.',
+              'Design and prototype AI-assisted workflows, internal tools, and agentic systems for teams that need structured execution, reviewable outputs, and operational reliability.',
           },
           {
             number: '00-2',
             title: 'Automation / Internal Tools',
             titleShort: 'Automation',
-            items: ['Workflow Mapping', 'CRM Automation', 'Internal Dashboards', 'Ops Interfaces'],
+            items: ['Reduce repetitive CRM or reporting workflows', 'Connect tools with fewer manual handoffs', 'Standardize recurring business processes', 'Create cleaner flows between people, tools, and data'],
             description:
-              'Automation systems and internal tools that remove manual drag from marketing, CRM, content, and creative operations while keeping humans in the decision loop.',
+              'Connect tools, reduce repetitive work, and standardize manual handoffs across CRM, reporting, admin, and creative operations.',
           },
           {
             number: '00-3',
             title: 'Web / Product Prototypes',
             titleShort: 'Product Web',
-            items: ['Next.js Builds', 'Product Surfaces', 'Prototype UX', 'Performance'],
+            items: ['Validate internal tool ideas quickly', 'Build dashboards and workflow prototypes', 'Test product logic before full development', 'Create stakeholder-ready demos'],
             description:
-              'Product-minded web experiences and prototypes built to make workflows, offers, and technical ideas usable, credible, and ready for iteration.',
+              'Build focused product surfaces, dashboards, and workflow prototypes that help teams test, validate, and operate new systems before full-scale development.',
           },
           {
             number: '00-4',
             title: 'Brand Systems / Creative Direction',
             titleShort: 'Brand Systems',
-            items: ['Brand Intelligence', 'Visual Identity', 'Creative Systems', 'Campaign Logic'],
+            items: ['Keep AI content aligned with brand voice', 'Create reusable tone and review rules', 'Translate strategy into operational guidelines', 'Improve consistency across campaigns and CRM'],
             description:
-              'Brand strategy and creative direction as the intelligence layer around the system: positioning, taste, visual rules, and cultural context that make tools adoptable.',
+              'Translate brand strategy into reusable rules, prompts, and review criteria so AI-assisted outputs remain coherent across content, CRM, campaigns, and creative work.',
           },
           {
             number: '00-5',
@@ -184,15 +184,15 @@ export const siteCopy = {
             titleShort: 'Practice',
             items: ['Photography', 'Image Systems', 'Visual Research', 'Cultural Reading'],
             description:
-              'Photography and image-making stay as a quieter visual practice: a way to sharpen composition, cultural awareness, and the taste behind stronger AI and brand systems.',
+              'Experiments, visual systems, and creative research exploring the relationship between brand, technology, and culture.',
           },
         ],
       },
       contact: {
-        title: "Let's Build the Right System",
+        title: 'Start with the workflow.',
         subtitle:
-          'Working on AI systems, automation, internal tools, or creative operations? Send context. I design workflows and interfaces that help teams execute with more speed, consistency, and control.',
-        intro: "Send a short brief and I'll get back to you within 24 hours.",
+          'Use this form to describe the system, process, or business problem you want to improve. Best fit: marketing, CRM, ecommerce, creative, and brand teams dealing with repetitive workflows, manual handoffs, inconsistent AI outputs, or internal processes that need more structure.',
+        intro: 'You do not need a finished brief. A clear problem, current workflow, and desired outcome are enough to start.',
       },
       contactForm: {
         projectTypePlaceholder: 'Select focus area',
@@ -230,20 +230,20 @@ export const siteCopy = {
           name: 'John Doe',
           email: 'john@example.com',
           message:
-            "Tell me what you're building, where execution is breaking down, and how AI, automation, or a better interface could help...",
+            'Describe the current workflow, the team/tools involved, where the process breaks down, and the outcome you want to improve...',
         },
         errors: {
           name: 'Name must be at least 2 characters.',
           email: 'Please enter a valid email address.',
           generic: 'Failed to send message. Please try again.',
         },
-        success: "Thank you! I'll get back to you soon.",
+        success: "Thank you. I'll review the brief and get back to you soon.",
         dismissSuccess: 'Dismiss success message',
         responseNote: 'I usually reply within 24 hours.',
         sending: 'Sending...',
-        send: 'Send Message',
-        sendAria: 'Send message',
-        sendingAria: 'Sending message',
+        send: 'Send Project Brief',
+        sendAria: 'Send project brief',
+        sendingAria: 'Sending project brief',
       },
       socials: {
         label: 'Connect',

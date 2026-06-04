@@ -83,9 +83,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'Service',
           position: 1,
           name: 'AI Systems',
-          serviceType: 'Applied AI Systems Design',
+          serviceType: 'AI workflow architecture and internal AI tools',
           description:
-            'Applied AI systems that turn repetitive, judgment-heavy work into reliable execution through automation logic, orchestration, and AI-enabled workflows.',
+            'AI workflow architecture, agentic systems, and internal tools for teams that need structured execution, reviewable outputs, and reliable AI-assisted operations.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -101,7 +101,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'Automation and Internal Tools',
           serviceType: 'Operational Automation and Internal Interfaces',
           description:
-            'Automation systems and internal tools for marketing, CRM, content, and creative operations with human review where it matters.',
+            'Automation systems for CRM, reporting, admin, and creative operations. Reduce repetitive work, connect tools, and standardize business workflows.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -133,7 +133,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'Brand Systems and Creative Direction',
           serviceType: 'Creative Direction and Brand Systems',
           description:
-            'Creative direction connecting brand intelligence, visual systems, and campaign thinking so every tool feels coherent, adoptable, and commercially credible.',
+            'Brand intelligence systems, prompt structures, and review criteria that help teams keep AI-assisted content and creative outputs coherent.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,

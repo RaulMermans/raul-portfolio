@@ -97,7 +97,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
         <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
-              href={localizePath('/case-studies', locale)}
+              href={localizePath('/#contact', locale)}
               className={`${styles.cta} ${styles.primary}`}
               data-mobile-audit="hero-cta"
             >
@@ -106,25 +106,26 @@ export default function Hero({ locale = 'en' }: HeroProps) {
             </Link>
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={20}>
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={localizePath('/case-studies', locale)}
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >
               <span>{copy.secondaryCta}</span>
-              <span className={styles.ctaArrow}>↗</span>
-            </a>
+              <span className={styles.ctaArrow}>→</span>
+            </Link>
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={18}>
-            <Link
-              href={localizePath('/#contact', locale)}
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`${styles.cta} ${styles.tertiary}`}
               data-mobile-audit="hero-cta"
             >
               <span>{copy.tertiaryCta}</span>
-            </Link>
+              <span className={styles.ctaArrow}>↗</span>
+            </a>
           </MagneticButton>
         </div>
       </div>

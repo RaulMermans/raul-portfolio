@@ -7,9 +7,45 @@ import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import {
+  CommercialCaseStudyClosing,
+  CommercialCaseStudyIntro,
+  type CommercialCaseStudyContent,
+} from '@/components/case-studies/CommercialCaseStudySections'
 
 const githubUrl = 'https://github.com/RaulMermans/DataBrief-AI.git'
 const demoUrl = 'https://data-brief-ai-sigma.vercel.app'
+
+const commercialContent: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Type', value: 'AI reporting system' },
+    { label: 'Use case', value: 'Spreadsheet analysis, business brief generation, decision support' },
+    { label: 'Role', value: 'System architecture, product logic, frontend/backend implementation, AI workflow design' },
+    { label: 'Stack', value: 'Next.js, FastAPI, Python analysis runtime, SQLite, CSV/XLSX parsing, controlled execution' },
+    { label: 'Status', value: 'Prototype with live demo and GitHub available' },
+  ],
+  links: [
+    { label: 'View Prototype', href: demoUrl, external: true },
+    { label: 'View GitHub', href: githubUrl, external: true },
+  ],
+  businessContext:
+    'Reporting workflows often start with messy CSV or XLSX files and end with summaries that look confident even when the source data cannot support them. This project explores how AI can help teams produce faster business briefs while keeping unsupported metrics, caveats, and data-quality limits visible.',
+  systemSummary:
+    'The system accepts spreadsheet files, profiles the dataset, identifies available fields, plans only supported analysis, executes controlled Python, evaluates failures, and exports a report whose claims are tied to computed outputs. Human review stays central because the system shows caveats instead of hiding uncertainty.',
+  systemItems: [
+    { title: 'Inputs', description: 'CSV or XLSX uploads with unknown structure, missing values, duplicates, and inconsistent column roles.' },
+    { title: 'Workflow', description: 'Upload validation, semantic profiling, route selection, bounded analysis planning, execution, evaluation, repair, and export.' },
+    { title: 'Processing logic', description: 'Generated Python runs under static checks and limits; unsupported metrics are removed or marked unavailable.' },
+    { title: 'Output', description: 'Structured business report, findings, charts, generated code, and exportable artifacts for review.' },
+    { title: 'Guardrails', description: 'Caveats, unsupported-claim checks, repair limits, and a run store make the output more traceable.' },
+  ],
+  whyItMatters:
+    'Most AI reporting tools fail when they treat the model as an open-ended analyst. DataBrief AI takes the opposite approach: clear inputs, controlled execution, explicit constraints, and reviewable outputs. That makes the workflow more relevant for real teams where reporting quality and decision traceability matter more than broad autonomy.',
+  clientRelevance:
+    'A client-facing version could help marketing, CRM, ecommerce, or operations teams reduce manual spreadsheet reporting, standardize recurring summaries, and improve AI-assisted analysis without presenting unsupported conclusions as fact.',
+  ctaCopy:
+    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+}
 
 const content = {
   en: {
@@ -22,9 +58,9 @@ const content = {
       'DataBrief AI analyzes CSV/XLSX files through semantic role detection, controlled Python execution, bounded repair, and report export. The system is designed to surface what the data supports and make unsupported metrics explicit.',
     heroFigcaption: 'Representative report preview showing supported metrics and explicit caveats.',
     heroFigAriaLabel: 'Report output preview',
-    heroCTA: 'Live Demo →',
-    heroCTAGithub: 'GitHub →',
-    heroCTAHow: 'How It Works',
+    heroCTA: 'View Prototype →',
+    heroCTAGithub: 'View GitHub →',
+    heroCTAHow: 'View System Logic',
     tags: ['Bounded AI', 'CSV/XLSX', 'Python', 'Report Export', 'Evaluation Loop'],
     nav: [
       ['Overview', '#overview'],
@@ -181,7 +217,7 @@ const content = {
       'Output quality depends on detectable column roles and dataset structure.',
       'Dedicated campaign-performance routing is a future domain extension.',
     ],
-    resultCTADemo: 'Open Live Demo →',
+    resultCTADemo: 'View Prototype →',
     resultCTAGithub: 'View GitHub →',
     resultCTAArch: 'View Architecture',
     report: {
@@ -545,6 +581,8 @@ export default function DataBriefAiPage() {
           ))}
         </nav>
 
+        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+
         <section
           id="overview"
           className="data-brief-section data-brief-section--light data-brief-section--overview"
@@ -710,6 +748,8 @@ export default function DataBriefAiPage() {
             </div>
           </div>
         </section>
+
+        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
 
         <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
       </main>

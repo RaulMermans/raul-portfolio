@@ -14,7 +14,39 @@ import CaseStudyImageContainer from '@/components/case-studies/CaseStudyImageCon
 import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import BoldText from '@/components/case-studies/BoldText'
+import {
+  CommercialCaseStudyClosing,
+  CommercialCaseStudyIntro,
+  type CommercialCaseStudyContent,
+} from '@/components/case-studies/CommercialCaseStudySections'
 import { getCaseStudyContent } from '@/data/case-studies-content'
+
+const commercialContent: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Type', value: 'AI campaign workflow' },
+    { label: 'Use case', value: 'Creative operations, campaign consistency, controlled image iteration' },
+    { label: 'Role', value: 'AI workflow design, creative direction, prompt structure, consistency guardrails' },
+    { label: 'Stack', value: 'n8n, generative image API, reference conditioning, prompt schema, output versioning' },
+    { label: 'Status', value: 'Campaign system prototype and case study' },
+  ],
+  businessContext:
+    'Creative teams can generate one strong AI image quickly, but campaign work depends on continuity across many assets. This project explores how AI can support faster visual iteration while preserving lighting, scene logic, styling, and human creative review.',
+  systemSummary:
+    'The workflow separates constants from variables. A reference shot defines the visual world, while model and wardrobe inputs remain controlled variables. The system produces a small set of campaign-consistent variants that are reviewed by a human for realism, brand fit, and product readability.',
+  systemItems: [
+    { title: 'Inputs', description: 'Reference campaign shot, model reference, and wardrobe or product references.' },
+    { title: 'Workflow', description: 'Lock scene anchors, define editable attributes, generate controlled variants, review outputs, and select final assets.' },
+    { title: 'Processing logic', description: 'Prompt schema and reference conditioning keep lighting, environment, framing, and texture cues stable.' },
+    { title: 'Output', description: 'Campaign-consistent image variants ready for creative selection and further art-direction review.' },
+    { title: 'Guardrails', description: 'Continuity checks prioritize same-shoot feel over novelty; outputs fail if visual drift breaks the campaign world.' },
+  ],
+  whyItMatters:
+    'AI image workflows become commercially useful when they are constrained. This system turns open-ended generation into a repeatable creative operation where the team controls what changes, what stays fixed, and how final quality is reviewed.',
+  clientRelevance:
+    'A client-facing version could help marketing, ecommerce, brand, or creative teams explore campaign routes, product styling, casting, and variant generation while keeping visual coherence and human approval in the loop.',
+  ctaCopy:
+    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+}
 
 export default function AISportsCampaignPage() {
   const pathname = usePathname()
@@ -47,6 +79,8 @@ export default function AISportsCampaignPage() {
             accentColor={content.accentColor}
           />
               )}
+
+        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
 
         {/* Introduction Section */}
         {content.overview && (
@@ -215,6 +249,8 @@ export default function AISportsCampaignPage() {
                       </div>
           </CaseStudySection>
               )}
+
+        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
 
         {/* Next Case Study */}
         <CaseStudyNext 

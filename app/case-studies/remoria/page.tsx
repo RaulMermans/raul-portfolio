@@ -15,8 +15,40 @@ import CaseStudyGallery from '@/components/case-studies/CaseStudyGallery'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import RemoriaBrandSystem from '@/components/case-studies/RemoriaBrandSystem'
 import BoldText from '@/components/case-studies/BoldText'
+import {
+  CommercialCaseStudyClosing,
+  CommercialCaseStudyIntro,
+  type CommercialCaseStudyContent,
+} from '@/components/case-studies/CommercialCaseStudySections'
 import { getCaseStudyContent } from '@/data/case-studies-content'
 import '@/styles/remoria-brand-system.css'
+
+const commercialContent: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Type', value: 'Luxury brand system' },
+    { label: 'Use case', value: 'Brand identity, tone of voice, packaging concept, creative rules, product storytelling' },
+    { label: 'Role', value: 'Brand system design, creative direction, visual identity, verbal worldbuilding' },
+    { label: 'Stack', value: 'Illustrator, Photoshop, Figma, Pinterest' },
+    { label: 'Status', value: 'Brand system case study' },
+  ],
+  businessContext:
+    'Brand and creative teams often need more than a logo or moodboard: they need rules that can guide future content, campaigns, packaging, and AI-assisted outputs. Remoria explores how a luxury identity can become an operating system for coherence.',
+  systemSummary:
+    'The project defines a narrative world, visual language, tone of voice, palette, typography, and application logic around restraint and memory. The system gives future fragrances and creative outputs a shared set of rules rather than relying on isolated aesthetic choices.',
+  systemItems: [
+    { title: 'Inputs', description: 'Luxury positioning, fragrance mythology, Mediterranean references, Roman legacy, and emotional tone.' },
+    { title: 'Workflow', description: 'Translate narrative strategy into identity rules, visual direction, verbal tone, packaging logic, and application examples.' },
+    { title: 'Processing logic', description: 'Separate constants such as restraint, tactility, and timelessness from variables such as scent story and product chapter.' },
+    { title: 'Output', description: 'Visual identity system, tone of voice, packaging concept, moodboard, color palette, and storytelling framework.' },
+    { title: 'Guardrails', description: 'Minimalism, lyrical restraint, and tactile material cues keep the brand coherent across future executions.' },
+  ],
+  whyItMatters:
+    'Brand systems matter when creative output needs to scale without becoming generic. This case translates strategy into reusable rules, which is especially relevant when AI-assisted content or campaign production needs strong human judgment and brand coherence.',
+  clientRelevance:
+    'A similar system could help brand, creative, ecommerce, or CRM teams define tone, messaging, visual criteria, and review rules that keep campaigns and AI-assisted outputs aligned with the brand.',
+  ctaCopy:
+    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+}
 
 export default function RemoriaPage() {
   const pathname = usePathname()
@@ -47,6 +79,8 @@ export default function RemoriaPage() {
             accentColor={content.accentColor}
           />
               )}
+
+        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
 
         {content.overview && (
           <CaseStudySection 
@@ -195,6 +229,8 @@ export default function RemoriaPage() {
             </div>
           </CaseStudySection>
         )}
+
+        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
 
         <CaseStudyNext 
           currentHref={pathname}

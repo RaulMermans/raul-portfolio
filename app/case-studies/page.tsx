@@ -133,7 +133,7 @@ export default function CaseStudiesPage() {
     : 'Systems, interfaces, and brand work built around proof, restraint, and execution.'
   const filterLabel = isSpanish ? 'Filtrar casos de estudio' : 'Filter case studies'
   const allLabel = isSpanish ? 'Todos' : 'All'
-  const readCase = isSpanish ? 'Ver caso' : 'Read case'
+  const readCase = isSpanish ? 'Ver caso' : 'View Case Study'
   const seeLabel = isSpanish ? 'Quiero ver...' : 'I want to see...'
   const goLabel = isSpanish ? 'Ir a los casos filtrados' : 'Go to filtered case studies'
 
@@ -245,7 +245,7 @@ export default function CaseStudiesPage() {
                 key={study.href}
                 href={study.href}
                 className={`case-study-project-tile case-study-project-tile--${variant}`}
-                aria-label={isSpanish ? `Ver caso de estudio: ${study.title}` : `Read case study: ${study.title}`}
+                aria-label={isSpanish ? `Ver caso de estudio: ${study.title}` : `View case study: ${study.title}`}
               >
                 <span className="case-study-project-tile__frame">
                   <Image
@@ -258,7 +258,7 @@ export default function CaseStudiesPage() {
                     priority={index < 2}
                   />
                   <span className="case-study-project-tile__reveal" aria-hidden="true">
-                    <span>{readCase}</span>
+                    <span>{study.cta ?? readCase}</span>
                     <span className="case-study-project-tile__arrow">→</span>
                   </span>
                 </span>
@@ -270,6 +270,19 @@ export default function CaseStudiesPage() {
                   </span>
                   <span className="case-study-project-tile__title">{study.title}</span>
                   <span className="case-study-project-tile__description">{study.description}</span>
+                  {study.commercialRelevance && (
+                    <span className="case-study-project-tile__description case-study-project-tile__description--commercial">
+                      {study.commercialRelevance}
+                    </span>
+                  )}
+                  {study.tags && study.tags.length > 0 && (
+                    <span className="case-study-project-tile__tags" aria-label="System tags">
+                      {study.tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </span>
+                  )}
+                  <span className="case-study-project-tile__cta">{study.cta ?? readCase}</span>
                 </span>
               </Link>
             )
