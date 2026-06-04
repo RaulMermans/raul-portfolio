@@ -20,7 +20,9 @@ export interface CaseStudy {
 
 export const MOODS = ['All', 'minimal', 'bold', 'editorial', 'tech'] as const
 
-const caseStudyEntries = {
+type CaseStudyEntry = Omit<CaseStudy, 'href'>
+
+const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
   en: [
     {
       id: 5,
