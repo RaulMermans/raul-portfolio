@@ -29,9 +29,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'raul-portfolio',
       title: 'Raul Mermans Portfolio',
       description:
-        'Digital identity system that structures AI/product work, brand strategy, photography, and visual experimentation into one coherent portfolio.',
+        'Digital identity system for case studies, visual work, and technical proof.',
       commercialRelevance:
-        'For teams that need a clearer way to present multidisciplinary capability, technical proof, and brand judgment without fragmenting the story.',
+        'For presenting multidisciplinary work with clearer narrative structure.',
       tags: ['Portfolio System', 'Brand Architecture', 'Technical Proof'],
       cta: 'View Case Study',
       image: '/images/case-studies/case-studies-thumbnail.webp',
@@ -46,9 +46,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'benchmark-dashboard',
       title: 'Benchmark Dashboard Template',
       description:
-        'Competitive intelligence framework for comparing brands, markets, and positioning signals through structured research and dashboard logic.',
+        'Competitive intelligence dashboard for market and positioning signals.',
       commercialRelevance:
-        'For teams that need clearer market context, sharper positioning, and repeatable competitor analysis.',
+        'For repeatable competitor analysis and clearer executive readouts.',
       tags: ['Benchmarking', 'Market Intelligence', 'Brand Strategy'],
       cta: 'View System Logic',
       image: '/images/case-studies/benchmark-dashboard/thumb/thumb.webp',
@@ -63,9 +63,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'ai-sports',
       title: 'AI Sports Campaign',
       description:
-        'AI campaign workflow that keeps scene, lighting, and art-direction logic stable while controlled casting and wardrobe variables change.',
+        'AI campaign workflow for controlled visual iteration.',
       commercialRelevance:
-        'For creative and brand teams that need faster campaign iteration without losing visual continuity or review control.',
+        'For faster variants without losing campaign continuity.',
       tags: ['AI Campaign System', 'Creative Operations', 'Brand Consistency'],
       cta: 'View Case Study',
       image: '/images/case-studies/ai-sports/thumb/thumb.webp',
@@ -80,9 +80,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'remoria',
       title: 'Remoria',
       description:
-        'Luxury fragrance brand system built around identity, restraint, verbal worldbuilding, and scalable creative rules.',
+        'Luxury fragrance identity system with scalable creative rules.',
       commercialRelevance:
-        'For brand teams that need a coherent identity system that can guide future product stories, content, packaging, and creative direction.',
+        'For keeping product stories, packaging, and content coherent.',
       tags: ['Brand System', 'Creative Direction', 'Luxury Identity'],
       cta: 'View Case Study',
       image: '/images/case-studies/remoria/thumb/thumb.webp',
@@ -97,9 +97,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'data-brief-ai',
       title: 'DataBrief AI',
       description:
-        'AI reporting system that transforms spreadsheet inputs into structured, evidence-based business briefs without unsupported metrics.',
+        'AI reporting system for grounded spreadsheet briefs.',
       commercialRelevance:
-        'For teams that need faster reporting, clearer summaries, and more reliable decision support from messy CSV or XLSX files.',
+        'For faster reporting from messy CSV or XLSX files.',
       tags: ['AI Reporting', 'Data Analysis', 'Decision Support'],
       cta: 'View System Logic',
       image: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
@@ -114,9 +114,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'website-auditor',
       title: 'Website Audit Agent',
       description:
-        'Website audit system that separates deterministic evidence from AI synthesis to produce more reliable UX, SEO, and conversion recommendations.',
+        'Evidence-first AI workflow for website audits.',
       commercialRelevance:
-        'For teams that need faster site diagnostics without relying on generic, unsupported AI feedback.',
+        'For faster UX, SEO, and conversion diagnostics.',
       tags: ['Website Audit', 'AI Evaluation', 'Conversion'],
       cta: 'View System Logic',
       image: '/images/case-studies/website-auditor/thumb/thumb.webp',
@@ -133,12 +133,12 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'raul-portfolio',
       title: 'Raul Mermans Portfolio',
       description:
-        'Sistema de marca personal para estrategia, trabajo de IA/producto, fotografía y experimentación visual.',
+        'Sistema de identidad para casos, visuales y prueba técnica.',
       image: '/images/case-studies/case-studies-thumbnail.webp',
       imageWidth: 3000,
       imageHeight: 2000,
       color: 'var(--color-1)',
-      subtitle: 'Sistemas de marca / Identidad digital / Arquitectura de portfolio',
+      subtitle: 'Sistemas de marca / Identidad digital / Arquitectura de portafolio',
       mood: ['minimal', 'editorial'],
     },
     {
@@ -146,12 +146,12 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'benchmark-dashboard',
       title: 'Benchmark Dashboard Template',
       description:
-        'Dashboard reutilizable para rankings, tendencias y forecast.',
+        'Panel de inteligencia competitiva para señales de mercado y posicionamiento.',
       image: '/images/case-studies/benchmark-dashboard/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
       color: 'var(--color-0)',
-      subtitle: 'Data product / Business intelligence dashboard',
+      subtitle: 'Producto de datos / Inteligencia de negocio',
       mood: ['minimal', 'tech'],
     },
     {
@@ -159,7 +159,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'ai-sports',
       title: 'Campaña deportiva con IA',
       description:
-        'Flujo en n8n para campañas con casting y dirección consistentes.',
+        'Flujo de campaña con iteración visual controlada.',
       image: '/images/case-studies/ai-sports/thumb/thumb.webp',
       imageWidth: 2752,
       imageHeight: 1536,
@@ -172,7 +172,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'remoria',
       title: 'Remoria',
       description:
-        'Sistema de marca premium basado en identidad, contención y relato.',
+        'Sistema de identidad premium con reglas creativas escalables.',
       image: '/images/case-studies/remoria/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
@@ -185,7 +185,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'data-brief-ai',
       title: 'DataBrief AI',
       description:
-        'Flujo de IA acotado para informes fundamentados desde CSV/XLSX.',
+        'Sistema de informes contrastados desde CSV/XLSX.',
       image: '/images/case-studies/data-brief-ai/thumb/thumb.webp',
       imageWidth: 1254,
       imageHeight: 1254,
@@ -198,7 +198,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'website-auditor',
       title: 'Website Audit Agent',
       description:
-        'Flujo de auditoría basado en evidencia para UX, SEO, rendimiento, contenido e inteligencia comercial.',
+        'Flujo de auditoría web con evidencia y síntesis acotada.',
       image: '/images/case-studies/website-auditor/thumb/thumb.webp',
       imageWidth: 1672,
       imageHeight: 941,

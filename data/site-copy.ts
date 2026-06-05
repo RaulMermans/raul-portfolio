@@ -310,7 +310,7 @@ export const siteCopy = {
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú',
       menuMeta:
-        'Sistemas de IA, automatización e infraestructura creativa construidos con criterio de producto y contención visual.',
+        'Sistemas de IA, automatización e infraestructura creativa para equipos de marketing, CRM, ecommerce y marca.',
       menuCta: 'Hablar de un proyecto',
       toggleLabel: 'Selector de idioma',
       languageShort: {
@@ -320,7 +320,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Constructor de sistemas de IA aplicados, diseñando agentes, automatización e infraestructura creativa para marcas modernas.',
+        'Sistemas de IA aplicados para equipos de marketing, CRM, ecommerce, creatividad y marca.',
       work: 'Trabajo',
       services: 'Servicios',
       resources: 'Recursos',
@@ -360,10 +360,10 @@ export const siteCopy = {
         ariaLabel: 'Raúl Mermans — Sistemas de IA · Agentes · Automatización',
         services: ['Sistemas de IA', 'Agentes', 'Automatización'],
         summary:
-          'Sistemas de IA aplicada para marcas, equipos y operaciones creativas. Diseño flujos agentic, herramientas de automatización y productos internos de IA donde la fiabilidad, la inteligencia de marca y la disciplina de ejecución importan más que el teatro de demo.',
-        primaryCta: 'Ver casos de estudio',
-        secondaryCta: 'Ver GitHub',
-        tertiaryCta: 'Contacto',
+          'Diseño flujos con IA, capas de automatización y herramientas internas para equipos que necesitan ejecutar más rápido sin perder calidad, control ni coherencia de marca. El trabajo conecta estrategia, diseño de sistema e implementación: mapear el flujo, definir la lógica, construir el prototipo y crear los límites que hacen útil la IA en contextos reales.',
+        primaryCta: 'Solicitar auditoría de flujo',
+        secondaryCta: 'Ver casos de estudio',
+        tertiaryCta: 'Ver GitHub',
         scrollAria: 'Desplazar para explorar',
         scrollLabel: 'Explorar',
       },
@@ -378,15 +378,15 @@ export const siteCopy = {
         cards: {
           'data-brief-ai': {
             label: 'Flujo analítico acotado',
-            proof: 'Informes desde CSV/XLSX con validación de esquema, ejecución controlada y outputs explicables.',
+            proof: 'Informes desde CSV/XLSX con validación de esquema, ejecución controlada y resultados explicables.',
           },
           'website-auditor': {
             label: 'Auditoría basada en evidencia',
-            proof: 'Captura y scoring determinista primero; síntesis LLM solo después de aceptar evidencia.',
+            proof: 'Primero captura y puntuación determinista; síntesis LLM solo cuando la evidencia ya está aceptada.',
           },
           'benchmark-dashboard': {
             label: 'Prueba de producto de datos',
-            proof: 'Interfaz benchmark reutilizable para rankings, forecasts, señales estratégicas y lectura orientada a decisión.',
+            proof: 'Interfaz de benchmark reutilizable para rankings, previsiones, señales estratégicas y lectura orientada a decisión.',
           },
         },
       },
@@ -402,7 +402,7 @@ export const siteCopy = {
             eyebrow: 'Sistemas de IA, automatización y estructura de marca',
             title: 'Casos de estudio',
             description:
-              'Casos de estudio sobre flujos de trabajo basados en agentes (agentic workflows), sistemas de IA y la lógica de marca que hace que la ejecución se sienta coherente, no improvisada.',
+              'Casos sobre flujos con IA, sistemas aplicados y lógica de marca para que la ejecución se sienta coherente, no improvisada.',
           },
           {
             id: 'apps',
@@ -410,7 +410,7 @@ export const siteCopy = {
             eyebrow: 'Prototipos, herramientas internas y pensamiento de interfaz',
             title: 'Apps',
             description:
-              'Apps, herramientas y superficies de producto que muestran cómo pienso la lógica de flujo, una experiencia de usuario (UX) fluida y una ejecución aplicada.',
+              'Apps, herramientas y superficies de producto que muestran lógica de flujo, UX tranquila y ejecución aplicada.',
           },
           {
             id: 'photography',
@@ -445,33 +445,33 @@ export const siteCopy = {
             number: '00-1',
             title: 'Sistemas de IA',
             titleShort: 'Sist. IA',
-            items: ['Flujos con agentes', 'Síntesis LLM acotada', 'Bucles de revisión humana', 'Flujos de evidencia'],
+            items: ['Procesos asistidos por IA', 'Herramientas internas', 'Revisión humana', 'Sistemas más allá del prompt'],
             description:
-              'Sistemas de IA aplicada para equipos que necesitan ejecución repetible: flujos con agentes, captura de evidencia, reglas deterministas y capas de IA con límites claros.',
+              'Diseño y prototipo flujos asistidos por IA, herramientas internas y sistemas con agentes para equipos que necesitan ejecución estructurada, resultados revisables y fiabilidad operativa.',
           },
           {
             number: '00-2',
             title: 'Automatización / Herramientas internas',
             titleShort: 'Automatización',
-            items: ['Mapeo de flujos', 'Automatización CRM', 'Dashboards internos', 'Interfaces operativas'],
+            items: ['Reducir tareas repetitivas', 'Conectar herramientas', 'Estandarizar procesos', 'Ordenar personas, datos y sistemas'],
             description:
-              'Sistemas de automatización y herramientas internas que reducen fricción manual en marketing, CRM, contenido y operaciones creativas sin sacar a las personas del bucle de decisión.',
+              'Conecto herramientas, reduzco trabajo repetitivo y estandarizo traspasos manuales en CRM, reporting, administración y operaciones creativas.',
           },
           {
             number: '00-3',
             title: 'Web / Prototipos de producto',
             titleShort: 'Producto web',
-            items: ['Builds en Next.js', 'Superficies de producto', 'UX de prototipo', 'Rendimiento'],
+            items: ['Validar ideas de herramienta interna', 'Crear paneles y prototipos', 'Probar lógica de producto', 'Preparar demos para stakeholders'],
             description:
-              'Experiencias web y prototipos con criterio de producto, pensados para hacer utilizables, creíbles e iterables los flujos, ofertas e ideas técnicas.',
+              'Construyo superficies de producto, paneles y prototipos de flujo que ayudan a probar, validar y operar sistemas antes de desarrollarlos a escala.',
           },
           {
             number: '00-4',
             title: 'Sistemas de marca / Dirección creativa',
             titleShort: 'Marca',
-            items: ['Inteligencia de marca', 'Identidad visual', 'Sistemas creativos', 'Lógica de campaña'],
+            items: ['Alinear IA con voz de marca', 'Crear reglas de tono y revisión', 'Convertir estrategia en guías operativas', 'Mejorar consistencia en campañas y CRM'],
             description:
-              'Estrategia de marca y dirección creativa como capa de inteligencia alrededor del sistema: posicionamiento, gusto, reglas visuales y contexto cultural para que las herramientas se adopten.',
+              'Traduzco estrategia de marca en reglas, prompts y criterios de revisión reutilizables para que los resultados asistidos por IA sean coherentes en contenido, CRM, campañas y trabajo creativo.',
           },
           {
             number: '00-5',
@@ -486,8 +486,8 @@ export const siteCopy = {
       contact: {
         title: 'Construyamos el sistema adecuado.',
         subtitle:
-          'Cuéntame tu contexto. Diseño flujos de trabajo e interfaces que ayudan a los equipos a ejecutar con mayor velocidad, consistencia y control.',
-        intro: 'Envíame un breve resumen y te responderé en menos de 24 horas.',
+          'Usa este formulario para describir el sistema, proceso o problema de negocio que quieres mejorar. Encaja especialmente bien con equipos de marketing, CRM, ecommerce, creatividad y marca que lidian con flujos repetitivos, traspasos manuales, resultados de IA inconsistentes o procesos internos que necesitan más estructura.',
+        intro: 'No hace falta tener un brief cerrado. Un problema claro, el flujo actual y el resultado deseado son suficiente para empezar.',
       },
       contactForm: {
         projectTypePlaceholder: 'Selecciona el enfoque',
@@ -525,14 +525,14 @@ export const siteCopy = {
           name: 'Juan Pérez',
           email: 'juan@ejemplo.com',
           message:
-            'Cuéntame qué estás construyendo, dónde se está rompiendo la ejecución y cómo podrían ayudar la IA, la automatización o una mejor interfaz...',
+            'Describe el flujo actual, el equipo y las herramientas implicadas, dónde se rompe el proceso y qué resultado quieres mejorar...',
         },
         errors: {
           name: 'El nombre debe tener al menos 2 caracteres.',
           email: 'Introduce un email válido.',
           generic: 'No se pudo enviar el mensaje. Inténtalo de nuevo.',
         },
-        success: 'Gracias. Te responderé pronto.',
+        success: 'Gracias. Revisaré el brief y te responderé pronto.',
         dismissSuccess: 'Cerrar mensaje de éxito',
         responseNote: 'Normalmente respondo en 24 horas.',
         sending: 'Enviando...',
@@ -551,7 +551,10 @@ export const siteCopy = {
       label: 'Sobre mí',
       title: 'Sistemas de IA aplicados, construidos con criterio',
       paragraphs: [
-        'Llegué a este sector desde el mundo de los negocios y aprendí de forma autodidacta a crear los sistemas que los equipos realmente necesitan. Hoy diseño <span class="highlight">flujos de trabajo con IA</span>, <span class="highlight">capas de automatización</span> e <span class="highlight">interfaces orientadas a producto</span>... Mi valor diferencial es la combinación de <span class="highlight">pensamiento sistémico</span>, <span class="highlight">implementación práctica</span> y un <span class="highlight">criterio creativo</span> lo suficientemente sólido como para mantener un resultado coherente, útil y listo para desplegarse.',
+        'Llegué a este trabajo desde <span class="highlight">negocio</span> y aprendí a construir lo que los equipos necesitan cuando la estrategia tiene que convertirse en ejecución. Hoy diseño <a href="/case-studies" class="highlight">sistemas de IA</a>, <span class="highlight">flujos con agentes</span> e <span class="highlight">infraestructura de automatización</span> para marketing, CRM, contenido y operaciones creativas.',
+        'Me interesa menos el resultado aislado de IA que el sistema que lo sostiene: por dónde se mueve el trabajo, dónde vive el criterio, qué conviene automatizar y cómo una interfaz hace usable todo el proceso. Eso significa <span class="highlight">lógica de flujo</span>, <span class="highlight">orquestación</span>, <span class="highlight">herramientas internas</span> e <a href="/apps/overflow" class="highlight">implementación con criterio de producto</a>.',
+        'El gusto creativo sigue importando. Mi experiencia en marca, visuales e imagen funciona como <span class="highlight">control de calidad dentro del sistema</span>: ayuda a decidir qué debe sentirse contenido, qué debe seguir siendo humano y qué hace que un resultado sea <span class="highlight">creíble comercialmente</span>, no solo nuevo.',
+        'Trabajo mejor con marcas y equipos modernos que necesitan <span class="highlight">ejecución más clara</span>, <span class="highlight">mejores flujos</span> e infraestructura que puedan usar de verdad. Si el problema vive entre marketing, CRM, contenido, operaciones y ejecución creativa, ahí suelo aportar más.',
       ],
     },
     caseStudiesUi: {
@@ -570,7 +573,7 @@ export const siteCopy = {
       viewCaseStudy: 'Ver caso de estudio',
       nextProject: 'Siguiente proyecto',
       caseStudyBadge: 'Caso de estudio',
-      scroll: 'Scroll',
+      scroll: 'Desplazar',
     },
     appsPage: {
       title: 'Apps y prototipos',
@@ -578,14 +581,14 @@ export const siteCopy = {
     appDetailUi: {
       breadcrumbLabel: 'Apps',
       keyFlows: 'Flujos clave',
-      keyFlowsTitle: 'Construido como una superficie de producto real, no como una miniatura de portfolio.',
+      keyFlowsTitle: 'Construido como una superficie de producto real, no como una miniatura de portafolio.',
       selectedScreens: 'Pantallas seleccionadas',
       selectedScreensTitle: 'Momentos de producto diseñados como si fueran un lanzamiento.',
       selectedScreensBody:
         'Cada módulo está diseñado para leerse como una captura premium incluso antes de añadir pantallas definitivas, para que la página no se sienta vacía mientras la app evoluciona.',
       productStory: 'Historia de producto',
       archiveTitle: 'Más trabajo en apps',
-      archiveBody: 'Un pequeño archivo de conceptos, herramientas y software en marcha diseñados alrededor de interfaces más fluidas y claridad operativa.',
+      archiveBody: 'Un pequeño archivo de conceptos, herramientas y software en marcha diseñados alrededor de interfaces más tranquilas y claridad operativa.',
     },
   },
 } as const

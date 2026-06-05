@@ -126,16 +126,14 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Link
                     href={app.ctas.primary.href}
-                    className="inline-flex items-center rounded-full px-6 py-3 text-sm font-medium transition duration-300 hover:-translate-y-0.5"
-                    style={{ background: 'var(--ink)', color: 'var(--cream)' }}
+                    className="ui-button ui-button--primary"
                   >
                     {app.ctas.primary.label}
                   </Link>
                   {app.ctas.secondary ? (
                     <Link
                       href={app.ctas.secondary.href}
-                      className="inline-flex items-center rounded-full px-6 py-3 text-sm font-medium transition duration-300 hover:-translate-y-0.5"
-                      style={{ border: '1px solid var(--cream-dark)', color: 'var(--ink)' }}
+                      className="ui-button"
                     >
                       {app.ctas.secondary.label}
                     </Link>
@@ -270,8 +268,7 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
               </div>
               <Link
                 href={localizePath('/apps', locale)}
-                className="inline-flex items-center rounded-full px-5 py-3 text-sm transition duration-300 hover:-translate-y-0.5"
-                style={{ border: '1px solid var(--cream-dark)', color: 'var(--ink)' }}
+                className="ui-button"
               >
                 {locale === 'es' ? 'Volver a apps' : 'Back to apps'}
               </Link>
@@ -304,15 +301,13 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
                     <div className="mt-8 flex flex-wrap gap-3">
                       <Link
                         href={localizePath('/apps', locale)}
-                        className="inline-flex items-center rounded-full px-6 py-3 text-sm font-medium transition duration-300 hover:-translate-y-0.5"
-                        style={{ border: '1px solid var(--cream-dark)', color: 'var(--ink)' }}
+                        className="ui-button"
                       >
                         {locale === 'es' ? 'Ver índice de apps' : 'View apps index'}
                       </Link>
                       <Link
                         href={localizePath('/#contact', locale)}
-                        className="inline-flex items-center rounded-full px-6 py-3 text-sm font-medium transition duration-300 hover:-translate-y-0.5"
-                        style={{ background: 'var(--ink)', color: 'var(--cream)' }}
+                        className="ui-button ui-button--primary"
                       >
                         {locale === 'es' ? 'Solicitar acceso' : 'Request access'}
                       </Link>

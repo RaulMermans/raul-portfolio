@@ -1339,28 +1339,6 @@ main.case-study-page-new {
   margin-top: 1.5rem;
 }
 
-.data-brief-button {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(245, 240, 235, 0.28);
-  border-radius: 0;
-  padding: 0 1rem;
-  color: var(--cream);
-  font-size: 0.72rem;
-  text-decoration: none;
-  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
-}
-
-.data-brief-button--primary,
-.data-brief-button:hover,
-.data-brief-button:focus-visible {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--cream);
-}
-
 .data-brief-button:focus-visible,
 .data-brief-text-link:focus-visible,
 .data-brief-back:focus-visible {
@@ -1410,6 +1388,10 @@ main.case-study-page-new {
   padding: var(--data-brief-section-pad) clamp(1.25rem, 5vw, 5rem);
 }
 
+.case-study-page-new .data-brief-section.ui-section {
+  padding: var(--section-block-padding) var(--section-inline-padding);
+}
+
 .data-brief-section--light {
   background: var(--cream);
   color: var(--ink);
@@ -1435,6 +1417,10 @@ main.case-study-page-new {
   margin: 0 auto;
 }
 
+.case-study-page-new .data-brief-section__container.ui-section__container {
+  max-width: var(--section-content-max);
+}
+
 .data-brief-two-column {
   display: grid;
   grid-template-columns: minmax(13rem, 0.44fr) minmax(0, 1fr);
@@ -1454,6 +1440,34 @@ main.case-study-page-new {
   margin: 0;
   font-size: clamp(2.35rem, 4.8vw, 4.7rem);
   line-height: 0.94;
+}
+
+.data-brief-refresh-heading.ui-section-heading {
+  gap: var(--section-heading-gap);
+  max-width: var(--section-copy-max);
+  margin-bottom: var(--section-content-gap);
+}
+
+.data-brief-refresh-heading.ui-section-heading h2 {
+  max-width: 14ch;
+  font-size: clamp(2.65rem, 5.2vw, 4.75rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.data-brief-refresh-heading.ui-section-heading p {
+  max-width: var(--section-copy-max);
+}
+
+.data-brief-refresh-heading.ui-section-heading > p:not(:first-child) {
+  color: var(--ink-soft);
+  font-family: var(--font-prose);
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  line-height: 1.7;
+}
+
+.data-brief-section--dark .data-brief-refresh-heading.ui-section-heading > p:not(:first-child) {
+  color: rgba(245, 240, 235, 0.82);
 }
 
 .data-brief-section p {
@@ -1903,10 +1917,6 @@ main.case-study-page-new {
 
 .data-brief-actions {
   gap: 0.7rem;
-}
-
-.data-brief-button {
-  border-radius: var(--data-brief-card-radius);
 }
 
 .data-brief-mini-nav {
@@ -2501,20 +2511,6 @@ main.case-study-page-new {
   color: rgba(26, 23, 20, 0.46);
 }
 
-.case-study-page-new--data-brief .data-brief-button {
-  border-color: rgba(26, 23, 20, 0.16);
-  background: transparent;
-  color: var(--ink);
-}
-
-.case-study-page-new--data-brief .data-brief-button--primary,
-.case-study-page-new--data-brief .data-brief-button:hover,
-.case-study-page-new--data-brief .data-brief-button:focus-visible {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--cream);
-}
-
 .case-study-page-new--data-brief .data-brief-tags {
   max-width: 43rem;
 }
@@ -2766,20 +2762,6 @@ main.case-study-page-new {
   min-height: 18rem;
   padding: clamp(1.35rem, 3vw, 2rem);
   background: rgba(245, 240, 235, 0.06);
-}
-
-.case-study-page-new--data-brief .data-brief-section--result .data-brief-button:not(.data-brief-button--primary) {
-  border-color: rgba(245, 240, 235, 0.28);
-  background: transparent;
-  color: var(--cream);
-}
-
-.case-study-page-new--data-brief .data-brief-section--result .data-brief-button--primary,
-.case-study-page-new--data-brief .data-brief-section--result .data-brief-button:not(.data-brief-button--primary):hover,
-.case-study-page-new--data-brief .data-brief-section--result .data-brief-button:not(.data-brief-button--primary):focus-visible {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--cream);
 }
 
 .data-brief-result-grid h3 {
@@ -3428,20 +3410,6 @@ main.case-study-page-new {
   color: rgba(26, 23, 20, 0.5);
 }
 
-.case-study-page-new--benchmark .data-brief-button {
-  border-color: rgba(26, 23, 20, 0.16);
-  background: transparent;
-  color: var(--ink);
-}
-
-.case-study-page-new--benchmark .data-brief-button--primary,
-.case-study-page-new--benchmark .data-brief-button:hover,
-.case-study-page-new--benchmark .data-brief-button:focus-visible {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--cream);
-}
-
 .case-study-page-new--benchmark .data-brief-tags {
   max-width: 34rem;
   margin-top: 1.25rem;
@@ -3556,20 +3524,6 @@ main.case-study-page-new {
   align-self: start;
   position: sticky;
   top: calc(var(--header-height) + 2rem);
-}
-
-.benchmark-section--result .data-brief-button:not(.data-brief-button--primary) {
-  border-color: rgba(245, 240, 235, 0.28);
-  background: transparent;
-  color: var(--cream);
-}
-
-.benchmark-section--result .data-brief-button--primary,
-.benchmark-section--result .data-brief-button:not(.data-brief-button--primary):hover,
-.benchmark-section--result .data-brief-button:not(.data-brief-button--primary):focus-visible {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--cream);
 }
 
 .benchmark-proof-strip {
@@ -4659,20 +4613,6 @@ main.case-study-page-new {
   line-height: 1.75;
 }
 
-.case-study-page-new--portfolio .data-brief-button {
-  border-color: rgba(26, 23, 20, 0.16);
-  background: transparent;
-  color: var(--portfolio-ink);
-}
-
-.case-study-page-new--portfolio .data-brief-button--primary,
-.case-study-page-new--portfolio .data-brief-button:hover,
-.case-study-page-new--portfolio .data-brief-button:focus-visible {
-  border-color: var(--color-1);
-  background: var(--color-1);
-  color: var(--cream);
-}
-
 .case-study-page-new--portfolio .data-brief-tags {
   max-width: 44rem;
   margin-top: 1.25rem;
@@ -4942,20 +4882,6 @@ main.case-study-page-new {
   margin-top: clamp(2.5rem, 5vw, 4rem);
   border-top: 1px solid rgba(245, 240, 235, 0.16);
   padding-top: clamp(2rem, 4vw, 3rem);
-}
-
-.portfolio-section--dark .data-brief-button:not(.data-brief-button--primary) {
-  border-color: rgba(245, 240, 235, 0.28);
-  background: transparent;
-  color: var(--portfolio-cream);
-}
-
-.portfolio-section--dark .data-brief-button--primary,
-.portfolio-section--dark .data-brief-button:not(.data-brief-button--primary):hover,
-.portfolio-section--dark .data-brief-button:not(.data-brief-button--primary):focus-visible {
-  border-color: var(--color-1);
-  background: var(--color-1);
-  color: var(--cream);
 }
 
 @media (max-width: 1180px) {

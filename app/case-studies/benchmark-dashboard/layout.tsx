@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'Benchmark Dashboard Template — Data product / Business intelligence dashboard'
+const title = 'Benchmark Dashboard Template — Producto de datos / Inteligencia de negocio'
 const description =
-  'Caso de estudio: un dashboard público y reutilizable construido con React, Vite, Tailwind CSS y Recharts que convierte datos mock de benchmark en rankings, tendencias, comparativas y escenarios de forecast.'
+  'Caso de estudio: un panel público y reutilizable construido con React, Vite, Tailwind CSS y Recharts que convierte datos sintéticos de benchmark en rankings, tendencias, comparativas y escenarios de previsión.'
 
 export const metadata: Metadata = buildPageMetadata({
   title,
@@ -17,12 +17,12 @@ export const metadata: Metadata = buildPageMetadata({
   },
   type: 'article',
   keywords: [
-    'benchmark dashboard',
-    'data product',
-    'business intelligence',
-    'React Recharts dashboard',
-    'mock data dashboard',
-    'connector-ready dashboard',
+    'panel benchmark',
+    'producto de datos',
+    'inteligencia de negocio',
+    'React Recharts',
+    'datos sintéticos',
+    'panel reutilizable',
   ],
   absoluteTitle: true,
 })
@@ -76,11 +76,11 @@ export default function BenchmarkDashboardLayout({
           image: absoluteUrl('/images/case-studies/case-studies-thumbnail.webp'),
           articleSection: 'Casos de estudio',
           keywords: [
-            'benchmark dashboard',
-            'data product',
-            'business intelligence',
+            'panel benchmark',
+            'producto de datos',
+            'inteligencia de negocio',
             'React Recharts',
-            'mock data',
+            'datos sintéticos',
           ],
         }}
       />

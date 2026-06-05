@@ -200,7 +200,7 @@ export default function CaseStudiesPage() {
         <section className="case-study-browser__chrome" aria-labelledby="case-studies-heading">
           <div className="case-study-browser__intro">
             <p className="case-study-browser__eyebrow">
-              {isSpanish ? 'Portfolio seleccionado' : 'Selected portfolio'}
+              {isSpanish ? 'Portafolio seleccionado' : 'Selected portfolio'}
             </p>
             <h1 id="case-studies-heading">{browserTitle}</h1>
             <p>{browserLead}</p>
@@ -282,7 +282,6 @@ export default function CaseStudiesPage() {
                       ))}
                     </span>
                   )}
-                  <span className="case-study-project-tile__cta">{study.cta ?? readCase}</span>
                 </span>
               </Link>
             )

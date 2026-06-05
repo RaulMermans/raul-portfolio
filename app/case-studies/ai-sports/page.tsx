@@ -48,11 +48,39 @@ const commercialContent: CommercialCaseStudyContent = {
     "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
 }
 
+const commercialContentEs: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Tipo', value: 'Flujo de campaña con IA' },
+    { label: 'Uso', value: 'Operaciones creativas, consistencia de campaña e iteración visual controlada' },
+    { label: 'Rol', value: 'Diseño de flujo con IA, dirección creativa, estructura de prompts y reglas de consistencia' },
+    { label: 'Stack', value: 'n8n, API generativa de imagen, condicionamiento por referencia, esquema de prompt y versionado de resultados' },
+    { label: 'Estado', value: 'Prototipo de sistema de campaña y caso de estudio' },
+  ],
+  businessContext:
+    'Un equipo creativo puede generar una imagen potente con rapidez, pero una campaña necesita continuidad entre muchas piezas. Este proyecto explora cómo la IA puede acelerar la iteración visual sin perder iluminación, lógica de escena, estilo ni revisión humana.',
+  systemSummary:
+    'El flujo separa constantes y variables. Una imagen de referencia define el mundo visual, mientras que modelo y vestuario quedan como variables controladas. El sistema genera un grupo reducido de variantes coherentes con la campaña, revisadas por una persona según realismo, ajuste de marca y legibilidad del producto.',
+  systemItems: [
+    { title: 'Inputs', description: 'Imagen de referencia de campaña, referencia de modelo y referencias de vestuario o producto.' },
+    { title: 'Flujo', description: 'Fijar anclajes de escena, definir atributos editables, generar variantes controladas, revisar resultados y seleccionar piezas finales.' },
+    { title: 'Lógica de proceso', description: 'El esquema de prompt y el condicionamiento por referencia estabilizan luz, entorno, encuadre y textura.' },
+    { title: 'Resultado', description: 'Variantes visuales coherentes con la campaña, listas para selección creativa y revisión de dirección de arte.' },
+    { title: 'Límites', description: 'Las comprobaciones priorizan sensación de misma producción por encima de la novedad; si hay deriva visual, la salida falla.' },
+  ],
+  whyItMatters:
+    'Los flujos de imagen con IA son útiles comercialmente cuando están acotados. Este sistema convierte una generación abierta en una operación creativa repetible donde el equipo controla qué cambia, qué permanece fijo y cómo se revisa la calidad final.',
+  clientRelevance:
+    'Una versión para cliente podría ayudar a equipos de marketing, ecommerce, marca o creatividad a explorar rutas de campaña, estilismo de producto, casting y generación de variantes manteniendo coherencia visual y aprobación humana.',
+  ctaCopy:
+    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+}
+
 export default function AISportsCampaignPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const copy = getSiteCopy(locale).caseStudiesUi
   const content = getCaseStudyContent('ai-sports', locale)
+  const commercial = locale === 'es' ? commercialContentEs : commercialContent
 
   useCaseStudySetup()
 
@@ -80,7 +108,7 @@ export default function AISportsCampaignPage() {
           />
               )}
 
-        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+        <CommercialCaseStudyIntro content={commercial} locale={locale} />
 
         {/* Introduction Section */}
         {content.overview && (
@@ -250,7 +278,7 @@ export default function AISportsCampaignPage() {
           </CaseStudySection>
               )}
 
-        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
+        <CommercialCaseStudyClosing content={commercial} locale={locale} />
 
         {/* Next Case Study */}
         <CaseStudyNext 

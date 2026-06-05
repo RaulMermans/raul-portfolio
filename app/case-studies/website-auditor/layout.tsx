@@ -4,12 +4,12 @@ import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/
 
 const title = 'Website Audit Agent — Flujo de Auditoría IA Basado en Evidencia'
 const description =
-  'Caso técnico de Website Audit Agent, un flujo de auditoría web basado en evidencia que separa scoring determinista y síntesis LLM acotada.'
+  'Caso técnico de Website Audit Agent, un flujo de auditoría web basado en evidencia que separa puntuación determinista y síntesis LLM acotada.'
 const image = '/images/case-studies/website-auditor/thumb/thumb.webp'
 const keywords = [
   'website audit agent',
   'flujo de auditoría IA',
-  'scoring determinista',
+  'puntuación determinista',
   'síntesis LLM acotada',
   'inteligencia comercial',
   'sistema de IA basado en evidencia',

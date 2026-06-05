@@ -169,11 +169,11 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       name: 'Overflow',
       tagline: 'Un diario de entrenamiento claro para iPhone.',
       shortDescription:
-        'Overflow es un diario de rendimiento para iPhone. Registra entrenamientos, construye rutinas y mide progreso sin ruido.',
+        'Overflow es un diario de entrenamiento para iPhone. Registra sesiones, crea rutinas y mide tu progreso sin ruido.',
       cardDescription:
         'Registro de entrenamiento sin fricción, planificación de rutinas y seguimiento de progreso diseñados con contención e intención.',
       heroStatement:
-        'Entrena con claridad. Overflow sustituye las apps fitness ruidosas por un diario bien pensado que respeta tu foco.',
+        'Entrena con claridad. Overflow sustituye las apps de fitness ruidosas por un diario pensado para respetar tu foco.',
       status: 'App destacada',
       launchStage: 'Beta privada',
       icon: '/images/apps/overflow/icon.webp',
@@ -198,13 +198,13 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
         },
         {
           eyebrow: 'Estructura semanal',
-          title: 'Rutinas que mantienen forma.',
+          title: 'Rutinas que mantienen su forma.',
           description:
             'Construye estructuras semanales que se adaptan cuando la vida cambia. Tu programa sigue visible, no enterrado en menús.',
         },
         {
           eyebrow: 'Progreso medible',
-          title: 'Progreso que se puede sentir.',
+          title: 'Progreso que se nota.',
           description:
             'Volumen semanal, récords personales y rachas que significan algo. Ve tu trayectoria con datos limpios y fáciles de leer.',
         },
@@ -232,7 +232,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
         },
         {
           eyebrow: 'Progreso',
-          title: 'Ve tu trayectoria, no un dashboard.',
+          title: 'Ve tu trayectoria, no un panel.',
           description:
             'Volumen semanal, récords personales y constancia presentados sin ruido.',
           stats: ['Volumen', 'Récords', 'Tendencias'],

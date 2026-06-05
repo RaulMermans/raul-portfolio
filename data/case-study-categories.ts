@@ -43,7 +43,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
       title: isSpanish ? 'Sistemas de IA y agentes' : 'AI Systems & Agents',
       eyebrow: isSpanish ? 'Nueva categoría' : 'New category',
       description: isSpanish
-        ? 'Agentes y sistemas aplicados que convierten análisis, auditoría y decisiones repetibles en flujos utilizables.'
+        ? 'Agentes y sistemas aplicados que convierten análisis, auditorías y decisiones repetibles en flujos utilizables.'
         : 'Applied agents and systems that turn analysis, audits, and repeatable decisions into usable workflows.',
       href: localizePath('/case-studies', locale),
       projects: [
@@ -139,14 +139,14 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
       title: isSpanish ? 'Inteligencia de negocio' : 'Business intelligence',
       eyebrow: isSpanish ? 'Sistemas de datos' : 'Data systems',
       description: isSpanish
-        ? 'Dashboards, benchmarks e interfaces de lectura estratégica que transforman datos estructurados en decisiones claras.'
+        ? 'Paneles, benchmarks e interfaces de lectura estratégica que convierten datos estructurados en decisiones claras.'
         : 'Dashboards, benchmark interfaces, and strategic-reading systems that transform structured data into clear decisions.',
       href: localizePath('/case-studies', locale),
       projects: benchmarkDashboard
         ? [
             {
               title: benchmarkDashboard.title,
-              label: benchmarkDashboard.subtitle ?? (isSpanish ? 'Data product / Benchmark system' : 'Data product / Benchmark system'),
+              label: benchmarkDashboard.subtitle ?? (isSpanish ? 'Producto de datos / Sistema benchmark' : 'Data product / Benchmark system'),
               description: benchmarkDashboard.description,
               image: benchmarkDashboard.image,
               href: benchmarkDashboard.href,

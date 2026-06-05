@@ -432,7 +432,7 @@ function getOverflowContent(locale: Locale): OverflowContent {
       decisionRows: [
         {
           decision: 'Un único hogar operativo',
-          alternative: 'La mayoría de apps fitness abren con dashboards que tienes que interpretar.',
+          alternative: 'La mayoría de apps de fitness abren con paneles que tienes que interpretar.',
           impact: 'Overflow mantiene obvia la siguiente acción.',
         },
         {
@@ -477,7 +477,7 @@ function getOverflowContent(locale: Locale): OverflowContent {
             'Una sola acción principal empieza la sesión.',
           ],
           callouts: [
-            { title: 'Cadencia semanal', body: 'La semana se ve sin convertir la pantalla en un dashboard.', top: '20%', side: 'left' },
+            { title: 'Cadencia semanal', body: 'La semana se ve sin convertir la pantalla en un panel.', top: '20%', side: 'left' },
             { title: 'Siguiente entrenamiento', body: 'El plan aparece como la siguiente acción y no como un detalle escondido.', top: '46%', side: 'right' },
             { title: 'Empieza ya', body: 'Una acción clara lleva directamente al flujo de sesión.', top: '71%', side: 'left' },
           ],

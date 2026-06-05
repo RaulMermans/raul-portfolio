@@ -325,7 +325,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     },
     overview: {
       description:
-        'Hoy todo el mundo puede generar imágenes "potentes". Casi nadie puede generar **campañas consistentes**. Construí un sistema de **automatización en n8n** que toma una imagen de referencia y me permite cambiar **modelo y vestuario** manteniendo **iluminación, entorno y ADN del plano** estables. El resultado es una **coherencia de nivel campaña** producida en minutos. La **iteración** deja de ser un problema de re-shoot y se convierte en un **bucle repetible**.',
+        'Hoy todo el mundo puede generar imágenes "potentes". Casi nadie puede generar **campañas consistentes**. Construí un sistema de **automatización en n8n** que toma una imagen de referencia y me permite cambiar **modelo y vestuario** manteniendo **iluminación, entorno y ADN del plano** estables. El resultado es una **coherencia de nivel campaña** producida en minutos. La **iteración** deja de depender de repetir una sesión y se convierte en un **bucle repetible**.',
       intentQuote: 'Convertir la consistencia de campaña de intuición a sistema operable.',
       meta: [
         { label: 'Tipo', value: 'Sistema de automatización con IA' },
@@ -350,7 +350,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     },
     approach: {
       text: 'La clave era hacerlo utilizable: un **sistema**, no un póster. La idea clave fue que la **consistencia de campaña** nace de las **restricciones**, no de la creatividad por prompt. Diseñé la **automatización** alrededor de un modelo de **"constantes vs variables"**: primero fijando los **no negociables** de la imagen de referencia y después dando flexibilidad controlada a **casting y vestuario**. El **flujo** procesa **tres entradas visuales** y las enruta por una secuencia repetible que prioriza la **continuidad por encima de la novedad**. La **selección final** sigue siendo humana: elijo en función de **realismo, ajuste de marca y lectura del producto**. Las campañas se **editan**; no solo se generan.',
-      tools: ['n8n', 'API generativa', 'Condicionamiento por referencia', 'Esquema de prompt', 'Versionado de outputs'],
+      tools: ['n8n', 'API generativa', 'Condicionamiento por referencia', 'Esquema de prompt', 'Versionado de resultados'],
       system: {
         label: 'El sistema',
         items: [

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { type Locale, localizePath } from '@/lib/i18n'
 
 type SnapshotItem = {
   label: string
@@ -51,18 +52,59 @@ function ProjectLinks({ links }: { links?: ProjectLink[] }) {
   )
 }
 
-export function CommercialCaseStudyIntro({ content }: { content: CommercialCaseStudyContent }) {
+const sectionCopy = {
+  en: {
+    snapshotEyebrow: 'Project Snapshot',
+    snapshotTitle: 'What the system is',
+    contextEyebrow: 'Business Context',
+    contextTitle: 'The workflow problem behind the project',
+    solutionEyebrow: 'System / Solution',
+    solutionTitle: 'How the workflow is bounded',
+    whyEyebrow: 'Why It Matters',
+    whyTitle: 'Reliability beats novelty',
+    relevanceEyebrow: 'Client Relevance',
+    relevanceTitle: 'Where this becomes useful',
+    ctaEyebrow: 'Discuss a Similar System',
+    ctaTitle: 'Have a workflow worth systemizing?',
+    ctaLabel: 'Start Project Brief',
+  },
+  es: {
+    snapshotEyebrow: 'Resumen del proyecto',
+    snapshotTitle: 'Qué es el sistema',
+    contextEyebrow: 'Contexto de negocio',
+    contextTitle: 'El problema de flujo del proyecto',
+    solutionEyebrow: 'Sistema / Solución',
+    solutionTitle: 'Cómo se acota el flujo',
+    whyEyebrow: 'Por qué importa',
+    whyTitle: 'La fiabilidad pesa más que la novedad',
+    relevanceEyebrow: 'Uso para clientes',
+    relevanceTitle: 'Dónde se vuelve útil',
+    ctaEyebrow: 'Hablar de un sistema similar',
+    ctaTitle: '¿Tienes un flujo que merece sistematizarse?',
+    ctaLabel: 'Enviar brief de proyecto',
+  },
+} as const
+
+export function CommercialCaseStudyIntro({
+  content,
+  locale = 'en',
+}: {
+  content: CommercialCaseStudyContent
+  locale?: Locale
+}) {
+  const copy = sectionCopy[locale]
+
   return (
     <>
       <section
         id="project-snapshot"
-        className="data-brief-section data-brief-section--light"
+        className="data-brief-section data-brief-section--light ui-section"
         aria-labelledby="project-snapshot-heading"
       >
-        <div className="data-brief-section__container">
-          <div className="data-brief-refresh-heading">
-            <p className="data-brief-eyebrow">Project Snapshot</p>
-            <h2 id="project-snapshot-heading">What the system is</h2>
+        <div className="data-brief-section__container ui-section__container">
+          <div className="data-brief-refresh-heading ui-section-heading">
+            <p className="data-brief-eyebrow ui-eyebrow">{copy.snapshotEyebrow}</p>
+            <h2 id="project-snapshot-heading">{copy.snapshotTitle}</h2>
           </div>
           <div className="data-brief-result-grid">
             {content.snapshot.map((item) => (
@@ -78,13 +120,13 @@ export function CommercialCaseStudyIntro({ content }: { content: CommercialCaseS
 
       <section
         id="business-context"
-        className="data-brief-section data-brief-section--cream"
+        className="data-brief-section data-brief-section--cream ui-section"
         aria-labelledby="business-context-heading"
       >
-        <div className="data-brief-section__container">
-          <div className="data-brief-refresh-heading">
-            <p className="data-brief-eyebrow">Business Context</p>
-            <h2 id="business-context-heading">The workflow problem behind the project</h2>
+        <div className="data-brief-section__container ui-section__container">
+          <div className="data-brief-refresh-heading ui-section-heading">
+            <p className="data-brief-eyebrow ui-eyebrow">{copy.contextEyebrow}</p>
+            <h2 id="business-context-heading">{copy.contextTitle}</h2>
             <p>{content.businessContext}</p>
           </div>
         </div>
@@ -92,13 +134,13 @@ export function CommercialCaseStudyIntro({ content }: { content: CommercialCaseS
 
       <section
         id="system-solution"
-        className="data-brief-section data-brief-section--light"
+        className="data-brief-section data-brief-section--light ui-section"
         aria-labelledby="system-solution-heading"
       >
-        <div className="data-brief-section__container">
-          <div className="data-brief-refresh-heading">
-            <p className="data-brief-eyebrow">System / Solution</p>
-            <h2 id="system-solution-heading">How the workflow is bounded</h2>
+        <div className="data-brief-section__container ui-section__container">
+          <div className="data-brief-refresh-heading ui-section-heading">
+            <p className="data-brief-eyebrow ui-eyebrow">{copy.solutionEyebrow}</p>
+            <h2 id="system-solution-heading">{copy.solutionTitle}</h2>
             <p>{content.systemSummary}</p>
           </div>
           <div className="data-brief-card-grid data-brief-card-grid--architecture">
@@ -115,18 +157,26 @@ export function CommercialCaseStudyIntro({ content }: { content: CommercialCaseS
   )
 }
 
-export function CommercialCaseStudyClosing({ content }: { content: CommercialCaseStudyContent }) {
+export function CommercialCaseStudyClosing({
+  content,
+  locale = 'en',
+}: {
+  content: CommercialCaseStudyContent
+  locale?: Locale
+}) {
+  const copy = sectionCopy[locale]
+
   return (
     <>
       <section
         id="why-it-matters"
-        className="data-brief-section data-brief-section--cream"
+        className="data-brief-section data-brief-section--cream ui-section"
         aria-labelledby="why-it-matters-heading"
       >
-        <div className="data-brief-section__container">
-          <div className="data-brief-refresh-heading">
-            <p className="data-brief-eyebrow">Why It Matters</p>
-            <h2 id="why-it-matters-heading">Reliability beats novelty</h2>
+        <div className="data-brief-section__container ui-section__container">
+          <div className="data-brief-refresh-heading ui-section-heading">
+            <p className="data-brief-eyebrow ui-eyebrow">{copy.whyEyebrow}</p>
+            <h2 id="why-it-matters-heading">{copy.whyTitle}</h2>
             <p>{content.whyItMatters}</p>
           </div>
         </div>
@@ -134,13 +184,13 @@ export function CommercialCaseStudyClosing({ content }: { content: CommercialCas
 
       <section
         id="client-relevance"
-        className="data-brief-section data-brief-section--light"
+        className="data-brief-section data-brief-section--light ui-section"
         aria-labelledby="client-relevance-heading"
       >
-        <div className="data-brief-section__container">
-          <div className="data-brief-refresh-heading">
-            <p className="data-brief-eyebrow">Client Relevance</p>
-            <h2 id="client-relevance-heading">Where this becomes useful</h2>
+        <div className="data-brief-section__container ui-section__container">
+          <div className="data-brief-refresh-heading ui-section-heading">
+            <p className="data-brief-eyebrow ui-eyebrow">{copy.relevanceEyebrow}</p>
+            <h2 id="client-relevance-heading">{copy.relevanceTitle}</h2>
             <p>{content.clientRelevance}</p>
           </div>
         </div>
@@ -148,18 +198,18 @@ export function CommercialCaseStudyClosing({ content }: { content: CommercialCas
 
       <section
         id="similar-system"
-        className="data-brief-section data-brief-section--dark data-brief-section--result"
+        className="data-brief-section data-brief-section--dark data-brief-section--result ui-section"
         aria-labelledby="similar-system-heading"
       >
-        <div className="data-brief-section__container">
-          <div className="data-brief-refresh-heading">
-            <p className="data-brief-eyebrow">Discuss a Similar System</p>
-            <h2 id="similar-system-heading">Have a workflow worth systemizing?</h2>
+        <div className="data-brief-section__container ui-section__container">
+          <div className="data-brief-refresh-heading ui-section-heading">
+            <p className="data-brief-eyebrow ui-eyebrow">{copy.ctaEyebrow}</p>
+            <h2 id="similar-system-heading">{copy.ctaTitle}</h2>
             <p>{content.ctaCopy}</p>
           </div>
           <div className="data-brief-actions">
-            <Link href="/en/#contact" className="data-brief-button data-brief-button--primary">
-              Start Project Brief
+            <Link href={localizePath('/#contact', locale)} className="data-brief-button data-brief-button--primary">
+              {copy.ctaLabel}
             </Link>
           </div>
         </div>

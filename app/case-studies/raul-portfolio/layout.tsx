@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'Raul Mermans Portfolio — Sistema de portfolio de marca personal'
+const title = 'Raul Mermans Portfolio — Sistema de portafolio de marca personal'
 const description =
   'Caso de estudio de Raul Mermans Portfolio, un sistema de identidad digital para estrategia, trabajo de IA/producto, fotografía y experimentación visual.'
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = buildPageMetadata({
     'Raul Mermans Portfolio',
     'sistema de marca personal',
     'identidad digital',
-    'arquitectura de portfolio',
+    'arquitectura de portafolio',
     'diseño web editorial',
   ],
   absoluteTitle: true,
@@ -77,7 +77,7 @@ export default function RaulPortfolioLayout({
           keywords: [
             'sistema de marca personal',
             'identidad digital',
-            'arquitectura de portfolio',
+            'arquitectura de portafolio',
             'diseño web editorial',
           ],
         }}

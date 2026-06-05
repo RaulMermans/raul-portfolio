@@ -47,6 +47,37 @@ const commercialContent: CommercialCaseStudyContent = {
     "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
 }
 
+const commercialContentEs: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Tipo', value: 'Sistema de reporting con IA' },
+    { label: 'Uso', value: 'Análisis de hojas de cálculo, briefs de negocio y apoyo a decisiones' },
+    { label: 'Rol', value: 'Arquitectura de sistema, lógica de producto, implementación frontend/backend y diseño de flujo con IA' },
+    { label: 'Stack', value: 'Next.js, FastAPI, runtime de análisis Python, SQLite, parsing CSV/XLSX y ejecución controlada' },
+    { label: 'Estado', value: 'Prototipo con demo en vivo y GitHub disponible' },
+  ],
+  links: [
+    { label: 'Ver prototipo', href: demoUrl, external: true },
+    { label: 'Ver GitHub', href: githubUrl, external: true },
+  ],
+  businessContext:
+    'Los flujos de reporting suelen empezar con archivos CSV o XLSX desordenados y terminar con resúmenes que parecen seguros incluso cuando los datos no los respaldan. Este proyecto explora cómo la IA puede acelerar briefs de negocio manteniendo visibles las métricas no soportadas, las advertencias y los límites de calidad del dato.',
+  systemSummary:
+    'El sistema acepta hojas de cálculo, perfila el dataset, identifica campos disponibles, planifica solo análisis respaldados, ejecuta Python controlado, evalúa fallos y exporta un informe cuyas afirmaciones quedan ligadas a resultados calculados. La revisión humana sigue siendo central porque el sistema muestra incertidumbre en vez de esconderla.',
+  systemItems: [
+    { title: 'Inputs', description: 'CSV o XLSX con estructura desconocida, valores ausentes, duplicados y roles de columna inconsistentes.' },
+    { title: 'Flujo', description: 'Validación de subida, perfilado semántico, selección de ruta, planificación acotada, ejecución, evaluación, reparación y exportación.' },
+    { title: 'Lógica de proceso', description: 'El Python generado se ejecuta bajo verificaciones estáticas y límites; las métricas no soportadas se eliminan o se marcan como no disponibles.' },
+    { title: 'Resultado', description: 'Informe de negocio estructurado, hallazgos, gráficos, código generado y artefactos exportables para revisión.' },
+    { title: 'Límites', description: 'Advertencias, comprobaciones de afirmaciones no soportadas, límite de reparación y almacén de ejecuciones hacen el resultado más trazable.' },
+  ],
+  whyItMatters:
+    'Muchas herramientas de reporting con IA fallan cuando tratan el modelo como analista abierto. DataBrief AI hace lo contrario: entradas claras, ejecución controlada, restricciones explícitas y resultados revisables. Eso encaja mejor con equipos reales, donde la calidad del informe y la trazabilidad de la decisión pesan más que la autonomía amplia.',
+  clientRelevance:
+    'Una versión para cliente podría ayudar a equipos de marketing, CRM, ecommerce u operaciones a reducir reporting manual, estandarizar resúmenes recurrentes y mejorar análisis asistidos por IA sin presentar conclusiones no soportadas como hechos.',
+  ctaCopy:
+    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+}
+
 const content = {
   en: {
     back: 'Back to Case Studies',
@@ -249,7 +280,7 @@ const content = {
     heroDescription:
       'DataBrief AI analiza archivos CSV/XLSX mediante detección de roles semánticos, ejecución Python controlada, reparación acotada y exportación de informes. El sistema está diseñado para mostrar lo que los datos pueden respaldar y hacer explícitas las métricas no disponibles.',
     heroFigcaption: 'Vista previa representativa del informe con métricas soportadas y avisos explícitos.',
-    heroFigAriaLabel: 'Vista previa del output del informe',
+    heroFigAriaLabel: 'Vista previa del informe generado',
     heroCTA: 'Demo en vivo →',
     heroCTAGithub: 'GitHub →',
     heroCTAHow: 'Cómo funciona',
@@ -257,7 +288,7 @@ const content = {
     nav: [
       ['Resumen', '#overview'],
       ['Flujo', '#workflow'],
-      ['Output', '#output'],
+      ['Resultado', '#output'],
       ['Arquitectura', '#architecture'],
       ['Resultado', '#result'],
     ] as const,
@@ -288,7 +319,7 @@ const content = {
     workflowEyebrow: 'Flujo de trabajo',
     workflowH2: 'Cuatro fases, límites claros',
     workflowP:
-      'El software mantiene un pipeline estricto detrás de la presentación simplificada: valida la subida, analiza el dataset, enruta el dominio, planifica el análisis soportado, ejecuta el Python generado, evalúa el resultado, repara solo los fallos recuperables y empaqueta el informe y las exportaciones.',
+      'El software mantiene un flujo estricto detrás de la presentación simplificada: valida la subida, analiza el dataset, enruta el dominio, planifica el análisis soportado, ejecuta el Python generado, evalúa el resultado, repara solo los fallos recuperables y empaqueta el informe y las exportaciones.',
     workflowAriaLabel: 'Flujo de trabajo de DataBrief AI',
     workflowPhases: [
       {
@@ -310,10 +341,10 @@ const content = {
           'Clasifica los resultados de la ejecución, repara solo los fallos recuperables, contrasta el informe y empaqueta las exportaciones.',
       },
     ],
-    outputEyebrow: 'Output',
+    outputEyebrow: 'Resultado',
     outputH2: 'Un informe que separa señal de advertencia',
     outputP:
-      'La página mantiene una sola vista previa de informe sólida y tres tarjetas de output de apoyo, en lugar de repetir el mismo mock en cada sección.',
+      'La página mantiene una sola vista previa de informe sólida y tres tarjetas de apoyo, en lugar de repetir el mismo ejemplo visual en cada sección.',
     outputMainFigcaption:
       'Vista previa representativa de una ejecución. Las métricas de pedido no soportadas se marcan explícitamente.',
     outputPreviews: [
@@ -335,9 +366,9 @@ const content = {
       },
     ],
     architectureEyebrow: 'Arquitectura',
-    architectureH2: 'El software es un pipeline acotado, no un chatbot con envoltura de API',
+    architectureH2: 'El software es un flujo acotado, no un chatbot con envoltura de API',
     architectureP:
-      'El sistema se organiza alrededor de fronteras de servicio explícitas: analizar primero, enrutar desde señales detectables, generar código de análisis desde plantillas, ejecutarlo bajo restricciones, evaluar el resultado y exponer artefactos a través de endpoints de exportación estables.',
+      'El sistema se organiza alrededor de fronteras de servicio explícitas: analizar primero, enrutar desde señales detectables, generar código de análisis desde plantillas, ejecutarlo bajo restricciones, evaluar el resultado y exponer artefactos mediante endpoints de exportación estables.',
     softwareLayers: [
       {
         title: 'Frontera HTTP',
@@ -362,7 +393,7 @@ const content = {
       {
         title: 'Informe contrastado',
         description:
-          'El generador de informes construye KPIs, hallazgos, advertencias, recomendaciones y aclaraciones solo desde los outputs calculados, y revisa en un único pase las afirmaciones no soportadas.',
+          'El generador de informes construye KPIs, hallazgos, advertencias, recomendaciones y aclaraciones solo desde los resultados calculados, y revisa en un único pase las afirmaciones no soportadas.',
       },
       {
         title: 'Almacén de ejecuciones',
@@ -383,7 +414,7 @@ const content = {
       {
         title: 'Marco de fiabilidad',
         description:
-          'El sistema valora los avisos explícitos, la ejecución controlada y los outputs soportados por encima de la autonomía amplia.',
+          'El sistema valora los avisos explícitos, la ejecución controlada y los resultados respaldados por encima de la autonomía amplia.',
       },
       {
         title: 'Límite público',
@@ -409,7 +440,7 @@ const content = {
       'No es un agente de IA completamente autónomo.',
       'No implementa aislamiento a nivel de sistema operativo.',
       'No enriquece las subidas con fuentes externas de internet.',
-      'La calidad de los outputs depende de los roles de columna detectables y la estructura del dataset.',
+      'La calidad de los resultados depende de los roles de columna detectables y la estructura del dataset.',
       'El enrutamiento específico para rendimiento de campañas es una extensión de dominio futura.',
     ],
     resultCTADemo: 'Abrir la demo →',
@@ -532,6 +563,7 @@ export default function DataBriefAiPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const t = content[locale]
+  const commercial = locale === 'es' ? commercialContentEs : commercialContent
 
   useCaseStudySetup()
 
@@ -581,7 +613,7 @@ export default function DataBriefAiPage() {
           ))}
         </nav>
 
-        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+        <CommercialCaseStudyIntro content={commercial} locale={locale} />
 
         <section
           id="overview"
@@ -749,7 +781,7 @@ export default function DataBriefAiPage() {
           </div>
         </section>
 
-        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
+        <CommercialCaseStudyClosing content={commercial} locale={locale} />
 
         <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
       </main>

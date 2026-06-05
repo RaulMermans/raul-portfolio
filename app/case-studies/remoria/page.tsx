@@ -50,11 +50,39 @@ const commercialContent: CommercialCaseStudyContent = {
     "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
 }
 
+const commercialContentEs: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Tipo', value: 'Sistema de marca premium' },
+    { label: 'Uso', value: 'Identidad, tono de voz, concepto de packaging, reglas creativas y relato de producto' },
+    { label: 'Rol', value: 'Diseño de sistema de marca, dirección creativa, identidad visual y mundo verbal' },
+    { label: 'Stack', value: 'Illustrator, Photoshop, Figma, Pinterest' },
+    { label: 'Estado', value: 'Caso de estudio de sistema de marca' },
+  ],
+  businessContext:
+    'Los equipos de marca y creatividad suelen necesitar algo más que un logo o un moodboard: necesitan reglas que guíen contenido, campañas, packaging y resultados asistidos por IA. Remoria explora cómo una identidad premium puede convertirse en un sistema operativo de coherencia.',
+  systemSummary:
+    'El proyecto define un mundo narrativo, lenguaje visual, tono de voz, paleta, tipografía y lógica de aplicación alrededor de la contención y la memoria. El sistema da a futuras fragancias y piezas creativas un conjunto compartido de reglas, no solo decisiones estéticas aisladas.',
+  systemItems: [
+    { title: 'Inputs', description: 'Posicionamiento premium, mitología de fragancia, referencias mediterráneas, legado romano y tono emocional.' },
+    { title: 'Flujo', description: 'Traducir estrategia narrativa en reglas de identidad, dirección visual, tono verbal, lógica de packaging y ejemplos de aplicación.' },
+    { title: 'Lógica de proceso', description: 'Separar constantes como contención, tactilidad y atemporalidad de variables como historia olfativa y capítulo de producto.' },
+    { title: 'Resultado', description: 'Sistema de identidad visual, tono de voz, concepto de packaging, moodboard, paleta y marco narrativo.' },
+    { title: 'Límites', description: 'Minimalismo, contención lírica y señales materiales mantienen la marca coherente en futuras ejecuciones.' },
+  ],
+  whyItMatters:
+    'Un sistema de marca importa cuando la producción creativa necesita escalar sin volverse genérica. Este caso convierte estrategia en reglas reutilizables, algo especialmente útil cuando el contenido asistido por IA o la producción de campañas necesitan criterio humano y coherencia de marca.',
+  clientRelevance:
+    'Un sistema similar podría ayudar a equipos de marca, creatividad, ecommerce o CRM a definir tono, mensajes, criterios visuales y reglas de revisión para mantener campañas y resultados asistidos por IA alineados con la marca.',
+  ctaCopy:
+    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+}
+
 export default function RemoriaPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const copy = getSiteCopy(locale).caseStudiesUi
   const content = getCaseStudyContent('remoria', locale)
+  const commercial = locale === 'es' ? commercialContentEs : commercialContent
 
   useCaseStudySetup()
 
@@ -80,7 +108,7 @@ export default function RemoriaPage() {
           />
               )}
 
-        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+        <CommercialCaseStudyIntro content={commercial} locale={locale} />
 
         {content.overview && (
           <CaseStudySection 
@@ -230,7 +258,7 @@ export default function RemoriaPage() {
           </CaseStudySection>
         )}
 
-        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
+        <CommercialCaseStudyClosing content={commercial} locale={locale} />
 
         <CaseStudyNext 
           currentHref={pathname}

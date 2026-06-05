@@ -43,6 +43,34 @@ const commercialContent: CommercialCaseStudyContent = {
     "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
 }
 
+const commercialContentEs: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Tipo', value: 'Flujo de auditoría con IA basado en evidencia' },
+    { label: 'Uso', value: 'Diagnóstico web, revisión UX/SEO/conversión e inteligencia interna de prospección' },
+    { label: 'Rol', value: 'Arquitectura de sistema, lógica de flujo, framing de producto e implementación frontend/backend' },
+    { label: 'Stack', value: 'Next.js, TypeScript, Postgres, pg-boss, Playwright, Gemini y Vercel' },
+    { label: 'Estado', value: 'Prototipo interno privado con GitHub público disponible' },
+  ],
+  links: [{ label: 'Ver GitHub', href: githubUrl, external: true }],
+  businessContext:
+    'Las revisiones web tienen mucha fricción porque los equipos necesitan evidencia, prioridad e interpretación comercial, no feedback genérico de IA. Este proyecto explora cómo la IA puede acelerar diagnósticos manteniendo separadas medición, observación e inferencia.',
+  systemSummary:
+    'El sistema recibe una URL pública, captura evidencia renderizada o estática, guarda la ejecución, aplica puntuación determinista y solo después pasa los hallazgos aceptados a una capa de síntesis con IA. El informe mantiene visibles las etiquetas de evidencia para que las recomendaciones se puedan revisar, no aceptar a ciegas.',
+  systemItems: [
+    { title: 'Inputs', description: 'URLs públicas y evidencia de página capturada mediante navegador o colección estática.' },
+    { title: 'Flujo', description: 'Entrada de URL, captura, almacenamiento de evidencia, puntuación determinista, síntesis acotada y ensamblaje del informe interno.' },
+    { title: 'Lógica de proceso', description: 'Las reglas generan hallazgos y puntuaciones antes de que el modelo resuma la evidencia aceptada.' },
+    { title: 'Resultado', description: 'Informe privado con scores, confianza, etiquetas de evidencia, hallazgos principales y recomendaciones priorizadas.' },
+    { title: 'Límites', description: 'El LLM no puede crear hallazgos, cambiar puntuaciones, inventar métricas ni presentar inferencias como verdad medida.' },
+  ],
+  whyItMatters:
+    'Las auditorías con IA se vuelven arriesgadas cuando mezclan evidencia e interpretación en una única respuesta del modelo. Este sistema define entradas claras, evidencia aceptada, puntuación determinista y síntesis revisable, lo que hace las recomendaciones más útiles para equipos que necesitan diagnósticos repetibles.',
+  clientRelevance:
+    'Una versión para cliente podría ayudar a equipos de marketing, ecommerce, CRM o growth a estandarizar auditorías web, acelerar diagnósticos de UX/SEO/conversión y convertir observaciones desordenadas en apoyo claro para decidir.',
+  ctaCopy:
+    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+}
+
 const content = {
   en: {
     back: 'Back to Case Studies',
@@ -276,7 +304,7 @@ const content = {
     heroCTAHow: 'Cómo funciona',
     heroFigcaption: 'Vista representativa. No es un resultado de auditoría en vivo.',
     heroFigAriaLabel: 'Vista representativa del informe de Website Audit Agent',
-    tags: ['Motor rule-first', 'Captura browser-first', 'Síntesis LLM acotada', 'Herramienta interna privada'],
+    tags: ['Motor basado en reglas', 'Captura con navegador', 'Síntesis LLM acotada', 'Herramienta interna privada'],
     nav: [
       ['Problema', '#problem'],
       ['Resumen', '#overview'],
@@ -290,7 +318,7 @@ const content = {
     problemEyebrow: 'Problema',
     problemH2: 'El problema de las auditorías con IA es la confianza.',
     problemP:
-      'Muchas herramientas de auditoría web con IA mezclan observación, scoring e interpretación en una sola respuesta opaca del modelo. El resultado puede ser rápido, pero difícil de confiar.',
+      'Muchas herramientas de auditoría web con IA mezclan observación, puntuación e interpretación en una sola respuesta opaca del modelo. El resultado puede ser rápido, pero cuesta confiar en él.',
     problemPrinciple:
       'Website Audit Agent se diseñó alrededor del principio contrario: antes de que el modelo diga nada, el sistema debe capturar evidencia, clasificar confianza y definir qué se sabe realmente.',
     overviewEyebrow: 'Resumen',
@@ -301,7 +329,7 @@ const content = {
       {
         title: 'Primero captura evidencia',
         description:
-          'El flujo parte de evidencia pública del sitio, no de especulación del modelo. Primero intenta captura renderizada y usa evidencia pública estática como fallback.',
+          'El flujo parte de evidencia pública del sitio, no de especulación del modelo. Primero intenta captura renderizada y usa evidencia pública estática como respaldo.',
       },
       {
         title: 'Puntúa con reglas',
@@ -317,7 +345,7 @@ const content = {
     workflowEyebrow: 'Flujo',
     workflowH2: 'Pipeline controlado desde URL pública hasta informe privado',
     workflowP:
-      'La arquitectura separa captura, persistencia, scoring, síntesis y ensamblaje del informe para que cada etapa tenga un dueño y un modo de fallo claro.',
+      'La arquitectura separa captura, persistencia, puntuación, síntesis y ensamblaje del informe para que cada etapa tenga un dueño y un modo de fallo claro.',
     workflowAriaLabel: 'Flujo de Website Audit Agent',
     workflowStages: [
       {
@@ -325,15 +353,15 @@ const content = {
         description: 'El usuario envía la URL de un sitio público.',
       },
       {
-        title: 'Captura browser / estática',
+        title: 'Captura con navegador / estática',
         description: 'Primero se captura evidencia renderizada y, si falla o está bloqueada, se usa evidencia pública estática.',
       },
       {
-        title: 'Evidence Store',
+        title: 'Almacén de evidencia',
         description: 'Los snapshots y la evidencia de página se persisten para la ejecución.',
       },
       {
-        title: 'Scoring determinista',
+        title: 'Puntuación determinista',
         description: 'Las reglas generan hallazgos y scores de categoría.',
       },
       {
@@ -342,7 +370,7 @@ const content = {
       },
       {
         title: 'Informe interno',
-        description: 'El output se convierte en inteligencia privada de adquisición.',
+        description: 'El resultado se convierte en inteligencia privada de adquisición.',
       },
     ],
     evidenceEyebrow: 'Modelo de evidencia',
@@ -366,7 +394,7 @@ const content = {
     agentEyebrow: 'Capa agéntica',
     agentH2: 'La IA está aguas abajo por diseño.',
     agentP:
-      'Es un sistema híbrido workflow-agent. El shell determinista controla captura, scoring, persistencia, estado y ensamblaje del informe. La capa LLM controla resumen, priorización, explicación e inteligencia comercial. El Prospect Audit Agent no navega libremente, no reescribe hallazgos y no crea scores.',
+      'Es un sistema híbrido entre flujo y agente. La capa determinista controla captura, puntuación, persistencia, estado y ensamblaje del informe. La capa LLM se encarga de resumir, priorizar, explicar y traducir los hallazgos a inteligencia comercial. El Prospect Audit Agent no navega libremente, no reescribe hallazgos y no crea puntuaciones.',
     agentDiagram: ['Motor determinista de auditoría', 'Hallazgos aceptados', 'Prospect Audit Agent', 'Inteligencia interna'],
     llmBoundaryH3: 'Qué puede y qué no puede hacer el LLM',
     llmAllowedTitle: 'Permitido',
@@ -391,7 +419,7 @@ const content = {
     reportFigcaption: 'Tarjeta representativa de hallazgo. No es un resultado de auditoría en vivo.',
     findingCard: {
       issueLabel: 'Hallazgo',
-      issue: 'El CTA principal es visible, pero está débilmente reforzado above the fold.',
+      issue: 'El CTA principal es visible, pero queda poco reforzado en el primer tramo de pantalla.',
       categoryLabel: 'Categoría',
       category: 'UX / Conversión',
       evidenceLabel: 'Evidencia',
@@ -404,10 +432,10 @@ const content = {
     safetyEyebrow: 'Seguridad / Límite de acceso',
     safetyH2: 'Repositorio público. Superficie operativa privada.',
     safetyP:
-      'El proyecto es público para portfolio y referencia, mientras que la superficie operativa permanece privada detrás de login interno y endpoint de trabajo protegido.',
+      'El proyecto es público como portafolio y referencia, mientras que la superficie operativa permanece privada detrás de login interno y endpoint de trabajo protegido.',
     safetyItems: [
       'Despliegue privado en Vercel',
-      'Login interno y access gate',
+      'Login interno y control de acceso',
       'Endpoint de job protegido con worker secret',
       'Solo evidencia pública del sitio',
       'Sin bypass anti-bot',
@@ -420,7 +448,7 @@ const content = {
     resultCards: [
       {
         title: 'Pipeline repetible',
-        description: 'Una URL pública pasa por captura, almacenamiento de evidencia, scoring, síntesis e informe con fronteras explícitas.',
+        description: 'Una URL pública pasa por captura, almacenamiento de evidencia, puntuación, síntesis e informe con fronteras explícitas.',
       },
       {
         title: 'Síntesis IA controlada',
@@ -431,14 +459,14 @@ const content = {
         description: 'Las afirmaciones medidas, observadas e inferidas se mantienen separadas durante todo el informe.',
       },
       {
-        title: 'Arquitectura segura para portfolio',
+        title: 'Arquitectura segura para portafolio',
         description: 'El repositorio puede mostrarse públicamente mientras la superficie operativa y los informes generados siguen privados.',
       },
     ],
     stackEyebrow: 'Stack',
     stackH2: 'Construido como prototipo orientado a producción',
     stackP:
-      'El stack es práctico: Next.js para la superficie de app, Postgres y pg-boss para ejecuciones durables, Playwright para captura, Gemini para síntesis acotada y un endpoint worker protegido de forma separada.',
+      'El stack es práctico: Next.js para la superficie de app, Postgres y pg-boss para ejecuciones duraderas, Playwright para captura, Gemini para síntesis acotada y un endpoint worker protegido por separado.',
     stackAriaLabel: 'Stack tecnológico de Website Audit Agent',
     stackItems: [
       'Next.js',
@@ -448,7 +476,7 @@ const content = {
       'Playwright',
       'Gemini',
       'Vercel',
-      'Scoring determinista',
+      'Puntuación determinista',
       'Etiquetas de evidencia',
       'Endpoint worker privado',
     ],
@@ -460,7 +488,7 @@ const content = {
       'No es un SaaS público.',
       'No hay demo pública en vivo.',
       'Prospect Intelligence es guía interna, no verdad de auditoría.',
-      'Los informes static-only excluyen intencionalmente scoring visual/mobile/above-the-fold.',
+      'Los informes solo estáticos excluyen intencionalmente puntuación visual, móvil y del primer tramo de pantalla.',
       'La síntesis IA depende de hallazgos aceptados.',
       'El trabajo futuro incluye evals, comparación de modelos, observabilidad y ejemplos reales de auditoría.',
     ],
@@ -479,7 +507,7 @@ const content = {
         ['Accesibilidad', '71'],
       ] as const,
       findingLabel: 'Hallazgo principal',
-      finding: 'El CTA principal es visible, pero no está reforzado de forma consistente above the fold.',
+      finding: 'El CTA principal es visible, pero no está reforzado de forma consistente en el primer tramo de pantalla.',
       evidenceLabel: 'Etiqueta de evidencia',
       evidence: 'Observed',
     },
@@ -565,6 +593,7 @@ export default function WebsiteAuditorPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const t = content[locale]
+  const commercial = locale === 'es' ? commercialContentEs : commercialContent
 
   useCaseStudySetup()
 
@@ -611,7 +640,7 @@ export default function WebsiteAuditorPage() {
           ))}
         </nav>
 
-        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+        <CommercialCaseStudyIntro content={commercial} locale={locale} />
 
         <section
           id="problem"
@@ -851,7 +880,7 @@ export default function WebsiteAuditorPage() {
           </div>
         </section>
 
-        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
+        <CommercialCaseStudyClosing content={commercial} locale={locale} />
 
         <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
       </main>

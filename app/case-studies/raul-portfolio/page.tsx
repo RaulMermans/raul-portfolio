@@ -47,6 +47,37 @@ const commercialContent: CommercialCaseStudyContent = {
     "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
 }
 
+const commercialContentEs: CommercialCaseStudyContent = {
+  snapshot: [
+    { label: 'Tipo', value: 'Sistema de marca personal y portafolio' },
+    { label: 'Uso', value: 'Posicionamiento, arquitectura de casos, navegación de prueba y transparencia técnica' },
+    { label: 'Rol', value: 'Diseño de sistema de marca, arquitectura de información, implementación frontend y estrategia de contenido' },
+    { label: 'Stack', value: 'Next.js, TypeScript, export estático, GitHub Actions y hosting en IONOS' },
+    { label: 'Estado', value: 'Sitio en vivo y GitHub público disponible' },
+  ],
+  links: [
+    { label: 'Ver prototipo', href: liveUrl, external: true },
+    { label: 'Ver GitHub', href: githubUrl, external: true },
+  ],
+  businessContext:
+    'Una oferta multidisciplinar puede ser difícil de evaluar cuando marca, trabajo técnico, visuales y pensamiento de producto aparecen como piezas separadas. Este proyecto explora cómo un portafolio puede funcionar como sistema comercial coherente, no como currículum estático.',
+  systemSummary:
+    'El sitio organiza identidad, casos de estudio, lenguaje de servicios, archivo visual y transparencia en GitHub dentro de una arquitectura de contenido repetible. El sistema usa UX contenida, navegación consistente y patrones modulares para que futuros sistemas de IA, trabajos de marca y prototipos puedan sumarse sin romper el posicionamiento.',
+  systemItems: [
+    { title: 'Inputs', description: 'Posicionamiento de servicios, prueba en casos de estudio, trabajo visual, fotografía, links de GitHub e intención de contacto.' },
+    { title: 'Flujo', description: 'Orientar al visitante, mostrar prueba, agrupar el trabajo por categoría, profundizar en casos y llevar briefs cualificados a contacto.' },
+    { title: 'Lógica de proceso', description: 'La arquitectura de información y la jerarquía de contenido deciden qué ve primero la persona y cómo se enmarca la prueba.' },
+    { title: 'Resultado', description: 'Un sistema de portafolio en vivo con posicionamiento comercial, páginas de caso, archivo visual y ruta de brief.' },
+    { title: 'Límites', description: 'Lenguaje visual mínimo, lógica CTA consistente y transparencia técnica segura para publicar preservan la credibilidad.' },
+  ],
+  whyItMatters:
+    'La misma lógica de sistema aplica a superficies de marca y producto para clientes: definir el flujo, estructurar la prueba, controlar la narrativa y dejar clara la siguiente acción. El valor no es decorativo; es claridad comercial puesta en uso.',
+  clientRelevance:
+    'Un sistema similar podría ayudar a founders, marcas, agencias o equipos internos a convertir capacidades dispersas, prototipos y trabajo estratégico en una superficie digital coherente que facilite evaluación y siguientes pasos.',
+  ctaCopy:
+    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+}
+
 const content = {
   en: {
     back: '← Case Studies',
@@ -153,22 +184,22 @@ const content = {
   },
   es: {
     back: '← Casos de estudio',
-    eyebrow: 'Sistemas de marca / Identidad digital / Arquitectura de portfolio',
+    eyebrow: 'Sistemas de marca / Identidad digital / Arquitectura de portafolio',
     heroSubtitle:
       'Un sistema de marca personal para estrategia, casos de IA/producto, fotografía y experimentación visual.',
     heroDescription:
-      'Este portfolio fue construido como un sistema de identidad digital: un entorno estructurado para presentar estrategia de marca, relato cultural, trabajo de IA/producto, fotografía y experimentación visual desde una mirada editorial.',
+      'Este portafolio fue construido como un sistema de identidad digital: un entorno estructurado para presentar estrategia de marca, relato cultural, trabajo de IA/producto, fotografía y experimentación visual desde una mirada editorial.',
     liveCta: 'Visitar sitio en vivo →',
     githubCta: 'Ver repositorio en GitHub →',
     linksLabel: 'Enlaces del proyecto',
     tagsLabel: 'Etiquetas del proyecto',
-    systemLabel: 'Diagrama del sistema de portfolio',
+    systemLabel: 'Diagrama del sistema de portafolio',
     systemPrimary: 'Identidad',
     systemSecondary: 'Estrategia / IA / Fotografía / Visuales',
     systemAreas: ['Casos de estudio', 'Archivo', 'Sobre mí', 'GitHub'],
     tags: [
       'Marca personal',
-      'Sistema de portfolio',
+      'Sistema de portafolio',
       'Web editorial',
       'Arquitectura de casos',
       'Identidad visual',
@@ -202,7 +233,7 @@ const content = {
       { title: 'Contención sobre ornamento', description: 'El espacio, la alineación y la escala tipográfica sostienen la identidad.' },
     ],
     architectureEyebrow: 'Arquitectura de información',
-    architectureH2: 'Un sistema de portfolio, no un resume estático.',
+    architectureH2: 'Un sistema de portafolio, no un currículum estático.',
     architectureP:
       'La web se organiza como capas que responden a preguntas distintas del visitante.',
     layers: [
@@ -248,7 +279,7 @@ const content = {
     outcomeCards: [
       'Un hogar escalable para sistemas de IA, campañas, marca y fotografía.',
       'Posicionamiento más claro alrededor de estrategia, gusto y ejecución técnica aplicada.',
-      'Un repositorio público que transparenta el build sin convertir el caso en un walkthrough de código.',
+      'Un repositorio público que hace visible la construcción sin convertir el caso en un recorrido de código.',
       'Un archivo flexible para visuales, fotografía y experimentos continuos.',
     ],
     linksEyebrow: 'Links',
@@ -260,6 +291,7 @@ export default function RaulPortfolioPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const t = content[locale]
+  const commercial = locale === 'es' ? commercialContentEs : commercialContent
 
   useCaseStudySetup()
 
@@ -313,7 +345,7 @@ export default function RaulPortfolioPage() {
           ))}
         </nav>
 
-        {locale === 'en' && <CommercialCaseStudyIntro content={commercialContent} />}
+        <CommercialCaseStudyIntro content={commercial} locale={locale} />
 
         <section id="challenge" className="portfolio-section portfolio-section--light" aria-labelledby="portfolio-challenge">
           <div className="portfolio-section__container">
@@ -442,7 +474,7 @@ export default function RaulPortfolioPage() {
           </div>
         </section>
 
-        {locale === 'en' && <CommercialCaseStudyClosing content={commercialContent} />}
+        <CommercialCaseStudyClosing content={commercial} locale={locale} />
 
         <CaseStudyNext currentHref={pathname} accentColor="var(--color-1)" locale={locale} />
       </main>
