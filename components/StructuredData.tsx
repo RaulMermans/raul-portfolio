@@ -47,9 +47,13 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       knowsAbout: [
         'AI Systems Design',
         'Agentic Workflows',
-        'Automation Infrastructure',
-        'Marketing Automation',
-        'CRM Automation',
+        'Creative AI Systems',
+        'AI Integrations',
+        'Brand Intelligence Systems',
+        'Creative Automation',
+        'AI Campaign Systems',
+        'Internal Creative Tools',
+        'Generative Visual Systems',
         'Content Systems',
         'Creative Infrastructure',
         'Product Prototyping',
@@ -85,7 +89,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'AI Systems',
           serviceType: 'AI workflow architecture and internal AI tools',
           description:
-            'AI workflow architecture, agentic systems, and internal tools for teams that need structured execution, reviewable outputs, and reliable AI-assisted operations.',
+            'AI-assisted creative systems, internal tools, and agentic workflows for teams that need structured execution, reviewable outputs, and brand-aware reliability.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -99,9 +103,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'Service',
           position: 2,
           name: 'Automation and Internal Tools',
-          serviceType: 'Operational Automation and Internal Interfaces',
+          serviceType: 'Creative Automation and Internal Interfaces',
           description:
-            'Automation systems for CRM, reporting, admin, and creative operations. Reduce repetitive work, connect tools, and standardize business workflows.',
+            'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,

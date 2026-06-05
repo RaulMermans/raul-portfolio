@@ -64,9 +64,9 @@ const sectionCopy = {
     whyTitle: 'Reliability beats novelty',
     relevanceEyebrow: 'Client Relevance',
     relevanceTitle: 'Where this becomes useful',
-    ctaEyebrow: 'Discuss a Similar System',
-    ctaTitle: 'Have a workflow worth systemizing?',
-    ctaLabel: 'Start Project Brief',
+    ctaEyebrow: 'Discuss a Similar AI System',
+    ctaTitle: 'Have a creative system worth extending?',
+    ctaLabel: 'Start Creative Systems Brief',
   },
   es: {
     snapshotEyebrow: 'Resumen del proyecto',
@@ -80,8 +80,8 @@ const sectionCopy = {
     relevanceEyebrow: 'Uso para clientes',
     relevanceTitle: 'Dónde se vuelve útil',
     ctaEyebrow: 'Hablar de un sistema similar',
-    ctaTitle: '¿Tienes un flujo que merece sistematizarse?',
-    ctaLabel: 'Enviar brief de proyecto',
+    ctaTitle: '¿Tienes un sistema creativo que merece desarrollarse?',
+    ctaLabel: 'Enviar brief de sistema creativo',
   },
 } as const
 

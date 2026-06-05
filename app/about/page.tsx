@@ -28,7 +28,7 @@ const pageCopy = {
       {
         number: '01',
         title: 'AI systems',
-        body: 'Agentic workflows, retrieval, CRM automation, and internal tools.',
+        body: 'Agentic workflows, creative AI integrations, retrieval, internal tools, and brand intelligence systems.',
       },
       {
         number: '02',
@@ -47,7 +47,7 @@ const pageCopy = {
       'My work sits between AI systems, product logic, and brand intelligence. The creative side is not a separate lane; it is the taste and adoption layer around the tools.',
     body: [
       'Business school gave me the vocabulary for brand, growth, and customer behavior. Code and AI gave me the ability to turn that thinking into interfaces, automations, and productized workflows.',
-      'At Primor, I work close to CRM, lifecycle execution, luxury partners, and internal AI adoption. Independently, I build applied AI systems for reporting, audits, prospect intelligence, creative operations, and internal tools.',
+      'At Primor, I work close to CRM, lifecycle execution, luxury partners, and internal AI adoption. Independently, I build applied AI systems for brand, content, creative operations, research, and internal tools.',
       'The multicultural and visual side still matters: it helps me read tone, context, trust, and taste. That is useful when an AI workflow has to be adopted by real people, not just pass a demo.',
     ],
     geography: {
@@ -188,7 +188,7 @@ const pageCopy = {
         kicker: 'Lead practice',
         title: <>Agentic <span>AI</span><br />& automation.</>,
         body:
-          'Multi-step systems for audits, reporting, prospect intelligence, CRM, creative ops, and the handoffs between them.',
+          'Multi-step systems for creative operations, campaign workflows, brand intelligence, research, audits, and the handoffs between them.',
         tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Retrieval'],
         featured: true,
       },
@@ -245,7 +245,7 @@ const pageCopy = {
       {
         number: '01',
         title: 'Sistemas de IA',
-        body: 'Flujos con agentes, recuperación de información, automatización CRM y herramientas internas.',
+        body: 'Flujos con agentes, integraciones creativas con IA, recuperación de información, herramientas internas y sistemas de inteligencia de marca.',
       },
       {
         number: '02',
@@ -264,7 +264,7 @@ const pageCopy = {
       'Mi trabajo se mueve entre sistemas de IA, lógica de producto e inteligencia de marca. La parte creativa no va por separado: es la capa de criterio que hace que las herramientas se entiendan, se adopten y mantengan coherencia.',
     body: [
       'Mi formación en negocio me dio vocabulario para entender marca, crecimiento y comportamiento de cliente. El código y la IA me dieron los medios para convertir esa forma de pensar en interfaces, automatizaciones y flujos listos para usarse.',
-      'En Primor trabajo muy cerca de CRM, ciclo de vida de cliente, marcas de lujo y adopción interna de IA. En paralelo, diseño sistemas de IA aplicada para informes, auditorías, inteligencia comercial, operaciones creativas y herramientas internas.',
+      'En Primor trabajo muy cerca de CRM, ciclo de vida de cliente, marcas de lujo y adopción interna de IA. En paralelo, diseño sistemas de IA aplicada para marca, contenido, operaciones creativas, investigación y herramientas internas.',
       'La mirada multicultural y visual sigue siendo importante: me ayuda a leer tono, contexto, confianza y gusto. Eso importa cuando un flujo de IA tiene que ser adoptado por personas reales, no solo funcionar en una demo.',
     ],
     geography: {
@@ -405,7 +405,7 @@ const pageCopy = {
         kicker: 'Práctica principal',
         title: <>IA con <span>agentes</span><br />y automatización.</>,
         body:
-          'Sistemas de varios pasos para auditorías, informes, inteligencia comercial, CRM, operaciones creativas y traspasos entre equipos.',
+          'Sistemas de varios pasos para operaciones creativas, flujos de campaña, inteligencia de marca, investigación, auditorías y traspasos entre equipos.',
         tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Recuperación'],
         featured: true,
       },

@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import { type FormEvent, useEffect, useMemo, useState } from 'react'
-import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
+import { type FormEvent, useMemo, useState } from 'react'
+import { getCaseStudies } from '@/data/case-studies'
 import { getCaseStudyCategories, type CaseStudyCategorySlug } from '@/data/case-study-categories'
 import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
@@ -14,71 +14,6 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 type FilterKey = 'all' | CaseStudyCategorySlug
 
 const tileVariants = ['portrait', 'landscape', 'square', 'tall'] as const
-const pinnedAiPair = ['data-brief-ai', 'website-auditor'] as const
-
-function keepWebsiteAuditorNearDataBrief(studies: CaseStudy[]) {
-  const dataBriefIndex = studies.findIndex((study) => study.slug === pinnedAiPair[0])
-  const websiteAuditorIndex = studies.findIndex((study) => study.slug === pinnedAiPair[1])
-
-  if (dataBriefIndex === -1 || websiteAuditorIndex === -1 || websiteAuditorIndex === dataBriefIndex + 1) {
-    return studies
-  }
-
-  const nextStudies = [...studies]
-  const [websiteAuditor] = nextStudies.splice(websiteAuditorIndex, 1)
-  const nextDataBriefIndex = nextStudies.findIndex((study) => study.slug === pinnedAiPair[0])
-  nextStudies.splice(nextDataBriefIndex + 1, 0, websiteAuditor)
-
-  return nextStudies
-}
-
-function shuffleCaseStudies(studies: CaseStudy[], locale: Locale) {
-  const storageKey = `case-studies-order-${locale}`
-  const currentHrefs = studies.map((study) => study.href)
-  let stored: string | null = null
-
-  try {
-    stored = window.sessionStorage.getItem(storageKey)
-  } catch {
-    stored = null
-  }
-
-  if (stored) {
-    try {
-      const storedHrefs = JSON.parse(stored) as string[]
-      const hasSameProjects =
-        storedHrefs.length === currentHrefs.length &&
-        currentHrefs.every((href) => storedHrefs.includes(href))
-
-      if (hasSameProjects) {
-        const restoredStudies = storedHrefs
-          .map((href) => studies.find((study) => study.href === href))
-          .filter((study): study is CaseStudy => Boolean(study))
-
-        return keepWebsiteAuditorNearDataBrief(restoredStudies)
-      }
-    } catch {
-      // Ignore invalid session state and create a fresh order below.
-    }
-  }
-
-  const shuffled = [...studies]
-  for (let index = shuffled.length - 1; index > 0; index -= 1) {
-    const randomIndex = Math.floor(Math.random() * (index + 1))
-    const currentStudy = shuffled[index]
-    shuffled[index] = shuffled[randomIndex]
-    shuffled[randomIndex] = currentStudy
-  }
-
-  try {
-    window.sessionStorage.setItem(storageKey, JSON.stringify(shuffled.map((study) => study.href)))
-  } catch {
-    // Session storage is an enhancement; the shuffled in-memory order still works.
-  }
-
-  return keepWebsiteAuditorNearDataBrief(shuffled)
-}
-
 function getSchemas(locale: Locale) {
   const isSpanish = locale === 'es'
   const localizedHome = localizePath('/', locale)
@@ -124,7 +59,7 @@ export default function CaseStudiesPage() {
   const caseStudies = useMemo(() => getCaseStudies(locale), [locale])
   const categories = useMemo(() => getCaseStudyCategories(locale), [locale])
   const [activeFilter, setActiveFilter] = useState<FilterKey>('all')
-  const [orderedStudies, setOrderedStudies] = useState(caseStudies)
+  const orderedStudies = caseStudies
   const schemas = getSchemas(locale)
   const isSpanish = locale === 'es'
   const browserTitle = isSpanish ? 'Casos de estudio' : 'Case Studies'
@@ -174,11 +109,6 @@ export default function CaseStudiesPage() {
       studyCategoryMap.get(study.href)?.some((category) => category.slug === activeFilter),
     )
   }, [activeFilter, orderedStudies, studyCategoryMap])
-
-  useEffect(() => {
-    setActiveFilter('all')
-    setOrderedStudies(shuffleCaseStudies(caseStudies, locale))
-  }, [caseStudies, locale])
 
   const handleBrowserSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()

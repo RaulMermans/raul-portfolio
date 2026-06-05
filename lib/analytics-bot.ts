@@ -56,7 +56,6 @@ class AnalyticsBot {
     }
 
     this.addEvent(event)
-    this.sendToAnalytics(event)
   }
 
   /**
@@ -148,7 +147,6 @@ class AnalyticsBot {
       }
 
       this.addEvent(event)
-      this.sendToAnalytics(event)
     }
   }
 
@@ -272,25 +270,6 @@ class AnalyticsBot {
   }
 
   /**
-   * Send to analytics API
-   */
-  private async sendToAnalytics(event: UserEvent): Promise<void> {
-    try {
-      await fetch('/api/analytics', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          events: [event],
-          url: window.location.href,
-          userAgent: navigator.userAgent,
-        }),
-      })
-    } catch (error) {
-      // Silently fail - don't break user experience
-    }
-  }
-
-  /**
    * Start monitoring (runs in background)
    */
   startMonitoring(): void {
@@ -363,4 +342,3 @@ if (typeof window !== 'undefined') {
     })
   }
 }
-

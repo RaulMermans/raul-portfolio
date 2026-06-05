@@ -15,8 +15,8 @@ export const siteCopy = {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       menuMeta:
-        'Applied AI systems, automation layers, and creative infrastructure for marketing, CRM, ecommerce, and brand teams.',
-      menuCta: 'Start Project Brief',
+        'Applied AI systems, automation layers, and creative infrastructure for brand-led teams, content studios, and cultural projects.',
+      menuCta: 'Start Creative Systems Brief',
       toggleLabel: 'Language switcher',
       languageShort: {
         en: 'EN',
@@ -25,7 +25,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Applied AI systems for marketing, CRM, ecommerce, creative, and brand teams.',
+        'AI integrations for creative systems, brand workflows, and cultural execution.',
       work: 'Work',
       services: 'Services',
       resources: 'Resources',
@@ -62,11 +62,11 @@ export const siteCopy = {
           afternoon: 'GOOD AFTERNOON',
           evening: 'GOOD EVENING',
         },
-        ariaLabel: 'Raúl Mermans — AI Systems · Agents · Automation',
-        services: ['Applied AI Systems', 'Marketing + CRM', 'Creative Teams'],
+        ariaLabel: 'Raúl Mermans — AI Integrations · Brand Workflows · Creative Systems',
+        services: ['AI Integrations', 'Brand Workflows', 'Creative Systems'],
         summary:
-          'I design agentic workflows, automation layers, and internal AI tools for teams that need faster execution without losing quality, control, or brand coherence. The work sits between strategy, system design, and implementation: mapping the workflow, defining the logic, building the prototype, and creating the guardrails that make AI useful in real operating contexts.',
-        primaryCta: 'Request an AI Workflow Audit',
+          'I design applied AI systems, automation layers, and internal tools that help creative teams work faster without losing taste, control, or brand coherence. The work sits between strategy, system design, and implementation: mapping the creative process, defining the logic, building prototypes, and creating the guardrails that make AI useful inside real brand, content, and visual workflows.',
+        primaryCta: 'Discuss an AI Integration',
         secondaryCta: 'View Case Studies',
         tertiaryCta: 'View GitHub',
         scrollAria: 'Scroll to explore',
@@ -144,23 +144,23 @@ export const siteCopy = {
       },
       services: {
         title: 'Services',
-        cta: 'Start Project Brief',
+        cta: 'Start Creative Systems Brief',
         items: [
           {
             number: '00-1',
             title: 'AI Systems',
             titleShort: 'AI Systems',
-            items: ['Structured AI-assisted processes', 'Internal tools for reporting or research', 'Human review and reliability controls', 'Useful systems beyond isolated prompts'],
+            items: ['Creative AI workflows', 'Internal tools for research and content', 'Human review and reliability controls', 'Systems beyond isolated prompts'],
             description:
-              'Design and prototype AI-assisted workflows, internal tools, and agentic systems for teams that need structured execution, reviewable outputs, and operational reliability.',
+              'Design and prototype AI-assisted creative systems, internal tools, and agentic workflows for teams that need structured execution, reviewable outputs, and brand-aware reliability.',
           },
           {
             number: '00-2',
             title: 'Automation / Internal Tools',
             titleShort: 'Automation',
-            items: ['Reduce repetitive CRM or reporting workflows', 'Connect tools with fewer manual handoffs', 'Standardize recurring business processes', 'Create cleaner flows between people, tools, and data'],
+            items: ['Reduce repetitive creative-production tasks', 'Connect tools with fewer manual handoffs', 'Structure content, research, and asset workflows', 'Create cleaner flows between people, tools, and creative output'],
             description:
-              'Connect tools, reduce repetitive work, and standardize manual handoffs across CRM, reporting, admin, and creative operations.',
+              'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination — built to support judgment, not replace it.',
           },
           {
             number: '00-3',
@@ -168,15 +168,15 @@ export const siteCopy = {
             titleShort: 'Product Web',
             items: ['Validate internal tool ideas quickly', 'Build dashboards and workflow prototypes', 'Test product logic before full development', 'Create stakeholder-ready demos'],
             description:
-              'Build focused product surfaces, dashboards, and workflow prototypes that help teams test, validate, and operate new systems before full-scale development.',
+              'Focused product surfaces, dashboards, and workflow prototypes for testing AI-powered creative tools, internal systems, and stakeholder-ready demos before full-scale development.',
           },
           {
             number: '00-4',
             title: 'Brand Systems / Creative Direction',
             titleShort: 'Brand Systems',
-            items: ['Keep AI content aligned with brand voice', 'Create reusable tone and review rules', 'Translate strategy into operational guidelines', 'Improve consistency across campaigns and CRM'],
+            items: ['Keep AI content aligned with brand voice', 'Create reusable tone and review rules', 'Translate strategy into creative guidelines', 'Improve consistency across campaigns and content'],
             description:
-              'Translate brand strategy into reusable rules, prompts, and review criteria so AI-assisted outputs remain coherent across content, CRM, campaigns, and creative work.',
+              'Translate brand strategy into reusable rules, prompts, and review criteria so AI-assisted outputs stay coherent across content, campaigns, visual systems, and creative work.',
           },
           {
             number: '00-5',
@@ -184,25 +184,28 @@ export const siteCopy = {
             titleShort: 'Practice',
             items: ['Photography', 'Image Systems', 'Visual Research', 'Cultural Reading'],
             description:
-              'Experiments, visual systems, and creative research exploring the relationship between brand, technology, and culture.',
+              'Experiments, image systems, photography, and visual research exploring the relationship between brand, technology, and culture.',
+            cta: 'View Visual Research',
+            ctaHref: '/visuals',
           },
         ],
       },
       contact: {
-        title: 'Start with the workflow.',
+        title: 'Start with the creative system.',
         subtitle:
-          'Use this form to describe the system, process, or business problem you want to improve. Best fit: marketing, CRM, ecommerce, creative, and brand teams dealing with repetitive workflows, manual handoffs, inconsistent AI outputs, or internal processes that need more structure.',
-        intro: 'You do not need a finished brief. A clear problem, current workflow, and desired outcome are enough to start.',
+          'Use this form to describe the process, tool, workflow, or brand system you want to improve with AI. Best fit: creative teams, brand builders, content studios, founders, and culture-led companies exploring AI integrations, internal tools, campaign systems, or repeatable creative workflows.',
+        intro: 'You do not need a finished brief. A clear problem, current process, and desired outcome are enough to start.',
       },
       contactForm: {
         projectTypePlaceholder: 'Select focus area',
         budgetPlaceholder: 'Select budget range',
         timelinePlaceholder: 'Select timeline',
         projectTypes: [
-          { value: 'ai-systems', label: 'AI Systems / Agentic Workflows' },
-          { value: 'automation-infrastructure', label: 'Automation Infrastructure' },
-          { value: 'ai-prototype', label: 'AI Prototype / Internal Tool' },
-          { value: 'brand-creative-systems', label: 'Brand / Creative System' },
+          { value: 'ai-integration-creative-system', label: 'AI Integration / Creative System' },
+          { value: 'internal-creative-tool', label: 'Internal Creative Tool' },
+          { value: 'campaign-content-workflow', label: 'Campaign / Content Workflow' },
+          { value: 'brand-intelligence-system', label: 'Brand Intelligence System' },
+          { value: 'automation-layer', label: 'Automation Layer' },
           { value: 'other', label: 'Other' },
         ],
         budgetRanges: [
@@ -230,7 +233,7 @@ export const siteCopy = {
           name: 'John Doe',
           email: 'john@example.com',
           message:
-            'Describe the current workflow, the team/tools involved, where the process breaks down, and the outcome you want to improve...',
+            'Describe the current creative process, the tools or team involved, where the workflow breaks down, and the system or outcome you want to improve...',
         },
         errors: {
           name: 'Name must be at least 2 characters.',
@@ -241,9 +244,9 @@ export const siteCopy = {
         dismissSuccess: 'Dismiss success message',
         responseNote: 'I usually reply within 24 hours.',
         sending: 'Sending...',
-        send: 'Send Project Brief',
-        sendAria: 'Send project brief',
-        sendingAria: 'Sending project brief',
+        send: 'Send Creative Systems Brief',
+        sendAria: 'Send creative systems brief',
+        sendingAria: 'Sending creative systems brief',
       },
       socials: {
         label: 'Connect',
@@ -256,10 +259,10 @@ export const siteCopy = {
       label: 'About',
       title: 'Applied AI Systems, Built With Taste',
       paragraphs: [
-        'I came into this work through <span class="highlight">business</span>, then taught myself how to build what teams actually need when strategy has to become execution. Today I design <a href="/case-studies" class="highlight">AI systems</a>, <span class="highlight">agentic workflows</span>, and <span class="highlight">automation infrastructure</span> for marketing, CRM, content, and creative operations.',
+        'I came into this work through <span class="highlight">business</span>, then taught myself how to build what teams actually need when strategy has to become execution. Today I design <a href="/case-studies" class="highlight">AI systems</a>, <span class="highlight">agentic workflows</span>, and <span class="highlight">automation infrastructure</span> for brand, content, creative operations, and internal systems.',
         'I&apos;m less interested in one-off AI outputs than in the system behind them: where work gets routed, where judgment lives, what should be automated, and how an interface makes the whole thing usable. That means <span class="highlight">workflow logic</span>, <span class="highlight">orchestration</span>, <span class="highlight">internal tools</span>, and <a href="/apps/overflow" class="highlight">product-minded implementation</a>.',
         'Creative taste still matters. My background in brand, visuals, and image-making is useful because it acts as <span class="highlight">quality control inside the system</span>. It helps me decide what should feel restrained, what should stay human, and what makes an output <span class="highlight">commercially credible</span> rather than merely new.',
-        'I work best with modern brands and teams that need <span class="highlight">sharper execution</span>, <span class="highlight">better workflows</span>, and infrastructure they can actually use. If the problem sits between marketing, CRM, content, operations, and creative execution, that&apos;s usually where I&apos;m most useful.',
+        'I work best with modern brands and teams that need <span class="highlight">sharper execution</span>, <span class="highlight">better workflows</span>, and infrastructure they can actually use. If the problem sits between brand, content, systems, operations, and creative execution, that&apos;s usually where I&apos;m most useful.',
       ],
     },
     caseStudiesUi: {
@@ -310,8 +313,8 @@ export const siteCopy = {
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú',
       menuMeta:
-        'Sistemas de IA, automatización e infraestructura creativa para equipos de marketing, CRM, ecommerce y marca.',
-      menuCta: 'Hablar de un proyecto',
+        'Sistemas de IA aplicada, capas de automatización e infraestructura creativa para equipos de marca, estudios de contenido y proyectos culturales.',
+      menuCta: 'Enviar brief creativo',
       toggleLabel: 'Selector de idioma',
       languageShort: {
         en: 'EN',
@@ -320,7 +323,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Sistemas de IA aplicados para equipos de marketing, CRM, ecommerce, creatividad y marca.',
+        'Integraciones de IA para sistemas creativos, flujos de marca y ejecución cultural.',
       work: 'Trabajo',
       services: 'Servicios',
       resources: 'Recursos',
@@ -357,11 +360,11 @@ export const siteCopy = {
           afternoon: 'BUENAS TARDES',
           evening: 'BUENAS NOCHES',
         },
-        ariaLabel: 'Raúl Mermans — Sistemas de IA · Agentes · Automatización',
-        services: ['Sistemas de IA', 'Agentes', 'Automatización'],
+        ariaLabel: 'Raúl Mermans — Integraciones IA · Flujos de Marca · Sistemas Creativos',
+        services: ['Integraciones IA', 'Flujos de Marca', 'Sistemas Creativos'],
         summary:
-          'Diseño flujos con IA, capas de automatización y herramientas internas para equipos que necesitan ejecutar más rápido sin perder calidad, control ni coherencia de marca. El trabajo conecta estrategia, diseño de sistema e implementación: mapear el flujo, definir la lógica, construir el prototipo y crear los límites que hacen útil la IA en contextos reales.',
-        primaryCta: 'Solicitar auditoría de flujo',
+          'Diseño sistemas de IA aplicada, capas de automatización y herramientas internas que ayudan a equipos creativos a trabajar más rápido sin perder criterio, control ni coherencia de marca. El trabajo conecta estrategia, diseño de sistema e implementación: mapear el proceso creativo, definir la lógica, construir prototipos y crear los límites que hacen útil la IA dentro de flujos reales de marca, contenido e imagen.',
+        primaryCta: 'Hablar de una integración IA',
         secondaryCta: 'Ver casos de estudio',
         tertiaryCta: 'Ver GitHub',
         scrollAria: 'Desplazar para explorar',
@@ -439,23 +442,23 @@ export const siteCopy = {
       },
       services: {
         title: 'Servicios',
-        cta: 'Empezar un proyecto',
+        cta: 'Enviar brief creativo',
         items: [
           {
             number: '00-1',
             title: 'Sistemas de IA',
             titleShort: 'Sist. IA',
-            items: ['Procesos asistidos por IA', 'Herramientas internas', 'Revisión humana', 'Sistemas más allá del prompt'],
+            items: ['Flujos creativos con IA', 'Herramientas internas para investigación y contenido', 'Revisión humana y controles de fiabilidad', 'Sistemas más allá del prompt aislado'],
             description:
-              'Diseño y prototipo flujos asistidos por IA, herramientas internas y sistemas con agentes para equipos que necesitan ejecución estructurada, resultados revisables y fiabilidad operativa.',
+              'Diseño y prototipo sistemas creativos asistidos por IA, herramientas internas y flujos con agentes para equipos que necesitan ejecución estructurada, resultados revisables y fiabilidad alineada con la marca.',
           },
           {
             number: '00-2',
             title: 'Automatización / Herramientas internas',
             titleShort: 'Automatización',
-            items: ['Reducir tareas repetitivas', 'Conectar herramientas', 'Estandarizar procesos', 'Ordenar personas, datos y sistemas'],
+            items: ['Reducir tareas repetitivas de producción creativa', 'Conectar herramientas con menos traspasos manuales', 'Estructurar flujos de contenido, investigación y assets', 'Crear flujos más claros entre personas, herramientas y salida creativa'],
             description:
-              'Conecto herramientas, reduzco trabajo repetitivo y estandarizo traspasos manuales en CRM, reporting, administración y operaciones creativas.',
+              'Capas de automatización y herramientas internas para flujos creativos, producción de contenido, investigación, gestión de assets y coordinación de equipos, construidas para apoyar el criterio, no sustituirlo.',
           },
           {
             number: '00-3',
@@ -463,15 +466,15 @@ export const siteCopy = {
             titleShort: 'Producto web',
             items: ['Validar ideas de herramienta interna', 'Crear paneles y prototipos', 'Probar lógica de producto', 'Preparar demos para stakeholders'],
             description:
-              'Construyo superficies de producto, paneles y prototipos de flujo que ayudan a probar, validar y operar sistemas antes de desarrollarlos a escala.',
+              'Superficies de producto, paneles y prototipos de flujo enfocados en probar herramientas creativas con IA, sistemas internos y demos listas para stakeholders antes de desarrollar a escala.',
           },
           {
             number: '00-4',
             title: 'Sistemas de marca / Dirección creativa',
             titleShort: 'Marca',
-            items: ['Alinear IA con voz de marca', 'Crear reglas de tono y revisión', 'Convertir estrategia en guías operativas', 'Mejorar consistencia en campañas y CRM'],
+            items: ['Alinear contenido con IA a la voz de marca', 'Crear reglas reutilizables de tono y revisión', 'Convertir estrategia en guías creativas', 'Mejorar consistencia en campañas y contenido'],
             description:
-              'Traduzco estrategia de marca en reglas, prompts y criterios de revisión reutilizables para que los resultados asistidos por IA sean coherentes en contenido, CRM, campañas y trabajo creativo.',
+              'Traduzco estrategia de marca en reglas, prompts y criterios de revisión reutilizables para que los resultados asistidos por IA mantengan coherencia en contenido, campañas, sistemas visuales y trabajo creativo.',
           },
           {
             number: '00-5',
@@ -479,25 +482,28 @@ export const siteCopy = {
             titleShort: 'Práctica',
             items: ['Fotografía', 'Sistemas de imagen', 'Investigación visual', 'Lectura cultural'],
             description:
-              'La fotografía y la imagen quedan como práctica visual de apoyo: una forma de afinar composición, lectura cultural y el criterio detrás de mejores sistemas de IA y marca.',
+              'Experimentos, sistemas de imagen, fotografía e investigación visual sobre la relación entre marca, tecnología y cultura.',
+            cta: 'Ver investigación visual',
+            ctaHref: '/visuals',
           },
         ],
       },
       contact: {
-        title: 'Construyamos el sistema adecuado.',
+        title: 'Empieza por el sistema creativo.',
         subtitle:
-          'Usa este formulario para describir el sistema, proceso o problema de negocio que quieres mejorar. Encaja especialmente bien con equipos de marketing, CRM, ecommerce, creatividad y marca que lidian con flujos repetitivos, traspasos manuales, resultados de IA inconsistentes o procesos internos que necesitan más estructura.',
-        intro: 'No hace falta tener un brief cerrado. Un problema claro, el flujo actual y el resultado deseado son suficiente para empezar.',
+          'Usa este formulario para describir el proceso, herramienta, flujo o sistema de marca que quieres mejorar con IA. Encaja especialmente bien con equipos creativos, marcas, estudios de contenido, founders y proyectos culturales que exploran integraciones de IA, herramientas internas, sistemas de campaña o flujos creativos repetibles.',
+        intro: 'No hace falta tener un brief cerrado. Un problema claro, el proceso actual y el resultado deseado son suficiente para empezar.',
       },
       contactForm: {
         projectTypePlaceholder: 'Selecciona el enfoque',
         budgetPlaceholder: 'Selecciona el rango',
         timelinePlaceholder: 'Selecciona el plazo',
         projectTypes: [
-          { value: 'ai-systems', label: 'Sistemas de IA / Flujos basados en agentes' },
-          { value: 'automation-infrastructure', label: 'Infraestructura de automatización' },
-          { value: 'ai-prototype', label: 'Prototipo IA / Herramienta interna' },
-          { value: 'brand-creative-systems', label: 'Sistema de marca / creativo' },
+          { value: 'ai-integration-creative-system', label: 'Integración IA / Sistema creativo' },
+          { value: 'internal-creative-tool', label: 'Herramienta creativa interna' },
+          { value: 'campaign-content-workflow', label: 'Flujo de campaña / contenido' },
+          { value: 'brand-intelligence-system', label: 'Sistema de inteligencia de marca' },
+          { value: 'automation-layer', label: 'Capa de automatización' },
           { value: 'other', label: 'Otro' },
         ],
         budgetRanges: [
@@ -525,7 +531,7 @@ export const siteCopy = {
           name: 'Juan Pérez',
           email: 'juan@ejemplo.com',
           message:
-            'Describe el flujo actual, el equipo y las herramientas implicadas, dónde se rompe el proceso y qué resultado quieres mejorar...',
+            'Describe el proceso creativo actual, las herramientas o el equipo implicado, dónde se rompe el flujo y qué sistema o resultado quieres mejorar...',
         },
         errors: {
           name: 'El nombre debe tener al menos 2 caracteres.',
@@ -536,9 +542,9 @@ export const siteCopy = {
         dismissSuccess: 'Cerrar mensaje de éxito',
         responseNote: 'Normalmente respondo en 24 horas.',
         sending: 'Enviando...',
-        send: 'Enviar mensaje',
-        sendAria: 'Enviar mensaje',
-        sendingAria: 'Enviando mensaje',
+        send: 'Enviar brief de sistema creativo',
+        sendAria: 'Enviar brief de sistema creativo',
+        sendingAria: 'Enviando brief de sistema creativo',
       },
       socials: {
         label: 'Conectar',
@@ -551,10 +557,10 @@ export const siteCopy = {
       label: 'Sobre mí',
       title: 'Sistemas de IA aplicados, construidos con criterio',
       paragraphs: [
-        'Llegué a este trabajo desde <span class="highlight">negocio</span> y aprendí a construir lo que los equipos necesitan cuando la estrategia tiene que convertirse en ejecución. Hoy diseño <a href="/case-studies" class="highlight">sistemas de IA</a>, <span class="highlight">flujos con agentes</span> e <span class="highlight">infraestructura de automatización</span> para marketing, CRM, contenido y operaciones creativas.',
+        'Llegué a este trabajo desde <span class="highlight">negocio</span> y aprendí a construir lo que los equipos necesitan cuando la estrategia tiene que convertirse en ejecución. Hoy diseño <a href="/case-studies" class="highlight">sistemas de IA</a>, <span class="highlight">flujos con agentes</span> e <span class="highlight">infraestructura de automatización</span> para marca, contenido, operaciones creativas y sistemas internos.',
         'Me interesa menos el resultado aislado de IA que el sistema que lo sostiene: por dónde se mueve el trabajo, dónde vive el criterio, qué conviene automatizar y cómo una interfaz hace usable todo el proceso. Eso significa <span class="highlight">lógica de flujo</span>, <span class="highlight">orquestación</span>, <span class="highlight">herramientas internas</span> e <a href="/apps/overflow" class="highlight">implementación con criterio de producto</a>.',
         'El gusto creativo sigue importando. Mi experiencia en marca, visuales e imagen funciona como <span class="highlight">control de calidad dentro del sistema</span>: ayuda a decidir qué debe sentirse contenido, qué debe seguir siendo humano y qué hace que un resultado sea <span class="highlight">creíble comercialmente</span>, no solo nuevo.',
-        'Trabajo mejor con marcas y equipos modernos que necesitan <span class="highlight">ejecución más clara</span>, <span class="highlight">mejores flujos</span> e infraestructura que puedan usar de verdad. Si el problema vive entre marketing, CRM, contenido, operaciones y ejecución creativa, ahí suelo aportar más.',
+        'Trabajo mejor con marcas y equipos modernos que necesitan <span class="highlight">ejecución más clara</span>, <span class="highlight">mejores flujos</span> e infraestructura que puedan usar de verdad. Si el problema vive entre marca, contenido, sistemas, operaciones y ejecución creativa, ahí suelo aportar más.',
       ],
     },
     caseStudiesUi: {

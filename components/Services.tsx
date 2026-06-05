@@ -40,8 +40,12 @@ export default function Services({ locale = 'en' }: ServicesProps) {
       </div>
 
       <div className="services__grid">
-        {services.map((service) => (
-          <article key={service.number} className="service">
+        {services.map((service) => {
+          const serviceCta = ('cta' in service ? service.cta : undefined) ?? copy.cta
+          const serviceCtaHref = ('ctaHref' in service ? service.ctaHref : undefined) ?? '/#contact'
+
+          return (
+            <article key={service.number} className="service">
             <span className="service__number-small">{service.number}</span>
             <h3 className="service__title-small">{service.titleShort}</h3>
 
@@ -75,12 +79,12 @@ export default function Services({ locale = 'en' }: ServicesProps) {
                     sizes="(max-width: 768px) 0px, 300px"
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    style={{ 
+                    style={{
                       width: '100%',
                       height: '100%',
                       objectFit: service.image.fit ?? 'cover',
                       backgroundColor: service.image.backgroundColor,
-                      display: 'block'
+                      display: 'block',
                     }}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
@@ -96,16 +100,17 @@ export default function Services({ locale = 'en' }: ServicesProps) {
             </div>
             <div className="service__corner">
               <div className="service__bracket"></div>
-              <Link 
-                href={localizePath('/#contact', locale)} 
+              <Link
+                href={localizePath(serviceCtaHref, locale)}
                 className="btn btn--arrow service__cta"
-                aria-label={locale === 'es' ? 'Empezar un proyecto - ir a contacto' : 'Start project brief - navigate to contact section'}
+                aria-label={serviceCta}
               >
-                {copy.cta}
+                {serviceCta}
               </Link>
             </div>
-          </article>
-        ))}
+            </article>
+          )
+        })}
       </div>
     </section>
   )

@@ -85,8 +85,10 @@ test.describe('Mobile Regression', () => {
     await preparePage(page, '/')
 
     const hero = page.locator('[data-home-section="hero"]')
-    await expect(hero.getByRole('link', { name: 'View Work' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: 'Get in Touch' })).toBeVisible()
+    const heroCtas = hero.locator('[data-mobile-audit="hero-cta"]')
+    await expect(heroCtas).toHaveCount(3)
+    await expect(hero.getByRole('link', { name: 'Discuss an AI Integration' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'View Case Studies' })).toBeVisible()
 
     await expectStableScreenshot(hero, 'home-hero.png')
   })
@@ -212,7 +214,8 @@ test.describe('Mobile Regression', () => {
 
     const contact = page.locator('#contact')
     await contact.scrollIntoViewIfNeeded()
-    await expect(contact.getByRole('heading', { name: "Let's Work Together" })).toBeVisible()
+    await expect(contact).toBeVisible()
+    await expect(contact.getByRole('button', { name: /send creative systems brief/i })).toBeVisible()
 
     await expectStableScreenshot(contact, 'home-contact.png')
   })

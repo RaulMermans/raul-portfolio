@@ -3,16 +3,23 @@ import HomePage from '../page'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Applied AI Systems for Marketing, CRM, and Creative Teams',
+  title: 'AI Integrations for Creative Systems, Brand Workflows, and Cultural Execution',
   description:
-    'Applied AI systems, agentic workflows, automation layers, and internal AI tools for marketing, CRM, and creative teams that need faster execution with quality, control, and brand coherence.',
+    'Applied AI systems, automation layers, and internal tools for creative teams, brand builders, and culture-led projects that need faster execution with taste, control, and brand coherence.',
   path: '/',
   locale: 'en',
   image: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Raúl Mermans portfolio',
   },
-  keywords: ['applied AI systems', 'agentic workflows', 'internal AI tools', 'brand intelligence'],
+  keywords: [
+    'creative AI systems',
+    'AI integrations',
+    'brand workflows',
+    'internal creative tools',
+    'AI campaign systems',
+    'brand intelligence',
+  ],
 })
 
 export default function EnglishHomePage() {

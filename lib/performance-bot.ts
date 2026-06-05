@@ -2,7 +2,7 @@
  * Performance Bot
  * Automated performance monitoring and optimization system
  * Runs in the background to improve website performance
- * 
+ *
  * Uses web-vitals library for accurate Core Web Vitals measurement
  * INP (Interaction to Next Paint) replaces deprecated FID metric
  */
@@ -40,37 +40,12 @@ class PerformanceBot {
     }
     const values = this.metrics.get(name)!
     values.push(value)
-    
+
     // Keep only last 100 measurements
     if (values.length > 100) {
       values.shift()
     }
 
-    // Send to analytics API in production
-    if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-      this.sendToAnalytics(name, value)
-    }
-  }
-
-  /**
-   * Send metrics to analytics API
-   */
-  private async sendToAnalytics(metric: string, value: number): Promise<void> {
-    try {
-      await fetch('/api/analytics', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          metrics: [{ name: metric, value }],
-          url: window.location.pathname,
-        }),
-      })
-    } catch (error) {
-      // Silently fail - don't break user experience
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('Failed to send analytics:', error)
-      }
-    }
   }
 
   /**
@@ -102,10 +77,10 @@ class PerformanceBot {
     let score = 100
     if (metrics.lcp && metrics.lcp > this.thresholds.lcp.poor) score -= 30
     else if (metrics.lcp && metrics.lcp > this.thresholds.lcp.good) score -= 15
-    
+
     if (metrics.inp && metrics.inp > this.thresholds.inp.poor) score -= 20
     else if (metrics.inp && metrics.inp > this.thresholds.inp.good) score -= 10
-    
+
     if (metrics.cls && metrics.cls > this.thresholds.cls.poor) score -= 20
     else if (metrics.cls && metrics.cls > this.thresholds.cls.good) score -= 10
 
@@ -244,7 +219,7 @@ class PerformanceBot {
   async autoOptimize(): Promise<void> {
     if (!this.isPerformanceAcceptable()) {
       const recommendations = this.getRecommendations()
-      
+
       // Log recommendations
       if (process.env.NODE_ENV === 'development') {
         console.log('Performance Bot Recommendations:', recommendations)
@@ -265,7 +240,7 @@ export const performanceBot = new PerformanceBot()
 // Auto-start monitoring in browser
 if (typeof window !== 'undefined') {
   performanceBot.startMonitoring()
-  
+
   // Generate report after page load
   window.addEventListener('load', () => {
     setTimeout(() => {
@@ -276,4 +251,3 @@ if (typeof window !== 'undefined') {
     }, 3000) // Wait for metrics to stabilize
   })
 }
-

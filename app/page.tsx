@@ -35,7 +35,7 @@ function getHomeServiceSchema(locale: Locale) {
           name: 'Sistemas de IA',
           serviceType: 'Diseño de sistemas de IA aplicados',
           description:
-            'Sistemas de IA aplicada que transforman el trabajo repetitivo y de alta carga cognitiva en una ejecución fiable. Agentes, orquestación y flujos de decisión construidos para equipos reales, no solo para demostraciones.',
+            'Sistemas creativos asistidos por IA, herramientas internas y flujos con agentes para equipos que necesitan ejecución estructurada, resultados revisables y coherencia de marca.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(localizedRoot),
@@ -44,9 +44,9 @@ function getHomeServiceSchema(locale: Locale) {
           '@type': 'Service',
           position: 2,
           name: 'Automatización y herramientas internas',
-          serviceType: 'Automatización operativa e interfaces internas',
+          serviceType: 'Automatización creativa e interfaces internas',
           description:
-            'Sistemas de automatización y herramientas internas para marketing, CRM, contenido y operaciones creativas con revisión humana donde importa.',
+            'Capas de automatización y herramientas internas para flujos creativos, producción de contenido, investigación, gestión de assets y coordinación de equipos.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(localizedRoot),
@@ -100,7 +100,7 @@ function getHomeServiceSchema(locale: Locale) {
         name: 'AI Systems',
         serviceType: 'AI workflow architecture and internal AI tools',
         description:
-          'AI workflow architecture, agentic systems, and internal tools for teams that need structured execution, reviewable outputs, and reliable AI-assisted operations.',
+          'AI-assisted creative systems, internal tools, and agentic workflows for teams that need structured execution, reviewable outputs, and brand-aware reliability.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(localizedRoot),
@@ -109,9 +109,9 @@ function getHomeServiceSchema(locale: Locale) {
         '@type': 'Service',
         position: 2,
         name: 'Automation and Internal Tools',
-        serviceType: 'Operational Automation and Internal Interfaces',
+        serviceType: 'Creative Automation and Internal Interfaces',
         description:
-          'Automation systems for CRM, reporting, admin, and creative operations. Reduce repetitive work, connect tools, and standardize business workflows.',
+          'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(localizedRoot),
@@ -252,7 +252,7 @@ export default function Home() {
         <Header locale={locale} />
         <Hero locale={locale} />
         <SectionCards locale={locale} />
-        
+
         {/* Social Proof Section - Placeholder for future content
         * Suggested location for "Trusted By" logos or testimonial quotes
         * Uncomment and populate when client logos/testimonials are available
@@ -275,7 +275,7 @@ export default function Home() {
         *   </div>
         * </section>
         */}
-        
+
         <About locale={locale} />
         <Services locale={locale} />
         <Contact locale={locale} />
