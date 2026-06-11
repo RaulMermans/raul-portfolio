@@ -66,11 +66,15 @@ Required GitHub Secrets:
 - `SFTP_HOST`
 - `SFTP_USER`
 - `SFTP_PASSWORD`
-- `SFTP_PORT`
-- `SFTP_REMOTE_PATH`
 
-`SFTP_REMOTE_PATH` must point to the document root that serves
-`https://www.raulmermans.com/`. The workflow does not default to `/`.
+Optional GitHub Secrets:
+
+- `SFTP_PORT` (defaults to `22`)
+- `SFTP_REMOTE_PATH` (defaults to `/`)
+
+`SFTP_REMOTE_PATH` can override the document root that serves
+`https://www.raulmermans.com/`. The default matches the current IONOS
+configuration.
 
 Local/private deployment helper scripts are intentionally ignored.
 

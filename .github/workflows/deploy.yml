@@ -16,7 +16,7 @@ jobs:
       SFTP_USER: ${{ secrets.SFTP_USER || secrets.SFTP_USERNAME }}
       SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
       SFTP_PORT: ${{ secrets.SFTP_PORT || 22 }}
-      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
+      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH || '/' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
