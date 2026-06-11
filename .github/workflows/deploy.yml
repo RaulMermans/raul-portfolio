@@ -64,7 +64,7 @@ jobs:
           ! grep -Fq "Automatización CRM" out/index.html
 
       - name: Deploy to IONOS via SFTP
-        uses: wangyucode/sftp-upload-action@v3.2.0
+        uses: wangyucode/sftp-upload-action@v3.0.0
         with:
           host: ${{ env.SFTP_HOST }}
           username: ${{ env.SFTP_USER }}
