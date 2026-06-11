@@ -53,7 +53,10 @@ The project is configured for static export via `next.config.js`.
 This portfolio deploys from pushes to `main`.
 
 The GitHub Actions workflow builds the static Next.js export and uploads the
-generated `out/` directory to the configured IONOS destination via SFTP.
+generated `out/` directory to the configured IONOS destination via SFTP. It
+checks the exported homepage copy before upload, overwrites the tracked static
+files, removes tracked files that disappeared from later exports, and verifies
+the live English and Spanish HTML after deployment.
 
 Deployment credentials are stored in GitHub Secrets and are not committed to
 the repository.
@@ -65,6 +68,9 @@ Required GitHub Secrets:
 - `SFTP_PASSWORD`
 - `SFTP_PORT`
 - `SFTP_REMOTE_PATH`
+
+`SFTP_REMOTE_PATH` must point to the document root that serves
+`https://www.raulmermans.com/`. The workflow does not default to `/`.
 
 Local/private deployment helper scripts are intentionally ignored.
 

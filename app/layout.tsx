@@ -7,15 +7,12 @@ import PageTransition from '@/components/PageTransition'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, defaultKeywords, siteConfig } from '@/lib/metadata'
 import LocaleDocument from '@/components/LocaleDocument'
-// Critical bots - loaded immediately (error handling, security, env validation)
-import '@/lib/error-bot'
-import '@/lib/security-bot'
 import '@/lib/env-validation'
-
-// Non-critical bots - lazy loaded on client after page load
-// This improves initial bundle size and Time to Interactive
-import '@/lib/lazy-bots'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+
+const rootTitle = 'Raúl Mermans — Integraciones de IA para Sistemas Creativos y Flujos de Marca'
+const rootDescription =
+  'Sistemas de IA aplicada, capas de automatización y herramientas internas para equipos creativos, marcas y proyectos culturales que necesitan ejecutar más rápido con criterio, control y coherencia de marca.'
 
 const bebasNeue = localFont({
   src: './fonts/bebas-neue-400.woff2',
@@ -54,10 +51,10 @@ const sourceSerif4 = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.defaultTitle,
+    default: rootTitle,
     template: `%s — ${siteConfig.name}`,
   },
-  description: siteConfig.defaultDescription,
+  description: rootDescription,
   icons: {
     icon: '/favicon.jpg',
     shortcut: '/favicon.jpg',
@@ -81,8 +78,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: siteConfig.locale,
     url: absoluteRouteUrl('/'),
-    title: siteConfig.defaultTitle,
-    description: siteConfig.defaultDescription,
+    title: rootTitle,
+    description: rootDescription,
     siteName: siteConfig.siteName,
     images: [
       {
@@ -95,8 +92,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.defaultTitle,
-    description: siteConfig.defaultDescription,
+    title: rootTitle,
+    description: rootDescription,
     creator: siteConfig.twitterHandle,
     images: [absoluteUrl(siteConfig.defaultImage.url)],
   },

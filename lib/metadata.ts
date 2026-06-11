@@ -27,9 +27,9 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com',
   locale: 'es_ES',
   twitterHandle: '@raulmermans',
-  defaultTitle: 'Raúl Mermans — Integraciones de IA para Sistemas Creativos y Flujos de Marca',
+  defaultTitle: 'Raúl Mermans — AI Integrations for Creative Systems and Brand Workflows',
   defaultDescription:
-    'Sistemas de IA aplicada, capas de automatización y herramientas internas para equipos creativos, marcas y proyectos culturales que necesitan ejecutar más rápido con criterio, control y coherencia de marca.',
+    'Applied AI systems, automation layers, internal tools, and brand intelligence systems for creative teams, brand builders, and culture-led projects.',
   defaultImage: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Portfolio de Raúl Mermans — sistemas de IA, casos de estudio y ejecución creativa',

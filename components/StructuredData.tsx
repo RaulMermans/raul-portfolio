@@ -54,6 +54,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         'AI Campaign Systems',
         'Internal Creative Tools',
         'Generative Visual Systems',
+        'Brand Workflows',
         'Content Systems',
         'Creative Infrastructure',
         'Product Prototyping',
@@ -105,7 +106,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'Automation and Internal Tools',
           serviceType: 'Creative Automation and Internal Interfaces',
           description:
-            'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination.',
+            'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination — built to support judgment, not replace it.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,

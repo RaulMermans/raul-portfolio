@@ -23,7 +23,7 @@ const pageCopy = {
   en: {
     heroTag:
       'I work at the intersection of AI systems, brand strategy, and product execution — building tools and workflows that are technically structured, commercially useful, and culturally aware.',
-    current: ['Currently', 'CRM & AI', 'Perfumerías Primor', '+ Independent', 'Internal AI tools'],
+    current: ['Currently', 'AI + brand systems', 'Perfumerías Primor', '+ Independent', 'Internal AI tools'],
     proof: [
       {
         number: '01',
@@ -186,7 +186,7 @@ const pageCopy = {
       {
         number: '01',
         kicker: 'Lead practice',
-        title: <>Agentic <span>AI</span><br />& automation.</>,
+        title: <>Agentic <span>AI</span><br />& creative systems.</>,
         body:
           'Multi-step systems for creative operations, campaign workflows, brand intelligence, research, audits, and the handoffs between them.',
         tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Retrieval'],
@@ -240,7 +240,7 @@ const pageCopy = {
   es: {
     heroTag:
       'Trabajo en la intersección entre sistemas de IA, estrategia de marca y ejecución de producto: diseño herramientas y flujos con estructura técnica, utilidad comercial y sensibilidad cultural.',
-    current: ['Ahora', 'CRM + IA', 'Perfumerías Primor', '+ Proyectos propios', 'Herramientas internas con IA'],
+    current: ['Ahora', 'IA + sistemas de marca', 'Perfumerías Primor', '+ Proyectos propios', 'Herramientas internas con IA'],
     proof: [
       {
         number: '01',
@@ -403,7 +403,7 @@ const pageCopy = {
       {
         number: '01',
         kicker: 'Práctica principal',
-        title: <>IA con <span>agentes</span><br />y automatización.</>,
+        title: <>IA con <span>agentes</span><br />y sistemas creativos.</>,
         body:
           'Sistemas de varios pasos para operaciones creativas, flujos de campaña, inteligencia de marca, investigación, auditorías y traspasos entre equipos.',
         tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'MCP', 'Recuperación'],

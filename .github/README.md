@@ -101,7 +101,7 @@ npm run build
 
 This portfolio deploys from pushes to `main`.
 
-The GitHub Actions workflow builds the static Next.js export and uploads the generated output to the configured IONOS environment.
+The GitHub Actions workflow type-checks, lints, builds the static Next.js export, verifies the expected homepage copy, uploads tracked files to IONOS, and checks the live English and Spanish HTML after deployment.
 
 Deployment credentials are stored in GitHub Secrets and are not committed to the repository.
 
@@ -114,6 +114,8 @@ SFTP_PASSWORD
 SFTP_PORT
 SFTP_REMOTE_PATH
 ```
+
+`SFTP_REMOTE_PATH` must be the document root serving `www.raulmermans.com`; the workflow intentionally has no `/` fallback.
 
 Local/private deployment helper scripts are intentionally ignored.
 

@@ -233,7 +233,7 @@ export const siteCopy = {
           name: 'John Doe',
           email: 'john@example.com',
           message:
-            'Describe the current creative process, the tools or team involved, where the workflow breaks down, and the system or outcome you want to improve...',
+            'Describe the current creative process, the tools or team involved, where the workflow breaks down, and the system or outcome you want to improve…',
         },
         errors: {
           name: 'Name must be at least 2 characters.',
@@ -531,7 +531,7 @@ export const siteCopy = {
           name: 'Juan Pérez',
           email: 'juan@ejemplo.com',
           message:
-            'Describe el proceso creativo actual, las herramientas o el equipo implicado, dónde se rompe el flujo y qué sistema o resultado quieres mejorar...',
+            'Describe el proceso creativo actual, las herramientas o el equipo implicado, dónde se rompe el flujo y qué sistema o resultado quieres mejorar…',
         },
         errors: {
           name: 'El nombre debe tener al menos 2 caracteres.',

@@ -46,7 +46,7 @@ function getHomeServiceSchema(locale: Locale) {
           name: 'Automatización y herramientas internas',
           serviceType: 'Automatización creativa e interfaces internas',
           description:
-            'Capas de automatización y herramientas internas para flujos creativos, producción de contenido, investigación, gestión de assets y coordinación de equipos.',
+            'Capas de automatización y herramientas internas para flujos creativos, producción de contenido, investigación, gestión de assets y coordinación de equipos, construidas para apoyar el criterio, no sustituirlo.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(localizedRoot),
@@ -111,7 +111,7 @@ function getHomeServiceSchema(locale: Locale) {
         name: 'Automation and Internal Tools',
         serviceType: 'Creative Automation and Internal Interfaces',
         description:
-          'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination.',
+          'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination — built to support judgment, not replace it.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(localizedRoot),

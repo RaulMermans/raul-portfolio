@@ -79,7 +79,7 @@ const sectionCopy = {
     whyTitle: 'La fiabilidad pesa más que la novedad',
     relevanceEyebrow: 'Uso para clientes',
     relevanceTitle: 'Dónde se vuelve útil',
-    ctaEyebrow: 'Hablar de un sistema similar',
+    ctaEyebrow: 'Hablar de un sistema IA similar',
     ctaTitle: '¿Tienes un sistema creativo que merece desarrollarse?',
     ctaLabel: 'Enviar brief de sistema creativo',
   },

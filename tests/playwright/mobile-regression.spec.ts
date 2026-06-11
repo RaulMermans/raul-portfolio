@@ -82,7 +82,7 @@ async function swipeSurface(page: Page, deltaX: number, deltaY: number) {
 
 test.describe('Mobile Regression', () => {
   test('homepage hero remains readable on mobile', async ({ page }) => {
-    await preparePage(page, '/')
+    await preparePage(page, '/en/')
 
     const hero = page.locator('[data-home-section="hero"]')
     const heroCtas = hero.locator('[data-mobile-audit="hero-cta"]')
@@ -94,7 +94,7 @@ test.describe('Mobile Regression', () => {
   })
 
   test('mobile menu opens as a modal and restores focus when closed', async ({ page }) => {
-    await preparePage(page, '/')
+    await preparePage(page, '/en/')
 
     const trigger = page.getByRole('button', { name: 'Open menu' })
     await trigger.click()
@@ -113,7 +113,7 @@ test.describe('Mobile Regression', () => {
   })
 
   test('homepage work rail keeps explicit affordance on mobile', async ({ page }) => {
-    await preparePage(page, '/')
+    await preparePage(page, '/en/')
 
     const workSection = page.locator('[data-home-section="work"]')
     await workSection.scrollIntoViewIfNeeded()
@@ -124,7 +124,7 @@ test.describe('Mobile Regression', () => {
   })
 
   test('visuals surface only navigates on horizontal intent', async ({ page }) => {
-    await preparePage(page, '/visuals')
+    await preparePage(page, '/en/visuals/')
 
     const readTitle = async () => page.locator('[data-mobile-audit="visual-card"] h2').innerText()
 
@@ -138,7 +138,7 @@ test.describe('Mobile Regression', () => {
   })
 
   test('visuals surface ignores diagonal downward swipes so page scroll can win', async ({ page }) => {
-    await preparePage(page, '/visuals')
+    await preparePage(page, '/en/visuals/')
 
     const readTitle = async () => page.locator('[data-mobile-audit="visual-card"] h2').innerText()
     const firstTitle = await readTitle()
@@ -148,7 +148,7 @@ test.describe('Mobile Regression', () => {
   })
 
   test('visuals gallery and exhibition remain stable on mobile', async ({ page }) => {
-    await preparePage(page, '/visuals')
+    await preparePage(page, '/en/visuals/')
 
     const surface = page.locator('[data-mobile-audit="visuals-surface"]')
     await expectStableScreenshot(surface, 'visuals-surface.png')
@@ -161,7 +161,7 @@ test.describe('Mobile Regression', () => {
   })
 
   test('visuals exhibition details stay scrollable once opened', async ({ page }) => {
-    await preparePage(page, '/visuals')
+    await preparePage(page, '/en/visuals/')
 
     await page.locator('[data-mobile-audit="visual-card"]').click()
     const scrollRegion = page.locator('[data-mobile-audit="visuals-exhibition-scroll"]')
@@ -184,7 +184,7 @@ test.describe('Mobile Regression', () => {
 
   test('visuals exhibition details stay scrollable on desktop split layout', async ({ page }) => {
     await page.setViewportSize({ width: 1512, height: 864 })
-    await preparePage(page, '/visuals')
+    await preparePage(page, '/en/visuals/')
 
     await page.locator('[data-mobile-audit="visual-card"]').click()
     const exhibition = page.locator('#exhibition')
@@ -210,7 +210,7 @@ test.describe('Mobile Regression', () => {
   })
 
   test('contact section stays visible and usable on mobile', async ({ page }) => {
-    await preparePage(page, '/')
+    await preparePage(page, '/en/')
 
     const contact = page.locator('#contact')
     await contact.scrollIntoViewIfNeeded()

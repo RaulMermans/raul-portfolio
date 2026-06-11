@@ -42,7 +42,7 @@ const commercialContent: CommercialCaseStudyContent = {
   whyItMatters:
     'Most AI reporting tools fail when they treat the model as an open-ended analyst. DataBrief AI takes the opposite approach: clear inputs, controlled execution, explicit constraints, and reviewable outputs. That makes the workflow more relevant for real teams where reporting quality and decision traceability matter more than broad autonomy.',
   clientRelevance:
-    'A client-facing version could help marketing, CRM, ecommerce, or operations teams reduce manual spreadsheet reporting, standardize recurring summaries, and improve AI-assisted analysis without presenting unsupported conclusions as fact.',
+    'A client-facing version could help creative, brand, research, or operations teams reduce manual spreadsheet reporting, standardize recurring summaries, and improve AI-assisted analysis without presenting unsupported conclusions as fact.',
   ctaCopy:
     "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
 }
@@ -73,7 +73,7 @@ const commercialContentEs: CommercialCaseStudyContent = {
   whyItMatters:
     'Muchas herramientas de reporting con IA fallan cuando tratan el modelo como analista abierto. DataBrief AI hace lo contrario: entradas claras, ejecución controlada, restricciones explícitas y resultados revisables. Eso encaja mejor con equipos reales, donde la calidad del informe y la trazabilidad de la decisión pesan más que la autonomía amplia.',
   clientRelevance:
-    'Una versión para cliente podría ayudar a equipos de marketing, CRM, ecommerce u operaciones a reducir reporting manual, estandarizar resúmenes recurrentes y mejorar análisis asistidos por IA sin presentar conclusiones no soportadas como hechos.',
+    'Una versión para cliente podría ayudar a equipos creativos, de marca, investigación u operaciones a reducir reporting manual, estandarizar resúmenes recurrentes y mejorar análisis asistidos por IA sin presentar conclusiones no soportadas como hechos.',
   ctaCopy:
     'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
 }

@@ -14,7 +14,9 @@ jobs:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
       SFTP_HOST: ${{ secrets.SFTP_HOST || secrets.SFTP_SERVER }}
       SFTP_USER: ${{ secrets.SFTP_USER || secrets.SFTP_USERNAME }}
-      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH || '/' }}
+      SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+      SFTP_PORT: ${{ secrets.SFTP_PORT || 22 }}
+      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,6 +29,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate deployment configuration
+        run: |
+          test -n "$SFTP_HOST" || { echo "Missing SFTP_HOST secret."; exit 1; }
+          test -n "$SFTP_USER" || { echo "Missing SFTP_USER secret."; exit 1; }
+          test -n "$SFTP_PASSWORD" || { echo "Missing SFTP_PASSWORD secret."; exit 1; }
+          test -n "$SFTP_REMOTE_PATH" || { echo "Missing SFTP_REMOTE_PATH secret."; exit 1; }
+
       - name: Type-check
         run: npm run type-check
 
@@ -38,17 +47,74 @@ jobs:
 
       - name: Verify export output
         run: |
-          if [ ! -d out ]; then
-            echo "Static export directory ./out/ was not generated."
-            exit 1
-          fi
+          test -d out || { echo "Static export directory ./out/ was not generated."; exit 1; }
+          test -f out/index.html || { echo "Missing Spanish homepage export."; exit 1; }
+          test -f out/en/index.html || { echo "Missing English homepage export."; exit 1; }
+
+          grep -Fq "Discuss an AI Integration" out/en/index.html
+          grep -Fq "AI Integrations" out/en/index.html
+          grep -Fq "Start with the creative system" out/en/index.html
+          ! grep -Fq "Request an AI Workflow Audit" out/en/index.html
+          ! grep -Fq "Marketing + CRM" out/en/index.html
+
+          grep -Fq "Integraciones IA" out/index.html
+          grep -Fq "Hablar de una integración IA" out/index.html
+          grep -Fq "Empieza por el sistema creativo" out/index.html
+          ! grep -Fq "Sistemas de IA · Agentes · Automatización" out/index.html
+          ! grep -Fq "Automatización CRM" out/index.html
 
       - name: Deploy to IONOS via SFTP
-        uses: wangyucode/sftp-upload-action@v2.0.2
+        uses: wangyucode/sftp-upload-action@v3.2.0
         with:
           host: ${{ env.SFTP_HOST }}
           username: ${{ env.SFTP_USER }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
+          password: ${{ env.SFTP_PASSWORD }}
+          port: ${{ env.SFTP_PORT }}
           localDir: ./out/
           remoteDir: ${{ env.SFTP_REMOTE_PATH }}
+          forceUpload: true
+          removeExtraFilesOnServer: true
+
+      - name: Verify production deployment
+        env:
+          DEPLOY_VERSION: ${{ github.sha }}
+        run: |
+          verify_copy() {
+            url="$1"
+            output="$2"
+            shift 2
+
+            for attempt in 1 2 3 4 5 6; do
+              curl --fail --silent --show-error \
+                -H "Cache-Control: no-cache" \
+                "${url}?v=${DEPLOY_VERSION}-${attempt}" \
+                --output "$output"
+
+              if "$@" "$output"; then
+                return 0
+              fi
+
+              sleep 10
+            done
+
+            return 1
+          }
+
+          verify_english() {
+            grep -Fq "Discuss an AI Integration" "$1" &&
+              grep -Fq "AI Integrations" "$1" &&
+              grep -Fq "Start with the creative system" "$1" &&
+              ! grep -Fq "Request an AI Workflow Audit" "$1" &&
+              ! grep -Fq "Marketing + CRM" "$1"
+          }
+
+          verify_spanish() {
+            grep -Fq "Integraciones IA" "$1" &&
+              grep -Fq "Hablar de una integración IA" "$1" &&
+              grep -Fq "Empieza por el sistema creativo" "$1" &&
+              ! grep -Fq "Sistemas de IA · Agentes · Automatización" "$1" &&
+              ! grep -Fq "Automatización CRM" "$1"
+          }
+
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html verify_english
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html verify_spanish
