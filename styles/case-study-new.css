@@ -4920,6 +4920,390 @@ main.case-study-page-new {
   }
 }
 
+/* TerritoryOps Spain — private atlas / internal control console */
+.case-study-page-new--territoryops {
+  --territoryops-accent: #b08a5a;
+  --territoryops-grid: rgba(245, 240, 235, 0.09);
+  background: var(--cream);
+}
+
+.territoryops-hero {
+  min-height: auto;
+  padding-top: calc(var(--header-height) + 2rem);
+  background:
+    linear-gradient(150deg, rgba(176, 138, 90, 0.14), transparent 38%),
+    var(--ink);
+}
+
+.case-study-page-new--territoryops .benchmark-hero__content {
+  align-self: center;
+}
+
+.case-study-page-new--territoryops .benchmark-hero__title {
+  max-width: 9ch;
+}
+
+.territoryops-atlas {
+  display: grid;
+  gap: 0.8rem;
+  min-width: 0;
+  margin: 0;
+}
+
+.territoryops-atlas__map {
+  position: relative;
+  min-height: clamp(22rem, 62vw, 34rem);
+  overflow: hidden;
+  border: 1px solid rgba(245, 240, 235, 0.18);
+  background:
+    linear-gradient(var(--territoryops-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--territoryops-grid) 1px, transparent 1px),
+    radial-gradient(circle at 54% 46%, rgba(176, 138, 90, 0.2), transparent 36%),
+    #12100e;
+  background-size: 3.5rem 3.5rem, 3.5rem 3.5rem, auto, auto;
+}
+
+.territoryops-atlas__map::before {
+  content: "";
+  position: absolute;
+  inset: 12% 17% 24% 22%;
+  border: 1px solid rgba(245, 240, 235, 0.24);
+  background: rgba(245, 240, 235, 0.035);
+  clip-path: polygon(17% 2%, 43% 8%, 57% 1%, 82% 12%, 96% 31%, 88% 51%, 71% 64%, 68% 90%, 45% 100%, 31% 82%, 12% 74%, 1% 48%, 10% 29%);
+}
+
+.territoryops-atlas__marker {
+  position: absolute;
+  z-index: 2;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid var(--cream);
+  border-radius: 50%;
+  background: var(--territoryops-accent);
+  box-shadow: 0 0 0 0.45rem rgba(176, 138, 90, 0.16);
+}
+
+.territoryops-atlas__marker--one {
+  top: 26%;
+  left: 41%;
+}
+
+.territoryops-atlas__marker--two {
+  top: 44%;
+  left: 60%;
+}
+
+.territoryops-atlas__marker--three {
+  top: 57%;
+  left: 36%;
+}
+
+.territoryops-atlas__marker--four {
+  top: 69%;
+  left: 54%;
+}
+
+.territoryops-atlas__panel {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 3;
+  display: grid;
+  gap: 0.55rem;
+  border: 1px solid rgba(245, 240, 235, 0.18);
+  padding: 1rem;
+  background: rgba(18, 16, 14, 0.88);
+  backdrop-filter: blur(12px);
+}
+
+.territoryops-atlas__panel span,
+.territoryops-atlas__panel strong,
+.territoryops-atlas figcaption {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.territoryops-atlas__panel span {
+  color: rgba(245, 240, 235, 0.56);
+  font-size: 0.62rem;
+}
+
+.territoryops-atlas__panel strong {
+  color: var(--cream);
+  font-size: clamp(0.78rem, 2vw, 1rem);
+  font-weight: 400;
+}
+
+.territoryops-atlas figcaption {
+  color: rgba(245, 240, 235, 0.58);
+  font-size: 0.65rem;
+  line-height: 1.6;
+}
+
+.territoryops-decision-grid,
+.territoryops-feature-grid,
+.territoryops-build-grid,
+.territoryops-screen-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.territoryops-decision-card {
+  min-height: 15rem;
+  align-content: end;
+  border: 0;
+  border-radius: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.territoryops-decision-card h3 {
+  margin-top: 1rem;
+}
+
+.territoryops-feature-grid article {
+  display: grid;
+  gap: 0.8rem;
+  min-height: 11rem;
+  align-content: end;
+  padding: clamp(1.25rem, 3vw, 1.8rem);
+  background: var(--cream-light);
+}
+
+.territoryops-feature-grid h3 {
+  color: var(--ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.territoryops-feature-grid p {
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+
+.territoryops-heading--inverse .data-brief-eyebrow,
+.territoryops-heading--inverse h2 {
+  color: var(--cream);
+}
+
+.territoryops-heading--inverse p {
+  color: rgba(245, 240, 235, 0.7);
+}
+
+.territoryops-proof-strip {
+  border-color: rgba(245, 240, 235, 0.18);
+  background: rgba(245, 240, 235, 0.05);
+}
+
+.territoryops-proof-strip > div {
+  border-color: rgba(245, 240, 235, 0.14);
+}
+
+.territoryops-proof-strip strong {
+  color: var(--cream);
+}
+
+.territoryops-proof-strip span {
+  color: rgba(245, 240, 235, 0.56);
+}
+
+.territoryops-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.territoryops-stack span {
+  border: 1px solid rgba(245, 240, 235, 0.18);
+  padding: 0.7rem 0.9rem;
+  color: rgba(245, 240, 235, 0.72);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.territoryops-build-grid {
+  background: rgba(245, 240, 235, 0.14);
+}
+
+.territoryops-build-grid p {
+  min-height: 11rem;
+  padding: clamp(1.25rem, 3vw, 1.8rem);
+  background: rgba(245, 240, 235, 0.06);
+  color: rgba(245, 240, 235, 0.72);
+  line-height: 1.7;
+}
+
+.territoryops-inspiration-link {
+  margin-top: 1.5rem;
+  border-color: rgba(245, 240, 235, 0.28);
+  color: var(--cream);
+}
+
+.territoryops-screen-grid {
+  background: transparent;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.territoryops-screen {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--cream-dark);
+  background: var(--cream-light);
+}
+
+.territoryops-screen__placeholder {
+  display: grid;
+  min-height: clamp(18rem, 62vw, 26rem);
+  align-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  background:
+    linear-gradient(rgba(26, 23, 20, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 23, 20, 0.07) 1px, transparent 1px),
+    linear-gradient(145deg, rgba(176, 138, 90, 0.14), transparent 46%),
+    var(--cream-warm);
+  background-size: 2.5rem 2.5rem, 2.5rem 2.5rem, auto, auto;
+}
+
+.territoryops-screen__placeholder span,
+.territoryops-screen__placeholder code {
+  color: var(--ink-muted);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.territoryops-screen__placeholder strong {
+  max-width: 10ch;
+  color: var(--ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  font-weight: 400;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.territoryops-screen figcaption {
+  padding: 1rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+
+.territoryops-outcome-list {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  background: rgba(26, 23, 20, 0.12);
+  list-style: none;
+}
+
+.territoryops-outcome-list li {
+  min-height: 8rem;
+  padding: clamp(1.25rem, 3vw, 1.8rem);
+  background: var(--cream-light);
+  color: var(--ink);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.territoryops-roadmap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  background: rgba(245, 240, 235, 0.14);
+}
+
+.territoryops-roadmap span {
+  display: grid;
+  min-height: 7rem;
+  align-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(245, 240, 235, 0.06);
+  color: var(--cream);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.territoryops-roadmap small {
+  color: rgba(245, 240, 235, 0.42);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.territoryops-closing {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.territoryops-closing strong {
+  max-width: 30ch;
+}
+
+.case-study-page-new--territoryops .data-brief-section--dark .data-brief-actions {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 720px) {
+  .territoryops-decision-grid,
+  .territoryops-feature-grid,
+  .territoryops-build-grid,
+  .territoryops-screen-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .territoryops-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .territoryops-roadmap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .territoryops-screen--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1080px) {
+  .territoryops-hero {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    min-height: min(58rem, 100vh);
+  }
+
+  .territoryops-atlas {
+    align-self: center;
+  }
+
+  .territoryops-feature-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .territoryops-build-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .territoryops-roadmap {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 /* Mobile polish for newer case-study detail landings. Keep this last so it
    overrides the later desktop-oriented refresh blocks above. */
 @media (max-width: 720px) {

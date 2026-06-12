@@ -93,6 +93,23 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       mood: ['minimal', 'tech'],
     },
     {
+      id: 6,
+      slug: 'territoryops-spain',
+      title: 'TerritoryOps Spain',
+      description:
+        'Private atlas and operational console for managing real estate opportunities by location, status, follow-up, and deal stage.',
+      commercialRelevance:
+        'For validating how a focused internal tool can turn fragmented location research into a clear operating workflow.',
+      tags: ['Internal Tool', 'Product Prototype', 'Real Estate Operations'],
+      cta: 'View Case Study',
+      image: '/images/case-studies/case-studies-thumbnail.webp',
+      imageWidth: 3000,
+      imageHeight: 2000,
+      color: 'var(--color-0)',
+      subtitle: 'Internal tool / Product prototype / Business intelligence',
+      mood: ['minimal', 'tech', 'editorial'],
+    },
+    {
       id: 2,
       slug: 'data-brief-ai',
       title: 'DataBrief AI',
@@ -195,6 +212,23 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Sistemas de IA / Flujo de auditoría',
       mood: ['minimal', 'tech'],
+    },
+    {
+      id: 6,
+      slug: 'territoryops-spain',
+      title: 'TerritoryOps Spain',
+      description:
+        'Atlas privado y consola operativa para gestionar oportunidades inmobiliarias por ubicación, estado, seguimiento y fase.',
+      commercialRelevance:
+        'Para validar cómo una herramienta interna enfocada convierte investigación dispersa de ubicaciones en un flujo operativo claro.',
+      tags: ['Herramienta interna', 'Prototipo de producto', 'Operaciones inmobiliarias'],
+      cta: 'Ver caso',
+      image: '/images/case-studies/case-studies-thumbnail.webp',
+      imageWidth: 3000,
+      imageHeight: 2000,
+      color: 'var(--color-0)',
+      subtitle: 'Herramienta interna / Prototipo de producto / Inteligencia de negocio',
+      mood: ['minimal', 'tech', 'editorial'],
     },
     {
       id: 2,

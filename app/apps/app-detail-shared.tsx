@@ -17,9 +17,12 @@ export interface AppPageProps {
 }
 
 export function getAppStaticParams() {
-  const slugs = getApps('en').filter((app) => app.slug !== 'overflow').map((app) => ({
-    slug: app.slug,
-  }))
+  const dedicatedRoutes = new Set(['overflow', 'territoryops-spain'])
+  const slugs = getApps('en')
+    .filter((app) => !dedicatedRoutes.has(app.slug))
+    .map((app) => ({
+      slug: app.slug,
+    }))
 
   if (slugs.length === 0) {
     return [{ slug: '__placeholder__' }]

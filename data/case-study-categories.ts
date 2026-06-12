@@ -36,6 +36,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
   const websiteAuditor = findStudy(caseStudies, 'website-auditor')
   const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
+  const territoryOps = findStudy(caseStudies, 'territoryops-spain')
 
   return [
     {
@@ -142,8 +143,24 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         ? 'Paneles, benchmarks e interfaces de lectura estratégica que convierten datos estructurados en decisiones claras.'
         : 'Dashboards, benchmark interfaces, and strategic-reading systems that transform structured data into clear decisions.',
       href: localizePath('/case-studies', locale),
-      projects: benchmarkDashboard
-        ? [
+      projects: [
+        ...(territoryOps
+          ? [
+              {
+                title: territoryOps.title,
+                label:
+                  territoryOps.subtitle ??
+                  (isSpanish
+                    ? 'Herramienta interna / Prototipo de producto'
+                    : 'Internal tool / Product prototype'),
+                description: territoryOps.description,
+                image: territoryOps.image,
+                href: territoryOps.href,
+              },
+            ]
+          : []),
+        ...(benchmarkDashboard
+          ? [
             {
               title: benchmarkDashboard.title,
               label: benchmarkDashboard.subtitle ?? (isSpanish ? 'Producto de datos / Sistema benchmark' : 'Data product / Benchmark system'),
@@ -151,8 +168,9 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
               image: benchmarkDashboard.image,
               href: benchmarkDashboard.href,
             },
-          ]
-        : [],
+            ]
+          : []),
+      ],
     },
   ]
 }

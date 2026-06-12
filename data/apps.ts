@@ -67,6 +67,105 @@ type LocalizedAppEntry = Omit<AppEntry, 'href'>
 const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
   en: [
     {
+      slug: 'territoryops-spain',
+      name: 'TerritoryOps Spain',
+      tagline: 'A private operational atlas for real estate decisions.',
+      shortDescription:
+        'A local-first internal control console for tracking real estate opportunities across Spain through map, table, and pipeline views.',
+      cardDescription:
+        'Private atlas and operational console for managing locations, status, follow-up, and deal stage without backend overhead.',
+      heroStatement:
+        'Turn scattered location research into a structured map, table, and pipeline workflow built for deliberate operational decisions.',
+      status: 'Internal tool',
+      launchStage: 'Product prototype',
+      theme: {
+        accent: '#B08A5A',
+        accentSoft: 'rgba(176, 138, 90, 0.24)',
+        glow: 'rgba(176, 138, 90, 0.2)',
+        surface: 'rgba(245, 240, 235, 0.07)',
+        background: '#1A1714',
+      },
+      metrics: [
+        { label: 'Model', value: 'Local-first' },
+        { label: 'Views', value: 'Map / Table / Pipeline' },
+        { label: 'State', value: 'Public prototype' },
+      ],
+      features: [
+        {
+          eyebrow: 'Spatial awareness',
+          title: 'See the territory.',
+          description:
+            'A Spain-centered map keeps every location and status visible without turning the tool into a marketplace.',
+        },
+        {
+          eyebrow: 'Operational density',
+          title: 'Review the details.',
+          description:
+            'The table makes follow-ups, values, contacts, warnings, and next actions easy to scan and sort.',
+        },
+        {
+          eyebrow: 'Deal stages',
+          title: 'Read the pipeline.',
+          description:
+            'Status columns separate passive interest, evaluation, negotiation, control, and passed opportunities.',
+        },
+        {
+          eyebrow: 'Attention logic',
+          title: 'Know what needs action.',
+          description:
+            'Overdue dates, missing actions, and negotiating records without contacts become actionable drilldowns.',
+        },
+      ],
+      gallery: [
+        {
+          eyebrow: 'Map',
+          title: 'A private atlas, not a listing portal.',
+          description:
+            'Location markers, shared filters, and dossier access provide spatial context for an internal operating workflow.',
+          stats: ['Spain', 'Status', 'Filters'],
+        },
+        {
+          eyebrow: 'Table',
+          title: 'Dense operational review.',
+          description:
+            'Sortable business fields make the next decision visible without hiding detail behind decorative charts.',
+          stats: ['Follow-up', 'Value', 'Contact'],
+        },
+        {
+          eyebrow: 'Pipeline',
+          title: 'Intentional stage changes.',
+          description:
+            'The pipeline supports fast scanning while manual status updates keep deal decisions deliberate.',
+          stats: ['Watchlist', 'Negotiating', 'Controlled'],
+        },
+      ],
+      narrative: {
+        title: 'Small tool, explicit business logic',
+        description:
+          'TerritoryOps explores how an internal interface can encode location research, follow-up discipline, and deal-stage logic without becoming overbuilt.',
+        bullets: [
+          'LocalStorage keeps setup and data sharing friction close to zero while the workflow is validated.',
+          'Map, table, and pipeline views answer different questions from one shared dataset.',
+          'Import, export, validation, and CI make the prototype portable and technically accountable.',
+        ],
+      },
+      ctas: {
+        primary: {
+          label: 'Open live prototype',
+          href: 'https://territoryops-spain.vercel.app',
+          external: true,
+        },
+        secondary: {
+          label: 'Read case study',
+          href: '/case-studies/territoryops-spain',
+        },
+        caseStudy: {
+          label: 'Read case study',
+          href: '/case-studies/territoryops-spain',
+        },
+      },
+    },
+    {
       slug: 'overflow',
       name: 'Overflow',
       tagline: 'A calm performance training journal for iPhone.',
@@ -164,6 +263,105 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
     },
   ],
   es: [
+    {
+      slug: 'territoryops-spain',
+      name: 'TerritoryOps Spain',
+      tagline: 'Un atlas operativo privado para decisiones inmobiliarias.',
+      shortDescription:
+        'Una consola interna local-first para controlar oportunidades inmobiliarias en España mediante mapa, tabla y pipeline.',
+      cardDescription:
+        'Atlas privado y consola operativa para gestionar ubicaciones, estados, seguimientos y fases sin infraestructura de backend.',
+      heroStatement:
+        'Convierte investigación dispersa de ubicaciones en un flujo estructurado de mapa, tabla y pipeline para decisiones operativas deliberadas.',
+      status: 'Herramienta interna',
+      launchStage: 'Prototipo de producto',
+      theme: {
+        accent: '#B08A5A',
+        accentSoft: 'rgba(176, 138, 90, 0.24)',
+        glow: 'rgba(176, 138, 90, 0.2)',
+        surface: 'rgba(245, 240, 235, 0.07)',
+        background: '#1A1714',
+      },
+      metrics: [
+        { label: 'Modelo', value: 'Local-first' },
+        { label: 'Vistas', value: 'Mapa / Tabla / Pipeline' },
+        { label: 'Estado', value: 'Prototipo público' },
+      ],
+      features: [
+        {
+          eyebrow: 'Lectura espacial',
+          title: 'Ver el territorio.',
+          description:
+            'Un mapa centrado en España mantiene visibles ubicaciones y estados sin convertir la herramienta en un marketplace.',
+        },
+        {
+          eyebrow: 'Densidad operativa',
+          title: 'Revisar el detalle.',
+          description:
+            'La tabla permite escanear y ordenar seguimientos, valores, contactos, alertas y próximas acciones.',
+        },
+        {
+          eyebrow: 'Fases de operación',
+          title: 'Leer el pipeline.',
+          description:
+            'Las columnas separan interés pasivo, evaluación, negociación, control y oportunidades descartadas.',
+        },
+        {
+          eyebrow: 'Lógica de atención',
+          title: 'Saber qué requiere acción.',
+          description:
+            'Fechas vencidas, acciones ausentes y negociaciones sin contacto se convierten en drilldowns accionables.',
+        },
+      ],
+      gallery: [
+        {
+          eyebrow: 'Mapa',
+          title: 'Un atlas privado, no un portal de anuncios.',
+          description:
+            'Marcadores, filtros compartidos y acceso al dossier aportan contexto espacial al flujo interno.',
+          stats: ['España', 'Estado', 'Filtros'],
+        },
+        {
+          eyebrow: 'Tabla',
+          title: 'Revisión operativa densa.',
+          description:
+            'Los campos ordenables hacen visible la siguiente decisión sin esconder el detalle tras gráficos decorativos.',
+          stats: ['Seguimiento', 'Valor', 'Contacto'],
+        },
+        {
+          eyebrow: 'Pipeline',
+          title: 'Cambios de fase intencionales.',
+          description:
+            'El pipeline acelera la lectura mientras los cambios manuales mantienen deliberadas las decisiones.',
+          stats: ['Watchlist', 'Negociando', 'Controlado'],
+        },
+      ],
+      narrative: {
+        title: 'Herramienta pequeña, lógica de negocio explícita',
+        description:
+          'TerritoryOps explora cómo una interfaz interna puede codificar investigación de ubicaciones, disciplina de seguimiento y fases sin sobredimensionarse.',
+        bullets: [
+          'LocalStorage reduce casi a cero la fricción de configuración y compartición mientras se valida el flujo.',
+          'Mapa, tabla y pipeline responden preguntas distintas desde un único conjunto de datos.',
+          'Importación, exportación, validación y CI hacen el prototipo portable y técnicamente responsable.',
+        ],
+      },
+      ctas: {
+        primary: {
+          label: 'Abrir prototipo',
+          href: 'https://territoryops-spain.vercel.app',
+          external: true,
+        },
+        secondary: {
+          label: 'Leer caso de estudio',
+          href: '/case-studies/territoryops-spain',
+        },
+        caseStudy: {
+          label: 'Leer caso de estudio',
+          href: '/case-studies/territoryops-spain',
+        },
+      },
+    },
     {
       slug: 'overflow',
       name: 'Overflow',
