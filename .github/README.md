@@ -253,18 +253,17 @@ Deployment credentials are stored in GitHub Secrets and are not committed to the
 SFTP_HOST
 SFTP_USER
 SFTP_PASSWORD
-SFTP_REMOTE_PATH
 ```
 
 ### Optional GitHub Secrets
 
 ```txt
 SFTP_PORT
+SFTP_REMOTE_PATH
 ```
 
-`SFTP_PORT` defaults to `22`.
-
-`SFTP_REMOTE_PATH` must be the document root serving `www.raulmermans.com`; the workflow intentionally has no `/` fallback.
+`SFTP_PORT` defaults to `22`. `SFTP_REMOTE_PATH` defaults to `/` and can
+override the document root serving `www.raulmermans.com`.
 
 The SFTP action removes only files tracked by its remote hash manifest, so manually created remote files are left untouched.
 
