@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "verify:export": "bash scripts/verify-export.sh",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots",
     "analyze": "ANALYZE=true next build"

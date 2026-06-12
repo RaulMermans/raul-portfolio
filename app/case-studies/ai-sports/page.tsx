@@ -45,7 +45,7 @@ const commercialContent: CommercialCaseStudyContent = {
   clientRelevance:
     'A client-facing version could help marketing, ecommerce, brand, or creative teams explore campaign routes, product styling, casting, and variant generation while keeping visual coherence and human approval in the loop.',
   ctaCopy:
-    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+    "If your team has a creative process, internal tool, campaign workflow, or brand system worth extending with AI, send a short brief and I'll help define the clearest system logic.",
 }
 
 const commercialContentEs: CommercialCaseStudyContent = {
@@ -72,7 +72,7 @@ const commercialContentEs: CommercialCaseStudyContent = {
   clientRelevance:
     'Una versión para cliente podría ayudar a equipos de marketing, ecommerce, marca o creatividad a explorar rutas de campaña, estilismo de producto, casting y generación de variantes manteniendo coherencia visual y aprobación humana.',
   ctaCopy:
-    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+    'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
 
 export default function AISportsCampaignPage() {

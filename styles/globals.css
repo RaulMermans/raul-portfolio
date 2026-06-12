@@ -2435,7 +2435,7 @@ html.homepage .footer {
 
 .footer__nav {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .footer__column h2 {
@@ -2821,6 +2821,7 @@ html.homepage .footer {
 
   .footer__nav {
     grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     border-top: 1px solid rgba(245, 240, 235, 0.2);
   }
 

@@ -68,6 +68,17 @@ export default function Footer({ locale = 'en' }: FooterProps) {
                 ))}
               </ul>
             </div>
+
+            <div className="footer__column">
+              <h2>{copy.services}</h2>
+              <ul>
+                {copy.serviceLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link href={localizePath(item.href, locale)}>{item.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </nav>
         </div>
 

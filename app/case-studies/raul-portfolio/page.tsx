@@ -44,7 +44,7 @@ const commercialContent: CommercialCaseStudyContent = {
   clientRelevance:
     'A similar system could help founders, brands, agencies, or internal teams turn scattered capabilities, prototypes, and strategic work into a coherent digital surface that supports evaluation and next-step decisions.',
   ctaCopy:
-    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+    "If your team has a creative process, internal tool, campaign workflow, or brand system worth extending with AI, send a short brief and I'll help define the clearest system logic.",
 }
 
 const commercialContentEs: CommercialCaseStudyContent = {
@@ -75,7 +75,7 @@ const commercialContentEs: CommercialCaseStudyContent = {
   clientRelevance:
     'Un sistema similar podría ayudar a founders, marcas, agencias o equipos internos a convertir capacidades dispersas, prototipos y trabajo estratégico en una superficie digital coherente que facilite evaluación y siguientes pasos.',
   ctaCopy:
-    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+    'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
 
 const content = {

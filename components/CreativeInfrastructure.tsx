@@ -1,0 +1,43 @@
+import { getSiteCopy } from '@/data/site-copy'
+import type { Locale } from '@/lib/i18n'
+import styles from './CreativeInfrastructure.module.css'
+
+type CreativeInfrastructureProps = {
+  locale?: Locale
+}
+
+export default function CreativeInfrastructure({
+  locale = 'en',
+}: CreativeInfrastructureProps) {
+  const copy = getSiteCopy(locale).home.positioning
+
+  return (
+    <section
+      className={styles.section}
+      data-home-section="positioning"
+      aria-labelledby="creative-infrastructure-title"
+    >
+      <div className={styles.inner}>
+        <div>
+          <p className={styles.eyebrow}>{copy.eyebrow}</p>
+          <h2 id="creative-infrastructure-title" className={styles.title}>
+            {copy.title}
+          </h2>
+        </div>
+        <div>
+          <p className={styles.body}>{copy.body}</p>
+          <div className={styles.points}>
+            {copy.points.map((point, index) => (
+              <div key={point} className={styles.point}>
+                <span className={styles.pointIndex}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <p className={styles.pointText}>{point}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

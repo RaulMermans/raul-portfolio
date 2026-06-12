@@ -45,7 +45,7 @@ const commercialContent: CommercialCaseStudyContent = {
   clientRelevance:
     'A client-facing version could help brand, ecommerce, marketing, or strategy teams compare markets, structure competitor research, monitor positioning signals, and produce clearer executive readouts without rebuilding the analysis from scratch.',
   ctaCopy:
-    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+    "If your team has a creative process, internal tool, campaign workflow, or brand system worth extending with AI, send a short brief and I'll help define the clearest system logic.",
 }
 
 const commercialContentEs: CommercialCaseStudyContent = {
@@ -76,7 +76,7 @@ const commercialContentEs: CommercialCaseStudyContent = {
   clientRelevance:
     'Una versión para cliente podría ayudar a equipos de marca, ecommerce, marketing o estrategia a comparar mercados, estructurar investigación competitiva, monitorizar señales de posicionamiento y producir lecturas ejecutivas más claras sin rehacer el análisis desde cero.',
   ctaCopy:
-    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+    'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
 
 const tags = ['React/Vite', 'Benchmark engine', 'Adapters', 'View models', 'Synthetic data']

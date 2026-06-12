@@ -35,10 +35,10 @@ export const siteCopy = {
         { label: 'Visuals', href: '/visuals' },
       ],
       serviceLinks: [
-        { label: 'AI Systems', href: '/#services' },
-        { label: 'Automation', href: '/#services' },
-        { label: 'Prototypes', href: '/#services' },
-        { label: 'Brand Systems', href: '/#services' },
+        { label: 'AI Integrations', href: '/services/ai-integrations' },
+        { label: 'Creative Automation', href: '/services/creative-automation' },
+        { label: 'Brand Systems', href: '/services/brand-systems' },
+        { label: 'Product Prototypes', href: '/services/product-prototypes' },
       ],
       resourceLinks: [
         { label: 'About', href: '/about' },
@@ -65,12 +65,23 @@ export const siteCopy = {
         ariaLabel: 'Raúl Mermans — AI Integrations · Brand Workflows · Creative Systems',
         services: ['AI Integrations', 'Brand Workflows', 'Creative Systems'],
         summary:
-          'I design applied AI systems, automation layers, and internal tools that help creative teams work faster without losing taste, control, or brand coherence. The work sits between strategy, system design, and implementation: mapping the creative process, defining the logic, building prototypes, and creating the guardrails that make AI useful inside real brand, content, and visual workflows.',
+          'I design AI integrations that help creative teams move faster without losing taste, control, or brand coherence.',
         primaryCta: 'Discuss an AI Integration',
         secondaryCta: 'View Case Studies',
         tertiaryCta: 'View GitHub',
         scrollAria: 'Scroll to explore',
         scrollLabel: 'Explore',
+      },
+      positioning: {
+        eyebrow: 'System Logic',
+        title: 'Creative infrastructure for AI-assisted execution.',
+        body:
+          'The work sits between strategy, system design, and implementation: mapping the creative process, defining the logic, building prototypes, and creating the guardrails that make AI useful inside real brand, content, and visual workflows.',
+        points: [
+          'Creative process mapped before automation',
+          'Human review built into the system',
+          'Brand coherence preserved across outputs',
+        ],
       },
       selectedAiSystems: {
         eyebrow: 'Selected AI Systems',
@@ -150,33 +161,41 @@ export const siteCopy = {
             number: '00-1',
             title: 'AI Systems',
             titleShort: 'AI Systems',
-            items: ['Creative AI workflows', 'Internal tools for research and content', 'Human review and reliability controls', 'Systems beyond isolated prompts'],
+            items: ['Creative AI workflows', 'Prompt and input systems', 'Human review controls', 'Brand-aware guardrails'],
             description:
-              'Design and prototype AI-assisted creative systems, internal tools, and agentic workflows for teams that need structured execution, reviewable outputs, and brand-aware reliability.',
+              'Structured AI workflows and internal tools for repeatable creative execution with visible human review.',
+            cta: 'Explore AI Integrations',
+            ctaHref: '/services/ai-integrations',
           },
           {
             number: '00-2',
             title: 'Automation / Internal Tools',
             titleShort: 'Automation',
-            items: ['Reduce repetitive creative-production tasks', 'Connect tools with fewer manual handoffs', 'Structure content, research, and asset workflows', 'Create cleaner flows between people, tools, and creative output'],
+            items: ['Reduce repetitive production', 'Connect tools and handoffs', 'Structure content and assets', 'Keep review visible'],
             description:
-              'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination — built to support judgment, not replace it.',
+              'Automation layers for content, research, assets, and coordination that support judgment instead of replacing it.',
+            cta: 'Explore Creative Automation',
+            ctaHref: '/services/creative-automation',
           },
           {
             number: '00-3',
             title: 'Web / Product Prototypes',
             titleShort: 'Product Web',
-            items: ['Validate internal tool ideas quickly', 'Build dashboards and workflow prototypes', 'Test product logic before full development', 'Create stakeholder-ready demos'],
+            items: ['Validate tool ideas', 'Build workflow dashboards', 'Test product logic', 'Create usable demos'],
             description:
-              'Focused product surfaces, dashboards, and workflow prototypes for testing AI-powered creative tools, internal systems, and stakeholder-ready demos before full-scale development.',
+              'Focused interfaces and prototypes that make AI workflow logic usable before full-scale development.',
+            cta: 'Explore Prototypes',
+            ctaHref: '/services/product-prototypes',
           },
           {
             number: '00-4',
             title: 'Brand Systems / Creative Direction',
             titleShort: 'Brand Systems',
-            items: ['Keep AI content aligned with brand voice', 'Create reusable tone and review rules', 'Translate strategy into creative guidelines', 'Improve consistency across campaigns and content'],
+            items: ['Operationalize brand voice', 'Create tone and review rules', 'Structure prompts and criteria', 'Protect campaign consistency'],
             description:
-              'Translate brand strategy into reusable rules, prompts, and review criteria so AI-assisted outputs stay coherent across content, campaigns, visual systems, and creative work.',
+              'Brand logic, prompt structures, and review criteria for coherent AI-assisted content and campaigns.',
+            cta: 'Explore Brand Systems',
+            ctaHref: '/services/brand-systems',
           },
           {
             number: '00-5',
@@ -333,10 +352,10 @@ export const siteCopy = {
         { label: 'Visuales', href: '/visuals' },
       ],
       serviceLinks: [
-        { label: 'Sistemas de IA', href: '/#services' },
-        { label: 'Automatización', href: '/#services' },
-        { label: 'Prototipos', href: '/#services' },
-        { label: 'Sistemas de marca', href: '/#services' },
+        { label: 'Integraciones IA', href: '/services/integraciones-ia' },
+        { label: 'Automatización creativa', href: '/services/automatizacion-creativa' },
+        { label: 'Sistemas de marca', href: '/services/sistemas-de-marca' },
+        { label: 'Prototipos de producto', href: '/services/prototipos-producto-ia' },
       ],
       resourceLinks: [
         { label: 'Sobre mí', href: '/about' },
@@ -363,12 +382,23 @@ export const siteCopy = {
         ariaLabel: 'Raúl Mermans — Integraciones IA · Flujos de Marca · Sistemas Creativos',
         services: ['Integraciones IA', 'Flujos de Marca', 'Sistemas Creativos'],
         summary:
-          'Diseño sistemas de IA aplicada, capas de automatización y herramientas internas que ayudan a equipos creativos a trabajar más rápido sin perder criterio, control ni coherencia de marca. El trabajo conecta estrategia, diseño de sistema e implementación: mapear el proceso creativo, definir la lógica, construir prototipos y crear los límites que hacen útil la IA dentro de flujos reales de marca, contenido e imagen.',
+          'Diseño integraciones de IA que ayudan a equipos creativos a trabajar más rápido sin perder criterio, control ni coherencia de marca.',
         primaryCta: 'Hablar de una integración IA',
         secondaryCta: 'Ver casos de estudio',
         tertiaryCta: 'Ver GitHub',
         scrollAria: 'Desplazar para explorar',
         scrollLabel: 'Explorar',
+      },
+      positioning: {
+        eyebrow: 'Lógica de Sistema',
+        title: 'Infraestructura creativa para ejecución asistida por IA.',
+        body:
+          'El trabajo conecta estrategia, diseño de sistema e implementación: mapear el proceso creativo, definir la lógica, construir prototipos y crear los límites que hacen útil la IA dentro de flujos reales de marca, contenido e imagen.',
+        points: [
+          'Proceso creativo mapeado antes de automatizar',
+          'Revisión humana integrada en el sistema',
+          'Coherencia de marca preservada en cada salida',
+        ],
       },
       selectedAiSystems: {
         eyebrow: 'Sistemas de IA seleccionados',
@@ -448,33 +478,41 @@ export const siteCopy = {
             number: '00-1',
             title: 'Sistemas de IA',
             titleShort: 'Sist. IA',
-            items: ['Flujos creativos con IA', 'Herramientas internas para investigación y contenido', 'Revisión humana y controles de fiabilidad', 'Sistemas más allá del prompt aislado'],
+            items: ['Flujos creativos con IA', 'Sistemas de prompts e inputs', 'Controles de revisión humana', 'Límites de marca'],
             description:
-              'Diseño y prototipo sistemas creativos asistidos por IA, herramientas internas y flujos con agentes para equipos que necesitan ejecución estructurada, resultados revisables y fiabilidad alineada con la marca.',
+              'Flujos estructurados y herramientas internas para ejecución creativa repetible con revisión humana visible.',
+            cta: 'Explorar integraciones IA',
+            ctaHref: '/services/integraciones-ia',
           },
           {
             number: '00-2',
             title: 'Automatización / Herramientas internas',
             titleShort: 'Automatización',
-            items: ['Reducir tareas repetitivas de producción creativa', 'Conectar herramientas con menos traspasos manuales', 'Estructurar flujos de contenido, investigación y assets', 'Crear flujos más claros entre personas, herramientas y salida creativa'],
+            items: ['Reducir producción repetitiva', 'Conectar herramientas y traspasos', 'Estructurar contenido y assets', 'Mantener visible la revisión'],
             description:
-              'Capas de automatización y herramientas internas para flujos creativos, producción de contenido, investigación, gestión de assets y coordinación de equipos, construidas para apoyar el criterio, no sustituirlo.',
+              'Capas de automatización para contenido, investigación, assets y coordinación que apoyan el criterio.',
+            cta: 'Explorar automatización creativa',
+            ctaHref: '/services/automatizacion-creativa',
           },
           {
             number: '00-3',
             title: 'Web / Prototipos de producto',
             titleShort: 'Producto web',
-            items: ['Validar ideas de herramienta interna', 'Crear paneles y prototipos', 'Probar lógica de producto', 'Preparar demos para stakeholders'],
+            items: ['Validar ideas de herramienta', 'Crear paneles de flujo', 'Probar lógica de producto', 'Preparar demos utilizables'],
             description:
-              'Superficies de producto, paneles y prototipos de flujo enfocados en probar herramientas creativas con IA, sistemas internos y demos listas para stakeholders antes de desarrollar a escala.',
+              'Interfaces y prototipos enfocados que hacen utilizable la lógica de un flujo con IA antes de escalar.',
+            cta: 'Explorar prototipos',
+            ctaHref: '/services/prototipos-producto-ia',
           },
           {
             number: '00-4',
             title: 'Sistemas de marca / Dirección creativa',
             titleShort: 'Marca',
-            items: ['Alinear contenido con IA a la voz de marca', 'Crear reglas reutilizables de tono y revisión', 'Convertir estrategia en guías creativas', 'Mejorar consistencia en campañas y contenido'],
+            items: ['Operativizar la voz de marca', 'Crear reglas de tono y revisión', 'Estructurar prompts y criterios', 'Proteger la consistencia'],
             description:
-              'Traduzco estrategia de marca en reglas, prompts y criterios de revisión reutilizables para que los resultados asistidos por IA mantengan coherencia en contenido, campañas, sistemas visuales y trabajo creativo.',
+              'Lógica de marca, prompts y criterios de revisión para contenido y campañas asistidos por IA.',
+            cta: 'Explorar sistemas de marca',
+            ctaHref: '/services/sistemas-de-marca',
           },
           {
             number: '00-5',

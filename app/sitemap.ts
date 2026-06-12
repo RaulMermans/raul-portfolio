@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getApps } from '@/data/apps'
+import { serviceLandings } from '@/data/service-landings'
 import { locales, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl } from '@/lib/metadata'
 
@@ -42,5 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: app.slug === 'overflow' ? 0.82 : 0.72,
   }))
 
-  return [...staticRoutes, ...appRoutes]
+  const serviceRoutes: MetadataRoute.Sitemap = serviceLandings.map((service) => ({
+    url: absoluteRouteUrl(service.href),
+    lastModified,
+    changeFrequency: 'monthly',
+    priority: service.locale === 'es' ? 0.88 : 0.84,
+  }))
+
+  return [...staticRoutes, ...serviceRoutes, ...appRoutes]
 }

@@ -16,7 +16,7 @@ jobs:
       SFTP_USER: ${{ secrets.SFTP_USER || secrets.SFTP_USERNAME }}
       SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
       SFTP_PORT: ${{ secrets.SFTP_PORT || 22 }}
-      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH || '/' }}
+      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,22 +46,7 @@ jobs:
         run: npm run build
 
       - name: Verify export output
-        run: |
-          test -d out || { echo "Static export directory ./out/ was not generated."; exit 1; }
-          test -f out/index.html || { echo "Missing Spanish homepage export."; exit 1; }
-          test -f out/en/index.html || { echo "Missing English homepage export."; exit 1; }
-
-          grep -Fq "Discuss an AI Integration" out/en/index.html
-          grep -Fq "AI Integrations" out/en/index.html
-          grep -Fq "Start with the creative system" out/en/index.html
-          ! grep -Fq "Request an AI Workflow Audit" out/en/index.html
-          ! grep -Fq "Marketing + CRM" out/en/index.html
-
-          grep -Fq "Integraciones IA" out/index.html
-          grep -Fq "Hablar de una integración IA" out/index.html
-          grep -Fq "Empieza por el sistema creativo" out/index.html
-          ! grep -Fq "Sistemas de IA · Agentes · Automatización" out/index.html
-          ! grep -Fq "Automatización CRM" out/index.html
+        run: npm run verify:export
 
       - name: Deploy to IONOS via SFTP
         uses: wangyucode/sftp-upload-action@v3.0.0
@@ -74,6 +59,7 @@ jobs:
           remoteDir: ${{ env.SFTP_REMOTE_PATH }}
           forceUpload: true
           removeExtraFilesOnServer: true
+          concurrency: 8
 
       - name: Verify production deployment
         env:
@@ -82,7 +68,7 @@ jobs:
           verify_copy() {
             url="$1"
             output="$2"
-            shift 2
+            expected="$3"
 
             for attempt in 1 2 3 4 5 6; do
               curl --fail --silent --show-error \
@@ -90,7 +76,7 @@ jobs:
                 "${url}?v=${DEPLOY_VERSION}-${attempt}" \
                 --output "$output"
 
-              if "$@" "$output"; then
+              if grep -Fq "$expected" "$output"; then
                 return 0
               fi
 
@@ -100,21 +86,24 @@ jobs:
             return 1
           }
 
-          verify_english() {
-            grep -Fq "Discuss an AI Integration" "$1" &&
-              grep -Fq "AI Integrations" "$1" &&
-              grep -Fq "Start with the creative system" "$1" &&
-              ! grep -Fq "Request an AI Workflow Audit" "$1" &&
-              ! grep -Fq "Marketing + CRM" "$1"
-          }
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Creative infrastructure for AI-assisted execution"
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Infraestructura creativa para ejecución asistida por IA"
+          verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "AI campaign workflow for controlled visual iteration and campaign consistency"
+          verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Flujo de campaña con IA para iteración visual controlada"
 
-          verify_spanish() {
-            grep -Fq "Integraciones IA" "$1" &&
-              grep -Fq "Hablar de una integración IA" "$1" &&
-              grep -Fq "Empieza por el sistema creativo" "$1" &&
-              ! grep -Fq "Sistemas de IA · Agentes · Automatización" "$1" &&
-              ! grep -Fq "Automatización CRM" "$1"
-          }
+          verify_copy "https://www.raulmermans.com/en/services/ai-integrations/" /tmp/service-ai-en.html "AI Integrations for Creative Systems"
+          verify_copy "https://www.raulmermans.com/en/services/creative-automation/" /tmp/service-automation-en.html "Creative Automation"
+          verify_copy "https://www.raulmermans.com/en/services/brand-systems/" /tmp/service-brand-en.html "Brand Intelligence Systems"
+          verify_copy "https://www.raulmermans.com/en/services/product-prototypes/" /tmp/service-prototype-en.html "AI Product Prototypes"
 
-          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html verify_english
-          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html verify_spanish
+          verify_copy "https://www.raulmermans.com/services/integraciones-ia/" /tmp/service-ai-es.html "Integraciones IA para Sistemas Creativos"
+          verify_copy "https://www.raulmermans.com/services/automatizacion-creativa/" /tmp/service-automation-es.html "Automatización Creativa"
+          verify_copy "https://www.raulmermans.com/services/sistemas-de-marca/" /tmp/service-brand-es.html "Sistemas de Inteligencia de Marca"
+          verify_copy "https://www.raulmermans.com/services/prototipos-producto-ia/" /tmp/service-prototype-es.html "Prototipos de Producto IA"
+
+          ! grep -Fq "Request an AI Workflow Audit" /tmp/raul-en.html
+          ! grep -Fq "Marketing + CRM" /tmp/raul-en.html
+          ! grep -Fq "Sistemas de IA · Agentes · Automatización" /tmp/raul-es.html
+          ! grep -Fq "Automatización CRM" /tmp/raul-es.html
+          ! grep -Fq "Digital identity system that structures AI/product work" /tmp/cases-en.html
+          ! grep -Fq "For faster UX, SEO, and conversion diagnostics" /tmp/cases-en.html

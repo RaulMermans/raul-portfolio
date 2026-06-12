@@ -1,0 +1,87 @@
+.section {
+  padding: clamp(4rem, 8vw, 7rem) var(--section-padding);
+  border-top: 1px solid rgba(26, 23, 20, 0.12);
+  border-bottom: 1px solid rgba(26, 23, 20, 0.12);
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.inner {
+  display: grid;
+  width: min(100%, 112rem);
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.1fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: start;
+}
+
+.eyebrow,
+.pointIndex {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+}
+
+.title {
+  max-width: 10ch;
+  margin: 0;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(3.8rem, 7vw, 7.6rem);
+  line-height: 0.88;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.body {
+  max-width: 42rem;
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  font-family: var(--font-reading), "Source Serif 4", serif;
+  font-size: clamp(1.35rem, 2.2vw, 2.1rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.points {
+  display: grid;
+  border-top: 1px solid rgba(26, 23, 20, 0.18);
+}
+
+.point {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  min-height: 5.5rem;
+  border-bottom: 1px solid rgba(26, 23, 20, 0.18);
+}
+
+.pointIndex {
+  color: rgba(26, 23, 20, 0.38);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+}
+
+.pointText {
+  margin: 0;
+  color: rgba(26, 23, 20, 0.78);
+  font-size: clamp(0.98rem, 1.25vw, 1.1rem);
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .section {
+    padding-inline: var(--section-padding-mobile);
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

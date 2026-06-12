@@ -6,6 +6,24 @@ export const defaultLocale: Locale = 'es'
 
 const EXTERNAL_PROTOCOL_PATTERN = /^(?:[a-z]+:)?\/\//i
 const SPECIAL_LINK_PATTERN = /^(mailto:|tel:|sms:|data:|blob:)/i
+const localizedRoutePairs = [
+  {
+    en: '/en/services/ai-integrations',
+    es: '/services/integraciones-ia',
+  },
+  {
+    en: '/en/services/creative-automation',
+    es: '/services/automatizacion-creativa',
+  },
+  {
+    en: '/en/services/brand-systems',
+    es: '/services/sistemas-de-marca',
+  },
+  {
+    en: '/en/services/product-prototypes',
+    es: '/services/prototipos-producto-ia',
+  },
+] as const
 
 export function getLocalePrefix(locale: Locale) {
   return locale === defaultLocale ? '' : `/${locale}`
@@ -86,5 +104,14 @@ export function localizePath(href: string, locale: Locale) {
 }
 
 export function switchLocalePath(pathname: string, locale: Locale) {
+  const normalized = normalizePathname(pathname)
+  const localizedPair = localizedRoutePairs.find(
+    (pair) => normalizePathname(pair.en) === normalized || normalizePathname(pair.es) === normalized,
+  )
+
+  if (localizedPair) {
+    return localizedPair[locale]
+  }
+
   return localizePath(pathname, locale)
 }

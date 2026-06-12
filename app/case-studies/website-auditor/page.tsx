@@ -38,9 +38,9 @@ const commercialContent: CommercialCaseStudyContent = {
   whyItMatters:
     'AI audits become risky when they collapse evidence and interpretation into one model response. This system defines clear inputs, accepted evidence, deterministic scoring, and reviewable AI synthesis, which makes the recommendations more useful for teams that need repeatable diagnostics.',
   clientRelevance:
-    'A client-facing version could help marketing, ecommerce, CRM, or growth teams standardize site audits, speed up UX/SEO/conversion diagnostics, and turn messy website observations into clearer decision support.',
+    'A client-facing version could help brand, content, product, or digital teams standardize site audits, speed up UX/SEO/conversion diagnostics, and turn messy website observations into clearer decision support.',
   ctaCopy:
-    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+    "If your team has a creative process, internal tool, campaign workflow, or brand system worth extending with AI, send a short brief and I'll help define the clearest system logic.",
 }
 
 const commercialContentEs: CommercialCaseStudyContent = {
@@ -66,9 +66,9 @@ const commercialContentEs: CommercialCaseStudyContent = {
   whyItMatters:
     'Las auditorías con IA se vuelven arriesgadas cuando mezclan evidencia e interpretación en una única respuesta del modelo. Este sistema define entradas claras, evidencia aceptada, puntuación determinista y síntesis revisable, lo que hace las recomendaciones más útiles para equipos que necesitan diagnósticos repetibles.',
   clientRelevance:
-    'Una versión para cliente podría ayudar a equipos de marketing, ecommerce, CRM o growth a estandarizar auditorías web, acelerar diagnósticos de UX/SEO/conversión y convertir observaciones desordenadas en apoyo claro para decidir.',
+    'Una versión para cliente podría ayudar a equipos de marca, contenido, producto o digital a estandarizar auditorías web, acelerar diagnósticos de UX/SEO/conversión y convertir observaciones desordenadas en apoyo claro para decidir.',
   ctaCopy:
-    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+    'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
 
 const content = {

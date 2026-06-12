@@ -45,9 +45,9 @@ const commercialContent: CommercialCaseStudyContent = {
   whyItMatters:
     'Brand systems matter when creative output needs to scale without becoming generic. This case translates strategy into reusable rules, which is especially relevant when AI-assisted content or campaign production needs strong human judgment and brand coherence.',
   clientRelevance:
-    'A similar system could help brand, creative, ecommerce, or CRM teams define tone, messaging, visual criteria, and review rules that keep campaigns and AI-assisted outputs aligned with the brand.',
+    'A similar system could help brand, creative, content, or ecommerce teams define tone, messaging, visual criteria, and review rules that keep campaigns and AI-assisted outputs aligned with the brand.',
   ctaCopy:
-    "If your team has a workflow, reporting process, or creative operation that could benefit from structured AI support, send a short brief and I'll help map the system logic.",
+    "If your team has a creative process, internal tool, campaign workflow, or brand system worth extending with AI, send a short brief and I'll help define the clearest system logic.",
 }
 
 const commercialContentEs: CommercialCaseStudyContent = {
@@ -72,9 +72,9 @@ const commercialContentEs: CommercialCaseStudyContent = {
   whyItMatters:
     'Un sistema de marca importa cuando la producción creativa necesita escalar sin volverse genérica. Este caso convierte estrategia en reglas reutilizables, algo especialmente útil cuando el contenido asistido por IA o la producción de campañas necesitan criterio humano y coherencia de marca.',
   clientRelevance:
-    'Un sistema similar podría ayudar a equipos de marca, creatividad, ecommerce o CRM a definir tono, mensajes, criterios visuales y reglas de revisión para mantener campañas y resultados asistidos por IA alineados con la marca.',
+    'Un sistema similar podría ayudar a equipos de marca, creatividad, contenido o ecommerce a definir tono, mensajes, criterios visuales y reglas de revisión para mantener campañas y resultados asistidos por IA alineados con la marca.',
   ctaCopy:
-    'Si tu equipo tiene un flujo, proceso de reporting u operación creativa que podría beneficiarse de una capa de IA más estructurada, envía un brief breve y te ayudo a mapear la lógica del sistema.',
+    'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
 
 export default function RemoriaPage() {
