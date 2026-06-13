@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify Rendered UI"
+  short_description: "Measure rendered layouts before completion"
+  default_prompt: "Use $verify-rendered-ui to validate this frontend change in the rendered page across representative routes and breakpoints."

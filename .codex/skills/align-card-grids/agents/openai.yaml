@@ -1,0 +1,4 @@
+interface:
+  display_name: "Align Card Grids"
+  short_description: "Align card titles and copy across grids"
+  default_prompt: "Use $align-card-grids to implement or audit this card grid so titles and body copy align across content lengths."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Author Section Headings"
+  short_description: "Control heading lines and centered geometry"
+  default_prompt: "Use $author-section-headings to create section titles with deliberate line breaks, alignment, localization, and responsive behavior."

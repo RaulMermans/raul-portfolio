@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mobile-First UI"
+  short_description: "Design and verify UI from the mobile experience first."
+  default_prompt: "Use $mobile-first-ui to design or review this interface from the mobile experience first, then scale up to larger breakpoints."

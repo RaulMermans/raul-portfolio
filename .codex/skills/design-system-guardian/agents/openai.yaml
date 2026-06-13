@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design System Guardian"
+  short_description: "Keep UI changes visually consistent"
+  default_prompt: "Use $design-system-guardian to review and implement this UI change consistently with the existing design system."
