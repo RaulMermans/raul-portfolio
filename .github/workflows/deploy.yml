@@ -16,7 +16,7 @@ jobs:
       SFTP_USER: ${{ secrets.SFTP_USER || secrets.SFTP_USERNAME }}
       SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
       SFTP_PORT: ${{ secrets.SFTP_PORT || 22 }}
-      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH || '/' }}
+      SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -34,6 +34,7 @@ jobs:
           test -n "$SFTP_HOST" || { echo "Missing SFTP_HOST secret."; exit 1; }
           test -n "$SFTP_USER" || { echo "Missing SFTP_USER secret."; exit 1; }
           test -n "$SFTP_PASSWORD" || { echo "Missing SFTP_PASSWORD secret."; exit 1; }
+          test -n "$SFTP_REMOTE_PATH" || { echo "Missing SFTP_REMOTE_PATH secret."; exit 1; }
 
       - name: Type-check
         run: npm run type-check
@@ -46,6 +47,16 @@ jobs:
 
       - name: Verify export output
         run: npm run verify:export
+
+      - name: Write deployment fingerprint
+        run: |
+          {
+            echo "sha=${GITHUB_SHA}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "run_attempt=${GITHUB_RUN_ATTEMPT}"
+            echo "deployed_at=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          } > out/deploy-version.txt
+          cat out/deploy-version.txt
 
       - name: Deploy to IONOS via SFTP
         uses: wangyucode/sftp-upload-action@v3.0.0
@@ -64,6 +75,14 @@ jobs:
         env:
           DEPLOY_VERSION: ${{ github.sha }}
         run: |
+          curl --fail --silent --show-error \
+            -H "Cache-Control: no-cache" \
+            "https://www.raulmermans.com/deploy-version.txt?v=${DEPLOY_VERSION}" \
+            --output /tmp/deploy-version.txt
+
+          cat /tmp/deploy-version.txt
+          grep -Fq "sha=${DEPLOY_VERSION}" /tmp/deploy-version.txt
+
           verify_copy() {
             url="$1"
             output="$2"
