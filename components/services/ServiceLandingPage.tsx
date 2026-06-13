@@ -14,25 +14,27 @@ type ServiceLandingPageProps = {
   service: ServiceLanding
 }
 
+const titleLines = (first: string, second: string) => [first, second] as const
+
 function getLabels(locale: ServiceLanding['locale']) {
   if (locale === 'es') {
     return {
       home: 'Inicio',
       services: 'Servicios',
       answerLabel: 'Respuesta directa',
-      answerTitle: '¿Qué es este servicio?',
+      answerTitle: titleLines('¿Qué es este', 'servicio?'),
       problemsLabel: 'Contexto',
-      problemsTitle: 'Dónde suele romperse el sistema',
+      problemsTitle: titleLines('Dónde suele romperse', 'el sistema'),
       deliverablesLabel: 'Entregables',
-      deliverablesTitle: 'Qué construyo',
+      deliverablesTitle: titleLines('Qué', 'construyo'),
       useCasesLabel: 'Aplicaciones',
-      useCasesTitle: 'Casos de uso',
+      useCasesTitle: titleLines('Casos', 'de uso'),
       processLabel: 'Proceso',
-      processTitle: 'Del proceso al sistema',
+      processTitle: titleLines('Del proceso', 'al sistema'),
       proofLabel: 'Prueba relacionada',
-      proofTitle: 'Sistemas en contexto',
+      proofTitle: titleLines('Sistemas', 'en contexto'),
       faqLabel: 'Preguntas frecuentes',
-      faqTitle: 'Antes de empezar',
+      faqTitle: titleLines('Antes', 'de empezar'),
       relatedCaseStudies: 'Ver casos relacionados',
       caseStudy: 'Caso de estudio',
     }
@@ -42,22 +44,43 @@ function getLabels(locale: ServiceLanding['locale']) {
     home: 'Home',
     services: 'Services',
     answerLabel: 'Direct answer',
-    answerTitle: 'What is this service?',
+    answerTitle: titleLines('What is this', 'service?'),
     problemsLabel: 'Context',
-    problemsTitle: 'Where the system usually breaks',
+    problemsTitle: titleLines('Where the system', 'usually breaks'),
     deliverablesLabel: 'Deliverables',
-    deliverablesTitle: 'What I build',
+    deliverablesTitle: titleLines('What I', 'build'),
     useCasesLabel: 'Applications',
-    useCasesTitle: 'Use cases',
+    useCasesTitle: titleLines('Use', 'cases'),
     processLabel: 'Process',
-    processTitle: 'From process to system',
+    processTitle: titleLines('From process', 'to system'),
     proofLabel: 'Related proof',
-    proofTitle: 'Systems in context',
+    proofTitle: titleLines('Systems', 'in context'),
     faqLabel: 'Frequently asked questions',
-    faqTitle: 'Before we start',
+    faqTitle: titleLines('Before we', 'start'),
     relatedCaseStudies: 'View Related Case Studies',
     caseStudy: 'Case Study',
   }
+}
+
+function ServiceSectionHeading({
+  id,
+  label,
+  title,
+}: {
+  id: string
+  label: string
+  title: readonly [string, string]
+}) {
+  return (
+    <div className={styles.sectionHeader}>
+      <p className={styles.sectionLabel}>{label}</p>
+      <h2 id={id} className={styles.sectionTitle} aria-label={title.join(' ')}>
+        {title.map((line) => (
+          <span key={line} aria-hidden="true">{line}</span>
+        ))}
+      </h2>
+    </div>
+  )
 }
 
 function getServiceSchema(service: ServiceLanding) {
@@ -221,25 +244,23 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
         </section>
 
         <section className={styles.section} aria-labelledby="service-answer-title">
-          <div className={`${styles.sectionInner} ${styles.answer}`}>
-            <div>
-              <p className={styles.sectionLabel}>{labels.answerLabel}</p>
-              <h2 id="service-answer-title" className={styles.sectionTitle}>
-                {labels.answerTitle}
-              </h2>
-            </div>
+          <div className={styles.sectionInner}>
+            <ServiceSectionHeading
+              id="service-answer-title"
+              label={labels.answerLabel}
+              title={labels.answerTitle}
+            />
             <p className={styles.answerText}>{service.answer}</p>
           </div>
         </section>
 
         <section className={styles.section} aria-labelledby="service-problems-title">
           <div className={styles.sectionInner}>
-            <div className={styles.sectionHeader}>
-              <p className={styles.sectionLabel}>{labels.problemsLabel}</p>
-              <h2 id="service-problems-title" className={styles.sectionTitle}>
-                {labels.problemsTitle}
-              </h2>
-            </div>
+            <ServiceSectionHeading
+              id="service-problems-title"
+              label={labels.problemsLabel}
+              title={labels.problemsTitle}
+            />
             <div className={styles.cardGrid}>
               {service.problems.map((problem) => (
                 <article key={problem.title} className={styles.card}>
@@ -253,12 +274,11 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
 
         <section className={styles.section} aria-labelledby="service-deliverables-title">
           <div className={styles.sectionInner}>
-            <div className={styles.sectionHeader}>
-              <p className={styles.sectionLabel}>{labels.deliverablesLabel}</p>
-              <h2 id="service-deliverables-title" className={styles.sectionTitle}>
-                {labels.deliverablesTitle}
-              </h2>
-            </div>
+            <ServiceSectionHeading
+              id="service-deliverables-title"
+              label={labels.deliverablesLabel}
+              title={labels.deliverablesTitle}
+            />
             <div className={styles.cardGrid}>
               {service.deliverables.map((deliverable) => (
                 <article key={deliverable.title} className={styles.card}>
@@ -272,12 +292,11 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
 
         <section className={styles.section} aria-labelledby="service-use-cases-title">
           <div className={styles.sectionInner}>
-            <div className={styles.sectionHeader}>
-              <p className={styles.sectionLabel}>{labels.useCasesLabel}</p>
-              <h2 id="service-use-cases-title" className={styles.sectionTitle}>
-                {labels.useCasesTitle}
-              </h2>
-            </div>
+            <ServiceSectionHeading
+              id="service-use-cases-title"
+              label={labels.useCasesLabel}
+              title={labels.useCasesTitle}
+            />
             <div className={styles.useCaseGrid}>
               {service.useCases.map((useCase) => (
                 <div key={useCase} className={styles.useCase}>
@@ -290,12 +309,11 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
 
         <section className={styles.section} aria-labelledby="service-process-title">
           <div className={styles.sectionInner}>
-            <div className={styles.sectionHeader}>
-              <p className={styles.sectionLabel}>{labels.processLabel}</p>
-              <h2 id="service-process-title" className={styles.sectionTitle}>
-                {labels.processTitle}
-              </h2>
-            </div>
+            <ServiceSectionHeading
+              id="service-process-title"
+              label={labels.processLabel}
+              title={labels.processTitle}
+            />
             <div className={styles.processGrid}>
               {service.process.map((item) => (
                 <article key={item.step} className={styles.processCard}>
@@ -314,12 +332,11 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
           aria-labelledby="service-proof-title"
         >
           <div className={styles.sectionInner}>
-            <div className={styles.sectionHeader}>
-              <p className={styles.sectionLabel}>{labels.proofLabel}</p>
-              <h2 id="service-proof-title" className={styles.sectionTitle}>
-                {labels.proofTitle}
-              </h2>
-            </div>
+            <ServiceSectionHeading
+              id="service-proof-title"
+              label={labels.proofLabel}
+              title={labels.proofTitle}
+            />
             <div className={styles.proofGrid}>
               {relatedStudies.map((study) => (
                 <Link key={study.slug} href={study.href} className={styles.proofCard}>
@@ -338,12 +355,11 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
 
         <section className={styles.section} aria-labelledby="service-faq-title">
           <div className={styles.sectionInner}>
-            <div className={styles.sectionHeader}>
-              <p className={styles.sectionLabel}>{labels.faqLabel}</p>
-              <h2 id="service-faq-title" className={styles.sectionTitle}>
-                {labels.faqTitle}
-              </h2>
-            </div>
+            <ServiceSectionHeading
+              id="service-faq-title"
+              label={labels.faqLabel}
+              title={labels.faqTitle}
+            />
             <div className={styles.faqList}>
               {service.faqs.map((faq) => (
                 <article key={faq.question} className={styles.faqItem}>

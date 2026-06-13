@@ -129,7 +129,7 @@ function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
       {/* Text */}
       <div className="relative z-10 w-full">
         <h3
-          className="text-3xl uppercase leading-[0.95] sm:text-4xl"
+          className="min-h-[2lh] text-3xl uppercase leading-[0.95] sm:text-4xl"
           style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif', color: 'var(--cream)' }}
         >
           {app.name}

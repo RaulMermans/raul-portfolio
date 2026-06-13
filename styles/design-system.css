@@ -63,6 +63,7 @@
   --section-copy-max: 58rem;
   --section-heading-gap: clamp(1rem, 2vw, 1.5rem);
   --section-content-gap: clamp(2.5rem, 5vw, 4rem);
+  --card-heading-block: 2lh;
   --touch-min: 44px;
   --radius-xs: 2px;
   --radius-sm: 4px;

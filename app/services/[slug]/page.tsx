@@ -10,8 +10,6 @@ type ServicePageProps = {
   }
 }
 
-export const dynamicParams = false
-
 export function generateStaticParams() {
   return getServiceLandings('es').map((service) => ({
     slug: service.slug,

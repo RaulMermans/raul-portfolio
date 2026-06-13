@@ -2534,6 +2534,12 @@ main.case-study-page-new {
   max-width: min(100%, 72rem);
 }
 
+.data-brief-refresh-heading:not(.ui-section-heading) > h2 + p,
+.benchmark-section-heading > h2 + p,
+.portfolio-section-heading > h2 + p {
+  margin-top: var(--section-heading-gap);
+}
+
 .data-brief-section--overview .data-brief-refresh-heading {
   margin-bottom: clamp(2.75rem, 5vw, 4.25rem);
 }
@@ -4977,30 +4983,23 @@ main.case-study-page-new {
   z-index: 2;
   width: 0.8rem;
   height: 0.8rem;
+  margin: -0.4rem 0 0 -0.4rem;
   border: 2px solid var(--cream);
   border-radius: 50%;
   background: var(--territoryops-accent);
   box-shadow: 0 0 0 0.45rem rgba(176, 138, 90, 0.16);
+  cursor: pointer;
+  transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
-.territoryops-atlas__marker--one {
-  top: 26%;
-  left: 41%;
-}
-
-.territoryops-atlas__marker--two {
-  top: 44%;
-  left: 60%;
-}
-
-.territoryops-atlas__marker--three {
-  top: 57%;
-  left: 36%;
-}
-
-.territoryops-atlas__marker--four {
-  top: 69%;
-  left: 54%;
+.territoryops-atlas__marker:hover,
+.territoryops-atlas__marker:focus-visible,
+.territoryops-atlas__marker.is-active {
+  outline: none;
+  box-shadow:
+    0 0 0 0.45rem rgba(176, 138, 90, 0.26),
+    0 0 2.5rem rgba(176, 138, 90, 0.45);
+  transform: scale(1.28);
 }
 
 .territoryops-atlas__panel {
@@ -5044,8 +5043,7 @@ main.case-study-page-new {
 
 .territoryops-decision-grid,
 .territoryops-feature-grid,
-.territoryops-build-grid,
-.territoryops-screen-grid {
+.territoryops-build-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 1px;
@@ -5055,7 +5053,7 @@ main.case-study-page-new {
 
 .territoryops-decision-card {
   min-height: 15rem;
-  align-content: end;
+  align-content: start;
   border: 0;
   border-radius: 0;
   padding: clamp(1.25rem, 3vw, 2rem);
@@ -5069,7 +5067,7 @@ main.case-study-page-new {
   display: grid;
   gap: 0.8rem;
   min-height: 11rem;
-  align-content: end;
+  align-content: start;
   padding: clamp(1.25rem, 3vw, 1.8rem);
   background: var(--cream-light);
 }
@@ -5149,54 +5147,519 @@ main.case-study-page-new {
   color: var(--cream);
 }
 
-.territoryops-screen-grid {
-  background: transparent;
-  gap: clamp(1rem, 2vw, 1.5rem);
+.territoryops-console {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border: 1px solid rgba(26, 23, 20, 0.2);
+  background: #12100e;
+  box-shadow: 0 2rem 5rem rgba(26, 23, 20, 0.12);
+  color: var(--cream);
 }
 
-.territoryops-screen {
-  min-width: 0;
-  margin: 0;
-  border: 1px solid var(--cream-dark);
-  background: var(--cream-light);
+.territoryops-console button {
+  color: inherit;
+  font: inherit;
 }
 
-.territoryops-screen__placeholder {
+.territoryops-console__topbar,
+.territoryops-console__toolbar {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  padding: 0.9rem clamp(1rem, 2vw, 1.5rem);
+}
+
+.territoryops-console__identity,
+.territoryops-console__signal,
+.territoryops-console__summary,
+.territoryops-console__view-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.territoryops-console__identity {
+  gap: 0.85rem;
+}
+
+.territoryops-console__identity > div {
   display: grid;
-  min-height: clamp(18rem, 62vw, 26rem);
-  align-content: space-between;
-  gap: 2rem;
-  padding: clamp(1.25rem, 4vw, 2rem);
-  background:
-    linear-gradient(rgba(26, 23, 20, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 23, 20, 0.07) 1px, transparent 1px),
-    linear-gradient(145deg, rgba(176, 138, 90, 0.14), transparent 46%),
-    var(--cream-warm);
-  background-size: 2.5rem 2.5rem, 2.5rem 2.5rem, auto, auto;
+  gap: 0.2rem;
 }
 
-.territoryops-screen__placeholder span,
-.territoryops-screen__placeholder code {
-  color: var(--ink-muted);
+.territoryops-console__identity strong {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.territoryops-console__identity span,
+.territoryops-console__signal,
+.territoryops-console__summary,
+.territoryops-console__label,
+.territoryops-console__queue button span,
+.territoryops-console__queue button small,
+.territoryops-console__dossier p,
+.territoryops-console__dossier dt,
+.territoryops-console__coordinates,
+.territoryops-console__pipeline > div > span {
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: 0.64rem;
   letter-spacing: 0.08em;
-  overflow-wrap: anywhere;
   text-transform: uppercase;
 }
 
-.territoryops-screen__placeholder strong {
-  max-width: 10ch;
+.territoryops-console__identity span,
+.territoryops-console__signal,
+.territoryops-console__summary,
+.territoryops-console__label,
+.territoryops-console__queue button span,
+.territoryops-console__queue button small,
+.territoryops-console__dossier p,
+.territoryops-console__dossier dt,
+.territoryops-console__pipeline > div > span {
+  color: rgba(245, 240, 235, 0.48);
+}
+
+.territoryops-console__monogram {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid rgba(245, 240, 235, 0.2);
+  color: var(--cream) !important;
+}
+
+.territoryops-console__signal {
+  gap: 0.55rem;
+}
+
+.territoryops-console__pulse {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #8ba37b;
+  box-shadow: 0 0 0 0.28rem rgba(139, 163, 123, 0.12);
+}
+
+.territoryops-console__toolbar {
+  min-height: 3.8rem;
+  background: rgba(245, 240, 235, 0.03);
+}
+
+.territoryops-console__view-switcher {
+  gap: 0.35rem;
+}
+
+.territoryops-console__view-switcher button {
+  border: 1px solid transparent;
+  padding: 0.65rem 0.85rem;
+  background: transparent;
+  color: rgba(245, 240, 235, 0.52);
+  cursor: pointer;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: 160ms ease;
+}
+
+.territoryops-console__view-switcher button:hover,
+.territoryops-console__view-switcher button:focus-visible,
+.territoryops-console__view-switcher button.is-active {
+  border-color: rgba(245, 240, 235, 0.22);
+  outline: none;
+  background: rgba(245, 240, 235, 0.08);
+  color: var(--cream);
+}
+
+.territoryops-console__summary {
+  gap: 1rem;
+}
+
+.territoryops-console .is-attention {
+  color: #c45b4f;
+}
+
+.territoryops-console__workspace {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.7fr) minmax(20rem, 2fr) minmax(14rem, 0.8fr);
+  min-height: 38rem;
+}
+
+.territoryops-console__queue,
+.territoryops-console__dossier {
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.territoryops-console__queue {
+  border-right: 1px solid rgba(245, 240, 235, 0.12);
+}
+
+.territoryops-console__queue > div {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.territoryops-console__queue button {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  gap: 0.45rem;
+  border: 1px solid rgba(245, 240, 235, 0.1);
+  padding: 1rem;
+  background: rgba(245, 240, 235, 0.025);
+  text-align: left;
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.territoryops-console__queue button:hover,
+.territoryops-console__queue button:focus-visible,
+.territoryops-console__queue button.is-active {
+  border-color: rgba(176, 138, 90, 0.52);
+  outline: none;
+  background: rgba(176, 138, 90, 0.1);
+}
+
+.territoryops-console__queue button strong {
+  overflow: hidden;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.territoryops-console__queue button i {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #c45b4f;
+  box-shadow: 0 0 0 0.25rem rgba(196, 91, 79, 0.12);
+}
+
+.territoryops-console__viewport {
+  min-width: 0;
+  overflow: hidden;
+  border-right: 1px solid rgba(245, 240, 235, 0.12);
+}
+
+.territoryops-console__map {
+  position: relative;
+  height: 100%;
+  min-height: 38rem;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(245, 240, 235, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 240, 235, 0.07) 1px, transparent 1px),
+    radial-gradient(circle at 52% 52%, rgba(176, 138, 90, 0.18), transparent 42%),
+    #151310;
+  background-size: 3.2rem 3.2rem, 3.2rem 3.2rem, auto, auto;
+}
+
+.territoryops-console__map svg {
+  position: absolute;
+  inset: 8% 12%;
+  width: 76%;
+  height: 80%;
+  overflow: visible;
+  fill: rgba(245, 240, 235, 0.035);
+  stroke: rgba(245, 240, 235, 0.16);
+  stroke-width: 0.4;
+}
+
+.territoryops-console__map .territoryops-console__route {
+  fill: none;
+  stroke: rgba(176, 138, 90, 0.4);
+  stroke-dasharray: 2 2;
+  stroke-width: 0.45;
+}
+
+.territoryops-console__north {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  color: rgba(245, 240, 235, 0.45);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.6rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.territoryops-console__map-marker {
+  position: absolute;
+  z-index: 3;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin: -0.425rem 0 0 -0.425rem;
+  border: 2px solid var(--cream);
+  border-radius: 50%;
+  background: var(--territoryops-accent);
+  box-shadow: 0 0 0 0.4rem rgba(176, 138, 90, 0.14);
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.territoryops-console__map-marker.needs-attention {
+  background: #c45b4f;
+  box-shadow: 0 0 0 0.4rem rgba(196, 91, 79, 0.14);
+}
+
+.territoryops-console__map-marker span {
+  position: absolute;
+  top: 1.2rem;
+  left: 50%;
+  padding: 0.32rem 0.45rem;
+  background: rgba(18, 16, 14, 0.86);
+  color: rgba(245, 240, 235, 0.62);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  transition: 160ms ease;
+  white-space: nowrap;
+}
+
+.territoryops-console__map-marker:hover,
+.territoryops-console__map-marker:focus-visible,
+.territoryops-console__map-marker.is-active {
+  outline: none;
+  transform: scale(1.25);
+}
+
+.territoryops-console__map-marker:hover span,
+.territoryops-console__map-marker:focus-visible span,
+.territoryops-console__map-marker.is-active span {
+  opacity: 1;
+}
+
+.territoryops-console__coordinates {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  color: rgba(245, 240, 235, 0.38);
+}
+
+.territoryops-console__table-wrap {
+  height: 100%;
+  overflow-x: auto;
+  padding: 1.25rem;
+  background:
+    linear-gradient(rgba(245, 240, 235, 0.035) 1px, transparent 1px),
+    #151310;
+  background-size: 100% 3.5rem;
+}
+
+.territoryops-console__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.72rem;
+}
+
+.territoryops-console__table th,
+.territoryops-console__table td {
+  border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  padding: 1rem 0.75rem;
+  text-align: left;
+}
+
+.territoryops-console__table th {
+  color: rgba(245, 240, 235, 0.42);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.56rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.territoryops-console__table tbody tr:hover,
+.territoryops-console__table tbody tr.is-active {
+  background: rgba(176, 138, 90, 0.1);
+}
+
+.territoryops-console__table td button {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.territoryops-console__table td button:focus-visible {
+  outline: 1px solid var(--territoryops-accent);
+  outline-offset: 0.35rem;
+}
+
+.territoryops-console__table td strong,
+.territoryops-console__table td span {
+  display: block;
+}
+
+.territoryops-console__table td strong {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.territoryops-console__table td span {
+  color: rgba(245, 240, 235, 0.4);
+  font-size: 0.62rem;
+}
+
+.territoryops-console__pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(8.5rem, 1fr));
+  height: 100%;
+  min-height: 38rem;
+  overflow-x: auto;
+  background: #151310;
+}
+
+.territoryops-console__pipeline > div {
+  min-width: 0;
+  border-right: 1px solid rgba(245, 240, 235, 0.1);
+  padding: 1rem;
+}
+
+.territoryops-console__pipeline > div > span {
+  display: block;
+  min-height: 2rem;
+  border-bottom: 1px solid rgba(245, 240, 235, 0.1);
+}
+
+.territoryops-console__pipeline button {
+  display: grid;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  border: 1px solid rgba(245, 240, 235, 0.12);
+  padding: 0.9rem;
+  background: rgba(245, 240, 235, 0.035);
+  text-align: left;
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.territoryops-console__pipeline button:hover,
+.territoryops-console__pipeline button:focus-visible,
+.territoryops-console__pipeline button.is-active {
+  border-color: rgba(176, 138, 90, 0.52);
+  outline: none;
+  background: rgba(176, 138, 90, 0.12);
+}
+
+.territoryops-console__pipeline button strong {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.territoryops-console__pipeline button small,
+.territoryops-console__pipeline button em {
+  color: rgba(245, 240, 235, 0.44);
+  font-size: 0.58rem;
+  font-style: normal;
+}
+
+.territoryops-console__dossier {
+  display: flex;
+  flex-direction: column;
+}
+
+.territoryops-console__dossier p {
+  margin: auto 0 0.75rem;
+}
+
+.territoryops-console__dossier h3 {
+  max-width: 9ch;
+  margin: 0 0 2rem;
+  color: var(--cream);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.territoryops-console__dossier dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.territoryops-console__dossier dl div {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid rgba(245, 240, 235, 0.1);
+  padding: 0.85rem 0;
+}
+
+.territoryops-console__dossier dd {
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.territoryops-console__progress {
+  height: 0.2rem;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  background: rgba(245, 240, 235, 0.1);
+}
+
+.territoryops-console__progress span {
+  display: block;
+  height: 100%;
+  background: var(--territoryops-accent);
+  transition: width 240ms ease;
+}
+
+.territoryops-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1px;
+  background: rgba(26, 23, 20, 0.14);
+}
+
+.territoryops-flow article {
+  min-height: 15rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--cream-warm);
+}
+
+.territoryops-flow span {
+  color: var(--color-0);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+}
+
+.territoryops-flow h3 {
+  margin: clamp(3rem, 7vw, 5rem) 0 0.75rem;
   color: var(--ink);
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(2.6rem, 8vw, 5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
-  line-height: 0.88;
+  line-height: 0.9;
   text-transform: uppercase;
 }
 
-.territoryops-screen figcaption {
-  padding: 1rem;
+.territoryops-flow p {
+  max-width: 34ch;
   color: var(--ink-muted);
   line-height: 1.65;
 }
@@ -5260,11 +5723,50 @@ main.case-study-page-new {
   margin-top: 1.5rem;
 }
 
+/* Keep comparable card titles and body copy on shared horizontal lines. */
+@media (min-width: 721px) {
+  .data-brief-story-card,
+  .data-brief-proof-card,
+  .data-brief-card-grid--workflow .data-brief-card,
+  .data-brief-card-grid--architecture .data-brief-card,
+  .data-brief-output-card,
+  .data-brief-phase-card,
+  .data-brief-output-list article,
+  .data-brief-result-grid article,
+  .benchmark-feature-grid .data-brief-card,
+  .benchmark-system-card,
+  .portfolio-card,
+  .portfolio-system-grid article,
+  .territoryops-decision-card,
+  .territoryops-feature-grid article,
+  .territoryops-flow article {
+    display: grid;
+    align-content: start;
+  }
+
+  .data-brief-story-card h3,
+  .data-brief-proof-card h3,
+  .data-brief-card-grid--workflow .data-brief-card h3,
+  .data-brief-card-grid--architecture .data-brief-card h3,
+  .data-brief-output-card h3,
+  .data-brief-phase-card h3,
+  .data-brief-output-list h3,
+  .data-brief-result-grid h3,
+  .benchmark-feature-grid .data-brief-card h3,
+  .benchmark-system-card h3,
+  .portfolio-card h3,
+  .portfolio-system-grid h3,
+  .territoryops-decision-card h3,
+  .territoryops-feature-grid h3,
+  .territoryops-flow h3 {
+    min-block-size: var(--card-heading-block);
+  }
+}
+
 @media (min-width: 720px) {
   .territoryops-decision-grid,
   .territoryops-feature-grid,
-  .territoryops-build-grid,
-  .territoryops-screen-grid {
+  .territoryops-build-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -5276,9 +5778,6 @@ main.case-study-page-new {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .territoryops-screen--wide {
-    grid-column: 1 / -1;
-  }
 }
 
 @media (min-width: 1080px) {
@@ -5295,12 +5794,104 @@ main.case-study-page-new {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
+  .territoryops-feature-grid h3 {
+    min-block-size: 3lh;
+  }
+
   .territoryops-build-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .territoryops-roadmap {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .territoryops-console__workspace {
+    grid-template-columns: minmax(11rem, 0.65fr) minmax(20rem, 1.35fr);
+  }
+
+  .territoryops-console__dossier {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 0.65fr 1fr 1.6fr;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(245, 240, 235, 0.12);
+  }
+
+  .territoryops-console__dossier p {
+    margin-top: 2rem;
+  }
+
+  .territoryops-console__dossier h3 {
+    margin: 1.5rem 0 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .territoryops-console__topbar,
+  .territoryops-console__toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .territoryops-console__signal {
+    display: none;
+  }
+
+  .territoryops-console__view-switcher {
+    width: 100%;
+  }
+
+  .territoryops-console__view-switcher button {
+    flex: 1;
+  }
+
+  .territoryops-console__summary {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .territoryops-console__workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .territoryops-console__queue {
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  }
+
+  .territoryops-console__queue > div {
+    grid-template-columns: repeat(4, minmax(11rem, 1fr));
+  }
+
+  .territoryops-console__viewport {
+    border-right: 0;
+  }
+
+  .territoryops-console__map,
+  .territoryops-console__pipeline {
+    min-height: 29rem;
+  }
+
+  .territoryops-console__dossier {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .territoryops-console__dossier p {
+    margin-top: 2rem;
+  }
+
+  .territoryops-console__dossier h3 {
+    max-width: 12ch;
+    margin: 0 0 1rem;
+  }
+
+  .territoryops-flow {
+    grid-template-columns: 1fr;
   }
 }
 

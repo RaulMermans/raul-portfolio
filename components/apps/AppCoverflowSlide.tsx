@@ -31,7 +31,7 @@ export default function AppCoverflowSlide({ app, isActive }: AppCoverflowSlidePr
       {/* Content */}
       <div className="flex flex-1 flex-col px-6 pb-2 pt-5 sm:px-8">
         <h3
-          className="text-[clamp(2.8rem,6vw,4.2rem)] uppercase leading-[0.9]"
+          className="min-h-[2lh] text-[clamp(2.8rem,6vw,4.2rem)] uppercase leading-[0.9]"
           style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
         >
           {app.name}

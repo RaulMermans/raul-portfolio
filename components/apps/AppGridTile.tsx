@@ -54,7 +54,7 @@ export default function AppGridTile({ app }: AppGridTileProps) {
       {/* Text zone */}
       <div className="relative z-10 mt-2 w-full">
         <h3
-          className="text-2xl uppercase leading-[0.95] text-[#f5f0eb]"
+          className="min-h-[2lh] text-2xl uppercase leading-[0.95] text-[#f5f0eb]"
           style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
         >
           {app.name}

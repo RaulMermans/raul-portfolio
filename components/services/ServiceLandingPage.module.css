@@ -169,38 +169,44 @@
   border-bottom: 1px solid rgba(26, 23, 20, 0.12);
 }
 
-.answer {
-  display: grid;
-  grid-template-columns: minmax(12rem, 0.35fr) minmax(0, 1fr);
-  gap: clamp(2rem, 7vw, 8rem);
-  align-items: start;
-}
-
 .answerText {
   max-width: 44rem;
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--font-reading), "Source Serif 4", serif;
   font-size: clamp(1.65rem, 3vw, 3.15rem);
   line-height: 1.26;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
 .sectionHeader {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(12rem, 0.35fr) minmax(0, 1fr);
-  gap: clamp(2rem, 7vw, 8rem);
+  min-height: 2lh;
+  place-items: start center;
   margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
 }
 
+.sectionHeader .sectionLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .sectionTitle {
-  max-width: 12ch;
+  width: min(100%, 18ch);
   margin: 0;
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(3.2rem, 6.4vw, 6.8rem);
   line-height: 0.9;
   letter-spacing: var(--tracking-tight);
+  text-align: center;
   text-transform: uppercase;
-  text-wrap: balance;
+}
+
+.sectionTitle span {
+  display: block;
+  white-space: nowrap;
 }
 
 .cardGrid {
@@ -211,7 +217,9 @@
 }
 
 .card {
+  display: grid;
   min-height: 15rem;
+  align-content: start;
   padding: clamp(1.4rem, 2.5vw, 2.2rem);
   border-right: 1px solid rgba(26, 23, 20, 0.18);
   border-bottom: 1px solid rgba(26, 23, 20, 0.18);
@@ -276,7 +284,9 @@
 }
 
 .processCard {
+  display: grid;
   min-height: 23rem;
+  align-content: start;
   padding: clamp(1.4rem, 2.5vw, 2.2rem);
   background: var(--ink);
   color: var(--cream);
@@ -299,6 +309,18 @@
   text-transform: uppercase;
 }
 
+@media (min-width: 721px) {
+  .card h3,
+  .processCard h3,
+  .proofCard h3 {
+    min-block-size: var(--card-heading-block);
+  }
+
+  .processCard h3 {
+    min-block-size: 3lh;
+  }
+}
+
 .processCard p {
   margin: 1.2rem 0 0;
   color: rgba(245, 240, 235, 0.68);
@@ -313,8 +335,9 @@
 
 .proofCard {
   display: grid;
+  grid-template-rows: auto 1fr;
   min-height: 18rem;
-  align-content: space-between;
+  align-content: start;
   gap: 3rem;
   padding: clamp(1.5rem, 3vw, 2.6rem);
   border: 1px solid rgba(26, 23, 20, 0.16);
@@ -334,6 +357,7 @@
 }
 
 .proofMeta {
+  min-block-size: 2lh;
   color: var(--accent);
   font-size: 0.64rem;
   letter-spacing: 0.2em;
@@ -449,11 +473,24 @@
     word-break: normal;
   }
 
-  .answer,
-  .sectionHeader,
   .faqItem {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .sectionHeader {
+    min-height: auto;
+    padding-top: 2.5rem;
+  }
+
+  .sectionHeader .sectionLabel {
+    right: 0;
+    text-align: center;
+  }
+
+  .sectionTitle {
+    width: 100%;
+    font-size: clamp(1.8rem, 8vw, 3.2rem);
   }
 
   .cardGrid,

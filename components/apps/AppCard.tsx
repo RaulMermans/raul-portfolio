@@ -34,7 +34,7 @@ export default function AppCard({
 
         <div className="space-y-3">
           <h3
-            className="text-4xl uppercase leading-[0.92]"
+            className="min-h-[2lh] text-4xl uppercase leading-[0.92]"
             style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif', color: 'var(--ink)' }}
           >
             {app.name}
