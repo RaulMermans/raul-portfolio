@@ -205,6 +205,9 @@ export default function CaseStudiesPage() {
                       {study.commercialRelevance}
                     </span>
                   )}
+                  {study.status && (
+                    <span className="case-study-project-tile__status">{study.status}</span>
+                  )}
                   {study.tags && study.tags.length > 0 && (
                     <span className="case-study-project-tile__tags" aria-label="System tags">
                       {study.tags.map((tag) => (

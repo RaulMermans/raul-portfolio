@@ -8,6 +8,7 @@ export interface CaseStudy {
   description: string
   commercialRelevance?: string
   tags?: string[]
+  status?: string
   cta?: string
   image: string
   imageWidth: number
@@ -91,6 +92,24 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'AI Systems / Audit Workflow',
       mood: ['minimal', 'tech'],
+    },
+    {
+      id: 7,
+      slug: 'campaign-sandbox',
+      title: 'Campaign Sandbox',
+      description:
+        'An internal AI workspace that turns messy campaign briefs into structured creative routes, synthetic audience simulations, risk reviews, execution plans, and exportable strategy reports.',
+      commercialRelevance:
+        'A case study in reliable AI workflow design for creative strategy teams that need faster synthesis without giving up human judgment.',
+      tags: ['AI Workflows', 'Creative Strategy', 'Next.js', 'TypeScript', 'OpenAI', 'Evaluation & Guardrails'],
+      status: 'Finished internal v1',
+      cta: 'Read case study',
+      image: '/images/case-studies/campaign-sandbox/02-decision-cockpit.webp',
+      imageWidth: 1440,
+      imageHeight: 900,
+      color: 'var(--accent)',
+      subtitle: 'Internal AI Strategy Workspace',
+      mood: ['minimal', 'tech', 'editorial'],
     },
     {
       id: 6,
@@ -214,6 +233,24 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       mood: ['minimal', 'tech'],
     },
     {
+      id: 7,
+      slug: 'campaign-sandbox',
+      title: 'Campaign Sandbox',
+      description:
+        'Un espacio interno de IA que convierte briefs de campaña desordenados en rutas creativas estructuradas, simulaciones sintéticas de audiencia, revisiones de riesgo, planes de ejecución e informes exportables.',
+      commercialRelevance:
+        'Un caso de diseño fiable de flujos con IA para equipos de estrategia creativa que necesitan sintetizar más rápido sin renunciar al criterio humano.',
+      tags: ['Flujos IA', 'Estrategia creativa', 'Next.js', 'TypeScript', 'OpenAI', 'Evaluación y guardrails'],
+      status: 'v1 interna finalizada',
+      cta: 'Leer caso',
+      image: '/images/case-studies/campaign-sandbox/02-decision-cockpit.webp',
+      imageWidth: 1440,
+      imageHeight: 900,
+      color: 'var(--accent)',
+      subtitle: 'Espacio interno de estrategia con IA',
+      mood: ['minimal', 'tech', 'editorial'],
+    },
+    {
       id: 6,
       slug: 'territoryops-spain',
       title: 'TerritoryOps Spain',
@@ -275,6 +312,7 @@ export function getCaseStudies(locale: Locale): CaseStudy[] {
     description: study.description,
     commercialRelevance: study.commercialRelevance,
     tags: study.tags,
+    status: study.status,
     cta: study.cta,
     image: study.image,
     imageWidth: study.imageWidth,

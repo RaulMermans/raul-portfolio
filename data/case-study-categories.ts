@@ -35,6 +35,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const raulPortfolio = findStudy(caseStudies, 'raul-portfolio')
   const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
   const websiteAuditor = findStudy(caseStudies, 'website-auditor')
+  const campaignSandbox = findStudy(caseStudies, 'campaign-sandbox')
   const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
   const territoryOps = findStudy(caseStudies, 'territoryops-spain')
 
@@ -80,6 +81,19 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
                 : 'Evidence-backed audit workflow for UX, SEO, performance, content, and prospect intelligence.',
               image: placeholderImage,
             },
+        ...(campaignSandbox
+          ? [
+              {
+                title: campaignSandbox.title,
+                label:
+                  campaignSandbox.subtitle ??
+                  (isSpanish ? 'Espacio interno de estrategia con IA' : 'Internal AI strategy workspace'),
+                description: campaignSandbox.description,
+                image: campaignSandbox.image,
+                href: campaignSandbox.href,
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -90,8 +104,9 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         ? 'Infraestructura para mantener consistencia visual, narrativa y operativa en campañas de ritmo rápido.'
         : 'Infrastructure for keeping visual, narrative, and operational consistency inside fast-moving campaigns.',
       href: localizePath('/case-studies', locale),
-      projects: aiSports
-        ? [
+      projects: [
+        ...(aiSports
+          ? [
             {
               title: aiSports.title,
               label: aiSports.subtitle ?? (isSpanish ? 'Sistema de campaña con IA' : 'AI campaign system'),
@@ -99,8 +114,22 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
               image: aiSports.image,
               href: aiSports.href,
             },
-          ]
-        : [],
+            ]
+          : []),
+        ...(campaignSandbox
+          ? [
+              {
+                title: campaignSandbox.title,
+                label:
+                  campaignSandbox.subtitle ??
+                  (isSpanish ? 'Espacio interno de estrategia con IA' : 'Internal AI strategy workspace'),
+                description: campaignSandbox.description,
+                image: campaignSandbox.image,
+                href: campaignSandbox.href,
+              },
+            ]
+          : []),
+      ],
     },
     {
       slug: 'brand-systems',
