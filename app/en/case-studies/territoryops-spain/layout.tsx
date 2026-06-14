@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
   path: '/case-studies/territoryops-spain',
   locale: 'en',
   image: {
-    url: '/images/case-studies/case-studies-thumbnail.webp',
+    url: '/images/case-studies/territoryops-spain/product/territoryops.webp',
     alt: 'TerritoryOps Spain case study by Raúl Mermans',
   },
   type: 'article',
@@ -51,7 +51,7 @@ export default function EnglishTerritoryOpsSpainLayout({ children }: { children:
           description,
           url,
           mainEntityOfPage: url,
-          image: absoluteUrl('/images/case-studies/case-studies-thumbnail.webp'),
+          image: absoluteUrl('/images/case-studies/territoryops-spain/product/territoryops.webp'),
           articleSection: 'Case Studies',
           keywords: ['internal tool', 'product prototype', 'real estate operations', 'local-first'],
         }}

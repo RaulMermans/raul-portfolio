@@ -5286,15 +5286,13 @@ main.case-study-page-new {
 }
 
 .territoryops-hero {
+  grid-template-columns: minmax(0, 1fr);
   min-height: auto;
-  padding-top: calc(var(--header-height) + 2rem);
-  background:
-    linear-gradient(150deg, rgba(176, 138, 90, 0.14), transparent 38%),
-    var(--ink);
 }
 
 .case-study-page-new--territoryops .benchmark-hero__content {
   align-self: center;
+  max-width: 64rem;
 }
 
 .case-study-page-new--territoryops .benchmark-hero__title {
@@ -5497,6 +5495,35 @@ main.case-study-page-new {
   margin-top: 1.5rem;
   border-color: rgba(245, 240, 235, 0.28);
   color: var(--cream);
+}
+
+.territoryops-product-shot {
+  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+}
+
+.territoryops-product-shot__frame {
+  overflow: hidden;
+  border: 1px solid rgba(26, 23, 20, 0.14);
+  border-radius: 8px;
+  background: #0b1019;
+  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.12);
+}
+
+.territoryops-product-shot__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.territoryops-product-shot figcaption {
+  max-width: 62rem;
+  margin-top: 0.85rem;
+  color: var(--ink-muted);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+  text-transform: uppercase;
 }
 
 .territoryops-console {
@@ -6133,15 +6160,6 @@ main.case-study-page-new {
 }
 
 @media (min-width: 1080px) {
-  .territoryops-hero {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    min-height: min(58rem, 100vh);
-  }
-
-  .territoryops-atlas {
-    align-self: center;
-  }
-
   .territoryops-feature-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
@@ -6178,6 +6196,21 @@ main.case-study-page-new {
 }
 
 @media (max-width: 720px) {
+  .territoryops-product-shot {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+  }
+
+  .territoryops-product-shot__frame {
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .territoryops-product-shot figcaption {
+    padding: 0 1rem;
+  }
+
   .territoryops-console__topbar,
   .territoryops-console__toolbar {
     align-items: flex-start;

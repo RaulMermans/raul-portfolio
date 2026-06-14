@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
@@ -16,59 +16,6 @@ import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 const demoUrl = 'https://territoryops-spain.vercel.app'
 const githubUrl = 'https://github.com/RaulMermans/territoryops-spain'
 const inspirationUrl = 'https://github.com/filipecalegario/awesome-vibe-coding'
-
-type TerritoryView = 'map' | 'table' | 'pipeline'
-
-const territoryRecords = [
-  {
-    id: 'mad',
-    city: 'Madrid',
-    asset: 'Calle Atocha 47',
-    stage: 'Evaluation',
-    value: '€1.42M',
-    nextAction: 'Review planning note',
-    due: 'Today',
-    attention: true,
-    x: 49,
-    y: 48,
-  },
-  {
-    id: 'val',
-    city: 'Valencia',
-    asset: 'Ruzafa Corner',
-    stage: 'Negotiation',
-    value: '€890K',
-    nextAction: 'Call ownership',
-    due: '14 Jun',
-    attention: true,
-    x: 66,
-    y: 57,
-  },
-  {
-    id: 'sev',
-    city: 'Sevilla',
-    asset: 'Triana Workshop',
-    stage: 'Watchlist',
-    value: '€640K',
-    nextAction: 'Validate access',
-    due: '18 Jun',
-    attention: false,
-    x: 39,
-    y: 72,
-  },
-  {
-    id: 'bil',
-    city: 'Bilbao',
-    asset: 'Ría Industrial 08',
-    stage: 'Control',
-    value: '€2.10M',
-    nextAction: 'Archive signed brief',
-    due: 'Complete',
-    attention: false,
-    x: 46,
-    y: 26,
-  },
-] as const
 
 const commercialContent: Record<'en' | 'es', CommercialCaseStudyContent> = {
   en: {
@@ -147,15 +94,15 @@ const content = {
     heroDescription:
       'TerritoryOps combines geospatial visibility, table-based review, pipeline tracking, and attention logic into a private operational atlas.',
     heroNotice: 'Prototype scope: local browser data, optional demo records, no backend or authentication.',
-    heroVisualLabel: 'Territory control surface',
-    heroVisualCaption: 'One dataset, three synchronized views, and a visible next action.',
+    productImageAlt: 'TerritoryOps Spain interface showing the location map, opportunity status, filters, and asset dossier.',
+    productImageCaption: 'The TerritoryOps operating surface: map context, pipeline status, attention signals, and asset detail in one view.',
     nav: [
       ['Context', '#business-context'],
       ['Product', '#system-solution'],
       ['Logic', '#logic'],
       ['Features', '#features'],
       ['Build', '#build'],
-      ['Console', '#console'],
+      ['Interface', '#interface'],
       ['Next', '#next'],
     ] as const,
     logicEyebrow: 'Design logic / Build decisions',
@@ -203,10 +150,10 @@ const content = {
       'General build discipline was informed by the awesome-vibe-coding workflow collection, used as inspiration rather than a dependency or product foundation.',
     ],
     inspirationLabel: 'View workflow inspiration',
-    screensEyebrow: 'Interactive product anatomy',
-    screensTitle: 'One operating story, viewed three ways',
+    screensEyebrow: 'Product interface',
+    screensTitle: 'The complete operating surface in one view',
     screensBody:
-      'Explore the same opportunity as territory, operational detail, and deal stage. The selected record persists across every view.',
+      'The interface keeps territory, status, attention signals, filters, and the active asset dossier visible without splitting the workflow across separate tools.',
     console: {
       liveDataset: 'Local dataset',
       synced: 'Views synchronized',
@@ -259,15 +206,15 @@ const content = {
     heroDescription:
       'TerritoryOps reúne visibilidad geográfica, revisión en tabla, seguimiento de pipeline y lógica de atención en un atlas operativo privado.',
     heroNotice: 'Alcance del prototipo: datos locales del navegador, demo opcional, sin backend ni autenticación.',
-    heroVisualLabel: 'Superficie de control territorial',
-    heroVisualCaption: 'Un conjunto de datos, tres vistas sincronizadas y una siguiente acción visible.',
+    productImageAlt: 'Interfaz de TerritoryOps Spain con mapa de ubicaciones, estado de oportunidades, filtros y dossier del activo.',
+    productImageCaption: 'La superficie operativa de TerritoryOps: contexto territorial, estado del pipeline, alertas y detalle del activo en una sola vista.',
     nav: [
       ['Contexto', '#business-context'],
       ['Producto', '#system-solution'],
       ['Lógica', '#logic'],
       ['Funciones', '#features'],
       ['Build', '#build'],
-      ['Consola', '#console'],
+      ['Interfaz', '#interface'],
       ['Siguiente', '#next'],
     ] as const,
     logicEyebrow: 'Lógica de diseño / Decisiones de build',
@@ -315,10 +262,10 @@ const content = {
       'La disciplina general de build tomó como inspiración la colección awesome-vibe-coding, sin usarla como dependencia ni fundamento del producto.',
     ],
     inspirationLabel: 'Ver inspiración de workflow',
-    screensEyebrow: 'Anatomía interactiva del producto',
-    screensTitle: 'Una historia operativa, vista de tres formas',
+    screensEyebrow: 'Interfaz de producto',
+    screensTitle: 'La superficie operativa completa en una sola vista',
     screensBody:
-      'Explora la misma oportunidad como territorio, detalle operativo y fase. El registro seleccionado persiste en cada vista.',
+      'La interfaz mantiene visibles territorio, estado, alertas, filtros y el dossier activo sin fragmentar el flujo entre herramientas distintas.',
     console: {
       liveDataset: 'Datos locales',
       synced: 'Vistas sincronizadas',
@@ -368,10 +315,6 @@ export default function TerritoryOpsSpainPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const t = content[locale]
-  const [activeView, setActiveView] = useState<TerritoryView>('map')
-  const [activeRecordId, setActiveRecordId] = useState<(typeof territoryRecords)[number]['id']>('mad')
-  const activeRecord =
-    territoryRecords.find((record) => record.id === activeRecordId) ?? territoryRecords[0]
 
   useCaseStudySetup()
 
@@ -409,26 +352,6 @@ export default function TerritoryOpsSpainPage() {
             </div>
           </div>
 
-          <figure className="territoryops-atlas" aria-label={t.heroVisualLabel}>
-            <div className="territoryops-atlas__map">
-              {territoryRecords.map((record) => (
-                <button
-                  key={record.id}
-                  type="button"
-                  className={`territoryops-atlas__marker${record.id === activeRecordId ? ' is-active' : ''}`}
-                  style={{ left: `${record.x}%`, top: `${record.y}%` }}
-                  onClick={() => setActiveRecordId(record.id)}
-                  aria-label={`${record.asset}, ${record.city}`}
-                />
-              ))}
-              <div className="territoryops-atlas__panel">
-                <span>{activeRecord.city} / {activeRecord.stage}</span>
-                <strong>{activeRecord.asset}</strong>
-                <span>{activeRecord.nextAction} / {activeRecord.due}</span>
-              </div>
-            </div>
-            <figcaption>{t.heroVisualCaption}</figcaption>
-          </figure>
         </section>
 
         <nav className="data-brief-mini-nav" aria-label={locale === 'es' ? 'Secciones de la página' : 'Page sections'}>
@@ -509,173 +432,26 @@ export default function TerritoryOpsSpainPage() {
           </div>
         </section>
 
-        <section id="console" className="data-brief-section data-brief-section--light" aria-labelledby="territoryops-console-title">
+        <section id="interface" className="data-brief-section data-brief-section--light" aria-labelledby="territoryops-interface-title">
           <div className="data-brief-section__container">
             <div className="benchmark-section-heading">
               <p className="data-brief-eyebrow">{t.screensEyebrow}</p>
-              <h2 id="territoryops-console-title">{t.screensTitle}</h2>
+              <h2 id="territoryops-interface-title">{t.screensTitle}</h2>
               <p>{t.screensBody}</p>
             </div>
 
-            <div className="territoryops-console">
-              <div className="territoryops-console__topbar">
-                <div className="territoryops-console__identity">
-                  <span className="territoryops-console__monogram">TO</span>
-                  <div>
-                    <strong>TerritoryOps</strong>
-                    <span>{t.console.liveDataset}</span>
-                  </div>
-                </div>
-                <div className="territoryops-console__signal">
-                  <span className="territoryops-console__pulse" />
-                  {t.console.synced}
-                </div>
+            <figure className="territoryops-product-shot">
+              <div className="territoryops-product-shot__frame">
+                <Image
+                  src="/images/case-studies/territoryops-spain/product/territoryops.webp"
+                  alt={t.productImageAlt}
+                  width={3018}
+                  height={1518}
+                  sizes="(max-width: 720px) 100vw, (max-width: 1400px) 92vw, 1320px"
+                />
               </div>
-
-              <div className="territoryops-console__toolbar">
-                <div className="territoryops-console__view-switcher" aria-label={locale === 'es' ? 'Cambiar vista' : 'Change view'}>
-                  {(['map', 'table', 'pipeline'] as TerritoryView[]).map((view) => (
-                    <button
-                      key={view}
-                      type="button"
-                      className={activeView === view ? 'is-active' : ''}
-                      onClick={() => setActiveView(view)}
-                      aria-pressed={activeView === view}
-                    >
-                      {t.console[view]}
-                    </button>
-                  ))}
-                </div>
-                <div className="territoryops-console__summary">
-                  <span>{t.console.records}</span>
-                  <span className="is-attention">02 {t.console.attention}</span>
-                </div>
-              </div>
-
-              <div className="territoryops-console__workspace">
-                <aside className="territoryops-console__queue">
-                  <span className="territoryops-console__label">{t.console.queue}</span>
-                  <div>
-                    {territoryRecords.map((record, index) => (
-                      <button
-                        key={record.id}
-                        type="button"
-                        className={record.id === activeRecordId ? 'is-active' : ''}
-                        onClick={() => setActiveRecordId(record.id)}
-                      >
-                        <span>{String(index + 1).padStart(2, '0')}</span>
-                        <strong>{record.asset}</strong>
-                        <small>{record.city} / {record.stage}</small>
-                        {record.attention && <i aria-label={t.console.attention} />}
-                      </button>
-                    ))}
-                  </div>
-                </aside>
-
-                <div className="territoryops-console__viewport">
-                  {activeView === 'map' && (
-                    <div className="territoryops-console__map" aria-label={t.console.map}>
-                      <span className="territoryops-console__north">N<br />↑</span>
-                      <svg viewBox="0 0 100 100" aria-hidden="true">
-                        <path d="M28 9 48 14 60 8 80 19 91 38 84 55 71 66 68 87 48 95 36 79 19 72 10 50 19 31Z" />
-                        <path className="territoryops-console__route" d="M46 27 49 48 65 57 39 72" />
-                      </svg>
-                      {territoryRecords.map((record) => (
-                        <button
-                          key={record.id}
-                          type="button"
-                          className={`territoryops-console__map-marker${record.id === activeRecordId ? ' is-active' : ''}${record.attention ? ' needs-attention' : ''}`}
-                          style={{ left: `${record.x}%`, top: `${record.y}%` }}
-                          onClick={() => setActiveRecordId(record.id)}
-                          aria-label={`${record.asset}, ${record.city}`}
-                        >
-                          <span>{record.city}</span>
-                        </button>
-                      ))}
-                      <div className="territoryops-console__coordinates">
-                        40.4168° N / 3.7038° W
-                      </div>
-                    </div>
-                  )}
-
-                  {activeView === 'table' && (
-                    <div className="territoryops-console__table-wrap">
-                      <table className="territoryops-console__table">
-                        <thead>
-                          <tr>
-                            <th>{t.console.asset}</th>
-                            <th>{t.console.status}</th>
-                            <th>{t.console.value}</th>
-                            <th>{t.console.due}</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {territoryRecords.map((record) => (
-                            <tr
-                              key={record.id}
-                              className={record.id === activeRecordId ? 'is-active' : ''}
-                            >
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => setActiveRecordId(record.id)}
-                                  aria-pressed={record.id === activeRecordId}
-                                >
-                                  <strong>{record.asset}</strong>
-                                  <span>{record.city}</span>
-                                </button>
-                              </td>
-                              <td>{record.stage}</td>
-                              <td>{record.value}</td>
-                              <td className={record.attention ? 'is-attention' : ''}>{record.due}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-
-                  {activeView === 'pipeline' && (
-                    <div className="territoryops-console__pipeline">
-                      {['Watchlist', 'Evaluation', 'Negotiation', 'Control'].map((stage) => (
-                        <div key={stage}>
-                          <span>{stage}</span>
-                          {territoryRecords
-                            .filter((record) => record.stage === stage)
-                            .map((record) => (
-                              <button
-                                key={record.id}
-                                type="button"
-                                className={record.id === activeRecordId ? 'is-active' : ''}
-                                onClick={() => setActiveRecordId(record.id)}
-                              >
-                                <strong>{record.asset}</strong>
-                                <small>{record.city}</small>
-                                <em>{record.value}</em>
-                              </button>
-                            ))}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <aside className="territoryops-console__dossier">
-                  <span className="territoryops-console__label">{t.console.dossier}</span>
-                  <p>{activeRecord.city} / {activeRecord.id.toUpperCase()}</p>
-                  <h3>{activeRecord.asset}</h3>
-                  <dl>
-                    <div><dt>{t.console.status}</dt><dd>{activeRecord.stage}</dd></div>
-                    <div><dt>{t.console.value}</dt><dd>{activeRecord.value}</dd></div>
-                    <div><dt>{t.console.nextAction}</dt><dd>{activeRecord.nextAction}</dd></div>
-                    <div><dt>{t.console.due}</dt><dd className={activeRecord.attention ? 'is-attention' : ''}>{activeRecord.due}</dd></div>
-                  </dl>
-                  <div className="territoryops-console__progress">
-                    <span style={{ width: activeRecord.stage === 'Control' ? '100%' : activeRecord.stage === 'Negotiation' ? '74%' : activeRecord.stage === 'Evaluation' ? '48%' : '22%' }} />
-                  </div>
-                </aside>
-              </div>
-            </div>
+              <figcaption>{t.productImageCaption}</figcaption>
+            </figure>
 
             <div className="territoryops-flow">
               {[
