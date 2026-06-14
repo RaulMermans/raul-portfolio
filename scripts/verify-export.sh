@@ -33,6 +33,9 @@ assert_file out/index.html
 assert_file out/en/index.html
 assert_file out/case-studies/index.html
 assert_file out/en/case-studies/index.html
+assert_file out/case-studies/blogagent/index.html
+assert_file out/en/case-studies/blogagent/index.html
+assert_file out/es/case-studies/blogagent/index.html
 
 assert_file out/en/services/ai-integrations/index.html
 assert_file out/en/services/creative-automation/index.html
@@ -66,9 +69,14 @@ assert_contains out/services/automatizacion-creativa/index.html "Automatización
 assert_contains out/services/sistemas-de-marca/index.html "Sistemas de Inteligencia de Marca"
 assert_contains out/services/prototipos-producto-ia/index.html "Prototipos de Producto IA"
 
-assert_contains out/en/case-studies/index.html "AI campaign workflow for controlled visual iteration and campaign consistency"
-assert_contains out/en/case-studies/index.html "Luxury fragrance identity system with scalable creative and AI-ready brand rules"
-assert_contains out/en/case-studies/index.html "Evidence-first AI workflow for website and experience audits"
+assert_contains out/en/case-studies/index.html "View case study: AI Sports Campaign"
+assert_contains out/en/case-studies/index.html "View case study: BlogAgent"
+assert_contains out/case-studies/index.html "Ver caso de estudio: Campaña deportiva con IA"
+assert_contains out/case-studies/index.html "Ver caso de estudio: BlogAgent"
+
+assert_contains out/en/case-studies/blogagent/index.html "human review before publication"
+assert_contains out/case-studies/blogagent/index.html "revisión humana antes de publicar"
+assert_contains out/es/case-studies/blogagent/index.html "revisión humana antes de publicar"
 
 assert_absent out/en/case-studies/index.html "Digital identity system that structures AI/product work"
 assert_absent out/en/case-studies/index.html "For faster UX, SEO, and conversion diagnostics"
@@ -107,6 +115,9 @@ assertOrder('out/en/case-studies/index.html', [
   'Remoria',
   'Raul Mermans Portfolio',
   'Website Audit Agent',
+  'Campaign Sandbox',
+  'BlogAgent',
+  'TerritoryOps Spain',
   'DataBrief AI',
   'Benchmark Dashboard Template',
 ])
@@ -116,6 +127,9 @@ assertOrder('out/case-studies/index.html', [
   'Remoria',
   'Raul Mermans Portfolio',
   'Website Audit Agent',
+  'Campaign Sandbox',
+  'BlogAgent',
+  'TerritoryOps Spain',
   'DataBrief AI',
   'Benchmark Dashboard Template',
 ])

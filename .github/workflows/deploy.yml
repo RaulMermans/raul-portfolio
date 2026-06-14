@@ -106,8 +106,10 @@ jobs:
 
           verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Creative infrastructure for AI-assisted execution"
           verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Infraestructura creativa para ejecución asistida por IA"
-          verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "AI campaign workflow for controlled visual iteration and campaign consistency"
-          verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Flujo de campaña con IA para iteración visual controlada"
+          verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "View case study: BlogAgent"
+          verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Ver caso de estudio: BlogAgent"
+          verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "human review before publication"
+          verify_copy "https://www.raulmermans.com/case-studies/blogagent/" /tmp/blogagent-es.html "revisión humana antes de publicar"
 
           verify_copy "https://www.raulmermans.com/en/services/ai-integrations/" /tmp/service-ai-en.html "AI Integrations for Creative Systems"
           verify_copy "https://www.raulmermans.com/en/services/creative-automation/" /tmp/service-automation-en.html "Creative Automation"
