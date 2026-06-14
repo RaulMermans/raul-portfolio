@@ -315,10 +315,6 @@
   .proofCard h3 {
     min-block-size: var(--card-heading-block);
   }
-
-  .processCard h3 {
-    min-block-size: 3lh;
-  }
 }
 
 .processCard p {

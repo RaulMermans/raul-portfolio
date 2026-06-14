@@ -165,9 +165,6 @@ export default function CaseStudiesPage() {
 
         <section id="case-study-grid" className="case-study-project-grid" aria-label={isSpanish ? 'Proyectos' : 'Projects'}>
           {visibleStudies.map((study, index) => {
-            const studyCategories = studyCategoryMap.get(study.href) ?? []
-            const primaryLabel = studyCategories[0]?.label ?? study.subtitle ?? readCase
-            const categoryLabel = studyCategories.map((category) => category.title).join(' / ')
             const variant = tileVariants[(study.id + index) % tileVariants.length]
 
             return (
@@ -193,28 +190,7 @@ export default function CaseStudiesPage() {
                   </span>
                 </span>
                 <span className="case-study-project-tile__caption">
-                  <span className="case-study-project-tile__meta">
-                    <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                    <span aria-hidden="true">/</span>
-                    <span>{categoryLabel || primaryLabel}</span>
-                  </span>
                   <span className="case-study-project-tile__title">{study.title}</span>
-                  <span className="case-study-project-tile__description">{study.description}</span>
-                  {study.commercialRelevance && (
-                    <span className="case-study-project-tile__description case-study-project-tile__description--commercial">
-                      {study.commercialRelevance}
-                    </span>
-                  )}
-                  {study.status && (
-                    <span className="case-study-project-tile__status">{study.status}</span>
-                  )}
-                  {study.tags && study.tags.length > 0 && (
-                    <span className="case-study-project-tile__tags" aria-label="System tags">
-                      {study.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </span>
-                  )}
                 </span>
               </Link>
             )

@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import { type Locale, localizePath } from '@/lib/i18n'
 
-type SnapshotItem = {
+export type SnapshotItem = {
   label: string
   value: string
 }
 
-type ProjectLink = {
+export type ProjectLink = {
   label: string
   href: string
   external?: boolean
@@ -55,7 +55,12 @@ function ProjectLinks({ links }: { links?: ProjectLink[] }) {
 const sectionCopy = {
   en: {
     snapshotEyebrow: 'Project Snapshot',
-    snapshotTitle: 'What the system is',
+    snapshotTitle: 'Project at a glance',
+    snapshotDescription: 'Start here for the project type, use case, my role, the working stack, and its current state.',
+    readingPath: 'Reading path',
+    snapshotStep: 'Snapshot',
+    contextStep: 'Problem',
+    solutionStep: 'System',
     contextEyebrow: 'Business Context',
     contextTitle: 'The workflow problem behind the project',
     solutionEyebrow: 'System / Solution',
@@ -70,7 +75,12 @@ const sectionCopy = {
   },
   es: {
     snapshotEyebrow: 'Resumen del proyecto',
-    snapshotTitle: 'Qué es el sistema',
+    snapshotTitle: 'El proyecto de un vistazo',
+    snapshotDescription: 'Empieza aquí: tipo de proyecto, uso, mi rol, stack de trabajo y estado actual.',
+    readingPath: 'Ruta de lectura',
+    snapshotStep: 'Resumen',
+    contextStep: 'Problema',
+    solutionStep: 'Sistema',
     contextEyebrow: 'Contexto de negocio',
     contextTitle: 'El problema de flujo del proyecto',
     solutionEyebrow: 'Sistema / Solución',
@@ -85,6 +95,77 @@ const sectionCopy = {
   },
 } as const
 
+export function CaseStudySnapshot({
+  items,
+  links,
+  locale = 'en',
+  contextHref = '#business-context',
+  solutionHref = '#system-solution',
+}: {
+  items: SnapshotItem[]
+  links?: ProjectLink[]
+  locale?: Locale
+  contextHref?: string
+  solutionHref?: string
+}) {
+  const copy = sectionCopy[locale]
+
+  return (
+    <section
+      id="project-snapshot"
+      className="data-brief-section data-brief-section--light ui-section case-study-snapshot"
+      aria-labelledby="project-snapshot-heading"
+    >
+      <div className="data-brief-section__container ui-section__container">
+        <div className="case-study-snapshot__layout">
+          <header className="case-study-snapshot__intro">
+            <p className="data-brief-eyebrow ui-eyebrow">{copy.snapshotEyebrow}</p>
+            <h2 id="project-snapshot-heading">{copy.snapshotTitle}</h2>
+            <p className="case-study-snapshot__description">{copy.snapshotDescription}</p>
+
+            <nav className="case-study-snapshot__path" aria-label={copy.readingPath}>
+              <span>{copy.readingPath}</span>
+              <ol>
+                <li aria-current="step">
+                  <span>01</span>
+                  {copy.snapshotStep}
+                </li>
+                <li>
+                  <a href={contextHref}>
+                    <span>02</span>
+                    {copy.contextStep}
+                  </a>
+                </li>
+                <li>
+                  <a href={solutionHref}>
+                    <span>03</span>
+                    {copy.solutionStep}
+                  </a>
+                </li>
+              </ol>
+            </nav>
+          </header>
+
+          <div className="case-study-snapshot__content">
+            <dl className="case-study-snapshot__facts">
+              {items.map((item, index) => (
+                <div key={item.label}>
+                  <dt>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    {item.label}
+                  </dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <ProjectLinks links={links} />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export function CommercialCaseStudyIntro({
   content,
   locale = 'en',
@@ -96,27 +177,7 @@ export function CommercialCaseStudyIntro({
 
   return (
     <>
-      <section
-        id="project-snapshot"
-        className="data-brief-section data-brief-section--light ui-section"
-        aria-labelledby="project-snapshot-heading"
-      >
-        <div className="data-brief-section__container ui-section__container">
-          <div className="data-brief-refresh-heading ui-section-heading">
-            <p className="data-brief-eyebrow ui-eyebrow">{copy.snapshotEyebrow}</p>
-            <h2 id="project-snapshot-heading">{copy.snapshotTitle}</h2>
-          </div>
-          <div className="data-brief-result-grid">
-            {content.snapshot.map((item) => (
-              <article key={item.label}>
-                <h3>{item.label}</h3>
-                <p>{item.value}</p>
-              </article>
-            ))}
-          </div>
-          <ProjectLinks links={content.links} />
-        </div>
-      </section>
+      <CaseStudySnapshot items={content.snapshot} links={content.links} locale={locale} />
 
       <section
         id="business-context"

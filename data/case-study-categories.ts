@@ -36,6 +36,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
   const websiteAuditor = findStudy(caseStudies, 'website-auditor')
   const campaignSandbox = findStudy(caseStudies, 'campaign-sandbox')
+  const blogAgent = findStudy(caseStudies, 'blogagent')
   const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
   const territoryOps = findStudy(caseStudies, 'territoryops-spain')
 
@@ -91,6 +92,19 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
                 description: campaignSandbox.description,
                 image: campaignSandbox.image,
                 href: campaignSandbox.href,
+              },
+            ]
+          : []),
+        ...(blogAgent
+          ? [
+              {
+                title: blogAgent.title,
+                label:
+                  blogAgent.subtitle ??
+                  (isSpanish ? 'Flujo editorial con IA' : 'AI editorial workflow'),
+                description: blogAgent.description,
+                image: blogAgent.image,
+                href: blogAgent.href,
               },
             ]
           : []),

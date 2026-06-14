@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">BlogAgent editorial workflow</title>
+  <desc id="desc">A restrained technical diagram showing a source-aware drafting workflow.</desc>
+  <rect width="1600" height="1000" fill="#171512"/>
+  <g fill="none" stroke="#403b35" stroke-width="2">
+    <path d="M80 120H1520"/>
+    <path d="M80 880H1520"/>
+    <path d="M80 120V880"/>
+    <path d="M1520 120V880"/>
+    <path d="M540 120V880"/>
+  </g>
+  <g font-family="monospace" letter-spacing="8" fill="#c9beb1">
+    <text x="112" y="178" font-size="24">AI SYSTEMS / EDITORIAL WORKFLOW</text>
+    <text x="582" y="178" font-size="18">SOURCE-AWARE DRAFTING</text>
+  </g>
+  <g fill="#f5f0eb" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+    <text x="108" y="360" font-size="124">BLOG</text>
+    <text x="108" y="480" font-size="124">AGENT</text>
+  </g>
+  <g font-family="monospace" font-size="18" letter-spacing="3">
+    <text x="112" y="600" fill="#c41e3a">HUMAN REVIEW REQUIRED</text>
+    <text x="112" y="646" fill="#8f877e">NO POSTING / NO SCHEDULING</text>
+    <text x="112" y="692" fill="#8f877e">MOCK-FIRST / LIVE OPT-IN</text>
+  </g>
+  <g font-family="monospace" font-size="18">
+    <g>
+      <rect x="582" y="250" width="270" height="92" fill="#211e1a" stroke="#504940"/>
+      <text x="614" y="306" fill="#f5f0eb">01 QUERY CONTRACT</text>
+    </g>
+    <g>
+      <rect x="930" y="250" width="270" height="92" fill="#211e1a" stroke="#504940"/>
+      <text x="962" y="306" fill="#f5f0eb">02 RESEARCH</text>
+    </g>
+    <g>
+      <rect x="582" y="414" width="270" height="92" fill="#211e1a" stroke="#504940"/>
+      <text x="614" y="470" fill="#f5f0eb">03 CANDIDATES</text>
+    </g>
+    <g>
+      <rect x="930" y="414" width="270" height="92" fill="#211e1a" stroke="#504940"/>
+      <text x="962" y="470" fill="#f5f0eb">04 WRITER</text>
+    </g>
+    <g>
+      <rect x="582" y="578" width="270" height="92" fill="#211e1a" stroke="#504940"/>
+      <text x="614" y="634" fill="#f5f0eb">05 REVIEW</text>
+    </g>
+    <g>
+      <rect x="930" y="578" width="270" height="92" fill="#c41e3a" stroke="#c41e3a"/>
+      <text x="962" y="634" fill="#f5f0eb">06 FINAL CONTRACT</text>
+    </g>
+  </g>
+  <g fill="none" stroke="#c41e3a" stroke-width="3">
+    <path d="M852 296H912"/>
+    <path d="M1200 342V390H717V414"/>
+    <path d="M852 460H912"/>
+    <path d="M1065 506V554H717V578"/>
+    <path d="M852 624H912"/>
+  </g>
+  <g fill="#c41e3a">
+    <path d="M912 296l-14-8v16z"/>
+    <path d="M717 414l-8-14h16z"/>
+    <path d="M912 460l-14-8v16z"/>
+    <path d="M717 578l-8-14h16z"/>
+    <path d="M912 624l-14-8v16z"/>
+  </g>
+  <text x="582" y="806" fill="#8f877e" font-family="monospace" font-size="18" letter-spacing="4">COPY-READY DRAFT / TRACEABLE REVIEW</text>
+</svg>

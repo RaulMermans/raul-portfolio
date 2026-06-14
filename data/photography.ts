@@ -44,6 +44,8 @@ const architectureMeta = [
   [12, 2021, 3031],
   [13, 2080, 3120],
   [14, 2080, 3120],
+  [15, 1942, 2861],
+  [16, 2080, 3120],
 ] as const
 
 const streetMeta = [
@@ -71,6 +73,8 @@ const streetMeta = [
   [22, 1939, 2619],
   [23, 2080, 3120],
   [24, 2080, 3120],
+  [25, 2080, 3120],
+  [26, 2015, 3022],
 ] as const
 
 function buildPhotos(

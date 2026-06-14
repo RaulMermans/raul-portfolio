@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
@@ -213,27 +214,36 @@ export default function CampaignSandboxPage() {
           ))}
         </nav>
 
-        <section className="data-brief-section data-brief-section--light" aria-labelledby="snapshot-heading">
-          <div className="data-brief-section__container">
-            <div className="data-brief-refresh-heading">
-              <p className="data-brief-eyebrow">Project snapshot</p>
-              <h2 id="snapshot-heading">What the system is</h2>
-            </div>
-            <div className="campaign-sandbox-meta-grid">
-              {[
-                ['Role', 'Product design, AI workflow architecture, full-stack implementation'],
-                ['Type', 'Internal AI tool'],
-                ['Stack', 'Next.js, TypeScript, React, Zod, OpenAI structured outputs, deterministic validation'],
-                ['Status', 'Finished internal v1'],
-              ].map(([label, value]) => (
-                <article key={label}>
-                  <h3>{label}</h3>
-                  <p>{value}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <CaseStudySnapshot
+          locale={locale}
+          contextHref="#problem"
+          solutionHref="#architecture"
+          items={[
+            { label: locale === 'es' ? 'Tipo' : 'Type', value: locale === 'es' ? 'Herramienta interna de IA' : 'Internal AI tool' },
+            {
+              label: locale === 'es' ? 'Uso' : 'Use case',
+              value:
+                locale === 'es'
+                  ? 'Estrategia de campaña, comparación de rutas y planificación de ejecución'
+                  : 'Campaign strategy, route comparison, and execution planning',
+            },
+            {
+              label: locale === 'es' ? 'Rol' : 'Role',
+              value:
+                locale === 'es'
+                  ? 'Diseño de producto, arquitectura de flujo con IA e implementación full-stack'
+                  : 'Product design, AI workflow architecture, and full-stack implementation',
+            },
+            {
+              label: 'Stack',
+              value: 'Next.js, TypeScript, React, Zod, OpenAI structured outputs, deterministic validation',
+            },
+            {
+              label: locale === 'es' ? 'Estado' : 'Status',
+              value: locale === 'es' ? 'v1 interna finalizada' : 'Finished internal v1',
+            },
+          ]}
+        />
 
         <section
           id="problem"
