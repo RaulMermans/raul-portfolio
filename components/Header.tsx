@@ -11,9 +11,10 @@ import styles from './Header.module.css'
 
 interface HeaderProps {
   locale?: Locale
+  transparent?: boolean
 }
 
-export default function Header({ locale = 'en' }: HeaderProps) {
+export default function Header({ locale = 'en', transparent = false }: HeaderProps) {
   const pathname = usePathname()
   const copy = getSiteCopy(locale).header
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -115,7 +116,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
   const activePath = pathname || localizePath('/', locale)
   const isCaseStudiesRoute = activePath.includes('/case-studies')
   const isAboutRoute = activePath.includes('/about')
-  const surface = isCaseStudiesRoute ? 'case-studies' : isAboutRoute ? 'dark' : undefined
+  const surface = transparent ? 'dark' : isCaseStudiesRoute ? 'case-studies' : isAboutRoute ? 'dark' : undefined
   const isSpanish = locale === 'es'
   const englishPath = switchLocalePath(activePath, 'en')
   const spanishPath = switchLocalePath(activePath, 'es')
@@ -129,7 +130,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
 
   return (
     <>
-      <header className={styles.headerBar} data-surface={surface}>
+      <header className={styles.headerBar} data-surface={surface} data-transparent={transparent || undefined}>
         <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
           RM
         </Link>

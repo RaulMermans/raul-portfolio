@@ -6992,7 +6992,8 @@ main.case-study-page-new {
 
 .blogagent-limitations li {
   align-items: baseline;
-  color: var(--blogagent-ink);
+  border-color: rgba(242, 239, 232, 0.16);
+  color: rgba(242, 239, 232, 0.82);
   display: grid;
   gap: 1rem;
   grid-template-columns: 2.5rem 1fr;
@@ -7000,7 +7001,7 @@ main.case-study-page-new {
 }
 
 .blogagent-limitations li::before {
-  color: var(--blogagent-muted);
+  color: rgba(242, 239, 232, 0.5);
   content: counter(list-item, decimal-leading-zero);
   font-family: var(--font-mono);
   font-size: 0.65rem;

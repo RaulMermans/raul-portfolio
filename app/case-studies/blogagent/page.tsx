@@ -528,7 +528,7 @@ export default function BlogAgentPage() {
           </div>
         </section>
 
-        <section id="learning" className="data-brief-section data-brief-section--light blogagent-closing" aria-labelledby="blogagent-learning">
+        <section id="learning" className="data-brief-section data-brief-section--dark blogagent-closing" aria-labelledby="blogagent-learning">
           <div className="data-brief-section__container">
             <p className="data-brief-eyebrow">{t.learningEyebrow}</p>
             <h2 id="blogagent-learning">{t.learningTitle}</h2>

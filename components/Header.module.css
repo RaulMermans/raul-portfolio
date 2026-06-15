@@ -33,6 +33,14 @@
   backdrop-filter: blur(18px) saturate(120%);
 }
 
+.headerBar[data-transparent="true"] {
+  border-bottom: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
 .logo {
   display: inline-flex;
   width: fit-content;
