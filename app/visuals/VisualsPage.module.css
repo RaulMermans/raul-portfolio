@@ -1,57 +1,11 @@
 .grain {
   position: fixed;
-  inset: -100%;
-  width: 300%;
-  height: 300%;
+  inset: 0;
   pointer-events: none;
   z-index: 10000;
-  opacity: 0.04;
+  opacity: 0.025;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grainAnimation 0.15s steps(1) infinite;
-}
-
-@keyframes grainAnimation {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-5%, -10%);
-  }
-
-  20% {
-    transform: translate(-15%, 5%);
-  }
-
-  30% {
-    transform: translate(7%, -25%);
-  }
-
-  40% {
-    transform: translate(-5%, 25%);
-  }
-
-  50% {
-    transform: translate(-15%, 10%);
-  }
-
-  60% {
-    transform: translate(15%, 0%);
-  }
-
-  70% {
-    transform: translate(0%, 15%);
-  }
-
-  80% {
-    transform: translate(3%, 20%);
-  }
-
-  90% {
-    transform: translate(-10%, 10%);
-  }
 }
 
 .vignette {
@@ -71,52 +25,6 @@
   background: repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(26, 23, 20, 0.3) 1px, rgba(26, 23, 20, 0.3) 2px);
 }
 
-.vhsGlitch {
-  position: fixed;
-  left: 0;
-  right: 0;
-  height: 2px;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(26, 23, 20, 0.05) 30%, rgba(26, 23, 20, 0.1) 50%, rgba(26, 23, 20, 0.05) 70%, transparent 100%);
-  animation: vhsGlitch 15s ease-in-out infinite;
-}
-
-@keyframes vhsGlitch {
-  0%,
-  88%,
-  100% {
-    opacity: 0;
-    top: -10px;
-  }
-
-  90% {
-    opacity: 1;
-    top: 15%;
-  }
-
-  91% {
-    opacity: 0.5;
-    top: 35%;
-  }
-
-  92% {
-    opacity: 0;
-    top: 55%;
-  }
-
-  93% {
-    opacity: 0.7;
-    top: 75%;
-  }
-
-  95% {
-    opacity: 0;
-    top: 95%;
-  }
-}
-
 .lightLeak {
   position: fixed;
   top: -30%;
@@ -127,7 +35,6 @@
   z-index: 2;
   filter: blur(80px);
   background: radial-gradient(ellipse at 60% 40%, rgba(255, 170, 136, 0.12) 0%, rgba(255, 181, 160, 0.06) 30%, transparent 60%);
-  animation: lightLeakPulse 12s ease-in-out infinite;
 }
 
 .lightLeakTwo {
@@ -140,20 +47,6 @@
   z-index: 2;
   filter: blur(100px);
   background: radial-gradient(ellipse at 40% 60%, rgba(196, 30, 58, 0.04) 0%, transparent 50%);
-  animation: lightLeakPulse 18s ease-in-out infinite reverse;
-}
-
-@keyframes lightLeakPulse {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1) rotate(0deg);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.1) rotate(3deg);
-  }
 }
 
 .filmBurn {
@@ -336,7 +229,14 @@
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.cardPicture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .cardImage {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -578,9 +478,20 @@
   transform: translateY(0) scale(1);
 }
 
-.exhibitionImage {
+.exhibitionPicture {
+  display: flex;
   max-width: 100%;
   max-height: 75vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.exhibitionImage {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
 }
@@ -856,25 +767,13 @@
 }
 
 @media (max-width: 768px) {
-  .grain {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-  }
-
-  .lightLeak {
-    top: -18%;
-    right: 0;
-    width: min(46vw, 15rem);
-    filter: blur(56px);
-  }
-
-  .lightLeakTwo {
-    bottom: -20%;
-    left: 0;
-    width: min(42vw, 14rem);
-    filter: blur(64px);
+  .grain,
+  .vignette,
+  .scanlines,
+  .lightLeak,
+  .lightLeakTwo,
+  .filmBurn {
+    display: none;
   }
 
   .container {
@@ -961,7 +860,6 @@
   .grain,
   .vignette,
   .scanlines,
-  .vhsGlitch,
   .lightLeak,
   .lightLeakTwo,
   .filmBurn,

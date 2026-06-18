@@ -212,8 +212,13 @@ export const siteCopy = {
       contact: {
         title: 'Start with the creative system.',
         subtitle:
-          'Use this form to describe the process, tool, workflow, or brand system you want to improve with AI. Best fit: creative teams, brand builders, content studios, founders, and culture-led companies exploring AI integrations, internal tools, campaign systems, or repeatable creative workflows.',
+          'Tell me about the process, tool, workflow, or brand system you want to improve with AI. Best fit: creative teams, brand builders, content studios, founders, and culture-led companies exploring AI integrations, internal tools, campaign systems, or repeatable creative workflows.',
         intro: 'You do not need a finished brief. A clear problem, current process, and desired outcome are enough to start.',
+        availability: 'Available Q3 2026',
+        location: 'Madrid · Remote · EU',
+        linksLabel: 'Direct contact options',
+        emailLabel: 'Email',
+        linkedinLabel: 'LinkedIn',
       },
       contactForm: {
         projectTypePlaceholder: 'Select focus area',
@@ -529,8 +534,13 @@ export const siteCopy = {
       contact: {
         title: 'Empieza por el sistema creativo.',
         subtitle:
-          'Usa este formulario para describir el proceso, herramienta, flujo o sistema de marca que quieres mejorar con IA. Encaja especialmente bien con equipos creativos, marcas, estudios de contenido, founders y proyectos culturales que exploran integraciones de IA, herramientas internas, sistemas de campaña o flujos creativos repetibles.',
+          'Cuéntame qué proceso, herramienta, flujo o sistema de marca quieres mejorar con IA. Encaja especialmente bien con equipos creativos, marcas, estudios de contenido, founders y proyectos culturales que exploran integraciones de IA, herramientas internas, sistemas de campaña o flujos creativos repetibles.',
         intro: 'No hace falta tener un brief cerrado. Un problema claro, el proceso actual y el resultado deseado son suficiente para empezar.',
+        availability: 'Disponible T3 2026',
+        location: 'Madrid · Remoto · UE',
+        linksLabel: 'Opciones de contacto directo',
+        emailLabel: 'Email',
+        linkedinLabel: 'LinkedIn',
       },
       contactForm: {
         projectTypePlaceholder: 'Selecciona el enfoque',

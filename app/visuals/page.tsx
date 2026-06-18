@@ -1,8 +1,9 @@
 'use client'
 
+/* eslint-disable @next/next/no-img-element */
+
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
 import { type Locale, getLocaleFromPath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -269,6 +270,53 @@ function getWorksData(locale: Locale) {
   return locale === 'es' ? worksDataEs : worksData
 }
 
+function getImageVariant(src: string, width: 640 | 1400) {
+  return src.replace(/\.webp$/, `-${width}.webp`)
+}
+
+interface ResponsiveVisualImageProps {
+  src: string
+  alt: string
+  className: string
+  pictureClassName: string
+  sizes: string
+  priority?: boolean
+  useOriginal?: boolean
+  onError: () => void
+}
+
+function ResponsiveVisualImage({
+  src,
+  alt,
+  className,
+  pictureClassName,
+  sizes,
+  priority = false,
+  useOriginal = false,
+  onError,
+}: ResponsiveVisualImageProps) {
+  const fallbackSrc = useOriginal ? src : getImageVariant(src, 1400)
+  const srcSet = useOriginal
+    ? undefined
+    : `${getImageVariant(src, 640)} 640w, ${getImageVariant(src, 1400)} 1400w`
+
+  return (
+    <picture className={pictureClassName}>
+      <img
+        src={fallbackSrc}
+        srcSet={srcSet}
+        sizes={srcSet ? sizes : undefined}
+        alt={alt}
+        className={className}
+        decoding="async"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+        onError={onError}
+      />
+    </picture>
+  )
+}
+
 export default function VisualsPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
@@ -279,10 +327,18 @@ export default function VisualsPage() {
   const [isAnimating, setIsAnimating] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right'>('right')
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set())
-  const [isMobile, setIsMobile] = useState(false)
   const dialogRef = useRef<HTMLDivElement>(null)
   const lastTriggerRef = useRef<HTMLElement | null>(null)
-  const scrollLockRef = useRef<{ scrollY: number; bodyOverflow: string; bodyPosition: string; bodyTop: string; bodyWidth: string; htmlOverflow: string } | null>(null)
+  const scrollLockRef = useRef<{
+    scrollY: number
+    bodyOverflow: string
+    bodyPosition: string
+    bodyTop: string
+    bodyWidth: string
+    bodyPaddingRight: string
+    htmlOverflow: string
+    htmlScrollBehavior: string
+  } | null>(null)
   const swipeStateRef = useRef({
     active: false,
     startX: 0,
@@ -292,15 +348,6 @@ export default function VisualsPage() {
     locked: false,
   })
   const suppressCardClickRef = useRef(false)
-
-  // Detect mobile device for performance optimization
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    // No resize listener - check only on mount to avoid unnecessary re-renders
-  }, [])
 
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -372,7 +419,8 @@ export default function VisualsPage() {
 
     const cleanupFocusTrap = trapFocus(dialogRef.current)
     const { body, documentElement } = document
-    const scrollY = window.scrollY
+    const scrollY = window.scrollY || documentElement.scrollTop || body.scrollTop
+    const scrollbarWidth = Math.max(0, window.innerWidth - documentElement.clientWidth)
 
     scrollLockRef.current = {
       scrollY,
@@ -380,7 +428,9 @@ export default function VisualsPage() {
       bodyPosition: body.style.position,
       bodyTop: body.style.top,
       bodyWidth: body.style.width,
+      bodyPaddingRight: body.style.paddingRight,
       htmlOverflow: documentElement.style.overflow,
+      htmlScrollBehavior: documentElement.style.scrollBehavior,
     }
 
     documentElement.style.overflow = 'hidden'
@@ -388,6 +438,9 @@ export default function VisualsPage() {
     body.style.position = 'fixed'
     body.style.top = `-${scrollY}px`
     body.style.width = '100%'
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`
+    }
 
     return () => {
       cleanupFocusTrap()
@@ -399,20 +452,23 @@ export default function VisualsPage() {
         body.style.position = lock.bodyPosition
         body.style.top = lock.bodyTop
         body.style.width = lock.bodyWidth
-        window.scrollTo({ top: lock.scrollY, behavior: 'auto' })
+        body.style.paddingRight = lock.bodyPaddingRight
+        documentElement.style.scrollBehavior = 'auto'
+        window.scrollTo(0, lock.scrollY)
+        window.requestAnimationFrame(() => {
+          documentElement.style.scrollBehavior = lock.htmlScrollBehavior
+        })
       }
     }
   }, [isExhibitionOpen])
 
   // Disable scroll-snap for this page
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    const previousScrollSnapType = document.documentElement.style.scrollSnapType
     document.documentElement.style.scrollSnapType = 'none'
-    document.body.style.overflowY = 'auto'
-    
+
     return () => {
-      document.documentElement.style.scrollSnapType = ''
-      document.body.style.overflowY = ''
+      document.documentElement.style.scrollSnapType = previousScrollSnapType
     }
   }, [])
 
@@ -505,18 +561,13 @@ export default function VisualsPage() {
 
   return (
     <>
-      {/* Decorative elements - disabled on mobile for performance */}
+      {/* Decorative elements are static and hidden on mobile for performance. */}
       <div className={styles.grain} aria-hidden="true"></div>
-      {!isMobile && (
-        <>
-          <div className={styles.vignette} aria-hidden="true"></div>
-          <div className={styles.scanlines} aria-hidden="true"></div>
-          <div className={styles.vhsGlitch} aria-hidden="true"></div>
-          <div className={styles.lightLeak} aria-hidden="true"></div>
-          <div className={styles.lightLeakTwo} aria-hidden="true"></div>
-          <div className={styles.filmBurn} aria-hidden="true"></div>
-        </>
-      )}
+      <div className={styles.vignette} aria-hidden="true"></div>
+      <div className={styles.scanlines} aria-hidden="true"></div>
+      <div className={styles.lightLeak} aria-hidden="true"></div>
+      <div className={styles.lightLeakTwo} aria-hidden="true"></div>
+      <div className={styles.filmBurn} aria-hidden="true"></div>
 
       <Header locale={locale} />
       
@@ -563,15 +614,14 @@ export default function VisualsPage() {
                   }}
                 >
                   <div className={styles.cardImageWrapper}>
-                    <Image
+                    <ResponsiveVisualImage
                       src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
                       alt={currentWork.alt}
-                      fill
                       className={styles.cardImage}
+                      pictureClassName={styles.cardPicture}
                       priority
-                      quality={85}
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      style={{ objectFit: 'cover' }}
+                      useOriginal={imageErrors.has(currentWork.catalog)}
                       onError={() => {
                         setImageErrors(prev => new Set(prev).add(currentWork.catalog))
                       }}
@@ -643,16 +693,14 @@ export default function VisualsPage() {
             <div className={styles.exhibitionImageWrap}>
               {currentWork && (
                 <>
-                  <Image
+                  <ResponsiveVisualImage
                     key={currentWork.catalog}
                     src={imageErrors.has(currentWork.catalog) ? '/images/placeholders/image-placeholder.webp' : currentWork.image}
                     alt={currentWork.alt}
-                    width={1400}
-                    height={1400}
                     className={styles.exhibitionImage}
-                    quality={90}
-                    priority
-                    style={{ objectFit: 'contain' }}
+                    pictureClassName={styles.exhibitionPicture}
+                    sizes="(max-width: 900px) 100vw, 55vw"
+                    useOriginal={imageErrors.has(currentWork.catalog)}
                     onError={() => {
                       setImageErrors(prev => new Set(prev).add(currentWork.catalog))
                     }}

@@ -1,13 +1,14 @@
 'use client'
 
 import { getSiteCopy } from '@/data/site-copy'
-import Reveal from './Reveal'
-import ContactForm from './ContactForm'
+import { PUBLIC_CONTACT_EMAIL, PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
 import { type Locale } from '@/lib/i18n'
 
 interface ContactProps {
   locale?: Locale
 }
+
+const LINKEDIN_URL = 'https://linkedin.com/in/raulmermans'
 
 export default function Contact({ locale = 'en' }: ContactProps) {
   const copy = getSiteCopy(locale).home.contact
@@ -21,13 +22,33 @@ export default function Contact({ locale = 'en' }: ContactProps) {
         </p>
         
         <div className="contact__divider reveal reveal-delay-2"></div>
-        
-        {/* Contact Form */}
-        <div id="contact-form" className="contact__form-wrapper reveal reveal-delay-2">
-          <div className="contact-form__intro">
-            <p className="contact-form__intro-text">{copy.intro}</p>
+
+        <div id="contact-form" className="contact-direct reveal reveal-delay-2">
+          <div className="contact-direct__meta">
+            <p className="contact-direct__intro">{copy.intro}</p>
+            <div className="contact-direct__status">
+              <span>{copy.availability}</span>
+              <span>{copy.location}</span>
+            </div>
           </div>
-          <ContactForm locale={locale} />
+
+          <div className="contact-direct__links" aria-label={copy.linksLabel}>
+            <a href={PUBLIC_CONTACT_MAILTO} className="contact-direct__link">
+              <span>{copy.emailLabel}</span>
+              <strong>{PUBLIC_CONTACT_EMAIL}</strong>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-direct__link"
+            >
+              <span>{copy.linkedinLabel}</span>
+              <strong>Raúl Mermans</strong>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
