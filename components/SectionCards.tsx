@@ -243,144 +243,210 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
 
   return (
     <section id="work" className={styles.container} data-home-section="work">
-      <div className={styles.controls}>
-        <button
-          type="button"
-          onClick={goPrev}
-          disabled={isTransitioning}
-          className={`${styles.nav} ${styles.navPrev}`}
-          aria-controls={gridId}
-          aria-label={`${copy.prev} ${sections[previousIndex].title}`}
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
+      <div className={styles.desktopCarousel}>
+        <div className={styles.controls}>
+          <button
+            type="button"
+            onClick={goPrev}
+            disabled={isTransitioning}
+            className={`${styles.nav} ${styles.navPrev}`}
+            aria-controls={gridId}
+            aria-label={`${copy.prev} ${sections[previousIndex].title}`}
           >
-            <path d="m15 18-6-6 6-6" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          onClick={goNext}
-          disabled={isTransitioning}
-          className={`${styles.nav} ${styles.navNext}`}
-          aria-controls={gridId}
-          aria-label={`${copy.next} ${sections[nextIndex].title}`}
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            disabled={isTransitioning}
+            className={`${styles.nav} ${styles.navNext}`}
+            aria-controls={gridId}
+            aria-label={`${copy.next} ${sections[nextIndex].title}`}
           >
-            <path d="m9 18 6-6-6-6" />
-          </svg>
-        </button>
-      </div>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
 
-      <div
-        id={gridId}
-        className={styles.stage}
-        role="region"
-        aria-roledescription="carousel"
-        aria-label={locale === 'es' ? 'Proyectos seleccionados' : 'Selected projects'}
-        tabIndex={0}
-        onKeyDown={handleStageKeyDown}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerEnd}
-        onPointerCancel={handlePointerEnd}
-        onPointerLeave={handlePointerEnd}
-      >
-        <p className={styles.srOnly} aria-live="polite">
-          {locale === 'es' ? 'Mostrando' : 'Showing'} {activeIndex + 1} {locale === 'es' ? 'de' : 'of'} {sections.length}: {sections[activeIndex].title}
-        </p>
+        <div
+          id={gridId}
+          className={styles.stage}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label={locale === 'es' ? 'Proyectos seleccionados' : 'Selected projects'}
+          tabIndex={0}
+          onKeyDown={handleStageKeyDown}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerEnd}
+          onPointerCancel={handlePointerEnd}
+          onPointerLeave={handlePointerEnd}
+        >
+          <p className={styles.srOnly} aria-live="polite">
+            {locale === 'es' ? 'Mostrando' : 'Showing'} {activeIndex + 1} {locale === 'es' ? 'de' : 'of'} {sections.length}: {sections[activeIndex].title}
+          </p>
 
-        <div className={styles.track} style={trackStyle} onTransitionEnd={handleTrackTransitionEnd}>
-          {loopedSections.map((section, slideIndex) => {
-            const relativeIndex = slideIndex - visualIndex
-            const isActiveSlide = relativeIndex === 0
-            const slideStyle = getSlideStyle(relativeIndex)
-            const titleId = `${gridId}-title-${slideIndex}`
+          <div className={styles.track} style={trackStyle} onTransitionEnd={handleTrackTransitionEnd}>
+            {loopedSections.map((section, slideIndex) => {
+              const relativeIndex = slideIndex - visualIndex
+              const isActiveSlide = relativeIndex === 0
+              const slideStyle = getSlideStyle(relativeIndex)
+              const titleId = `${gridId}-title-${slideIndex}`
 
-            return (
-              <div
-                key={`${section.id}-${slideIndex}`}
-                className={styles.slide}
-                style={slideStyle}
-                aria-hidden={Math.abs(relativeIndex) > 1}
-              >
-                <Link
-                  href={section.href}
-                  className={styles.card}
-                  style={{ '--section-accent': section.accent } as CSSProperties}
-                  aria-labelledby={titleId}
-                  aria-current={isActiveSlide ? 'true' : undefined}
-                  tabIndex={isActiveSlide ? 0 : -1}
-                  prefetch={false}
-                  draggable={false}
-                  onMouseEnter={() => router.prefetch(section.href)}
-                  onFocus={() => router.prefetch(section.href)}
-                  onClick={(event) => handleCardClick(event, slideIndex, isActiveSlide)}
+              return (
+                <div
+                  key={`${section.id}-${slideIndex}`}
+                  className={styles.slide}
+                  style={slideStyle}
+                  aria-hidden={Math.abs(relativeIndex) > 1}
                 >
-                  <div className={styles.content}>
-                    <div className={styles.contentTop}>
-                      <div className={styles.indexRow} aria-hidden="true">
-                        <span className={styles.index}>{section.index}</span>
-                        <span className={styles.count}>/ {totalLabel}</span>
+                  <Link
+                    href={section.href}
+                    className={styles.card}
+                    style={{ '--section-accent': section.accent } as CSSProperties}
+                    aria-labelledby={titleId}
+                    aria-current={isActiveSlide ? 'true' : undefined}
+                    tabIndex={isActiveSlide ? 0 : -1}
+                    prefetch={false}
+                    draggable={false}
+                    onMouseEnter={() => router.prefetch(section.href)}
+                    onFocus={() => router.prefetch(section.href)}
+                    onClick={(event) => handleCardClick(event, slideIndex, isActiveSlide)}
+                  >
+                    <div className={styles.content}>
+                      <div className={styles.contentTop}>
+                        <div className={styles.indexRow} aria-hidden="true">
+                          <span className={styles.index}>{section.index}</span>
+                          <span className={styles.count}>/ {totalLabel}</span>
+                        </div>
+                        <p className={styles.eyebrow}>{section.eyebrow}</p>
                       </div>
-                      <p className={styles.eyebrow}>{section.eyebrow}</p>
-                    </div>
 
-                    <div className={styles.copy}>
-                      <h2 id={titleId} className={styles.title}>
-                        {section.title}
-                      </h2>
-                      <p className={styles.description}>{section.description}</p>
-                    </div>
+                      <div className={styles.copy}>
+                        <h2 id={titleId} className={styles.title}>
+                          {section.title}
+                        </h2>
+                        <p className={styles.description}>{section.description}</p>
+                      </div>
 
-                    <span className={styles.cta}>
-                      <span>{copy.viewLabel}</span>
-                      <span className={styles.ctaLine} aria-hidden="true" />
-                      <span className={styles.ctaArrow} aria-hidden="true">
-                        ↗
+                      <span className={styles.cta}>
+                        <span>{copy.viewLabel}</span>
+                        <span className={styles.ctaLine} aria-hidden="true" />
+                        <span className={styles.ctaArrow} aria-hidden="true">
+                          ↗
+                        </span>
                       </span>
-                    </span>
-                  </div>
+                    </div>
 
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={section.image}
-                      alt={`${section.title} preview image`}
-                      fill
-                      priority={slideIndex === 1}
-                      loading={slideIndex === 1 ? undefined : 'lazy'}
-                      quality={88}
-                      sizes="(max-width: 640px) 86vw, (max-width: 1200px) 82vw, 980px"
-                      style={{ objectFit: 'cover' }}
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    />
-                    <div className={styles.imageScrim} />
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        src={section.image}
+                        alt={`${section.title} preview image`}
+                        fill
+                        priority={slideIndex === 1}
+                        loading={slideIndex === 1 ? undefined : 'lazy'}
+                        quality={88}
+                        sizes="(max-width: 1200px) 82vw, 980px"
+                        style={{ objectFit: 'cover' }}
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                      />
+                      <div className={styles.imageScrim} />
+                    </div>
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
+
+      <nav
+        className={styles.mobileGrid}
+        aria-label={locale === 'es' ? 'Proyectos seleccionados' : 'Selected projects'}
+        data-mobile-audit="section-card-list"
+      >
+        {sections.map((section, sectionIndex) => {
+          const titleId = `${gridId}-mobile-title-${sectionIndex}`
+
+          return (
+            <Link
+              key={section.id}
+              href={section.href}
+              className={`${styles.card} ${styles.mobileCard}`}
+              style={{ '--section-accent': section.accent } as CSSProperties}
+              aria-labelledby={titleId}
+              prefetch={false}
+              onMouseEnter={() => router.prefetch(section.href)}
+              onFocus={() => router.prefetch(section.href)}
+            >
+              <div className={styles.content}>
+                <div className={styles.contentTop}>
+                  <div className={styles.indexRow} aria-hidden="true">
+                    <span className={styles.index}>{section.index}</span>
+                    <span className={styles.count}>/ {totalLabel}</span>
+                  </div>
+                  <p className={styles.eyebrow}>{section.eyebrow}</p>
+                </div>
+
+                <div className={styles.copy}>
+                  <h2 id={titleId} className={styles.title}>
+                    {section.title}
+                  </h2>
+                  <p className={styles.description}>{section.description}</p>
+                </div>
+
+                <span className={styles.cta}>
+                  <span>{copy.viewLabel}</span>
+                  <span className={styles.ctaLine} aria-hidden="true" />
+                  <span className={styles.ctaArrow} aria-hidden="true">
+                    ↗
+                  </span>
+                </span>
+              </div>
+
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={section.image}
+                  alt={`${section.title} preview image`}
+                  fill
+                  priority={sectionIndex === 0}
+                  loading={sectionIndex === 0 ? undefined : 'lazy'}
+                  quality={84}
+                  sizes="calc(100vw - 2rem)"
+                  style={{ objectFit: 'cover' }}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                />
+                <div className={styles.imageScrim} />
+              </div>
+            </Link>
+          )
+        })}
+      </nav>
     </section>
   )
 }

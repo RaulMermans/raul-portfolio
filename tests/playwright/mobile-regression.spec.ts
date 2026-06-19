@@ -112,15 +112,96 @@ test.describe('Mobile Regression', () => {
     await expect(trigger).toBeFocused()
   })
 
-  test('homepage work rail keeps explicit affordance on mobile', async ({ page }) => {
+  test('homepage section cards are direct, aligned links on mobile', async ({ page }) => {
     await preparePage(page, '/en/')
 
     const workSection = page.locator('[data-home-section="work"]')
     await workSection.scrollIntoViewIfNeeded()
-    await expect(page.getByRole('button', { name: 'Next card' })).toBeVisible()
-    await expect(page.getByRole('button', { name: 'Previous card' })).toBeVisible()
+    const cardList = workSection.locator('[data-mobile-audit="section-card-list"]')
+    const cards = cardList.getByRole('link')
 
-    await expectStableScreenshot(workSection, 'home-work-rail.png')
+    await expect(cardList).toBeVisible()
+    await expect(cards).toHaveCount(4)
+    const overflow = await page.evaluate(() => ({
+      viewportWidth: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+    }))
+    expect(overflow.documentWidth).toBeLessThanOrEqual(overflow.viewportWidth)
+
+    await cards.first().click()
+    await expect(page).toHaveURL(/\/en\/case-studies$/)
+  })
+
+  test('homepage section carousel remains available on desktop', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await preparePage(page, '/en/')
+
+    const workSection = page.locator('[data-home-section="work"]')
+    await workSection.scrollIntoViewIfNeeded()
+
+    await expect(workSection.getByRole('button', { name: /Next section:/ })).toBeVisible()
+    await expect(workSection.getByRole('button', { name: /Previous section:/ })).toBeVisible()
+    await expect(workSection.locator('[data-mobile-audit="section-card-list"]')).toBeHidden()
+  })
+
+  test('case studies landing starts with a full unobstructed card on mobile', async ({ page }) => {
+    await preparePage(page, '/en/case-studies/')
+
+    const browserChrome = page.locator('[data-mobile-audit="case-study-browser"]')
+    const grid = page.locator('[data-mobile-audit="case-study-grid"]')
+    const firstCard = grid.locator('[data-mobile-audit="case-study-card"]').first()
+
+    await expect(browserChrome).toBeVisible()
+    await expect(firstCard).toBeVisible()
+
+    const initialLayout = await page.evaluate(() => {
+      const chrome = document.querySelector('[data-mobile-audit="case-study-browser"]')
+      const card = document.querySelector('[data-mobile-audit="case-study-card"]')
+
+      if (!(chrome instanceof HTMLElement) || !(card instanceof HTMLElement)) {
+        throw new Error('Case study mobile audit elements are missing')
+      }
+
+      const chromeRect = chrome.getBoundingClientRect()
+      const cardRect = card.getBoundingClientRect()
+
+      return {
+        chromePosition: getComputedStyle(chrome).position,
+        chromeBottom: chromeRect.bottom,
+        cardTop: cardRect.top,
+        cardLeft: cardRect.left,
+        cardRight: cardRect.right,
+        viewportWidth: window.innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+      }
+    })
+
+    expect(initialLayout.chromePosition).toBe('static')
+    expect(initialLayout.cardTop).toBeGreaterThanOrEqual(initialLayout.chromeBottom - 1)
+    expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
+    expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
+    expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
+
+    await page.getByRole('button', { name: 'Go to filtered case studies' }).click()
+    await expect.poll(() => page.evaluate(() => {
+      const header = document.querySelector('header')
+      const card = document.querySelector('[data-mobile-audit="case-study-card"]')
+
+      if (!(header instanceof HTMLElement) || !(card instanceof HTMLElement)) {
+        throw new Error('Case study scroll audit elements are missing')
+      }
+
+      return card.getBoundingClientRect().top - header.getBoundingClientRect().bottom
+    })).toBeGreaterThanOrEqual(0)
+  })
+
+  test('case studies browser remains sticky on desktop', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await preparePage(page, '/en/case-studies/')
+
+    const browserChrome = page.locator('[data-mobile-audit="case-study-browser"]')
+    await expect(browserChrome).toBeVisible()
+    await expect.poll(() => browserChrome.evaluate((element) => getComputedStyle(element).position)).toBe('sticky')
   })
 
   test('visuals surface only navigates on horizontal intent', async ({ page }) => {

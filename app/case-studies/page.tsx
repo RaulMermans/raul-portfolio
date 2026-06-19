@@ -127,7 +127,11 @@ export default function CaseStudiesPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumb) }}
         />
-        <section className="case-study-browser__chrome" aria-labelledby="case-studies-heading">
+        <section
+          className="case-study-browser__chrome"
+          aria-labelledby="case-studies-heading"
+          data-mobile-audit="case-study-browser"
+        >
           <div className="case-study-browser__intro">
             <p className="case-study-browser__eyebrow">
               {isSpanish ? 'Portafolio seleccionado' : 'Selected portfolio'}
@@ -163,7 +167,12 @@ export default function CaseStudiesPage() {
           </div>
         </section>
 
-        <section id="case-study-grid" className="case-study-project-grid" aria-label={isSpanish ? 'Proyectos' : 'Projects'}>
+        <section
+          id="case-study-grid"
+          className="case-study-project-grid"
+          aria-label={isSpanish ? 'Proyectos' : 'Projects'}
+          data-mobile-audit="case-study-grid"
+        >
           {visibleStudies.map((study, index) => {
             const variant = tileVariants[(study.id + index) % tileVariants.length]
 
@@ -173,6 +182,7 @@ export default function CaseStudiesPage() {
                 href={study.href}
                 className={`case-study-project-tile case-study-project-tile--${variant}`}
                 aria-label={isSpanish ? `Ver caso de estudio: ${study.title}` : `View case study: ${study.title}`}
+                data-mobile-audit="case-study-card"
               >
                 <span className="case-study-project-tile__frame">
                   <Image

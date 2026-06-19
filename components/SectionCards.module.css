@@ -12,6 +12,14 @@
   padding: var(--space-12) 0 var(--space-10);
 }
 
+.desktopCarousel {
+  position: relative;
+}
+
+.mobileGrid {
+  display: none;
+}
+
 .controls {
   position: absolute;
   inset: 0;
@@ -368,48 +376,71 @@
 
 @media (max-width: 640px) {
   .container {
-    --section-card-width: 86vw;
-    --section-card-height: auto;
-    --section-stage-edge: 2.25rem;
-    padding: var(--space-10) 0 var(--space-8);
+    padding: var(--space-8) max(var(--space-4), env(safe-area-inset-right)) var(--space-8)
+      max(var(--space-4), env(safe-area-inset-left));
   }
 
-  .nav {
-    min-width: 48px;
-    min-height: 48px;
-  }
-
-  .track {
-    padding-inline: max(var(--space-3), calc((100vw - var(--section-card-width)) / 2));
-  }
-
-  .card {
-    grid-template-columns: 1fr;
-  }
-
-  .content {
-    order: 2;
-    padding: var(--space-5);
-  }
-
-  .content::after {
+  .desktopCarousel {
     display: none;
   }
 
-  .title {
-    max-width: none;
-    font-size: clamp(2.8rem, 11vw, 3.6rem);
+  .mobileGrid {
+    display: grid;
+    gap: var(--space-5);
   }
 
-  .description {
-    max-width: none;
-    font-size: 0.98rem;
-    line-height: 1.62;
+  .mobileCard {
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-height: auto;
+    border-radius: 1.5rem;
+    box-shadow:
+      0 16px 36px rgba(23, 19, 16, 0.1),
+      0 28px 64px rgba(23, 19, 16, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  .imageWrapper {
+  .mobileCard .content {
+    order: 2;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-5) var(--space-6);
+  }
+
+  .mobileCard .content::after {
+    display: none;
+  }
+
+  .mobileCard .contentTop {
+    gap: var(--space-3);
+  }
+
+  .mobileCard .title {
+    max-width: none;
+    font-size: clamp(2.75rem, 13vw, 3.6rem);
+  }
+
+  .mobileCard .description {
+    max-width: none;
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .mobileCard .imageWrapper {
     order: 1;
-    min-height: 17rem;
+    min-height: 12.5rem;
+    aspect-ratio: 16 / 10;
+  }
+
+  .mobileCard:active {
+    transform: scale(0.985);
+    border-color: color-mix(in srgb, var(--section-accent) 34%, transparent);
+  }
+
+  .mobileCard:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--section-accent) 48%, white);
+    outline-offset: 4px;
   }
 }
 

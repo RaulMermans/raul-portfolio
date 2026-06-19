@@ -90,7 +90,7 @@ export default function AISportsCampaignPage() {
 
   return (
     <>
-      <Header locale={locale} transparent />
+      <Header locale={locale} />
 
       <main id="main-content" className={`case-study-page-new case-study-page-new--${content.layoutVariant ?? 'default'}`}>
         {/* Hero Section */}
