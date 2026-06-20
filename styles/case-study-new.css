@@ -3306,25 +3306,23 @@ main.case-study-page-new {
 
 .campaign-pulse-hero {
   min-height: auto;
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  gap: 0;
+  grid-template-columns: minmax(0, 0.9fr) minmax(23rem, 0.84fr);
+  align-items: center;
+  gap: clamp(2.5rem, 5.5vw, 6rem);
   padding:
-    calc(var(--header-height) + clamp(3.5rem, 7vw, 6rem))
+    calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem))
     var(--section-inline-padding)
-    var(--section-block-padding);
+    clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--cream-dark);
   background: var(--cream);
   color: var(--ink);
-  text-align: center;
 }
 
 .campaign-pulse-hero__copy {
   display: grid;
-  width: min(100%, 66rem);
-  max-width: none;
-  justify-items: center;
-  margin-inline: auto;
+  width: 100%;
+  max-width: 57rem;
+  justify-items: start;
 }
 
 .campaign-pulse-hero .data-brief-back {
@@ -3337,9 +3335,9 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-hero h1 {
-  max-width: 100%;
+  max-width: 10ch;
   color: var(--ink);
-  font-size: clamp(4.5rem, 9vw, 8rem);
+  font-size: clamp(3.8rem, 7vw, 8rem);
   line-height: 0.9;
   overflow-wrap: normal;
   word-break: keep-all;
@@ -3357,7 +3355,7 @@ main.case-study-page-new {
 
 .campaign-pulse-hero .data-brief-actions,
 .campaign-pulse-stack {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .campaign-pulse-hero .data-brief-button {
@@ -3383,8 +3381,10 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-hero__visual {
-  width: min(100%, var(--section-content-max));
-  margin: clamp(3rem, 6vw, 5rem) auto 0;
+  width: min(100%, 58rem);
+  min-width: 0;
+  justify-self: center;
+  margin: 0;
 }
 
 .campaign-pulse-shot {
@@ -3394,9 +3394,7 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-hero__visual figcaption {
-  margin-inline: auto;
   color: var(--ink-faint);
-  text-align: center;
 }
 
 .case-study-page-new--campaign-pulse .data-brief-mini-nav {
@@ -3426,15 +3424,15 @@ main.case-study-page-new {
 
 .case-study-page-new--campaign-pulse .data-brief-refresh-heading {
   display: grid;
-  justify-items: center;
+  justify-items: start;
   max-width: var(--section-copy-max);
-  margin: 0 auto var(--section-content-gap);
-  text-align: center;
+  margin: 0 0 var(--section-content-gap);
+  text-align: left;
 }
 
 .case-study-page-new--campaign-pulse .data-brief-refresh-heading h2,
 .case-study-page-new--campaign-pulse .data-brief-refresh-heading p {
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .case-study-page-new--campaign-pulse .data-brief-refresh-heading h2 {
@@ -3442,24 +3440,22 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-problem {
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  gap: clamp(3rem, 7vw, 5rem);
-  max-width: var(--section-copy-max);
-  text-align: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: none;
 }
 
 .campaign-pulse-problem h2 {
   max-width: 14ch;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .campaign-pulse-problem > article > p:last-child {
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .campaign-pulse-problem__solution {
-  max-width: 52rem;
+  max-width: none;
   padding-top: clamp(1.5rem, 3vw, 2rem);
 }
 
@@ -3526,10 +3522,10 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-engineering {
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--section-content-gap);
-  max-width: 72rem;
-  margin-inline: auto;
+  grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.95fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: none;
+  margin-inline: 0;
 }
 
 .campaign-pulse-engineering > div {
@@ -3538,18 +3534,18 @@ main.case-study-page-new {
 
 .campaign-pulse-engineering .data-brief-list {
   max-width: 62rem;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .campaign-pulse-reference {
   max-width: 62rem;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .campaign-pulse-limitations {
   width: 100%;
-  max-width: 72rem;
-  margin-inline: auto;
+  max-width: none;
+  margin-inline: 0;
 }
 
 .campaign-pulse-limitations h3 {
@@ -3568,6 +3564,19 @@ main.case-study-page-new {
 
 .case-study-page-new--campaign-pulse .data-brief-section--closing .data-brief-actions {
   justify-content: center;
+}
+
+@media (max-width: 1180px) {
+  .campaign-pulse-hero,
+  .campaign-pulse-problem,
+  .campaign-pulse-engineering {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .campaign-pulse-hero__visual {
+    width: min(100%, 58rem);
+    justify-self: start;
+  }
 }
 
 @media (max-width: 960px) {
@@ -3602,13 +3611,7 @@ main.case-study-page-new {
   }
 
   .campaign-pulse-hero__visual {
-    width: calc(100% + 2rem);
-  }
-
-  .campaign-pulse-shot {
-    border-right: 0;
-    border-left: 0;
-    border-radius: 0;
+    width: 100%;
   }
 
   .case-study-page-new--campaign-pulse .data-brief-mini-nav {
