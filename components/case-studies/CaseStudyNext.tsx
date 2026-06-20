@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getRandomCaseStudy } from '@/data/case-studies'
@@ -25,6 +25,7 @@ export default function CaseStudyNext({ nextCaseStudy, currentHref, accentColor,
   const copy = getSiteCopy(locale).caseStudiesUi
   const [randomNextCaseStudy, setRandomNextCaseStudy] = useState<CaseStudy | undefined>(undefined)
   const [showHint, setShowHint] = useState(false)
+  const nextSectionRef = useRef<HTMLElement>(null)
   const selectedNextCaseStudy = randomNextCaseStudy ?? nextCaseStudy
 
   useEffect(() => {
@@ -37,12 +38,11 @@ export default function CaseStudyNext({ nextCaseStudy, currentHref, accentColor,
     if (!selectedNextCaseStudy) return
 
     const handleScroll = () => {
-      const scrollPosition = window.innerHeight + window.scrollY
-      const documentHeight = document.documentElement.scrollHeight
-      const distanceFromBottom = documentHeight - scrollPosition
-      
-      // Show hint when within 800px of bottom
-      setShowHint(distanceFromBottom < 800 && distanceFromBottom > 200)
+      const section = nextSectionRef.current
+      if (!section) return
+
+      const distanceToNextSection = section.getBoundingClientRect().top - window.innerHeight
+      setShowHint(distanceToNextSection < 800 && distanceToNextSection > 0)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -61,7 +61,7 @@ export default function CaseStudyNext({ nextCaseStudy, currentHref, accentColor,
         <div className="case-study-scroll-hint__arrow">↓</div>
       </div>
 
-      <section className="case-study-next-new">
+      <section ref={nextSectionRef} className="case-study-next-new">
         <div className="case-study-next-new__container">
           <div className="case-study-next-new__divider"></div>
           

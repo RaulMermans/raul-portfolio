@@ -3288,6 +3288,378 @@ main.case-study-page-new {
   }
 }
 
+/* Campaign Pulse refinement — shared case-study rhythm */
+.case-study-page-new--campaign-pulse {
+  overflow-x: clip;
+  --data-brief-section-pad: var(--section-block-padding);
+}
+
+.case-study-page-new--campaign-pulse .data-brief-section {
+  padding: var(--data-brief-section-pad) var(--section-inline-padding);
+}
+
+.case-study-page-new--campaign-pulse .data-brief-section__container {
+  width: min(100%, var(--section-content-max));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.campaign-pulse-hero {
+  min-height: auto;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 0;
+  padding:
+    calc(var(--header-height) + clamp(3.5rem, 7vw, 6rem))
+    var(--section-inline-padding)
+    var(--section-block-padding);
+  border-bottom: 1px solid var(--cream-dark);
+  background: var(--cream);
+  color: var(--ink);
+  text-align: center;
+}
+
+.campaign-pulse-hero__copy {
+  display: grid;
+  width: min(100%, 66rem);
+  max-width: none;
+  justify-items: center;
+  margin-inline: auto;
+}
+
+.campaign-pulse-hero .data-brief-back {
+  color: var(--ink-muted);
+}
+
+.campaign-pulse-hero .data-brief-back:hover,
+.campaign-pulse-hero .data-brief-back:focus-visible {
+  color: var(--ink);
+}
+
+.campaign-pulse-hero h1 {
+  max-width: 100%;
+  color: var(--ink);
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  line-height: 0.9;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.campaign-pulse-hero__subtitle {
+  max-width: 46rem;
+  color: var(--ink);
+}
+
+.campaign-pulse-hero__description {
+  max-width: 48rem;
+  color: var(--ink-muted);
+}
+
+.campaign-pulse-hero .data-brief-actions,
+.campaign-pulse-stack {
+  justify-content: center;
+}
+
+.campaign-pulse-hero .data-brief-button {
+  border-color: var(--cream-dark);
+  color: var(--ink-soft);
+}
+
+.campaign-pulse-hero .data-brief-button--primary {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.campaign-pulse-status {
+  border-color: var(--cream-dark);
+  color: var(--ink-muted);
+}
+
+.campaign-pulse-stack span {
+  border-color: var(--cream-dark);
+  background: var(--cream-light);
+  color: var(--ink-muted);
+}
+
+.campaign-pulse-hero__visual {
+  width: min(100%, var(--section-content-max));
+  margin: clamp(3rem, 6vw, 5rem) auto 0;
+}
+
+.campaign-pulse-shot {
+  transform: none;
+  border-color: var(--cream-dark);
+  box-shadow: var(--shadow-raised);
+}
+
+.campaign-pulse-hero__visual figcaption {
+  margin-inline: auto;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.case-study-page-new--campaign-pulse .data-brief-mini-nav {
+  width: min(calc(100% - 2.5rem), var(--section-content-max));
+  justify-content: center;
+  margin-inline: auto;
+  border-right: 1px solid var(--campaign-pulse-line);
+  border-left: 1px solid var(--campaign-pulse-line);
+}
+
+.campaign-pulse-snapshot {
+  padding-inline: var(--section-inline-padding);
+  background: var(--cream-light);
+}
+
+.campaign-pulse-snapshot__container {
+  display: grid;
+  width: min(100%, var(--section-content-max));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-inline: auto;
+  border-left: 1px solid var(--campaign-pulse-line);
+}
+
+.campaign-pulse-snapshot__container > div {
+  min-height: 11rem;
+}
+
+.case-study-page-new--campaign-pulse .data-brief-refresh-heading {
+  display: grid;
+  justify-items: center;
+  max-width: var(--section-copy-max);
+  margin: 0 auto var(--section-content-gap);
+  text-align: center;
+}
+
+.case-study-page-new--campaign-pulse .data-brief-refresh-heading h2,
+.case-study-page-new--campaign-pulse .data-brief-refresh-heading p {
+  margin-inline: auto;
+}
+
+.case-study-page-new--campaign-pulse .data-brief-refresh-heading h2 {
+  max-width: 15ch;
+}
+
+.campaign-pulse-problem {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(3rem, 7vw, 5rem);
+  max-width: var(--section-copy-max);
+  text-align: center;
+}
+
+.campaign-pulse-problem h2 {
+  max-width: 14ch;
+  margin-inline: auto;
+}
+
+.campaign-pulse-problem > article > p:last-child {
+  margin-inline: auto;
+}
+
+.campaign-pulse-problem__solution {
+  max-width: 52rem;
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.campaign-pulse-feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.campaign-pulse-feature-grid article {
+  min-width: 0;
+  min-height: 18rem;
+}
+
+.campaign-pulse-feature-grid h3,
+.campaign-pulse-feature-grid p {
+  overflow-wrap: anywhere;
+}
+
+.campaign-pulse-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: visible;
+}
+
+.campaign-pulse-flow div {
+  min-width: 0;
+}
+
+.campaign-pulse-flow strong {
+  overflow-wrap: anywhere;
+}
+
+.campaign-pulse-layer-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--section-content-gap);
+}
+
+.campaign-pulse-layer-grid article {
+  min-width: 0;
+  min-height: 14rem;
+}
+
+.campaign-pulse-gallery {
+  gap: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 3vw, 2rem);
+}
+
+.campaign-pulse-gallery figure {
+  overflow: hidden;
+}
+
+.campaign-pulse-metric-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.campaign-pulse-metric-grid article {
+  min-width: 0;
+  min-height: 15rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+.campaign-pulse-metric-grid h3 {
+  max-width: 18ch;
+  min-block-size: 2lh;
+  font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+  overflow-wrap: anywhere;
+}
+
+.campaign-pulse-engineering {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--section-content-gap);
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.campaign-pulse-engineering > div {
+  min-width: 0;
+}
+
+.campaign-pulse-engineering .data-brief-list {
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+.campaign-pulse-reference {
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+.campaign-pulse-limitations {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.campaign-pulse-limitations h3 {
+  max-width: 16ch;
+  overflow-wrap: anywhere;
+}
+
+.campaign-pulse-outcome-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.campaign-pulse-outcome-grid article {
+  min-width: 0;
+  min-height: 16rem;
+}
+
+.case-study-page-new--campaign-pulse .data-brief-section--closing .data-brief-actions {
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .campaign-pulse-snapshot__container,
+  .campaign-pulse-feature-grid,
+  .campaign-pulse-flow,
+  .campaign-pulse-layer-grid,
+  .campaign-pulse-metric-grid,
+  .campaign-pulse-outcome-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .campaign-pulse-hero {
+    padding:
+      calc(var(--header-height) + env(safe-area-inset-top) + 2.25rem)
+      clamp(1rem, 5vw, 1.25rem)
+      var(--section-block-padding-compact);
+  }
+
+  .campaign-pulse-hero h1 {
+    font-size: clamp(3.6rem, 17vw, 5rem);
+  }
+
+  .campaign-pulse-hero__subtitle {
+    font-size: clamp(1.25rem, 7vw, 1.75rem);
+  }
+
+  .campaign-pulse-hero .data-brief-actions {
+    width: 100%;
+  }
+
+  .campaign-pulse-hero__visual {
+    width: calc(100% + 2rem);
+  }
+
+  .campaign-pulse-shot {
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .case-study-page-new--campaign-pulse .data-brief-mini-nav {
+    width: 100%;
+    justify-content: flex-start;
+    border-right: 0;
+    border-left: 0;
+  }
+
+  .campaign-pulse-snapshot {
+    padding-inline: 0;
+  }
+
+  .campaign-pulse-snapshot__container {
+    grid-template-columns: minmax(0, 1fr);
+    border-left: 0;
+  }
+
+  .campaign-pulse-snapshot__container > div {
+    min-height: auto;
+  }
+
+  .campaign-pulse-feature-grid,
+  .campaign-pulse-flow,
+  .campaign-pulse-layer-grid,
+  .campaign-pulse-metric-grid,
+  .campaign-pulse-outcome-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .campaign-pulse-feature-grid article,
+  .campaign-pulse-layer-grid article,
+  .campaign-pulse-metric-grid article,
+  .campaign-pulse-outcome-grid article {
+    min-height: auto;
+  }
+
+  .campaign-pulse-metric-grid h3,
+  .campaign-pulse-outcome-grid h3 {
+    min-block-size: auto;
+  }
+
+  .campaign-pulse-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .campaign-pulse-gallery__wide {
+    grid-column: auto;
+  }
+}
+
 /* DataBrief AI cleanup — reduced density and clearer proof rhythm */
 .case-study-page-new--data-brief {
   --data-brief-section-pad: clamp(5.5rem, 9vw, 8rem);

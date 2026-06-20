@@ -357,12 +357,14 @@ export default function CampaignPulsePage() {
         </nav>
 
         <section className="campaign-pulse-snapshot" aria-label={locale === 'es' ? 'Resumen del proyecto' : 'Project snapshot'}>
-          {t.snapshot.map(([label, value]) => (
-            <div key={label}>
-              <span>{label}</span>
-              <strong>{value}</strong>
-            </div>
-          ))}
+          <div className="campaign-pulse-snapshot__container">
+            {t.snapshot.map(([label, value]) => (
+              <div key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section id="problem" className="data-brief-section data-brief-section--light">
