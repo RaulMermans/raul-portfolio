@@ -2892,7 +2892,7 @@ main.case-study-page-new {
   background: var(--cream-light);
 }
 
-.campaign-pulse-snapshot div {
+.campaign-pulse-snapshot__container > div {
   display: grid;
   align-content: start;
   gap: 0.65rem;
@@ -2901,7 +2901,7 @@ main.case-study-page-new {
   padding: clamp(1.25rem, 3vw, 2rem);
 }
 
-.campaign-pulse-snapshot div:last-child {
+.campaign-pulse-snapshot__container > div:last-child {
   border-right: 0;
 }
 
@@ -3406,6 +3406,7 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-snapshot {
+  display: block;
   padding-inline: var(--section-inline-padding);
   background: var(--cream-light);
 }
