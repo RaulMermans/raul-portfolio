@@ -6864,6 +6864,11 @@ a[href^="/"]:hover {
   break-inside: avoid;
   margin-bottom: clamp(1.9rem, 3.1vw, 2.7rem);
   color: var(--ink);
+}
+
+.case-study-project-tile__main {
+  display: block;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -7029,6 +7034,38 @@ a[href^="/"]:hover {
 .case-study-project-tile:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 5px;
+}
+
+.case-study-project-tile:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.case-study-project-tile__external-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.case-study-project-tile__external-links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  border: 1px solid rgba(26, 23, 20, 0.16);
+  padding: 0 0.7rem;
+  color: var(--ink-muted);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.case-study-project-tile__external-links a:hover,
+.case-study-project-tile__external-links a:focus-visible {
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .case-study-category-menu {

@@ -39,6 +39,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const blogAgent = findStudy(caseStudies, 'blogagent')
   const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
   const territoryOps = findStudy(caseStudies, 'territoryops-spain')
+  const campaignPulse = findStudy(caseStudies, 'campaign-pulse')
 
   return [
     {
@@ -187,6 +188,19 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         : 'Dashboards, benchmark interfaces, and strategic-reading systems that transform structured data into clear decisions.',
       href: localizePath('/case-studies', locale),
       projects: [
+        ...(campaignPulse
+          ? [
+              {
+                title: campaignPulse.title,
+                label:
+                  campaignPulse.subtitle ??
+                  (isSpanish ? 'Inteligencia de marketing / Producto de datos' : 'Marketing intelligence / Data product'),
+                description: campaignPulse.description,
+                image: campaignPulse.image,
+                href: campaignPulse.href,
+              },
+            ]
+          : []),
         ...(territoryOps
           ? [
               {

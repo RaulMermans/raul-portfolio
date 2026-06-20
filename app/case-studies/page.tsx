@@ -177,32 +177,52 @@ export default function CaseStudiesPage() {
             const variant = tileVariants[(study.id + index) % tileVariants.length]
 
             return (
-              <Link
+              <article
                 key={study.href}
-                href={study.href}
                 className={`case-study-project-tile case-study-project-tile--${variant}`}
-                aria-label={isSpanish ? `Ver caso de estudio: ${study.title}` : `View case study: ${study.title}`}
                 data-mobile-audit="case-study-card"
               >
-                <span className="case-study-project-tile__frame">
-                  <Image
-                    src={study.image}
-                    alt=""
-                    width={study.imageWidth}
-                    height={study.imageHeight}
-                    sizes="(max-width: 560px) 100vw, (max-width: 880px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    className="case-study-project-tile__image"
-                    priority={index < 2}
-                  />
-                  <span className="case-study-project-tile__reveal" aria-hidden="true">
-                    <span>{study.cta ?? readCase}</span>
-                    <span className="case-study-project-tile__arrow">→</span>
+                <Link
+                  href={study.href}
+                  className="case-study-project-tile__main"
+                  aria-label={isSpanish ? `Ver caso de estudio: ${study.title}` : `View case study: ${study.title}`}
+                >
+                  <span className="case-study-project-tile__frame">
+                    <Image
+                      src={study.image}
+                      alt=""
+                      width={study.imageWidth}
+                      height={study.imageHeight}
+                      sizes="(max-width: 560px) 100vw, (max-width: 880px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      className="case-study-project-tile__image"
+                      priority={index < 2}
+                    />
+                    <span className="case-study-project-tile__reveal" aria-hidden="true">
+                      <span>{study.cta ?? readCase}</span>
+                      <span className="case-study-project-tile__arrow">→</span>
+                    </span>
                   </span>
-                </span>
-                <span className="case-study-project-tile__caption">
-                  <span className="case-study-project-tile__title">{study.title}</span>
-                </span>
-              </Link>
+                  <span className="case-study-project-tile__caption">
+                    <span className="case-study-project-tile__title">{study.title}</span>
+                    {study.slug === 'campaign-pulse' ? (
+                      <>
+                        <span className="case-study-project-tile__meta">{study.subtitle}</span>
+                        <span className="case-study-project-tile__description">{study.description}</span>
+                        {study.status ? <span className="case-study-project-tile__status">{study.status}</span> : null}
+                        <span className="case-study-project-tile__tags">
+                          {study.tags?.slice(0, 4).map((tag) => <span key={tag}>{tag}</span>)}
+                        </span>
+                      </>
+                    ) : null}
+                  </span>
+                </Link>
+                {study.slug === 'campaign-pulse' ? (
+                  <span className="case-study-project-tile__external-links" aria-label={isSpanish ? 'Enlaces externos de Campaign Pulse' : 'Campaign Pulse external links'}>
+                    {study.liveUrl ? <a href={study.liveUrl} target="_blank" rel="noreferrer">{isSpanish ? 'Demo ↗' : 'Live demo ↗'}</a> : null}
+                    {study.githubUrl ? <a href={study.githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a> : null}
+                  </span>
+                ) : null}
+              </article>
             )
           })}
         </section>

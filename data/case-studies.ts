@@ -17,6 +17,8 @@ export interface CaseStudy {
   color: string
   subtitle?: string
   mood?: string[]
+  githubUrl?: string
+  liveUrl?: string
 }
 
 export const MOODS = ['All', 'minimal', 'bold', 'editorial', 'tech'] as const
@@ -25,6 +27,26 @@ type CaseStudyEntry = Omit<CaseStudy, 'href'>
 
 const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
   en: [
+    {
+      id: 9,
+      slug: 'campaign-pulse',
+      title: 'Campaign Pulse',
+      description:
+        'Local-first marketing intelligence command center for newsletter performance, CSV ingestion, target-aware diagnostics, audience pressure, and monthly reporting.',
+      commercialRelevance:
+        'A portfolio-grade internal tool prototype showing how normalized campaign and audience facts can become clear operating decisions.',
+      tags: ['Next.js', 'TypeScript', 'Recharts', 'CSV adapters', 'Deterministic analytics'],
+      status: 'Portfolio-ready / local-first prototype',
+      cta: 'View Case Study',
+      image: '/images/case-studies/campaign-pulse/overview.png',
+      imageWidth: 1440,
+      imageHeight: 1000,
+      color: 'var(--accent)',
+      subtitle: 'Marketing intelligence / Data product',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/campaign-pulse',
+      liveUrl: 'https://campaign-pulse.vercel.app/',
+    },
     {
       id: 0,
       slug: 'ai-sports',
@@ -182,6 +204,26 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
     },
   ],
   es: [
+    {
+      id: 9,
+      slug: 'campaign-pulse',
+      title: 'Campaign Pulse',
+      description:
+        'Centro de mando local-first para rendimiento de newsletters, ingesta CSV, diagnósticos frente a objetivos, presión de audiencia e informes mensuales.',
+      commercialRelevance:
+        'Un prototipo de herramienta interna listo para portfolio que convierte datos normalizados de campañas y audiencias en decisiones operativas claras.',
+      tags: ['Next.js', 'TypeScript', 'Recharts', 'Adaptadores CSV', 'Analítica determinista'],
+      status: 'Listo para portfolio / prototipo local-first',
+      cta: 'Ver caso',
+      image: '/images/case-studies/campaign-pulse/overview.png',
+      imageWidth: 1440,
+      imageHeight: 1000,
+      color: 'var(--accent)',
+      subtitle: 'Inteligencia de marketing / Producto de datos',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/campaign-pulse',
+      liveUrl: 'https://campaign-pulse.vercel.app/',
+    },
     {
       id: 0,
       slug: 'ai-sports',
@@ -357,6 +399,8 @@ export function getCaseStudies(locale: Locale): CaseStudy[] {
     color: study.color,
     subtitle: study.subtitle,
     mood: study.mood,
+    githubUrl: study.githubUrl,
+    liveUrl: study.liveUrl,
   }))
 }
 

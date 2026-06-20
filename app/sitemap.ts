@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/case-studies/website-auditor', changeFrequency: 'monthly', priority: 0.82 },
     { path: '/case-studies/campaign-sandbox', changeFrequency: 'monthly', priority: 0.84 },
     { path: '/case-studies/blogagent', changeFrequency: 'monthly', priority: 0.84 },
+    { path: '/case-studies/campaign-pulse', changeFrequency: 'monthly', priority: 0.86 },
     { path: '/case-studies/territoryops-spain', changeFrequency: 'monthly', priority: 0.82 },
     { path: '/case-studies/benchmark-dashboard', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/case-studies/ai-sports', changeFrequency: 'monthly', priority: 0.8 },
