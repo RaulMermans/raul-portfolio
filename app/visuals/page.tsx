@@ -447,6 +447,7 @@ export default function VisualsPage() {
 
       if (scrollLockRef.current) {
         const lock = scrollLockRef.current
+        scrollLockRef.current = null
         documentElement.style.overflow = lock.htmlOverflow
         body.style.overflow = lock.bodyOverflow
         body.style.position = lock.bodyPosition
@@ -454,8 +455,14 @@ export default function VisualsPage() {
         body.style.width = lock.bodyWidth
         body.style.paddingRight = lock.bodyPaddingRight
         documentElement.style.scrollBehavior = 'auto'
-        window.scrollTo(0, lock.scrollY)
+        const restoreScrollPosition = () => {
+          const maxScroll = Math.max(0, documentElement.scrollHeight - window.innerHeight)
+          window.scrollTo(0, Math.min(lock.scrollY, maxScroll))
+        }
+
+        restoreScrollPosition()
         window.requestAnimationFrame(() => {
+          restoreScrollPosition()
           documentElement.style.scrollBehavior = lock.htmlScrollBehavior
         })
       }

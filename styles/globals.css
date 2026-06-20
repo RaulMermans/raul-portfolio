@@ -4295,16 +4295,18 @@ html.homepage .footer {
 /* Idle state - normal display */
 .page-transition--idle {
   opacity: 1 !important;
-  transform: translateX(0) translateY(0) scale(1) !important;
-  filter: blur(0px) !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto;
   pointer-events: auto !important;
 }
 
 /* Force cleanup of stuck transition states */
 body:not(.page-transitioning) .page-transition {
   opacity: 1 !important;
-  transform: translateX(0) translateY(0) scale(1) !important;
-  filter: blur(0px) !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto;
   pointer-events: auto !important;
 }
 

@@ -257,7 +257,8 @@ export default function AISportsCampaignPage() {
           <CaseStudyGallery 
             rows={content.gallery.rows}
             accentColor={content.accentColor}
-                        />
+            locale={locale}
+          />
         )}
 
         {/* Results Section */}

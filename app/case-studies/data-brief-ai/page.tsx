@@ -582,7 +582,7 @@ export default function DataBriefAiPage() {
             </h1>
             <p className="data-brief-hero__subtitle">{t.heroSubtitle}</p>
             <p className="data-brief-hero__description">{t.heroDescription}</p>
-            <div className="data-brief-actions" aria-label="Project links">
+            <div className="data-brief-actions" aria-label={locale === 'es' ? 'Enlaces del proyecto' : 'Project links'}>
               <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
                 {t.heroCTA}
               </a>
@@ -593,7 +593,7 @@ export default function DataBriefAiPage() {
                 {t.heroCTAHow}
               </a>
             </div>
-            <div className="data-brief-tags" aria-label="Project tags">
+            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
               {t.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}

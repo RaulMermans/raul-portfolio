@@ -305,6 +305,8 @@ export const siteCopy = {
       viewCaseStudy: 'View Case Study',
       nextProject: 'Next Project',
       caseStudyBadge: 'Case Study',
+      backToCaseStudies: 'Back to case studies',
+      gallery: 'Gallery',
       scroll: 'Scroll',
     },
     appsPage: {
@@ -627,6 +629,8 @@ export const siteCopy = {
       viewCaseStudy: 'Ver caso de estudio',
       nextProject: 'Siguiente proyecto',
       caseStudyBadge: 'Caso de estudio',
+      backToCaseStudies: 'Volver a casos',
+      gallery: 'Galería',
       scroll: 'Desplazar',
     },
     appsPage: {

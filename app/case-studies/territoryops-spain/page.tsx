@@ -94,6 +94,7 @@ const content = {
     heroDescription:
       'TerritoryOps combines geospatial visibility, table-based review, pipeline tracking, and attention logic into a private operational atlas.',
     heroNotice: 'Prototype scope: local browser data, optional demo records, no backend or authentication.',
+    tags: ['Internal Tool', 'Product Prototype', 'Real Estate Operations', 'Local-first', 'Next.js', 'TypeScript'],
     productImageAlt: 'TerritoryOps Spain interface showing the location map, opportunity status, filters, and asset dossier.',
     productImageCaption: 'The TerritoryOps operating surface: map context, pipeline status, attention signals, and asset detail in one view.',
     nav: [
@@ -206,6 +207,7 @@ const content = {
     heroDescription:
       'TerritoryOps reúne visibilidad geográfica, revisión en tabla, seguimiento de pipeline y lógica de atención en un atlas operativo privado.',
     heroNotice: 'Alcance del prototipo: datos locales del navegador, demo opcional, sin backend ni autenticación.',
+    tags: ['Herramienta interna', 'Prototipo de producto', 'Operaciones inmobiliarias', 'Local-first', 'Next.js', 'TypeScript'],
     productImageAlt: 'Interfaz de TerritoryOps Spain con mapa de ubicaciones, estado de oportunidades, filtros y dossier del activo.',
     productImageCaption: 'La superficie operativa de TerritoryOps: contexto territorial, estado del pipeline, alertas y detalle del activo en una sola vista.',
     nav: [
@@ -337,7 +339,7 @@ export default function TerritoryOpsSpainPage() {
             <p className="benchmark-hero__subtitle">{t.heroSubtitle}</p>
             <p className="benchmark-hero__description">{t.heroDescription}</p>
             <p className="benchmark-hero__mock-notice">{t.heroNotice}</p>
-            <div className="data-brief-actions" aria-label="Project links">
+            <div className="data-brief-actions" aria-label={locale === 'es' ? 'Enlaces del proyecto' : 'Project links'}>
               <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
                 {t.liveLabel}
               </a>
@@ -345,8 +347,8 @@ export default function TerritoryOpsSpainPage() {
                 {t.githubLabel}
               </a>
             </div>
-            <div className="data-brief-tags" aria-label="Project tags">
-              {['Internal Tool', 'Product Prototype', 'Real Estate Operations', 'Local-first', 'Next.js', 'TypeScript'].map((tag) => (
+            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
+              {t.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
@@ -416,7 +418,7 @@ export default function TerritoryOpsSpainPage() {
                 </div>
               ))}
             </div>
-            <div className="territoryops-stack" aria-label="Technical stack">
+            <div className="territoryops-stack" aria-label={locale === 'es' ? 'Stack técnico' : 'Technical stack'}>
               {t.stack.map((item) => (
                 <span key={item}>{item}</span>
               ))}

@@ -79,8 +79,6 @@ const commercialContentEs: CommercialCaseStudyContent = {
     'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
 
-const tags = ['React/Vite', 'Benchmark engine', 'Adapters', 'View models', 'Synthetic data']
-
 const dataContract = `{
   "ok": true,
   "meta": {
@@ -110,6 +108,7 @@ const content = {
     heroFigAriaLabel: 'Executive dashboard summary with synthetic benchmark data',
     heroImgAlt:
       'Benchmark intelligence dashboard executive summary with synthetic revenue, share, and strategic signal cards',
+    tags: ['React/Vite', 'Benchmark engine', 'Adapters', 'View models', 'Synthetic data'],
     nav: [
       ['Changed', '#overview'],
       ['Architecture', '#flow'],
@@ -270,6 +269,7 @@ const content = {
     heroFigAriaLabel: 'Resumen ejecutivo del panel con datos sintéticos de benchmark',
     heroImgAlt:
       'Resumen ejecutivo del panel de inteligencia benchmark con revenue, cuota y señales estratégicas sintéticas',
+    tags: ['React/Vite', 'Motor benchmark', 'Adaptadores', 'Modelos de vista', 'Datos sintéticos'],
     nav: [
       ['Cambio', '#overview'],
       ['Arquitectura', '#flow'],
@@ -442,7 +442,7 @@ export default function BenchmarkDashboardPage() {
             <p className="benchmark-hero__subtitle">{t.heroSubtitle}</p>
             <p className="benchmark-hero__description">{t.heroDescription}</p>
             <p className="benchmark-hero__mock-notice">{t.heroMockNotice}</p>
-            <div className="data-brief-actions" aria-label="Project links">
+            <div className="data-brief-actions" aria-label={locale === 'es' ? 'Enlaces del proyecto' : 'Project links'}>
               <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
                 {t.heroCTA}
               </a>
@@ -450,8 +450,8 @@ export default function BenchmarkDashboardPage() {
                 {t.heroCTASecondary}
               </a>
             </div>
-            <div className="data-brief-tags" aria-label="Project tags">
-              {tags.map((tag) => (
+            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
+              {t.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
@@ -468,7 +468,7 @@ export default function BenchmarkDashboardPage() {
         </section>
 
         {/* ── MINI NAV ── */}
-        <nav className="data-brief-mini-nav" aria-label="Secciones de la página">
+        <nav className="data-brief-mini-nav" aria-label={locale === 'es' ? 'Secciones de la página' : 'Page sections'}>
           {t.nav.map(([label, href]) => (
             <a key={href} href={href}>
               {label}
@@ -490,7 +490,7 @@ export default function BenchmarkDashboardPage() {
               <h2 id="benchmark-overview">{t.overviewH2}</h2>
               <p>{t.overviewP}</p>
             </div>
-            <div className="benchmark-proof-strip" aria-label="Key project stats">
+            <div className="benchmark-proof-strip" aria-label={locale === 'es' ? 'Métricas clave del proyecto' : 'Key project stats'}>
               {t.proofPoints.map((point) => (
                 <div key={point.label}>
                   <strong>{point.value}</strong>
@@ -521,7 +521,7 @@ export default function BenchmarkDashboardPage() {
               <h2 id="benchmark-flow">{t.flowH2}</h2>
               <p>{t.flowP}</p>
             </div>
-            <div className="benchmark-diagram" aria-label="System flow">
+            <div className="benchmark-diagram" aria-label={locale === 'es' ? 'Flujo del sistema' : 'System flow'}>
               {t.flowDiagram.map((step, i) => (
                 <Fragment key={step}>
                   <span key={step}>{step}</span>
@@ -586,7 +586,7 @@ export default function BenchmarkDashboardPage() {
               <p>{t.dataP}</p>
             </div>
             <div className="benchmark-data-stack">
-              <div className="benchmark-code-block" aria-label="Data contract">
+              <div className="benchmark-code-block" aria-label={locale === 'es' ? 'Contrato de datos' : 'Data contract'}>
                 <div className="benchmark-code-block__bar">
                   <span>data-contract.json</span>
                 </div>
@@ -617,7 +617,10 @@ export default function BenchmarkDashboardPage() {
               <p>{t.safetyP}</p>
             </div>
             <div className="benchmark-safety-stack">
-              <div className="benchmark-validation-panel" aria-label="Public release validation commands">
+              <div
+                className="benchmark-validation-panel"
+                aria-label={locale === 'es' ? 'Comandos de validación para publicación' : 'Public release validation commands'}
+              >
                 {t.validationChecks.map((check) => (
                   <code key={check}>{check}</code>
                 ))}

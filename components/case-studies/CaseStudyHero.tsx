@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import type { CaseStudyHero as CaseStudyHeroType } from '@/types/case-study'
 import { getSiteCopy } from '@/data/site-copy'
-import { type Locale } from '@/lib/i18n'
+import { type Locale, localizePath } from '@/lib/i18n'
 
 interface CaseStudyHeroProps {
   hero: CaseStudyHeroType
@@ -62,6 +63,9 @@ export default function CaseStudyHero({ hero, accentColor, locale = 'en' }: Case
       
       <div className="case-study-hero-new__content">
         <div className="case-study-hero-new__container">
+          <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
+            {copy.backToCaseStudies}
+          </Link>
           <div className="case-study-hero-new__badge">{copy.caseStudyBadge}</div>
           <h1 className="case-study-hero-new__title">{hero.title}</h1>
           {hero.tagline && (

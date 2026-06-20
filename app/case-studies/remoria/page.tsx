@@ -238,6 +238,7 @@ export default function RemoriaPage() {
           <CaseStudyGallery 
             rows={content.gallery.rows}
             accentColor={content.accentColor}
+            locale={locale}
           />
         )}
 

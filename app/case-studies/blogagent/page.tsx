@@ -20,6 +20,19 @@ const content = {
     description:
       'BlogAgent combines bounded LLM agents with deterministic contracts for research, candidate validation, drafting, review, and final output control.',
     repository: 'View repository',
+    projectTags: 'Project tags',
+    tags: ['Agentic workflow', 'LLM systems', 'Editorial AI', 'Source-aware drafting', 'Human-in-the-loop', 'Python', 'FastAPI'],
+    workflowStatus: 'Workflow status',
+    validContracts: 'contracts valid',
+    panelRows: [
+      ['01', 'query_contract', 'locked'],
+      ['02', 'source_quality', 'checked'],
+      ['03', 'candidate_pack', 'validated'],
+      ['04', 'writer', 'bounded'],
+      ['05', 'reviewer', 'veto enabled'],
+      ['06', 'final_contract', 'pass'],
+    ],
+    outputStatus: 'Output: copy-ready draft / human review pending',
     nav: [
       ['Problem', '#problem'],
       ['Goal', '#goal'],
@@ -158,6 +171,19 @@ const content = {
     description:
       'BlogAgent combina agentes LLM acotados con contratos deterministas para investigación, validación de candidatos, redacción, revisión y control de la salida final.',
     repository: 'Ver repositorio',
+    projectTags: 'Etiquetas del proyecto',
+    tags: ['Flujo con agentes', 'Sistemas LLM', 'IA editorial', 'Redacción con fuentes', 'Revisión humana', 'Python', 'FastAPI'],
+    workflowStatus: 'Estado del flujo',
+    validContracts: 'contratos válidos',
+    panelRows: [
+      ['01', 'query_contract', 'bloqueado'],
+      ['02', 'source_quality', 'comprobado'],
+      ['03', 'candidate_pack', 'validado'],
+      ['04', 'writer', 'acotado'],
+      ['05', 'reviewer', 'veto activo'],
+      ['06', 'final_contract', 'correcto'],
+    ],
+    outputStatus: 'Salida: borrador listo para copiar / revisión humana pendiente',
     nav: [
       ['Problema', '#problem'],
       ['Objetivo', '#goal'],
@@ -173,8 +199,8 @@ const content = {
     snapshot: [
       { label: 'Tipo', value: 'Herramienta editorial interna' },
       { label: 'Rol', value: 'Arquitectura, producto, UX, backend, evaluación' },
-      { label: 'Stack', value: 'Python, FastAPI, LLM workflow, deterministic validation, mock/live providers' },
-      { label: 'Estado', value: 'Public repo / portfolio case study' },
+      { label: 'Stack', value: 'Python, FastAPI, flujo LLM, validación determinista y proveedores simulados/reales' },
+      { label: 'Estado', value: 'Repositorio público / caso de portfolio' },
       { label: 'Año', value: '2026' },
     ],
     problemEyebrow: '01 / Problema',
@@ -303,6 +329,9 @@ export default function BlogAgentPage() {
       <main id="main-content" className="case-study-page-new case-study-page-new--data-brief case-study-page-new--blogagent">
         <section className="data-brief-hero blogagent-hero" aria-labelledby="blogagent-title">
           <div className="data-brief-hero__content">
+            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
+              {t.back}
+            </Link>
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="blogagent-title" className="data-brief-hero__title">
               BlogAgent
@@ -313,37 +342,27 @@ export default function BlogAgentPage() {
               <a href={repositoryUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
                 {t.repository}
               </a>
-              <Link href={localizePath('/case-studies', locale)} className="data-brief-button">
-                {t.back}
-              </Link>
             </div>
-            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
-              {['Agentic workflow', 'LLM systems', 'Editorial AI', 'Source-aware drafting', 'Human-in-the-loop', 'Python', 'FastAPI'].map((tag) => (
+            <div className="data-brief-tags" aria-label={t.projectTags}>
+              {t.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
           </div>
 
-          <aside className="blogagent-hero__panel" aria-label={locale === 'es' ? 'Estado del workflow' : 'Workflow status'}>
+          <aside className="blogagent-hero__panel" aria-label={t.workflowStatus}>
             <div className="blogagent-hero__panel-header">
               <span>blogagent / run</span>
-              <span className="is-valid">{locale === 'es' ? 'contratos válidos' : 'contracts valid'}</span>
+              <span className="is-valid">{t.validContracts}</span>
             </div>
-            {[
-              ['01', 'query_contract', 'locked'],
-              ['02', 'source_quality', 'checked'],
-              ['03', 'candidate_pack', 'validated'],
-              ['04', 'writer', 'bounded'],
-              ['05', 'reviewer', 'veto enabled'],
-              ['06', 'final_contract', 'pass'],
-            ].map(([number, label, status]) => (
+            {t.panelRows.map(([number, label, status]) => (
               <div key={label} className="blogagent-hero__panel-row">
                 <span>{number}</span>
                 <strong>{label}</strong>
                 <em>{status}</em>
               </div>
             ))}
-            <p>{locale === 'es' ? 'Salida: borrador copy-ready / revisión humana pendiente' : 'Output: copy-ready draft / human review pending'}</p>
+            <p>{t.outputStatus}</p>
           </aside>
         </section>
 

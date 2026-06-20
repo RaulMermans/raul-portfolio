@@ -612,7 +612,7 @@ export default function WebsiteAuditorPage() {
             </h1>
             <p className="data-brief-hero__subtitle">{t.heroSubtitle}</p>
             <p className="data-brief-hero__description">{t.heroDescription}</p>
-            <div className="data-brief-actions" aria-label="Project links">
+            <div className="data-brief-actions" aria-label={locale === 'es' ? 'Enlaces del proyecto' : 'Project links'}>
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
                 {t.heroCTAGithub}
               </a>
@@ -620,7 +620,7 @@ export default function WebsiteAuditorPage() {
                 {t.heroCTAHow}
               </a>
             </div>
-            <div className="data-brief-tags" aria-label="Project tags">
+            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
               {t.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
@@ -744,7 +744,10 @@ export default function WebsiteAuditorPage() {
               <h2 id="website-auditor-agent">{t.agentH2}</h2>
               <p>{t.agentP}</p>
             </div>
-            <div className="website-auditor-truth-boundary" aria-label="Truth boundary">
+            <div
+              className="website-auditor-truth-boundary"
+              aria-label={locale === 'es' ? 'Límite de veracidad' : 'Truth boundary'}
+            >
               {t.agentDiagram.map((item) => (
                 <span key={item}>{item}</span>
               ))}
