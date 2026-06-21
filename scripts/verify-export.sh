@@ -78,9 +78,9 @@ assert_contains out/en/case-studies/index.html "View case study: BlogAgent"
 assert_contains out/case-studies/index.html "Ver caso de estudio: Campaña deportiva con IA"
 assert_contains out/case-studies/index.html "Ver caso de estudio: BlogAgent"
 
-assert_contains out/en/case-studies/blogagent/index.html "human review before publication"
-assert_contains out/case-studies/blogagent/index.html "revisión humana antes de publicar"
-assert_contains out/es/case-studies/blogagent/index.html "revisión humana antes de publicar"
+assert_contains out/en/case-studies/blogagent/index.html "reviewer veto before publication"
+assert_contains out/case-studies/blogagent/index.html "poder de veto antes de publicar"
+assert_contains out/es/case-studies/blogagent/index.html "poder de veto antes de publicar"
 
 assert_absent out/en/case-studies/index.html "Digital identity system that structures AI/product work"
 assert_absent out/en/case-studies/index.html "For faster UX, SEO, and conversion diagnostics"
@@ -117,27 +117,29 @@ function assertOrder(file, labels) {
 }
 
 assertOrder('out/en/case-studies/index.html', [
+  'Campaign Pulse',
+  'Campaign Sandbox',
+  'DataBrief AI',
+  'Website Audit Agent',
+  'Benchmark Dashboard Template',
   'AI Sports Campaign',
   'Remoria',
-  'Raul Mermans Portfolio',
-  'Website Audit Agent',
-  'Campaign Sandbox',
   'BlogAgent',
   'TerritoryOps Spain',
-  'DataBrief AI',
-  'Benchmark Dashboard Template',
+  'Raul Mermans Portfolio',
 ])
 
 assertOrder('out/case-studies/index.html', [
+  'Campaign Pulse',
+  'Campaign Sandbox',
+  'DataBrief AI',
+  'Website Audit Agent',
+  'Benchmark Dashboard Template',
   'Campaña deportiva con IA',
   'Remoria',
-  'Raul Mermans Portfolio',
-  'Website Audit Agent',
-  'Campaign Sandbox',
   'BlogAgent',
   'TerritoryOps Spain',
-  'DataBrief AI',
-  'Benchmark Dashboard Template',
+  'Raul Mermans Portfolio',
 ])
 NODE
 

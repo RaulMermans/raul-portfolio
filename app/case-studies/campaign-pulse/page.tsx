@@ -6,12 +6,14 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
 const demoUrl = 'https://campaign-pulse.vercel.app/'
 const githubUrl = 'https://github.com/RaulMermans/campaign-pulse'
-const workflowReferenceUrl = 'https://github.com/filipecalegario/awesome-vibe-coding'
+const workflowReferenceUrl =
+  'https://github.com/filipecalegario/awesome-vibe-coding'
 const imageBase = '/images/case-studies/campaign-pulse'
 
 const shared = {
@@ -24,15 +26,6 @@ const shared = {
     'localStorage',
     'FileReader CSV',
     'GitHub Actions',
-  ],
-  flow: [
-    'CSV / Demo JSON',
-    'Adapter validation',
-    'Normalized dataset',
-    'Computed analytics',
-    'Target evaluation',
-    'UI workspaces',
-    'Export / report',
   ],
   screenshots: [
     { src: `${imageBase}/overview.png`, key: 'overview', wide: true },
@@ -58,7 +51,8 @@ const content = {
     status: 'Portfolio-ready / local-first prototype',
     demo: 'View live demo →',
     github: 'View GitHub →',
-    visualCaption: 'Overview mission-control using synthetic Demo JSON. No customer data is shown.',
+    visualCaption:
+      'Overview mission-control using synthetic Demo JSON. No customer data is shown.',
     nav: [
       ['Problem', '#problem'],
       ['System', '#system'],
@@ -69,34 +63,83 @@ const content = {
     ] as const,
     snapshot: [
       ['Type', 'Advanced frontend data-product prototype'],
-      ['Use case', 'Newsletter performance, audience pressure, targets, and monthly reporting'],
+      [
+        'Use case',
+        'Newsletter performance, audience pressure, targets, and monthly reporting',
+      ],
       ['Role', 'Product thinking, data modeling, UX, and frontend engineering'],
       ['Data boundary', 'Synthetic JSON and browser-local CSV sessions'],
+    ],
+    workflowStages: [
+      'Fragmented newsletter and campaign data',
+      'Normalized data model',
+      'Dashboard intelligence',
+      'Monthly decision, report, and export',
     ],
     problemEyebrow: 'Problem',
     problemTitle: ['Metrics are available.', 'Decisions are still fragmented.'],
     problemBody:
       'Newsletter teams often have performance data spread across exports, campaign reports, audience segments, and spreadsheets. The hard part is not seeing metrics — it is knowing what changed, which audience is under pressure, and what to do next.',
     solutionEyebrow: 'Solution',
-    solutionTitle: 'Normalize the facts, then make the operating decision visible.',
+    solutionTitle:
+      'Normalize the facts, then make the operating decision visible.',
     solutionBody:
       'Campaign Pulse turns raw demo newsletter data and uploaded CSV exports into a normalized analytics layer with target-aware diagnostics, audience pressure signals, segment movement intelligence, and monthly operating reports.',
     builtEyebrow: 'What I built',
     builtTitle: 'A complete local-first analysis loop.',
     built: [
-      ['Adapter contract', 'One normalized boundary for bundled JSON and flat CSV exports.'],
-      ['Demo JSON adapter', 'Validates synthetic campaign, newsletter, audience, and target facts.'],
-      ['CSV/export adapter', 'Merges one-newsletter × one-segment rows into the shared model.'],
-      ['Editable column mapping', 'Supports inferred aliases, manual overrides, and required-field checks.'],
-      ['Rejected-row diagnostics', 'Explains invalid rows before a session dataset can be activated.'],
-      ['Client-side CSV upload', 'Reads local files with FileReader; nothing is sent to a server.'],
-      ['Editable targets', 'Global, campaign, and segment targets persist in localStorage.'],
-      ['Target comparison chips', 'On track, watch, and off-track states stay visible in context.'],
-      ['Audience master-detail', 'All segments remain comparable while one opens into deeper evidence.'],
-      ['Calendar + drawer', 'Cadence and newsletter detail share the same operating context.'],
-      ['Campaign comparison', 'Contribution, pressure, strongest sends, and next actions in one read.'],
-      ['Monthly report + export pack', 'Print-ready memo and browser-generated JSON/CSV artifacts.'],
-      ['CI + deployment prep', 'Focused tests, GitHub Actions quality gates, and Vercel configuration.'],
+      [
+        'Adapter contract',
+        'One normalized boundary for bundled JSON and flat CSV exports.',
+      ],
+      [
+        'Demo JSON adapter',
+        'Validates synthetic campaign, newsletter, audience, and target facts.',
+      ],
+      [
+        'CSV/export adapter',
+        'Merges one-newsletter × one-segment rows into the shared model.',
+      ],
+      [
+        'Editable column mapping',
+        'Supports inferred aliases, manual overrides, and required-field checks.',
+      ],
+      [
+        'Rejected-row diagnostics',
+        'Explains invalid rows before a session dataset can be activated.',
+      ],
+      [
+        'Client-side CSV upload',
+        'Reads local files with FileReader; nothing is sent to a server.',
+      ],
+      [
+        'Editable targets',
+        'Global, campaign, and segment targets persist in localStorage.',
+      ],
+      [
+        'Target comparison chips',
+        'On track, watch, and off-track states stay visible in context.',
+      ],
+      [
+        'Audience master-detail',
+        'All segments remain comparable while one opens into deeper evidence.',
+      ],
+      [
+        'Calendar + drawer',
+        'Cadence and newsletter detail share the same operating context.',
+      ],
+      [
+        'Campaign comparison',
+        'Contribution, pressure, strongest sends, and next actions in one read.',
+      ],
+      [
+        'Monthly report + export pack',
+        'Print-ready memo and browser-generated JSON/CSV artifacts.',
+      ],
+      [
+        'CI + deployment prep',
+        'Focused tests, GitHub Actions quality gates, and Vercel configuration.',
+      ],
     ],
     systemEyebrow: 'Architecture / System map',
     systemTitle: 'Ingestion, intelligence, and presentation stay separate.',
@@ -104,40 +147,106 @@ const content = {
       'Raw source facts do not contain precomputed rates, rankings, diagnoses, or recommendations. Adapters normalize inputs first; deterministic TypeScript utilities compute the intelligence layer after validation.',
     layers: [
       ['Inputs', 'Bundled synthetic JSON or a browser-local CSV export.'],
-      ['Contract', 'Mapping, validation, rejection reasons, and normalized entities.'],
-      ['Intelligence', 'Rates, rankings, pressure, movement, targets, risks, and recommendations.'],
-      ['Workspaces', 'Overview, Calendar, Newsletters, Campaigns, Audience, Insights, Report, and Data.'],
+      [
+        'Contract',
+        'Mapping, validation, rejection reasons, and normalized entities.',
+      ],
+      [
+        'Intelligence',
+        'Rates, rankings, pressure, movement, targets, risks, and recommendations.',
+      ],
+      [
+        'Workspaces',
+        'Overview, Calendar, Newsletters, Campaigns, Audience, Insights, Report, and Data.',
+      ],
     ],
     screensEyebrow: 'Key product screens',
     screensTitle: 'One dataset, multiple decision surfaces.',
     screensBody:
       'The interface is organized as an operating room rather than a generic dashboard. Each workspace answers a different question while preserving the same month, source, target, and detail context.',
     screenshotCopy: {
-      overview: ['Overview mission-control', 'Business health, revenue target, audience pressure, and the best next move.'],
-      data: ['Data import and export console', 'Local CSV upload, source state, export pack, and session-only boundary.'],
-      mapping: ['Editable column mapping', 'Mapping confidence, required fields, accepted rows, and diagnostics.'],
-      audience: ['Audience master-detail', 'Segment value, movement, pressure, target state, and recommended action.'],
-      audienceDetail: ['Selected segment detail', 'Weekly pressure, fatigue diagnosis, history, and member-level evidence.'],
-      calendar: ['Calendar month view', 'Send cadence, pressure treatment, newsletter cards, and month summary.'],
-      newsletters: ['Newsletter rankings', 'Best and weakest sends, blended ranking, engagement, revenue, and risk.'],
-      campaigns: ['Campaign comparison', 'Contribution, RPR, pressure, target state, strongest send, and recommendation.'],
-      report: ['Monthly operating memo', 'Executive summary, evidence, target state, audience risk, and next actions.'],
+      overview: [
+        'Overview mission-control',
+        'Business health, revenue target, audience pressure, and the best next move.',
+      ],
+      data: [
+        'Data import and export console',
+        'Local CSV upload, source state, export pack, and session-only boundary.',
+      ],
+      mapping: [
+        'Editable column mapping',
+        'Mapping confidence, required fields, accepted rows, and diagnostics.',
+      ],
+      audience: [
+        'Audience master-detail',
+        'Segment value, movement, pressure, target state, and recommended action.',
+      ],
+      audienceDetail: [
+        'Selected segment detail',
+        'Weekly pressure, fatigue diagnosis, history, and member-level evidence.',
+      ],
+      calendar: [
+        'Calendar month view',
+        'Send cadence, pressure treatment, newsletter cards, and month summary.',
+      ],
+      newsletters: [
+        'Newsletter rankings',
+        'Best and weakest sends, blended ranking, engagement, revenue, and risk.',
+      ],
+      campaigns: [
+        'Campaign comparison',
+        'Contribution, RPR, pressure, target state, strongest send, and recommendation.',
+      ],
+      report: [
+        'Monthly operating memo',
+        'Executive summary, evidence, target state, audience risk, and next actions.',
+      ],
     },
     intelligenceEyebrow: 'Data intelligence',
     intelligenceTitle: 'Deterministic signals, not AI-generated commentary.',
     intelligenceBody:
       'Every read is calculated from normalized local facts. The prototype makes formulas and operating thresholds inspectable, repeatable, and testable.',
     metrics: [
-      ['OR', 'Unique opens ÷ delivered. A top-level read on subject-line and sender response.'],
-      ['CTR', 'Unique clicks ÷ delivered. Measures click depth across the delivered audience.'],
-      ['CTOR', 'Unique clicks ÷ unique opens. Separates post-open content performance from reach.'],
-      ['Conversion rate', 'Orders ÷ delivered. Connects newsletter delivery to downstream action.'],
-      ['RPR', 'Revenue ÷ delivered. Compares audience value across sends, campaigns, and segments.'],
-      ['Revenue vs target', 'Actual revenue is evaluated against editable global or scoped targets.'],
-      ['Pressure / saturation', 'Send frequency, overlap, and negative signals expose overexposure risk.'],
-      ['Segment movement', 'Growing, stable, declining, fatigued, and recovering states add direction.'],
-      ['Rejected-row diagnostics', 'Invalid source rows stay visible instead of silently disappearing.'],
-      ['Target-aware recommendations', 'Next actions respond to performance and pressure constraints together.'],
+      [
+        'OR',
+        'Unique opens ÷ delivered. A top-level read on subject-line and sender response.',
+      ],
+      [
+        'CTR',
+        'Unique clicks ÷ delivered. Measures click depth across the delivered audience.',
+      ],
+      [
+        'CTOR',
+        'Unique clicks ÷ unique opens. Separates post-open content performance from reach.',
+      ],
+      [
+        'Conversion rate',
+        'Orders ÷ delivered. Connects newsletter delivery to downstream action.',
+      ],
+      [
+        'RPR',
+        'Revenue ÷ delivered. Compares audience value across sends, campaigns, and segments.',
+      ],
+      [
+        'Revenue vs target',
+        'Actual revenue is evaluated against editable global or scoped targets.',
+      ],
+      [
+        'Pressure / saturation',
+        'Send frequency, overlap, and negative signals expose overexposure risk.',
+      ],
+      [
+        'Segment movement',
+        'Growing, stable, declining, fatigued, and recovering states add direction.',
+      ],
+      [
+        'Rejected-row diagnostics',
+        'Invalid source rows stay visible instead of silently disappearing.',
+      ],
+      [
+        'Target-aware recommendations',
+        'Next actions respond to performance and pressure constraints together.',
+      ],
     ],
     engineeringEyebrow: 'Engineering notes',
     engineeringTitle: 'A credible frontend prototype with explicit boundaries.',
@@ -169,10 +278,22 @@ const content = {
     outcomeBody:
       'Campaign Pulse demonstrates product thinking, frontend engineering, data modeling, deterministic analytics, adapter design, and UX iteration in one coherent local-first product surface.',
     outcomeCards: [
-      ['Product thinking', 'Turns fragmented metrics into explicit operating questions and next moves.'],
-      ['Frontend engineering', 'Coordinates dense analytics workspaces without relying on backend complexity.'],
-      ['Data modeling', 'Separates source rows, normalized facts, computed intelligence, and presentation.'],
-      ['UX iteration', 'Balances mission-control scanning with deeper calendar, audience, campaign, and report reads.'],
+      [
+        'Product thinking',
+        'Turns fragmented metrics into explicit operating questions and next moves.',
+      ],
+      [
+        'Frontend engineering',
+        'Coordinates dense analytics workspaces without relying on backend complexity.',
+      ],
+      [
+        'Data modeling',
+        'Separates source rows, normalized facts, computed intelligence, and presentation.',
+      ],
+      [
+        'UX iteration',
+        'Balances mission-control scanning with deeper calendar, audience, campaign, and report reads.',
+      ],
     ],
   },
   es: {
@@ -185,7 +306,8 @@ const content = {
     status: 'Listo para portfolio / prototipo local-first',
     demo: 'Ver demo en vivo →',
     github: 'Ver GitHub →',
-    visualCaption: 'Mission-control con datos Demo JSON sintéticos. No se muestran datos de clientes.',
+    visualCaption:
+      'Mission-control con datos Demo JSON sintéticos. No se muestran datos de clientes.',
     nav: [
       ['Problema', '#problem'],
       ['Sistema', '#system'],
@@ -196,34 +318,86 @@ const content = {
     ] as const,
     snapshot: [
       ['Tipo', 'Prototipo frontend avanzado de producto de datos'],
-      ['Uso', 'Rendimiento de newsletters, presión de audiencia, objetivos e informes'],
+      [
+        'Uso',
+        'Rendimiento de newsletters, presión de audiencia, objetivos e informes',
+      ],
       ['Rol', 'Producto, modelado de datos, UX e ingeniería frontend'],
       ['Datos', 'JSON sintético y sesiones CSV locales en navegador'],
     ],
+    workflowStages: [
+      'Datos fragmentados de newsletters y campañas',
+      'Modelo de datos normalizado',
+      'Inteligencia en dashboard',
+      'Decisión mensual, informe y exportación',
+    ],
     problemEyebrow: 'Problema',
-    problemTitle: ['Las métricas existen.', 'Las decisiones siguen fragmentadas.'],
+    problemTitle: [
+      'Las métricas existen.',
+      'Las decisiones siguen fragmentadas.',
+    ],
     problemBody:
       'Los equipos de newsletter suelen repartir sus datos entre exportaciones, informes de campaña, segmentos y hojas de cálculo. El reto no es ver métricas, sino entender qué cambió, qué audiencia está bajo presión y qué hacer después.',
     solutionEyebrow: 'Solución',
-    solutionTitle: 'Normalizar los hechos y hacer visible la decisión operativa.',
+    solutionTitle:
+      'Normalizar los hechos y hacer visible la decisión operativa.',
     solutionBody:
       'Campaign Pulse convierte datos demo y exportaciones CSV en una capa analítica normalizada con diagnósticos frente a objetivos, señales de presión, movimiento de segmentos e informes operativos mensuales.',
     builtEyebrow: 'Qué construí',
     builtTitle: 'Un ciclo completo de análisis local-first.',
     built: [
-      ['Contrato de adaptador', 'Un límite normalizado para JSON y exportaciones CSV planas.'],
-      ['Adaptador Demo JSON', 'Valida campañas, newsletters, audiencias y objetivos sintéticos.'],
-      ['Adaptador CSV', 'Agrupa filas newsletter × segmento dentro del modelo compartido.'],
-      ['Mapeo editable', 'Alias inferidos, cambios manuales y comprobación de campos obligatorios.'],
-      ['Diagnóstico de rechazos', 'Explica filas inválidas antes de activar los datos.'],
-      ['Carga CSV local', 'FileReader procesa el archivo sin enviarlo a un servidor.'],
-      ['Objetivos editables', 'Objetivos globales, de campaña y segmento en localStorage.'],
-      ['Chips de comparación', 'Estados on track, watch y off track dentro de cada lectura.'],
-      ['Audiencia master-detail', 'Compara todos los segmentos y profundiza en uno.'],
-      ['Calendario + drawer', 'Cadencia y detalle de newsletter comparten contexto.'],
-      ['Comparación de campañas', 'Contribución, presión, mejores envíos y siguiente acción.'],
-      ['Informe + export pack', 'Memo imprimible y archivos JSON/CSV generados en navegador.'],
-      ['CI + despliegue', 'Tests enfocados, GitHub Actions y preparación para Vercel.'],
+      [
+        'Contrato de adaptador',
+        'Un límite normalizado para JSON y exportaciones CSV planas.',
+      ],
+      [
+        'Adaptador Demo JSON',
+        'Valida campañas, newsletters, audiencias y objetivos sintéticos.',
+      ],
+      [
+        'Adaptador CSV',
+        'Agrupa filas newsletter × segmento dentro del modelo compartido.',
+      ],
+      [
+        'Mapeo editable',
+        'Alias inferidos, cambios manuales y comprobación de campos obligatorios.',
+      ],
+      [
+        'Diagnóstico de rechazos',
+        'Explica filas inválidas antes de activar los datos.',
+      ],
+      [
+        'Carga CSV local',
+        'FileReader procesa el archivo sin enviarlo a un servidor.',
+      ],
+      [
+        'Objetivos editables',
+        'Objetivos globales, de campaña y segmento en localStorage.',
+      ],
+      [
+        'Chips de comparación',
+        'Estados on track, watch y off track dentro de cada lectura.',
+      ],
+      [
+        'Audiencia master-detail',
+        'Compara todos los segmentos y profundiza en uno.',
+      ],
+      [
+        'Calendario + drawer',
+        'Cadencia y detalle de newsletter comparten contexto.',
+      ],
+      [
+        'Comparación de campañas',
+        'Contribución, presión, mejores envíos y siguiente acción.',
+      ],
+      [
+        'Informe + export pack',
+        'Memo imprimible y archivos JSON/CSV generados en navegador.',
+      ],
+      [
+        'CI + despliegue',
+        'Tests enfocados, GitHub Actions y preparación para Vercel.',
+      ],
     ],
     systemEyebrow: 'Arquitectura / Mapa del sistema',
     systemTitle: 'Ingesta, inteligencia y presentación permanecen separadas.',
@@ -231,40 +405,107 @@ const content = {
       'Los datos fuente no incluyen ratios, rankings, diagnósticos ni recomendaciones precalculadas. Los adaptadores normalizan primero; las utilidades TypeScript calculan la inteligencia después de validar.',
     layers: [
       ['Entradas', 'JSON sintético o una exportación CSV local del navegador.'],
-      ['Contrato', 'Mapeo, validación, motivos de rechazo y entidades normalizadas.'],
-      ['Inteligencia', 'Ratios, rankings, presión, movimiento, objetivos, riesgos y recomendaciones.'],
-      ['Espacios', 'Overview, Calendar, Newsletters, Campaigns, Audience, Insights, Report y Data.'],
+      [
+        'Contrato',
+        'Mapeo, validación, motivos de rechazo y entidades normalizadas.',
+      ],
+      [
+        'Inteligencia',
+        'Ratios, rankings, presión, movimiento, objetivos, riesgos y recomendaciones.',
+      ],
+      [
+        'Espacios',
+        'Overview, Calendar, Newsletters, Campaigns, Audience, Insights, Report y Data.',
+      ],
     ],
     screensEyebrow: 'Pantallas clave',
     screensTitle: 'Un dataset, varias superficies de decisión.',
     screensBody:
       'La interfaz funciona como sala operativa, no como dashboard genérico. Cada espacio responde una pregunta manteniendo el mismo mes, fuente, objetivos y contexto de detalle.',
     screenshotCopy: {
-      overview: ['Overview mission-control', 'Salud de negocio, objetivo de ingresos, presión y siguiente acción.'],
-      data: ['Consola de datos', 'Carga CSV local, estado de fuente, export pack y límite de sesión.'],
-      mapping: ['Mapeo de columnas', 'Confianza, campos obligatorios, filas aceptadas y diagnósticos.'],
-      audience: ['Audiencia master-detail', 'Valor, movimiento, presión, objetivos y acción recomendada.'],
-      audienceDetail: ['Detalle de segmento', 'Presión semanal, fatiga, histórico y evidencia de miembros.'],
-      calendar: ['Calendario mensual', 'Cadencia, presión, tarjetas de envío y resumen del mes.'],
-      newsletters: ['Ranking de newsletters', 'Mejores envíos, engagement, ingresos y riesgo.'],
-      campaigns: ['Comparación de campañas', 'Contribución, RPR, presión, objetivos y recomendación.'],
-      report: ['Memo operativo mensual', 'Resumen, evidencia, objetivos, riesgo y siguientes acciones.'],
+      overview: [
+        'Overview mission-control',
+        'Salud de negocio, objetivo de ingresos, presión y siguiente acción.',
+      ],
+      data: [
+        'Consola de datos',
+        'Carga CSV local, estado de fuente, export pack y límite de sesión.',
+      ],
+      mapping: [
+        'Mapeo de columnas',
+        'Confianza, campos obligatorios, filas aceptadas y diagnósticos.',
+      ],
+      audience: [
+        'Audiencia master-detail',
+        'Valor, movimiento, presión, objetivos y acción recomendada.',
+      ],
+      audienceDetail: [
+        'Detalle de segmento',
+        'Presión semanal, fatiga, histórico y evidencia de miembros.',
+      ],
+      calendar: [
+        'Calendario mensual',
+        'Cadencia, presión, tarjetas de envío y resumen del mes.',
+      ],
+      newsletters: [
+        'Ranking de newsletters',
+        'Mejores envíos, engagement, ingresos y riesgo.',
+      ],
+      campaigns: [
+        'Comparación de campañas',
+        'Contribución, RPR, presión, objetivos y recomendación.',
+      ],
+      report: [
+        'Memo operativo mensual',
+        'Resumen, evidencia, objetivos, riesgo y siguientes acciones.',
+      ],
     },
     intelligenceEyebrow: 'Inteligencia de datos',
-    intelligenceTitle: 'Señales deterministas, no comentarios generados por IA.',
+    intelligenceTitle:
+      'Señales deterministas, no comentarios generados por IA.',
     intelligenceBody:
       'Cada lectura se calcula desde hechos locales normalizados. Las fórmulas y umbrales son inspeccionables, repetibles y testeables.',
     metrics: [
-      ['OR', 'Aperturas únicas ÷ entregados. Respuesta inicial a asunto y remitente.'],
-      ['CTR', 'Clics únicos ÷ entregados. Profundidad de clic sobre la audiencia entregada.'],
-      ['CTOR', 'Clics únicos ÷ aperturas únicas. Rendimiento del contenido tras la apertura.'],
-      ['Conversión', 'Pedidos ÷ entregados. Conecta entrega con acción posterior.'],
-      ['RPR', 'Ingresos ÷ entregados. Compara valor entre envíos, campañas y segmentos.'],
-      ['Ingresos vs objetivo', 'Evalúa el valor real frente a objetivos globales o específicos.'],
-      ['Presión / saturación', 'Frecuencia, solapamiento y señales negativas muestran sobreexposición.'],
-      ['Movimiento de segmento', 'Growing, stable, declining, fatigued y recovering añaden dirección.'],
-      ['Filas rechazadas', 'Los errores permanecen visibles en vez de desaparecer.'],
-      ['Recomendaciones', 'Las acciones combinan rendimiento y restricciones de presión.'],
+      [
+        'OR',
+        'Aperturas únicas ÷ entregados. Respuesta inicial a asunto y remitente.',
+      ],
+      [
+        'CTR',
+        'Clics únicos ÷ entregados. Profundidad de clic sobre la audiencia entregada.',
+      ],
+      [
+        'CTOR',
+        'Clics únicos ÷ aperturas únicas. Rendimiento del contenido tras la apertura.',
+      ],
+      [
+        'Conversión',
+        'Pedidos ÷ entregados. Conecta entrega con acción posterior.',
+      ],
+      [
+        'RPR',
+        'Ingresos ÷ entregados. Compara valor entre envíos, campañas y segmentos.',
+      ],
+      [
+        'Ingresos vs objetivo',
+        'Evalúa el valor real frente a objetivos globales o específicos.',
+      ],
+      [
+        'Presión / saturación',
+        'Frecuencia, solapamiento y señales negativas muestran sobreexposición.',
+      ],
+      [
+        'Movimiento de segmento',
+        'Growing, stable, declining, fatigued y recovering añaden dirección.',
+      ],
+      [
+        'Filas rechazadas',
+        'Los errores permanecen visibles en vez de desaparecer.',
+      ],
+      [
+        'Recomendaciones',
+        'Las acciones combinan rendimiento y restricciones de presión.',
+      ],
     ],
     engineeringEyebrow: 'Notas de ingeniería',
     engineeringTitle: 'Un prototipo frontend creíble con límites explícitos.',
@@ -296,10 +537,22 @@ const content = {
     outcomeBody:
       'Campaign Pulse reúne pensamiento de producto, ingeniería frontend, modelado de datos, analítica determinista, diseño de adaptadores e iteración UX en una superficie local-first coherente.',
     outcomeCards: [
-      ['Pensamiento de producto', 'Convierte métricas fragmentadas en preguntas y acciones operativas.'],
-      ['Ingeniería frontend', 'Coordina espacios analíticos densos sin depender de backend.'],
-      ['Modelado de datos', 'Separa filas fuente, hechos normalizados, inteligencia y presentación.'],
-      ['Iteración UX', 'Equilibra lectura rápida con detalle de calendario, audiencia, campaña e informe.'],
+      [
+        'Pensamiento de producto',
+        'Convierte métricas fragmentadas en preguntas y acciones operativas.',
+      ],
+      [
+        'Ingeniería frontend',
+        'Coordina espacios analíticos densos sin depender de backend.',
+      ],
+      [
+        'Modelado de datos',
+        'Separa filas fuente, hechos normalizados, inteligencia y presentación.',
+      ],
+      [
+        'Iteración UX',
+        'Equilibra lectura rápida con detalle de calendario, audiencia, campaña e informe.',
+      ],
     ],
   },
 }
@@ -314,10 +567,19 @@ export default function CampaignPulsePage() {
   return (
     <>
       <Header locale={locale} />
-      <main id="main-content" className="case-study-page-new case-study-page-new--campaign-pulse">
-        <section className="campaign-pulse-hero" aria-labelledby="campaign-pulse-title">
+      <main
+        id="main-content"
+        className="case-study-page-new case-study-page-new--campaign-pulse"
+      >
+        <section
+          className="campaign-pulse-hero"
+          aria-labelledby="campaign-pulse-title"
+        >
           <div className="campaign-pulse-hero__copy">
-            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
+            <Link
+              href={localizePath('/case-studies', locale)}
+              className="data-brief-back"
+            >
               {t.back}
             </Link>
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
@@ -325,16 +587,36 @@ export default function CampaignPulsePage() {
             <p className="campaign-pulse-hero__subtitle">{t.subtitle}</p>
             <p className="campaign-pulse-hero__description">{t.description}</p>
             <div className="campaign-pulse-status">{t.status}</div>
-            <div className="data-brief-actions" aria-label={locale === 'es' ? 'Enlaces del proyecto' : 'Project links'}>
-              <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+            <div
+              className="data-brief-actions"
+              aria-label={
+                locale === 'es' ? 'Enlaces del proyecto' : 'Project links'
+              }
+            >
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button data-brief-button--primary"
+              >
                 {t.demo}
               </a>
-              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button"
+              >
                 {t.github}
               </a>
             </div>
-            <div className="data-brief-stack campaign-pulse-stack" aria-label="Technology stack">
-              {shared.stack.map((item) => <span key={item}>{item}</span>)}
+            <div
+              className="data-brief-stack campaign-pulse-stack"
+              aria-label="Technology stack"
+            >
+              {shared.stack.map(item => (
+                <span key={item}>{item}</span>
+              ))}
             </div>
           </div>
           <figure className="campaign-pulse-hero__visual">
@@ -352,27 +634,43 @@ export default function CampaignPulsePage() {
           </figure>
         </section>
 
-        <nav className="data-brief-mini-nav" aria-label={locale === 'es' ? 'Secciones del caso' : 'Case study sections'}>
-          {t.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
+        <nav
+          className="data-brief-mini-nav"
+          aria-label={
+            locale === 'es' ? 'Secciones del caso' : 'Case study sections'
+          }
+        >
+          {t.nav.map(([label, href]) => (
+            <a key={href} href={href}>
+              {label}
+            </a>
+          ))}
         </nav>
 
-        <section className="campaign-pulse-snapshot" aria-label={locale === 'es' ? 'Resumen del proyecto' : 'Project snapshot'}>
-          <div className="campaign-pulse-snapshot__container">
-            {t.snapshot.map(([label, value]) => (
-              <div key={label}>
-                <span>{label}</span>
-                <strong>{value}</strong>
-              </div>
-            ))}
-          </div>
-        </section>
+        <CaseStudySnapshot
+          locale={locale}
+          contextHref="#problem"
+          solutionHref="#system"
+          items={t.snapshot.map(([label, value]) => ({ label, value }))}
+          links={[
+            { label: t.demo, href: demoUrl, external: true },
+            { label: t.github, href: githubUrl, external: true },
+          ]}
+        />
 
-        <section id="problem" className="data-brief-section data-brief-section--light">
+        <section
+          id="problem"
+          className="data-brief-section data-brief-section--light"
+        >
           <div className="data-brief-section__container campaign-pulse-problem">
             <article>
               <p className="data-brief-eyebrow">{t.problemEyebrow}</p>
               <h2 aria-label={t.problemTitle.join(' ')}>
-                {t.problemTitle.map((line) => <span key={line} aria-hidden="true">{line}</span>)}
+                {t.problemTitle.map(line => (
+                  <span key={line} aria-hidden="true">
+                    {line}
+                  </span>
+                ))}
               </h2>
               <p>{t.problemBody}</p>
             </article>
@@ -384,7 +682,10 @@ export default function CampaignPulsePage() {
           </div>
         </section>
 
-        <section className="data-brief-section data-brief-section--cream" aria-labelledby="campaign-pulse-built">
+        <section
+          className="data-brief-section data-brief-section--cream"
+          aria-labelledby="campaign-pulse-built"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.builtEyebrow}</p>
@@ -402,15 +703,22 @@ export default function CampaignPulsePage() {
           </div>
         </section>
 
-        <section id="system" className="data-brief-section data-brief-section--dark" aria-labelledby="campaign-pulse-system">
+        <section
+          id="system"
+          className="data-brief-section data-brief-section--dark"
+          aria-labelledby="campaign-pulse-system"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.systemEyebrow}</p>
               <h2 id="campaign-pulse-system">{t.systemTitle}</h2>
               <p>{t.systemBody}</p>
             </div>
-            <div className="campaign-pulse-flow" aria-label="Campaign Pulse data flow">
-              {shared.flow.map((step, index) => (
+            <div
+              className="campaign-pulse-flow"
+              aria-label="Campaign Pulse data flow"
+            >
+              {t.workflowStages.map((step, index) => (
                 <div key={step}>
                   <span>{String(index + 1).padStart(2, '0')}</span>
                   <strong>{step}</strong>
@@ -428,7 +736,11 @@ export default function CampaignPulsePage() {
           </div>
         </section>
 
-        <section id="screens" className="data-brief-section data-brief-section--light" aria-labelledby="campaign-pulse-screens">
+        <section
+          id="screens"
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="campaign-pulse-screens"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.screensEyebrow}</p>
@@ -436,17 +748,27 @@ export default function CampaignPulsePage() {
               <p>{t.screensBody}</p>
             </div>
             <div className="campaign-pulse-gallery">
-              {shared.screenshots.map((shot) => {
-                const [title, description] = t.screenshotCopy[shot.key as keyof typeof t.screenshotCopy]
+              {shared.screenshots.map(shot => {
+                const [title, description] =
+                  t.screenshotCopy[shot.key as keyof typeof t.screenshotCopy]
                 return (
-                  <figure key={shot.key} className={shot.wide ? 'campaign-pulse-gallery__wide' : undefined}>
+                  <figure
+                    key={shot.key}
+                    className={
+                      shot.wide ? 'campaign-pulse-gallery__wide' : undefined
+                    }
+                  >
                     <div className="campaign-pulse-gallery__frame">
                       <Image
                         src={shot.src}
                         alt={`${title} in Campaign Pulse using synthetic demo data`}
                         width={1440}
                         height={1000}
-                        sizes={shot.wide ? '(max-width: 900px) 100vw, 90vw' : '(max-width: 900px) 100vw, 45vw'}
+                        sizes={
+                          shot.wide
+                            ? '(max-width: 900px) 100vw, 90vw'
+                            : '(max-width: 900px) 100vw, 45vw'
+                        }
                       />
                     </div>
                     <figcaption>
@@ -460,7 +782,11 @@ export default function CampaignPulsePage() {
           </div>
         </section>
 
-        <section id="intelligence" className="data-brief-section data-brief-section--cream" aria-labelledby="campaign-pulse-intelligence">
+        <section
+          id="intelligence"
+          className="data-brief-section data-brief-section--cream"
+          aria-labelledby="campaign-pulse-intelligence"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.intelligenceEyebrow}</p>
@@ -478,7 +804,11 @@ export default function CampaignPulsePage() {
           </div>
         </section>
 
-        <section id="engineering" className="data-brief-section data-brief-section--dark" aria-labelledby="campaign-pulse-engineering">
+        <section
+          id="engineering"
+          className="data-brief-section data-brief-section--dark"
+          aria-labelledby="campaign-pulse-engineering"
+        >
           <div className="data-brief-section__container campaign-pulse-engineering">
             <div>
               <div className="data-brief-refresh-heading">
@@ -487,24 +817,34 @@ export default function CampaignPulsePage() {
                 <p>{t.engineeringBody}</p>
               </div>
               <ul className="data-brief-list">
-                {t.engineeringPoints.map((item) => <li key={item}>{item}</li>)}
+                {t.engineeringPoints.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
               <p className="campaign-pulse-reference">
                 {t.reference}{' '}
-                <a href={workflowReferenceUrl} target="_blank" rel="noreferrer">awesome-vibe-coding ↗</a>
+                <a href={workflowReferenceUrl} target="_blank" rel="noreferrer">
+                  awesome-vibe-coding ↗
+                </a>
               </p>
             </div>
             <aside className="campaign-pulse-limitations">
               <p className="data-brief-eyebrow">{t.limitationsEyebrow}</p>
               <h3>{t.limitationsTitle}</h3>
               <ul>
-                {t.limitations.map((item) => <li key={item}>{item}</li>)}
+                {t.limitations.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </aside>
           </div>
         </section>
 
-        <section id="outcome" className="data-brief-section data-brief-section--closing" aria-labelledby="campaign-pulse-outcome">
+        <section
+          id="outcome"
+          className="data-brief-section data-brief-section--closing"
+          aria-labelledby="campaign-pulse-outcome"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.outcomeEyebrow}</p>
@@ -520,17 +860,31 @@ export default function CampaignPulsePage() {
               ))}
             </div>
             <div className="data-brief-actions">
-              <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button data-brief-button--primary"
+              >
                 {t.demo}
               </a>
-              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button"
+              >
                 {t.github}
               </a>
             </div>
           </div>
         </section>
 
-        <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
+        <CaseStudyNext
+          currentHref={pathname}
+          accentColor="var(--accent)"
+          locale={locale}
+        />
       </main>
       <Footer locale={locale} />
     </>

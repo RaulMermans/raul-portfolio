@@ -7,7 +7,10 @@ import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { type FormEvent, useMemo, useState } from 'react'
 import { getCaseStudies } from '@/data/case-studies'
-import { getCaseStudyCategories, type CaseStudyCategorySlug } from '@/data/case-study-categories'
+import {
+  getCaseStudyCategories,
+  type CaseStudyCategorySlug,
+} from '@/data/case-study-categories'
 import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
@@ -66,17 +69,24 @@ export default function CaseStudiesPage() {
   const browserLead = isSpanish
     ? 'Sistemas, interfaces y trabajo de marca construidos alrededor de prueba, contención y ejecución.'
     : 'Systems, interfaces, and brand work built around proof, restraint, and execution.'
-  const filterLabel = isSpanish ? 'Filtrar casos de estudio' : 'Filter case studies'
+  const filterLabel = isSpanish
+    ? 'Filtrar casos de estudio'
+    : 'Filter case studies'
   const allLabel = isSpanish ? 'Todos' : 'All'
   const readCase = isSpanish ? 'Ver caso' : 'View Case Study'
   const seeLabel = isSpanish ? 'Quiero ver...' : 'I want to see...'
-  const goLabel = isSpanish ? 'Ir a los casos filtrados' : 'Go to filtered case studies'
+  const goLabel = isSpanish
+    ? 'Ir a los casos filtrados'
+    : 'Go to filtered case studies'
 
   const studyCategoryMap = useMemo(() => {
-    const map = new Map<string, Array<{ slug: CaseStudyCategorySlug; title: string; label: string }>>()
+    const map = new Map<
+      string,
+      Array<{ slug: CaseStudyCategorySlug; title: string; label: string }>
+    >()
 
-    categories.forEach((category) => {
-      category.projects.forEach((project) => {
+    categories.forEach(category => {
+      category.projects.forEach(project => {
         if (!project.href) return
 
         const current = map.get(project.href) ?? []
@@ -94,38 +104,52 @@ export default function CaseStudiesPage() {
 
   const categoryFilters = useMemo(
     () =>
-      categories.filter((category) =>
-        category.projects.some((project) =>
-          project.href && caseStudies.some((study) => study.href === project.href),
-        ),
+      categories.filter(category =>
+        category.projects.some(
+          project =>
+            project.href &&
+            caseStudies.some(study => study.href === project.href)
+        )
       ),
-    [caseStudies, categories],
+    [caseStudies, categories]
   )
 
   const visibleStudies = useMemo(() => {
     if (activeFilter === 'all') return orderedStudies
 
-    return orderedStudies.filter((study) =>
-      studyCategoryMap.get(study.href)?.some((category) => category.slug === activeFilter),
+    return orderedStudies.filter(study =>
+      studyCategoryMap
+        .get(study.href)
+        ?.some(category => category.slug === activeFilter)
     )
   }, [activeFilter, orderedStudies, studyCategoryMap])
 
   const handleBrowserSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    document.getElementById('case-study-grid')?.scrollIntoView({ block: 'start' })
+    document
+      .getElementById('case-study-grid')
+      ?.scrollIntoView({ block: 'start' })
   }
 
   return (
     <>
       <Header locale={locale} />
-      <main id="main-content" role="main" className="case-studies-index case-studies-index--browser">
+      <main
+        id="main-content"
+        role="main"
+        className="case-studies-index case-studies-index--browser"
+      >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.collection) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schemas.collection),
+          }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumb) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schemas.breadcrumb),
+          }}
         />
         <section
           className="case-study-browser__chrome"
@@ -140,27 +164,40 @@ export default function CaseStudiesPage() {
             <p>{browserLead}</p>
           </div>
           <div className="case-study-browser__actions">
-            <form className="case-study-browser__control" aria-label={filterLabel} onSubmit={handleBrowserSubmit}>
+            <form
+              className="case-study-browser__control"
+              aria-label={filterLabel}
+              onSubmit={handleBrowserSubmit}
+            >
               <label className="visually-hidden" htmlFor="case-study-filter">
                 {filterLabel}
               </label>
-              <span className="case-study-browser__placeholder" aria-hidden="true">
+              <span
+                className="case-study-browser__placeholder"
+                aria-hidden="true"
+              >
                 {seeLabel}
               </span>
               <select
                 id="case-study-filter"
                 className="case-study-browser__select"
                 value={activeFilter}
-                onChange={(event) => setActiveFilter(event.target.value as FilterKey)}
+                onChange={event =>
+                  setActiveFilter(event.target.value as FilterKey)
+                }
               >
                 <option value="all">{allLabel}</option>
-                {categoryFilters.map((category) => (
+                {categoryFilters.map(category => (
                   <option key={category.slug} value={category.slug}>
                     {category.title}
                   </option>
                 ))}
               </select>
-              <button type="submit" className="case-study-browser__submit" aria-label={goLabel}>
+              <button
+                type="submit"
+                className="case-study-browser__submit"
+                aria-label={goLabel}
+              >
                 <span aria-hidden="true">→</span>
               </button>
             </form>
@@ -174,14 +211,19 @@ export default function CaseStudiesPage() {
           data-mobile-audit="case-study-grid"
         >
           {visibleStudies.map((study, index) => {
-            const variant = tileVariants[(study.id + index) % tileVariants.length]
+            const variant =
+              tileVariants[(study.id + index) % tileVariants.length]
 
             return (
               <Link
                 key={study.href}
                 href={study.href}
                 className={`case-study-project-tile case-study-project-tile--${variant}`}
-                aria-label={isSpanish ? `Ver caso de estudio: ${study.title}` : `View case study: ${study.title}`}
+                aria-label={
+                  isSpanish
+                    ? `Ver caso de estudio: ${study.title}`
+                    : `View case study: ${study.title}`
+                }
                 data-mobile-audit="case-study-card"
               >
                 <span className="case-study-project-tile__frame">
@@ -194,13 +236,32 @@ export default function CaseStudiesPage() {
                     className="case-study-project-tile__image"
                     priority={index < 2}
                   />
-                  <span className="case-study-project-tile__reveal" aria-hidden="true">
+                  <span
+                    className="case-study-project-tile__reveal"
+                    aria-hidden="true"
+                  >
                     <span>{study.cta ?? readCase}</span>
                     <span className="case-study-project-tile__arrow">→</span>
                   </span>
                 </span>
                 <span className="case-study-project-tile__caption">
-                  <span className="case-study-project-tile__title">{study.title}</span>
+                  <span className="case-study-project-tile__meta">
+                    {study.category && <span>{study.category}</span>}
+                    {study.proofTags?.slice(0, 2).map(tag => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </span>
+                  <span className="case-study-project-tile__title">
+                    {study.title}
+                  </span>
+                  <span className="case-study-project-tile__description">
+                    {study.description}
+                  </span>
+                  {study.commercialRelevance && (
+                    <span className="case-study-project-tile__description case-study-project-tile__description--commercial">
+                      {study.commercialRelevance}
+                    </span>
+                  )}
                 </span>
               </Link>
             )

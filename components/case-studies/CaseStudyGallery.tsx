@@ -12,7 +12,10 @@ interface CaseStudyGalleryProps {
   locale?: Locale
 }
 
-export default function CaseStudyGallery({ rows, locale = 'en' }: CaseStudyGalleryProps) {
+export default function CaseStudyGallery({
+  rows,
+  locale = 'en',
+}: CaseStudyGalleryProps) {
   const [hiddenImages, setHiddenImages] = useState<Set<string>>(new Set())
   const copy = getSiteCopy(locale).caseStudiesUi
 
@@ -47,7 +50,7 @@ export default function CaseStudyGallery({ rows, locale = 'en' }: CaseStudyGalle
               {row.items.map((image, itemIndex) => {
                 const idx = imageIndex++
                 return (
-                  <div
+                  <figure
                     key={`${image.src}-${idx}`}
                     className="case-study-gallery-new__item reveal"
                     style={{ animationDelay: `${idx * 0.08}s` }}
@@ -69,7 +72,8 @@ export default function CaseStudyGallery({ rows, locale = 'en' }: CaseStudyGalle
                       loading={idx < 4 ? 'eager' : 'lazy'}
                       onError={() => handleImageError(image.src)}
                     />
-                  </div>
+                    {image.caption && <figcaption>{image.caption}</figcaption>}
+                  </figure>
                 )
               })}
             </div>

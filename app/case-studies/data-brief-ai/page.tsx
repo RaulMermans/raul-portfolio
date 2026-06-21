@@ -19,9 +19,21 @@ const demoUrl = 'https://data-brief-ai-sigma.vercel.app'
 const commercialContent: CommercialCaseStudyContent = {
   snapshot: [
     { label: 'Type', value: 'AI reporting system' },
-    { label: 'Use case', value: 'Spreadsheet analysis, business brief generation, decision support' },
-    { label: 'Role', value: 'System architecture, product logic, frontend/backend implementation, AI workflow design' },
-    { label: 'Stack', value: 'Next.js, FastAPI, Python analysis runtime, SQLite, CSV/XLSX parsing, controlled execution' },
+    {
+      label: 'Use case',
+      value:
+        'Spreadsheet analysis, business brief generation, decision support',
+    },
+    {
+      label: 'Role',
+      value:
+        'System architecture, product logic, frontend/backend implementation, AI workflow design',
+    },
+    {
+      label: 'Stack',
+      value:
+        'Next.js, FastAPI, Python analysis runtime, SQLite, CSV/XLSX parsing, controlled execution',
+    },
     { label: 'Status', value: 'Prototype with live demo and GitHub available' },
   ],
   links: [
@@ -33,11 +45,31 @@ const commercialContent: CommercialCaseStudyContent = {
   systemSummary:
     'The system accepts spreadsheet files, profiles the dataset, identifies available fields, plans only supported analysis, executes controlled Python, evaluates failures, and exports a report whose claims are tied to computed outputs. Human review stays central because the system shows caveats instead of hiding uncertainty.',
   systemItems: [
-    { title: 'Inputs', description: 'CSV or XLSX uploads with unknown structure, missing values, duplicates, and inconsistent column roles.' },
-    { title: 'Workflow', description: 'Upload validation, semantic profiling, route selection, bounded analysis planning, execution, evaluation, repair, and export.' },
-    { title: 'Processing logic', description: 'Generated Python runs under static checks and limits; unsupported metrics are removed or marked unavailable.' },
-    { title: 'Output', description: 'Structured business report, findings, charts, generated code, and exportable artifacts for review.' },
-    { title: 'Guardrails', description: 'Caveats, unsupported-claim checks, repair limits, and a run store make the output more traceable.' },
+    {
+      title: 'Inputs',
+      description:
+        'CSV or XLSX uploads with unknown structure, missing values, duplicates, and inconsistent column roles.',
+    },
+    {
+      title: 'Workflow',
+      description:
+        'Upload validation, semantic profiling, route selection, bounded analysis planning, execution, evaluation, repair, and export.',
+    },
+    {
+      title: 'Processing logic',
+      description:
+        'Generated Python runs under static checks and limits; unsupported metrics are removed or marked unavailable.',
+    },
+    {
+      title: 'Output',
+      description:
+        'Structured business report, findings, charts, generated code, and exportable artifacts for review.',
+    },
+    {
+      title: 'Guardrails',
+      description:
+        'Caveats, unsupported-claim checks, repair limits, and a run store make the output more traceable.',
+    },
   ],
   whyItMatters:
     'Most AI reporting tools fail when they treat the model as an open-ended analyst. DataBrief AI takes the opposite approach: clear inputs, controlled execution, explicit constraints, and reviewable outputs. That makes the workflow more relevant for real teams where reporting quality and decision traceability matter more than broad autonomy.',
@@ -50,10 +82,25 @@ const commercialContent: CommercialCaseStudyContent = {
 const commercialContentEs: CommercialCaseStudyContent = {
   snapshot: [
     { label: 'Tipo', value: 'Sistema de reporting con IA' },
-    { label: 'Uso', value: 'Análisis de hojas de cálculo, briefs de negocio y apoyo a decisiones' },
-    { label: 'Rol', value: 'Arquitectura de sistema, lógica de producto, implementación frontend/backend y diseño de flujo con IA' },
-    { label: 'Stack', value: 'Next.js, FastAPI, runtime de análisis Python, SQLite, parsing CSV/XLSX y ejecución controlada' },
-    { label: 'Estado', value: 'Prototipo con demo en vivo y GitHub disponible' },
+    {
+      label: 'Uso',
+      value:
+        'Análisis de hojas de cálculo, briefs de negocio y apoyo a decisiones',
+    },
+    {
+      label: 'Rol',
+      value:
+        'Arquitectura de sistema, lógica de producto, implementación frontend/backend y diseño de flujo con IA',
+    },
+    {
+      label: 'Stack',
+      value:
+        'Next.js, FastAPI, runtime de análisis Python, SQLite, parsing CSV/XLSX y ejecución controlada',
+    },
+    {
+      label: 'Estado',
+      value: 'Prototipo con demo en vivo y GitHub disponible',
+    },
   ],
   links: [
     { label: 'Ver prototipo', href: demoUrl, external: true },
@@ -64,11 +111,31 @@ const commercialContentEs: CommercialCaseStudyContent = {
   systemSummary:
     'El sistema acepta hojas de cálculo, perfila el dataset, identifica campos disponibles, planifica solo análisis respaldados, ejecuta Python controlado, evalúa fallos y exporta un informe cuyas afirmaciones quedan ligadas a resultados calculados. La revisión humana sigue siendo central porque el sistema muestra incertidumbre en vez de esconderla.',
   systemItems: [
-    { title: 'Inputs', description: 'CSV o XLSX con estructura desconocida, valores ausentes, duplicados y roles de columna inconsistentes.' },
-    { title: 'Flujo', description: 'Validación de subida, perfilado semántico, selección de ruta, planificación acotada, ejecución, evaluación, reparación y exportación.' },
-    { title: 'Lógica de proceso', description: 'El Python generado se ejecuta bajo verificaciones estáticas y límites; las métricas no soportadas se eliminan o se marcan como no disponibles.' },
-    { title: 'Resultado', description: 'Informe de negocio estructurado, hallazgos, gráficos, código generado y artefactos exportables para revisión.' },
-    { title: 'Límites', description: 'Advertencias, comprobaciones de afirmaciones no soportadas, límite de reparación y almacén de ejecuciones hacen el resultado más trazable.' },
+    {
+      title: 'Inputs',
+      description:
+        'CSV o XLSX con estructura desconocida, valores ausentes, duplicados y roles de columna inconsistentes.',
+    },
+    {
+      title: 'Flujo',
+      description:
+        'Validación de subida, perfilado semántico, selección de ruta, planificación acotada, ejecución, evaluación, reparación y exportación.',
+    },
+    {
+      title: 'Lógica de proceso',
+      description:
+        'El Python generado se ejecuta bajo verificaciones estáticas y límites; las métricas no soportadas se eliminan o se marcan como no disponibles.',
+    },
+    {
+      title: 'Resultado',
+      description:
+        'Informe de negocio estructurado, hallazgos, gráficos, código generado y artefactos exportables para revisión.',
+    },
+    {
+      title: 'Límites',
+      description:
+        'Advertencias, comprobaciones de afirmaciones no soportadas, límite de reparación y almacén de ejecuciones hacen el resultado más trazable.',
+    },
   ],
   whyItMatters:
     'Muchas herramientas de reporting con IA fallan cuando tratan el modelo como analista abierto. DataBrief AI hace lo contrario: entradas claras, ejecución controlada, restricciones explícitas y resultados revisables. Eso encaja mejor con equipos reales, donde la calidad del informe y la trazabilidad de la decisión pesan más que la autonomía amplia.',
@@ -87,12 +154,19 @@ const content = {
       'A bounded AI workflow that turns spreadsheet uploads into grounded business reports — without inventing unsupported metrics.',
     heroDescription:
       'DataBrief AI analyzes CSV/XLSX files through semantic role detection, controlled Python execution, bounded repair, and report export. The system is designed to surface what the data supports and make unsupported metrics explicit.',
-    heroFigcaption: 'Representative report preview showing supported metrics and explicit caveats.',
+    heroFigcaption:
+      'Representative report preview showing supported metrics and explicit caveats.',
     heroFigAriaLabel: 'Report output preview',
     heroCTA: 'View Prototype →',
     heroCTAGithub: 'View GitHub →',
     heroCTAHow: 'View System Logic',
-    tags: ['Bounded AI', 'CSV/XLSX', 'Python', 'Report Export', 'Evaluation Loop'],
+    tags: [
+      'Bounded AI',
+      'CSV/XLSX',
+      'Python',
+      'Report Export',
+      'Evaluation Loop',
+    ],
     nav: [
       ['Overview', '#overview'],
       ['Workflow', '#workflow'],
@@ -107,16 +181,25 @@ const content = {
       'Spreadsheets often contain useful business signals, but AI reports become misleading when they calculate metrics the dataset cannot support. DataBrief AI is built around a stricter question: what can this file prove, and what should the system refuse to infer?',
     proofCards: [
       {
+        supported: 'Purchase line count and average spend per row',
+        evidence: 'The file contains purchase rows and numeric spend values.',
         title: 'Order Count / Average Order Value',
         reason: 'No order ID was detected.',
-        outcome: 'The report switches to purchase-line analysis instead of inventing order metrics.',
+        outcome:
+          'The report switches to purchase-line analysis instead of inventing order metrics.',
       },
       {
+        supported: 'Missing-value and duplicate-row checks',
+        evidence:
+          'These conditions can be measured directly from the uploaded table.',
         title: 'Return/cancel rate = 0%',
         reason: 'No return, refund, cancel, or status field was detected.',
-        outcome: 'The report marks the metric unavailable instead of presenting a false zero.',
+        outcome:
+          'The report marks the metric unavailable instead of presenting a false zero.',
       },
     ],
+    supportedLabel: 'Supported claim',
+    evidenceSourceLabel: 'Evidence source',
     unsupportedLabel: 'Unsupported claim avoided',
     reasonLabel: 'Reason',
     outcomeLabel: 'Outcome',
@@ -132,15 +215,18 @@ const content = {
     workflowPhases: [
       {
         title: 'Profile',
-        description: 'Read rows, columns, types, missing values, duplicates, and semantic field roles.',
+        description:
+          'Read rows, columns, types, missing values, duplicates, and semantic field roles.',
       },
       {
         title: 'Route + Plan',
-        description: 'Classify the dataset domain and build a bounded KPI/chart plan from supported signals only.',
+        description:
+          'Classify the dataset domain and build a bounded KPI/chart plan from supported signals only.',
       },
       {
         title: 'Execute',
-        description: 'Run controlled Python analysis to create metrics, charts, and structured artifacts.',
+        description:
+          'Run controlled Python analysis to create metrics, charts, and structured artifacts.',
       },
       {
         title: 'Evaluate + Export',
@@ -152,22 +238,26 @@ const content = {
     outputH2: 'A report surface that separates signal from caveat',
     outputP:
       'The page keeps one strong report preview and three supporting output cards, instead of repeating the same mockup across every section.',
-    outputMainFigcaption: 'Representative run preview. Unsupported order-level metrics are explicitly flagged.',
+    outputMainFigcaption:
+      'Representative run preview. Unsupported order-level metrics are explicitly flagged.',
     outputPreviews: [
       {
         label: 'A',
         title: 'Supported metrics',
-        caption: 'The report leads with metrics the uploaded file can actually support.',
+        caption:
+          'The report leads with metrics the uploaded file can actually support.',
       },
       {
         label: 'B',
         title: 'Grounded findings',
-        caption: 'Findings and data quality checks are shown before interpretation.',
+        caption:
+          'Findings and data quality checks are shown before interpretation.',
       },
       {
         label: 'C',
         title: 'Artifacts + exports',
-        caption: 'Report Markdown, findings JSON, charts, and generated analysis code stay tied to the run.',
+        caption:
+          'Report Markdown, findings JSON, charts, and generated analysis code stay tied to the run.',
       },
     ],
     architectureEyebrow: 'Architecture',
@@ -256,14 +346,27 @@ const content = {
       confidence: 'Data confidence: High',
       status1: 'Execution complete',
       status2: 'Unsupported metrics flagged',
-      metric1: { label: 'Primary metric', value: '$10,482', sub: 'Total spend detected' },
-      metric2: { label: 'Purchase line count', value: '1,248', sub: 'Rows with purchase signal' },
-      metric3: { label: 'Average spend per row', value: '$8.40', sub: 'Supported by row-level data' },
+      metric1: {
+        label: 'Primary metric',
+        value: '$10,482',
+        sub: 'Total spend detected',
+      },
+      metric2: {
+        label: 'Purchase line count',
+        value: '1,248',
+        sub: 'Rows with purchase signal',
+      },
+      metric3: {
+        label: 'Average spend per row',
+        value: '$8.40',
+        sub: 'Supported by row-level data',
+      },
       note: 'Order Count and Average Order Value are unavailable because no order ID was detected.',
       findingsTitle: 'Top findings',
       findingsStatus: 'Grounded',
       finding1: 'Highest spend appears in household and grocery categories.',
-      finding2: 'Missing values and duplicate rows are surfaced before interpretation.',
+      finding2:
+        'Missing values and duplicate rows are surfaced before interpretation.',
       caveat: 'Unavailable: true order-level metrics.',
       chartsTitle: 'Charts',
       chartsStatus: 'Generated',
@@ -279,12 +382,19 @@ const content = {
       'Un flujo de trabajo de IA acotado que convierte hojas de cálculo en informes de negocio contrastados — sin inventar métricas que los datos no respaldan.',
     heroDescription:
       'DataBrief AI analiza archivos CSV/XLSX mediante detección de roles semánticos, ejecución Python controlada, reparación acotada y exportación de informes. El sistema está diseñado para mostrar lo que los datos pueden respaldar y hacer explícitas las métricas no disponibles.',
-    heroFigcaption: 'Vista previa representativa del informe con métricas soportadas y avisos explícitos.',
+    heroFigcaption:
+      'Vista previa representativa del informe con métricas soportadas y avisos explícitos.',
     heroFigAriaLabel: 'Vista previa del informe generado',
     heroCTA: 'Demo en vivo →',
     heroCTAGithub: 'GitHub →',
     heroCTAHow: 'Cómo funciona',
-    tags: ['IA acotada', 'CSV/XLSX', 'Python', 'Exportación de informes', 'Bucle de evaluación'],
+    tags: [
+      'IA acotada',
+      'CSV/XLSX',
+      'Python',
+      'Exportación de informes',
+      'Bucle de evaluación',
+    ],
     nav: [
       ['Resumen', '#overview'],
       ['Flujo', '#workflow'],
@@ -299,16 +409,27 @@ const content = {
       'Las hojas de cálculo suelen contener señales de negocio útiles, pero los informes de IA se vuelven engañosos cuando calculan métricas que el dataset no puede respaldar. DataBrief AI se construye alrededor de una pregunta más estricta: ¿qué puede probar este archivo y qué debería negarse a inferir el sistema?',
     proofCards: [
       {
+        supported: 'Recuento de líneas de compra y gasto medio por fila',
+        evidence:
+          'El archivo contiene filas de compra y valores numéricos de gasto.',
         title: 'Recuento de pedidos / Valor medio de pedido',
         reason: 'No se detectó ningún ID de pedido.',
-        outcome: 'El informe cambia al análisis por línea de compra en lugar de inventar métricas de pedidos.',
+        outcome:
+          'El informe cambia al análisis por línea de compra en lugar de inventar métricas de pedidos.',
       },
       {
+        supported: 'Controles de valores ausentes y filas duplicadas',
+        evidence:
+          'Estas condiciones se pueden medir directamente en la tabla subida.',
         title: 'Tasa de devolución/cancelación = 0%',
-        reason: 'No se detectó ningún campo de devolución, reembolso, cancelación ni estado.',
-        outcome: 'El informe marca la métrica como no disponible en lugar de mostrar un cero falso.',
+        reason:
+          'No se detectó ningún campo de devolución, reembolso, cancelación ni estado.',
+        outcome:
+          'El informe marca la métrica como no disponible en lugar de mostrar un cero falso.',
       },
     ],
+    supportedLabel: 'Afirmación soportada',
+    evidenceSourceLabel: 'Fuente de evidencia',
     unsupportedLabel: 'Afirmación no soportada evitada',
     reasonLabel: 'Razón',
     outcomeLabel: 'Resultado',
@@ -324,7 +445,8 @@ const content = {
     workflowPhases: [
       {
         title: 'Análisis',
-        description: 'Lee filas, columnas, tipos, valores ausentes, duplicados y roles semánticos de los campos.',
+        description:
+          'Lee filas, columnas, tipos, valores ausentes, duplicados y roles semánticos de los campos.',
       },
       {
         title: 'Enrutamiento y plan',
@@ -333,7 +455,8 @@ const content = {
       },
       {
         title: 'Ejecución',
-        description: 'Ejecuta análisis Python controlado para crear métricas, gráficos y artefactos estructurados.',
+        description:
+          'Ejecuta análisis Python controlado para crear métricas, gráficos y artefactos estructurados.',
       },
       {
         title: 'Evaluación y exportación',
@@ -351,12 +474,14 @@ const content = {
       {
         label: 'A',
         title: 'Métricas soportadas',
-        caption: 'El informe arranca con las métricas que el archivo subido puede realmente respaldar.',
+        caption:
+          'El informe arranca con las métricas que el archivo subido puede realmente respaldar.',
       },
       {
         label: 'B',
         title: 'Hallazgos contrastados',
-        caption: 'Los hallazgos y controles de calidad se muestran antes de la interpretación.',
+        caption:
+          'Los hallazgos y controles de calidad se muestran antes de la interpretación.',
       },
       {
         label: 'C',
@@ -366,7 +491,8 @@ const content = {
       },
     ],
     architectureEyebrow: 'Arquitectura',
-    architectureH2: 'El software es un flujo acotado, no un chatbot con envoltura de API',
+    architectureH2:
+      'El software es un flujo acotado, no un chatbot con envoltura de API',
     architectureP:
       'El sistema se organiza alrededor de fronteras de servicio explícitas: analizar primero, enrutar desde señales detectables, generar código de análisis desde plantillas, ejecutarlo bajo restricciones, evaluar el resultado y exponer artefactos mediante endpoints de exportación estables.',
     softwareLayers: [
@@ -451,14 +577,28 @@ const content = {
       confidence: 'Confianza de datos: Alta',
       status1: 'Ejecución completada',
       status2: 'Métricas no soportadas marcadas',
-      metric1: { label: 'Métrica principal', value: '$10.482', sub: 'Gasto total detectado' },
-      metric2: { label: 'Líneas de compra', value: '1.248', sub: 'Filas con señal de compra' },
-      metric3: { label: 'Gasto medio por fila', value: '$8,40', sub: 'Soportado por datos de fila' },
+      metric1: {
+        label: 'Métrica principal',
+        value: '$10.482',
+        sub: 'Gasto total detectado',
+      },
+      metric2: {
+        label: 'Líneas de compra',
+        value: '1.248',
+        sub: 'Filas con señal de compra',
+      },
+      metric3: {
+        label: 'Gasto medio por fila',
+        value: '$8,40',
+        sub: 'Soportado por datos de fila',
+      },
       note: 'Recuento de pedidos y Valor medio de pedido no están disponibles porque no se detectó ningún ID de pedido.',
       findingsTitle: 'Principales hallazgos',
       findingsStatus: 'Contrastados',
-      finding1: 'El mayor gasto se concentra en las categorías de hogar y alimentación.',
-      finding2: 'Los valores ausentes y filas duplicadas se muestran antes de la interpretación.',
+      finding1:
+        'El mayor gasto se concentra en las categorías de hogar y alimentación.',
+      finding2:
+        'Los valores ausentes y filas duplicadas se muestran antes de la interpretación.',
       caveat: 'No disponible: métricas reales a nivel de pedido.',
       chartsTitle: 'Gráficos',
       chartsStatus: 'Generados',
@@ -570,10 +710,16 @@ export default function DataBriefAiPage() {
   return (
     <>
       <Header locale={locale} />
-      <main id="main-content" className="case-study-page-new case-study-page-new--data-brief">
+      <main
+        id="main-content"
+        className="case-study-page-new case-study-page-new--data-brief"
+      >
         <section className="data-brief-hero" aria-labelledby="data-brief-title">
           <div className="data-brief-hero__content">
-            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
+            <Link
+              href={localizePath('/case-studies', locale)}
+              className="data-brief-back"
+            >
               {t.back}
             </Link>
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
@@ -582,24 +728,47 @@ export default function DataBriefAiPage() {
             </h1>
             <p className="data-brief-hero__subtitle">{t.heroSubtitle}</p>
             <p className="data-brief-hero__description">{t.heroDescription}</p>
-            <div className="data-brief-actions" aria-label={locale === 'es' ? 'Enlaces del proyecto' : 'Project links'}>
-              <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+            <div
+              className="data-brief-actions"
+              aria-label={
+                locale === 'es' ? 'Enlaces del proyecto' : 'Project links'
+              }
+            >
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button data-brief-button--primary"
+              >
                 {t.heroCTA}
               </a>
-              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button"
+              >
                 {t.heroCTAGithub}
               </a>
               <a href="#workflow" className="data-brief-button">
                 {t.heroCTAHow}
               </a>
             </div>
-            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
-              {t.tags.map((tag) => (
+            <div
+              className="data-brief-tags"
+              aria-label={
+                locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'
+              }
+            >
+              {t.tags.map(tag => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
           </div>
-          <figure className="data-brief-hero__visual" aria-label={t.heroFigAriaLabel}>
+          <figure
+            className="data-brief-hero__visual"
+            aria-label={t.heroFigAriaLabel}
+          >
             <ReportMockup text={t.report} />
             <figcaption>{t.heroFigcaption}</figcaption>
           </figure>
@@ -627,8 +796,15 @@ export default function DataBriefAiPage() {
               <p>{t.overviewP}</p>
             </div>
             <div className="data-brief-refusal-grid">
-              {t.proofCards.map((card) => (
+              {t.proofCards.map(card => (
                 <article key={card.title} className="data-brief-refusal-card">
+                  <div className="data-brief-supported-claim">
+                    <span>{t.supportedLabel}</span>
+                    <h3>{card.supported}</h3>
+                    <p>
+                      <strong>{t.evidenceSourceLabel}:</strong> {card.evidence}
+                    </p>
+                  </div>
                   <span>{t.unsupportedLabel}</span>
                   <h3>{card.title}</h3>
                   <dl>
@@ -664,12 +840,12 @@ export default function DataBriefAiPage() {
               <p>{t.workflowP}</p>
             </div>
             <div className="data-brief-flow" aria-label={t.workflowAriaLabel}>
-              {t.workflowPhases.map((phase) => (
+              {t.workflowPhases.map(phase => (
                 <span key={phase.title}>{phase.title}</span>
               ))}
             </div>
             <div className="data-brief-phase-grid">
-              {t.workflowPhases.map((phase) => (
+              {t.workflowPhases.map(phase => (
                 <article key={phase.title} className="data-brief-phase-card">
                   <h3>{phase.title}</h3>
                   <p>{phase.description}</p>
@@ -696,7 +872,7 @@ export default function DataBriefAiPage() {
                 <figcaption>{t.outputMainFigcaption}</figcaption>
               </figure>
               <div className="data-brief-output-list">
-                {t.outputPreviews.map((preview) => (
+                {t.outputPreviews.map(preview => (
                   <article key={preview.label}>
                     <span>{preview.label}</span>
                     <h3>{preview.title}</h3>
@@ -720,8 +896,11 @@ export default function DataBriefAiPage() {
               <p>{t.architectureP}</p>
             </div>
             <div className="data-brief-card-grid data-brief-card-grid--architecture data-brief-card-grid--software">
-              {t.softwareLayers.map((layer) => (
-                <article key={layer.title} className="data-brief-card data-brief-card--architecture">
+              {t.softwareLayers.map(layer => (
+                <article
+                  key={layer.title}
+                  className="data-brief-card data-brief-card--architecture"
+                >
                   <h3>{layer.title}</h3>
                   <p>{layer.description}</p>
                 </article>
@@ -742,7 +921,7 @@ export default function DataBriefAiPage() {
               <p>{t.resultP}</p>
             </div>
             <div className="data-brief-result-grid">
-              {t.resultCards.map((card) => (
+              {t.resultCards.map(card => (
                 <article key={card.title}>
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
@@ -753,7 +932,7 @@ export default function DataBriefAiPage() {
               <div>
                 <p className="data-brief-eyebrow">{t.builtWithLabel}</p>
                 <div className="data-brief-stack" aria-label={t.stackAriaLabel}>
-                  {t.stackItems.map((item) => (
+                  {t.stackItems.map(item => (
                     <span key={item}>{item}</span>
                   ))}
                 </div>
@@ -761,17 +940,27 @@ export default function DataBriefAiPage() {
               <div>
                 <p className="data-brief-eyebrow">{t.boundariesLabel}</p>
                 <ul className="data-brief-list">
-                  {t.limitations.map((limitation) => (
+                  {t.limitations.map(limitation => (
                     <li key={limitation}>{limitation}</li>
                   ))}
                 </ul>
               </div>
             </div>
             <div className="data-brief-actions">
-              <a href={demoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button data-brief-button--primary"
+              >
                 {t.resultCTADemo}
               </a>
-              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button"
+              >
                 {t.resultCTAGithub}
               </a>
               <a href="#architecture" className="data-brief-button">
@@ -783,7 +972,11 @@ export default function DataBriefAiPage() {
 
         <CommercialCaseStudyClosing content={commercial} locale={locale} />
 
-        <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
+        <CaseStudyNext
+          currentHref={pathname}
+          accentColor="var(--accent)"
+          locale={locale}
+        />
       </main>
       <Footer locale={locale} />
     </>

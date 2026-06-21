@@ -17,14 +17,22 @@ const content = {
   en: {
     back: 'Back to case studies',
     eyebrow: 'Internal AI Strategy Workspace',
-    subtitle: 'A bounded AI workflow for moving from messy campaign briefs to structured strategy.',
+    subtitle:
+      'A bounded AI workflow for moving from messy campaign briefs to structured strategy.',
     description:
       'Campaign Sandbox turns messy campaign briefs into structured creative routes, synthetic audience simulations, risk reviews, execution plans, and exportable strategy reports.',
     projectLinks: 'Project links',
     repository: 'GitHub repository',
     viewWorkflow: 'View workflow',
     projectTags: 'Project tags',
-    tags: ['AI Workflows', 'Creative Strategy', 'Next.js', 'TypeScript', 'OpenAI', 'Evaluation & Guardrails'],
+    tags: [
+      'AI Workflows',
+      'Creative Strategy',
+      'Next.js',
+      'TypeScript',
+      'OpenAI',
+      'Evaluation & Guardrails',
+    ],
     heroAlt: 'Campaign Sandbox brief intake screen',
     heroCaption: 'Campaign Sandbox intake and strategy workspace.',
     navLabel: 'Campaign Sandbox page sections',
@@ -39,9 +47,20 @@ const content = {
     ],
     snapshot: [
       { label: 'Type', value: 'Internal AI tool' },
-      { label: 'Use case', value: 'Campaign strategy, route comparison, and execution planning' },
-      { label: 'Role', value: 'Product design, AI workflow architecture, and full-stack implementation' },
-      { label: 'Stack', value: 'Next.js, TypeScript, React, Zod, OpenAI structured outputs, deterministic validation' },
+      {
+        label: 'Use case',
+        value: 'Campaign strategy, route comparison, and execution planning',
+      },
+      {
+        label: 'Role',
+        value:
+          'Product design, AI workflow architecture, and full-stack implementation',
+      },
+      {
+        label: 'Stack',
+        value:
+          'Next.js, TypeScript, React, Zod, OpenAI structured outputs, deterministic validation',
+      },
       { label: 'Status', value: 'Finished internal v1' },
     ],
     problem: {
@@ -75,6 +94,14 @@ const content = {
       title: 'A hybrid workflow-agent architecture.',
       body: 'Bounded LLM stages handle interpretation, synthesis, and critique. Deterministic code handles routing, schemas, validation, scoring, access control, proof checks, exports, and safety boundaries.',
       workflowLabel: 'Campaign Sandbox workflow',
+      summaryStages: [
+        'Messy campaign brief',
+        'Strategic routes',
+        'Audience simulation',
+        'Risk review',
+        'Execution plan',
+        'Exportable output',
+      ],
       stages: [
         'Brief intake',
         'Brief normalization',
@@ -103,22 +130,26 @@ const content = {
       title: 'Make route tradeoffs visible before selection.',
       body: 'The Decision Cockpit summarizes the recommended route, runner-up strength, biggest tradeoff, primary risk, close-score warnings, and selection or export status.',
       alt: 'Campaign Sandbox decision cockpit',
-      caption: 'Decision cockpit summarizing the recommended route, tradeoffs, risk, and route status.',
+      caption:
+        'Decision cockpit summarizing the recommended route, tradeoffs, risk, and route status.',
     },
     routes: {
       eyebrow: 'Route development',
       title: 'Three territories, each with a strategic job and failure mode.',
       body: 'Every route includes a name, strategic role, killer line, enemy, proof mechanism, visual world, channel fit, failure mode, and strategic estimate.',
       alt: 'Campaign Sandbox generated campaign route cards',
-      caption: 'Generated campaign territories with scoring, positioning, proof mechanism, and route risks.',
-      callout: 'Synthetic audience reactions are planning hypotheses, not market research.',
+      caption:
+        'Generated campaign territories with scoring, positioning, proof mechanism, and route risks.',
+      callout:
+        'Synthetic audience reactions are planning hypotheses, not market research.',
     },
     review: {
       eyebrow: 'Creative review',
       title: 'A critique layer focused on distinctiveness, not approval.',
       body: 'Creative Director Review examines originality, ownability, cultural sharpness, visual potential, conversion clarity, and genericity risk. It also proposes sharper route names, killer lines, and route-level notes.',
       alt: 'Campaign Sandbox Creative Director Review',
-      caption: 'Creative Director Review critiques originality, ownability, cultural sharpness, and genericity risk.',
+      caption:
+        'Creative Director Review critiques originality, ownability, cultural sharpness, and genericity risk.',
     },
     features: {
       eyebrow: 'Key features',
@@ -251,16 +282,25 @@ const content = {
   es: {
     back: 'Volver a casos',
     eyebrow: 'Espacio interno de estrategia con IA',
-    subtitle: 'Un flujo de IA acotado para convertir briefs de campaña desordenados en estrategia estructurada.',
+    subtitle:
+      'Un flujo de IA acotado para convertir briefs de campaña desordenados en estrategia estructurada.',
     description:
       'Campaign Sandbox convierte briefs de campaña desordenados en rutas creativas estructuradas, simulaciones sintéticas de audiencia, revisiones de riesgo, planes de ejecución e informes estratégicos exportables.',
     projectLinks: 'Enlaces del proyecto',
     repository: 'Repositorio en GitHub',
     viewWorkflow: 'Ver flujo',
     projectTags: 'Etiquetas del proyecto',
-    tags: ['Flujos con IA', 'Estrategia creativa', 'Next.js', 'TypeScript', 'OpenAI', 'Evaluación y guardrails'],
+    tags: [
+      'Flujos con IA',
+      'Estrategia creativa',
+      'Next.js',
+      'TypeScript',
+      'OpenAI',
+      'Evaluación y guardrails',
+    ],
     heroAlt: 'Pantalla de entrada de brief de Campaign Sandbox',
-    heroCaption: 'Entrada de brief y espacio de estrategia de Campaign Sandbox.',
+    heroCaption:
+      'Entrada de brief y espacio de estrategia de Campaign Sandbox.',
     navLabel: 'Secciones de Campaign Sandbox',
     nav: [
       ['Problema', '#problem'],
@@ -273,9 +313,21 @@ const content = {
     ],
     snapshot: [
       { label: 'Tipo', value: 'Herramienta interna de IA' },
-      { label: 'Uso', value: 'Estrategia de campaña, comparación de rutas y planificación de ejecución' },
-      { label: 'Rol', value: 'Diseño de producto, arquitectura de flujo con IA e implementación full-stack' },
-      { label: 'Stack', value: 'Next.js, TypeScript, React, Zod, outputs estructurados de OpenAI y validación determinista' },
+      {
+        label: 'Uso',
+        value:
+          'Estrategia de campaña, comparación de rutas y planificación de ejecución',
+      },
+      {
+        label: 'Rol',
+        value:
+          'Diseño de producto, arquitectura de flujo con IA e implementación full-stack',
+      },
+      {
+        label: 'Stack',
+        value:
+          'Next.js, TypeScript, React, Zod, outputs estructurados de OpenAI y validación determinista',
+      },
       { label: 'Estado', value: 'v1 interna finalizada' },
     ],
     problem: {
@@ -290,7 +342,8 @@ const content = {
     },
     objective: {
       eyebrow: 'Objetivo',
-      title: 'Pasar del brief a la estrategia más rápido, manteniendo humano el criterio.',
+      title:
+        'Pasar del brief a la estrategia más rápido, manteniendo humano el criterio.',
       items: [
         'Aceptar material de brief pegado o subido.',
         'Estructurar el brief en inputs de campaña utilizables.',
@@ -309,6 +362,14 @@ const content = {
       title: 'Una arquitectura híbrida de flujo y agentes.',
       body: 'Las etapas acotadas con LLM gestionan interpretación, síntesis y crítica. El código determinista controla rutas, esquemas, validación, puntuación, acceso, comprobaciones de evidencia, exportaciones y límites de seguridad.',
       workflowLabel: 'Flujo de Campaign Sandbox',
+      summaryStages: [
+        'Brief de campaña desordenado',
+        'Rutas estratégicas',
+        'Simulación de audiencia',
+        'Revisión de riesgo',
+        'Plan de ejecución',
+        'Resultado exportable',
+      ],
       stages: [
         'Entrada del brief',
         'Normalización del brief',
@@ -337,22 +398,27 @@ const content = {
       title: 'Hacer visibles los compromisos de cada ruta antes de elegir.',
       body: 'El panel de decisión resume la ruta recomendada, la fuerza de la segunda opción, el principal compromiso, el riesgo primario, avisos de puntuaciones cercanas y el estado de selección o exportación.',
       alt: 'Panel de decisión de Campaign Sandbox',
-      caption: 'Panel de decisión con la ruta recomendada, compromisos, riesgos y estado de selección.',
+      caption:
+        'Panel de decisión con la ruta recomendada, compromisos, riesgos y estado de selección.',
     },
     routes: {
       eyebrow: 'Desarrollo de rutas',
-      title: 'Tres territorios, cada uno con una función estratégica y un modo de fallo.',
+      title:
+        'Tres territorios, cada uno con una función estratégica y un modo de fallo.',
       body: 'Cada ruta incluye nombre, función estratégica, frase principal, enemigo, mecanismo de prueba, mundo visual, encaje por canal, modo de fallo y estimación estratégica.',
       alt: 'Tarjetas de rutas de campaña generadas en Campaign Sandbox',
-      caption: 'Territorios de campaña generados con puntuación, posicionamiento, mecanismo de prueba y riesgos.',
-      callout: 'Las reacciones sintéticas de audiencia son hipótesis de planificación, no investigación de mercado.',
+      caption:
+        'Territorios de campaña generados con puntuación, posicionamiento, mecanismo de prueba y riesgos.',
+      callout:
+        'Las reacciones sintéticas de audiencia son hipótesis de planificación, no investigación de mercado.',
     },
     review: {
       eyebrow: 'Revisión creativa',
       title: 'Una capa crítica centrada en la diferenciación, no en aprobar.',
       body: 'La revisión de dirección creativa examina originalidad, apropiabilidad, agudeza cultural, potencial visual, claridad de conversión y riesgo de resultar genérico. También propone nombres y frases más precisas, además de notas por ruta.',
       alt: 'Revisión de dirección creativa de Campaign Sandbox',
-      caption: 'La revisión creativa evalúa originalidad, apropiabilidad, agudeza cultural y riesgo de resultar genérico.',
+      caption:
+        'La revisión creativa evalúa originalidad, apropiabilidad, agudeza cultural y riesgo de resultar genérico.',
     },
     features: {
       eyebrow: 'Funciones clave',
@@ -395,14 +461,17 @@ const content = {
       title: 'Convertir la ruta elegida en un sistema de campaña práctico.',
       body: 'Tras la selección manual, el flujo genera la columna vertebral de la campaña, plan de lanzamiento, sistema de canales, producción, copy, medición, revisión legal y de claims, y siguientes acciones.',
       alt: 'Plan de ejecución de Campaign Sandbox',
-      caption: 'Ruta elegida convertida en plan de ejecución, canales, producción, copy, medición y notas legales.',
+      caption:
+        'Ruta elegida convertida en plan de ejecución, canales, producción, copy, medición y notas legales.',
     },
     export: {
       eyebrow: 'Sistema de exportación',
-      title: 'El output estructurado se convierte en un artefacto determinista.',
+      title:
+        'El output estructurado se convierte en un artefacto determinista.',
       body: 'Los informes Markdown y HTML, y las presentaciones PPTX de rutas, se generan directamente desde el output validado del flujo. No se usa ningún LLM durante la exportación.',
       alt: 'Panel de exportación de Campaign Sandbox',
-      caption: 'Exportación determinista a Markdown, HTML y presentación PPTX de rutas.',
+      caption:
+        'Exportación determinista a Markdown, HTML y presentación PPTX de rutas.',
     },
     reliability: {
       eyebrow: 'Diseño de fiabilidad y seguridad',
@@ -490,7 +559,12 @@ type ScreenshotProps = {
   priority?: boolean
 }
 
-function CaseStudyScreenshot({ src, alt, caption, priority = false }: ScreenshotProps) {
+function CaseStudyScreenshot({
+  src,
+  alt,
+  caption,
+  priority = false,
+}: ScreenshotProps) {
   return (
     <figure className="campaign-sandbox-shot">
       <div className="campaign-sandbox-shot__frame">
@@ -523,9 +597,15 @@ export default function CampaignSandboxPage() {
         id="main-content"
         className="case-study-page-new case-study-page-new--data-brief case-study-page-new--campaign-sandbox"
       >
-        <section className="data-brief-hero campaign-sandbox-hero" aria-labelledby="campaign-sandbox-title">
+        <section
+          className="data-brief-hero campaign-sandbox-hero"
+          aria-labelledby="campaign-sandbox-title"
+        >
           <div className="data-brief-hero__content">
-            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
+            <Link
+              href={localizePath('/case-studies', locale)}
+              className="data-brief-back"
+            >
               {t.back}
             </Link>
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
@@ -548,7 +628,7 @@ export default function CampaignSandboxPage() {
               </a>
             </div>
             <div className="data-brief-tags" aria-label={t.projectTags}>
-              {t.tags.map((tag) => (
+              {t.tags.map(tag => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
@@ -563,7 +643,10 @@ export default function CampaignSandboxPage() {
           </div>
         </section>
 
-        <nav className="data-brief-mini-nav campaign-sandbox-mini-nav" aria-label={t.navLabel}>
+        <nav
+          className="data-brief-mini-nav campaign-sandbox-mini-nav"
+          aria-label={t.navLabel}
+        >
           {t.nav.map(([label, href]) => (
             <a key={href} href={href}>
               {label}
@@ -590,23 +673,28 @@ export default function CampaignSandboxPage() {
                 <h2 id="campaign-sandbox-problem">{t.problem.title}</h2>
               </div>
               <div className="campaign-sandbox-copy">
-                {t.problem.paragraphs.map((paragraph) => (
+                {t.problem.paragraphs.map(paragraph => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
             </div>
-            <blockquote className="campaign-sandbox-callout">{t.problem.callout}</blockquote>
+            <blockquote className="campaign-sandbox-callout">
+              {t.problem.callout}
+            </blockquote>
           </div>
         </section>
 
-        <section className="data-brief-section data-brief-section--light" aria-labelledby="objective-heading">
+        <section
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="objective-heading"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.objective.eyebrow}</p>
               <h2 id="objective-heading">{t.objective.title}</h2>
             </div>
             <ul className="campaign-sandbox-check-grid">
-              {t.objective.items.map((item) => (
+              {t.objective.items.map(item => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
@@ -624,7 +712,24 @@ export default function CampaignSandboxPage() {
               <h2 id="architecture-heading">{t.architecture.title}</h2>
               <p>{t.architecture.body}</p>
             </div>
-            <div className="campaign-sandbox-workflow" aria-label={t.architecture.workflowLabel}>
+            <div
+              className="campaign-sandbox-workflow"
+              aria-label={t.architecture.workflowLabel}
+            >
+              {t.architecture.summaryStages.map((stage, index) => (
+                <span
+                  key={stage}
+                  className="campaign-sandbox-workflow__summary"
+                >
+                  <b>{String(index + 1).padStart(2, '0')}</b>
+                  {stage}
+                </span>
+              ))}
+            </div>
+            <div
+              className="campaign-sandbox-workflow campaign-sandbox-workflow--detail"
+              aria-label={t.architecture.workflowLabel}
+            >
               {t.architecture.stages.map((stage, index) => (
                 <span key={stage}>
                   <b>{String(index + 1).padStart(2, '0')}</b>
@@ -633,14 +738,17 @@ export default function CampaignSandboxPage() {
               ))}
             </div>
             <div className="campaign-sandbox-reasons">
-              {t.architecture.reasons.map((reason) => (
+              {t.architecture.reasons.map(reason => (
                 <p key={reason}>{reason}</p>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="data-brief-section data-brief-section--light" aria-labelledby="cockpit-heading">
+        <section
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="cockpit-heading"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.cockpit.eyebrow}</p>
@@ -671,7 +779,9 @@ export default function CampaignSandboxPage() {
               alt={t.routes.alt}
               caption={t.routes.caption}
             />
-            <blockquote className="campaign-sandbox-callout campaign-sandbox-callout--compact">{t.routes.callout}</blockquote>
+            <blockquote className="campaign-sandbox-callout campaign-sandbox-callout--compact">
+              {t.routes.callout}
+            </blockquote>
           </div>
         </section>
 
@@ -694,15 +804,21 @@ export default function CampaignSandboxPage() {
           </div>
         </section>
 
-        <section className="data-brief-section data-brief-section--cream" aria-labelledby="features-heading">
+        <section
+          className="data-brief-section data-brief-section--cream"
+          aria-labelledby="features-heading"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.features.eyebrow}</p>
               <h2 id="features-heading">{t.features.title}</h2>
             </div>
             <div className="data-brief-card-grid data-brief-card-grid--architecture campaign-sandbox-feature-grid">
-              {t.features.items.map((feature) => (
-                <article key={feature.title} className="data-brief-card data-brief-card--architecture">
+              {t.features.items.map(feature => (
+                <article
+                  key={feature.title}
+                  className="data-brief-card data-brief-card--architecture"
+                >
                   <h3>{feature.title}</h3>
                   <p>{feature.description}</p>
                 </article>
@@ -730,7 +846,10 @@ export default function CampaignSandboxPage() {
           </div>
         </section>
 
-        <section className="data-brief-section data-brief-section--cream" aria-labelledby="export-heading">
+        <section
+          className="data-brief-section data-brief-section--cream"
+          aria-labelledby="export-heading"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.export.eyebrow}</p>
@@ -757,7 +876,7 @@ export default function CampaignSandboxPage() {
               <p>{t.reliability.body}</p>
             </div>
             <div className="campaign-sandbox-safety-grid">
-              {t.reliability.items.map((item) => (
+              {t.reliability.items.map(item => (
                 <span key={item}>{item}</span>
               ))}
             </div>
@@ -768,14 +887,20 @@ export default function CampaignSandboxPage() {
           </div>
         </section>
 
-        <section className="data-brief-section data-brief-section--light" aria-labelledby="stack-heading">
+        <section
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="stack-heading"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.stack.eyebrow}</p>
               <h2 id="stack-heading">{t.stack.title}</h2>
             </div>
-            <div className="data-brief-stack campaign-sandbox-stack" aria-label={t.stack.label}>
-              {t.stack.items.map((item) => (
+            <div
+              className="data-brief-stack campaign-sandbox-stack"
+              aria-label={t.stack.label}
+            >
+              {t.stack.items.map(item => (
                 <span key={item}>{item}</span>
               ))}
             </div>
@@ -795,7 +920,7 @@ export default function CampaignSandboxPage() {
                 <p>{t.outcome.body}</p>
               </div>
               <ul className="campaign-sandbox-verification-list">
-                {t.outcome.items.map((item) => (
+                {t.outcome.items.map(item => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
@@ -803,12 +928,15 @@ export default function CampaignSandboxPage() {
           </div>
         </section>
 
-        <section className="data-brief-section data-brief-section--light" aria-labelledby="learning-heading">
+        <section
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="learning-heading"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading">
               <p className="data-brief-eyebrow">{t.learning.eyebrow}</p>
               <h2 id="learning-heading">{t.learning.title}</h2>
-              {t.learning.paragraphs.map((paragraph) => (
+              {t.learning.paragraphs.map(paragraph => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -825,7 +953,7 @@ export default function CampaignSandboxPage() {
               <h2 id="limitations-heading">{t.limitations.title}</h2>
             </div>
             <ul className="data-brief-list campaign-sandbox-limitations">
-              {t.limitations.items.map((item) => (
+              {t.limitations.items.map(item => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
@@ -838,14 +966,21 @@ export default function CampaignSandboxPage() {
               >
                 {t.repository}
               </a>
-              <Link href={localizePath('/case-studies', locale)} className="data-brief-button">
+              <Link
+                href={localizePath('/case-studies', locale)}
+                className="data-brief-button"
+              >
                 {t.back}
               </Link>
             </div>
           </div>
         </section>
 
-        <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
+        <CaseStudyNext
+          currentHref={pathname}
+          accentColor="var(--accent)"
+          locale={locale}
+        />
       </main>
       <Footer locale={locale} />
     </>

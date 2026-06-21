@@ -133,10 +133,12 @@ main.case-study-page-new {
 .case-study-hero-new__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
   z-index: 1;
 }
 
@@ -247,7 +249,6 @@ main.case-study-page-new {
 }
 
 @keyframes bounce {
-
   0%,
   100% {
     transform: translateX(-50%) translateY(0);
@@ -269,7 +270,7 @@ main.case-study-page-new {
 }
 
 /* When meta is followed by light section (same background), reduce gap */
-.case-study-meta-new+.case-study-section-new--light {
+.case-study-meta-new + .case-study-section-new--light {
   padding-top: var(--case-study-space-sm);
   /* Reduced from md */
   margin-top: 0;
@@ -277,7 +278,7 @@ main.case-study-page-new {
 }
 
 /* If the section after meta is empty, ensure no gap */
-.case-study-meta-new+.case-study-section-new:empty {
+.case-study-meta-new + .case-study-section-new:empty {
   display: none;
   padding: 0;
   margin: 0;
@@ -736,12 +737,14 @@ main.case-study-page-new {
   grid-template-rows: auto auto;
 }
 
-.case-study-gallery-new__row--asymmetric .case-study-gallery-new__item:first-child {
+.case-study-gallery-new__row--asymmetric
+  .case-study-gallery-new__item:first-child {
   grid-row: span 2;
   aspect-ratio: 3/4;
 }
 
-.case-study-gallery-new__row--asymmetric .case-study-gallery-new__item:not(:first-child) {
+.case-study-gallery-new__row--asymmetric
+  .case-study-gallery-new__item:not(:first-child) {
   aspect-ratio: 4/3;
 }
 
@@ -767,7 +770,6 @@ main.case-study-page-new {
 }
 
 @media (max-width: 768px) {
-
   .case-study-gallery-new__row--2-col,
   .case-study-gallery-new__row--3-col {
     grid-template-columns: 1fr;
@@ -784,12 +786,14 @@ main.case-study-page-new {
     grid-template-rows: auto;
   }
 
-  .case-study-gallery-new__row--asymmetric .case-study-gallery-new__item:first-child {
+  .case-study-gallery-new__row--asymmetric
+    .case-study-gallery-new__item:first-child {
     grid-row: auto;
     aspect-ratio: 4/3;
   }
 
-  .case-study-gallery-new__row--asymmetric .case-study-gallery-new__item:not(:first-child) {
+  .case-study-gallery-new__row--asymmetric
+    .case-study-gallery-new__item:not(:first-child) {
     aspect-ratio: 4/3;
   }
 }
@@ -866,7 +870,6 @@ main.case-study-page-new {
 }
 
 @keyframes bounceHint {
-
   0%,
   100% {
     transform: translateX(-50%) translateY(0);
@@ -878,7 +881,6 @@ main.case-study-page-new {
 }
 
 @keyframes bounceArrow {
-
   0%,
   100% {
     transform: translateY(0);
@@ -936,7 +938,9 @@ main.case-study-page-new {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   cursor: pointer;
 }
 
@@ -963,7 +967,8 @@ main.case-study-page-new {
   transition: background 0.3s ease;
 }
 
-.case-study-next-new__preview-image:hover .case-study-next-new__preview-overlay {
+.case-study-next-new__preview-image:hover
+  .case-study-next-new__preview-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
 
@@ -975,7 +980,9 @@ main.case-study-page-new {
   font-weight: 600;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .case-study-next-new__preview-image:hover .case-study-next-new__preview-label {
@@ -1037,7 +1044,9 @@ main.case-study-page-new {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .reveal.visible {
@@ -1050,7 +1059,9 @@ main.case-study-page-new {
   .reveal {
     transform: translateY(20px);
     /* Smaller initial offset */
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
     /* Faster transition */
   }
 }
@@ -1153,7 +1164,7 @@ main.case-study-page-new {
 
 /* Desktop-specific spacing adjustments to eliminate gaps */
 @media (min-width: 1024px) {
-  .case-study-meta-new+.case-study-section-new--light {
+  .case-study-meta-new + .case-study-section-new--light {
     padding: var(--case-study-space-xs) 2rem var(--case-study-space-md) 2rem;
     /* Override entire padding - minimal top */
     margin-top: 0;
@@ -1186,7 +1197,11 @@ main.case-study-page-new {
   padding: calc(var(--header-height) + 3.5rem) clamp(1.25rem, 5vw, 5rem) 3.5rem;
   background:
     linear-gradient(135deg, rgba(26, 23, 20, 0.92), rgba(26, 23, 20, 0.76)),
-    radial-gradient(circle at 78% 18%, rgba(196, 30, 58, 0.18), transparent 30rem),
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(196, 30, 58, 0.18),
+      transparent 30rem
+    ),
     var(--ink);
   color: var(--cream);
 }
@@ -1219,7 +1234,7 @@ main.case-study-page-new {
 .data-brief-button,
 .data-brief-text-link,
 .data-brief-tags span {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1248,7 +1263,7 @@ main.case-study-page-new {
 
 .data-brief-hero__title,
 .data-brief-section h2 {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -1300,7 +1315,7 @@ main.case-study-page-new {
 
 .data-brief-hero__facts dt {
   color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.64rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1374,7 +1389,7 @@ main.case-study-page-new {
 
 .data-brief-terminal__body {
   padding: 1.25rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.82rem;
   line-height: 1.9;
 }
@@ -1466,7 +1481,9 @@ main.case-study-page-new {
   line-height: 1.7;
 }
 
-.data-brief-section--dark .data-brief-refresh-heading.ui-section-heading > p:not(:first-child) {
+.data-brief-section--dark
+  .data-brief-refresh-heading.ui-section-heading
+  > p:not(:first-child) {
   color: rgba(245, 240, 235, 0.82);
 }
 
@@ -1521,7 +1538,7 @@ main.case-study-page-new {
 .data-brief-story-card span {
   margin-bottom: 2.25rem;
   color: var(--accent);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1529,7 +1546,7 @@ main.case-study-page-new {
 
 .data-brief-story-card h3 {
   margin: 0 0 0.85rem;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 3.4vw, 3.2rem);
   font-weight: 400;
   line-height: 0.92;
@@ -1564,7 +1581,7 @@ main.case-study-page-new {
 }
 
 .data-brief-flow span:not(:last-child)::after {
-  content: "→";
+  content: '→';
   margin-left: 0.7rem;
   color: var(--accent);
 }
@@ -1607,7 +1624,7 @@ main.case-study-page-new {
   display: block;
   margin-bottom: 1.4rem;
   color: var(--accent);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1684,7 +1701,7 @@ main.case-study-page-new {
 .data-brief-output-card h3 {
   max-width: 10ch;
   margin: 0 0 1rem;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.3rem, 3.8vw, 3.8rem);
   font-weight: 400;
   line-height: 0.9;
@@ -1718,7 +1735,7 @@ main.case-study-page-new {
   padding: 0.55rem 0.8rem;
   background: var(--cream);
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   text-transform: uppercase;
 }
@@ -1750,7 +1767,7 @@ main.case-study-page-new {
 }
 
 .data-brief-list li::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.75rem;
   left: 0;
@@ -1881,7 +1898,7 @@ main.case-study-page-new {
 .campaign-sandbox-access-note h3 {
   margin: 0 0 0.75rem;
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1915,7 +1932,7 @@ main.case-study-page-new {
   padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 4vw, 2.5rem);
   background: var(--ink);
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 4.5vw, 4.5rem);
   font-style: normal;
   line-height: 0.96;
@@ -1952,11 +1969,11 @@ main.case-study-page-new {
 .campaign-sandbox-check-grid li::before,
 .campaign-sandbox-verification-list li::before,
 .campaign-sandbox-limitations li::before {
-  content: "+";
+  content: '+';
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
 }
 
 .campaign-sandbox-workflow {
@@ -1975,7 +1992,7 @@ main.case-study-page-new {
   padding: 1.25rem;
   background: rgba(245, 240, 235, 0.05);
   color: rgba(245, 240, 235, 0.86);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   line-height: 1.45;
@@ -2025,7 +2042,7 @@ main.case-study-page-new {
   max-width: 62rem;
   margin-top: 0.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   line-height: 1.55;
@@ -2057,7 +2074,7 @@ main.case-study-page-new {
   border-radius: 999px;
   padding: 0 1rem;
   color: rgba(245, 240, 235, 0.76);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2124,10 +2141,8 @@ main.case-study-page-new {
 
   .case-study-page-new--campaign-sandbox .campaign-sandbox-hero {
     grid-template-columns: minmax(0, 1fr);
-    padding:
-      calc(var(--header-height) + env(safe-area-inset-top) + 2.25rem)
-      clamp(1rem, 5vw, 1.25rem)
-      3rem;
+    padding: calc(var(--header-height) + env(safe-area-inset-top) + 2.25rem)
+      clamp(1rem, 5vw, 1.25rem) 3rem;
   }
 
   .case-study-page-new--campaign-sandbox .data-brief-hero__title {
@@ -2193,10 +2208,15 @@ main.case-study-page-new {
   min-height: auto;
   grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 0.78fr);
   align-items: center;
-  padding: calc(var(--header-height) + clamp(3rem, 6vw, 5.5rem)) clamp(1.25rem, 5vw, 5rem) clamp(2.75rem, 6vw, 5rem);
+  padding: calc(var(--header-height) + clamp(3rem, 6vw, 5.5rem))
+    clamp(1.25rem, 5vw, 5rem) clamp(2.75rem, 6vw, 5rem);
   background:
     linear-gradient(135deg, rgba(26, 23, 20, 0.96), rgba(26, 23, 20, 0.82)),
-    radial-gradient(circle at 74% 16%, rgba(196, 30, 58, 0.2), transparent 31rem),
+    radial-gradient(
+      circle at 74% 16%,
+      rgba(196, 30, 58, 0.2),
+      transparent 31rem
+    ),
     var(--ink);
 }
 
@@ -2234,7 +2254,7 @@ main.case-study-page-new {
 .data-brief-hero__visual figcaption {
   margin-top: 0.8rem;
   color: rgba(245, 240, 235, 0.62);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.55;
@@ -2278,13 +2298,16 @@ main.case-study-page-new {
   border-radius: 999px;
   padding: 0 0.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
 }
 
 .data-brief-mini-nav a:hover,
@@ -2350,7 +2373,7 @@ main.case-study-page-new {
 .data-brief-proof-card span,
 .data-brief-callout span {
   color: rgba(245, 240, 235, 0.58);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2360,7 +2383,7 @@ main.case-study-page-new {
   max-width: 16ch;
   margin: 1rem 0;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.6rem, 5vw, 5.2rem);
   font-weight: 400;
   line-height: 0.9;
@@ -2411,7 +2434,7 @@ main.case-study-page-new {
 }
 
 .data-brief-flow span:not(:last-child)::after {
-  content: "";
+  content: '';
   margin: 0;
 }
 
@@ -2431,7 +2454,9 @@ main.case-study-page-new {
   background: rgba(26, 23, 20, 0.12);
 }
 
-.case-study-page-new--data-brief .data-brief-card-grid--software .data-brief-card {
+.case-study-page-new--data-brief
+  .data-brief-card-grid--software
+  .data-brief-card {
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -2443,7 +2468,7 @@ main.case-study-page-new {
 }
 
 .data-brief-card h3 {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.75rem, 2.6vw, 2.8rem);
   font-weight: 400;
   line-height: 0.92;
@@ -2462,7 +2487,7 @@ main.case-study-page-new {
 .data-brief-card--dataset h4 {
   margin: 1.35rem 0 0.75rem;
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2497,7 +2522,7 @@ main.case-study-page-new {
 
 .data-brief-preview figcaption span {
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2510,7 +2535,11 @@ main.case-study-page-new {
   border-radius: 10px;
   padding: clamp(1rem, 2vw, 1.35rem);
   background:
-    linear-gradient(180deg, rgba(250, 248, 245, 0.98), rgba(237, 230, 221, 0.96)),
+    linear-gradient(
+      180deg,
+      rgba(250, 248, 245, 0.98),
+      rgba(237, 230, 221, 0.96)
+    ),
     var(--cream-light);
   color: var(--ink);
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.24);
@@ -2532,7 +2561,7 @@ main.case-study-page-new {
 }
 
 .data-brief-report__topline span {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.2rem, 4vw, 4.2rem);
   line-height: 0.9;
   text-transform: uppercase;
@@ -2542,7 +2571,7 @@ main.case-study-page-new {
 .data-brief-report__status span,
 .data-brief-report__metrics span,
 .data-brief-export-list span {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2660,7 +2689,7 @@ main.case-study-page-new {
 
 .data-brief-callout strong {
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 3vw, 3.2rem);
   font-weight: 400;
   line-height: 0.92;
@@ -2682,7 +2711,7 @@ main.case-study-page-new {
   padding: 0 1rem;
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2770,9 +2799,14 @@ main.case-study-page-new {
   align-items: center;
   gap: clamp(2rem, 5vw, 5rem);
   overflow: hidden;
-  padding: calc(var(--header-height) + clamp(3rem, 6vw, 6rem)) clamp(1.25rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem);
+  padding: calc(var(--header-height) + clamp(3rem, 6vw, 6rem))
+    clamp(1.25rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem);
   background:
-    radial-gradient(circle at 72% 18%, rgba(82, 118, 96, 0.25), transparent 32rem),
+    radial-gradient(
+      circle at 72% 18%,
+      rgba(82, 118, 96, 0.25),
+      transparent 32rem
+    ),
     linear-gradient(140deg, #161816 0%, #20241f 56%, #111310 100%);
   color: var(--cream);
 }
@@ -2787,7 +2821,7 @@ main.case-study-page-new {
   max-width: 7ch;
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(5.8rem, 10vw, 11rem);
   font-weight: 400;
   letter-spacing: -0.015em;
@@ -2831,7 +2865,7 @@ main.case-study-page-new {
   border: 1px solid rgba(245, 240, 235, 0.22);
   padding: 0 0.8rem;
   color: rgba(245, 240, 235, 0.82);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2878,7 +2912,7 @@ main.case-study-page-new {
   max-width: 46rem;
   margin-top: 0.85rem;
   color: rgba(245, 240, 235, 0.56);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   line-height: 1.6;
@@ -2908,7 +2942,7 @@ main.case-study-page-new {
 .campaign-pulse-snapshot span,
 .campaign-pulse-feature-grid > article > span {
   color: var(--accent);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2953,7 +2987,7 @@ main.case-study-page-new {
 .campaign-pulse-problem__solution h3 {
   margin: 0 0 1rem;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.25rem, 3.8vw, 3.8rem);
   font-weight: 400;
   line-height: 0.94;
@@ -3011,7 +3045,7 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-flow div:not(:last-child)::after {
-  content: "→";
+  content: '→';
   position: absolute;
   top: 50%;
   right: -0.7rem;
@@ -3026,7 +3060,7 @@ main.case-study-page-new {
 
 .campaign-pulse-flow span {
   color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
 }
 
@@ -3054,7 +3088,7 @@ main.case-study-page-new {
 .campaign-pulse-layer-grid h3 {
   margin: 0 0 1rem;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.92;
@@ -3116,7 +3150,7 @@ main.case-study-page-new {
   min-block-size: 1lh;
   margin: 0 0 1.5rem;
   color: var(--accent);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.88;
@@ -3155,7 +3189,7 @@ main.case-study-page-new {
 .campaign-pulse-limitations h3 {
   margin: 0 0 1.5rem;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.6rem, 4vw, 4.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -3309,10 +3343,8 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 0.9fr) minmax(23rem, 0.84fr);
   align-items: center;
   gap: clamp(2.5rem, 5.5vw, 6rem);
-  padding:
-    calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem))
-    var(--section-inline-padding)
-    clamp(5rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem))
+    var(--section-inline-padding) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--cream-dark);
   background: var(--cream);
   color: var(--ink);
@@ -3563,7 +3595,9 @@ main.case-study-page-new {
   min-height: 16rem;
 }
 
-.case-study-page-new--campaign-pulse .data-brief-section--closing .data-brief-actions {
+.case-study-page-new--campaign-pulse
+  .data-brief-section--closing
+  .data-brief-actions {
   justify-content: center;
 }
 
@@ -3593,10 +3627,8 @@ main.case-study-page-new {
 
 @media (max-width: 720px) {
   .campaign-pulse-hero {
-    padding:
-      calc(var(--header-height) + env(safe-area-inset-top) + 2.25rem)
-      clamp(1rem, 5vw, 1.25rem)
-      var(--section-block-padding-compact);
+    padding: calc(var(--header-height) + env(safe-area-inset-top) + 2.25rem)
+      clamp(1rem, 5vw, 1.25rem) var(--section-block-padding-compact);
   }
 
   .campaign-pulse-hero h1 {
@@ -3712,7 +3744,8 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 0.9fr) minmax(23rem, 0.84fr);
   align-items: center;
   gap: clamp(2.5rem, 5.5vw, 6rem);
-  padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem)) clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem))
+    clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid rgba(26, 23, 20, 0.1);
   background: var(--cream);
   color: var(--ink);
@@ -3812,7 +3845,7 @@ main.case-study-page-new {
 .data-brief-refusal-card span,
 .data-brief-principle-card span {
   color: rgba(26, 23, 20, 0.54);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -3822,7 +3855,7 @@ main.case-study-page-new {
 .data-brief-principle-card strong {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.45rem, 4vw, 4.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -3843,7 +3876,7 @@ main.case-study-page-new {
 .data-brief-refusal-card dt {
   margin-bottom: 0.35rem;
   color: var(--accent);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -3902,7 +3935,7 @@ main.case-study-page-new {
 .data-brief-phase-card h3 {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.2rem, 3.4vw, 3.6rem);
   font-weight: 400;
   line-height: 0.9;
@@ -3941,7 +3974,7 @@ main.case-study-page-new {
 
 .data-brief-output-main figcaption {
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.55;
@@ -3964,7 +3997,7 @@ main.case-study-page-new {
 
 .data-brief-output-list span {
   color: var(--accent);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -3973,7 +4006,7 @@ main.case-study-page-new {
 .data-brief-output-list h3 {
   margin: 1.25rem 0 0.6rem;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4017,7 +4050,7 @@ main.case-study-page-new {
 .data-brief-result-grid h3 {
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.2rem, 3.5vw, 3.8rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4100,10 +4133,15 @@ main.case-study-page-new {
   align-items: center;
   gap: clamp(2rem, 6vw, 5rem);
   overflow: hidden;
-  padding: calc(var(--header-height) + clamp(3rem, 6vw, 5.5rem)) clamp(1.25rem, 5vw, 5rem) clamp(2.75rem, 6vw, 5rem);
+  padding: calc(var(--header-height) + clamp(3rem, 6vw, 5.5rem))
+    clamp(1.25rem, 5vw, 5rem) clamp(2.75rem, 6vw, 5rem);
   background:
     linear-gradient(135deg, rgba(26, 23, 20, 0.96), rgba(26, 23, 20, 0.82)),
-    radial-gradient(circle at 70% 20%, rgba(196, 30, 58, 0.18), transparent 28rem),
+    radial-gradient(
+      circle at 70% 20%,
+      rgba(196, 30, 58, 0.18),
+      transparent 28rem
+    ),
     var(--ink);
   color: var(--cream);
 }
@@ -4118,7 +4156,7 @@ main.case-study-page-new {
   max-width: 16ch;
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3.4rem, 7vw, 7.8rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4153,7 +4191,7 @@ main.case-study-page-new {
 .benchmark-hero__visual figcaption {
   margin-top: 0.8rem;
   color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   line-height: 1.55;
@@ -4201,7 +4239,7 @@ main.case-study-page-new {
 }
 
 .benchmark-mockup__label {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4230,7 +4268,7 @@ main.case-study-page-new {
 .benchmark-metric__label {
   display: block;
   margin-bottom: 0.35rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.56rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4238,7 +4276,7 @@ main.case-study-page-new {
 }
 
 .benchmark-metric__value {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: 1.6rem;
   line-height: 1;
   color: var(--cream);
@@ -4255,7 +4293,7 @@ main.case-study-page-new {
   justify-content: space-between;
   padding: 0.45rem 0.75rem;
   border-bottom: 1px solid rgba(245, 240, 235, 0.1);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.56rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4276,7 +4314,7 @@ main.case-study-page-new {
 
 .benchmark-ranking__pos {
   width: 1rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.58rem;
   color: rgba(245, 240, 235, 0.36);
   text-align: right;
@@ -4304,7 +4342,7 @@ main.case-study-page-new {
 
 .benchmark-ranking__score {
   width: 2.5rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.62rem;
   color: rgba(245, 240, 235, 0.56);
   text-align: right;
@@ -4328,7 +4366,7 @@ main.case-study-page-new {
 }
 
 .benchmark-system-card h3 {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.8rem, 2.8vw, 3rem);
   font-weight: 400;
   line-height: 0.92;
@@ -4351,7 +4389,7 @@ main.case-study-page-new {
 }
 
 .benchmark-diagram span {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4381,7 +4419,7 @@ main.case-study-page-new {
 }
 
 .benchmark-code-block__bar span {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4391,7 +4429,7 @@ main.case-study-page-new {
 .benchmark-code-block pre {
   margin: 0;
   padding: 1.25rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.82rem;
   line-height: 1.9;
   color: rgba(245, 240, 235, 0.82);
@@ -4416,7 +4454,7 @@ main.case-study-page-new {
   padding: 0 0.85rem;
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -4481,7 +4519,7 @@ main.case-study-page-new {
   border-radius: 999px;
   background: transparent;
   color: rgba(245, 240, 235, 0.45);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.58rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4498,7 +4536,7 @@ main.case-study-page-new {
   max-width: 44rem;
   margin: 1rem 0 0;
   color: rgba(245, 240, 235, 0.48);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
   letter-spacing: 0.04em;
   line-height: 1.6;
@@ -4520,7 +4558,7 @@ main.case-study-page-new {
   border-radius: 999px;
   background: rgba(245, 240, 235, 0.06);
   color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4547,7 +4585,7 @@ main.case-study-page-new {
 }
 
 .benchmark-field-defs dt code {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.8rem;
   color: var(--accent);
 }
@@ -4563,7 +4601,7 @@ main.case-study-page-new {
 .benchmark-connectors-label {
   margin: 0 0 0.75rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4623,7 +4661,8 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 0.78fr) minmax(24rem, 0.9fr);
   align-items: center;
   gap: clamp(3rem, 7vw, 7rem);
-  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem)) clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem))
+    clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid rgba(26, 23, 20, 0.1);
   background: var(--cream);
   color: var(--ink);
@@ -4796,7 +4835,7 @@ main.case-study-page-new {
 .benchmark-proof-strip strong {
   display: block;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.6rem, 5vw, 4.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4806,7 +4845,7 @@ main.case-study-page-new {
   display: block;
   margin-top: 0.5rem;
   color: rgba(26, 23, 20, 0.58);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -4915,7 +4954,9 @@ main.case-study-page-new {
   background:
     linear-gradient(rgba(245, 240, 235, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(245, 240, 235, 0.06) 1px, transparent 1px);
-  background-size: 100% 33.333%, 20% 100%;
+  background-size:
+    100% 33.333%,
+    20% 100%;
 }
 
 .benchmark-shot__chart i {
@@ -4947,7 +4988,7 @@ main.case-study-page-new {
 .benchmark-shot__copy h3 {
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.95;
@@ -5005,7 +5046,7 @@ main.case-study-page-new {
   padding: 1rem 1.25rem;
   background: var(--ink);
   color: rgba(245, 240, 235, 0.84);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: clamp(0.82rem, 1.6vw, 1rem);
   line-height: 1.4;
 }
@@ -5042,7 +5083,7 @@ main.case-study-page-new {
 .benchmark-result-grid h3 {
   margin: 0 0 1.5rem;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.9;
@@ -5196,7 +5237,7 @@ main.case-study-page-new {
 .benchmark-screen figcaption p {
   margin: 0;
   color: var(--ink-muted);
-  font-family: var(--font-body), "DM Sans", sans-serif;
+  font-family: var(--font-body), 'DM Sans', sans-serif;
   font-size: 0.82rem;
   line-height: 1.55;
   max-width: 48ch;
@@ -5264,7 +5305,11 @@ main.case-study-page-new {
   border-radius: 8px;
   padding: clamp(1.5rem, 4vw, 3rem);
   background:
-    linear-gradient(135deg, rgba(250, 248, 245, 0.84), rgba(245, 240, 235, 0.96)),
+    linear-gradient(
+      135deg,
+      rgba(250, 248, 245, 0.84),
+      rgba(245, 240, 235, 0.96)
+    ),
     var(--cream);
 }
 
@@ -5300,12 +5345,18 @@ main.case-study-page-new {
 }
 
 .website-auditor-overview-grid h3,
-.case-study-page-new--website-auditor .data-brief-section--light .data-brief-result-grid h3 {
+.case-study-page-new--website-auditor
+  .data-brief-section--light
+  .data-brief-result-grid
+  h3 {
   color: var(--ink);
 }
 
 .website-auditor-overview-grid p,
-.case-study-page-new--website-auditor .data-brief-section--light .data-brief-result-grid p {
+.case-study-page-new--website-auditor
+  .data-brief-section--light
+  .data-brief-result-grid
+  p {
   color: rgba(26, 23, 20, 0.66);
 }
 
@@ -5334,7 +5385,7 @@ main.case-study-page-new {
   padding: 1.25rem;
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   line-height: 1.55;
@@ -5343,7 +5394,7 @@ main.case-study-page-new {
 }
 
 .website-auditor-truth-boundary span:not(:last-child)::after {
-  content: "→";
+  content: '→';
   position: absolute;
   top: 50%;
   right: -0.62rem;
@@ -5371,7 +5422,7 @@ main.case-study-page-new {
   padding: clamp(1.25rem, 3vw, 1.75rem);
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.45rem, 4vw, 4.35rem);
   font-weight: 400;
   line-height: 0.92;
@@ -5396,7 +5447,7 @@ main.case-study-page-new {
 .website-auditor-llm-boundary__column h4 {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   line-height: 1.4;
@@ -5404,7 +5455,7 @@ main.case-study-page-new {
 }
 
 .website-auditor-llm-boundary__column h4::before {
-  content: "";
+  content: '';
   display: inline-block;
   width: 0.55rem;
   height: 0.55rem;
@@ -5440,7 +5491,7 @@ main.case-study-page-new {
 }
 
 .website-auditor-llm-boundary__column li::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.75em;
   left: 0;
@@ -5472,7 +5523,11 @@ main.case-study-page-new {
 .website-auditor-finding-card__meta div,
 .website-auditor-finding-card__status {
   background:
-    linear-gradient(135deg, rgba(250, 248, 245, 0.96), rgba(245, 240, 235, 0.92)),
+    linear-gradient(
+      135deg,
+      rgba(250, 248, 245, 0.96),
+      rgba(245, 240, 235, 0.92)
+    ),
     var(--cream-light);
 }
 
@@ -5490,7 +5545,7 @@ main.case-study-page-new {
 .website-auditor-finding-card__issue span,
 .website-auditor-finding-card__meta dt,
 .website-auditor-finding-card__status span {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
   font-style: normal;
   font-weight: 400;
@@ -5570,7 +5625,11 @@ main.case-study-page-new {
   border-radius: 8px;
   padding: clamp(1rem, 2vw, 1.35rem);
   background:
-    linear-gradient(135deg, rgba(250, 248, 245, 0.96), rgba(245, 240, 235, 0.9)),
+    linear-gradient(
+      135deg,
+      rgba(250, 248, 245, 0.96),
+      rgba(245, 240, 235, 0.9)
+    ),
     var(--cream-light);
   box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
 }
@@ -5586,7 +5645,7 @@ main.case-study-page-new {
 
 .website-auditor-report__topline span {
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 3vw, 3rem);
   line-height: 0.9;
   text-transform: uppercase;
@@ -5597,7 +5656,7 @@ main.case-study-page-new {
 .website-auditor-report__finding span,
 .website-auditor-report__finding em,
 .website-auditor-report__scores span {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
   font-style: normal;
   letter-spacing: 0.08em;
@@ -5645,7 +5704,7 @@ main.case-study-page-new {
 
 .website-auditor-report__scores strong {
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 3vw, 3.2rem);
   font-weight: 400;
   line-height: 0.9;
@@ -5691,7 +5750,7 @@ main.case-study-page-new {
   padding: clamp(1.15rem, 2.5vw, 1.5rem);
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   line-height: 1.5;
@@ -5826,7 +5885,8 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 0.78fr) minmax(22rem, 0.86fr);
   align-items: center;
   gap: clamp(3rem, 7vw, 7rem);
-  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem)) clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem))
+    clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--portfolio-line);
   background: var(--portfolio-cream);
 }
@@ -5839,7 +5899,7 @@ main.case-study-page-new {
   max-width: 13ch;
   margin: 0;
   color: var(--portfolio-ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(4rem, 8vw, 9rem);
   font-weight: 400;
   letter-spacing: 0;
@@ -5898,7 +5958,7 @@ main.case-study-page-new {
 .portfolio-frame span,
 .portfolio-frame-grid span {
   color: rgba(26, 23, 20, 0.48);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -5907,7 +5967,7 @@ main.case-study-page-new {
 .portfolio-frame strong {
   max-width: 14ch;
   color: var(--portfolio-ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.8rem, 5vw, 5.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -5958,7 +6018,7 @@ main.case-study-page-new {
   max-width: 19ch;
   margin: 0;
   color: inherit;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3.4rem, 6vw, 7rem);
   font-weight: 400;
   letter-spacing: 0;
@@ -6010,7 +6070,7 @@ main.case-study-page-new {
 .portfolio-card h3 {
   margin: 0;
   color: inherit;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.2rem, 3.5vw, 3.8rem);
   font-weight: 400;
   line-height: 0.92;
@@ -6052,7 +6112,7 @@ main.case-study-page-new {
 .portfolio-layer-list dt,
 .portfolio-wireframe-list span {
   color: rgba(245, 240, 235, 0.54);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -6088,7 +6148,7 @@ main.case-study-page-new {
 
 .portfolio-wireframe-list strong {
   color: var(--portfolio-ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.8rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.95;
@@ -6113,7 +6173,7 @@ main.case-study-page-new {
 .portfolio-links h3 {
   margin: 0 0 1.5rem;
   color: inherit;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.9;
@@ -6206,18 +6266,40 @@ main.case-study-page-new {
   background:
     linear-gradient(var(--territoryops-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--territoryops-grid) 1px, transparent 1px),
-    radial-gradient(circle at 54% 46%, rgba(176, 138, 90, 0.2), transparent 36%),
+    radial-gradient(
+      circle at 54% 46%,
+      rgba(176, 138, 90, 0.2),
+      transparent 36%
+    ),
     #12100e;
-  background-size: 3.5rem 3.5rem, 3.5rem 3.5rem, auto, auto;
+  background-size:
+    3.5rem 3.5rem,
+    3.5rem 3.5rem,
+    auto,
+    auto;
 }
 
 .territoryops-atlas__map::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 12% 17% 24% 22%;
   border: 1px solid rgba(245, 240, 235, 0.24);
   background: rgba(245, 240, 235, 0.035);
-  clip-path: polygon(17% 2%, 43% 8%, 57% 1%, 82% 12%, 96% 31%, 88% 51%, 71% 64%, 68% 90%, 45% 100%, 31% 82%, 12% 74%, 1% 48%, 10% 29%);
+  clip-path: polygon(
+    17% 2%,
+    43% 8%,
+    57% 1%,
+    82% 12%,
+    96% 31%,
+    88% 51%,
+    71% 64%,
+    68% 90%,
+    45% 100%,
+    31% 82%,
+    12% 74%,
+    1% 48%,
+    10% 29%
+  );
 }
 
 .territoryops-atlas__marker {
@@ -6231,7 +6313,9 @@ main.case-study-page-new {
   background: var(--territoryops-accent);
   box-shadow: 0 0 0 0.45rem rgba(176, 138, 90, 0.16);
   cursor: pointer;
-  transition: box-shadow 180ms ease, transform 180ms ease;
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
 .territoryops-atlas__marker:hover,
@@ -6261,7 +6345,7 @@ main.case-study-page-new {
 .territoryops-atlas__panel span,
 .territoryops-atlas__panel strong,
 .territoryops-atlas figcaption {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -6316,7 +6400,7 @@ main.case-study-page-new {
 
 .territoryops-feature-grid h3 {
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 400;
   line-height: 0.95;
@@ -6365,7 +6449,7 @@ main.case-study-page-new {
   border: 1px solid rgba(245, 240, 235, 0.18);
   padding: 0.7rem 0.9rem;
   color: rgba(245, 240, 235, 0.72);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -6411,7 +6495,7 @@ main.case-study-page-new {
   max-width: 62rem;
   margin-top: 0.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   line-height: 1.55;
@@ -6460,7 +6544,7 @@ main.case-study-page-new {
 }
 
 .territoryops-console__identity strong {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: 1.35rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -6478,7 +6562,7 @@ main.case-study-page-new {
 .territoryops-console__dossier dt,
 .territoryops-console__coordinates,
 .territoryops-console__pipeline > div > span {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -6532,7 +6616,7 @@ main.case-study-page-new {
   background: transparent;
   color: rgba(245, 240, 235, 0.52);
   cursor: pointer;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -6558,7 +6642,10 @@ main.case-study-page-new {
 
 .territoryops-console__workspace {
   display: grid;
-  grid-template-columns: minmax(12rem, 0.7fr) minmax(20rem, 2fr) minmax(14rem, 0.8fr);
+  grid-template-columns: minmax(12rem, 0.7fr) minmax(20rem, 2fr) minmax(
+      14rem,
+      0.8fr
+    );
   min-height: 38rem;
 }
 
@@ -6632,9 +6719,17 @@ main.case-study-page-new {
   background:
     linear-gradient(rgba(245, 240, 235, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(245, 240, 235, 0.07) 1px, transparent 1px),
-    radial-gradient(circle at 52% 52%, rgba(176, 138, 90, 0.18), transparent 42%),
+    radial-gradient(
+      circle at 52% 52%,
+      rgba(176, 138, 90, 0.18),
+      transparent 42%
+    ),
     #151310;
-  background-size: 3.2rem 3.2rem, 3.2rem 3.2rem, auto, auto;
+  background-size:
+    3.2rem 3.2rem,
+    3.2rem 3.2rem,
+    auto,
+    auto;
 }
 
 .territoryops-console__map svg {
@@ -6661,7 +6756,7 @@ main.case-study-page-new {
   right: 1.25rem;
   z-index: 2;
   color: rgba(245, 240, 235, 0.45);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.6rem;
   line-height: 1.6;
   text-align: center;
@@ -6693,7 +6788,7 @@ main.case-study-page-new {
   padding: 0.32rem 0.45rem;
   background: rgba(18, 16, 14, 0.86);
   color: rgba(245, 240, 235, 0.62);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.52rem;
   letter-spacing: 0.06em;
   opacity: 0;
@@ -6729,8 +6824,7 @@ main.case-study-page-new {
   overflow-x: auto;
   padding: 1.25rem;
   background:
-    linear-gradient(rgba(245, 240, 235, 0.035) 1px, transparent 1px),
-    #151310;
+    linear-gradient(rgba(245, 240, 235, 0.035) 1px, transparent 1px), #151310;
   background-size: 100% 3.5rem;
 }
 
@@ -6749,7 +6843,7 @@ main.case-study-page-new {
 
 .territoryops-console__table th {
   color: rgba(245, 240, 235, 0.42);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.56rem;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -6858,7 +6952,7 @@ main.case-study-page-new {
   max-width: 9ch;
   margin: 0 0 2rem;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -6914,7 +7008,7 @@ main.case-study-page-new {
 
 .territoryops-flow span {
   color: var(--color-0);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.08em;
 }
@@ -6922,7 +7016,7 @@ main.case-study-page-new {
 .territoryops-flow h3 {
   margin: clamp(3rem, 7vw, 5rem) 0 0.75rem;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
   line-height: 0.9;
@@ -6969,7 +7063,7 @@ main.case-study-page-new {
   padding: 1.25rem;
   background: rgba(245, 240, 235, 0.06);
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   line-height: 0.95;
   text-transform: uppercase;
@@ -6977,7 +7071,7 @@ main.case-study-page-new {
 
 .territoryops-roadmap small {
   color: rgba(245, 240, 235, 0.42);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.62rem;
   letter-spacing: 0.08em;
 }
@@ -6990,7 +7084,9 @@ main.case-study-page-new {
   max-width: 30ch;
 }
 
-.case-study-page-new--territoryops .data-brief-section--dark .data-brief-actions {
+.case-study-page-new--territoryops
+  .data-brief-section--dark
+  .data-brief-actions {
   margin-top: 1.5rem;
 }
 
@@ -7048,7 +7144,6 @@ main.case-study-page-new {
   .territoryops-roadmap {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
 }
 
 @media (min-width: 1080px) {
@@ -7183,10 +7278,8 @@ main.case-study-page-new {
   .portfolio-hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
-    padding:
-      calc(var(--header-height) + env(safe-area-inset-top) + 2.25rem)
-      clamp(1rem, 5vw, 1.25rem)
-      3rem;
+    padding: calc(var(--header-height) + env(safe-area-inset-top) + 2.25rem)
+      clamp(1rem, 5vw, 1.25rem) 3rem;
   }
 
   .data-brief-hero__content,
@@ -7409,7 +7502,7 @@ main.case-study-page-new {
 .case-study-snapshot__intro h2 {
   max-width: 10ch;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3.25rem, 6vw, 6rem);
   font-weight: 400;
   line-height: 0.9;
@@ -7420,7 +7513,7 @@ main.case-study-page-new {
 .case-study-snapshot__description {
   max-width: 34rem;
   color: var(--ink-muted);
-  font-family: var(--font-reading), Georgia, "Times New Roman", serif;
+  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
   font-size: clamp(1rem, 1.35vw, 1.16rem);
   line-height: 1.65;
 }
@@ -7433,7 +7526,7 @@ main.case-study-page-new {
 
 .case-study-snapshot__path > span {
   color: var(--ink-faint);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -7454,7 +7547,7 @@ main.case-study-page-new {
   gap: 0.75rem;
   min-height: 2.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -7465,14 +7558,14 @@ main.case-study-page-new {
   border-bottom: 1px solid rgba(26, 23, 20, 0.14);
 }
 
-.case-study-snapshot__path li[aria-current="step"] {
+.case-study-snapshot__path li[aria-current='step'] {
   display: grid;
   grid-template-columns: 2rem 1fr;
   align-items: center;
   gap: 0.75rem;
   min-height: 2.85rem;
   color: var(--ink);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -7484,7 +7577,9 @@ main.case-study-page-new {
 }
 
 .case-study-snapshot__path a {
-  transition: color 180ms ease, padding-left 180ms ease;
+  transition:
+    color 180ms ease,
+    padding-left 180ms ease;
 }
 
 .case-study-snapshot__path a:hover,
@@ -7522,7 +7617,7 @@ main.case-study-page-new {
   gap: 0.6rem;
   margin: 0;
   color: var(--ink-faint);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.64rem;
   letter-spacing: 0.1em;
   line-height: 1.4;
@@ -7537,11 +7632,185 @@ main.case-study-page-new {
   max-width: 42rem;
   margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
   color: var(--ink);
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(1.05rem, 1.65vw, 1.35rem);
   font-weight: 500;
   line-height: 1.35;
   overflow-wrap: anywhere;
+}
+
+/* Strategic case-study editorial system */
+.case-study-image-new {
+  display: block;
+  overflow: visible;
+  background: transparent;
+}
+
+.case-study-image-new__frame {
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--cream-dark, #ddd5c8);
+}
+
+.case-study-image-new__caption,
+.case-study-gallery-new__item figcaption {
+  color: var(--ink-muted);
+  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.86rem, 1vw, 0.98rem);
+  line-height: 1.5;
+}
+
+.case-study-image-new__caption {
+  padding: 0.8rem 0 0;
+}
+
+.case-study-gallery-new__item figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: clamp(2.75rem, 7vw, 5rem) 1rem 1rem;
+  background: linear-gradient(180deg, transparent, rgba(26, 23, 20, 0.84));
+  color: var(--cream);
+  pointer-events: none;
+}
+
+.data-brief-supported-claim {
+  margin: -0.25rem -0.25rem 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(26, 23, 20, 0.12);
+  background: rgba(245, 240, 235, 0.72);
+}
+
+.data-brief-supported-claim > span {
+  color: var(--ink-muted);
+}
+
+.data-brief-supported-claim h3 {
+  margin: 0.65rem 0;
+}
+
+.data-brief-supported-claim p {
+  margin: 0;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+
+.campaign-sandbox-workflow--detail {
+  margin-top: 1rem;
+  opacity: 0.72;
+}
+
+.campaign-sandbox-workflow--detail span {
+  font-size: 0.68rem;
+}
+
+.case-study-next-new {
+  display: block;
+  padding: clamp(4rem, 7vw, 6.5rem) var(--section-inline-padding);
+  border-top: 1px solid rgba(26, 23, 20, 0.12);
+}
+
+.case-study-next-new__container {
+  width: min(100%, var(--section-content-max));
+}
+
+.case-study-next-new__header {
+  display: grid;
+  max-width: 42rem;
+  gap: 0.65rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.case-study-next-new__header p {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.case-study-next-new__header .case-study-next-new__label {
+  color: var(--accent-color, var(--accent));
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.68rem;
+}
+
+.case-study-next-new__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.case-study-next-new__card {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(8rem, 0.72fr) minmax(0, 1fr);
+  border-top: 1px solid rgba(26, 23, 20, 0.18);
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.case-study-next-new__card:hover,
+.case-study-next-new__card:focus-visible {
+  border-color: var(--accent-color, var(--accent));
+  color: var(--accent-color, var(--accent));
+}
+
+.case-study-next-new__preview-image {
+  min-height: 10rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.case-study-next-new__card-copy {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 1.15rem;
+}
+
+.case-study-next-new__meta,
+.case-study-next-new__view {
+  color: var(--ink-muted);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.case-study-next-new__title {
+  min-block-size: 2lh;
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.case-study-next-new__view {
+  margin-top: auto;
+  color: currentColor;
+}
+
+@media (max-width: 720px) {
+  .case-study-next-new {
+    padding-inline: clamp(1rem, 5vw, 1.25rem);
+  }
+
+  .case-study-next-new__grid,
+  .case-study-next-new__card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-study-next-new__preview-image {
+    min-height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .case-study-next-new__title {
+    min-block-size: auto;
+  }
 }
 
 .case-study-snapshot__facts > div:first-child dt {
@@ -7551,7 +7820,7 @@ main.case-study-page-new {
 .case-study-snapshot__facts > div:first-child dd {
   max-width: 26ch;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.25rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.95;
