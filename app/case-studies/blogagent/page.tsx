@@ -14,12 +14,33 @@ const repositoryUrl = 'https://github.com/RaulMermans/BlogAgent'
 const content = {
   en: {
     back: 'Back to case studies',
-    eyebrow: 'AI Systems & Agents',
+    eyebrow: 'Editorial Reliability Engine / AI Systems',
     subtitle:
-      'An AI editorial workflow that turns a topic into a structured, researched, copy-ready blog draft with human review before publication.',
+      'An editorial reliability engine that turns a topic into a structured, researched, copy-ready draft with reviewer veto before publication.',
     description:
       'BlogAgent combines bounded LLM agents with deterministic contracts for research, candidate validation, drafting, review, and final output control.',
     repository: 'View repository',
+    projectTags: 'Project tags',
+    tags: [
+      'Agentic workflow',
+      'LLM systems',
+      'Editorial AI',
+      'Source-aware drafting',
+      'Human-in-the-loop',
+      'Python',
+      'FastAPI',
+    ],
+    workflowStatus: 'Workflow status',
+    validContracts: 'contracts valid',
+    panelRows: [
+      ['01', 'query_contract', 'locked'],
+      ['02', 'source_quality', 'checked'],
+      ['03', 'candidate_pack', 'validated'],
+      ['04', 'writer', 'bounded'],
+      ['05', 'reviewer', 'veto enabled'],
+      ['06', 'final_contract', 'pass'],
+    ],
+    outputStatus: 'Output: copy-ready draft / human review pending',
     nav: [
       ['Problem', '#problem'],
       ['Goal', '#goal'],
@@ -34,8 +55,15 @@ const content = {
     ],
     snapshot: [
       { label: 'Type', value: 'Internal editorial tool' },
-      { label: 'Role', value: 'Architecture, product, UX, backend, evaluation' },
-      { label: 'Stack', value: 'Python, FastAPI, LLM workflow, deterministic validation, mock/live providers' },
+      {
+        label: 'Role',
+        value: 'Architecture, product, UX, backend, evaluation',
+      },
+      {
+        label: 'Stack',
+        value:
+          'Python, FastAPI, LLM workflow, deterministic validation, mock/live providers',
+      },
       { label: 'Status', value: 'Public repo / portfolio case study' },
       { label: 'Year', value: '2026' },
     ],
@@ -50,41 +78,68 @@ const content = {
     goalCopy:
       'The goal was not to create an autopublishing tool. BlogAgent is an internal system for producing copy-ready drafts: text I can move into my blog editor, review, adjust lightly, and publish manually.',
     goalDoes: 'What it does',
-    goalDoesItems: ['Accelerates research and first drafts', 'Keeps source and candidate constraints visible', 'Produces structured output for fast review'],
+    goalDoesItems: [
+      'Accelerates research and first drafts',
+      'Keeps source and candidate constraints visible',
+      'Produces structured output for fast review',
+    ],
     goalDoesNot: 'What it does not do',
-    goalDoesNotItems: ['Post or publish', 'Schedule or send content', 'Remove the need for editorial judgment'],
-    goalNote: 'The value is speed plus evidence and control, not hands-free automation.',
+    goalDoesNotItems: [
+      'Post or publish',
+      'Schedule or send content',
+      'Remove the need for editorial judgment',
+    ],
+    goalNote:
+      'The value is speed plus evidence and control, not hands-free automation.',
     architectureEyebrow: '03 / Architecture decision',
     architectureTitle: 'Workflow first, agents where they add value',
     architectureCopy:
       'The architecture combines deterministic steps with bounded LLM agents. Code controls sequence, limits, contracts, validation, and final decisions. Models support planning, synthesis, drafting, and review, but they do not freely decide what counts as valid.',
-    flow: ['Topic', 'Query Contract', 'Research / Search', 'Source Quality', 'Candidate Ledger', 'CandidatePack', 'Writer', 'Reviewer', 'Revision / Repair', 'Final Answer Contract', 'Copy-ready Draft'],
+    flow: [
+      'Topic',
+      'Query Contract',
+      'Research / Search',
+      'Source Quality',
+      'Candidate Ledger',
+      'CandidatePack',
+      'Writer',
+      'Reviewer',
+      'Revision / Repair',
+      'Final Answer Contract',
+      'Copy-ready Draft',
+    ],
     componentsEyebrow: '04 / Core components',
     componentsTitle: 'Contracts around the writing work',
     components: [
       {
         title: 'Query Contract',
-        description: 'Locks task type, domain, requested count, answer entity type, and safety constraints before drafting.',
+        description:
+          'Locks task type, domain, requested count, answer entity type, and safety constraints before drafting.',
       },
       {
         title: 'Candidate Ledger',
-        description: 'Extracts possible entities and rejects fragments, bylines, dates, source titles, brand clusters, and malformed candidates.',
+        description:
+          'Extracts possible entities and rejects fragments, bylines, dates, source titles, brand clusters, and malformed candidates.',
       },
       {
         title: 'CandidatePack',
-        description: 'Locks the exact recommendation set the writer is allowed to use.',
+        description:
+          'Locks the exact recommendation set the writer is allowed to use.',
       },
       {
         title: 'Writer Agent',
-        description: 'Drafts the article inside the locked structure and selected tone profile.',
+        description:
+          'Drafts the article inside the locked structure and selected tone profile.',
       },
       {
         title: 'Reviewer / Revision Plan',
-        description: 'Checks contract compliance, candidate fidelity, and whether a rewrite or targeted repair is required.',
+        description:
+          'Checks contract compliance, candidate fidelity, and whether a rewrite or targeted repair is required.',
       },
       {
         title: 'Final Answer Contract',
-        description: 'Blocks count mismatches, invalid candidates, unsafe outputs, and incoherent workflow states.',
+        description:
+          'Blocks count mismatches, invalid candidates, unsafe outputs, and incoherent workflow states.',
       },
     ],
     failureEyebrow: '05 / Design lesson',
@@ -95,7 +150,8 @@ const content = {
       'The fix was not another prompt. It was a candidate cleanliness gate, a CandidatePack quality report, reviewer veto power, and a final contract that prevents polished prose from passing when the underlying candidate set is invalid.',
     safetyEyebrow: '06 / Safety and control',
     safetyTitle: 'Conservative by design',
-    safetyCopy: 'BlogAgent keeps external effects and high-risk claims outside the autonomous workflow.',
+    safetyCopy:
+      'BlogAgent keeps external effects and high-risk claims outside the autonomous workflow.',
     safetyItems: [
       'No external side effects',
       'Mock mode by default',
@@ -152,12 +208,34 @@ const content = {
   },
   es: {
     back: 'Volver a casos',
-    eyebrow: 'Sistema de IA y agentes',
+    eyebrow: 'Motor de fiabilidad editorial / Sistemas de IA',
     subtitle:
-      'Un flujo editorial con IA que convierte un tema en un borrador de blog estructurado, investigado y listo para copiar, con revisión humana antes de publicar.',
+      'Un motor de fiabilidad editorial que convierte un tema en un borrador estructurado y listo para copiar, con poder de veto antes de publicar.',
     description:
       'BlogAgent combina agentes LLM acotados con contratos deterministas para investigación, validación de candidatos, redacción, revisión y control de la salida final.',
     repository: 'Ver repositorio',
+    projectTags: 'Etiquetas del proyecto',
+    tags: [
+      'Flujo con agentes',
+      'Sistemas LLM',
+      'IA editorial',
+      'Redacción con fuentes',
+      'Revisión humana',
+      'Python',
+      'FastAPI',
+    ],
+    workflowStatus: 'Estado del flujo',
+    validContracts: 'contratos válidos',
+    panelRows: [
+      ['01', 'query_contract', 'bloqueado'],
+      ['02', 'source_quality', 'comprobado'],
+      ['03', 'candidate_pack', 'validado'],
+      ['04', 'writer', 'acotado'],
+      ['05', 'reviewer', 'veto activo'],
+      ['06', 'final_contract', 'correcto'],
+    ],
+    outputStatus:
+      'Salida: borrador listo para copiar / revisión humana pendiente',
     nav: [
       ['Problema', '#problem'],
       ['Objetivo', '#goal'],
@@ -172,9 +250,16 @@ const content = {
     ],
     snapshot: [
       { label: 'Tipo', value: 'Herramienta editorial interna' },
-      { label: 'Rol', value: 'Arquitectura, producto, UX, backend, evaluación' },
-      { label: 'Stack', value: 'Python, FastAPI, LLM workflow, deterministic validation, mock/live providers' },
-      { label: 'Estado', value: 'Public repo / portfolio case study' },
+      {
+        label: 'Rol',
+        value: 'Arquitectura, producto, UX, backend, evaluación',
+      },
+      {
+        label: 'Stack',
+        value:
+          'Python, FastAPI, flujo LLM, validación determinista y proveedores simulados/reales',
+      },
+      { label: 'Estado', value: 'Repositorio público / caso de portfolio' },
       { label: 'Año', value: '2026' },
     ],
     problemEyebrow: '01 / Problema',
@@ -188,41 +273,68 @@ const content = {
     goalCopy:
       'El objetivo no era crear una herramienta de autopublicación. BlogAgent está diseñado como una herramienta interna para generar borradores copy-ready: textos que puedo copiar en mi editor de blog, revisar, ajustar ligeramente y publicar manualmente.',
     goalDoes: 'Qué hace',
-    goalDoesItems: ['Acelera investigación y primeros borradores', 'Mantiene visibles fuentes y restricciones', 'Entrega una estructura rápida de revisar'],
+    goalDoesItems: [
+      'Acelera investigación y primeros borradores',
+      'Mantiene visibles fuentes y restricciones',
+      'Entrega una estructura rápida de revisar',
+    ],
     goalDoesNot: 'Qué no hace',
-    goalDoesNotItems: ['Publicar contenido', 'Programar o enviar', 'Eliminar el criterio editorial'],
-    goalNote: 'El valor es velocidad más evidencia y control, no automatización sin supervisión.',
+    goalDoesNotItems: [
+      'Publicar contenido',
+      'Programar o enviar',
+      'Eliminar el criterio editorial',
+    ],
+    goalNote:
+      'El valor es velocidad más evidencia y control, no automatización sin supervisión.',
     architectureEyebrow: '03 / Decisión de arquitectura',
     architectureTitle: 'Workflow primero, agentes donde aportan valor',
     architectureCopy:
       'La arquitectura combina pasos deterministas con agentes LLM acotados. El código controla el orden, los límites, los contratos, la validación y las decisiones finales. Los modelos se usan para planificación, síntesis, redacción y revisión, pero no para decidir libremente qué cuenta como válido.',
-    flow: ['Tema', 'Query Contract', 'Investigación / Search', 'Calidad de fuentes', 'Candidate Ledger', 'CandidatePack', 'Writer', 'Reviewer', 'Revisión / Repair', 'Final Answer Contract', 'Borrador copy-ready'],
+    flow: [
+      'Tema',
+      'Query Contract',
+      'Investigación / Search',
+      'Calidad de fuentes',
+      'Candidate Ledger',
+      'CandidatePack',
+      'Writer',
+      'Reviewer',
+      'Revisión / Repair',
+      'Final Answer Contract',
+      'Borrador copy-ready',
+    ],
     componentsEyebrow: '04 / Componentes principales',
     componentsTitle: 'Contratos alrededor de la redacción',
     components: [
       {
         title: 'Query Contract',
-        description: 'Fija tipo de tarea, dominio, cantidad solicitada, tipo de entidad y restricciones antes de redactar.',
+        description:
+          'Fija tipo de tarea, dominio, cantidad solicitada, tipo de entidad y restricciones antes de redactar.',
       },
       {
         title: 'Candidate Ledger',
-        description: 'Extrae entidades posibles y rechaza fragmentos, bylines, fechas, títulos de fuente, clusters de marca y candidatos mal formados.',
+        description:
+          'Extrae entidades posibles y rechaza fragmentos, bylines, fechas, títulos de fuente, clusters de marca y candidatos mal formados.',
       },
       {
         title: 'CandidatePack',
-        description: 'Bloquea el conjunto exacto de recomendaciones que el writer puede utilizar.',
+        description:
+          'Bloquea el conjunto exacto de recomendaciones que el writer puede utilizar.',
       },
       {
         title: 'Writer Agent',
-        description: 'Redacta el artículo dentro de la estructura bloqueada y del perfil de tono seleccionado.',
+        description:
+          'Redacta el artículo dentro de la estructura bloqueada y del perfil de tono seleccionado.',
       },
       {
         title: 'Reviewer / Revision Plan',
-        description: 'Comprueba contrato, fidelidad al CandidatePack y si hace falta reescritura o reparación puntual.',
+        description:
+          'Comprueba contrato, fidelidad al CandidatePack y si hace falta reescritura o reparación puntual.',
       },
       {
         title: 'Final Answer Contract',
-        description: 'Bloquea cantidades incorrectas, candidatos inválidos, salidas inseguras y estados incoherentes.',
+        description:
+          'Bloquea cantidades incorrectas, candidatos inválidos, salidas inseguras y estados incoherentes.',
       },
     ],
     failureEyebrow: '05 / Lección de diseño',
@@ -233,7 +345,8 @@ const content = {
       'La solución no fue otro prompt. Fue una puerta de limpieza de candidatos, un informe de calidad del CandidatePack, poder de veto para el reviewer y un contrato final que impide aprobar un artículo pulido si el conjunto de candidatos es inválido.',
     safetyEyebrow: '06 / Seguridad y control',
     safetyTitle: 'Conservador por diseño',
-    safetyCopy: 'BlogAgent mantiene los efectos externos y las afirmaciones de alto riesgo fuera del flujo autónomo.',
+    safetyCopy:
+      'BlogAgent mantiene los efectos externos y las afirmaciones de alto riesgo fuera del flujo autónomo.',
     safetyItems: [
       'Sin efectos externos',
       'Modo mock por defecto',
@@ -300,9 +413,21 @@ export default function BlogAgentPage() {
   return (
     <>
       <Header locale={locale} />
-      <main id="main-content" className="case-study-page-new case-study-page-new--data-brief case-study-page-new--blogagent">
-        <section className="data-brief-hero blogagent-hero" aria-labelledby="blogagent-title">
+      <main
+        id="main-content"
+        className="case-study-page-new case-study-page-new--data-brief case-study-page-new--blogagent"
+      >
+        <section
+          className="data-brief-hero blogagent-hero"
+          aria-labelledby="blogagent-title"
+        >
           <div className="data-brief-hero__content">
+            <Link
+              href={localizePath('/case-studies', locale)}
+              className="data-brief-back"
+            >
+              {t.back}
+            </Link>
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="blogagent-title" className="data-brief-hero__title">
               BlogAgent
@@ -310,44 +435,47 @@ export default function BlogAgentPage() {
             <p className="data-brief-hero__subtitle">{t.subtitle}</p>
             <p className="data-brief-hero__description">{t.description}</p>
             <div className="data-brief-actions">
-              <a href={repositoryUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+              <a
+                href={repositoryUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button data-brief-button--primary"
+              >
                 {t.repository}
               </a>
-              <Link href={localizePath('/case-studies', locale)} className="data-brief-button">
-                {t.back}
-              </Link>
             </div>
-            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
-              {['Agentic workflow', 'LLM systems', 'Editorial AI', 'Source-aware drafting', 'Human-in-the-loop', 'Python', 'FastAPI'].map((tag) => (
+            <div className="data-brief-tags" aria-label={t.projectTags}>
+              {t.tags.map(tag => (
                 <span key={tag}>{tag}</span>
               ))}
             </div>
           </div>
 
-          <aside className="blogagent-hero__panel" aria-label={locale === 'es' ? 'Estado del workflow' : 'Workflow status'}>
+          <aside
+            className="blogagent-hero__panel"
+            aria-label={t.workflowStatus}
+          >
             <div className="blogagent-hero__panel-header">
               <span>blogagent / run</span>
-              <span className="is-valid">{locale === 'es' ? 'contratos válidos' : 'contracts valid'}</span>
+              <span className="is-valid">{t.validContracts}</span>
             </div>
-            {[
-              ['01', 'query_contract', 'locked'],
-              ['02', 'source_quality', 'checked'],
-              ['03', 'candidate_pack', 'validated'],
-              ['04', 'writer', 'bounded'],
-              ['05', 'reviewer', 'veto enabled'],
-              ['06', 'final_contract', 'pass'],
-            ].map(([number, label, status]) => (
+            {t.panelRows.map(([number, label, status]) => (
               <div key={label} className="blogagent-hero__panel-row">
                 <span>{number}</span>
                 <strong>{label}</strong>
                 <em>{status}</em>
               </div>
             ))}
-            <p>{locale === 'es' ? 'Salida: borrador copy-ready / revisión humana pendiente' : 'Output: copy-ready draft / human review pending'}</p>
+            <p>{t.outputStatus}</p>
           </aside>
         </section>
 
-        <nav className="data-brief-mini-nav blogagent-mini-nav" aria-label={locale === 'es' ? 'Secciones de BlogAgent' : 'BlogAgent sections'}>
+        <nav
+          className="data-brief-mini-nav blogagent-mini-nav"
+          aria-label={
+            locale === 'es' ? 'Secciones de BlogAgent' : 'BlogAgent sections'
+          }
+        >
           {t.nav.map(([label, href]) => (
             <a key={href} href={href}>
               {label}
@@ -363,21 +491,29 @@ export default function BlogAgentPage() {
           solutionHref="#architecture"
         />
 
-        <section id="problem" className="data-brief-section data-brief-section--cream" aria-labelledby="blogagent-problem">
+        <section
+          id="problem"
+          className="data-brief-section data-brief-section--cream"
+          aria-labelledby="blogagent-problem"
+        >
           <div className="data-brief-section__container blogagent-reading-grid">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.problemEyebrow}</p>
               <h2 id="blogagent-problem">{t.problemTitle}</h2>
             </div>
             <div className="blogagent-copy-stack">
-              {t.problemCopy.map((paragraph) => (
+              {t.problemCopy.map(paragraph => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="goal" className="data-brief-section data-brief-section--light" aria-labelledby="blogagent-goal">
+        <section
+          id="goal"
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="blogagent-goal"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.goalEyebrow}</p>
@@ -389,22 +525,32 @@ export default function BlogAgentPage() {
                 <span>+</span>
                 <h3>{t.goalDoes}</h3>
                 <ul>
-                  {t.goalDoesItems.map((item) => <li key={item}>{item}</li>)}
+                  {t.goalDoesItems.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </article>
               <article>
                 <span>-</span>
                 <h3>{t.goalDoesNot}</h3>
                 <ul>
-                  {t.goalDoesNotItems.map((item) => <li key={item}>{item}</li>)}
+                  {t.goalDoesNotItems.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </article>
             </div>
-            <blockquote className="blogagent-principle">{t.goalNote}</blockquote>
+            <blockquote className="blogagent-principle">
+              {t.goalNote}
+            </blockquote>
           </div>
         </section>
 
-        <section id="architecture" className="data-brief-section data-brief-section--dark" aria-labelledby="blogagent-architecture">
+        <section
+          id="architecture"
+          className="data-brief-section data-brief-section--dark"
+          aria-labelledby="blogagent-architecture"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.architectureEyebrow}</p>
@@ -422,7 +568,11 @@ export default function BlogAgentPage() {
           </div>
         </section>
 
-        <section id="components" className="data-brief-section data-brief-section--cream" aria-labelledby="blogagent-components">
+        <section
+          id="components"
+          className="data-brief-section data-brief-section--cream"
+          aria-labelledby="blogagent-components"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.componentsEyebrow}</p>
@@ -440,7 +590,11 @@ export default function BlogAgentPage() {
           </div>
         </section>
 
-        <section id="failure" className="data-brief-section data-brief-section--light" aria-labelledby="blogagent-failure">
+        <section
+          id="failure"
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="blogagent-failure"
+        >
           <div className="data-brief-section__container blogagent-lesson">
             <div className="blogagent-lesson__label">
               <p className="data-brief-eyebrow">{t.failureEyebrow}</p>
@@ -454,7 +608,11 @@ export default function BlogAgentPage() {
           </div>
         </section>
 
-        <section id="safety" className="data-brief-section data-brief-section--dark" aria-labelledby="blogagent-safety">
+        <section
+          id="safety"
+          className="data-brief-section data-brief-section--dark"
+          aria-labelledby="blogagent-safety"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.safetyEyebrow}</p>
@@ -472,7 +630,11 @@ export default function BlogAgentPage() {
           </div>
         </section>
 
-        <section id="evaluation" className="data-brief-section data-brief-section--light" aria-labelledby="blogagent-evaluation">
+        <section
+          id="evaluation"
+          className="data-brief-section data-brief-section--light"
+          aria-labelledby="blogagent-evaluation"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.evaluationEyebrow}</p>
@@ -490,7 +652,9 @@ export default function BlogAgentPage() {
               <div>
                 <h3>{t.evaluationTopicsLabel}</h3>
                 <ul>
-                  {t.evaluationTopics.map((topic) => <li key={topic}>{topic}</li>)}
+                  {t.evaluationTopics.map(topic => (
+                    <li key={topic}>{topic}</li>
+                  ))}
                 </ul>
               </div>
               <p className="blogagent-evaluation__caveat">{t.evaluationNote}</p>
@@ -498,7 +662,11 @@ export default function BlogAgentPage() {
           </div>
         </section>
 
-        <section id="result" className="data-brief-section data-brief-section--cream" aria-labelledby="blogagent-result">
+        <section
+          id="result"
+          className="data-brief-section data-brief-section--cream"
+          aria-labelledby="blogagent-result"
+        >
           <div className="data-brief-section__container">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.resultEyebrow}</p>
@@ -516,35 +684,57 @@ export default function BlogAgentPage() {
           </div>
         </section>
 
-        <section id="limitations" className="data-brief-section data-brief-section--dark" aria-labelledby="blogagent-limitations">
+        <section
+          id="limitations"
+          className="data-brief-section data-brief-section--dark"
+          aria-labelledby="blogagent-limitations"
+        >
           <div className="data-brief-section__container blogagent-reading-grid">
             <div className="data-brief-refresh-heading ui-section-heading">
               <p className="data-brief-eyebrow">{t.limitationsEyebrow}</p>
               <h2 id="blogagent-limitations">{t.limitationsTitle}</h2>
             </div>
             <ul className="blogagent-limitations">
-              {t.limitations.map((limitation) => <li key={limitation}>{limitation}</li>)}
+              {t.limitations.map(limitation => (
+                <li key={limitation}>{limitation}</li>
+              ))}
             </ul>
           </div>
         </section>
 
-        <section id="learning" className="data-brief-section data-brief-section--dark blogagent-closing" aria-labelledby="blogagent-learning">
+        <section
+          id="learning"
+          className="data-brief-section data-brief-section--dark blogagent-closing"
+          aria-labelledby="blogagent-learning"
+        >
           <div className="data-brief-section__container">
             <p className="data-brief-eyebrow">{t.learningEyebrow}</p>
             <h2 id="blogagent-learning">{t.learningTitle}</h2>
             <p>{t.learningCopy}</p>
             <div className="data-brief-actions">
-              <a href={repositoryUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+              <a
+                href={repositoryUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="data-brief-button data-brief-button--primary"
+              >
                 {t.closingCta}
               </a>
-              <Link href={localizePath('/case-studies', locale)} className="data-brief-button">
+              <Link
+                href={localizePath('/case-studies', locale)}
+                className="data-brief-button"
+              >
                 {t.back}
               </Link>
             </div>
           </div>
         </section>
 
-        <CaseStudyNext currentHref={pathname} accentColor="var(--accent)" locale={locale} />
+        <CaseStudyNext
+          currentHref={pathname}
+          accentColor="var(--accent)"
+          locale={locale}
+        />
       </main>
       <Footer locale={locale} />
     </>

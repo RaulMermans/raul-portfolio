@@ -3,14 +3,21 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import type { CaseStudyGalleryRow } from '@/types/case-study'
+import { getSiteCopy } from '@/data/site-copy'
+import { type Locale } from '@/lib/i18n'
 
 interface CaseStudyGalleryProps {
   rows: CaseStudyGalleryRow[]
   accentColor?: string
+  locale?: Locale
 }
 
-export default function CaseStudyGallery({ rows }: CaseStudyGalleryProps) {
+export default function CaseStudyGallery({
+  rows,
+  locale = 'en',
+}: CaseStudyGalleryProps) {
   const [hiddenImages, setHiddenImages] = useState<Set<string>>(new Set())
+  const copy = getSiteCopy(locale).caseStudiesUi
 
   const handleImageError = (src: string) => {
     setHiddenImages(prev => new Set(prev).add(src))
@@ -33,7 +40,7 @@ export default function CaseStudyGallery({ rows }: CaseStudyGalleryProps) {
   return (
     <section className="case-study-gallery-new">
       <div className="case-study-gallery-new__container">
-        <h2 className="case-study-gallery-new__title reveal">Gallery</h2>
+        <h2 className="case-study-gallery-new__title reveal">{copy.gallery}</h2>
         <div className="case-study-gallery-new__rows">
           {validRows.map((row, rowIndex) => (
             <div
@@ -43,7 +50,7 @@ export default function CaseStudyGallery({ rows }: CaseStudyGalleryProps) {
               {row.items.map((image, itemIndex) => {
                 const idx = imageIndex++
                 return (
-                  <div
+                  <figure
                     key={`${image.src}-${idx}`}
                     className="case-study-gallery-new__item reveal"
                     style={{ animationDelay: `${idx * 0.08}s` }}
@@ -65,7 +72,8 @@ export default function CaseStudyGallery({ rows }: CaseStudyGalleryProps) {
                       loading={idx < 4 ? 'eager' : 'lazy'}
                       onError={() => handleImageError(image.src)}
                     />
-                  </div>
+                    {image.caption && <figcaption>{image.caption}</figcaption>}
+                  </figure>
                 )
               })}
             </div>
@@ -75,4 +83,3 @@ export default function CaseStudyGallery({ rows }: CaseStudyGalleryProps) {
     </section>
   )
 }
-

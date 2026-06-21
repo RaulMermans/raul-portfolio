@@ -40,7 +40,7 @@ html {
 }
 
 body {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background: var(--cream);
@@ -93,15 +93,14 @@ select:focus-visible {
 /* Ensure interactive UI elements have 44px touch targets — scoped to avoid layout jank on inline links */
 .btn,
 nav a,
-[role="button"],
-[tabindex="0"],
+[role='button'],
+[tabindex='0'],
 button:not(.contact-form__submit):not(.contact-form__success-dismiss) {
   min-height: var(--touch-min);
 }
 
 /* Improve touch targets on mobile */
 @media (max-width: 768px) {
-
   .btn,
   nav a,
   button,
@@ -139,7 +138,9 @@ img {
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -295,7 +296,9 @@ img {
   .section-transition {
     opacity: 0.6;
     transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
   }
 
   .section-transition.section-visible {
@@ -313,7 +316,7 @@ img {
   padding: var(--space-3) var(--space-5);
   background: var(--ink);
   color: var(--cream);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-sm);
   transform: translateY(-200%);
   transition: transform var(--transition-base) var(--ease);
@@ -322,7 +325,6 @@ img {
 .skip-link:focus {
   transform: translateY(0);
 }
-
 
 /* Animations */
 @keyframes fadeIn {
@@ -343,7 +345,6 @@ img {
 }
 
 @keyframes scrollPulse {
-
   0%,
   100% {
     transform: scaleY(0.8);
@@ -389,7 +390,9 @@ img {
   border-radius: 50%;
   background: rgba(196, 30, 58, 0.1);
   transform: translate(-50%, -50%);
-  transition: width 0.6s var(--ease), height 0.6s var(--ease);
+  transition:
+    width 0.6s var(--ease),
+    height 0.6s var(--ease);
   z-index: 0;
 }
 
@@ -446,7 +449,9 @@ img {
   display: inline-flex;
   align-items: center;
   position: relative;
-  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
 }
 
@@ -477,7 +482,7 @@ img {
 }
 
 .label {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
@@ -541,7 +546,6 @@ html.homepage .footer {
      Scoped to (prefers-reduced-motion: no-preference) so the
      global 0.01ms reduced-motion rule always wins. */
   @media (prefers-reduced-motion: no-preference) {
-
     *,
     *::before,
     *::after {
@@ -619,11 +623,13 @@ html.homepage .footer {
   /* Section cards use new grid layout - styles handled in main CSS block */
 
   .section-card__overlay {
-    background: linear-gradient(to top,
-        rgba(26, 23, 20, 0.92) 0%,
-        rgba(26, 23, 20, 0.75) 40%,
-        rgba(26, 23, 20, 0.3) 60%,
-        transparent 80%);
+    background: linear-gradient(
+      to top,
+      rgba(26, 23, 20, 0.92) 0%,
+      rgba(26, 23, 20, 0.75) 40%,
+      rgba(26, 23, 20, 0.3) 60%,
+      transparent 80%
+    );
   }
 
   .section-card__content {
@@ -678,7 +684,8 @@ html.homepage .footer {
     height: 100svh;
     max-height: 100vh;
     max-height: 100svh;
-    padding: calc(var(--header-height) + var(--space-2)) var(--space-4) var(--space-4);
+    padding: calc(var(--header-height) + var(--space-2)) var(--space-4)
+      var(--space-4);
     overflow-y: hidden;
   }
 
@@ -804,7 +811,8 @@ html.homepage .footer {
 
   /* Contact Mobile */
   .contact {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4)
+      var(--space-6);
     min-height: auto;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
@@ -888,7 +896,8 @@ html.homepage .footer {
     }
 
     .hero {
-      padding: calc(var(--header-height) + var(--space-3)) var(--space-4) var(--space-3);
+      padding: calc(var(--header-height) + var(--space-3)) var(--space-4)
+        var(--space-3);
     }
 
     .hero__name {
@@ -1041,7 +1050,7 @@ html.homepage .footer {
 }
 
 .about__image::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--cream-warm);
@@ -1058,7 +1067,9 @@ html.homepage .footer {
 
 .about__image img {
   filter: grayscale(12%) contrast(1.02);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s var(--ease);
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s var(--ease);
 }
 
 .about__image:hover img {
@@ -1078,7 +1089,7 @@ html.homepage .footer {
   transition: opacity var(--transition-slow) var(--ease) 0.5s;
 }
 
-.about__image.visible+.about__frame,
+.about__image.visible + .about__frame,
 .about__image-wrapper:hover .about__frame {
   opacity: 0.5;
 }
@@ -1092,7 +1103,7 @@ html.homepage .footer {
 }
 
 .about__headline {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2rem, 4.5vw, 3rem);
   line-height: 0.95;
   text-transform: uppercase;
@@ -1101,7 +1112,7 @@ html.homepage .footer {
 }
 
 .about__text {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: var(--text-base);
   line-height: 1.85;
   color: var(--ink-soft);
@@ -1109,7 +1120,7 @@ html.homepage .footer {
   margin-bottom: var(--space-8);
 }
 
-.about__text+.about__text {
+.about__text + .about__text {
   margin-top: var(--space-4);
 }
 
@@ -1139,7 +1150,8 @@ html.homepage .footer {
   align-items: center;
   text-align: center;
   background: var(--cream);
-  padding: calc(var(--header-height) + var(--space-12)) var(--section-padding) var(--space-10);
+  padding: calc(var(--header-height) + var(--space-12)) var(--section-padding)
+    var(--space-10);
   overflow: visible;
   position: relative;
   box-sizing: border-box;
@@ -1153,11 +1165,13 @@ html.homepage .footer {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle,
-      rgba(255, 181, 160, 0.15) 0%,
-      rgba(255, 170, 136, 0.1) 30%,
-      rgba(232, 208, 200, 0.08) 50%,
-      transparent 75%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 181, 160, 0.15) 0%,
+    rgba(255, 170, 136, 0.1) 30%,
+    rgba(232, 208, 200, 0.08) 50%,
+    transparent 75%
+  );
   filter: blur(120px);
   opacity: 0.4;
   animation: glowPulse 8s ease-in-out infinite;
@@ -1165,7 +1179,6 @@ html.homepage .footer {
 }
 
 @keyframes glowPulse {
-
   0%,
   100% {
     opacity: 0.4;
@@ -1200,7 +1213,7 @@ html.homepage .footer {
 }
 
 .contact__headline {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif !important;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
   font-size: clamp(3rem, 10vw, 7rem) !important;
   line-height: 0.9 !important;
   letter-spacing: var(--tracking-tight) !important;
@@ -1210,7 +1223,12 @@ html.homepage .footer {
   display: block !important;
   width: 100% !important;
   max-width: 600px !important;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 50%, var(--ink) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ink) 0%,
+    var(--ink-soft) 50%,
+    var(--ink) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1220,7 +1238,6 @@ html.homepage .footer {
 }
 
 @keyframes gradientShift {
-
   0%,
   100% {
     background-position: 0% 50%;
@@ -1332,7 +1349,9 @@ html.homepage .footer {
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--cream-darker);
   color: var(--ink);
-  transition: color var(--transition-base) var(--ease), border-color var(--transition-base) var(--ease);
+  transition:
+    color var(--transition-base) var(--ease),
+    border-color var(--transition-base) var(--ease);
 }
 
 .contact-direct__link:first-child {
@@ -1350,7 +1369,7 @@ html.homepage .footer {
 .contact-direct__link strong {
   min-width: 0;
   overflow-wrap: anywhere;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   font-weight: 400;
   line-height: 0.95;
@@ -1404,7 +1423,8 @@ html.homepage .footer {
   align-items: center;
   text-align: center;
   background: var(--cream);
-  padding: calc(var(--header-height) + var(--space-12)) var(--section-padding) var(--space-10);
+  padding: calc(var(--header-height) + var(--space-12)) var(--section-padding)
+    var(--space-10);
   overflow: visible;
   position: relative;
   box-sizing: border-box;
@@ -1418,11 +1438,13 @@ html.homepage .footer {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle,
-      rgba(255, 181, 160, 0.15) 0%,
-      rgba(255, 170, 136, 0.1) 30%,
-      rgba(232, 208, 200, 0.08) 50%,
-      transparent 75%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 181, 160, 0.15) 0%,
+    rgba(255, 170, 136, 0.1) 30%,
+    rgba(232, 208, 200, 0.08) 50%,
+    transparent 75%
+  );
   filter: blur(120px);
   opacity: 0.4;
   animation: glowPulse 8s ease-in-out infinite;
@@ -1451,7 +1473,7 @@ html.homepage .footer {
 }
 
 .socials__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif !important;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
   font-size: clamp(3rem, 10vw, 7rem) !important;
   line-height: 0.9 !important;
   letter-spacing: var(--tracking-tight) !important;
@@ -1460,7 +1482,12 @@ html.homepage .footer {
   margin-top: 0 !important;
   display: block !important;
   width: 100% !important;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 50%, var(--ink) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ink) 0%,
+    var(--ink-soft) 50%,
+    var(--ink) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1504,7 +1531,8 @@ html.homepage .footer {
 
 @media (max-width: 768px) {
   .socials {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4)
+      var(--space-6);
     min-height: auto;
   }
 
@@ -1618,8 +1646,8 @@ html.homepage .footer {
   transform: translateY(-1px);
 }
 
-.contact-form__input[aria-invalid="true"],
-.contact-form__textarea[aria-invalid="true"] {
+.contact-form__input[aria-invalid='true'],
+.contact-form__textarea[aria-invalid='true'] {
   border-color: var(--accent);
   background: rgba(196, 30, 58, 0.04);
 }
@@ -1920,7 +1948,7 @@ html.homepage .footer {
 .selected-ai-card__meta,
 .selected-ai-card__cta,
 .selected-ai-systems__link {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   line-height: 1.45;
@@ -1937,7 +1965,7 @@ html.homepage .footer {
   max-width: 11ch;
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(4rem, 8vw, 7.5rem);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
@@ -2031,7 +2059,9 @@ html.homepage .footer {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.92) contrast(1.02);
-  transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+  transition:
+    transform 0.6s var(--ease),
+    filter 0.6s var(--ease);
 }
 
 .selected-ai-card:hover .selected-ai-card__image,
@@ -2061,7 +2091,7 @@ html.homepage .footer {
 
 .selected-ai-card__title {
   color: var(--ink);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.75rem, 4.3vw, 4.8rem);
   letter-spacing: var(--tracking-tight);
   line-height: 0.88;
@@ -2099,7 +2129,7 @@ html.homepage .footer {
 }
 
 .services__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3rem, 10vw, 6rem);
   line-height: 0.9;
   letter-spacing: var(--tracking-tight);
@@ -2155,7 +2185,7 @@ html.homepage .footer {
 }
 
 .service__title-small {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
@@ -2174,7 +2204,9 @@ html.homepage .footer {
   bottom: 5rem;
   display: flex;
   flex-direction: column;
-  transition: opacity 0.4s var(--ease), visibility 0.4s;
+  transition:
+    opacity 0.4s var(--ease),
+    visibility 0.4s;
 }
 
 .service__header {
@@ -2185,14 +2217,14 @@ html.homepage .footer {
 }
 
 .service__number-large {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   letter-spacing: var(--tracking-tight);
   color: var(--ink);
 }
 
 .service__title-large {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
@@ -2235,7 +2267,9 @@ html.homepage .footer {
   line-height: 1.6;
   color: var(--ink);
   padding: 0.5rem 0;
-  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+  transition:
+    transform 0.2s var(--ease),
+    opacity 0.2s var(--ease);
   transform: translateX(0);
   display: block;
 }
@@ -2244,7 +2278,9 @@ html.homepage .footer {
   content: '/';
   margin-right: 0.25em;
   color: var(--ink-muted);
-  transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+  transition:
+    color 0.2s var(--ease),
+    transform 0.2s var(--ease);
   display: inline-block;
 }
 
@@ -2275,7 +2311,9 @@ html.homepage .footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s var(--ease);
+  transition:
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s var(--ease);
   display: block;
   visibility: visible;
   opacity: 1;
@@ -2459,7 +2497,8 @@ html.homepage .footer {
   color: var(--cream);
   scroll-snap-align: none;
   scroll-snap-stop: normal;
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 5rem) clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 5rem)
+    clamp(2.5rem, 5vw, 4rem);
   margin-top: 0;
   overflow: hidden;
 }
@@ -2481,7 +2520,7 @@ html.homepage .footer {
 .footer__copy,
 .footer__legal a,
 .footer__vibe-text {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
 }
 
 .footer__top-panel {
@@ -2501,7 +2540,9 @@ html.homepage .footer {
   gap: clamp(0.75rem, 1.45vw, 1.15rem);
   color: var(--cream);
   text-decoration: none;
-  transition: color 180ms var(--ease), transform 180ms var(--ease);
+  transition:
+    color 180ms var(--ease),
+    transform 180ms var(--ease);
 }
 
 .footer__back-top:hover,
@@ -2518,7 +2559,7 @@ html.homepage .footer {
 }
 
 .footer__arrow::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 0;
@@ -2530,7 +2571,7 @@ html.homepage .footer {
 }
 
 .footer__arrow::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -2542,7 +2583,7 @@ html.homepage .footer {
 
 .footer__back-top span:last-child {
   color: rgba(245, 240, 235, 0.28);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.42em;
   text-transform: uppercase;
@@ -2590,7 +2631,9 @@ html.homepage .footer {
   line-height: 1.35;
   text-decoration: none;
   position: relative;
-  transition: color 180ms var(--ease), transform 180ms var(--ease);
+  transition:
+    color 180ms var(--ease),
+    transform 180ms var(--ease);
 }
 
 .footer__column a::after {
@@ -2652,11 +2695,13 @@ html.homepage .footer {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-sm);
   color: var(--ink-faint);
   margin-bottom: var(--space-6);
-  transition: color var(--transition-base) var(--ease), transform 0.2s var(--ease);
+  transition:
+    color var(--transition-base) var(--ease),
+    transform 0.2s var(--ease);
 }
 
 .legal-page__back:hover {
@@ -2665,7 +2710,7 @@ html.homepage .footer {
 }
 
 .legal-page__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   letter-spacing: var(--tracking-tight);
   color: var(--ink);
@@ -2673,7 +2718,7 @@ html.homepage .footer {
 }
 
 .legal-page__eyebrow {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -2682,7 +2727,7 @@ html.homepage .footer {
 }
 
 .legal-page__lede {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.8;
   color: var(--ink-soft);
@@ -2691,7 +2736,7 @@ html.homepage .footer {
 }
 
 .legal-page__updated {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   color: var(--ink-muted);
   margin-bottom: var(--space-8);
@@ -2715,7 +2760,7 @@ html.homepage .footer {
   border-radius: 999px;
   border: 1px solid var(--cream-dark);
   background: rgba(255, 255, 255, 0.6);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2734,14 +2779,14 @@ html.homepage .footer {
   transform: translateY(-1px);
 }
 
-.legal-page__link-pill[aria-current="page"] {
+.legal-page__link-pill[aria-current='page'] {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--cream);
 }
 
 .legal-page__content {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: var(--text-base);
   line-height: 1.8;
   color: var(--ink-soft);
@@ -2775,7 +2820,7 @@ html.homepage .footer {
 }
 
 .legal-page__content h2 {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   letter-spacing: var(--tracking-tight);
   color: var(--ink);
@@ -2788,7 +2833,7 @@ html.homepage .footer {
 }
 
 .legal-page__content h3 {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   letter-spacing: var(--tracking-tight);
   color: var(--ink);
@@ -2859,7 +2904,7 @@ html.homepage .footer {
   display: flex;
   flex-direction: column;
   color: var(--cream);
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(7rem, 16vw, 17rem);
   font-weight: 400;
   line-height: 0.79;
@@ -2874,7 +2919,7 @@ html.homepage .footer {
 .footer__name-lockup sup {
   margin-left: 0.6rem;
   vertical-align: super;
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(1rem, 2.1vw, 2rem);
   line-height: 1;
   transform: translateY(0.05em);
@@ -2923,7 +2968,7 @@ html.homepage .footer {
 
 .footer__legal a {
   color: rgba(245, 240, 235, 0.45);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -3020,7 +3065,8 @@ html.homepage .footer {
   padding-bottom: calc(var(--space-8) + 60px);
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--transition-slow) var(--ease),
+  transition:
+    opacity var(--transition-slow) var(--ease),
     visibility var(--transition-slow);
 }
 
@@ -3034,7 +3080,8 @@ html.homepage .footer {
   max-height: 75vh;
   object-fit: contain;
   transform: scale(0.95);
-  transition: transform var(--transition-base) var(--ease),
+  transition:
+    transform var(--transition-base) var(--ease),
     opacity var(--transition-base) var(--ease);
 }
 
@@ -3456,7 +3503,6 @@ html.homepage .footer {
   gap: 0.75rem;
 }
 
-
 /* Case Studies Page Animations */
 @keyframes fadeSlideDown {
   from {
@@ -3505,7 +3551,6 @@ html.homepage .footer {
 }
 
 @keyframes scrollDot {
-
   0%,
   100% {
     top: 6px;
@@ -3617,10 +3662,12 @@ html.homepage .footer {
   transform: translateY(18px);
   animation: galleryReveal 0.55s var(--ease-out) forwards;
   background: var(--cream-dark);
-  background-image: linear-gradient(90deg,
-      rgba(237, 232, 226, 0.88) 0%,
-      rgba(245, 240, 235, 0.98) 50%,
-      rgba(237, 232, 226, 0.88) 100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(237, 232, 226, 0.88) 0%,
+    rgba(245, 240, 235, 0.98) 50%,
+    rgba(237, 232, 226, 0.88) 100%
+  );
   background-size: 200% 100%;
   isolation: isolate;
   width: 100%;
@@ -3640,7 +3687,11 @@ html.homepage .footer {
 
 .gallery__item--paper {
   padding: clamp(14px, 1vw, 20px);
-  background: linear-gradient(180deg, rgba(250, 247, 243, 0.98), rgba(238, 232, 226, 0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(250, 247, 243, 0.98),
+    rgba(238, 232, 226, 0.9)
+  );
 }
 
 .gallery__item--bordered {
@@ -3656,7 +3707,9 @@ html.homepage .footer {
 
 /* Loading state with faster shimmer */
 .gallery__item.loading {
-  animation: galleryReveal 0.55s var(--ease-out) forwards, shimmer 1.6s ease-in-out infinite;
+  animation:
+    galleryReveal 0.55s var(--ease-out) forwards,
+    shimmer 1.6s ease-in-out infinite;
 }
 
 .gallery__item.loading img,
@@ -3714,7 +3767,9 @@ html.homepage .footer {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.35s var(--ease), opacity 0.28s var(--ease);
+  transition:
+    transform 0.35s var(--ease),
+    opacity 0.28s var(--ease);
   transform: scale(1);
 }
 
@@ -3754,12 +3809,16 @@ html.homepage .footer {
     animation: none;
     opacity: 1;
     transform: none;
-    transition: opacity 0.15s ease, transform 0.15s ease;
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
   }
 
   .gallery__item img,
   .gallery__item-image {
-    transition: opacity 0.15s ease, filter 0.15s ease;
+    transition:
+      opacity 0.15s ease,
+      filter 0.15s ease;
   }
 
   .category-overlay {
@@ -3808,7 +3867,7 @@ html.homepage .footer {
 }
 
 .category-overlay__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 0.85;
   letter-spacing: var(--tracking-tight);
@@ -3821,7 +3880,7 @@ html.homepage .footer {
 }
 
 .category-overlay__count {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 400;
   color: var(--ink-muted);
@@ -3852,7 +3911,7 @@ html.homepage .footer {
 }
 
 .category-btn {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
@@ -3864,14 +3923,17 @@ html.homepage .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s var(--ease), background 0.2s var(--ease), transform 0.15s var(--ease);
+  transition:
+    color 0.2s var(--ease),
+    background 0.2s var(--ease),
+    transform 0.15s var(--ease);
   background: transparent;
   cursor: pointer;
   will-change: transform, background, color;
   transform: translateZ(0);
 }
 
-.category-btn+.category-btn {
+.category-btn + .category-btn {
   border-left: none;
 }
 
@@ -3899,7 +3961,6 @@ html.homepage .footer {
 
 /* Mobile Photography Gallery Styles - Clean Single Breakpoint */
 @media (max-width: 767px) {
-
   /* Mobile header with category context and filter */
   .photography-header-mobile {
     display: block;
@@ -3907,11 +3968,12 @@ html.homepage .footer {
     top: calc(env(safe-area-inset-top, 0px) + 60px);
     z-index: 120;
     padding: var(--space-3) var(--space-4) var(--space-4);
-    background:
-      linear-gradient(180deg,
-        rgba(245, 240, 235, 0.98) 0%,
-        rgba(245, 240, 235, 0.96) 82%,
-        rgba(245, 240, 235, 0) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(245, 240, 235, 0.98) 0%,
+      rgba(245, 240, 235, 0.96) 82%,
+      rgba(245, 240, 235, 0) 100%
+    );
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
@@ -3932,7 +3994,7 @@ html.homepage .footer {
   .photography-header-mobile__eyebrow {
     display: block;
     margin: 0;
-    font-family: var(--font-mono), "Space Mono", monospace;
+    font-family: var(--font-mono), 'Space Mono', monospace;
     font-size: 0.625rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -3948,7 +4010,7 @@ html.homepage .footer {
 
   .photography-category-title-mobile {
     display: block;
-    font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+    font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
     font-size: clamp(2rem, 9vw, 3rem);
     letter-spacing: var(--tracking-tight);
     color: var(--ink);
@@ -3962,7 +4024,7 @@ html.homepage .footer {
     display: block;
     margin: 0;
     flex-shrink: 0;
-    font-family: var(--font-mono), "Space Mono", monospace;
+    font-family: var(--font-mono), 'Space Mono', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -3977,7 +4039,7 @@ html.homepage .footer {
   .photography-mobile-filter__label {
     display: block;
     margin: 0;
-    font-family: var(--font-mono), "Space Mono", monospace;
+    font-family: var(--font-mono), 'Space Mono', monospace;
     font-size: 0.625rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -4000,7 +4062,7 @@ html.homepage .footer {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.92);
     color: var(--ink);
-    font-family: var(--font-mono), "Space Mono", monospace;
+    font-family: var(--font-mono), 'Space Mono', monospace;
     font-size: 0.75rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -4072,9 +4134,16 @@ html.homepage .footer {
   /* Loading state shimmer for gallery items */
   .gallery__item.loading {
     background: var(--cream-dark, #ede8e2);
-    background-image: linear-gradient(90deg, var(--cream-dark, #ede8e2), var(--cream, #f5f0eb), var(--cream-dark, #ede8e2));
+    background-image: linear-gradient(
+      90deg,
+      var(--cream-dark, #ede8e2),
+      var(--cream, #f5f0eb),
+      var(--cream-dark, #ede8e2)
+    );
     background-size: 200% 100%;
-    animation: galleryReveal 0.45s var(--ease-out) forwards, shimmer 1.3s ease-in-out infinite;
+    animation:
+      galleryReveal 0.45s var(--ease-out) forwards,
+      shimmer 1.3s ease-in-out infinite;
     min-height: 220px;
   }
 
@@ -4209,8 +4278,13 @@ html.homepage .footer {
 }
 
 @keyframes overflowFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4227,7 +4301,8 @@ html.homepage .footer {
   width: 100%;
   min-height: 100vh;
   will-change: opacity, transform, filter;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   filter: blur(0px);
@@ -4239,7 +4314,8 @@ html.homepage .footer {
   transform: translateY(-30px) scale(0.96);
   filter: blur(8px);
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -4277,7 +4353,8 @@ html.homepage .footer {
   opacity: 1;
   transform: translateX(0) translateY(0) scale(1);
   filter: blur(0px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -4295,16 +4372,18 @@ html.homepage .footer {
 /* Idle state - normal display */
 .page-transition--idle {
   opacity: 1 !important;
-  transform: translateX(0) translateY(0) scale(1) !important;
-  filter: blur(0px) !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto;
   pointer-events: auto !important;
 }
 
 /* Force cleanup of stuck transition states */
 body:not(.page-transitioning) .page-transition {
   opacity: 1 !important;
-  transform: translateX(0) translateY(0) scale(1) !important;
-  filter: blur(0px) !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto;
   pointer-events: auto !important;
 }
 
@@ -4373,7 +4452,6 @@ html.page-transitioning {
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-
   .page-transition,
   .page-transition--exiting,
   .page-transition--entering,
@@ -4395,11 +4473,11 @@ html {
 }
 
 /* Smooth link transitions */
-a[href^="/"] {
+a[href^='/'] {
   transition: opacity 0.2s var(--ease);
 }
 
-a[href^="/"]:hover {
+a[href^='/']:hover {
   opacity: 0.8;
 }
 
@@ -4426,11 +4504,13 @@ a[href^="/"]:hover {
   inset: 0;
   pointer-events: none;
   z-index: 9997;
-  background: repeating-linear-gradient(0deg,
-      rgba(0, 0, 0, 0.03),
-      rgba(0, 0, 0, 0.03) 1px,
-      transparent 1px,
-      transparent 2px);
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03),
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
   opacity: 0.5;
 }
 
@@ -4440,10 +4520,12 @@ a[href^="/"]:hover {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%,
-      var(--warm),
-      var(--rose),
-      var(--gradient-soft));
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--warm),
+    var(--rose),
+    var(--gradient-soft)
+  );
   filter: blur(60px);
   opacity: 0.5;
   z-index: 0;
@@ -4453,7 +4535,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes orbFloat {
-
   0%,
   100% {
     transform: translate(-50%, -50%) scale(1);
@@ -4474,7 +4555,7 @@ a[href^="/"]:hover {
 }
 
 .error-number {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(8rem, 35vw, 28rem);
   line-height: 0.85;
   letter-spacing: var(--tracking-tight);
@@ -4529,7 +4610,7 @@ a[href^="/"]:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(8rem, 35vw, 28rem);
   line-height: 0.85;
   letter-spacing: var(--tracking-tight);
@@ -4548,7 +4629,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes glitchCyan {
-
   0%,
   90%,
   100% {
@@ -4576,7 +4656,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes glitchRed {
-
   0%,
   90%,
   100% {
@@ -4612,7 +4691,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes glitchCyanIntense {
-
   0%,
   100% {
     opacity: 0.7;
@@ -4640,7 +4718,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes glitchRedIntense {
-
   0%,
   100% {
     opacity: 0.7;
@@ -4692,7 +4769,7 @@ a[href^="/"]:hover {
 }
 
 .message {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: var(--text-base);
   color: rgba(255, 255, 255, 0.55);
   max-width: 35ch;
@@ -4741,7 +4818,7 @@ a[href^="/"]:hover {
   position: fixed;
   bottom: var(--space-6);
   right: var(--space-6);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
   color: rgba(255, 255, 255, 0.3);
@@ -4764,7 +4841,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes blink {
-
   0%,
   100% {
     opacity: 1;
@@ -4873,7 +4949,7 @@ a[href^="/"]:hover {
   position: fixed;
   top: var(--space-6);
   left: var(--space-6);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -4942,7 +5018,8 @@ a[href^="/"]:hover {
    ============================================= */
 .about-hero {
   background: var(--cream);
-  padding: calc(var(--header-height) + var(--space-12)) var(--section-padding) var(--space-12);
+  padding: calc(var(--header-height) + var(--space-12)) var(--section-padding)
+    var(--space-12);
   width: 100%;
   overflow: visible;
   position: relative;
@@ -4971,7 +5048,9 @@ a[href^="/"]:hover {
   overflow: hidden;
   background: var(--cream-dark);
   box-shadow: 0 25px 70px -20px rgba(26, 23, 20, 0.2);
-  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
 }
 
 .about-hero__image:hover {
@@ -5060,7 +5139,8 @@ a[href^="/"]:hover {
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: calc(var(--header-height) + var(--space-8)) var(--section-padding-mobile) var(--space-10);
+    padding: calc(var(--header-height) + var(--space-8))
+      var(--section-padding-mobile) var(--space-10);
   }
 
   .about-hero__container {
@@ -5150,7 +5230,7 @@ a[href^="/"]:hover {
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -5181,7 +5261,11 @@ a[href^="/"]:hover {
 .about-page__contact {
   position: relative;
   padding: var(--space-6);
-  background: linear-gradient(135deg, var(--cream-warm) 0%, var(--cream-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--cream-warm) 0%,
+    var(--cream-light) 100%
+  );
   border-radius: 8px;
   border: 1px solid var(--cream-dark);
   display: flex !important;
@@ -5205,7 +5289,11 @@ a[href^="/"]:hover {
   right: 0;
   width: 150px;
   height: 150px;
-  background: radial-gradient(circle, rgba(255, 170, 136, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 170, 136, 0.1) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   pointer-events: none;
   animation: subtlePulse 8s ease-in-out infinite;
@@ -5239,7 +5327,7 @@ a[href^="/"]:hover {
 }
 
 .about-page__location {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
@@ -5254,7 +5342,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes subtlePulse {
-
   0%,
   100% {
     opacity: 1;
@@ -5291,7 +5378,11 @@ a[href^="/"]:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(255, 170, 136, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(196, 30, 58, 0.05) 0%,
+    rgba(255, 170, 136, 0.05) 100%
+  );
   opacity: 0;
   transition: opacity var(--transition-base) var(--ease);
   z-index: -1;
@@ -5308,7 +5399,7 @@ a[href^="/"]:hover {
 }
 
 .about-page__email-text {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: clamp(0.9375rem, 1.2vw, 1rem);
   color: var(--ink);
   letter-spacing: 0.02em;
@@ -5340,7 +5431,7 @@ a[href^="/"]:hover {
 }
 
 .about-page__social-link {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -5368,7 +5459,11 @@ a[href^="/"]:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(196, 30, 58, 0.03) 0%, rgba(255, 170, 136, 0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(196, 30, 58, 0.03) 0%,
+    rgba(255, 170, 136, 0.03) 100%
+  );
   opacity: 0;
   transition: opacity var(--transition-base) var(--ease);
   z-index: 0;
@@ -5409,7 +5504,8 @@ a[href^="/"]:hover {
 
 @media (max-width: 900px) {
   .about-page {
-    padding: calc(var(--header-height) + var(--space-5)) var(--section-padding-mobile) var(--space-8);
+    padding: calc(var(--header-height) + var(--space-5))
+      var(--section-padding-mobile) var(--space-8);
     align-items: flex-start;
   }
 
@@ -5518,7 +5614,6 @@ a[href^="/"]:hover {
 
 /* Base Mobile Improvements */
 @media (max-width: 768px) {
-
   /* Prevent horizontal scroll */
   body {
     overflow-x: hidden;
@@ -6084,7 +6179,6 @@ a[href^="/"]:hover {
 
 /* Prevent zoom on input focus (iOS Safari) */
 @media screen and (max-width: 768px) {
-
   input,
   textarea,
   select {
@@ -6094,9 +6188,9 @@ a[href^="/"]:hover {
   }
 
   /* Improve form usability */
-  input[type="email"],
-  input[type="text"],
-  input[type="tel"],
+  input[type='email'],
+  input[type='text'],
+  input[type='tel'],
   textarea {
     width: 100%;
     padding: var(--space-3);
@@ -6157,7 +6251,6 @@ a[href^="/"]:hover {
 
 /* On mobile, ensure header is readable */
 @media (max-width: 900px) {
-
   .case-studies-split__header-wrapper .ui__logo,
   .case-studies-split__header-wrapper .ui__nav a {
     color: var(--ink);
@@ -6186,7 +6279,9 @@ a[href^="/"]:hover {
   opacity: 0;
   transform: translateY(40px);
   pointer-events: none;
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
 }
 
 .case-studies-split__slide.active {
@@ -6196,7 +6291,7 @@ a[href^="/"]:hover {
 }
 
 .case-studies-split__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3rem, 8vw, 6rem);
   /* Smaller to fit on screen */
   font-weight: 400;
@@ -6208,7 +6303,7 @@ a[href^="/"]:hover {
 }
 
 .case-studies-split__description {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
   /* Smaller */
   line-height: 1.7;
@@ -6219,7 +6314,7 @@ a[href^="/"]:hover {
 }
 
 .case-studies-split__cta {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: var(--tracking-wider);
@@ -6257,7 +6352,9 @@ a[href^="/"]:hover {
   justify-content: center;
   opacity: 0;
   transform: scale(0.9) translateX(50px);
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
   pointer-events: none;
 }
 
@@ -6505,9 +6602,11 @@ a[href^="/"]:hover {
   gap: 0.5rem;
   z-index: 50;
   opacity: 0.5;
-  transition: opacity 0.4s var(--ease-out), visibility 0.4s var(--ease-out);
+  transition:
+    opacity 0.4s var(--ease-out),
+    visibility 0.4s var(--ease-out);
   pointer-events: none;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   visibility: visible;
 }
 
@@ -6535,7 +6634,6 @@ a[href^="/"]:hover {
 }
 
 @keyframes scrollHintPulse {
-
   0%,
   100% {
     transform: scaleY(1);
@@ -6610,7 +6708,7 @@ a[href^="/"]:hover {
 }
 
 .case-study-browser__eyebrow {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -6659,7 +6757,7 @@ a[href^="/"]:hover {
 .case-study-browser__placeholder,
 .case-study-browser__select,
 .case-study-browser__submit {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   letter-spacing: 0.08em;
 }
 
@@ -6752,7 +6850,7 @@ a[href^="/"]:hover {
 .case-studies-index__count,
 .case-study-project-tile__meta,
 .case-study-project-tile__reveal {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -6773,7 +6871,7 @@ a[href^="/"]:hover {
 
 .case-studies-index__title {
   margin: 0;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(4.1rem, 10.2vw, 10rem);
   font-weight: 400;
   line-height: 0.9;
@@ -6852,15 +6950,16 @@ a[href^="/"]:hover {
 .case-study-project-grid {
   min-height: auto;
   overflow: visible;
-  column-count: 4;
-  column-gap: clamp(0.65rem, 1.1vw, 1rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(2rem, 3vw, 3rem) clamp(0.75rem, 1.2vw, 1.1rem);
   padding: 0 clamp(0.75rem, 1.25vw, 1rem);
 }
 
 .case-study-project-tile {
-  display: block;
-  break-inside: avoid;
-  margin-bottom: clamp(1.9rem, 3.1vw, 2.7rem);
+  display: grid;
+  min-width: 0;
+  align-content: start;
   color: var(--ink);
   text-decoration: none;
 }
@@ -6868,6 +6967,7 @@ a[href^="/"]:hover {
 .case-study-project-tile__frame {
   position: relative;
   display: block;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 16px;
   isolation: isolate;
@@ -6876,7 +6976,8 @@ a[href^="/"]:hover {
 .case-study-project-tile__image {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border: 1px solid rgba(26, 23, 20, 0.08);
   border-radius: inherit;
   filter: grayscale(4%) brightness(0.99);
@@ -6887,12 +6988,15 @@ a[href^="/"]:hover {
 }
 
 .case-study-project-tile__frame::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(26, 23, 20, 0) 45%, rgba(26, 23, 20, 0.42) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(26, 23, 20, 0) 45%,
+    rgba(26, 23, 20, 0.42) 100%
+  );
   opacity: 0;
   transition: opacity 260ms var(--ease-out);
 }
@@ -6925,28 +7029,36 @@ a[href^="/"]:hover {
   place-items: center;
   border: 1px solid var(--cream);
   border-radius: 999px;
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1;
 }
 
 .case-study-project-tile__caption {
   display: grid;
-  gap: 0.18rem;
-  padding-top: 0.38rem;
+  gap: 0.48rem;
+  padding-top: 0.7rem;
 }
 
 .case-study-project-tile__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.3rem;
   color: var(--ink-faint);
   font-size: 0.56rem;
   line-height: 1.35;
 }
 
+.case-study-project-tile__meta span {
+  padding: 0.22rem 0.38rem;
+  border: 1px solid rgba(26, 23, 20, 0.14);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .case-study-project-tile__title {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(1rem, 1.15vw, 1.12rem);
   font-weight: 500;
   line-height: 1.1;
@@ -6954,20 +7066,16 @@ a[href^="/"]:hover {
 
 .case-study-project-tile__description {
   max-width: 38ch;
-  display: -webkit-box;
-  overflow: hidden;
   color: var(--ink-muted);
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(0.9rem, 1vw, 1rem);
-  line-height: 1.2;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  line-height: 1.45;
 }
 
 .case-study-project-tile__description--commercial {
   color: rgba(26, 23, 20, 0.56);
   font-size: clamp(0.8rem, 0.9vw, 0.92rem);
-  -webkit-line-clamp: 3;
+  line-height: 1.45;
 }
 
 .case-study-project-tile__status {
@@ -6978,7 +7086,7 @@ a[href^="/"]:hover {
   border-radius: 999px;
   padding: 0.35rem 0.65rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   line-height: 1.2;
@@ -7054,7 +7162,7 @@ a[href^="/"]:hover {
 }
 
 .case-study-category-menu__row::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -7071,7 +7179,7 @@ a[href^="/"]:hover {
 .case-study-category-menu__index,
 .case-study-category-menu__eyebrow,
 .case-study-category-menu__action {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: clamp(0.64rem, 0.85vw, 0.78rem);
   letter-spacing: 0.16em;
   line-height: 1.3;
@@ -7080,7 +7188,9 @@ a[href^="/"]:hover {
 
 .case-study-category-menu__index {
   color: var(--ink-faint);
-  transition: color 260ms var(--ease-out), transform 360ms var(--ease);
+  transition:
+    color 260ms var(--ease-out),
+    transform 360ms var(--ease);
 }
 
 .case-study-category-menu__content {
@@ -7097,7 +7207,7 @@ a[href^="/"]:hover {
 
 .case-study-category-menu__title {
   max-width: 14ch;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.7rem, 5.4vw, 6.7rem);
   font-weight: 400;
   line-height: 0.9;
@@ -7111,7 +7221,9 @@ a[href^="/"]:hover {
   gap: 0.75rem;
   color: var(--ink-muted);
   white-space: nowrap;
-  transition: color 260ms var(--ease-out), transform 360ms var(--ease);
+  transition:
+    color 260ms var(--ease-out),
+    transform 360ms var(--ease);
 }
 
 .case-study-category-menu__arrow {
@@ -7121,10 +7233,13 @@ a[href^="/"]:hover {
   place-items: center;
   border: 1px solid currentColor;
   border-radius: 999px;
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(1rem, 1.4vw, 1.35rem);
   line-height: 1;
-  transition: background-color 260ms var(--ease-out), color 260ms var(--ease-out), transform 360ms var(--ease);
+  transition:
+    background-color 260ms var(--ease-out),
+    color 260ms var(--ease-out),
+    transform 360ms var(--ease);
 }
 
 .case-study-category-menu__row:hover,
@@ -7138,7 +7253,8 @@ a[href^="/"]:hover {
 }
 
 .case-study-category-menu__row:hover .case-study-category-menu__content,
-.case-study-category-menu__row:focus-visible .case-study-category-menu__content {
+.case-study-category-menu__row:focus-visible
+  .case-study-category-menu__content {
   transform: translateX(clamp(0.5rem, 1.4vw, 1.2rem));
 }
 
@@ -7174,7 +7290,8 @@ a[href^="/"]:hover {
 
 .case-study-category-detail {
   min-height: 100svh;
-  padding: calc(var(--header-height) + clamp(4rem, 9vw, 8rem)) clamp(1.25rem, 5vw, 5rem) clamp(5rem, 10vw, 9rem);
+  padding: calc(var(--header-height) + clamp(4rem, 9vw, 8rem))
+    clamp(1.25rem, 5vw, 5rem) clamp(5rem, 10vw, 9rem);
   background: var(--cream);
   color: var(--ink);
 }
@@ -7190,7 +7307,7 @@ a[href^="/"]:hover {
 .case-study-category-detail__eyebrow,
 .case-study-category-card__label,
 .case-study-category-card__cta {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -7219,7 +7336,7 @@ a[href^="/"]:hover {
 .case-study-category-detail__title {
   max-width: 12ch;
   margin: 0;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(5rem, 13vw, 13rem);
   font-weight: 400;
   line-height: 0.86;
@@ -7268,17 +7385,28 @@ a[href^="/"]:hover {
 
 .case-study-category-card__image {
   object-fit: cover;
-  transition: transform 700ms var(--ease-out), filter 700ms var(--ease-out);
+  transition:
+    transform 700ms var(--ease-out),
+    filter 700ms var(--ease-out);
 }
 
 .case-study-category-card::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(26, 23, 20, 0.18) 0%, rgba(26, 23, 20, 0.46) 48%, rgba(26, 23, 20, 0.88) 100%),
-    linear-gradient(90deg, rgba(26, 23, 20, 0.42) 0%, rgba(26, 23, 20, 0.04) 62%);
+    linear-gradient(
+      180deg,
+      rgba(26, 23, 20, 0.18) 0%,
+      rgba(26, 23, 20, 0.46) 48%,
+      rgba(26, 23, 20, 0.88) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(26, 23, 20, 0.42) 0%,
+      rgba(26, 23, 20, 0.04) 62%
+    );
 }
 
 .case-study-category-card__body {
@@ -7295,7 +7423,7 @@ a[href^="/"]:hover {
 
 .case-study-category-card__title {
   margin: 0;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(2.6rem, 5.4vw, 5.2rem);
   font-weight: 400;
   line-height: 0.9;
@@ -7324,7 +7452,8 @@ a[href^="/"]:hover {
   outline-offset: 4px;
 }
 
-.case-study-category-card:not(.case-study-category-card--soon):hover .case-study-category-card__image,
+.case-study-category-card:not(.case-study-category-card--soon):hover
+  .case-study-category-card__image,
 .case-study-category-card:focus-visible .case-study-category-card__image {
   transform: scale(1.035);
   filter: saturate(1.05);
@@ -7336,7 +7465,7 @@ a[href^="/"]:hover {
 
 @media (max-width: 1280px) {
   .case-study-project-grid {
-    column-count: 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -7371,7 +7500,7 @@ a[href^="/"]:hover {
 
 @media (max-width: 880px) {
   .case-study-project-grid {
-    column-count: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -7496,12 +7625,12 @@ a[href^="/"]:hover {
 
 @media (max-width: 560px) {
   .case-study-project-grid {
-    column-count: 1;
+    grid-template-columns: minmax(0, 1fr);
     padding-inline: 0.75rem;
   }
 
   .case-study-project-tile {
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -7549,14 +7678,17 @@ a[href^="/"]:hover {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: rgba(245, 240, 235, 0.9);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: capitalize;
   padding: 0.5rem 1rem;
   border-radius: 50px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .case-studies-mood-btn:hover {
@@ -7606,14 +7738,14 @@ a[href^="/"]:hover {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom,
+    linear-gradient(
+      to bottom,
       rgba(0, 0, 0, 0.1) 0%,
       rgba(0, 0, 0, 0.15) 30%,
       rgba(0, 0, 0, 0.5) 70%,
-      rgba(0, 0, 0, 0.8) 100%),
-    linear-gradient(to right,
-      rgba(0, 0, 0, 0.3) 0%,
-      rgba(0, 0, 0, 0) 60%);
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 60%);
   z-index: 1;
 }
 
@@ -7639,7 +7771,7 @@ a[href^="/"]:hover {
 
 /* Title */
 .case-study-section__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3rem, 10vw, 7rem);
   font-weight: 400;
   line-height: 0.9;
@@ -7652,7 +7784,7 @@ a[href^="/"]:hover {
 
 /* Description */
 .case-study-section__description {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
   font-weight: 400;
   line-height: 1.7;
@@ -7666,7 +7798,7 @@ a[href^="/"]:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: clamp(0.75rem, 1vw, 0.875rem);
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -7736,7 +7868,6 @@ a[href^="/"]:hover {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-
   .case-study-section__content,
   .case-study-section__image {
     transition-duration: 0.01ms !important;
@@ -7812,7 +7943,9 @@ body:has(.case-studies-main) .page-transition {
   opacity: 0;
   transform: translateY(30px);
   pointer-events: none;
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
 }
 
 .slide.active {
@@ -7836,7 +7969,7 @@ body:has(.case-studies-main) .page-transition {
 }
 
 .slide__title {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   line-height: 0.95;
   letter-spacing: var(--tracking-tight);
@@ -7848,7 +7981,7 @@ body:has(.case-studies-main) .page-transition {
 }
 
 .slide__desc {
-  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.75;
   color: var(--ink-soft);
@@ -7863,7 +7996,7 @@ body:has(.case-studies-main) .page-transition {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: 0.12em;
@@ -7956,10 +8089,12 @@ body:has(.case-studies-main) .page-transition {
 .case-studies-thumbnail__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(26, 23, 20, 0) 0%,
-      rgba(26, 23, 20, 0) 70%,
-      rgba(26, 23, 20, 0.4) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 23, 20, 0) 0%,
+    rgba(26, 23, 20, 0) 70%,
+    rgba(26, 23, 20, 0.4) 100%
+  );
   opacity: 0;
   transition: opacity 0.5s var(--ease);
   pointer-events: none;
@@ -8038,21 +8173,21 @@ body:has(.case-studies-main) .page-transition {
 }
 
 /* Card positions */
-.card[data-position="-2"] {
+.card[data-position='-2'] {
   transform: translate(-50%, -250%) rotate(-4deg) scale(0.7);
   opacity: 0;
   filter: grayscale(100%) brightness(1.1);
   z-index: 1;
 }
 
-.card[data-position="-1"] {
+.card[data-position='-1'] {
   transform: translate(-50%, -145%) rotate(-3deg) scale(0.85);
   opacity: 0.6;
   filter: grayscale(100%) brightness(1.05);
   z-index: 2;
 }
 
-.card[data-position="0"] {
+.card[data-position='0'] {
   transform: translate(-50%, -50%) rotate(-1deg) scale(1);
   opacity: 1;
   filter: grayscale(0%) brightness(1);
@@ -8063,14 +8198,14 @@ body:has(.case-studies-main) .page-transition {
   /* Refined active card styling */
 }
 
-.card[data-position="1"] {
+.card[data-position='1'] {
   transform: translate(-50%, 55%) rotate(-1deg) scale(0.85);
   opacity: 0.6;
   filter: grayscale(100%) brightness(1.05);
   z-index: 2;
 }
 
-.card[data-position="2"] {
+.card[data-position='2'] {
   transform: translate(-50%, 160%) rotate(0deg) scale(0.7);
   opacity: 0;
   filter: grayscale(100%) brightness(1.1);
@@ -8175,7 +8310,7 @@ body:has(.case-studies-main) .page-transition {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -8197,7 +8332,6 @@ body:has(.case-studies-main) .page-transition {
 }
 
 @keyframes scrollPulse {
-
   0%,
   100% {
     transform: scaleY(1);
@@ -8445,7 +8579,12 @@ body:has(.case-studies-main) .page-transition {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(240, 236, 226, 0.05), transparent 45%, rgba(196, 30, 58, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(240, 236, 226, 0.05),
+    transparent 45%,
+    rgba(196, 30, 58, 0.1)
+  );
   pointer-events: none;
 }
 
@@ -8453,7 +8592,9 @@ body:has(.case-studies-main) .page-transition {
 .about-note__image img {
   object-fit: cover;
   filter: grayscale(10%) brightness(0.92);
-  transition: transform 0.7s var(--about-ease), filter 0.35s var(--about-ease);
+  transition:
+    transform 0.7s var(--about-ease),
+    filter 0.35s var(--about-ease);
 }
 
 .about-landing__portrait:hover img,
@@ -8581,7 +8722,9 @@ body:has(.case-studies-main) .page-transition {
 [data-about-reveal] {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.8s var(--about-ease), transform 0.8s var(--about-ease);
+  transition:
+    opacity 0.8s var(--about-ease),
+    transform 0.8s var(--about-ease);
 }
 
 [data-about-reveal].is-visible {
@@ -8674,7 +8817,10 @@ body:has(.case-studies-main) .page-transition {
   padding: 24px;
   border: 1px solid var(--about-line);
   background: var(--about-bg);
-  transition: background 0.3s var(--about-ease), border-color 0.3s var(--about-ease), transform 0.3s var(--about-ease);
+  transition:
+    background 0.3s var(--about-ease),
+    border-color 0.3s var(--about-ease),
+    transform 0.3s var(--about-ease);
 }
 
 .about-note:hover {
@@ -8889,7 +9035,6 @@ body:has(.case-studies-main) .page-transition {
   line-height: 1.35;
 }
 
-
 .about-marquee {
   overflow: hidden;
   border-top: 1px solid var(--about-line);
@@ -8992,7 +9137,10 @@ body:has(.case-studies-main) .page-transition {
   border: 1px solid var(--about-line-2);
   border-radius: 50%;
   background: var(--about-bg);
-  transition: background 0.35s var(--about-ease), border-color 0.35s var(--about-ease), box-shadow 0.35s var(--about-ease);
+  transition:
+    background 0.35s var(--about-ease),
+    border-color 0.35s var(--about-ease),
+    box-shadow 0.35s var(--about-ease);
 }
 
 .about-timeline__node.is-visible .about-timeline__dot {
@@ -9009,7 +9157,9 @@ body:has(.case-studies-main) .page-transition {
   text-align: right;
   opacity: 0;
   transform: translateX(-20px);
-  transition: opacity 0.75s var(--about-ease), transform 0.75s var(--about-ease);
+  transition:
+    opacity 0.75s var(--about-ease),
+    transform 0.75s var(--about-ease);
 }
 
 .about-timeline__node:nth-child(odd) .about-timeline__card {
@@ -9110,7 +9260,10 @@ body:has(.case-studies-main) .page-transition {
   padding: 32px 30px;
   border: 1px solid var(--about-line);
   background: var(--about-bg);
-  transition: transform 0.35s var(--about-ease), border-color 0.35s var(--about-ease), background 0.35s var(--about-ease);
+  transition:
+    transform 0.35s var(--about-ease),
+    border-color 0.35s var(--about-ease),
+    background 0.35s var(--about-ease);
 }
 
 .about-capability:nth-child(1) {
@@ -9170,7 +9323,11 @@ body:has(.case-studies-main) .page-transition {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(45deg, transparent 0 16px, rgba(240, 236, 226, 0.025) 16px 17px);
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 16px,
+    rgba(240, 236, 226, 0.025) 16px 17px
+  );
   opacity: 0.5;
   pointer-events: none;
 }
@@ -9184,7 +9341,9 @@ body:has(.case-studies-main) .page-transition {
   font-size: 230px;
   line-height: 1;
   -webkit-text-stroke: 1px rgba(240, 236, 226, 0.055);
-  transition: transform 0.6s var(--about-ease), -webkit-text-stroke-color 0.6s var(--about-ease);
+  transition:
+    transform 0.6s var(--about-ease),
+    -webkit-text-stroke-color 0.6s var(--about-ease);
 }
 
 .about-capability--featured .about-capability__number {
@@ -9292,7 +9451,9 @@ body:has(.case-studies-main) .page-transition {
   font-family: var(--about-display);
   font-size: 28px;
   text-align: center;
-  transition: color 0.25s var(--about-ease), background 0.25s var(--about-ease);
+  transition:
+    color 0.25s var(--about-ease),
+    background 0.25s var(--about-ease);
 }
 
 .about-brand-grid div:hover {
@@ -9341,7 +9502,10 @@ body:has(.case-studies-main) .page-transition {
   font-family: var(--about-display);
   font-size: 22px;
   line-height: 1;
-  transition: transform 0.25s var(--about-ease), background 0.25s var(--about-ease), border-color 0.25s var(--about-ease);
+  transition:
+    transform 0.25s var(--about-ease),
+    background 0.25s var(--about-ease),
+    border-color 0.25s var(--about-ease);
 }
 
 .about-chip-cloud span:hover {
@@ -9468,7 +9632,9 @@ body:has(.case-studies-main) .page-transition {
   font-family: var(--about-display);
   font-size: clamp(26px, 4vw, 42px);
   line-height: 1;
-  transition: color 0.25s var(--about-ease), border-color 0.25s var(--about-ease);
+  transition:
+    color 0.25s var(--about-ease),
+    border-color 0.25s var(--about-ease);
 }
 
 .about-contact-panel__cta a:hover {
@@ -9718,17 +9884,17 @@ body:has(.case-studies-main) .page-transition {
   animation: fadeUp 1s var(--ease-out) 0.3s forwards;
 }
 
-.intro-card[data-position="-1"] {
+.intro-card[data-position='-1'] {
   opacity: 0 !important;
   animation: cardFromTop 1.2s var(--ease-out) 0.4s forwards !important;
 }
 
-.intro-card[data-position="0"] {
+.intro-card[data-position='0'] {
   opacity: 0 !important;
   animation: cardFromCenter 1.2s var(--ease-out) 0.5s forwards !important;
 }
 
-.intro-card[data-position="1"] {
+.intro-card[data-position='1'] {
   opacity: 0 !important;
   animation: cardFromBottom 1.2s var(--ease-out) 0.6s forwards !important;
 }
@@ -9831,7 +9997,6 @@ body:has(.case-studies-main) .page-transition {
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 1;
@@ -9920,7 +10085,9 @@ body:has(.case-studies-main) .page-transition {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-6) var(--space-8);
-  transition: background 0.3s, backdrop-filter 0.3s;
+  transition:
+    background 0.3s,
+    backdrop-filter 0.3s;
 }
 
 .case-study-header.scrolled {
@@ -10072,11 +10239,13 @@ body:has(.case-studies-main) .page-transition {
 .case-study-hero .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top,
-      var(--ink) 0%,
-      rgba(26, 23, 20, 0.6) 30%,
-      rgba(26, 23, 20, 0.2) 60%,
-      transparent 100%);
+  background: linear-gradient(
+    to top,
+    var(--ink) 0%,
+    rgba(26, 23, 20, 0.6) 30%,
+    rgba(26, 23, 20, 0.2) 60%,
+    transparent 100%
+  );
   z-index: 1;
 }
 
@@ -10122,7 +10291,6 @@ body:has(.case-studies-main) .page-transition {
   overflow-wrap: break-word;
 }
 
-
 .case-study-hero .hero__subtitle {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -10161,7 +10329,6 @@ body:has(.case-studies-main) .page-transition {
 }
 
 @keyframes scrollPulse {
-
   0%,
   100% {
     transform: scaleY(1);
@@ -10407,7 +10574,9 @@ body:has(.case-studies-main) .page-transition {
   overflow-wrap: break-word;
   width: 100%;
   font-weight: 400;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4), 0 4px 30px rgba(0, 0, 0, 0.2);
+  text-shadow:
+    0 2px 15px rgba(0, 0, 0, 0.4),
+    0 4px 30px rgba(0, 0, 0, 0.2);
   position: relative;
 }
 
@@ -10498,7 +10667,11 @@ body:has(.case-studies-main) .page-transition {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(26, 23, 20, 0.3) 100%);
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(26, 23, 20, 0.3) 100%
+  );
   pointer-events: none;
 }
 
@@ -10717,7 +10890,9 @@ body:has(.case-studies-main) .page-transition {
   object-fit: cover;
   object-position: center;
   filter: grayscale(15%) contrast(1.02);
-  transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+  transition:
+    transform 0.6s var(--ease),
+    filter 0.6s var(--ease);
 }
 
 .approach__image:hover img {
@@ -11104,7 +11279,9 @@ body:has(.case-studies-main) .page-transition {
   object-position: center;
   filter: grayscale(0%) contrast(1) !important;
   opacity: 1 !important;
-  transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+  transition:
+    transform 0.6s var(--ease),
+    filter 0.6s var(--ease);
   transform: none !important;
 }
 
@@ -11191,7 +11368,9 @@ body:has(.case-studies-main) .page-transition {
   word-wrap: break-word;
   overflow-wrap: break-word;
   font-weight: 400;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5), 0 4px 40px rgba(0, 0, 0, 0.3);
+  text-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.5),
+    0 4px 40px rgba(0, 0, 0, 0.3);
 }
 
 .next__link:hover .next__title {
@@ -11274,7 +11453,9 @@ body:has(.case-studies-main) .page-transition {
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
 }
 
 .reveal.visible {
@@ -11310,7 +11491,6 @@ body:has(.case-studies-main) .page-transition {
     opacity: 1;
   }
 }
-
 
 /* ===========================================
    COMPREHENSIVE MOBILE RESPONSIVENESS FIXES
@@ -11355,7 +11535,8 @@ body:has(.section--dark) {
 /* About Page Mobile Fixes */
 @media (max-width: 900px) {
   .about-page {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-8);
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4)
+      var(--space-8);
     min-height: auto;
     align-items: flex-start;
   }
@@ -11416,7 +11597,8 @@ body:has(.section--dark) {
 
 @media (max-width: 600px) {
   .about-page {
-    padding: calc(var(--header-height) + var(--space-3)) var(--space-3) var(--space-5);
+    padding: calc(var(--header-height) + var(--space-3)) var(--space-3)
+      var(--space-5);
   }
 
   .about-page__inner {
@@ -11442,10 +11624,10 @@ body:has(.section--dark) {
 
 /* Case Studies Mobile Fixes */
 @media (max-width: 768px) {
-
   /* Hero Section Mobile */
   .hero {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4)
+      var(--space-6);
     min-height: 100vh;
     min-height: 100dvh;
   }
@@ -11691,7 +11873,8 @@ body:has(.section--dark) {
   }
 
   .hero {
-    padding: calc(var(--header-height) + var(--space-3)) var(--space-3) var(--space-5);
+    padding: calc(var(--header-height) + var(--space-3)) var(--space-3)
+      var(--space-5);
   }
 
   .hero__title {
@@ -11711,7 +11894,8 @@ body:has(.section--dark) {
 /* Case Studies Listing Page Mobile */
 @media (max-width: 768px) {
   .case-studies-main {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4)
+      var(--space-6);
   }
 
   .case-studies-dots {
@@ -11726,7 +11910,8 @@ body:has(.section--dark) {
 /* Visuals Page Mobile */
 @media (max-width: 768px) {
   .visuals-gallery {
-    padding: calc(var(--header-height) + var(--space-6)) var(--space-5) var(--space-8);
+    padding: calc(var(--header-height) + var(--space-6)) var(--space-5)
+      var(--space-8);
     gap: var(--space-6);
     flex-direction: column;
     align-items: center;
@@ -11768,7 +11953,6 @@ body:has(.section--dark) {
     margin: 0 auto;
     align-self: center;
   }
-
 }
 
 /* Photography Page Mobile - Masonry Gallery Fixes */
@@ -11858,7 +12042,8 @@ body:has(.section--dark) {
 /* Privacy and Terms Pages Mobile */
 @media (max-width: 768px) {
   .legal-page {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-6);
+    padding: calc(var(--header-height) + var(--space-4)) var(--space-4)
+      var(--space-6);
   }
 
   .legal-page__content {
@@ -11886,7 +12071,6 @@ body:has(.section--dark) {
 
 /* General Mobile Fixes - Prevent Overlapping and Chopping */
 @media (max-width: 768px) {
-
   /* Ensure all fixed elements don't overlap */
   .header {
     z-index: 1000;
@@ -11915,7 +12099,7 @@ body:has(.section--dark) {
   /* Fix button touch targets */
   button,
   .btn,
-  a[role="button"] {
+  a[role='button'] {
     min-height: 44px;
     min-width: 44px;
     padding: var(--space-3) var(--space-4);
@@ -11940,7 +12124,7 @@ body:has(.section--dark) {
 
   /* Fix grid layouts */
   .grid,
-  [class*="grid"] {
+  [class*='grid'] {
     gap: var(--space-4);
   }
 
@@ -11951,13 +12135,12 @@ body:has(.section--dark) {
 
   /* Fix flex containers */
   .flex,
-  [class*="flex"] {
+  [class*='flex'] {
     flex-wrap: wrap;
   }
 }
 
 @media (max-width: 480px) {
-
   /* Extra small devices */
   :root {
     --section-padding: var(--space-4);
@@ -11990,7 +12173,8 @@ body:has(.section--dark) {
 @media (max-width: 768px) and (orientation: landscape) {
   .hero {
     min-height: auto;
-    padding: calc(var(--header-height) + var(--space-3)) var(--space-4) var(--space-4);
+    padding: calc(var(--header-height) + var(--space-3)) var(--space-4)
+      var(--space-4);
   }
 
   .section-card {

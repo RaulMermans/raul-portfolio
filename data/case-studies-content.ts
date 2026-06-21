@@ -3,7 +3,7 @@
 // Detailed content structure matching types and CSS
 // =============================================
 
-import type { CaseStudyContent } from '@/types/case-study'
+import type { CaseStudyContent, CaseStudyGalleryRow } from '@/types/case-study'
 import { getCaseStudyImagePath } from '@/lib/case-study-images'
 import type { Locale } from '@/lib/i18n'
 
@@ -26,19 +26,24 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     overview: {
       description:
         'Everyone can generate "cool" images now. Almost no one can generate **consistent campaigns**. I built a custom **n8n automation** system that takes one reference campaign shot and lets me swap the **model and wardrobe** while keeping **lighting, environment, and shot DNA stable**. The result is **campaign-grade coherence** produced in minutes. **Iteration** becomes a **repeatable loop** instead of a re-shoot problem.',
-      intentQuote: 'Turn campaign consistency from guesswork into a system you can actually run.',
+      intentQuote:
+        'Turn campaign consistency from guesswork into a system you can actually run.',
       meta: [
         { label: 'Type', value: 'AI Automation System' },
         { label: 'Role', value: 'AI System Design & Creative Operations' },
-        { label: 'Tools', value: 'n8n, Generative Image API, Reference Conditioning' },
+        {
+          label: 'Tools',
+          value: 'n8n, Generative Image API, Reference Conditioning',
+        },
         {
           label: 'Deliverables',
-          value: 'n8n Workflow, Input Spec, Consistency Guardrails, Campaign Demo Outputs',
+          value:
+            'n8n Workflow, Input Spec, Consistency Guardrails, Campaign Demo Outputs',
         },
       ],
     },
     challenge: {
-      quote: 'Generative AI gives you images. It doesn\'t give you campaigns.',
+      quote: "Generative AI gives you images. It doesn't give you campaigns.",
       context:
         'The baseline problem with **generative image workflows** is **drift**: change one thing and everything changes: **lighting, texture, camera feel**, even the "world" itself. That\'s fine for **one-off visuals**, but **campaigns demand continuity**: the audience should feel like every asset came from the **same production**. The challenge wasn\'t making a single strong image. It was building a **workflow** where the **scene stays constant** while **casting and wardrobe stay editable**.',
       successCriteria: [
@@ -50,21 +55,40 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     },
     approach: {
       text: 'Make it usable: a **system**, not a poster. The key insight: **campaign consistency** comes from **constraints**, not creativity-by-prompt. I designed the **automation** around a **"constants vs variables" model**: first locking the **non-negotiables** of the **reference shot**, then giving controlled flexibility to **casting and wardrobe**. The **workflow** ingests **three visual inputs** and routes them through a **repeatable pipeline** that prioritizes **continuity over novelty**. **Output selection** stays **human-led**: I pick the final based on **realism, brand fit, and product readability**. Campaigns are **edited**, not merely generated.',
-      tools: ['n8n', 'Generative API', 'Reference Conditioning', 'Prompt Schema', 'Output Versioning'],
+      tools: [
+        'n8n',
+        'Generative API',
+        'Reference Conditioning',
+        'Prompt Schema',
+        'Output Versioning',
+      ],
       system: {
-        label: 'The Brand System',
+        label: 'Campaign consistency grid',
         items: [
           {
-            title: 'The Variable',
-            description: 'Casting (new model reference) + wardrobe (clothing/product references)',
+            title: 'Reference',
+            description:
+              'One approved campaign shot establishes the production world and the quality bar.',
           },
           {
-            title: 'The Constant',
-            description: 'Reference shot\'s lighting logic, environment, framing, and "same shoot" texture cues',
+            title: 'Constants',
+            description:
+              'Lighting, environment, framing, texture, and the same-shoot visual atmosphere stay fixed.',
           },
           {
-            title: 'The Output',
-            description: 'Small set of campaign-consistent variants ready for creative selection',
+            title: 'Variables',
+            description:
+              'Model, wardrobe, pose, product, and selected composition details can change.',
+          },
+          {
+            title: 'Outputs',
+            description:
+              'A small, comparable set of variants is generated for creative selection.',
+          },
+          {
+            title: 'Pass / fail',
+            description:
+              'An output passes only when the requested variation changes without breaking campaign continuity.',
           },
         ],
       },
@@ -73,22 +97,26 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         items: [
           {
             title: 'What Changed',
-            description: 'Separation of "scene anchors" vs "editable attributes" in workflow logic',
+            description:
+              'Separation of "scene anchors" vs "editable attributes" in workflow logic',
           },
           {
             title: 'Why',
-            description: 'Early tests produced strong images that still looked like different shoots. Drift compounded fast',
+            description:
+              'Early tests produced strong images that still looked like different shoots. Drift compounded fast',
           },
           {
             title: 'Decision Rule',
-            description: 'Continuity wins over "cool." If background, lighting, or feel changes, the output fails. Campaigns are built on sameness with intentional variation.',
+            description:
+              'Continuity wins over "cool." If background, lighting, or feel changes, the output fails. Campaigns are built on sameness with intentional variation.',
           },
         ],
       },
       deliverables: [
         {
           name: 'Automation Pipeline',
-          rationale: 'Turns the process into a repeatable asset, not a manual ritual',
+          rationale:
+            'Turns the process into a repeatable asset, not a manual ritual',
         },
         {
           name: '3-Input Spec',
@@ -105,14 +133,26 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       ],
       images: [
         {
-          src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-1.webp'),
+          src: getCaseStudyImagePath(
+            'ai-sports',
+            'approach',
+            'approach-1.webp'
+          ),
           alt: 'AI Sports Campaign - Workflow and system architecture',
+          caption:
+            'Shows how reference, model, and wardrobe inputs enter one controlled production workflow.',
           quality: 90,
           sizes: '(max-width: 768px) 100vw, 50vw',
         },
         {
-          src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-2.webp'),
+          src: getCaseStudyImagePath(
+            'ai-sports',
+            'approach',
+            'approach-2.webp'
+          ),
           alt: 'AI Sports Campaign - Prompt engineering and consistency techniques',
+          caption:
+            'Makes the fixed scene anchors and editable attributes explicit before generation.',
           quality: 90,
           sizes: '(max-width: 768px) 100vw, 50vw',
         },
@@ -121,6 +161,8 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     featureImage: {
       src: getCaseStudyImagePath('ai-sports', 'feature', 'feature_1.webp'),
       alt: 'AI Sports Campaign - Featured showcase of campaign consistency system',
+      caption:
+        'Shows whether a new casting and styling direction still reads as the same campaign production.',
       quality: 90,
       sizes: '(max-width: 1400px) 100vw, 1400px',
     },
@@ -130,14 +172,26 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
           layout: '2-col',
           items: [
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-1.webp'),
+              src: getCaseStudyImagePath(
+                'ai-sports',
+                'gallery',
+                'gallery-1.webp'
+              ),
               alt: 'AI Sports Campaign - Gallery image 1',
+              caption:
+                'Tests whether lighting and environment remain stable across the first controlled variation.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-2.webp'),
+              src: getCaseStudyImagePath(
+                'ai-sports',
+                'gallery',
+                'gallery-2.webp'
+              ),
               alt: 'AI Sports Campaign - Gallery image 2',
+              caption:
+                'Compares a second casting choice without changing the campaign world.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
@@ -147,14 +201,26 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
           layout: '2-col',
           items: [
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-3.webp'),
+              src: getCaseStudyImagePath(
+                'ai-sports',
+                'gallery',
+                'gallery-3.webp'
+              ),
               alt: 'AI Sports Campaign - Gallery image 3',
+              caption:
+                'Checks whether wardrobe variation preserves framing, texture, and product readability.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery4.webp'),
+              src: getCaseStudyImagePath(
+                'ai-sports',
+                'gallery',
+                'gallery4.webp'
+              ),
               alt: 'AI Sports Campaign - Gallery image 4',
+              caption:
+                'Shows where pose can change while the visual constants remain recognizable.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
@@ -164,14 +230,26 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
           layout: '2-col',
           items: [
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-5.webp'),
+              src: getCaseStudyImagePath(
+                'ai-sports',
+                'gallery',
+                'gallery-5.webp'
+              ),
               alt: 'AI Sports Campaign - Gallery image 5',
+              caption:
+                'Provides another output for same-shoot consistency review rather than novelty scoring.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
             {
-              src: getCaseStudyImagePath('ai-sports', 'gallery', 'gallery-6.webp'),
+              src: getCaseStudyImagePath(
+                'ai-sports',
+                'gallery',
+                'gallery-6.webp'
+              ),
               alt: 'AI Sports Campaign - Gallery image 6',
+              caption:
+                'Completes the comparison set used to select the strongest campaign-consistent result.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
@@ -181,7 +259,8 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     },
     results: {
       text: 'The system makes campaign iteration fast and controllable: you can adapt casting and styling while keeping the visual world consistent. It replaces "generate until lucky" with a repeatable creative loop. Inputs go in, coherent variants come out in minutes, and the final is chosen through judgment, not randomness. Practically, it enables campaign-level decisions without campaign-level burn rate.',
-      takeawayQuote: 'This isn\'t just prompting. It\'s operational infrastructure for repeatable campaign execution.',
+      takeawayQuote:
+        "This isn't just prompting. It's operational infrastructure for repeatable campaign execution.",
     },
   },
   remoria: {
@@ -202,14 +281,19 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     overview: {
       description:
         '**REMORIA** is a **story-driven fragrance house** inspired by **Roman legacy, Spanish lyricism, and Mediterranean warmth**. I designed a complete **visual and verbal world** where **scent functions like a relic**: quiet, intimate, and emotionally precise. The result is an **understated luxury identity** built to linger through **structure, texture, and silence**.',
-      intentQuote: 'To make the brand feel like an artifact rediscovered: warm, silent, and unforgettable.',
+      intentQuote:
+        'To make the brand feel like an artifact rediscovered: warm, silent, and unforgettable.',
       meta: [
         { label: 'Type', value: 'Luxury Brand Identity (Fragrance)' },
-        { label: 'Role', value: 'Brand System Design & Creative Infrastructure' },
+        {
+          label: 'Role',
+          value: 'Brand System Design & Creative Infrastructure',
+        },
         { label: 'Tools', value: 'Illustrator, Photoshop, Figma, Pinterest' },
         {
           label: 'Deliverables',
-          value: 'Visual Identity System, Tone of Voice, Packaging Concept, Moodboard, Color Palette, Brand Storytelling',
+          value:
+            'Visual Identity System, Tone of Voice, Packaging Concept, Moodboard, Color Palette, Brand Storytelling',
         },
       ],
     },
@@ -247,10 +331,14 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         {
           src: getCaseStudyImagePath('remoria', 'approach', 'approach-1.webp'),
           alt: 'Remoria logo variations',
+          caption:
+            'Shows which identity variations preserve the fragrance house’s restraint and permanence.',
         },
         {
           src: getCaseStudyImagePath('remoria', 'approach', 'approach-2.webp'),
           alt: 'Remoria typography system',
+          caption:
+            'Defines how type creates hierarchy without disturbing the brand’s quiet luxury positioning.',
         },
       ],
     },
@@ -258,9 +346,11 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       {
         src: getCaseStudyImagePath('remoria', 'full', 'full.webp'),
         alt: 'Remoria full bleed image',
+        caption:
+          'Tests whether the campaign world can carry emotion and product atmosphere before explanation.',
         quality: 90,
         sizes: '100vw',
-    },
+      },
     ],
     gallery: {
       rows: [
@@ -268,20 +358,38 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
           layout: '3-col',
           items: [
             {
-              src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-1.webp'),
+              src: getCaseStudyImagePath(
+                'remoria',
+                'gallery',
+                'gallery-1.webp'
+              ),
               alt: 'Remoria stationery mockup',
+              caption:
+                'Shows how the brand rules translate into a restrained launch touchpoint.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 33vw',
             },
             {
-              src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-2.webp'),
+              src: getCaseStudyImagePath(
+                'remoria',
+                'gallery',
+                'gallery-2.webp'
+              ),
               alt: 'Remoria packaging design',
+              caption:
+                'Shows how packaging signals premium value through material, proportion, and restraint.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 33vw',
             },
             {
-              src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-3.webp'),
+              src: getCaseStudyImagePath(
+                'remoria',
+                'gallery',
+                'gallery-3.webp'
+              ),
               alt: 'Remoria website hero concept',
+              caption:
+                'Shows how the verbal and visual system introduces the fragrance world digitally.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 33vw',
             },
@@ -291,8 +399,14 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
           layout: '2-col',
           items: [
             {
-              src: getCaseStudyImagePath('remoria', 'gallery', 'gallery-4.webp'),
+              src: getCaseStudyImagePath(
+                'remoria',
+                'gallery',
+                'gallery-4.webp'
+              ),
               alt: 'Remoria brand application',
+              caption:
+                'Checks whether the identity remains coherent when it moves beyond the primary packaging.',
               quality: 90,
               sizes: '(max-width: 768px) 100vw, 50vw',
             },
@@ -302,9 +416,26 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     },
     results: {
       text: '**REMORIA** delivered a complete **luxury brand world**: **identity, voice, and aesthetic system** built to **scale without losing its atmosphere**. It proves that **emotional restraint** can communicate **premium** more convincingly than overt signals. The work establishes a **foundation for future fragrances** to live as chapters of the same **mythology**.',
-      takeawayQuote: 'Luxury isn\'t loud. It lingers.',
+      takeawayQuote: "Luxury isn't loud. It lingers.",
     },
   },
+}
+
+function localizeGalleryCaptions(
+  rows: CaseStudyGalleryRow[],
+  captions: string[]
+): { rows: CaseStudyGalleryRow[] } {
+  let index = 0
+
+  return {
+    rows: rows.map(row => ({
+      ...row,
+      items: row.items.map(item => ({
+        ...item,
+        caption: captions[index++] ?? item.caption,
+      })),
+    })),
+  }
 }
 
 const caseStudiesContentEs: Record<string, CaseStudyContent> = {
@@ -326,14 +457,23 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     overview: {
       description:
         'Hoy todo el mundo puede generar imágenes "potentes". Casi nadie puede generar **campañas consistentes**. Construí un sistema de **automatización en n8n** que toma una imagen de referencia y me permite cambiar **modelo y vestuario** manteniendo **iluminación, entorno y ADN del plano** estables. El resultado es una **coherencia de nivel campaña** producida en minutos. La **iteración** deja de depender de repetir una sesión y se convierte en un **bucle repetible**.',
-      intentQuote: 'Convertir la consistencia de campaña de intuición a sistema operable.',
+      intentQuote:
+        'Convertir la consistencia de campaña de intuición a sistema operable.',
       meta: [
         { label: 'Tipo', value: 'Sistema de automatización con IA' },
-        { label: 'Rol', value: 'Diseño de sistema de IA y operaciones creativas' },
-        { label: 'Herramientas', value: 'n8n, API generativa de imagen, condicionamiento por referencia' },
+        {
+          label: 'Rol',
+          value: 'Diseño de sistema de IA y operaciones creativas',
+        },
+        {
+          label: 'Herramientas',
+          value:
+            'n8n, API generativa de imagen, condicionamiento por referencia',
+        },
         {
           label: 'Entregables',
-          value: 'Flujo en n8n, especificación de entradas, reglas de consistencia y demostraciones de campaña',
+          value:
+            'Flujo en n8n, especificación de entradas, reglas de consistencia y demostraciones de campaña',
         },
       ],
     },
@@ -350,21 +490,30 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     },
     approach: {
       text: 'La clave era hacerlo utilizable: un **sistema**, no un póster. La idea clave fue que la **consistencia de campaña** nace de las **restricciones**, no de la creatividad por prompt. Diseñé la **automatización** alrededor de un modelo de **"constantes vs variables"**: primero fijando los **no negociables** de la imagen de referencia y después dando flexibilidad controlada a **casting y vestuario**. El **flujo** procesa **tres entradas visuales** y las enruta por una secuencia repetible que prioriza la **continuidad por encima de la novedad**. La **selección final** sigue siendo humana: elijo en función de **realismo, ajuste de marca y lectura del producto**. Las campañas se **editan**; no solo se generan.',
-      tools: ['n8n', 'API generativa', 'Condicionamiento por referencia', 'Esquema de prompt', 'Versionado de resultados'],
+      tools: [
+        'n8n',
+        'API generativa',
+        'Condicionamiento por referencia',
+        'Esquema de prompt',
+        'Versionado de resultados',
+      ],
       system: {
         label: 'El sistema',
         items: [
           {
             title: 'La variable',
-            description: 'Casting (nueva referencia de modelo) + vestuario (referencias de ropa/producto)',
+            description:
+              'Casting (nueva referencia de modelo) + vestuario (referencias de ropa/producto)',
           },
           {
             title: 'La constante',
-            description: 'Lógica de iluminación, entorno, encuadre y pistas de textura de la foto de referencia',
+            description:
+              'Lógica de iluminación, entorno, encuadre y pistas de textura de la foto de referencia',
           },
           {
             title: 'La salida',
-            description: 'Un conjunto pequeño de variantes consistentes, listas para selección creativa',
+            description:
+              'Un conjunto pequeño de variantes consistentes, listas para selección creativa',
           },
         ],
       },
@@ -373,22 +522,26 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
         items: [
           {
             title: 'Qué cambió',
-            description: 'Separación entre "anclajes de escena" y "atributos editables" dentro de la lógica del flujo',
+            description:
+              'Separación entre "anclajes de escena" y "atributos editables" dentro de la lógica del flujo',
           },
           {
             title: 'Por qué',
-            description: 'Las primeras pruebas daban imágenes fuertes, pero seguían pareciendo sesiones distintas. El drift se acumulaba rápido',
+            description:
+              'Las primeras pruebas daban imágenes fuertes, pero seguían pareciendo sesiones distintas. El drift se acumulaba rápido',
           },
           {
             title: 'Regla de decisión',
-            description: 'La continuidad manda sobre lo llamativo. Si cambian fondo, iluminación o sensación, el resultado falla. Una campaña se construye sobre repetición con variación intencional.',
+            description:
+              'La continuidad manda sobre lo llamativo. Si cambian fondo, iluminación o sensación, el resultado falla. Una campaña se construye sobre repetición con variación intencional.',
           },
         ],
       },
       deliverables: [
         {
           name: 'Pipeline de automatización',
-          rationale: 'Convierte el proceso en un activo repetible, no en un ritual manual',
+          rationale:
+            'Convierte el proceso en un activo repetible, no en un ritual manual',
         },
         {
           name: 'Especificación de 3 entradas',
@@ -400,19 +553,32 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
         },
         {
           name: 'Demo de campaña',
-          rationale: 'Demuestra el sistema bajo condiciones de revisión exigentes',
+          rationale:
+            'Demuestra el sistema bajo condiciones de revisión exigentes',
         },
       ],
       images: [
         {
-          src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-1.webp'),
+          src: getCaseStudyImagePath(
+            'ai-sports',
+            'approach',
+            'approach-1.webp'
+          ),
           alt: 'Campaña deportiva con IA - arquitectura del flujo',
+          caption:
+            'Muestra cómo las referencias de campaña, modelo y vestuario entran en un único flujo controlado.',
           quality: 90,
           sizes: '(max-width: 768px) 100vw, 50vw',
         },
         {
-          src: getCaseStudyImagePath('ai-sports', 'approach', 'approach-2.webp'),
+          src: getCaseStudyImagePath(
+            'ai-sports',
+            'approach',
+            'approach-2.webp'
+          ),
           alt: 'Campaña deportiva con IA - técnicas de consistencia',
+          caption:
+            'Hace explícitos los anclajes fijos de escena y los atributos editables antes de generar.',
           quality: 90,
           sizes: '(max-width: 768px) 100vw, 50vw',
         },
@@ -421,13 +587,26 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     featureImage: {
       src: getCaseStudyImagePath('ai-sports', 'feature', 'feature_1.webp'),
       alt: 'Campaña deportiva con IA - imagen destacada del sistema de consistencia',
+      caption:
+        'Permite decidir si un nuevo casting y estilismo siguen pareciendo parte de la misma producción.',
       quality: 90,
       sizes: '(max-width: 1400px) 100vw, 1400px',
     },
-    gallery: caseStudiesContent['ai-sports'].gallery,
+    gallery: localizeGalleryCaptions(
+      caseStudiesContent['ai-sports'].gallery?.rows ?? [],
+      [
+        'Comprueba si iluminación y entorno permanecen estables en la primera variación controlada.',
+        'Compara una segunda elección de casting sin cambiar el mundo de campaña.',
+        'Evalúa si el vestuario conserva encuadre, textura y lectura de producto.',
+        'Muestra hasta dónde puede cambiar la pose sin perder las constantes visuales.',
+        'Añade otra salida para revisar coherencia de producción, no novedad.',
+        'Cierra el conjunto comparativo usado para seleccionar el resultado más coherente.',
+      ]
+    ),
     results: {
       text: 'El sistema vuelve la iteración de campaña rápida y controlable: puedes adaptar casting y estilismo sin romper el mundo visual. Sustituye el "genera hasta tener suerte" por un bucle creativo repetible. Entradas dentro, variantes coherentes fuera en minutos, y la elección final se hace con criterio, no con azar. En la práctica, permite tomar decisiones de nivel campaña sin asumir el burn rate de una campaña completa.',
-      takeawayQuote: 'No es solo prompting. Es infraestructura operativa para ejecutar campañas de forma repetible.',
+      takeawayQuote:
+        'No es solo prompting. Es infraestructura operativa para ejecutar campañas de forma repetible.',
     },
   },
   remoria: {
@@ -448,14 +627,22 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     overview: {
       description:
         '**REMORIA** es una **casa de fragancias basada en relato** inspirada por **legado romano, lirismo español y calidez mediterránea**. Diseñé un mundo **visual y verbal** completo donde el aroma funciona como **reliquia**: silenciosa, íntima y precisa en lo emocional. El resultado es una **identidad de lujo contenida** construida para perdurar a través de **estructura, textura y silencio**.',
-      intentQuote: 'Hacer que la marca se sienta como un artefacto redescubierto: cálido, silencioso e inolvidable.',
+      intentQuote:
+        'Hacer que la marca se sienta como un artefacto redescubierto: cálido, silencioso e inolvidable.',
       meta: [
         { label: 'Tipo', value: 'Identidad de marca de lujo (fragancias)' },
-        { label: 'Rol', value: 'Diseño de sistema de marca e infraestructura creativa' },
-        { label: 'Herramientas', value: 'Illustrator, Photoshop, Figma, Pinterest' },
+        {
+          label: 'Rol',
+          value: 'Diseño de sistema de marca e infraestructura creativa',
+        },
+        {
+          label: 'Herramientas',
+          value: 'Illustrator, Photoshop, Figma, Pinterest',
+        },
         {
           label: 'Entregables',
-          value: 'Sistema de identidad visual, tono de voz, concepto de packaging, moodboard, paleta y narrativa de marca',
+          value:
+            'Sistema de identidad visual, tono de voz, concepto de packaging, moodboard, paleta y narrativa de marca',
         },
       ],
     },
@@ -485,7 +672,8 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
           },
           {
             title: 'La salida',
-            description: 'Una identidad de lujo escalable + marco de storytelling',
+            description:
+              'Una identidad de lujo escalable + marco de storytelling',
           },
         ],
       },
@@ -493,15 +681,31 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
         {
           src: getCaseStudyImagePath('remoria', 'approach', 'approach-1.webp'),
           alt: 'Variaciones del logotipo Remoria',
+          caption:
+            'Muestra qué variaciones conservan la contención y permanencia de la casa.',
         },
         {
           src: getCaseStudyImagePath('remoria', 'approach', 'approach-2.webp'),
           alt: 'Sistema tipográfico de Remoria',
+          caption:
+            'Define cómo la tipografía crea jerarquía sin romper el posicionamiento de lujo silencioso.',
         },
       ],
     },
-    fullBleedImages: caseStudiesContent.remoria.fullBleedImages,
-    gallery: caseStudiesContent.remoria.gallery,
+    fullBleedImages: caseStudiesContent.remoria.fullBleedImages?.map(image => ({
+      ...image,
+      caption:
+        'Comprueba si el mundo de campaña puede transmitir emoción y atmósfera antes de explicarse.',
+    })),
+    gallery: localizeGalleryCaptions(
+      caseStudiesContent.remoria.gallery?.rows ?? [],
+      [
+        'Muestra cómo las reglas de marca se traducen en un punto de lanzamiento contenido.',
+        'Explica cómo el packaging señala valor mediante material, proporción y contención.',
+        'Muestra cómo el sistema verbal y visual presenta digitalmente el mundo de la fragancia.',
+        'Comprueba si la identidad mantiene coherencia más allá del packaging principal.',
+      ]
+    ),
     results: {
       text: '**REMORIA** entregó un mundo completo de **marca de lujo**: **identidad, voz y sistema estético** construidos para **escalar sin perder atmósfera**. Demuestra que la **contención emocional** puede comunicar lo **premium** con más fuerza que los signos obvios. El trabajo establece una **base para futuras fragancias** entendidas como capítulos de una misma **mitología**.',
       takeawayQuote: 'El lujo no grita. Permanece.',
@@ -512,6 +716,9 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
 /**
  * Get case study content by ID
  */
-export function getCaseStudyContent(id: string, locale: Locale = 'en'): CaseStudyContent | undefined {
+export function getCaseStudyContent(
+  id: string,
+  locale: Locale = 'en'
+): CaseStudyContent | undefined {
   return locale === 'es' ? caseStudiesContentEs[id] : caseStudiesContent[id]
 }

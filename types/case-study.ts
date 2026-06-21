@@ -6,6 +6,7 @@
 export interface CaseStudyImage {
   src: string
   alt: string
+  caption?: string
   quality?: number
   sizes?: string
 }

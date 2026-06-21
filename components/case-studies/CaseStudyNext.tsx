@@ -1,10 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getRandomCaseStudy } from '@/data/case-studies'
-import { getSiteCopy } from '@/data/site-copy'
+import { getRelatedCaseStudies } from '@/data/case-studies'
 import { type Locale } from '@/lib/i18n'
 
 interface CaseStudy {
@@ -21,87 +19,70 @@ interface CaseStudyNextProps {
   locale?: Locale
 }
 
-export default function CaseStudyNext({ nextCaseStudy, currentHref, accentColor, locale = 'en' }: CaseStudyNextProps) {
-  const copy = getSiteCopy(locale).caseStudiesUi
-  const [randomNextCaseStudy, setRandomNextCaseStudy] = useState<CaseStudy | undefined>(undefined)
-  const [showHint, setShowHint] = useState(false)
-  const selectedNextCaseStudy = randomNextCaseStudy ?? nextCaseStudy
+export default function CaseStudyNext({
+  nextCaseStudy,
+  currentHref,
+  accentColor,
+  locale = 'en',
+}: CaseStudyNextProps) {
+  const related = currentHref
+    ? getRelatedCaseStudies(currentHref, locale)
+    : nextCaseStudy
+      ? [nextCaseStudy]
+      : []
 
-  useEffect(() => {
-    if (!currentHref) return
+  if (related.length === 0) return null
 
-    setRandomNextCaseStudy(getRandomCaseStudy(currentHref, locale))
-  }, [currentHref, locale])
-
-  useEffect(() => {
-    if (!selectedNextCaseStudy) return
-
-    const handleScroll = () => {
-      const scrollPosition = window.innerHeight + window.scrollY
-      const documentHeight = document.documentElement.scrollHeight
-      const distanceFromBottom = documentHeight - scrollPosition
-      
-      // Show hint when within 800px of bottom
-      setShowHint(distanceFromBottom < 800 && distanceFromBottom > 200)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Check initial position
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [selectedNextCaseStudy])
-
-  if (!selectedNextCaseStudy) return null
+  const label = locale === 'es' ? 'Sistemas relacionados' : 'Related systems'
+  const description =
+    locale === 'es'
+      ? 'Continúa por una lógica de producto, prueba o dirección creativa relacionada.'
+      : 'Continue through a related product, proof, or creative-direction logic.'
+  const viewLabel = locale === 'es' ? 'Ver caso' : 'View case study'
 
   return (
-    <>
-      {/* Scroll Hint - Visible when near bottom */}
-      <div className={`case-study-scroll-hint ${showHint ? 'visible' : ''}`}>
-        <div className="case-study-scroll-hint__text">{copy.moreProjects}</div>
-        <div className="case-study-scroll-hint__arrow">↓</div>
-      </div>
-
-      <section className="case-study-next-new">
-        <div className="case-study-next-new__container">
-          <div className="case-study-next-new__divider"></div>
-          
-          {/* Preview Image with Peek Effect */}
-          {selectedNextCaseStudy.image && (
-            <div className="case-study-next-new__preview">
-              <Link href={selectedNextCaseStudy.href} className="case-study-next-new__preview-link">
-                <div className="case-study-next-new__preview-image">
+    <section
+      className="case-study-next-new"
+      style={{ '--accent-color': accentColor } as React.CSSProperties}
+    >
+      <div className="case-study-next-new__container">
+        <header className="case-study-next-new__header">
+          <p className="case-study-next-new__label">{label}</p>
+          <p>{description}</p>
+        </header>
+        <div className="case-study-next-new__grid">
+          {related.map(study => (
+            <Link
+              key={study.href}
+              href={study.href}
+              className="case-study-next-new__card"
+            >
+              {study.image && (
+                <span className="case-study-next-new__preview-image">
                   <Image
-                    src={selectedNextCaseStudy.image}
-                    alt={`${selectedNextCaseStudy.title} preview`}
+                    src={study.image}
+                    alt=""
                     fill
                     quality={85}
-                    sizes="(max-width: 768px) 100vw, 500px"
+                    sizes="(max-width: 720px) 100vw, 50vw"
                     style={{ objectFit: 'cover' }}
                     className="case-study-next-new__preview-img"
                   />
-                  <div className="case-study-next-new__preview-overlay">
-                    <span className="case-study-next-new__preview-label">{copy.viewCaseStudy}</span>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          )}
-
-          <div className="case-study-next-new__content">
-            <p className="case-study-next-new__label">{copy.nextProject}</p>
-            <Link 
-              href={selectedNextCaseStudy.href}
-              className="case-study-next-new__link"
-            >
-              <h2 className="case-study-next-new__title">{selectedNextCaseStudy.title}</h2>
-              {selectedNextCaseStudy.subtitle && (
-                <p className="case-study-next-new__subtitle">{selectedNextCaseStudy.subtitle}</p>
+                </span>
               )}
-              <div className="case-study-next-new__arrow">→</div>
+              <span className="case-study-next-new__card-copy">
+                <span className="case-study-next-new__meta">
+                  {study.subtitle}
+                </span>
+                <strong className="case-study-next-new__title">
+                  {study.title}
+                </strong>
+                <span className="case-study-next-new__view">{viewLabel} →</span>
+              </span>
             </Link>
-          </div>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

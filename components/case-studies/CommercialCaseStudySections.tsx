@@ -1,5 +1,9 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { type Locale, localizePath } from '@/lib/i18n'
+import { getCaseStudyEditorial } from '@/data/case-study-editorial'
 
 export type SnapshotItem = {
   label: string
@@ -33,10 +37,16 @@ function ProjectLinks({ links }: { links?: ProjectLink[] }) {
 
   return (
     <div className="data-brief-actions">
-      {links.map((link) => {
+      {links.map(link => {
         if (link.external) {
           return (
-            <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="data-brief-button">
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="data-brief-button"
+            >
               {link.label}
             </a>
           )
@@ -54,9 +64,10 @@ function ProjectLinks({ links }: { links?: ProjectLink[] }) {
 
 const sectionCopy = {
   en: {
-    snapshotEyebrow: 'Project Snapshot',
-    snapshotTitle: 'Project at a glance',
-    snapshotDescription: 'Start here for the project type, use case, my role, the working stack, and its current state.',
+    snapshotEyebrow: 'Case Snapshot',
+    snapshotTitle: 'The strategic brief',
+    snapshotDescription:
+      'The problem, the system response, the available proof, the strategic value, and the intentional boundary.',
     readingPath: 'Reading path',
     snapshotStep: 'Snapshot',
     contextStep: 'Problem',
@@ -74,9 +85,10 @@ const sectionCopy = {
     ctaLabel: 'Start Creative Systems Brief',
   },
   es: {
-    snapshotEyebrow: 'Resumen del proyecto',
-    snapshotTitle: 'El proyecto de un vistazo',
-    snapshotDescription: 'Empieza aquí: tipo de proyecto, uso, mi rol, stack de trabajo y estado actual.',
+    snapshotEyebrow: 'Resumen del caso',
+    snapshotTitle: 'El brief estratégico',
+    snapshotDescription:
+      'El problema, la respuesta del sistema, la prueba disponible, el valor estratégico y el límite intencional.',
     readingPath: 'Ruta de lectura',
     snapshotStep: 'Resumen',
     contextStep: 'Problema',
@@ -102,13 +114,40 @@ export function CaseStudySnapshot({
   contextHref = '#business-context',
   solutionHref = '#system-solution',
 }: {
-  items: SnapshotItem[]
+  items?: SnapshotItem[]
   links?: ProjectLink[]
   locale?: Locale
   contextHref?: string
   solutionHref?: string
 }) {
+  const pathname = usePathname()
   const copy = sectionCopy[locale]
+  const slug = pathname.split('/').filter(Boolean).at(-1) ?? ''
+  const strategicSnapshot = getCaseStudyEditorial(slug)?.snapshot[locale]
+  const snapshotItems = strategicSnapshot
+    ? [
+        {
+          label: locale === 'es' ? 'Problema' : 'Problem',
+          value: strategicSnapshot.problem,
+        },
+        {
+          label: locale === 'es' ? 'Sistema' : 'System',
+          value: strategicSnapshot.system,
+        },
+        {
+          label: locale === 'es' ? 'Prueba' : 'Proof',
+          value: strategicSnapshot.proof,
+        },
+        {
+          label: locale === 'es' ? 'Valor' : 'Value',
+          value: strategicSnapshot.value,
+        },
+        {
+          label: locale === 'es' ? 'Límite' : 'Limitation',
+          value: strategicSnapshot.limitation,
+        },
+      ]
+    : (items ?? [])
 
   return (
     <section
@@ -119,11 +158,18 @@ export function CaseStudySnapshot({
       <div className="data-brief-section__container ui-section__container">
         <div className="case-study-snapshot__layout">
           <header className="case-study-snapshot__intro">
-            <p className="data-brief-eyebrow ui-eyebrow">{copy.snapshotEyebrow}</p>
+            <p className="data-brief-eyebrow ui-eyebrow">
+              {copy.snapshotEyebrow}
+            </p>
             <h2 id="project-snapshot-heading">{copy.snapshotTitle}</h2>
-            <p className="case-study-snapshot__description">{copy.snapshotDescription}</p>
+            <p className="case-study-snapshot__description">
+              {copy.snapshotDescription}
+            </p>
 
-            <nav className="case-study-snapshot__path" aria-label={copy.readingPath}>
+            <nav
+              className="case-study-snapshot__path"
+              aria-label={copy.readingPath}
+            >
               <span>{copy.readingPath}</span>
               <ol>
                 <li aria-current="step">
@@ -148,7 +194,7 @@ export function CaseStudySnapshot({
 
           <div className="case-study-snapshot__content">
             <dl className="case-study-snapshot__facts">
-              {items.map((item, index) => (
+              {snapshotItems.map((item, index) => (
                 <div key={item.label}>
                   <dt>
                     <span>{String(index + 1).padStart(2, '0')}</span>
@@ -177,7 +223,11 @@ export function CommercialCaseStudyIntro({
 
   return (
     <>
-      <CaseStudySnapshot items={content.snapshot} links={content.links} locale={locale} />
+      <CaseStudySnapshot
+        items={content.snapshot}
+        links={content.links}
+        locale={locale}
+      />
 
       <section
         id="business-context"
@@ -186,7 +236,9 @@ export function CommercialCaseStudyIntro({
       >
         <div className="data-brief-section__container ui-section__container">
           <div className="data-brief-refresh-heading ui-section-heading">
-            <p className="data-brief-eyebrow ui-eyebrow">{copy.contextEyebrow}</p>
+            <p className="data-brief-eyebrow ui-eyebrow">
+              {copy.contextEyebrow}
+            </p>
             <h2 id="business-context-heading">{copy.contextTitle}</h2>
             <p>{content.businessContext}</p>
           </div>
@@ -200,13 +252,18 @@ export function CommercialCaseStudyIntro({
       >
         <div className="data-brief-section__container ui-section__container">
           <div className="data-brief-refresh-heading ui-section-heading">
-            <p className="data-brief-eyebrow ui-eyebrow">{copy.solutionEyebrow}</p>
+            <p className="data-brief-eyebrow ui-eyebrow">
+              {copy.solutionEyebrow}
+            </p>
             <h2 id="system-solution-heading">{copy.solutionTitle}</h2>
             <p>{content.systemSummary}</p>
           </div>
           <div className="data-brief-card-grid data-brief-card-grid--architecture">
-            {content.systemItems.map((item) => (
-              <article key={item.title} className="data-brief-card data-brief-card--architecture">
+            {content.systemItems.map(item => (
+              <article
+                key={item.title}
+                className="data-brief-card data-brief-card--architecture"
+              >
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </article>
@@ -250,7 +307,9 @@ export function CommercialCaseStudyClosing({
       >
         <div className="data-brief-section__container ui-section__container">
           <div className="data-brief-refresh-heading ui-section-heading">
-            <p className="data-brief-eyebrow ui-eyebrow">{copy.relevanceEyebrow}</p>
+            <p className="data-brief-eyebrow ui-eyebrow">
+              {copy.relevanceEyebrow}
+            </p>
             <h2 id="client-relevance-heading">{copy.relevanceTitle}</h2>
             <p>{content.clientRelevance}</p>
           </div>
@@ -269,7 +328,10 @@ export function CommercialCaseStudyClosing({
             <p>{content.ctaCopy}</p>
           </div>
           <div className="data-brief-actions">
-            <Link href={localizePath('/#contact', locale)} className="data-brief-button data-brief-button--primary">
+            <Link
+              href={localizePath('/#contact', locale)}
+              className="data-brief-button data-brief-button--primary"
+            >
               {copy.ctaLabel}
             </Link>
           </div>

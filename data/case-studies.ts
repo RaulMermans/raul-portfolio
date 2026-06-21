@@ -1,5 +1,9 @@
 import type { Locale } from '@/lib/i18n'
 import { localizePath, stripLocaleFromPath } from '@/lib/i18n'
+import {
+  CASE_STUDY_ORDER,
+  getCaseStudyEditorial,
+} from '@/data/case-study-editorial'
 
 export interface CaseStudy {
   id: number
@@ -17,6 +21,10 @@ export interface CaseStudy {
   color: string
   subtitle?: string
   mood?: string[]
+  githubUrl?: string
+  liveUrl?: string
+  category?: string
+  proofTags?: string[]
 }
 
 export const MOODS = ['All', 'minimal', 'bold', 'editorial', 'tech'] as const
@@ -25,6 +33,32 @@ type CaseStudyEntry = Omit<CaseStudy, 'href'>
 
 const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
   en: [
+    {
+      id: 9,
+      slug: 'campaign-pulse',
+      title: 'Campaign Pulse',
+      description:
+        'Local-first marketing intelligence command center for newsletter performance, CSV ingestion, target-aware diagnostics, audience pressure, and monthly reporting.',
+      commercialRelevance:
+        'A portfolio-grade internal tool prototype showing how normalized campaign and audience facts can become clear operating decisions.',
+      tags: [
+        'Next.js',
+        'TypeScript',
+        'Recharts',
+        'CSV adapters',
+        'Deterministic analytics',
+      ],
+      status: 'Portfolio-ready / local-first prototype',
+      cta: 'View Case Study',
+      image: '/images/case-studies/campaign-pulse/overview.png',
+      imageWidth: 1440,
+      imageHeight: 1000,
+      color: 'var(--accent)',
+      subtitle: 'Marketing intelligence / Data product',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/campaign-pulse',
+      liveUrl: 'https://campaign-pulse.vercel.app/',
+    },
     {
       id: 0,
       slug: 'ai-sports',
@@ -101,7 +135,14 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
         'An internal AI workspace that turns messy campaign briefs into structured creative routes, synthetic audience simulations, risk reviews, execution plans, and exportable strategy reports.',
       commercialRelevance:
         'A case study in reliable AI workflow design for creative strategy teams that need faster synthesis without giving up human judgment.',
-      tags: ['AI Workflows', 'Creative Strategy', 'Next.js', 'TypeScript', 'OpenAI', 'Evaluation & Guardrails'],
+      tags: [
+        'AI Workflows',
+        'Creative Strategy',
+        'Next.js',
+        'TypeScript',
+        'OpenAI',
+        'Evaluation & Guardrails',
+      ],
       status: 'Finished internal v1',
       cta: 'Read case study',
       image: '/images/case-studies/campaign-sandbox/thumb/thumb.webp',
@@ -119,7 +160,15 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
         'AI editorial workflow for generating copy-ready blog drafts with research, candidate validation, review, and human control.',
       commercialRelevance:
         'For editorial teams that need faster first drafts without giving up source awareness, recommendation constraints, or human review.',
-      tags: ['Agentic workflow', 'LLM systems', 'Editorial AI', 'Source-aware drafting', 'Human-in-the-loop', 'Python', 'FastAPI'],
+      tags: [
+        'Agentic workflow',
+        'LLM systems',
+        'Editorial AI',
+        'Source-aware drafting',
+        'Human-in-the-loop',
+        'Python',
+        'FastAPI',
+      ],
       status: 'Public repo / portfolio case study',
       cta: 'View Case Study',
       image: '/images/case-studies/blogagent/thumb/thumb.svg',
@@ -183,6 +232,32 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
   ],
   es: [
     {
+      id: 9,
+      slug: 'campaign-pulse',
+      title: 'Campaign Pulse',
+      description:
+        'Centro de mando local-first para rendimiento de newsletters, ingesta CSV, diagnósticos frente a objetivos, presión de audiencia e informes mensuales.',
+      commercialRelevance:
+        'Un prototipo de herramienta interna listo para portfolio que convierte datos normalizados de campañas y audiencias en decisiones operativas claras.',
+      tags: [
+        'Next.js',
+        'TypeScript',
+        'Recharts',
+        'Adaptadores CSV',
+        'Analítica determinista',
+      ],
+      status: 'Listo para portfolio / prototipo local-first',
+      cta: 'Ver caso',
+      image: '/images/case-studies/campaign-pulse/overview.png',
+      imageWidth: 1440,
+      imageHeight: 1000,
+      color: 'var(--accent)',
+      subtitle: 'Inteligencia de marketing / Producto de datos',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/campaign-pulse',
+      liveUrl: 'https://campaign-pulse.vercel.app/',
+    },
+    {
       id: 0,
       slug: 'ai-sports',
       title: 'Campaña deportiva con IA',
@@ -190,7 +265,11 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
         'Flujo de campaña con IA para iteración visual controlada y consistencia de campaña.',
       commercialRelevance:
         'Para equipos creativos que necesitan variantes visuales más rápidas sin perder dirección de arte, continuidad ni control de marca.',
-      tags: ['Sistema de campaña IA', 'Operaciones creativas', 'Consistencia de marca'],
+      tags: [
+        'Sistema de campaña IA',
+        'Operaciones creativas',
+        'Consistencia de marca',
+      ],
       cta: 'Ver caso',
       image: '/images/case-studies/ai-sports/thumb/thumb.webp',
       imageWidth: 2752,
@@ -230,15 +309,15 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       imageWidth: 3014,
       imageHeight: 1516,
       color: 'var(--color-1)',
-      subtitle: 'Sistemas de marca / Identidad digital / Arquitectura de portafolio',
+      subtitle:
+        'Sistemas de marca / Identidad digital / Arquitectura de portafolio',
       mood: ['minimal', 'editorial'],
     },
     {
       id: 4,
       slug: 'website-auditor',
       title: 'Website Audit Agent',
-      description:
-        'Flujo de auditoría web y experiencia basado en evidencia.',
+      description: 'Flujo de auditoría web y experiencia basado en evidencia.',
       commercialRelevance:
         'Para equipos que necesitan diagnósticos digitales más rápidos sin feedback de IA sin respaldo.',
       tags: ['Auditoría web', 'Evaluación IA', 'Diagnóstico de experiencia'],
@@ -258,7 +337,14 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
         'Un espacio interno de IA que convierte briefs de campaña desordenados en rutas creativas estructuradas, simulaciones sintéticas de audiencia, revisiones de riesgo, planes de ejecución e informes exportables.',
       commercialRelevance:
         'Un caso de diseño fiable de flujos con IA para equipos de estrategia creativa que necesitan sintetizar más rápido sin renunciar al criterio humano.',
-      tags: ['Flujos IA', 'Estrategia creativa', 'Next.js', 'TypeScript', 'OpenAI', 'Evaluación y guardrails'],
+      tags: [
+        'Flujos IA',
+        'Estrategia creativa',
+        'Next.js',
+        'TypeScript',
+        'OpenAI',
+        'Evaluación y guardrails',
+      ],
       status: 'v1 interna finalizada',
       cta: 'Leer caso',
       image: '/images/case-studies/campaign-sandbox/thumb/thumb.webp',
@@ -276,7 +362,15 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
         'Flujo editorial con IA para generar borradores de blog copy-ready, con investigación, validación de candidatos, revisión y control humano.',
       commercialRelevance:
         'Para equipos editoriales que necesitan primeros borradores más rápidos sin perder trazabilidad de fuentes, restricciones de recomendación ni revisión humana.',
-      tags: ['Agentic workflow', 'LLM systems', 'Editorial AI', 'Source-aware drafting', 'Human-in-the-loop', 'Python', 'FastAPI'],
+      tags: [
+        'Agentic workflow',
+        'LLM systems',
+        'Editorial AI',
+        'Source-aware drafting',
+        'Human-in-the-loop',
+        'Python',
+        'FastAPI',
+      ],
       status: 'Repo público / caso de portfolio',
       cta: 'Ver caso',
       image: '/images/case-studies/blogagent/thumb/thumb.svg',
@@ -294,13 +388,18 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
         'Atlas privado y consola operativa para gestionar oportunidades inmobiliarias por ubicación, estado, seguimiento y fase.',
       commercialRelevance:
         'Para validar cómo una herramienta interna enfocada convierte investigación dispersa de ubicaciones en un flujo operativo claro.',
-      tags: ['Herramienta interna', 'Prototipo de producto', 'Operaciones inmobiliarias'],
+      tags: [
+        'Herramienta interna',
+        'Prototipo de producto',
+        'Operaciones inmobiliarias',
+      ],
       cta: 'Ver caso',
       image: '/images/case-studies/territoryops-spain/thumb/thumb.webp',
       imageWidth: 1672,
       imageHeight: 941,
       color: 'var(--color-0)',
-      subtitle: 'Herramienta interna / Prototipo de producto / Inteligencia de negocio',
+      subtitle:
+        'Herramienta interna / Prototipo de producto / Inteligencia de negocio',
       mood: ['minimal', 'tech', 'editorial'],
     },
     {
@@ -341,34 +440,55 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
 }
 
 export function getCaseStudies(locale: Locale): CaseStudy[] {
-  return caseStudyEntries[locale].map((study) => ({
-    id: study.id,
-    slug: study.slug,
-    title: study.title,
-    description: study.description,
-    commercialRelevance: study.commercialRelevance,
-    tags: study.tags,
-    status: study.status,
-    cta: study.cta,
-    image: study.image,
-    imageWidth: study.imageWidth,
-    imageHeight: study.imageHeight,
-    href: localizePath(`/case-studies/${study.slug}`, locale),
-    color: study.color,
-    subtitle: study.subtitle,
-    mood: study.mood,
-  }))
+  const rank = new Map<string, number>(
+    CASE_STUDY_ORDER.map((slug, index) => [slug, index])
+  )
+
+  return caseStudyEntries[locale]
+    .map(study => {
+      const editorial = getCaseStudyEditorial(study.slug)
+
+      return {
+        id: study.id,
+        slug: study.slug,
+        title: study.title,
+        description: study.description,
+        commercialRelevance: study.commercialRelevance,
+        tags: study.tags,
+        status: study.status,
+        cta: study.cta,
+        image: study.image,
+        imageWidth: study.imageWidth,
+        imageHeight: study.imageHeight,
+        href: localizePath(`/case-studies/${study.slug}`, locale),
+        color: study.color,
+        subtitle: study.subtitle,
+        mood: study.mood,
+        githubUrl: study.githubUrl,
+        liveUrl: study.liveUrl,
+        category: editorial?.category[locale],
+        proofTags: editorial?.proofTags[locale],
+      }
+    })
+    .sort((a, b) => (rank.get(a.slug) ?? 999) - (rank.get(b.slug) ?? 999))
 }
 
-export function getRandomCaseStudy(currentHref: string, locale: Locale): CaseStudy {
+export function getRelatedCaseStudies(
+  currentHref: string,
+  locale: Locale
+): CaseStudy[] {
   const caseStudies = getCaseStudies(locale)
   const currentPath = stripLocaleFromPath(currentHref)
-  const available = caseStudies.filter((cs) => stripLocaleFromPath(cs.href) !== currentPath)
+  const currentSlug = currentPath.split('/').filter(Boolean).at(-1) ?? ''
+  const relatedSlugs = getCaseStudyEditorial(currentSlug)?.related ?? []
 
-  if (available.length === 0) {
-    return caseStudies[0]
-  }
+  const related = relatedSlugs
+    .map(slug => caseStudies.find(study => study.slug === slug))
+    .filter((study): study is CaseStudy => Boolean(study))
 
-  const randomIndex = Math.floor(Math.random() * available.length)
-  return available[randomIndex]
+  if (related.length > 0) return related
+
+  return caseStudies
+    .filter(study => stripLocaleFromPath(study.href) !== currentPath)
+    .slice(0, 2)
 }
