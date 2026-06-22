@@ -16,6 +16,7 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
+  'demandos',
   'campaign-pulse',
   'campaign-sandbox',
   'data-brief-ai',
@@ -29,6 +30,40 @@ export const CASE_STUDY_ORDER = [
 ] as const
 
 export const caseStudyEditorial: Record<string, EditorialMeta> = {
+  demandos: {
+    category: { en: 'Business Intelligence', es: 'Inteligencia de negocio' },
+    proofTags: {
+      en: ['Live demo', 'GitHub', '451 tests', 'Production smoke'],
+      es: ['Demo', 'GitHub', '451 tests', 'Smoke de producción'],
+    },
+    snapshot: {
+      en: {
+        problem:
+          'Operational commerce records rarely connect cleanly to forecasts, model quality, stockout risk, and reviewable replenishment guidance.',
+        system:
+          'A deterministic ML and data-product workflow from synthetic raw records through leakage-safe features, forecasting, risk scoring, and internal recommendations.',
+        proof:
+          'Live Vercel demo, public repository, computed pipeline outputs, 451 unique backend tests, structural checks, and production smoke validation.',
+        value:
+          'Shows how a forecasting model becomes useful when it is embedded in ingestion, evaluation, monitoring, scenario planning, and explicit safety boundaries.',
+        limitation:
+          'Synthetic data only; no live commerce connectors, autonomous purchasing, supplier contact, or production-calibrated accuracy claims.',
+      },
+      es: {
+        problem:
+          'Los registros operativos de comercio rara vez conectan de forma clara con forecasts, calidad de modelo, riesgo de stockout y orientación revisable de reposición.',
+        system:
+          'Un workflow determinista de ML y producto de datos: desde registros sintéticos hasta features leakage-safe, forecasting, riesgo y recomendaciones internas.',
+        proof:
+          'Demo en Vercel, repositorio público, salidas calculadas por el pipeline, 451 tests backend únicos, checks estructurales y smoke de producción.',
+        value:
+          'Demuestra cómo un modelo de forecasting se vuelve útil al integrarse con ingesta, evaluación, monitoring, escenarios y límites de seguridad explícitos.',
+        limitation:
+          'Solo datos sintéticos; sin conectores live, compras autónomas, contacto con proveedores ni promesas de precisión productiva.',
+      },
+    },
+    related: ['campaign-pulse', 'benchmark-dashboard', 'blogagent'],
+  },
   'campaign-pulse': {
     category: { en: 'Marketing Intelligence', es: 'Inteligencia de marketing' },
     proofTags: {

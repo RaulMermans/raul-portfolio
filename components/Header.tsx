@@ -116,7 +116,8 @@ export default function Header({ locale = 'en' }: HeaderProps) {
   const isCaseStudiesRoute = activePath.includes('/case-studies')
   const hasDarkCaseStudyHero =
     activePath.includes('/case-studies/ai-sports') ||
-    activePath.includes('/case-studies/remoria')
+    activePath.includes('/case-studies/remoria') ||
+    activePath.includes('/case-studies/demandos')
   const isAboutRoute = activePath.includes('/about')
   const surface = hasDarkCaseStudyHero ? 'dark' : isCaseStudiesRoute ? 'case-studies' : isAboutRoute ? 'dark' : undefined
   const isSpanish = locale === 'es'

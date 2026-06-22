@@ -34,6 +34,32 @@ type CaseStudyEntry = Omit<CaseStudy, 'href'>
 const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
   en: [
     {
+      id: 10,
+      slug: 'demandos',
+      title: 'DemandOS',
+      description:
+        'Machine-learning prototype for demand forecasting, stockout risk, and internal reorder guidance built from synthetic commerce data.',
+      commercialRelevance:
+        'A complete ML product loop spanning raw ingestion, leakage-safe features, model diagnostics, operational risk, monitoring, and deployment.',
+      tags: [
+        'Machine Learning',
+        'Forecasting',
+        'Inventory Intelligence',
+        'FastAPI',
+        'Next.js',
+      ],
+      status: 'Public portfolio prototype',
+      cta: 'View Case Study',
+      image: '/images/case-studies/demandos/thumb.png',
+      imageWidth: 1440,
+      imageHeight: 900,
+      color: 'var(--accent)',
+      subtitle: 'Machine Learning / Inventory Intelligence',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/demand-OS',
+      liveUrl: 'https://demand-os-three.vercel.app',
+    },
+    {
       id: 9,
       slug: 'campaign-pulse',
       title: 'Campaign Pulse',
@@ -231,6 +257,32 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
     },
   ],
   es: [
+    {
+      id: 10,
+      slug: 'demandos',
+      title: 'DemandOS',
+      description:
+        'Prototipo de machine learning para previsión de demanda, riesgo de stockout y recomendaciones internas de reposición sobre datos sintéticos de comercio.',
+      commercialRelevance:
+        'Un producto de ML completo: ingesta, features leakage-safe, diagnóstico de modelos, riesgo operativo, monitoring y despliegue.',
+      tags: [
+        'Machine Learning',
+        'Forecasting',
+        'Inventory Intelligence',
+        'FastAPI',
+        'Next.js',
+      ],
+      status: 'Prototipo público de portfolio',
+      cta: 'Ver caso',
+      image: '/images/case-studies/demandos/thumb.png',
+      imageWidth: 1440,
+      imageHeight: 900,
+      color: 'var(--accent)',
+      subtitle: 'Machine Learning / Inventory Intelligence',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/demand-OS',
+      liveUrl: 'https://demand-os-three.vercel.app',
+    },
     {
       id: 9,
       slug: 'campaign-pulse',

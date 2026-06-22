@@ -40,6 +40,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
   const territoryOps = findStudy(caseStudies, 'territoryops-spain')
   const campaignPulse = findStudy(caseStudies, 'campaign-pulse')
+  const demandOs = findStudy(caseStudies, 'demandos')
 
   return [
     {
@@ -51,6 +52,21 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         : 'Applied agents and systems that turn analysis, audits, and repeatable decisions into usable workflows.',
       href: localizePath('/case-studies', locale),
       projects: [
+        ...(demandOs
+          ? [
+              {
+                title: demandOs.title,
+                label:
+                  demandOs.subtitle ??
+                  (isSpanish
+                    ? 'Machine learning / Inteligencia de inventario'
+                    : 'Machine learning / Inventory intelligence'),
+                description: demandOs.description,
+                image: demandOs.image,
+                href: demandOs.href,
+              },
+            ]
+          : []),
         dataBriefAi
           ? {
               title: dataBriefAi.title,
@@ -188,6 +204,21 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         : 'Dashboards, benchmark interfaces, and strategic-reading systems that transform structured data into clear decisions.',
       href: localizePath('/case-studies', locale),
       projects: [
+        ...(demandOs
+          ? [
+              {
+                title: demandOs.title,
+                label:
+                  demandOs.subtitle ??
+                  (isSpanish
+                    ? 'Machine learning / Inteligencia de inventario'
+                    : 'Machine learning / Inventory intelligence'),
+                description: demandOs.description,
+                image: demandOs.image,
+                href: demandOs.href,
+              },
+            ]
+          : []),
         ...(campaignPulse
           ? [
               {
