@@ -8,9 +8,9 @@ import {
   siteConfig,
 } from '@/lib/metadata'
 
-const title = 'DemandOS — Machine Learning Demand Forecasting Case Study'
+const title = 'DemandOS — Inventory decisions from raw commerce data'
 const description =
-  'DemandOS case study: a public machine-learning prototype for demand forecasting, stockout risk, and internal reorder guidance using synthetic operational data.'
+  'A deterministic machine-learning system that turns raw synthetic commerce records into demand forecasts, stockout-risk signals, and internal reorder recommendations.'
 const image = '/images/case-studies/demandos/02-home-dashboard.png'
 const keywords = [
   'DemandOS',
@@ -18,6 +18,8 @@ const keywords = [
   'demand forecasting',
   'inventory intelligence',
   'stockout risk',
+  'reorder recommendations',
+  'synthetic commerce data',
   'scikit-learn',
   'FastAPI',
   'Next.js',
@@ -26,7 +28,7 @@ const keywords = [
 const baseMetadata = buildPageMetadata({
   title,
   description,
-  path: '/case-studies/demandos',
+  path: '/en/case-studies/demandos',
   locale: 'en',
   image: {
     url: image,

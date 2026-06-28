@@ -16,8 +16,8 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
-  'demandos',
   'campaign-pulse',
+  'demandos',
   'campaign-sandbox',
   'data-brief-ai',
   'website-auditor',
@@ -33,36 +33,36 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
   demandos: {
     category: { en: 'Business Intelligence', es: 'Inteligencia de negocio' },
     proofTags: {
-      en: ['Live demo', 'GitHub', '451 tests', 'Production smoke'],
-      es: ['Demo', 'GitHub', '451 tests', 'Smoke de producción'],
+      en: ['Live demo', 'GitHub', 'Tests', 'Synthetic data'],
+      es: ['Demo', 'GitHub', 'Tests', 'Datos sintéticos'],
     },
     snapshot: {
       en: {
         problem:
-          'Operational commerce records rarely connect cleanly to forecasts, model quality, stockout risk, and reviewable replenishment guidance.',
+          'Retail operators often have fragmented operational data but limited visibility into demand, stockout risk, and reorder urgency.',
         system:
-          'A deterministic ML and data-product workflow from synthetic raw records through leakage-safe features, forecasting, risk scoring, and internal recommendations.',
+          'A deterministic ML pipeline that converts raw synthetic commerce records into forecasts, stockout-risk scores, and internal reorder guidance.',
         proof:
-          'Live Vercel demo, public repository, computed pipeline outputs, 451 unique backend tests, structural checks, and production smoke validation.',
+          'Live demo, GitHub repo, raw-data pipeline counts, model metrics, dashboard screenshots, backend tests, smoke checks, and public-readiness validation.',
         value:
-          'Shows how a forecasting model becomes useful when it is embedded in ingestion, evaluation, monitoring, scenario planning, and explicit safety boundaries.',
+          'Helps operators prioritize what may run out, what needs replenishment attention, and where planning risk is increasing.',
         limitation:
-          'Synthetic data only; no live commerce connectors, autonomous purchasing, supplier contact, or production-calibrated accuracy claims.',
+          'Synthetic portfolio prototype; no real customer data, no live ecommerce connectors, no autonomous purchases, no supplier communication, and no external side effects.',
       },
       es: {
         problem:
-          'Los registros operativos de comercio rara vez conectan de forma clara con forecasts, calidad de modelo, riesgo de stockout y orientación revisable de reposición.',
+          'Los operadores retail suelen tener datos operativos fragmentados y poca visibilidad sobre demanda, riesgo de stockout y urgencia de reposición.',
         system:
-          'Un workflow determinista de ML y producto de datos: desde registros sintéticos hasta features leakage-safe, forecasting, riesgo y recomendaciones internas.',
+          'Un pipeline determinista de ML que convierte registros sintéticos de comercio en forecasts, scores de riesgo de stockout y guía interna de reposición.',
         proof:
-          'Demo en Vercel, repositorio público, salidas calculadas por el pipeline, 451 tests backend únicos, checks estructurales y smoke de producción.',
+          'Demo, GitHub, conteos del pipeline raw, métricas de modelo, capturas del dashboard, tests backend, smoke checks y validación public-readiness.',
         value:
-          'Demuestra cómo un modelo de forecasting se vuelve útil al integrarse con ingesta, evaluación, monitoring, escenarios y límites de seguridad explícitos.',
+          'Ayuda a priorizar qué puede agotarse, qué requiere atención de reposición y dónde aumenta el riesgo de planificación.',
         limitation:
-          'Solo datos sintéticos; sin conectores live, compras autónomas, contacto con proveedores ni promesas de precisión productiva.',
+          'Prototipo sintético de portfolio; sin datos reales de clientes, conectores ecommerce live, compras autónomas, comunicación con proveedores ni efectos externos.',
       },
     },
-    related: ['campaign-pulse', 'benchmark-dashboard', 'blogagent'],
+    related: ['campaign-pulse', 'data-brief-ai', 'benchmark-dashboard'],
   },
   'campaign-pulse': {
     category: { en: 'Marketing Intelligence', es: 'Inteligencia de marketing' },
