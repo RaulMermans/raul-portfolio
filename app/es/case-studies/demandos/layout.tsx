@@ -8,7 +8,7 @@ import {
   siteConfig,
 } from '@/lib/metadata'
 
-const title = 'DemandOS — Machine Learning Demand Forecasting Case Study'
+const title = 'DemandOS — Decisiones de inventario desde datos raw de comercio'
 const description =
   'Caso de estudio de DemandOS: prototipo público de machine learning para previsión de demanda, riesgo de stockout y recomendaciones internas de reposición usando datos sintéticos operativos.'
 const image = '/images/case-studies/demandos/02-home-dashboard.png'

@@ -2290,6 +2290,29 @@ main.case-study-page-new {
   -webkit-overflow-scrolling: touch;
 }
 
+.data-brief-mini-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: inherit;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.data-brief-mini-nav li {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+}
+
+.data-brief-mini-nav__separator {
+  align-self: center;
+  color: rgba(26, 23, 20, 0.34);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
 .data-brief-mini-nav a {
   display: inline-flex;
   min-height: 36px;
