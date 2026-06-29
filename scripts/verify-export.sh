@@ -33,6 +33,9 @@ assert_file out/index.html
 assert_file out/en/index.html
 assert_file out/case-studies/index.html
 assert_file out/en/case-studies/index.html
+assert_file out/case-studies/demandos/index.html
+assert_file out/en/case-studies/demandos/index.html
+assert_file out/es/case-studies/demandos/index.html
 assert_file out/case-studies/blogagent/index.html
 assert_file out/en/case-studies/blogagent/index.html
 assert_file out/es/case-studies/blogagent/index.html
@@ -74,13 +77,31 @@ assert_contains out/services/sistemas-de-marca/index.html "Sistemas de Inteligen
 assert_contains out/services/prototipos-producto-ia/index.html "Prototipos de Producto IA"
 
 assert_contains out/en/case-studies/index.html "View case study: AI Sports Campaign"
+assert_contains out/en/case-studies/index.html "View case study: DemandOS"
 assert_contains out/en/case-studies/index.html "View case study: BlogAgent"
+assert_contains out/case-studies/index.html "Ver caso de estudio: DemandOS"
 assert_contains out/case-studies/index.html "Ver caso de estudio: Campaña deportiva con IA"
 assert_contains out/case-studies/index.html "Ver caso de estudio: BlogAgent"
+
+assert_contains out/en/case-studies/demandos/index.html "Inventory decisions from raw commerce data"
+assert_contains out/en/case-studies/demandos/index.html "For inventory decisions, reliability beats autonomy"
+assert_contains out/en/case-studies/demandos/index.html "Raw vs derived"
+assert_contains out/en/case-studies/demandos/index.html "Allowed vs blocked"
+assert_contains out/case-studies/demandos/index.html "Decisiones de inventario desde datos raw de comercio"
+assert_contains out/case-studies/demandos/index.html "Para decisiones de inventario"
+assert_contains out/es/case-studies/demandos/index.html "Decisiones de inventario desde datos raw de comercio"
 
 assert_contains out/en/case-studies/blogagent/index.html "reviewer veto before publication"
 assert_contains out/case-studies/blogagent/index.html "poder de veto antes de publicar"
 assert_contains out/es/case-studies/blogagent/index.html "poder de veto antes de publicar"
+
+assert_absent out/en/case-studies/demandos/index.html "Volver a casos"
+assert_absent out/en/case-studies/demandos/index.html "Qué aprendí"
+assert_absent out/en/case-studies/demandos/index.html "Permitido vs bloqueado"
+assert_absent out/en/case-studies/demandos/index.html "pendiente"
+assert_absent out/case-studies/demandos/index.html "Back to case studies"
+assert_absent out/case-studies/demandos/index.html "Allowed vs blocked"
+assert_absent out/case-studies/demandos/index.html "pending"
 
 assert_absent out/en/case-studies/index.html "Digital identity system that structures AI/product work"
 assert_absent out/en/case-studies/index.html "For faster UX, SEO, and conversion diagnostics"
@@ -118,6 +139,7 @@ function assertOrder(file, labels) {
 
 assertOrder('out/en/case-studies/index.html', [
   'Campaign Pulse',
+  'DemandOS',
   'Campaign Sandbox',
   'DataBrief AI',
   'Website Audit Agent',
@@ -131,6 +153,7 @@ assertOrder('out/en/case-studies/index.html', [
 
 assertOrder('out/case-studies/index.html', [
   'Campaign Pulse',
+  'DemandOS',
   'Campaign Sandbox',
   'DataBrief AI',
   'Website Audit Agent',

@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+      - 'codex/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality checks
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run type-check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Verify export output
+        run: npm run verify:export
+
+      - name: Check DemandOS public copy
+        run: |
+          set -euo pipefail
+
+          grep -Fq "Inventory decisions from raw commerce data" out/en/case-studies/demandos/index.html
+          grep -Fq "Decisiones de inventario desde datos raw de comercio" out/case-studies/demandos/index.html
+
+          ! grep -Eiq "pending|screenshot pending|still pending|to be added|coming soon|placeholder|TBD|pendiente" out/en/case-studies/demandos/index.html
+          ! grep -Eiq "pending|screenshot pending|still pending|to be added|coming soon|placeholder|TBD|pendiente" out/case-studies/demandos/index.html
+
+          ! grep -Fq "Volver a casos" out/en/case-studies/demandos/index.html
+          ! grep -Fq "Allowed vs blocked" out/case-studies/demandos/index.html
+
+      - name: Check generated deployment payload
+        run: |
+          set -euo pipefail
+
+          test -f out/index.html
+          test -f out/en/index.html
+          test -f out/case-studies/demandos/index.html
+          test -f out/en/case-studies/demandos/index.html
+          test -f out/images/case-studies/demandos/02-home-dashboard.png
+

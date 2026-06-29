@@ -440,6 +440,13 @@ const safetyRows = {
   ],
 } as const
 
+type DemandOsScreenshot = {
+  readonly src: string
+  readonly title: string
+  readonly caption: string
+  readonly wide?: boolean
+}
+
 function SectionHeading({
   eyebrow,
   title,
@@ -462,7 +469,7 @@ function ScreenshotFigure({
   shot,
   altPrefix,
 }: {
-  shot: (typeof screenshots)['en'][number]
+  shot: DemandOsScreenshot
   altPrefix: string
 }) {
   return (
