@@ -101,8 +101,8 @@ export const siteCopy = {
             proof: 'Deterministic capture and scoring first; LLM synthesis only after evidence is accepted.',
           },
           'benchmark-dashboard': {
-            label: 'Data product proof',
-            proof: 'A reusable benchmark interface for rankings, forecasts, strategic signals, and decision-ready reading.',
+            label: 'Benchmark intelligence engine',
+            proof: 'Raw synthetic observations become generated shares, ranks, monetization diagnostics, scenario projections, and decision-ready views.',
           },
         },
       },
@@ -425,8 +425,8 @@ export const siteCopy = {
             proof: 'Primero captura y puntuación determinista; síntesis LLM solo cuando la evidencia ya está aceptada.',
           },
           'benchmark-dashboard': {
-            label: 'Prueba de producto de datos',
-            proof: 'Interfaz de benchmark reutilizable para rankings, previsiones, señales estratégicas y lectura orientada a decisión.',
+            label: 'Motor de inteligencia benchmark',
+            proof: 'Observaciones raw sintéticas convertidas en cuotas, rankings, diagnóstico de monetización, escenarios y vistas de decisión.',
           },
         },
       },

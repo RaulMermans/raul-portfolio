@@ -209,27 +209,27 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
     snapshot: {
       en: {
         problem:
-          'Competitive data is difficult to compare when sources, metric definitions, validation, and executive questions are disconnected.',
+          'Benchmark analysis is hard to repeat when raw observations, metric definitions, validation, scenario work, and executive questions are disconnected.',
         system:
-          'An intelligence framework with a data contract, adapters, validation, benchmark logic, executive views, and forecasts.',
+          'A raw-data benchmark intelligence engine with a source_monthly contract, canonical metrics pipeline, generated benchmark rows, executive views, and local scenario forecasts.',
         proof:
-          'Public-safe repository, synthetic datasets, interface screenshots, validation logic, benchmark views, and forecast labeling.',
+          'Public-safe repo, 480 synthetic monthly rows, generated market_total and market_average rows, working Players/Battle Arena views, validation logic, and forecast labeling.',
         value:
-          'Helps answer who is gaining ground, why, and what decision should follow from the comparison.',
+          'Helps answer who is gaining tracked benchmark-set share, who is more efficient, which players are improving, and what scenario should be reviewed next.',
         limitation:
-          'The public case uses synthetic companies and values; the framework requires source-specific adapters for real deployments.',
+          'The public case uses synthetic companies and values; forecasts are scenario projections, not real market prediction.',
       },
       es: {
         problem:
-          'Los datos competitivos son difíciles de comparar cuando fuentes, métricas, validación y preguntas ejecutivas están desconectadas.',
+          'El análisis benchmark es difícil de repetir cuando observaciones raw, definiciones métricas, validación, escenarios y preguntas ejecutivas están desconectadas.',
         system:
-          'Un framework con contrato de datos, adaptadores, validación, lógica benchmark, vistas ejecutivas y previsiones.',
+          'Un motor benchmark desde datos raw con contrato source_monthly, pipeline canónico de métricas, filas benchmark generadas, vistas ejecutivas y forecasts locales de escenario.',
         proof:
-          'Repositorio seguro para publicar, datos sintéticos, capturas, lógica de validación, vistas benchmark y previsiones etiquetadas.',
+          'Repo seguro para publicar, 480 filas mensuales sintéticas, market_total y market_average generadas, vistas Players/Battle Arena funcionando, validación y forecast etiquetado.',
         value:
-          'Ayuda a responder quién gana terreno, por qué y qué decisión debería seguir a la comparación.',
+          'Ayuda a responder quién gana cuota del set benchmark, quién es más eficiente, qué players mejoran y qué escenario revisar.',
         limitation:
-          'El caso público usa compañías y valores sintéticos; una implementación real necesita adaptadores por fuente.',
+          'El caso público usa compañías y valores sintéticos; los forecasts son proyecciones de escenario, no predicción real de mercado.',
       },
     },
     related: ['campaign-pulse', 'data-brief-ai'],

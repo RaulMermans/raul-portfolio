@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'Benchmark Dashboard Template — Data product / Business intelligence dashboard'
+const title = 'Benchmark Intelligence Engine — Raw-data benchmark intelligence'
 const description =
-  'Case study: a reusable public dashboard built with React, Vite, Tailwind CSS, and Recharts that transforms mock benchmark data into rankings, trends, comparisons, and forecast scenarios.'
+  'Case study: a public-safe benchmark engine that turns 480 synthetic monthly observations into tracked benchmark-set share, rankings, monetization diagnostics, aggregation, and local scenario forecasts.'
 
 export const metadata: Metadata = buildPageMetadata({
   title,
@@ -13,16 +13,16 @@ export const metadata: Metadata = buildPageMetadata({
   locale: 'en',
   image: {
     url: '/images/case-studies/case-studies-thumbnail.webp',
-    alt: 'Benchmark Dashboard Template case study by Raúl Mermans',
+    alt: 'Benchmark Intelligence Engine case study by Raúl Mermans',
   },
   type: 'article',
   keywords: [
-    'benchmark dashboard',
+    'benchmark intelligence engine',
     'data product',
     'business intelligence',
-    'React Recharts dashboard',
-    'mock data dashboard',
-    'connector-ready dashboard',
+    'source_monthly',
+    'synthetic benchmark data',
+    'local scenario forecast',
   ],
   absoluteTitle: true,
 })
@@ -47,7 +47,7 @@ function BreadcrumbSchema() {
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Benchmark Dashboard Template',
+        name: 'Benchmark Intelligence Engine',
         item: `${siteConfig.url}/en/case-studies/benchmark-dashboard`,
       },
     ],
@@ -69,18 +69,19 @@ export default function EnglishBenchmarkDashboardLayout({
         data={{
           '@id': `${siteConfig.url}/#benchmark-dashboard-case-study-en`,
           headline: title,
-          name: 'Benchmark Dashboard Template',
+          name: 'Benchmark Intelligence Engine',
           description,
           url: absoluteRouteUrl('/en/case-studies/benchmark-dashboard'),
           mainEntityOfPage: absoluteRouteUrl('/en/case-studies/benchmark-dashboard'),
           image: absoluteUrl('/images/case-studies/case-studies-thumbnail.webp'),
           articleSection: 'Case Studies',
           keywords: [
-            'benchmark dashboard',
+            'benchmark intelligence engine',
             'data product',
             'business intelligence',
-            'React Recharts',
-            'mock data',
+            'source_monthly',
+            'synthetic benchmark data',
+            'local scenario forecast',
           ],
         }}
       />
