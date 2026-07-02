@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
@@ -634,18 +635,10 @@ export default function CampaignPulsePage() {
           </figure>
         </section>
 
-        <nav
-          className="data-brief-mini-nav"
-          aria-label={
-            locale === 'es' ? 'Secciones del caso' : 'Case study sections'
-          }
-        >
-          {t.nav.map(([label, href]) => (
-            <a key={href} href={href}>
-              {label}
-            </a>
-          ))}
-        </nav>
+        <CaseStudyMiniNav
+          items={t.nav}
+          ariaLabel={locale === 'es' ? 'Secciones del caso' : 'Case study sections'}
+        />
 
         <CaseStudySnapshot
           locale={locale}

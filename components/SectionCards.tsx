@@ -102,6 +102,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
   const [visualIndex, setVisualIndex] = useState(1)
   const [transitionsEnabled, setTransitionsEnabled] = useState(true)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isMobileView, setIsMobileView] = useState(false)
 
   const activeIndex = (visualIndex - 1 + sections.length) % sections.length
   const previousIndex = (activeIndex - 1 + sections.length) % sections.length
@@ -113,6 +114,16 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
     return () => {
       rafIds.forEach((id) => window.cancelAnimationFrame(id))
     }
+  }, [])
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 640px)')
+    const updateView = () => setIsMobileView(query.matches)
+
+    updateView()
+    query.addEventListener('change', updateView)
+
+    return () => query.removeEventListener('change', updateView)
   }, [])
 
   useEffect(() => {
@@ -243,6 +254,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
 
   return (
     <section id="work" className={styles.container} data-home-section="work">
+      {!isMobileView && (
       <div className={styles.desktopCarousel}>
         <div className={styles.controls}>
           <button
@@ -321,7 +333,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
                   key={`${section.id}-${slideIndex}`}
                   className={styles.slide}
                   style={slideStyle}
-                  aria-hidden={Math.abs(relativeIndex) > 1}
+                  aria-hidden={!isActiveSlide}
                 >
                   <Link
                     href={section.href}
@@ -383,7 +395,9 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
           </div>
         </div>
       </div>
+      )}
 
+      {isMobileView && (
       <nav
         className={styles.mobileGrid}
         aria-label={locale === 'es' ? 'Proyectos seleccionados' : 'Selected projects'}
@@ -447,6 +461,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
           )
         })}
       </nav>
+      )}
     </section>
   )
 }

@@ -2,7 +2,12 @@ import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import type { Locale } from '@/lib/i18n'
 import { localizePath } from '@/lib/i18n'
 
-export type CaseStudyCategorySlug = 'ai-systems-agents' | 'campaign-systems' | 'brand-systems' | 'data-systems'
+export type CaseStudyCategorySlug =
+  | 'ai-systems-agents'
+  | 'campaign-systems'
+  | 'brand-systems'
+  | 'data-systems'
+  | 'product-tools'
 
 export type CategoryProject = {
   title: string
@@ -21,248 +26,120 @@ export type CaseStudyCategory = {
   projects: CategoryProject[]
 }
 
-const placeholderImage = '/images/case-studies/case-studies-thumbnail.webp'
+function findStudy(caseStudies: CaseStudy[], slug: string) {
+  return caseStudies.find(study => study.slug === slug)
+}
 
-function findStudy(caseStudies: CaseStudy[], hrefPart: string) {
-  return caseStudies.find((study) => study.href.includes(hrefPart))
+function projectFromStudy(
+  study: CaseStudy | undefined,
+  fallbackLabel: string
+): CategoryProject[] {
+  if (!study) return []
+
+  return [
+    {
+      title: study.title,
+      label: study.subtitle ?? fallbackLabel,
+      description: study.description,
+      image: study.image,
+      href: study.href,
+    },
+  ]
 }
 
 export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const isSpanish = locale === 'es'
   const caseStudies = getCaseStudies(locale)
-  const aiSports = findStudy(caseStudies, 'ai-sports')
-  const remoria = findStudy(caseStudies, 'remoria')
-  const raulPortfolio = findStudy(caseStudies, 'raul-portfolio')
-  const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
-  const websiteAuditor = findStudy(caseStudies, 'website-auditor')
-  const campaignSandbox = findStudy(caseStudies, 'campaign-sandbox')
-  const blogAgent = findStudy(caseStudies, 'blogagent')
-  const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
-  const territoryOps = findStudy(caseStudies, 'territoryops-spain')
   const campaignPulse = findStudy(caseStudies, 'campaign-pulse')
   const demandOs = findStudy(caseStudies, 'demandos')
+  const campaignSandbox = findStudy(caseStudies, 'campaign-sandbox')
+  const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
+  const websiteAuditor = findStudy(caseStudies, 'website-auditor')
+  const benchmarkDashboard = findStudy(caseStudies, 'benchmark-dashboard')
+  const aiSports = findStudy(caseStudies, 'ai-sports')
+  const remoria = findStudy(caseStudies, 'remoria')
+  const blogAgent = findStudy(caseStudies, 'blogagent')
+  const territoryOps = findStudy(caseStudies, 'territoryops-spain')
+  const raulPortfolio = findStudy(caseStudies, 'raul-portfolio')
+  const indexHref = localizePath('/case-studies', locale)
 
   return [
     {
-      slug: 'ai-systems-agents',
-      title: isSpanish ? 'Sistemas de IA y agentes' : 'AI Systems & Agents',
-      eyebrow: isSpanish ? 'Nueva categoría' : 'New category',
+      slug: 'data-systems',
+      title: isSpanish ? 'Sistemas de inteligencia' : 'Intelligence Systems',
+      eyebrow: isSpanish ? 'Marketing y operaciones' : 'Marketing and operations',
       description: isSpanish
-        ? 'Agentes y sistemas aplicados que convierten análisis, auditorías y decisiones repetibles en flujos utilizables.'
-        : 'Applied agents and systems that turn analysis, audits, and repeatable decisions into usable workflows.',
-      href: localizePath('/case-studies', locale),
+        ? 'Sistemas que convierten datos operativos, campañas y benchmarks en señales de decisión.'
+        : 'Systems that turn operational data, campaigns, and benchmarks into decision signals.',
+      href: indexHref,
       projects: [
-        ...(demandOs
-          ? [
-              {
-                title: demandOs.title,
-                label:
-                  demandOs.subtitle ??
-                  (isSpanish
-                    ? 'Machine learning / Inteligencia de inventario'
-                    : 'Machine learning / Inventory intelligence'),
-                description: demandOs.description,
-                image: demandOs.image,
-                href: demandOs.href,
-              },
-            ]
-          : []),
-        dataBriefAi
-          ? {
-              title: dataBriefAi.title,
-              label: dataBriefAi.subtitle ?? (isSpanish ? 'Flujo analítico con IA' : 'AI analytics workflow'),
-              description: dataBriefAi.description,
-              image: dataBriefAi.image,
-              href: dataBriefAi.href,
-            }
-          : {
-              title: 'DataBrief AI',
-              label: isSpanish ? 'Flujo analítico con IA' : 'AI analytics workflow',
-              description: isSpanish
-                ? 'Flujo acotado para convertir hojas de cálculo en informes fundamentados.'
-                : 'A bounded workflow for turning spreadsheets into grounded reports.',
-              image: placeholderImage,
-            },
-        websiteAuditor
-          ? {
-              title: websiteAuditor.title,
-              label: websiteAuditor.subtitle ?? (isSpanish ? 'Flujo de auditoría con IA' : 'AI audit workflow'),
-              description: websiteAuditor.description,
-              image: websiteAuditor.image,
-              href: websiteAuditor.href,
-            }
-          : {
-              title: 'Website Audit Agent',
-              label: isSpanish ? 'Flujo de auditoría con IA' : 'AI audit workflow',
-              description: isSpanish
-                ? 'Flujo de auditoría basado en evidencia para UX, SEO, rendimiento, contenido e inteligencia comercial.'
-                : 'Evidence-backed audit workflow for UX, SEO, performance, content, and prospect intelligence.',
-              image: placeholderImage,
-            },
-        ...(campaignSandbox
-          ? [
-              {
-                title: campaignSandbox.title,
-                label:
-                  campaignSandbox.subtitle ??
-                  (isSpanish ? 'Espacio interno de estrategia con IA' : 'Internal AI strategy workspace'),
-                description: campaignSandbox.description,
-                image: campaignSandbox.image,
-                href: campaignSandbox.href,
-              },
-            ]
-          : []),
-        ...(blogAgent
-          ? [
-              {
-                title: blogAgent.title,
-                label:
-                  blogAgent.subtitle ??
-                  (isSpanish ? 'Flujo editorial con IA' : 'AI editorial workflow'),
-                description: blogAgent.description,
-                image: blogAgent.image,
-                href: blogAgent.href,
-              },
-            ]
-          : []),
+        ...projectFromStudy(campaignPulse, isSpanish ? 'Inteligencia de marketing' : 'Marketing intelligence'),
+        ...projectFromStudy(demandOs, isSpanish ? 'Machine learning / Producto de datos' : 'Machine learning / Data product'),
+        ...projectFromStudy(benchmarkDashboard, isSpanish ? 'Producto de datos / Intelligence system' : 'Data product / Intelligence system'),
+        ...projectFromStudy(territoryOps, isSpanish ? 'Herramienta de workflow / Inteligencia territorial' : 'Workflow tool / Territorial intelligence'),
       ],
     },
     {
-      slug: 'campaign-systems',
-      title: isSpanish ? 'Sistemas de campaña' : 'Campaign Systems',
-      eyebrow: isSpanish ? 'Ejecución creativa' : 'Creative execution',
+      slug: 'ai-systems-agents',
+      title: isSpanish ? 'Flujos con IA' : 'AI Workflows',
+      eyebrow: isSpanish ? 'IA acotada' : 'Bounded AI',
       description: isSpanish
-        ? 'Infraestructura para mantener consistencia visual, narrativa y operativa en campañas de ritmo rápido.'
-        : 'Infrastructure for keeping visual, narrative, and operational consistency inside fast-moving campaigns.',
-      href: localizePath('/case-studies', locale),
+        ? 'Flujos donde la IA trabaja dentro de límites, evidencias, revisión humana y contratos claros.'
+        : 'Workflows where AI operates inside limits, evidence, human review, and clear contracts.',
+      href: indexHref,
       projects: [
-        ...(aiSports
-          ? [
-            {
-              title: aiSports.title,
-              label: aiSports.subtitle ?? (isSpanish ? 'Sistema de campaña con IA' : 'AI campaign system'),
-              description: aiSports.description,
-              image: aiSports.image,
-              href: aiSports.href,
-            },
-            ]
-          : []),
-        ...(campaignSandbox
-          ? [
-              {
-                title: campaignSandbox.title,
-                label:
-                  campaignSandbox.subtitle ??
-                  (isSpanish ? 'Espacio interno de estrategia con IA' : 'Internal AI strategy workspace'),
-                description: campaignSandbox.description,
-                image: campaignSandbox.image,
-                href: campaignSandbox.href,
-              },
-            ]
-          : []),
+        ...projectFromStudy(campaignSandbox, isSpanish ? 'Estrategia de campaña / IA acotada' : 'Campaign strategy / Bounded AI'),
+        ...projectFromStudy(dataBriefAi, isSpanish ? 'IA acotada / Producto de datos' : 'Bounded AI / Data product'),
+        ...projectFromStudy(websiteAuditor, isSpanish ? 'IA acotada / Herramienta de workflow' : 'Bounded AI / Workflow tool'),
+        ...projectFromStudy(blogAgent, isSpanish ? 'IA acotada / Herramienta de workflow' : 'Bounded AI / Workflow tool'),
       ],
     },
     {
       slug: 'brand-systems',
       title: isSpanish ? 'Sistemas de marca' : 'Brand Systems',
-      eyebrow: isSpanish ? 'Identidad escalable' : 'Scalable identity',
+      eyebrow: isSpanish ? 'Identidad y reglas' : 'Identity and rules',
       description: isSpanish
-        ? 'Identidades, reglas visuales y lógica de marca pensadas para escalar sin perder precisión.'
-        : 'Identities, visual rules, and brand logic designed to scale without losing precision.',
-      href: localizePath('/case-studies', locale),
+        ? 'Sistemas de identidad, posicionamiento y reglas visuales diseñados para sostener coherencia.'
+        : 'Identity, positioning, and visual-rule systems designed to preserve coherence.',
+      href: indexHref,
       projects: [
-        ...(raulPortfolio
-          ? [
-              {
-                title: raulPortfolio.title,
-                label: raulPortfolio.subtitle ?? (isSpanish ? 'Sistema de marca personal' : 'Personal brand system'),
-                description: raulPortfolio.description,
-                image: raulPortfolio.image,
-                href: raulPortfolio.href,
-              },
-            ]
-          : []),
-        ...(remoria
-          ? [
-              {
-                title: remoria.title,
-                label: remoria.subtitle ?? (isSpanish ? 'Sistema de marca' : 'Brand system'),
-                description: remoria.description,
-                image: remoria.image,
-                href: remoria.href,
-              },
-            ]
-          : []),
+        ...projectFromStudy(remoria, isSpanish ? 'Sistema de marca' : 'Brand system'),
+        ...projectFromStudy(raulPortfolio, isSpanish ? 'Sistema de portfolio / Marca personal' : 'Portfolio system / Personal brand'),
       ],
     },
     {
-      slug: 'data-systems',
-      title: isSpanish ? 'Inteligencia de negocio' : 'Business intelligence',
-      eyebrow: isSpanish ? 'Sistemas de datos' : 'Data systems',
+      slug: 'campaign-systems',
+      title: isSpanish ? 'Producción creativa' : 'Creative Production',
+      eyebrow: isSpanish ? 'Campañas y superficies' : 'Campaigns and surfaces',
       description: isSpanish
-        ? 'Paneles, benchmarks e interfaces de lectura estratégica que convierten datos estructurados en decisiones claras.'
-        : 'Dashboards, benchmark interfaces, and strategic-reading systems that transform structured data into clear decisions.',
-      href: localizePath('/case-studies', locale),
+        ? 'Sistemas para estrategia, variación visual y consistencia de campaña con control humano.'
+        : 'Systems for strategy, visual variation, and campaign consistency with human control.',
+      href: indexHref,
       projects: [
-        ...(demandOs
-          ? [
-              {
-                title: demandOs.title,
-                label:
-                  demandOs.subtitle ??
-                  (isSpanish
-                    ? 'Machine learning / Inteligencia de inventario'
-                    : 'Machine learning / Inventory intelligence'),
-                description: demandOs.description,
-                image: demandOs.image,
-                href: demandOs.href,
-              },
-            ]
-          : []),
-        ...(campaignPulse
-          ? [
-              {
-                title: campaignPulse.title,
-                label:
-                  campaignPulse.subtitle ??
-                  (isSpanish ? 'Inteligencia de marketing / Producto de datos' : 'Marketing intelligence / Data product'),
-                description: campaignPulse.description,
-                image: campaignPulse.image,
-                href: campaignPulse.href,
-              },
-            ]
-          : []),
-        ...(territoryOps
-          ? [
-              {
-                title: territoryOps.title,
-                label:
-                  territoryOps.subtitle ??
-                  (isSpanish
-                    ? 'Herramienta interna / Prototipo de producto'
-                    : 'Internal tool / Product prototype'),
-                description: territoryOps.description,
-                image: territoryOps.image,
-                href: territoryOps.href,
-              },
-            ]
-          : []),
-        ...(benchmarkDashboard
-          ? [
-            {
-              title: benchmarkDashboard.title,
-              label: benchmarkDashboard.subtitle ?? (isSpanish ? 'Producto de datos / Sistema benchmark' : 'Data product / Benchmark system'),
-              description: benchmarkDashboard.description,
-              image: benchmarkDashboard.image,
-              href: benchmarkDashboard.href,
-            },
-            ]
-          : []),
+        ...projectFromStudy(campaignSandbox, isSpanish ? 'Estrategia de campaña' : 'Campaign strategy'),
+        ...projectFromStudy(aiSports, isSpanish ? 'Producción creativa' : 'Creative production'),
+        ...projectFromStudy(remoria, isSpanish ? 'Mundo visual de marca' : 'Brand visual world'),
+      ],
+    },
+    {
+      slug: 'product-tools',
+      title: isSpanish ? 'Herramientas de producto' : 'Product Tools',
+      eyebrow: isSpanish ? 'Superficies operativas' : 'Operational surfaces',
+      description: isSpanish
+        ? 'Herramientas internas, demos y superficies de producto construidas para probar lógica de workflow.'
+        : 'Internal tools, demos, and product surfaces built to test workflow logic.',
+      href: indexHref,
+      projects: [
+        ...projectFromStudy(campaignPulse, isSpanish ? 'Producto de datos' : 'Data product'),
+        ...projectFromStudy(demandOs, isSpanish ? 'Producto ML' : 'ML product'),
+        ...projectFromStudy(dataBriefAi, isSpanish ? 'Producto de reporting' : 'Reporting product'),
+        ...projectFromStudy(websiteAuditor, isSpanish ? 'Herramienta de auditoría' : 'Audit tool'),
+        ...projectFromStudy(territoryOps, isSpanish ? 'Herramienta de workflow' : 'Workflow tool'),
       ],
     },
   ]
 }
 
 export function getCaseStudyCategory(locale: Locale, slug: CaseStudyCategorySlug) {
-  return getCaseStudyCategories(locale).find((category) => category.slug === slug)
+  return getCaseStudyCategories(locale).find(category => category.slug === slug)
 }

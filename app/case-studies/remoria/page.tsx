@@ -194,6 +194,42 @@ export default function RemoriaPage() {
           </CaseStudySection>
         )}
 
+        <CaseStudySection
+          title={locale === 'es' ? 'Mapa de posicionamiento' : 'Positioning map'}
+          variant="light"
+          id="positioning"
+        >
+          <div className="remoria-positioning-map">
+            <div
+              className="remoria-positioning-map__chart"
+              aria-label={
+                locale === 'es'
+                  ? 'Remoria se posiciona en contención y permanencia'
+                  : 'Remoria is positioned in restraint and permanence'
+              }
+            >
+              <span className="remoria-positioning-map__axis remoria-positioning-map__axis--x">
+                {locale === 'es' ? 'Espectáculo' : 'Spectacle'}
+                <b aria-hidden="true" />
+                {locale === 'es' ? 'Contención' : 'Restraint'}
+              </span>
+              <span className="remoria-positioning-map__axis remoria-positioning-map__axis--y">
+                {locale === 'es' ? 'Tendencia' : 'Trend'}
+                <b aria-hidden="true" />
+                {locale === 'es' ? 'Permanencia' : 'Permanence'}
+              </span>
+              <span className="remoria-positioning-map__line remoria-positioning-map__line--x" aria-hidden="true" />
+              <span className="remoria-positioning-map__line remoria-positioning-map__line--y" aria-hidden="true" />
+              <strong className="remoria-positioning-map__point">Remoria</strong>
+            </div>
+            <p>
+              {locale === 'es'
+                ? 'Remoria evita los códigos de lujo ruidosos. El sistema se construye alrededor de memoria, contención, referencias clásicas y reconocimiento sensorial a largo plazo.'
+                : 'Remoria avoids loud luxury codes. The system is designed around memory, restraint, classical reference, and long-term sensory recognition.'}
+            </p>
+          </div>
+        </CaseStudySection>
+
         {content.challenge && (
           <CaseStudySection
             title={copy.challenge}

@@ -31,7 +31,7 @@ export const CASE_STUDY_ORDER = [
 
 export const caseStudyEditorial: Record<string, EditorialMeta> = {
   demandos: {
-    category: { en: 'Business Intelligence', es: 'Inteligencia de negocio' },
+    category: { en: 'Machine Learning', es: 'Machine Learning' },
     proofTags: {
       en: ['Live demo', 'GitHub', 'Tests', 'Synthetic data'],
       es: ['Demo', 'GitHub', 'Tests', 'Datos sintéticos'],
@@ -303,7 +303,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
     related: ['ai-sports', 'raul-portfolio'],
   },
   blogagent: {
-    category: { en: 'Workflow Tool', es: 'Herramienta de flujo' },
+    category: { en: 'Workflow Tool', es: 'Herramienta de workflow' },
     proofTags: {
       en: ['GitHub', '1,100+ tests', '13/13 evals'],
       es: ['GitHub', '1.100+ tests', '13/13 evals'],
@@ -337,7 +337,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
     related: ['website-auditor', 'data-brief-ai'],
   },
   'territoryops-spain': {
-    category: { en: 'Workflow Tool', es: 'Herramienta de flujo' },
+    category: { en: 'Intelligence Systems', es: 'Sistemas de inteligencia' },
     proofTags: {
       en: ['Product prototype', 'Map system', 'Local-first'],
       es: ['Prototipo', 'Sistema de mapa', 'Local-first'],

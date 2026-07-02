@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
@@ -373,7 +374,7 @@ const screenshots = {
     },
     {
       src: `${imageBase}/13-csv-upload.png`,
-      title: 'CSV Upload',
+      title: 'Carga CSV',
       caption:
         'Permite cargar CSV locales mientras valida esquema y filas rechazadas.',
     },
@@ -385,7 +386,7 @@ const screenshots = {
     },
     {
       src: `${imageBase}/15-scenarios.png`,
-      title: 'Scenarios',
+      title: 'Escenarios',
       caption:
         'Prueba supuestos de demanda, lead time y proveedor sin mutar datos canónicos.',
     },
@@ -679,23 +680,7 @@ export default function DemandOsPage() {
           </figure>
         </section>
 
-        <nav className="data-brief-mini-nav" aria-label={copy.navAria}>
-          <ul>
-            {copy.nav.map(([label, href], index) => (
-              <li key={href}>
-                <a href={href}>{label}</a>
-                {index < copy.nav.length - 1 && (
-                  <span
-                    className="data-brief-mini-nav__separator"
-                    aria-hidden="true"
-                  >
-                    /
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <CaseStudyMiniNav items={copy.nav} ariaLabel={copy.navAria} />
 
         <section
           id="thesis"

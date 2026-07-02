@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
   CommercialCaseStudyClosing,
   CommercialCaseStudyIntro,
@@ -337,13 +338,10 @@ export default function RaulPortfolioPage() {
           </div>
         </section>
 
-        <nav className="data-brief-mini-nav" aria-label="Case study sections">
-          {t.nav.map(([label, href]) => (
-            <a key={href} href={href}>
-              {label}
-            </a>
-          ))}
-        </nav>
+        <CaseStudyMiniNav
+          items={t.nav}
+          ariaLabel={locale === 'es' ? 'Secciones del caso' : 'Case study sections'}
+        />
 
         <CommercialCaseStudyIntro content={commercial} locale={locale} />
 

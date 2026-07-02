@@ -8799,6 +8799,51 @@ body:has(.case-studies-main) .page-transition {
   margin-top: 14px;
 }
 
+.about-current-focus {
+  max-width: 38rem;
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid var(--about-line);
+  background: rgba(240, 236, 226, 0.04);
+}
+
+.about-current-focus h3 {
+  margin: 0 0 14px;
+  color: var(--about-ink);
+  font-family: var(--about-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.about-current-focus ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-current-focus li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--about-ink-dim);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.about-current-focus li::before {
+  content: "";
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 7px;
+  height: 1px;
+  background: var(--about-red-bright);
+}
+
 .about-notes {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
