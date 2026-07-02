@@ -110,6 +110,9 @@ jobs:
           verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Ver caso de estudio: BlogAgent"
           verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "human review before publication"
           verify_copy "https://www.raulmermans.com/case-studies/blogagent/" /tmp/blogagent-es.html "revisión humana antes de publicar"
+          verify_copy "https://www.raulmermans.com/en/case-studies/benchmark-dashboard/" /tmp/benchmark-en.html "source_monthly is the source contract"
+          verify_copy "https://www.raulmermans.com/case-studies/benchmark-dashboard/" /tmp/benchmark-default.html "source_monthly es el contrato fuente"
+          verify_copy "https://www.raulmermans.com/es/case-studies/benchmark-dashboard/" /tmp/benchmark-es.html "source_monthly es el contrato fuente"
 
           verify_copy "https://www.raulmermans.com/en/services/ai-integrations/" /tmp/service-ai-en.html "AI Integrations for Creative Systems"
           verify_copy "https://www.raulmermans.com/en/services/creative-automation/" /tmp/service-automation-en.html "Creative Automation"
@@ -127,3 +130,12 @@ jobs:
           ! grep -Fq "Automatización CRM" /tmp/raul-es.html
           ! grep -Fq "Digital identity system that structures AI/product work" /tmp/cases-en.html
           ! grep -Fq "For faster UX, SEO, and conversion diagnostics" /tmp/cases-en.html
+          ! grep -Fq "Benchmark Dashboard Template" /tmp/benchmark-en.html
+          ! grep -Fq "Benchmark Intelligence Framework" /tmp/benchmark-en.html
+          ! grep -Fq "data.interface is the source of truth" /tmp/benchmark-en.html
+          ! grep -Fq "Benchmark Dashboard Template" /tmp/benchmark-default.html
+          ! grep -Fq "Benchmark Intelligence Framework" /tmp/benchmark-default.html
+          ! grep -Fq "data.interface es la fuente de verdad" /tmp/benchmark-default.html
+          ! grep -Fq "Benchmark Dashboard Template" /tmp/benchmark-es.html
+          ! grep -Fq "Benchmark Intelligence Framework" /tmp/benchmark-es.html
+          ! grep -Fq "data.interface es la fuente de verdad" /tmp/benchmark-es.html

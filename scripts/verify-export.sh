@@ -39,6 +39,9 @@ assert_file out/es/case-studies/demandos/index.html
 assert_file out/case-studies/blogagent/index.html
 assert_file out/en/case-studies/blogagent/index.html
 assert_file out/es/case-studies/blogagent/index.html
+assert_file out/case-studies/benchmark-dashboard/index.html
+assert_file out/en/case-studies/benchmark-dashboard/index.html
+assert_file out/es/case-studies/benchmark-dashboard/index.html
 
 assert_file out/en/services/ai-integrations/index.html
 assert_file out/en/services/creative-automation/index.html
@@ -94,6 +97,30 @@ assert_contains out/es/case-studies/demandos/index.html "Decisiones de inventari
 assert_contains out/en/case-studies/blogagent/index.html "reviewer veto before publication"
 assert_contains out/case-studies/blogagent/index.html "poder de veto antes de publicar"
 assert_contains out/es/case-studies/blogagent/index.html "poder de veto antes de publicar"
+
+assert_contains out/en/case-studies/benchmark-dashboard/index.html "Benchmark Intelligence Engine"
+assert_contains out/en/case-studies/benchmark-dashboard/index.html "source_monthly is the source contract"
+assert_contains out/en/case-studies/benchmark-dashboard/index.html "480 raw monthly rows"
+assert_contains out/en/case-studies/benchmark-dashboard/index.html "Players/company profiles"
+assert_contains out/en/case-studies/benchmark-dashboard/index.html "Battle Arena"
+assert_contains out/case-studies/benchmark-dashboard/index.html "Benchmark Intelligence Engine"
+assert_contains out/case-studies/benchmark-dashboard/index.html "source_monthly es el contrato fuente"
+assert_contains out/case-studies/benchmark-dashboard/index.html "480 filas mensuales raw"
+assert_contains out/case-studies/benchmark-dashboard/index.html "Battle Arena"
+assert_contains out/es/case-studies/benchmark-dashboard/index.html "Benchmark Intelligence Engine"
+assert_contains out/es/case-studies/benchmark-dashboard/index.html "source_monthly es el contrato fuente"
+assert_contains out/es/case-studies/benchmark-dashboard/index.html "480 filas mensuales raw"
+assert_contains out/es/case-studies/benchmark-dashboard/index.html "Battle Arena"
+
+assert_absent out/en/case-studies/benchmark-dashboard/index.html "Benchmark Dashboard Template"
+assert_absent out/en/case-studies/benchmark-dashboard/index.html "Benchmark Intelligence Framework"
+assert_absent out/en/case-studies/benchmark-dashboard/index.html "data.interface is the source of truth"
+assert_absent out/case-studies/benchmark-dashboard/index.html "Benchmark Dashboard Template"
+assert_absent out/case-studies/benchmark-dashboard/index.html "Benchmark Intelligence Framework"
+assert_absent out/case-studies/benchmark-dashboard/index.html "data.interface es la fuente de verdad"
+assert_absent out/es/case-studies/benchmark-dashboard/index.html "Benchmark Dashboard Template"
+assert_absent out/es/case-studies/benchmark-dashboard/index.html "Benchmark Intelligence Framework"
+assert_absent out/es/case-studies/benchmark-dashboard/index.html "data.interface es la fuente de verdad"
 
 assert_absent out/en/case-studies/demandos/index.html "Volver a casos"
 assert_absent out/en/case-studies/demandos/index.html "Qué aprendí"
