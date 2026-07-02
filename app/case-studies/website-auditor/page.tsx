@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
   CommercialCaseStudyClosing,
   CommercialCaseStudyIntro,
@@ -208,6 +209,17 @@ const content = {
       source: 'Rendered browser capture',
       synthesisLabel: 'Synthesis status',
       synthesis: 'Allowed — based on accepted evidence only.',
+    },
+    sampleAudit: {
+      title: 'Sample audit output',
+      note: 'Synthetic/anonymized example based only on public-page evidence.',
+      rows: [
+        ['Measured evidence', 'Page title length, heading count, image alt coverage, and response status are collected directly from the public page.'],
+        ['Observed evidence', 'The primary CTA is visible above the fold, but supporting proof appears lower on the page.'],
+        ['Inferred evidence', 'A first-time visitor may understand the offer before they understand why it is credible.'],
+        ['Recommendation', 'Move one proof cue closer to the hero CTA and keep the claim tied to visible page evidence.'],
+        ['Caveat', 'No private analytics, conversion rate, CRM data, or proprietary performance data is available to this workflow.'],
+      ] as const,
     },
     safetyEyebrow: 'Safety / Access boundary',
     safetyH2: 'Public repository. Private operating surface.',
@@ -429,6 +441,17 @@ const content = {
       synthesisLabel: 'Estado de síntesis',
       synthesis: 'Permitida — basada solo en evidencia aceptada.',
     },
+    sampleAudit: {
+      title: 'Ejemplo de informe',
+      note: 'Ejemplo sintético/anonimizado basado solo en evidencia pública de página.',
+      rows: [
+        ['Measured evidence', 'Longitud del title, número de headings, cobertura de alt text y estado de respuesta se capturan directamente desde la página pública.'],
+        ['Observed evidence', 'El CTA principal aparece en el primer tramo, pero la prueba que lo respalda queda más abajo.'],
+        ['Inferred evidence', 'Un visitante nuevo puede entender la oferta antes de entender por qué es creíble.'],
+        ['Recommendation', 'Acercar una señal de prueba al CTA del hero y mantener el claim unido a evidencia visible.'],
+        ['Caveat', 'El workflow no accede a analítica privada, tasa de conversión, CRM ni datos propietarios de rendimiento.'],
+      ] as const,
+    },
     safetyEyebrow: 'Seguridad / Límite de acceso',
     safetyH2: 'Repositorio público. Superficie operativa privada.',
     safetyP:
@@ -612,7 +635,7 @@ export default function WebsiteAuditorPage() {
             </h1>
             <p className="data-brief-hero__subtitle">{t.heroSubtitle}</p>
             <p className="data-brief-hero__description">{t.heroDescription}</p>
-            <div className="data-brief-actions" aria-label="Project links">
+            <div className="data-brief-actions" aria-label={locale === 'es' ? 'Enlaces del proyecto' : 'Project links'}>
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
                 {t.heroCTAGithub}
               </a>
@@ -620,7 +643,7 @@ export default function WebsiteAuditorPage() {
                 {t.heroCTAHow}
               </a>
             </div>
-            <div className="data-brief-tags" aria-label="Project tags">
+            <div className="data-brief-tags" aria-label={locale === 'es' ? 'Etiquetas del proyecto' : 'Project tags'}>
               {t.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
               ))}
@@ -632,13 +655,11 @@ export default function WebsiteAuditorPage() {
           </figure>
         </section>
 
-        <nav className="data-brief-mini-nav website-auditor-mini-nav" aria-label={t.navAriaLabel}>
-          {t.nav.map(([label, href]) => (
-            <a key={href} href={href}>
-              {label}
-            </a>
-          ))}
-        </nav>
+        <CaseStudyMiniNav
+          items={t.nav}
+          ariaLabel={t.navAriaLabel}
+          className="website-auditor-mini-nav"
+        />
 
         <CommercialCaseStudyIntro content={commercial} locale={locale} />
 
@@ -744,7 +765,10 @@ export default function WebsiteAuditorPage() {
               <h2 id="website-auditor-agent">{t.agentH2}</h2>
               <p>{t.agentP}</p>
             </div>
-            <div className="website-auditor-truth-boundary" aria-label="Truth boundary">
+            <div
+              className="website-auditor-truth-boundary"
+              aria-label={locale === 'es' ? 'Límite de veracidad' : 'Truth boundary'}
+            >
               {t.agentDiagram.map((item) => (
                 <span key={item}>{item}</span>
               ))}
@@ -788,6 +812,23 @@ export default function WebsiteAuditorPage() {
               <AcceptedEvidenceCard text={t.findingCard} />
               <figcaption>{t.reportFigcaption}</figcaption>
             </figure>
+            <article
+              className="website-auditor-sample-output"
+              aria-labelledby="website-auditor-sample-output"
+            >
+              <div>
+                <h3 id="website-auditor-sample-output">{t.sampleAudit.title}</h3>
+                <p>{t.sampleAudit.note}</p>
+              </div>
+              <dl>
+                {t.sampleAudit.rows.map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
           </div>
         </section>
 

@@ -138,6 +138,8 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--color-1)',
       subtitle: 'Brand Systems / Digital Identity / Portfolio Architecture',
       mood: ['minimal', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/raul-portfolio',
+      liveUrl: 'https://www.raulmermans.com',
     },
     {
       id: 4,
@@ -155,6 +157,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'AI Systems / Audit Workflow',
       mood: ['minimal', 'tech'],
+      githubUrl: 'https://github.com/RaulMermans/website-auditor',
     },
     {
       id: 7,
@@ -180,6 +183,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Internal AI Strategy Workspace',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/campaign-sandbox',
     },
     {
       id: 8,
@@ -206,6 +210,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'AI Systems & Agents / Editorial Workflow',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/BlogAgent',
     },
     {
       id: 6,
@@ -223,6 +228,8 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--color-0)',
       subtitle: 'Internal tool / Product prototype / Business intelligence',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/territoryops-spain',
+      liveUrl: 'https://territoryops-spain.vercel.app',
     },
     {
       id: 2,
@@ -240,23 +247,27 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'AI Systems / Analytics Workflow',
       mood: ['minimal', 'tech'],
+      githubUrl: 'https://github.com/RaulMermans/DataBrief-AI.git',
+      liveUrl: 'https://data-brief-ai-sigma.vercel.app',
     },
     {
       id: 3,
       slug: 'benchmark-dashboard',
-      title: 'Benchmark Dashboard Template',
+      title: 'Benchmark Intelligence Engine',
       description:
-        'Competitive intelligence dashboard for market, brand, and positioning signals.',
+        'Raw-data benchmark intelligence engine for tracked share, rankings, monetization diagnostics, aggregation, and scenario projections.',
       commercialRelevance:
-        'For repeatable competitor analysis, sharper positioning, and clearer strategic readouts.',
-      tags: ['Benchmarking', 'Market Intelligence', 'Brand Strategy'],
+        'For repeatable benchmark analysis, public-safe data-product storytelling, and clearer strategic readouts.',
+      tags: ['Benchmarking', 'Market Intelligence', 'Data Product'],
       cta: 'View System Logic',
       image: '/images/case-studies/benchmark-dashboard/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
       color: 'var(--color-0)',
-      subtitle: 'Data product / Business intelligence dashboard',
+      subtitle: 'Raw-data benchmark intelligence engine',
       mood: ['minimal', 'tech'],
+      githubUrl: 'https://github.com/RaulMermans/benchmark_dashboard',
+      liveUrl: 'https://benchmark-dashboard-tb47.vercel.app/',
     },
   ],
   es: [
@@ -370,6 +381,8 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       subtitle:
         'Sistemas de marca / Identidad digital / Arquitectura de portafolio',
       mood: ['minimal', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/raul-portfolio',
+      liveUrl: 'https://www.raulmermans.com',
     },
     {
       id: 4,
@@ -386,6 +399,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Sistemas de IA / Flujo de auditoría',
       mood: ['minimal', 'tech'],
+      githubUrl: 'https://github.com/RaulMermans/website-auditor',
     },
     {
       id: 7,
@@ -411,6 +425,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Espacio interno de estrategia con IA',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/campaign-sandbox',
     },
     {
       id: 8,
@@ -437,6 +452,7 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Sistemas de IA y agentes / Flujo editorial',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/BlogAgent',
     },
     {
       id: 6,
@@ -459,6 +475,8 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       subtitle:
         'Herramienta interna / Prototipo de producto / Inteligencia de negocio',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/territoryops-spain',
+      liveUrl: 'https://territoryops-spain.vercel.app',
     },
     {
       id: 2,
@@ -476,28 +494,34 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Sistemas de IA / Flujo analítico',
       mood: ['minimal', 'tech'],
+      githubUrl: 'https://github.com/RaulMermans/DataBrief-AI.git',
+      liveUrl: 'https://data-brief-ai-sigma.vercel.app',
     },
     {
       id: 3,
       slug: 'benchmark-dashboard',
-      title: 'Benchmark Dashboard Template',
+      title: 'Benchmark Intelligence Engine',
       description:
-        'Panel de inteligencia competitiva para señales de mercado, marca y posicionamiento.',
+        'Motor de inteligencia benchmark desde datos raw para cuota, rankings, monetización, agregación y escenarios.',
       commercialRelevance:
-        'Para análisis competitivo repetible, posicionamiento más claro y lecturas estratégicas más precisas.',
-      tags: ['Benchmarking', 'Inteligencia de mercado', 'Estrategia de marca'],
+        'Para análisis benchmark repetible, storytelling de producto de datos publicable y lecturas estratégicas más claras.',
+      tags: ['Benchmarking', 'Inteligencia de mercado', 'Producto de datos'],
       cta: 'Ver lógica del sistema',
       image: '/images/case-studies/benchmark-dashboard/thumb/thumb.webp',
       imageWidth: 1536,
       imageHeight: 1024,
       color: 'var(--color-0)',
-      subtitle: 'Producto de datos / Inteligencia de negocio',
+      subtitle: 'Motor benchmark desde datos raw',
       mood: ['minimal', 'tech'],
+      githubUrl: 'https://github.com/RaulMermans/benchmark_dashboard',
+      liveUrl: 'https://benchmark-dashboard-tb47.vercel.app/',
     },
   ],
 }
 
 export function getCaseStudies(locale: Locale): CaseStudy[] {
+  // Strategic portfolio order lives in CASE_STUDY_ORDER so the hierarchy can be
+  // switched for a different role focus without rewriting localized entries.
   const rank = new Map<string, number>(
     CASE_STUDY_ORDER.map((slug, index) => [slug, index])
   )

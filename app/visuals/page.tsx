@@ -29,10 +29,10 @@ interface Work {
 
 const visualsCopy = {
   en: {
-    label: 'Collection',
-    title: 'Visuals',
+    label: 'Archive',
+    title: 'Visual Studies',
     description:
-      'A curated collection of AI art, album covers, visual concepts, and digital experiments exploring the boundaries of synthetic creativity.',
+      'Image worlds, brand atmospheres, and visual experiments exploring how taste, restraint, and system rules translate into campaign surfaces.',
     seeProject: 'See project',
     previousProject: 'Previous project',
     nextProject: 'Next project',
@@ -48,10 +48,10 @@ const visualsCopy = {
     next: 'Next',
   },
   es: {
-    label: 'Colección',
-    title: 'Visuales',
+    label: 'Archivo',
+    title: 'Estudios visuales',
     description:
-      'Una colección curada de arte con IA, portadas, conceptos visuales y experimentos digitales que exploran los límites de la creatividad sintética.',
+      'Mundos visuales, atmósferas de marca y experimentos que exploran cómo el gusto, la contención y las reglas de sistema se traducen en superficies de campaña.',
     seeProject: 'Ver proyecto',
     previousProject: 'Proyecto anterior',
     nextProject: 'Proyecto siguiente',
@@ -321,6 +321,7 @@ export default function VisualsPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const copy = visualsCopy[locale]
+  const currentYear = new Date().getFullYear()
   const works = getWorksData(locale)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isExhibitionOpen, setIsExhibitionOpen] = useState(false)
@@ -447,6 +448,7 @@ export default function VisualsPage() {
 
       if (scrollLockRef.current) {
         const lock = scrollLockRef.current
+        scrollLockRef.current = null
         documentElement.style.overflow = lock.htmlOverflow
         body.style.overflow = lock.bodyOverflow
         body.style.position = lock.bodyPosition
@@ -454,8 +456,14 @@ export default function VisualsPage() {
         body.style.width = lock.bodyWidth
         body.style.paddingRight = lock.bodyPaddingRight
         documentElement.style.scrollBehavior = 'auto'
-        window.scrollTo(0, lock.scrollY)
+        const restoreScrollPosition = () => {
+          const maxScroll = Math.max(0, documentElement.scrollHeight - window.innerHeight)
+          window.scrollTo(0, Math.min(lock.scrollY, maxScroll))
+        }
+
+        restoreScrollPosition()
         window.requestAnimationFrame(() => {
+          restoreScrollPosition()
           documentElement.style.scrollBehavior = lock.htmlScrollBehavior
         })
       }
@@ -584,7 +592,7 @@ export default function VisualsPage() {
             <p className={styles.description}>
               {copy.description}
             </p>
-            <p className={styles.year}>© 2024</p>
+            <p className={styles.year}>© {currentYear}</p>
           </div>
 
           {/* Card Display with Navigation */}

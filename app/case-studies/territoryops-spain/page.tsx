@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
   CommercialCaseStudyIntro,
   type CommercialCaseStudyContent,
@@ -642,18 +643,10 @@ export default function TerritoryOpsSpainPage() {
           </div>
         </section>
 
-        <nav
-          className="data-brief-mini-nav"
-          aria-label={
-            locale === 'es' ? 'Secciones de la página' : 'Page sections'
-          }
-        >
-          {t.nav.map(([label, href]) => (
-            <a key={href} href={href}>
-              {label}
-            </a>
-          ))}
-        </nav>
+        <CaseStudyMiniNav
+          items={t.nav}
+          ariaLabel={locale === 'es' ? 'Secciones de la página' : 'Page sections'}
+        />
 
         <CommercialCaseStudyIntro
           content={commercialContent[locale]}

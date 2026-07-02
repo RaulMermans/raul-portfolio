@@ -3,14 +3,14 @@ import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Visuales',
+  title: 'Estudios visuales',
   description:
-    'Visuales con IA, portadas y conceptos visuales de Raúl Mermans, mostrando los sistemas de imagen y la experimentación creativa detrás de su práctica.',
+    'Estudios visuales de Raúl Mermans: mundos de imagen, atmósferas de marca y experimentos sobre campaña, gusto y reglas de sistema.',
   path: '/visuals',
   locale: 'es',
   image: {
     url: '/images/sections/visuals-bg.webp',
-    alt: 'Visuales con IA de Raúl Mermans',
+    alt: 'Estudios visuales de Raúl Mermans',
   },
   keywords: ['visuales con IA', 'portadas', 'conceptos visuales', 'experimentos creativos'],
 })
@@ -26,9 +26,9 @@ export default function SpanishVisualsLayout({
         type="CollectionPage"
         data={{
           '@id': `${siteConfig.url}/#visuals-page-es`,
-          name: 'Visuales de Raúl Mermans',
+          name: 'Estudios visuales de Raúl Mermans',
           description:
-            'Visuales con IA, portadas y conceptos visuales de Raúl Mermans, mostrando los sistemas de imagen y la experimentación creativa detrás de su práctica.',
+            'Estudios visuales de Raúl Mermans: mundos de imagen, atmósferas de marca y experimentos sobre campaña, gusto y reglas de sistema.',
           url: absoluteRouteUrl('/visuals'),
         }}
       />

@@ -644,6 +644,151 @@ main.case-study-page-new {
   margin: 0;
 }
 
+.ai-sports-consistency-review {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  background: rgba(26, 23, 20, 0.16);
+}
+
+.ai-sports-consistency-review article {
+  display: grid;
+  gap: 1rem;
+  min-height: 12rem;
+  align-content: end;
+  padding: clamp(1.15rem, 2.5vw, 1.6rem);
+  background: var(--cream-light);
+}
+
+.ai-sports-consistency-review span {
+  width: fit-content;
+  border: 1px solid rgba(26, 23, 20, 0.16);
+  border-radius: 999px;
+  padding: 0.4rem 0.68rem;
+  color: var(--accent);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.ai-sports-consistency-review p {
+  margin: 0;
+  color: rgba(26, 23, 20, 0.72);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .ai-sports-consistency-review {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-sports-consistency-review article {
+    min-height: auto;
+  }
+}
+
+.remoria-positioning-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.55fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: end;
+}
+
+.remoria-positioning-map__chart {
+  position: relative;
+  min-height: clamp(20rem, 38vw, 30rem);
+  border: 1px solid rgba(26, 23, 20, 0.14);
+  background:
+    linear-gradient(90deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
+    var(--cream-light);
+  background-size: 25% 25%;
+}
+
+.remoria-positioning-map__line {
+  position: absolute;
+  background: rgba(26, 23, 20, 0.18);
+}
+
+.remoria-positioning-map__line--x {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+}
+
+.remoria-positioning-map__line--y {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+
+.remoria-positioning-map__axis {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(26, 23, 20, 0.56);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.remoria-positioning-map__axis b {
+  flex: 1;
+}
+
+.remoria-positioning-map__axis--x {
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.remoria-positioning-map__axis--y {
+  top: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  writing-mode: vertical-rl;
+}
+
+.remoria-positioning-map__point {
+  position: absolute;
+  right: 18%;
+  bottom: 20%;
+  z-index: 2;
+  border: 1px solid rgba(26, 23, 20, 0.22);
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.remoria-positioning-map p {
+  margin: 0;
+  color: rgba(26, 23, 20, 0.72);
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+  .remoria-positioning-map {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* =============================================
    FEATURE IMAGE
    ============================================= */
@@ -5640,6 +5785,64 @@ main.case-study-page-new {
   color: var(--ink);
 }
 
+.website-auditor-sample-output {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: min(100%, 62rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid rgba(26, 23, 20, 0.16);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.website-auditor-sample-output h3 {
+  margin: 0 0 0.85rem;
+  color: var(--ink);
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.website-auditor-sample-output p {
+  max-width: 24rem;
+  margin: 0;
+  color: rgba(26, 23, 20, 0.66);
+  line-height: 1.65;
+}
+
+.website-auditor-sample-output dl {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  background: rgba(26, 23, 20, 0.12);
+}
+
+.website-auditor-sample-output dl > div {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.42fr) minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--cream-light);
+}
+
+.website-auditor-sample-output dt {
+  color: var(--accent);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.website-auditor-sample-output dd {
+  margin: 0;
+  color: rgba(26, 23, 20, 0.74);
+  line-height: 1.6;
+}
+
 .website-auditor-report {
   display: grid;
   gap: 1rem;
@@ -5845,10 +6048,15 @@ main.case-study-page-new {
   .website-auditor-stage-grid,
   .website-auditor-truth-boundary,
   .website-auditor-llm-boundary__grid,
+  .website-auditor-sample-output,
   .website-auditor-safety-grid,
   .website-auditor-result-grid,
   .website-auditor-finding-card__meta,
   .website-auditor-report__scores {
+    grid-template-columns: 1fr;
+  }
+
+  .website-auditor-sample-output dl > div {
     grid-template-columns: 1fr;
   }
 

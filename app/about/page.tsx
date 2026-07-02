@@ -50,6 +50,15 @@ const pageCopy = {
       'At Primor, I work close to CRM, lifecycle execution, luxury partners, and internal AI adoption. Independently, I build applied AI systems for brand, content, creative operations, research, and internal tools.',
       'The multicultural and visual side still matters: it helps me read tone, context, trust, and taste. That is useful when an AI workflow has to be adopted by real people, not just pass a demo.',
     ],
+    currentFocus: {
+      title: 'Current focus',
+      items: [
+        'CRM intelligence and lifecycle systems',
+        'AI workflow adoption for creative and marketing teams',
+        'Brand-system logic and campaign infrastructure',
+        'Internal tools, automation, and decision interfaces',
+      ],
+    },
     geography: {
       kicker: 'Geography',
       meta: '3 cities, 5 languages',
@@ -267,6 +276,15 @@ const pageCopy = {
       'En Primor trabajo muy cerca de CRM, ciclo de vida de cliente, marcas de lujo y adopción interna de IA. En paralelo, diseño sistemas de IA aplicada para marca, contenido, operaciones creativas, investigación y herramientas internas.',
       'La mirada multicultural y visual sigue siendo importante: me ayuda a leer tono, contexto, confianza y gusto. Eso importa cuando un flujo de IA tiene que ser adoptado por personas reales, no solo funcionar en una demo.',
     ],
+    currentFocus: {
+      title: 'Foco actual',
+      items: [
+        'Inteligencia CRM y sistemas de lifecycle',
+        'Adopción de IA para equipos creativos y de marketing',
+        'Lógica de sistemas de marca e infraestructura de campaña',
+        'Herramientas internas, automatización e interfaces de decisión',
+      ],
+    },
     geography: {
       kicker: 'Geografía',
       meta: '3 ciudades, 5 idiomas',
@@ -727,6 +745,14 @@ export default function AboutPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              <article className="about-current-focus" data-about-reveal>
+                <h3>{copy.currentFocus.title}</h3>
+                <ul>
+                  {copy.currentFocus.items.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
             </div>
           </div>
 

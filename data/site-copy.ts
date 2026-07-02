@@ -84,25 +84,33 @@ export const siteCopy = {
         ],
       },
       selectedAiSystems: {
-        eyebrow: 'Selected AI Systems',
-        title: 'Applied systems, not isolated prompts.',
+        eyebrow: 'Selected systems shipped',
+        title: 'Proof closer to the top.',
         description:
-          'A tighter selection of AI work where deterministic logic, evidence, interfaces, and bounded model behavior turn into usable internal tools.',
-        viewCase: 'View System Logic',
+          'A compact bridge into the strongest systems across marketing intelligence, machine learning, campaign strategy, and bounded reporting.',
+        viewCase: 'View case',
         viewAll: 'View all case studies',
         githubCta: 'View GitHub',
         cards: {
+          'campaign-pulse': {
+            label: 'Marketing intelligence',
+            proof:
+              'Marketing intelligence command center for newsletters, targets, audience pressure, and monthly reporting.',
+          },
+          demandos: {
+            label: 'Machine learning',
+            proof:
+              'Deterministic ML system for demand forecasting, stockout risk, and internal reorder guidance.',
+          },
+          'campaign-sandbox': {
+            label: 'Campaign strategy',
+            proof:
+              'AI-assisted strategy workspace for campaign routes, audience simulation, risk review, and execution planning.',
+          },
           'data-brief-ai': {
-            label: 'Bounded analytics workflow',
-            proof: 'CSV/XLSX reports with schema checks, controlled execution, and explainable outputs.',
-          },
-          'website-auditor': {
-            label: 'Evidence-backed audit workflow',
-            proof: 'Deterministic capture and scoring first; LLM synthesis only after evidence is accepted.',
-          },
-          'benchmark-dashboard': {
-            label: 'Data product proof',
-            proof: 'A reusable benchmark interface for rankings, forecasts, strategic signals, and decision-ready reading.',
+            label: 'Bounded reporting',
+            proof:
+              'Bounded reporting workflow that turns spreadsheets into grounded business reports without unsupported metrics.',
           },
         },
       },
@@ -305,10 +313,14 @@ export const siteCopy = {
       viewCaseStudy: 'View Case Study',
       nextProject: 'Next Project',
       caseStudyBadge: 'Case Study',
+      backToCaseStudies: 'Back to case studies',
+      gallery: 'Gallery',
       scroll: 'Scroll',
     },
     appsPage: {
-      title: 'Apps & Prototypes',
+      title: 'Tools and prototypes',
+      intro:
+        'Small operational tools, experiments, and product surfaces built to test workflow logic, data structure, and interface behavior.',
     },
     appDetailUi: {
       breadcrumbLabel: 'Apps',
@@ -406,25 +418,33 @@ export const siteCopy = {
         ],
       },
       selectedAiSystems: {
-        eyebrow: 'Sistemas de IA seleccionados',
-        title: 'Sistemas aplicados, no prompts aislados.',
+        eyebrow: 'Sistemas seleccionados',
+        title: 'Prueba más cerca del inicio.',
         description:
-          'Una selección más directa de trabajo con IA donde lógica determinista, evidencia, interfaces y modelos acotados se convierten en herramientas internas utilizables.',
+          'Un puente compacto hacia los sistemas principales: inteligencia de marketing, machine learning, estrategia de campaña y reporting acotado.',
         viewCase: 'Ver caso',
         viewAll: 'Ver todos los casos',
         githubCta: 'Ver GitHub',
         cards: {
+          'campaign-pulse': {
+            label: 'Inteligencia de marketing',
+            proof:
+              'Centro de mando para newsletters, objetivos, presión de audiencia e informes mensuales.',
+          },
+          demandos: {
+            label: 'Machine learning',
+            proof:
+              'Sistema determinista de ML para previsión de demanda, riesgo de stockout y guía interna de reposición.',
+          },
+          'campaign-sandbox': {
+            label: 'Estrategia de campaña',
+            proof:
+              'Workspace asistido por IA para rutas de campaña, simulación de audiencia, revisión de riesgo y planificación.',
+          },
           'data-brief-ai': {
-            label: 'Flujo analítico acotado',
-            proof: 'Informes desde CSV/XLSX con validación de esquema, ejecución controlada y resultados explicables.',
-          },
-          'website-auditor': {
-            label: 'Auditoría basada en evidencia',
-            proof: 'Primero captura y puntuación determinista; síntesis LLM solo cuando la evidencia ya está aceptada.',
-          },
-          'benchmark-dashboard': {
-            label: 'Prueba de producto de datos',
-            proof: 'Interfaz de benchmark reutilizable para rankings, previsiones, señales estratégicas y lectura orientada a decisión.',
+            label: 'Reporting acotado',
+            proof:
+              'Flujo de reporting que convierte hojas de cálculo en informes fundamentados sin métricas no soportadas.',
           },
         },
       },
@@ -627,10 +647,14 @@ export const siteCopy = {
       viewCaseStudy: 'Ver caso de estudio',
       nextProject: 'Siguiente proyecto',
       caseStudyBadge: 'Caso de estudio',
+      backToCaseStudies: 'Volver a casos',
+      gallery: 'Galería',
       scroll: 'Desplazar',
     },
     appsPage: {
-      title: 'Apps y prototipos',
+      title: 'Herramientas y prototipos',
+      intro:
+        'Pequeñas herramientas, experimentos y superficies de producto creadas para probar lógica de workflow, estructura de datos y comportamiento de interfaz.',
     },
     appDetailUi: {
       breadcrumbLabel: 'Apps',

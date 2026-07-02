@@ -237,6 +237,29 @@ export default function AISportsCampaignPage() {
                   ))}
                 </CaseStudyImageContainer>
               )}
+
+              <div
+                className="ai-sports-consistency-review"
+                aria-label={locale === 'es' ? 'Revisión de consistencia visual' : 'Visual consistency review'}
+              >
+                {(locale === 'es'
+                  ? [
+                      ['Consistente', 'La luz, el encuadre y la lectura de producto siguen dentro del mismo mundo de campaña.'],
+                      ['Revisar', 'La pose funciona, pero textura o styling necesitan revisión antes de selección final.'],
+                      ['Rompe sistema', 'El cambio altera escena, proporción o dirección de arte y debe descartarse.'],
+                    ]
+                  : [
+                      ['Pass', 'Lighting, framing, and product readability stay inside the same campaign world.'],
+                      ['Borderline', 'The pose works, but texture or styling needs review before final selection.'],
+                      ['Fail', 'The change alters scene, proportion, or art direction and should be rejected.'],
+                    ]
+                ).map(([label, description]) => (
+                  <article key={label}>
+                    <span>{label}</span>
+                    <p>{description}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </CaseStudySection>
         )}
@@ -257,7 +280,8 @@ export default function AISportsCampaignPage() {
           <CaseStudyGallery 
             rows={content.gallery.rows}
             accentColor={content.accentColor}
-                        />
+            locale={locale}
+          />
         )}
 
         {/* Results Section */}

@@ -8,7 +8,7 @@ interface SelectedAISystemsProps {
   locale?: Locale
 }
 
-const selectedSlugs = ['data-brief-ai', 'website-auditor', 'benchmark-dashboard'] as const
+const selectedSlugs = ['campaign-pulse', 'demandos', 'campaign-sandbox', 'data-brief-ai'] as const
 
 export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsProps) {
   const copy = getSiteCopy(locale).home.selectedAiSystems
@@ -18,8 +18,13 @@ export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsPr
     .filter((study): study is CaseStudy => Boolean(study))
 
   return (
-    <section id="selected-ai-systems" className="selected-ai-systems" aria-label={copy.eyebrow}>
+    <section id="selected-ai-systems" className="selected-ai-systems" aria-labelledby="selected-systems-title">
       <div className="selected-ai-systems__inner">
+        <div className="selected-ai-systems__header">
+          <p className="selected-ai-systems__eyebrow">{copy.eyebrow}</p>
+          <h2 id="selected-systems-title">{copy.title}</h2>
+          <p>{copy.description}</p>
+        </div>
         <div className="selected-ai-systems__grid">
           {selectedStudies.map((study, index) => {
             const cardCopy = copy.cards[study.slug as keyof typeof copy.cards]

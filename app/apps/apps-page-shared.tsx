@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getSiteCopy } from '@/data/site-copy'
 import { getApps } from '@/data/apps'
+import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import { type Locale } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -13,10 +14,10 @@ export function getAppsPageMetadata(locale: Locale = 'en'): Metadata {
   const isSpanish = locale === 'es'
 
   return buildPageMetadata({
-    title: isSpanish ? 'Apps y Prototipos' : 'Apps & Prototypes',
+    title: isSpanish ? 'Herramientas y Prototipos' : 'Tools and Prototypes',
     description: isSpanish
-      ? 'Apps y prototipos de producto de Raúl Mermans, pensados para explorar flujos de trabajo, interfaces y nuevos modelos operativos con una experiencia de usuario (UX) fluida y orientada a producto.'
-      : 'Apps and product prototypes by Raúl Mermans, built to test workflows, interfaces, and new operating models with calm, product-minded execution.',
+      ? 'Herramientas, prototipos y demos de Raúl Mermans para probar lógica de workflow, estructura de datos y comportamiento de interfaz.'
+      : 'Tools, prototypes, and demos by Raúl Mermans for testing workflow logic, data structure, and interface behavior.',
     path: '/apps',
     locale,
     image: {
@@ -35,7 +36,44 @@ interface AppsPageProps {
 
 export function AppsPageView({ locale = 'en' }: AppsPageProps) {
   const apps = getApps(locale)
+  const studies = getCaseStudies(locale)
   const copy = getSiteCopy(locale).appsPage
+  const isSpanish = locale === 'es'
+  const appBySlug = new Map(apps.map(app => [app.slug, app]))
+  const studyBySlug = new Map(studies.map(study => [study.slug, study]))
+  const launcherItems = [
+    {
+      title: 'TerritoryOps Spain',
+      use: appBySlug.get('territoryops-spain')?.cardDescription ?? '',
+      status: appBySlug.get('territoryops-spain')?.launchStage ?? '',
+      href: appBySlug.get('territoryops-spain')?.href ?? '/apps/territoryops-spain',
+      category: isSpanish ? 'Herramienta de workflow' : 'Workflow tool',
+      external: false,
+      icon: appBySlug.get('territoryops-spain')?.icon,
+    },
+    {
+      title: 'Overflow',
+      use: appBySlug.get('overflow')?.cardDescription ?? '',
+      status: appBySlug.get('overflow')?.launchStage ?? '',
+      href: appBySlug.get('overflow')?.href ?? '/apps/overflow',
+      category: isSpanish ? 'Prototipo móvil' : 'Mobile prototype',
+      external: false,
+      icon: appBySlug.get('overflow')?.icon,
+    },
+    ...['demandos', 'campaign-pulse', 'data-brief-ai']
+      .map(slug => studyBySlug.get(slug))
+      .filter((study): study is CaseStudy & { liveUrl: string } => Boolean(study?.liveUrl))
+      .map(study => ({
+        title: `${study.title} ${isSpanish ? 'demo' : 'live demo'}`,
+        use: study.description,
+        status: study.status ?? (isSpanish ? 'Demo público' : 'Public demo'),
+        href: study.liveUrl as string,
+        category: study.category ?? (isSpanish ? 'Producto' : 'Product surface'),
+        external: true,
+        icon: undefined,
+      })),
+  ]
+
   return (
     <>
       <Header locale={locale} />
@@ -54,8 +92,8 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            padding: 'var(--header-height) 24px 48px',
+            justifyContent: 'flex-start',
+            padding: 'calc(var(--header-height) + 72px) 24px 72px',
           }}
         >
           <h1
@@ -65,93 +103,134 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
               textTransform: 'uppercase',
               lineHeight: 0.88,
               color: 'var(--ink)',
-              marginBottom: '48px',
+              marginBottom: '16px',
               textAlign: 'center',
             }}
           >
             {copy.title}
           </h1>
+          <p
+            style={{
+              maxWidth: '720px',
+              margin: '0 auto 44px',
+              color: 'rgba(26, 23, 20, 0.68)',
+              fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+              lineHeight: 1.7,
+              textAlign: 'center',
+            }}
+          >
+            {copy.intro}
+          </p>
 
           <div
             style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 'clamp(24px, 7vw, 40px)',
-              alignItems: 'flex-start',
-              justifyContent: 'center',
-              maxWidth: '100%',
-              paddingBottom: '8px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
+              gap: '1px',
+              width: 'min(100%, 1120px)',
+              background: 'rgba(26, 23, 20, 0.14)',
             } as CSSProperties}
           >
-            {apps.map((app) => (
-              <Link
-                key={app.slug}
-                href={app.href}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px',
-                  flexShrink: 0,
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'transform 0.3s var(--ease)',
-                }}
-                className="group"
-              >
-                <div
-                  style={{
-                    width: 'clamp(132px, 38vw, 200px)',
-                    aspectRatio: '1 / 1',
-                    borderRadius: '26.6%',
-                    overflow: 'hidden',
-                    background: app.icon
-                      ? 'transparent'
-                      : `linear-gradient(135deg, ${app.theme.accent}, ${app.theme.accentSoft})`,
-                    boxShadow: '0 8px 40px rgba(0,0,0,0.15)',
-                    transition: 'transform 0.3s var(--ease), box-shadow 0.3s var(--ease)',
-                  }}
-                  className="group-hover:scale-105"
-                >
-                  {app.icon ? (
-                    <Image
-                      src={app.icon}
-                      alt={`${app.name} icon`}
-                      width={200}
-                      height={200}
-                      className="h-full w-full object-cover"
-                      style={{ borderRadius: '26.6%' }}
-                    />
-                  ) : (
-                    <div
+            {launcherItems.map((item) => {
+              const content = (
+                <>
+                  <span
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '16px',
+                      color: 'rgba(26, 23, 20, 0.5)',
+                      fontFamily: 'var(--font-mono), "Space Mono", monospace',
+                      fontSize: '0.72rem',
+                      letterSpacing: '0.12em',
+                      lineHeight: 1.5,
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    <span>{item.category}</span>
+                    <span>{item.external ? '↗' : '→'}</span>
+                  </span>
+                  {item.icon && (
+                    <span
                       style={{
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontSize: '4rem',
-                        fontWeight: 700,
+                        display: 'block',
+                        width: '56px',
+                        height: '56px',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        boxShadow: '0 10px 24px rgba(0,0,0,0.12)',
                       }}
                     >
-                      {app.name.charAt(0)}
-                    </div>
+                      <Image src={item.icon} alt="" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </span>
                   )}
-                </div>
+                  <span style={{ display: 'grid', gap: '10px' }}>
+                    <strong
+                      style={{
+                        color: 'var(--ink)',
+                        fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif',
+                        fontSize: 'clamp(2.4rem, 4vw, 3.6rem)',
+                        fontWeight: 400,
+                        letterSpacing: 'var(--tracking-tight)',
+                        lineHeight: 0.9,
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      {item.title}
+                    </strong>
+                    <span style={{ color: 'rgba(26, 23, 20, 0.72)', lineHeight: 1.6 }}>
+                      {item.use}
+                    </span>
+                  </span>
+                  <span
+                    style={{
+                      marginTop: 'auto',
+                      color: 'var(--accent)',
+                      fontFamily: 'var(--font-mono), "Space Mono", monospace',
+                      fontSize: '0.76rem',
+                      letterSpacing: '0.1em',
+                      lineHeight: 1.5,
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {item.status}
+                  </span>
+                </>
+              )
 
-                <span
-                  style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--ink-soft)',
-                    textAlign: 'center',
-                    letterSpacing: '0.04em',
-                  }}
+              const style = {
+                display: 'grid',
+                minHeight: '290px',
+                gap: '24px',
+                alignContent: 'start',
+                padding: 'clamp(22px, 3vw, 32px)',
+                background: 'var(--cream-light)',
+                textDecoration: 'none',
+                color: 'inherit',
+                transition: 'background 0.3s var(--ease), transform 0.3s var(--ease)',
+              }
+
+              return item.external ? (
+                <a
+                  key={`${item.title}-${item.href}`}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={style}
                 >
-                  {app.name}
-                </span>
-              </Link>
-            ))}
+                  {content}
+                </a>
+              ) : (
+                <Link
+                  key={`${item.title}-${item.href}`}
+                  href={item.href}
+                  style={style}
+                >
+                  {content}
+                </Link>
+              )
+            })}
           </div>
         </section>
       </main>

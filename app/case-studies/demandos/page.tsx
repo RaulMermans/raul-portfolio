@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
@@ -248,10 +249,16 @@ const screenshots = {
   en: [
     {
       src: `${imageBase}/02-home-dashboard.png`,
-      title: 'Overview',
+      title: 'Cockpit',
       caption:
-        'Shows whether the pipeline is ready and which inventory decisions need attention first.',
+        'Shows the operator what needs attention first: monitored SKUs, forecast quality, stockout exposure, and open reorder decisions.',
       wide: true,
+    },
+    {
+      src: `${imageBase}/03-pipeline-completed.png`,
+      title: 'Pipeline Trace',
+      caption:
+        'Shows whether the deterministic data pipeline completed cleanly before downstream forecasts and risks are trusted.',
     },
     {
       src: `${imageBase}/04-forecasts.png`,
@@ -261,27 +268,33 @@ const screenshots = {
     },
     {
       src: `${imageBase}/05-inventory-risk.png`,
-      title: 'Inventory Risk',
+      title: 'Risk Board',
       caption:
         'Ranks product/store combinations by urgency, lost-sales exposure, and days until stockout.',
     },
     {
       src: `${imageBase}/06-recommendations.png`,
-      title: 'Recommendations',
+      title: 'Reorder Queue',
       caption:
         'Turns forecast and risk into internal reorder guidance without creating purchase orders.',
     },
     {
       src: `${imageBase}/07-model-performance.png`,
-      title: 'Model Performance',
+      title: 'Forecast Trust',
       caption:
-        'Shows whether the ML model is useful enough to trust as a planning signal.',
+        'Shows whether the model is useful enough to trust as a planning signal.',
     },
     {
       src: `${imageBase}/08-data-health.png`,
-      title: 'Data Health',
+      title: 'Data Quality',
       caption:
-        'Shows whether the uploaded or bundled data is complete enough for reliable planning.',
+        'Shows whether the uploaded or bundled records are complete enough for reliable planning.',
+    },
+    {
+      src: `${imageBase}/09-product-drilldown.png`,
+      title: 'Product Drilldown',
+      caption:
+        'Connects SKU-level demand, inventory, and risk signals to a single operational view.',
     },
     {
       src: `${imageBase}/13-csv-upload.png`,
@@ -303,7 +316,7 @@ const screenshots = {
     },
     {
       src: `${imageBase}/16-connectors.png`,
-      title: 'Connectors',
+      title: 'Data Sources',
       caption:
         'Shows connector readiness while keeping live external calls disabled.',
       wide: true,
@@ -312,10 +325,16 @@ const screenshots = {
   es: [
     {
       src: `${imageBase}/02-home-dashboard.png`,
-      title: 'Overview',
+      title: 'Cockpit',
       caption:
-        'Muestra si el pipeline está listo y qué decisiones de inventario requieren atención primero.',
+        'Muestra qué requiere atención primero: SKUs monitorizados, calidad del forecast, exposición a stockout y decisiones abiertas de reposición.',
       wide: true,
+    },
+    {
+      src: `${imageBase}/03-pipeline-completed.png`,
+      title: 'Trazabilidad del pipeline',
+      caption:
+        'Muestra si el pipeline determinista terminó correctamente antes de confiar en forecasts y riesgos posteriores.',
     },
     {
       src: `${imageBase}/04-forecasts.png`,
@@ -325,33 +344,39 @@ const screenshots = {
     },
     {
       src: `${imageBase}/05-inventory-risk.png`,
-      title: 'Inventory Risk',
+      title: 'Panel de riesgo',
       caption:
         'Ordena combinaciones producto/tienda por urgencia, exposición a ventas perdidas y días hasta stockout.',
     },
     {
       src: `${imageBase}/06-recommendations.png`,
-      title: 'Recommendations',
+      title: 'Cola de reposición',
       caption:
         'Convierte forecast y riesgo en orientación interna de reposición sin crear órdenes de compra.',
     },
     {
       src: `${imageBase}/07-model-performance.png`,
-      title: 'Model Performance',
+      title: 'Confianza del forecast',
       caption:
-        'Muestra si el modelo ML es suficientemente útil como señal de planificación.',
+        'Muestra si el modelo es suficientemente útil como señal de planificación.',
     },
     {
       src: `${imageBase}/08-data-health.png`,
-      title: 'Data Health',
+      title: 'Calidad de datos',
       caption:
-        'Muestra si los datos cargados o incluidos son completos para planificar con fiabilidad.',
+        'Muestra si los registros cargados o incluidos son completos para planificar con fiabilidad.',
+    },
+    {
+      src: `${imageBase}/09-product-drilldown.png`,
+      title: 'Detalle de producto',
+      caption:
+        'Conecta demanda, inventario y riesgo a nivel SKU en una vista operativa.',
     },
     {
       src: `${imageBase}/13-csv-upload.png`,
-      title: 'CSV Upload',
+      title: 'Carga CSV',
       caption:
-        'Permite revisar CSV locales mientras valida esquema y filas rechazadas.',
+        'Permite cargar CSV locales mientras valida esquema y filas rechazadas.',
     },
     {
       src: `${imageBase}/14-monitoring.png`,
@@ -361,13 +386,13 @@ const screenshots = {
     },
     {
       src: `${imageBase}/15-scenarios.png`,
-      title: 'Scenarios',
+      title: 'Escenarios',
       caption:
         'Prueba supuestos de demanda, lead time y proveedor sin mutar datos canónicos.',
     },
     {
       src: `${imageBase}/16-connectors.png`,
-      title: 'Connectors',
+      title: 'Fuentes de datos',
       caption:
         'Muestra preparación de conectores manteniendo desactivadas las llamadas externas live.',
       wide: true,
@@ -440,6 +465,13 @@ const safetyRows = {
   ],
 } as const
 
+type DemandOsScreenshot = {
+  readonly src: string
+  readonly title: string
+  readonly caption: string
+  readonly wide?: boolean
+}
+
 function SectionHeading({
   eyebrow,
   title,
@@ -462,7 +494,7 @@ function ScreenshotFigure({
   shot,
   altPrefix,
 }: {
-  shot: (typeof screenshots)['en'][number]
+  shot: DemandOsScreenshot
   altPrefix: string
 }) {
   return (
@@ -507,14 +539,14 @@ export default function DemandOsPage() {
       ? 'Inventory decisions from raw commerce data.'
       : 'Decisiones de inventario desde datos raw de comercio.',
     description: isEnglish
-      ? 'DemandOS turns raw synthetic operational entities — suppliers, products, stores, orders, inventory snapshots, promotions, and purchase orders — into features, forecasts, baselines, stockout risk, reorder recommendations, diagnostics, and monitoring signals. Raw records in. Inventory decisions out. No fake dashboard metrics in between.'
-      : 'DemandOS convierte entidades operativas sintéticas —proveedores, productos, tiendas, pedidos, snapshots de inventario, promociones y órdenes de compra— en features, forecasts, baselines, riesgo de stockout, recomendaciones de reposición, diagnósticos y señales de monitoring. Registros raw dentro. Decisiones de inventario fuera. Sin métricas falsas de dashboard entre medias.',
+      ? 'DemandOS converts raw synthetic commerce records — suppliers, products, stores, orders, inventory snapshots, promotions, and purchase orders — into forecasts, risk signals, reorder guidance, diagnostics, and monitoring surfaces. Raw records in. Inventory decisions out. No fake dashboard metrics in between.'
+      : 'DemandOS convierte registros sintéticos de comercio —proveedores, productos, tiendas, pedidos, snapshots de inventario, promociones y órdenes de compra— en forecasts, señales de riesgo, orientación de reposición, diagnósticos y superficies de monitoring. Registros raw dentro. Decisiones de inventario fuera. Sin métricas falsas de dashboard entre medias.',
     heroAlt: isEnglish
-      ? 'DemandOS operational overview showing pipeline readiness, inventory risk, and reorder recommendations'
-      : 'Overview operativo de DemandOS con readiness del pipeline, riesgo de inventario y recomendaciones',
+      ? 'DemandOS cockpit showing pipeline readiness, inventory risk, and reorder recommendations'
+      : 'Cockpit operativo de DemandOS con readiness del pipeline, riesgo de inventario y recomendaciones',
     heroCaption: isEnglish
-      ? 'Public demo with synthetic data and external side effects disabled.'
-      : 'Demo pública con datos sintéticos y efectos externos desactivados.',
+      ? 'Public demo with synthetic operational data and external side effects disabled.'
+      : 'Demo pública con datos operativos sintéticos y efectos externos desactivados.',
     projectLinks: isEnglish ? 'Project links' : 'Enlaces del proyecto',
     demo: isEnglish ? 'View demo' : 'Ver demo',
     github: isEnglish ? 'View GitHub' : 'Ver GitHub',
@@ -648,23 +680,7 @@ export default function DemandOsPage() {
           </figure>
         </section>
 
-        <nav className="data-brief-mini-nav" aria-label={copy.navAria}>
-          <ul>
-            {copy.nav.map(([label, href], index) => (
-              <li key={href}>
-                <a href={href}>{label}</a>
-                {index < copy.nav.length - 1 && (
-                  <span
-                    className="data-brief-mini-nav__separator"
-                    aria-hidden="true"
-                  >
-                    /
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <CaseStudyMiniNav items={copy.nav} ariaLabel={copy.navAria} />
 
         <section
           id="thesis"
