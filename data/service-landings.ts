@@ -127,7 +127,7 @@ const englishLandings: ServiceLanding[] = [
       {
         step: '02',
         title: 'Define system logic',
-        body: 'Decide where AI adds leverage, which inputs need structure, and where people review or approve.',
+        body: 'Decide where AI adds useful force, which inputs need structure, and where people review or approve.',
       },
       {
         step: '03',
