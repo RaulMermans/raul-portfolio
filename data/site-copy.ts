@@ -156,9 +156,9 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'About',
-        title: 'AI systems builder with brand intelligence.',
+        title: 'Systems behind creative work.',
         body:
-          'I work at the intersection of <span class="highlight">AI systems</span>, <span class="highlight">brand strategy</span>, and <span class="highlight">product execution</span>, building tools and workflows that are technically structured, commercially useful, and culturally aware.',
+          'I build <span class="highlight">AI-assisted tools</span>, <span class="highlight">CRM logic</span>, and <span class="highlight">brand workflows</span> that help creative and marketing teams turn scattered inputs into clearer decisions.',
         cta: 'View Profile',
       },
       services: {
@@ -490,9 +490,9 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'Sobre mí',
-        title: 'Constructor de sistemas de IA con inteligencia de marca.',
+        title: 'Sistemas detrás del trabajo creativo.',
         body:
-          'Trabajo en la intersección entre <span class="highlight">sistemas de IA</span>, <span class="highlight">estrategia de marca</span> y <span class="highlight">ejecución de producto</span>, construyendo herramientas y flujos técnicamente sólidos, comercialmente útiles y culturalmente conscientes.',
+          'Construyo <span class="highlight">herramientas asistidas por IA</span>, <span class="highlight">lógica CRM</span> y <span class="highlight">workflows de marca</span> que ayudan a equipos creativos y de marketing a convertir inputs dispersos en decisiones más claras.',
         cta: 'Leer más',
       },
       services: {
