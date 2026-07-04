@@ -25,35 +25,43 @@ type Chapter = {
 const pageCopy = {
   en: {
     heroEyebrow: 'Raúl Mermans / Operating portrait',
+    heroName: ['Raúl', 'Mermans'],
     heroTitle: 'I build the systems behind creative work.',
     heroLede:
-      'I started in marketing and brand, moved through CRM, luxury retail, and visual practice, and now build AI-assisted tools that help teams make better decisions without losing taste, context, or control.',
+      'My work sits between personal projects, photography, brand worlds, and technical AI systems: tools, images, workflows, and experiments that keep creative judgment close to the machine.',
     portraitAlt: 'Portrait of Raúl Mermans',
     scroll: 'Scroll',
+    snapshotTitle: 'CV snapshot',
+    snapshot: [
+      ['Role', 'Creative AI systems'],
+      ['Base', 'Madrid'],
+      ['Education', 'BBA Marketing, IE University'],
+      ['Now', 'Personal projects + visual practice'],
+    ],
     heroMeta: [
       'Based in Madrid',
       'From Málaga',
-      'Marketing · CRM · AI systems',
+      'Creative systems · AI tools · photography',
       '5 languages',
-      'Building internal tools and creative workflows',
+      'Building personal tools and visual workflows',
     ],
-    portraitLabels: ['CRM', 'Brand systems', 'Retail', 'AI tools', 'Visual practice', 'Madrid', 'Luxury partners', '8M+ users'],
+    portraitLabels: ['Photography', 'AI tools', 'Brand worlds', 'Personal projects', 'Visual practice', 'Madrid', 'Interfaces', 'Creative systems'],
     proofLabel: 'Grounded proof points',
     proof: [
       {
         number: '01',
-        title: 'CRM at scale',
-        body: 'Lifecycle and CRM work around an 8M+ user database, commercial campaigns, segmentation, and adoption inside a large beauty retailer.',
+        title: 'Personal systems',
+        body: 'Independent projects built as working prototypes: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent, and this portfolio.',
       },
       {
         number: '02',
-        title: 'Systems that ship',
-        body: 'Portfolio projects built as working prototypes: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
+        title: 'Image practice',
+        body: 'Photography, album covers, visual studies, and generative experiments used as a real judgment layer around technical tools.',
       },
       {
         number: '03',
         title: 'Taste as interface',
-        body: 'Photography, visual studies, luxury references, and brand systems used as the judgment layer around technical tools.',
+        body: 'The through-line is creative control: interfaces, prompts, data boundaries, and review loops that keep AI useful without flattening the work.',
       },
     ],
     profileTitle: 'Operating profile',
@@ -63,8 +71,8 @@ const pageCopy = {
       ['Base', 'Madrid'],
       ['Origin', 'Málaga'],
       ['Education', 'BBA Marketing, IE University'],
-      ['Current context', 'CRM, lifecycle, luxury partners, AI adoption'],
-      ['Independent work', 'AI systems, campaign tools, data products, brand workflows'],
+      ['Current context', 'Personal tools, photography, brand worlds, AI workflows'],
+      ['Independent work', 'AI systems, campaign tools, data products, visual workflows'],
       ['Visual practice', 'Photography, album covers, image systems, art direction'],
       ['Tools', 'Next.js, TypeScript, Python, n8n, Codex, Claude Code, OpenAI workflows'],
     ],
@@ -72,28 +80,28 @@ const pageCopy = {
     focusBody:
       'I am interested in the layer between strategy and execution: the tools, rules, interfaces, and workflows that make good judgment repeatable.',
     focusItems: [
-      'CRM intelligence and lifecycle systems',
-      'AI workflow adoption inside creative and marketing teams',
-      'Campaign and brand infrastructure',
-      'Internal tools that turn scattered inputs into decisions',
+      'Personal AI tools for research, campaigns, and creative production',
+      'Photography and visual systems as a way to train taste',
+      'Brand worlds, campaign logic, and controlled generative workflows',
+      'Interfaces that turn scattered creative inputs into decisions',
     ],
     vocabularyTitle: 'Working vocabulary',
     vocabularyIntro: 'Fewer terms. More useful precision.',
     vocabulary: [
-      'CRM',
-      'Lifecycle',
+      'Photography',
+      'Personal tools',
       'Campaign logic',
       'Brand memory',
       'Interface rhythm',
       'Data boundaries',
       'Human review',
-      'Luxury codes',
-      'Adoption',
+      'Visual systems',
+      'Generative control',
       'Operational taste',
     ],
     chaptersTitle: 'Chapters, not job titles.',
     chaptersIntro:
-      'The path is less a ladder than a set of contexts: business school, project rooms, service culture, prototypes, retail scale, and the loop I am building now.',
+      'The path is less a ladder than a set of contexts: business school, project rooms, service culture, photography, prototypes, and the creative-technical loop I am building now.',
     chapters: [
       {
         date: '2021-2025',
@@ -130,23 +138,23 @@ const pageCopy = {
       {
         date: '2025',
         marker: '05',
-        title: 'Primor - working inside scale',
+        title: 'Scale - learning constraints',
         location: 'Perfumerias Primor',
-        body: 'CRM, lifecycle execution, an 8M+ user database, luxury partners, and internal AI adoption make the constraints real.',
-        tags: ['CRM', '8M+ users', 'Retail'],
+        body: 'Professional work adds useful pressure: real audiences, commercial pacing, luxury partners, and the discipline of shipping inside constraints.',
+        tags: ['Scale', 'Partners', 'Constraints'],
       },
       {
         date: 'Now',
         marker: '06',
-        title: 'Now - building the loop',
-        location: 'Systems behind the work',
-        body: 'Campaign systems, decision interfaces, AI workflows, and brand infrastructure that help good judgment travel further.',
-        tags: ['Campaigns', 'Interfaces', 'Brand rules'],
+        title: 'Now - building the creative loop',
+        location: 'Personal projects and visual systems',
+        body: 'Photography, campaign tools, decision interfaces, AI workflows, and brand infrastructure that help good judgment travel further.',
+        tags: ['Photography', 'AI tools', 'Interfaces'],
       },
     ] satisfies Chapter[],
     originsTitle: 'Where the work comes from',
     originsIntro:
-      'The page is digital, but the references are physical: southern light, Madrid retail pace, Orlando service culture, and language as a design constraint.',
+      'The page is digital, but the references are physical: southern light, camera walks, Madrid project rhythm, Orlando service culture, and language as a design constraint.',
     cities: [
       {
         city: 'Málaga',
@@ -157,8 +165,8 @@ const pageCopy = {
       {
         city: 'Madrid',
         coord: '40.4N · 3.7W',
-        label: 'Brand, CRM, retail, execution',
-        body: 'The operating base: university, client work, Primor, and the pace of building useful things.',
+        label: 'Projects, systems, images, execution',
+        body: 'The operating base: university, personal builds, photography, and the pace of turning ideas into working surfaces.',
       },
       {
         city: 'Orlando',
@@ -239,35 +247,43 @@ const pageCopy = {
   },
   es: {
     heroEyebrow: 'Raúl Mermans / Perfil operativo',
+    heroName: ['Raúl', 'Mermans'],
     heroTitle: 'Construyo los sistemas detrás del trabajo creativo.',
     heroLede:
-      'Empecé desde marketing y marca, pasé por CRM, retail beauty, lujo y práctica visual, y ahora construyo herramientas asistidas por IA que ayudan a equipos a decidir mejor sin perder gusto, contexto ni control.',
+      'Mi trabajo vive entre proyectos personales, fotografía, mundos de marca y sistemas técnicos de IA: herramientas, imágenes, workflows y experimentos que mantienen el criterio creativo cerca de la máquina.',
     portraitAlt: 'Retrato de Raúl Mermans',
     scroll: 'Scroll',
+    snapshotTitle: 'Resumen CV',
+    snapshot: [
+      ['Rol', 'Sistemas creativos IA'],
+      ['Base', 'Madrid'],
+      ['Formación', 'BBA Marketing, IE University'],
+      ['Ahora', 'Proyectos propios + práctica visual'],
+    ],
     heroMeta: [
       'Madrid',
       'Málaga',
-      'Marketing · CRM · sistemas IA',
+      'Sistemas creativos · IA · fotografía',
       '5 idiomas',
-      'Herramientas internas y workflows creativos',
+      'Herramientas propias y workflows visuales',
     ],
-    portraitLabels: ['CRM', 'Sistemas de marca', 'Retail', 'Herramientas IA', 'Práctica visual', 'Madrid', 'Partners de lujo', '8M+ usuarios'],
+    portraitLabels: ['Fotografía', 'Herramientas IA', 'Mundos de marca', 'Proyectos propios', 'Práctica visual', 'Madrid', 'Interfaces', 'Sistemas creativos'],
     proofLabel: 'Pruebas concretas',
     proof: [
       {
         number: '01',
-        title: 'CRM a escala',
-        body: 'Trabajo de lifecycle y CRM alrededor de una base de 8M+ usuarios, campañas comerciales, segmentación y adopción interna en retail beauty.',
+        title: 'Sistemas propios',
+        body: 'Proyectos independientes construidos como prototipos funcionales: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent y este portfolio.',
       },
       {
         number: '02',
-        title: 'Sistemas que se publican',
-        body: 'Proyectos construidos como prototipos funcionales: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
+        title: 'Práctica de imagen',
+        body: 'Fotografía, portadas, estudios visuales y experimentos generativos como capa real de criterio alrededor de herramientas técnicas.',
       },
       {
         number: '03',
         title: 'El gusto como interfaz',
-        body: 'Fotografía, estudios visuales, referencias de lujo y sistemas de marca como capa de criterio alrededor de herramientas técnicas.',
+        body: 'La línea común es el control creativo: interfaces, prompts, límites de datos y bucles de revisión que hacen útil la IA sin aplanar el trabajo.',
       },
     ],
     profileTitle: 'Perfil operativo',
@@ -277,8 +293,8 @@ const pageCopy = {
       ['Base', 'Madrid'],
       ['Origen', 'Málaga'],
       ['Formación', 'BBA Marketing, IE University'],
-      ['Contexto actual', 'CRM, lifecycle, partners de lujo, adopción IA'],
-      ['Trabajo independiente', 'Sistemas IA, herramientas de campaña, productos de datos, workflows de marca'],
+      ['Contexto actual', 'Herramientas propias, fotografía, mundos de marca, workflows IA'],
+      ['Trabajo independiente', 'Sistemas IA, herramientas de campaña, productos de datos, workflows visuales'],
       ['Práctica visual', 'Fotografía, portadas, sistemas de imagen, dirección de arte'],
       ['Herramientas', 'Next.js, TypeScript, Python, n8n, Codex, Claude Code, workflows OpenAI'],
     ],
@@ -286,28 +302,28 @@ const pageCopy = {
     focusBody:
       'Me interesa la capa entre estrategia y ejecución: las herramientas, reglas, interfaces y workflows que hacen repetible el buen criterio.',
     focusItems: [
-      'Inteligencia CRM y sistemas de lifecycle',
-      'Adopción de IA dentro de equipos creativos y de marketing',
-      'Infraestructura de campaña y marca',
-      'Herramientas internas que convierten inputs dispersos en decisiones',
+      'Herramientas IA propias para investigación, campañas y producción creativa',
+      'Fotografía y sistemas visuales como forma de entrenar el gusto',
+      'Mundos de marca, lógica de campaña y workflows generativos controlados',
+      'Interfaces que convierten inputs creativos dispersos en decisiones',
     ],
     vocabularyTitle: 'Vocabulario de trabajo',
     vocabularyIntro: 'Menos términos. Más precisión útil.',
     vocabulary: [
-      'CRM',
-      'Lifecycle',
+      'Fotografía',
+      'Herramientas propias',
       'Lógica de campaña',
       'Memoria de marca',
       'Ritmo de interfaz',
       'Límites de datos',
       'Revisión humana',
-      'Códigos de lujo',
-      'Adopción',
+      'Sistemas visuales',
+      'Control generativo',
       'Gusto operativo',
     ],
     chaptersTitle: 'Capítulos, no solo cargos.',
     chaptersIntro:
-      'La trayectoria se lee mejor como una serie de contextos: universidad, equipos, servicio, prototipos, escala retail y el bucle que estoy construyendo ahora.',
+      'La trayectoria se lee mejor como una serie de contextos: universidad, equipos, servicio, fotografía, prototipos y el bucle creativo-técnico que estoy construyendo ahora.',
     chapters: [
       {
         date: '2021-2025',
@@ -344,23 +360,23 @@ const pageCopy = {
       {
         date: '2025',
         marker: '05',
-        title: 'Primor - trabajar dentro de escala',
+        title: 'Escala - aprender restricciones',
         location: 'Perfumerias Primor',
-        body: 'CRM, lifecycle, una base de 8M+ usuarios, partners de lujo y adopción interna de IA hacen que las restricciones sean reales.',
-        tags: ['CRM', '8M+ usuarios', 'Retail'],
+        body: 'El trabajo profesional añade presión útil: audiencias reales, ritmo comercial, partners de lujo y la disciplina de publicar dentro de restricciones.',
+        tags: ['Escala', 'Partners', 'Restricciones'],
       },
       {
         date: 'Ahora',
         marker: '06',
-        title: 'Ahora - construir el bucle',
-        location: 'Sistemas detrás del trabajo',
-        body: 'Sistemas de campaña, interfaces de decisión, workflows IA e infraestructura de marca para que el buen criterio viaje mejor.',
-        tags: ['Campañas', 'Interfaces', 'Reglas'],
+        title: 'Ahora - construir el bucle creativo',
+        location: 'Proyectos propios y sistemas visuales',
+        body: 'Fotografía, herramientas de campaña, interfaces de decisión, workflows IA e infraestructura de marca para que el buen criterio viaje mejor.',
+        tags: ['Fotografía', 'Herramientas IA', 'Interfaces'],
       },
     ] satisfies Chapter[],
     originsTitle: 'De dónde sale el trabajo',
     originsIntro:
-      'La página es digital, pero las referencias son físicas: luz del sur, ritmo retail de Madrid, cultura de servicio en Orlando e idioma como restricción de diseño.',
+      'La página es digital, pero las referencias son físicas: luz del sur, paseos con cámara, ritmo de proyectos en Madrid, cultura de servicio en Orlando e idioma como restricción de diseño.',
     cities: [
       {
         city: 'Málaga',
@@ -371,8 +387,8 @@ const pageCopy = {
       {
         city: 'Madrid',
         coord: '40.4N · 3.7W',
-        label: 'Marca, CRM, retail, ejecución',
-        body: 'La base operativa: universidad, proyectos con cliente, Primor y el ritmo de construir cosas útiles.',
+        label: 'Proyectos, sistemas, imagen, ejecución',
+        body: 'La base operativa: universidad, builds propios, fotografía y el ritmo de convertir ideas en superficies funcionales.',
       },
       {
         city: 'Orlando',
@@ -453,10 +469,13 @@ const pageCopy = {
   },
 } satisfies Record<LocaleKey, {
   heroEyebrow: string
+  heroName: string[]
   heroTitle: string
   heroLede: string
   portraitAlt: string
   scroll: string
+  snapshotTitle: string
+  snapshot: string[][]
   heroMeta: string[]
   portraitLabels: string[]
   proofLabel: string
@@ -651,28 +670,46 @@ export default function AboutPage() {
             <div className="about-hero-grid">
               <div className="about-hero-copy" data-about-reveal>
                 <p className="about-landing__eyebrow">{copy.heroEyebrow}</p>
+                <div className="about-hero-signature" aria-hidden="true">
+                  <span>{copy.heroName[0]}</span>
+                  <span>{copy.heroName[1]}</span>
+                </div>
                 <h1 id="about-landing-title">{copy.heroTitle}</h1>
                 <p>{copy.heroLede}</p>
               </div>
 
-              <figure className="about-landing__portrait" data-about-reveal>
-                <div className="about-landing__portrait-frame">
-                  <Image
-                    src="/images/about/profile.webp"
-                    alt={copy.portraitAlt}
-                    fill
-                    priority
-                    quality={88}
-                    sizes="(max-width: 900px) 82vw, 420px"
-                  />
-                </div>
-                <figcaption className="sr-only">{copy.portraitAlt}</figcaption>
-                <div className="about-portrait-labels" aria-hidden="true">
-                  {copy.portraitLabels.map((label) => (
-                    <span key={label}>{label}</span>
-                  ))}
-                </div>
-              </figure>
+              <div className="about-hero-aside">
+                <figure className="about-landing__portrait" data-about-reveal>
+                  <div className="about-landing__portrait-frame">
+                    <Image
+                      src="/images/about/profile.webp"
+                      alt={copy.portraitAlt}
+                      fill
+                      priority
+                      quality={88}
+                      sizes="(max-width: 900px) 82vw, 420px"
+                    />
+                  </div>
+                  <figcaption className="sr-only">{copy.portraitAlt}</figcaption>
+                  <div className="about-portrait-labels" aria-hidden="true">
+                    {copy.portraitLabels.map((label) => (
+                      <span key={label}>{label}</span>
+                    ))}
+                  </div>
+                </figure>
+
+                <aside className="about-cv-panel" aria-label={copy.snapshotTitle} data-about-reveal>
+                  <p>{copy.snapshotTitle}</p>
+                  <dl>
+                    {copy.snapshot.map(([label, value]) => (
+                      <div key={label}>
+                        <dt>{label}</dt>
+                        <dd>{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </aside>
+              </div>
             </div>
 
             <div className="about-hero-meta" aria-label={locale === 'es' ? 'Resumen de perfil' : 'Profile summary'} data-about-reveal>
