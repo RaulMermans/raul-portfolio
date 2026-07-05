@@ -2438,7 +2438,8 @@ main.case-study-page-new {
 .data-brief-mini-nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: inherit;
+  column-gap: 0.4rem;
+  row-gap: 0.35rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2447,7 +2448,7 @@ main.case-study-page-new {
 .data-brief-mini-nav li {
   display: inline-flex;
   align-items: center;
-  gap: inherit;
+  gap: 0.4rem;
 }
 
 .data-brief-mini-nav__separator {

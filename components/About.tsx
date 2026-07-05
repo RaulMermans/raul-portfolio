@@ -65,17 +65,17 @@ export default function About({ locale = 'en' }: AboutProps) {
           <p className="about__text reveal reveal-delay-2">
             {locale === 'es' ? (
               <>
-                Trabajo en la intersección entre <span className="highlight">sistemas de IA</span>,{' '}
-                <span className="highlight">estrategia de marca</span> y{' '}
-                <span className="highlight">ejecución de producto</span>, construyendo herramientas y flujos
-                técnicamente sólidos, comercialmente útiles y culturalmente conscientes.
+                Construyo <span className="highlight">herramientas asistidas por IA</span>,{' '}
+                <span className="highlight">lógica CRM</span> y{' '}
+                <span className="highlight">workflows de marca</span> que convierten inputs dispersos
+                en decisiones más claras sin perder criterio visual ni control humano.
               </>
             ) : (
               <>
-                I work at the intersection of <span className="highlight">AI systems</span>,{' '}
-                <span className="highlight">brand strategy</span>, and{' '}
-                <span className="highlight">product execution</span>, building tools and workflows that are
-                technically structured, commercially useful, and culturally aware.
+                I build <span className="highlight">AI-assisted tools</span>,{' '}
+                <span className="highlight">CRM logic</span>, and{' '}
+                <span className="highlight">brand workflows</span> that turn scattered inputs into clearer
+                decisions without losing visual judgment or human control.
               </>
             )}
           </p>

@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getSiteCopy } from '@/data/site-copy'
 import { getApps } from '@/data/apps'
-import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import { type Locale } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -14,10 +13,10 @@ export function getAppsPageMetadata(locale: Locale = 'en'): Metadata {
   const isSpanish = locale === 'es'
 
   return buildPageMetadata({
-    title: isSpanish ? 'Herramientas y Prototipos' : 'Tools and Prototypes',
+    title: isSpanish ? 'Apps y Prototipos' : 'Apps & Prototypes',
     description: isSpanish
-      ? 'Herramientas, prototipos y demos de Raúl Mermans para probar lógica de workflow, estructura de datos y comportamiento de interfaz.'
-      : 'Tools, prototypes, and demos by Raúl Mermans for testing workflow logic, data structure, and interface behavior.',
+      ? 'Apps y prototipos de Raúl Mermans: TerritoryOps Spain y Overflow.'
+      : 'Apps and prototypes by Raúl Mermans: TerritoryOps Spain and Overflow.',
     path: '/apps',
     locale,
     image: {
@@ -25,8 +24,8 @@ export function getAppsPageMetadata(locale: Locale = 'en'): Metadata {
       alt: isSpanish ? 'Apps y prototipos de Raúl Mermans' : 'Apps and prototypes by Raúl Mermans',
     },
     keywords: isSpanish
-      ? ['apps', 'prototipos de producto', 'herramientas con IA', 'conceptos de interfaz']
-      : ['apps', 'product prototypes', 'AI tools', 'interface concepts'],
+      ? ['apps', 'prototipos de producto', 'TerritoryOps Spain', 'Overflow']
+      : ['apps', 'product prototypes', 'TerritoryOps Spain', 'Overflow'],
   })
 }
 
@@ -36,43 +35,8 @@ interface AppsPageProps {
 
 export function AppsPageView({ locale = 'en' }: AppsPageProps) {
   const apps = getApps(locale)
-  const studies = getCaseStudies(locale)
   const copy = getSiteCopy(locale).appsPage
   const isSpanish = locale === 'es'
-  const appBySlug = new Map(apps.map(app => [app.slug, app]))
-  const studyBySlug = new Map(studies.map(study => [study.slug, study]))
-  const launcherItems = [
-    {
-      title: 'TerritoryOps Spain',
-      use: appBySlug.get('territoryops-spain')?.cardDescription ?? '',
-      status: appBySlug.get('territoryops-spain')?.launchStage ?? '',
-      href: appBySlug.get('territoryops-spain')?.href ?? '/apps/territoryops-spain',
-      category: isSpanish ? 'Herramienta de workflow' : 'Workflow tool',
-      external: false,
-      icon: appBySlug.get('territoryops-spain')?.icon,
-    },
-    {
-      title: 'Overflow',
-      use: appBySlug.get('overflow')?.cardDescription ?? '',
-      status: appBySlug.get('overflow')?.launchStage ?? '',
-      href: appBySlug.get('overflow')?.href ?? '/apps/overflow',
-      category: isSpanish ? 'Prototipo móvil' : 'Mobile prototype',
-      external: false,
-      icon: appBySlug.get('overflow')?.icon,
-    },
-    ...['demandos', 'campaign-pulse', 'data-brief-ai']
-      .map(slug => studyBySlug.get(slug))
-      .filter((study): study is CaseStudy & { liveUrl: string } => Boolean(study?.liveUrl))
-      .map(study => ({
-        title: `${study.title} ${isSpanish ? 'demo' : 'live demo'}`,
-        use: study.description,
-        status: study.status ?? (isSpanish ? 'Demo público' : 'Public demo'),
-        href: study.liveUrl as string,
-        category: study.category ?? (isSpanish ? 'Producto' : 'Product surface'),
-        external: true,
-        icon: undefined,
-      })),
-  ]
 
   return (
     <>
@@ -131,7 +95,7 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
               background: 'rgba(26, 23, 20, 0.14)',
             } as CSSProperties}
           >
-            {launcherItems.map((item) => {
+            {apps.map((app) => {
               const content = (
                 <>
                   <span
@@ -148,10 +112,10 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
                       textTransform: 'uppercase',
                     }}
                   >
-                    <span>{item.category}</span>
-                    <span>{item.external ? '↗' : '→'}</span>
+                    <span>{app.slug === 'territoryops-spain' ? (isSpanish ? 'Herramienta de workflow' : 'Workflow tool') : (isSpanish ? 'Prototipo móvil' : 'Mobile prototype')}</span>
+                    <span>→</span>
                   </span>
-                  {item.icon && (
+                  {app.icon && (
                     <span
                       style={{
                         display: 'block',
@@ -162,7 +126,7 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
                         boxShadow: '0 10px 24px rgba(0,0,0,0.12)',
                       }}
                     >
-                      <Image src={item.icon} alt="" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Image src={app.icon} alt="" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </span>
                   )}
                   <span style={{ display: 'grid', gap: '10px' }}>
@@ -177,10 +141,10 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
                         textTransform: 'uppercase',
                       }}
                     >
-                      {item.title}
+                      {app.name}
                     </strong>
                     <span style={{ color: 'rgba(26, 23, 20, 0.72)', lineHeight: 1.6 }}>
-                      {item.use}
+                      {app.cardDescription}
                     </span>
                   </span>
                   <span
@@ -194,7 +158,7 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
                       textTransform: 'uppercase',
                     }}
                   >
-                    {item.status}
+                    {app.launchStage}
                   </span>
                 </>
               )
@@ -211,20 +175,10 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
                 transition: 'background 0.3s var(--ease), transform 0.3s var(--ease)',
               }
 
-              return item.external ? (
-                <a
-                  key={`${item.title}-${item.href}`}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={style}
-                >
-                  {content}
-                </a>
-              ) : (
+              return (
                 <Link
-                  key={`${item.title}-${item.href}`}
-                  href={item.href}
+                  key={app.slug}
+                  href={app.href}
                   style={style}
                 >
                   {content}
