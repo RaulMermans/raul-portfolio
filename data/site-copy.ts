@@ -289,12 +289,12 @@ export const siteCopy = {
     },
     aboutPage: {
       label: 'About',
-      title: 'Applied AI Systems, Built With Taste',
+      title: 'I build the systems behind creative work.',
       paragraphs: [
-        'I came into this work through <span class="highlight">business</span>, then taught myself how to build what teams actually need when strategy has to become execution. Today I design <a href="/case-studies" class="highlight">AI systems</a>, <span class="highlight">agentic workflows</span>, and <span class="highlight">automation infrastructure</span> for brand, content, creative operations, and internal systems.',
-        'I&apos;m less interested in one-off AI outputs than in the system behind them: where work gets routed, where judgment lives, what should be automated, and how an interface makes the whole thing usable. That means <span class="highlight">workflow logic</span>, <span class="highlight">orchestration</span>, <span class="highlight">internal tools</span>, and <a href="/apps/overflow" class="highlight">product-minded implementation</a>.',
-        'Creative taste still matters. My background in brand, visuals, and image-making is useful because it acts as <span class="highlight">quality control inside the system</span>. It helps me decide what should feel restrained, what should stay human, and what makes an output <span class="highlight">commercially credible</span> rather than merely new.',
-        'I work best with modern brands and teams that need <span class="highlight">sharper execution</span>, <span class="highlight">better workflows</span>, and infrastructure they can actually use. If the problem sits between brand, content, systems, operations, and creative execution, that&apos;s usually where I&apos;m most useful.',
+        'I started in marketing and brand, moved through CRM, luxury retail, and visual practice, and now build AI-assisted tools that help teams make better decisions without losing taste, context, or control.',
+        'The work is grounded in real context: Málaga, Madrid, Orlando, IE University, lifecycle and CRM work, luxury partners, internal AI adoption, and portfolio projects that can be opened, tested, and reviewed.',
+        'Photography and visual studies are not decoration. They are part of the judgment layer around interfaces, workflows, and technical tools.',
+        'The strongest proof is in the work: campaign intelligence, operational intelligence, strategy systems, brand worlds, and controlled visual production.',
       ],
     },
     caseStudiesUi: {
@@ -318,9 +318,9 @@ export const siteCopy = {
       scroll: 'Scroll',
     },
     appsPage: {
-      title: 'Tools and prototypes',
+      title: 'Apps & Prototypes',
       intro:
-        'Small operational tools, experiments, and product surfaces built to test workflow logic, data structure, and interface behavior.',
+        'A small archive of product prototypes currently focused on TerritoryOps Spain and Overflow.',
     },
     appDetailUi: {
       breadcrumbLabel: 'Apps',
@@ -623,12 +623,12 @@ export const siteCopy = {
     },
     aboutPage: {
       label: 'Sobre mí',
-      title: 'Sistemas de IA aplicados, construidos con criterio',
+      title: 'Construyo los sistemas detrás del trabajo creativo.',
       paragraphs: [
-        'Llegué a este trabajo desde <span class="highlight">negocio</span> y aprendí a construir lo que los equipos necesitan cuando la estrategia tiene que convertirse en ejecución. Hoy diseño <a href="/case-studies" class="highlight">sistemas de IA</a>, <span class="highlight">flujos con agentes</span> e <span class="highlight">infraestructura de automatización</span> para marca, contenido, operaciones creativas y sistemas internos.',
-        'Me interesa menos el resultado aislado de IA que el sistema que lo sostiene: por dónde se mueve el trabajo, dónde vive el criterio, qué conviene automatizar y cómo una interfaz hace usable todo el proceso. Eso significa <span class="highlight">lógica de flujo</span>, <span class="highlight">orquestación</span>, <span class="highlight">herramientas internas</span> e <a href="/apps/overflow" class="highlight">implementación con criterio de producto</a>.',
-        'El gusto creativo sigue importando. Mi experiencia en marca, visuales e imagen funciona como <span class="highlight">control de calidad dentro del sistema</span>: ayuda a decidir qué debe sentirse contenido, qué debe seguir siendo humano y qué hace que un resultado sea <span class="highlight">creíble comercialmente</span>, no solo nuevo.',
-        'Trabajo mejor con marcas y equipos modernos que necesitan <span class="highlight">ejecución más clara</span>, <span class="highlight">mejores flujos</span> e infraestructura que puedan usar de verdad. Si el problema vive entre marca, contenido, sistemas, operaciones y ejecución creativa, ahí suelo aportar más.',
+        'Empecé desde marketing y marca, pasé por CRM, retail beauty, lujo y práctica visual, y ahora construyo herramientas asistidas por IA que ayudan a equipos a decidir mejor sin perder gusto, contexto ni control.',
+        'El trabajo está anclado en contexto real: Málaga, Madrid, Orlando, IE University, lifecycle y CRM, partners de lujo, adopción interna de IA y proyectos de portfolio que se pueden abrir, probar y revisar.',
+        'La fotografía y los estudios visuales no son decoración. Forman parte de la capa de criterio alrededor de interfaces, workflows y herramientas técnicas.',
+        'La prueba más fuerte está en el trabajo: inteligencia de campaña, inteligencia operativa, sistemas de estrategia, mundos de marca y producción visual controlada.',
       ],
     },
     caseStudiesUi: {
@@ -652,9 +652,9 @@ export const siteCopy = {
       scroll: 'Desplazar',
     },
     appsPage: {
-      title: 'Herramientas y prototipos',
+      title: 'Apps y prototipos',
       intro:
-        'Pequeñas herramientas, experimentos y superficies de producto creadas para probar lógica de workflow, estructura de datos y comportamiento de interfaz.',
+        'Un pequeño archivo de prototipos de producto centrado ahora en TerritoryOps Spain y Overflow.',
     },
     appDetailUi: {
       breadcrumbLabel: 'Apps',
