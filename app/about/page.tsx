@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -21,42 +21,46 @@ type TimelineItem = {
 
 const pageCopy = {
   en: {
-    heroTag:
-      'I work where personal projects, photography, brand worlds, and technical AI systems meet: building tools and images that keep creative judgment close to the work.',
-    current: ['Currently', 'Personal projects', 'Photography', '+ technical AI', 'Creative systems'],
+    heroTag: 'I build the systems behind creative work.',
+    heroSupport:
+      'I started in marketing and brand, moved through CRM, luxury retail, and visual practice, and now build AI-assisted tools that help teams make better decisions without losing taste, context, or control.',
+    current: ['Base', 'Madrid', 'Origin', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
-        title: 'Personal tools',
-        body: 'Working prototypes for campaigns, research, data, audits, and this portfolio. Built to test ideas, not just describe them.',
+        title: 'CRM at scale',
+        body: 'Lifecycle and CRM work around an 8M+ user database, commercial campaigns, segmentation, and adoption inside a large beauty retailer.',
       },
       {
         number: '02',
-        title: 'Image practice',
-        body: 'Photography, covers, visual studies, and generative experiments that keep the technical work grounded in taste.',
+        title: 'Systems that ship',
+        body: 'Portfolio projects built as working prototypes: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
       },
       {
         number: '03',
-        title: 'Creative systems',
-        body: 'Interfaces, prompts, rules, and review loops for making AI useful without making the output feel automatic.',
+        title: 'Taste as interface',
+        body: 'Photography, visual studies, luxury references, and brand systems used as the judgment layer around technical tools.',
       },
     ],
     aboutEyebrow: 'About',
-    aboutTitle: <>A short <span className="about-landing__serif">version</span><br />of the story.</>,
+    aboutTitle: <>A profile built from <span className="about-landing__serif">work</span>, place, and practice.</>,
     lede:
-      'My work sits between creative direction and technical AI. The visual side is not decoration; it is how I decide whether a tool, workflow, or interface actually has taste.',
+      'The common thread is operational taste: knowing what should be structured, what should stay editable, and where a person still needs to make the call.',
     body: [
-      'Business school gave me the vocabulary for brand, growth, and customer behavior. Photography gave me a stricter way to look at tone, composition, rhythm, and what feels real.',
-      'Code and AI gave me a way to build with that judgment: small tools, campaign systems, data products, visual workflows, and experiments that turn loose ideas into working surfaces.',
-      'Professional work adds constraints, but the center of gravity is the personal practice: building, shooting, testing, and refining until the system feels useful and the image still feels human.',
+      'Málaga is the origin point; Madrid is where the practice became sharper through IE University, marketing, CRM, and work inside commercial teams.',
+      'Orlando added another way of reading service, behavior, and expectation. Primor adds the pressure of scale: lifecycle work, segmentation, luxury partners, and internal adoption around a very large customer database.',
+      'The portfolio is the proof layer. Campaign tools, data products, audits, brand worlds, and visual studies are built as working surfaces so the thinking can be tested, not just described.',
     ],
-    currentFocus: {
-      title: 'Current focus',
+    operatingProfile: {
+      title: 'Operating profile',
       items: [
-        'Personal AI tools for research, campaigns, and creative production',
-        'Photography and visual systems as a way to train taste',
-        'Brand worlds, campaign logic, and controlled generative workflows',
-        'Interfaces that turn scattered creative inputs into decisions',
+        ['Base', 'Madrid'],
+        ['Origin', 'Málaga'],
+        ['Education', 'BBA Marketing, IE University'],
+        ['Current context', 'CRM, lifecycle, luxury partners, AI adoption'],
+        ['Independent work', 'Campaign tools, data products, brand workflows, internal systems'],
+        ['Visual practice', 'Photography, album covers, image systems, art direction'],
+        ['Tools', 'Next.js, TypeScript, Python, n8n, Codex, Claude Code, OpenAI workflows'],
       ],
     },
     geography: {
@@ -108,181 +112,173 @@ const pageCopy = {
         body: 'Street, light, and visual judgment as a quieter creative practice.',
       },
     ],
-    marquee: [
-      'Personal projects',
-      'Photography',
-      'Creative direction',
-      'OpenAI Codex',
-      'n8n',
-      'Brand systems',
-      'Visual workflows',
-      'Technical AI',
-      'Art direction',
-    ],
-    timelineTitle: <>Trajectory <span className="about-landing__serif">so far</span>.</>,
+    vocabulary: {
+      title: 'Working vocabulary',
+      terms: [
+        'CRM',
+        'Lifecycle',
+        'Campaign logic',
+        'Brand memory',
+        'Interface rhythm',
+        'Data boundaries',
+        'Human review',
+        'Luxury codes',
+        'Adoption',
+        'Operational taste',
+      ],
+    },
+    timelineTitle: <>Chapters, not <span className="about-landing__serif">job titles</span>.</>,
     timelineIntro:
-      'Five years moving between brand, images, service, tools, and the technical layer that lets ideas become something people can use.',
+      'A compact read of the contexts that shaped the work: markets, delivery, service, building, scale, and the current loop.',
     timeline: [
       {
-        date: 'Sep 2021',
-        title: 'Started at IE University',
-        org: 'BBA · Marketing',
+        date: '01',
+        title: 'Madrid — learning the language of markets',
+        org: 'IE University · BBA Marketing',
         desc:
-          'Madrid. IE High Potential Award scholarship. First exposure to programming, business-driven IT, and digital marketing analytics.',
-        tags: ['Madrid', 'Scholarship', 'BBA'],
+          'Business, marketing, digital analytics, and the first technical vocabulary for turning customer behavior into decisions.',
+        tags: ['Madrid', 'IE University', 'Marketing'],
       },
       {
-        date: 'Mar 2023',
-        title: 'IE Marketing Lab',
-        org: 'Project Leader · 8+ companies',
+        date: '02',
+        title: 'Teams — learning delivery',
+        org: 'IE Marketing Lab',
         desc:
-          'Led a team of five delivering marketing solutions for partner companies. Client work, strategy, and creative problem-solving on a deadline.',
-        tags: ['Leadership', 'Strategy', 'Client work'],
+          'Project work with deadlines, partners, and team handoffs: strategy only counted when it became something delivered.',
+        tags: ['Leadership', 'Strategy', 'Delivery'],
       },
       {
-        date: 'Sep 2023',
-        title: 'WeFeel App Challenge',
-        org: 'Branding & Marketing Trainee',
+        date: '03',
+        title: 'Orlando — seeing service differently',
+        org: 'UCF exchange',
         desc:
-          'Pitched business recommendations across brand, value proposition, and product direction. Three were approved for implementation.',
-        tags: ['Brand', 'Pitch', 'Adopted'],
+          'A semester at the University of Central Florida sharpened the read on service, retail behavior, and cultural expectations.',
+        tags: ['Orlando', 'UCF', 'Service'],
       },
       {
-        date: 'Jan 2024',
-        title: 'Exchange · UCF',
-        org: 'University of Central Florida · Orlando',
+        date: '04',
+        title: 'Independent practice — learning to build',
+        org: 'Portfolio systems',
         desc:
-          'A semester abroad that sharpened customer-experience instincts and gave service marketing a different cultural vantage point.',
-        tags: ['USA', 'Service marketing'],
+          'Campaign tools, data products, image systems, and site architecture turned positioning into usable interfaces.',
+        tags: ['Prototypes', 'Case studies', 'Visuals'],
       },
       {
-        date: 'Jun 2025',
-        title: 'Independent practice',
-        org: 'Independent practice · Madrid',
+        date: '05',
+        title: 'Primor — working inside scale',
+        org: 'CRM · lifecycle · luxury partners',
         desc:
-          'Started prototyping lightweight apps, campaign systems, and visual workflows with Codex, Claude Code, n8n, and image tools.',
-        tags: ['Codex', 'n8n', 'Visual systems', 'Tools'],
+          'Large audiences, commercial cadence, segmentation, partner expectations, and internal AI adoption make the work accountable.',
+        tags: ['CRM', 'Lifecycle', 'Scale'],
       },
       {
-        date: 'Jul 2025',
-        title: 'Graduated',
-        org: 'IE University · BBA, Marketing',
+        date: '06',
+        title: 'Now — building the loop',
+        org: 'Tools · brand workflows · visual practice',
         desc:
-          'Closed the chapter with a marketing concentration, an exchange semester, and four years of practical project work behind me.',
-        tags: ['Graduated', 'Marketing'],
-      },
-      {
-        date: 'Aug 2025',
-        title: 'Working inside scale',
-        org: 'Perfumerías Primor',
-        desc:
-          'A professional context for constraints: commercial pace, large audiences, luxury partners, and the discipline of shipping around real pressure.',
-        tags: ['Scale', 'Luxury', 'Constraints'],
-      },
-      {
-        date: 'Now',
-        title: 'Building the creative loop',
-        org: 'Personal projects · Photography · AI tools',
-        desc:
-          'Going deeper into the loop between shooting, designing, coding, prompting, testing, and tightening the work until it feels intentional.',
-        tags: ['Photography', 'AI tools', 'Interfaces'],
+          'Building the loop between workflow logic, interface design, brand memory, data boundaries, and human review.',
+        tags: ['Systems', 'Interface', 'Taste'],
       },
     ] satisfies TimelineItem[],
-    practiceTitle: <>A <span className="about-landing__serif">practice</span>, not a job title.</>,
+    practiceTitle: <>How I <span className="about-landing__serif">work</span>.</>,
     practiceIntro:
-      'One practice with a simple hierarchy: creative judgment first, then the technical systems that make it repeatable.',
+      'The work starts with the decision and ends with a surface people can review, use, and improve.',
     capabilities: [
       {
         number: '01',
-        kicker: 'Lead practice',
-        title: <>Creative <span>AI</span><br />systems.</>,
+        kicker: 'Decision',
+        title: <>Start with the <span>decision</span>.</>,
         body:
-          'Tools and workflows for campaign thinking, research, audits, image direction, and the handoffs between idea and output.',
-        tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'Review loops', 'Interfaces'],
+          'What does the user need to understand, choose, approve, or repeat?',
+        tools: ['Question', 'Context', 'Criteria'],
         featured: true,
       },
       {
         number: '02',
-        kicker: 'Creative',
-        title: <>Creative<br /><span>direction</span>.</>,
+        kicker: 'Workflow',
+        title: <>Map the <span>workflow</span>.</>,
         body:
-          'Art direction, brand voice, and visual identity for digital products and campaigns. The taste layer that keeps systems human.',
-        tools: ['Identity', 'Voice', 'Art direction'],
+          'Inputs, constraints, handoffs, review points, risks, and outputs.',
+        tools: ['Inputs', 'Handoffs', 'Risks'],
       },
       {
         number: '03',
-        kicker: 'Software',
-        title: <>Prototyping<br />& <span>tools</span>.</>,
+        kicker: 'Interface',
+        title: <>Build the <span>interface</span>.</>,
         body:
-          'Small apps and interfaces built to make a project tangible: enough structure to test the idea, enough taste to keep it alive.',
-        tools: ['React', 'Next.js', 'Claude Code'],
+          'Prototype the surface where the work becomes visible and usable.',
+        tools: ['Surface', 'States', 'Feedback'],
       },
       {
         number: '04',
-        kicker: 'Brand',
-        title: <>Brand as<br /><span>system</span>.</>,
+        kicker: 'Intelligence',
+        title: <>Add intelligence <span>carefully</span>.</>,
         body:
-          'Turning a brand world into reusable rules for tone, image, pacing, and interface behavior.',
-        tools: ['Positioning', 'Tone', 'Image rules'],
+          'Use AI or ML where it improves speed, synthesis, or diagnosis — not where it removes accountability.',
+        tools: ['AI', 'ML', 'Review'],
       },
       {
         number: '05',
-        kicker: 'Generative',
-        title: <>Generative <span>visual</span> systems.</>,
+        kicker: 'Taste',
+        title: <>Keep taste in the <span>loop</span>.</>,
         body:
-          'Image workflows that can explore variations while preserving art direction, lighting, and continuity.',
-        tools: ['n8n', 'Image models', 'Style locks', 'Continuity'],
+          'Brand voice, image logic, pacing, and visual judgment remain part of the system.',
+        tools: ['Voice', 'Image logic', 'Pacing'],
       },
-      {
-        number: '06',
-        kicker: 'Photography',
-        title: <>Training<br />the <span>eye</span>.</>,
-        body:
-          'Using camera work, street light, references, and edits as a way to keep the technical systems visually accountable.',
-        tools: ['Street', 'Light', 'Editing'],
-      },
+    ],
+    proofLinksTitle: 'Proof in the work',
+    proofLinks: [
+      ['Campaign Pulse', 'Marketing intelligence', '/case-studies/campaign-pulse'],
+      ['DemandOS', 'Operational intelligence', '/case-studies/demandos'],
+      ['Campaign Sandbox', 'Campaign strategy', '/case-studies/campaign-sandbox'],
+      ['Remoria', 'Brand world', '/case-studies/remoria'],
+      ['AI Sports', 'Controlled visual production', '/case-studies/ai-sports'],
     ],
     ctaTitle: <>Let&apos;s make <span className="about-landing__serif">something</span> work.</>,
     contactMeta: ['Available Q3 2026', 'Madrid · Remote · EU'],
     githubCta: 'View GitHub',
   },
   es: {
-    heroTag:
-      'Trabajo donde se cruzan proyectos personales, fotografía, mundos de marca y sistemas técnicos de IA: herramientas e imágenes que mantienen el criterio creativo cerca del trabajo.',
-    current: ['Ahora', 'Proyectos propios', 'Fotografía', '+ IA técnica', 'Sistemas creativos'],
+    heroTag: 'Construyo los sistemas detrás del trabajo creativo.',
+    heroSupport:
+      'Empecé desde marketing y marca, pasé por CRM, retail beauty, lujo y práctica visual, y ahora construyo herramientas asistidas por IA que ayudan a equipos a decidir mejor sin perder gusto, contexto ni control.',
+    current: ['Base', 'Madrid', 'Origen', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
-        title: 'Herramientas propias',
-        body: 'Prototipos funcionales para campañas, investigación, datos, auditorías y este portfolio. Construidos para probar ideas, no solo describirlas.',
+        title: 'CRM a escala',
+        body: 'Trabajo de lifecycle y CRM alrededor de una base de 8M+ usuarios, campañas comerciales, segmentación y adopción interna en retail beauty.',
       },
       {
         number: '02',
-        title: 'Práctica de imagen',
-        body: 'Fotografía, portadas, estudios visuales y experimentos generativos que mantienen el trabajo técnico conectado al gusto.',
+        title: 'Sistemas que se publican',
+        body: 'Proyectos construidos como prototipos funcionales: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
       },
       {
         number: '03',
-        title: 'Sistemas creativos',
-        body: 'Interfaces, prompts, reglas y bucles de revisión para hacer útil la IA sin que el resultado se sienta automático.',
+        title: 'El gusto como interfaz',
+        body: 'Fotografía, estudios visuales, referencias de lujo y sistemas de marca como capa de criterio alrededor de herramientas técnicas.',
       },
     ],
     aboutEyebrow: 'Sobre mí',
-    aboutTitle: <>La <span className="about-landing__serif">versión</span><br />corta de la historia.</>,
+    aboutTitle: <>Un perfil hecho de <span className="about-landing__serif">trabajo</span>, lugar y práctica.</>,
     lede:
-      'Mi trabajo se mueve entre dirección creativa e IA técnica. La parte visual no es decoración: es cómo decido si una herramienta, un workflow o una interfaz tienen gusto.',
+      'El hilo común es el gusto operativo: saber qué debe estructurarse, qué debe seguir editable y dónde una persona todavía tiene que decidir.',
     body: [
-      'Mi formación en negocio me dio vocabulario para entender marca, crecimiento y comportamiento de cliente. La fotografía me dio una forma más estricta de mirar tono, composición, ritmo y lo que se siente real.',
-      'El código y la IA me dieron una forma de construir con ese criterio: herramientas pequeñas, sistemas de campaña, productos de datos, workflows visuales y experimentos que convierten ideas sueltas en superficies funcionales.',
-      'El trabajo profesional añade restricciones, pero el centro de gravedad es la práctica personal: construir, fotografiar, probar y refinar hasta que el sistema sea útil y la imagen siga sintiéndose humana.',
+      'Málaga es el punto de origen; Madrid es donde la práctica se afinó con IE University, marketing, CRM y trabajo dentro de equipos comerciales.',
+      'Orlando añadió otra forma de leer servicio, comportamiento y expectativa. Primor añade la presión de escala: lifecycle, segmentación, partners de lujo y adopción interna alrededor de una base de clientes muy grande.',
+      'El portfolio es la capa de prueba. Herramientas de campaña, productos de datos, auditorías, mundos de marca y estudios visuales se construyen como superficies funcionales para poder probar el pensamiento, no solo describirlo.',
     ],
-    currentFocus: {
-      title: 'Foco actual',
+    operatingProfile: {
+      title: 'Perfil operativo',
       items: [
-        'Herramientas IA propias para investigación, campañas y producción creativa',
-        'Fotografía y sistemas visuales como forma de entrenar el gusto',
-        'Mundos de marca, lógica de campaña y workflows generativos controlados',
-        'Interfaces que convierten inputs creativos dispersos en decisiones',
+        ['Base', 'Madrid'],
+        ['Origen', 'Málaga'],
+        ['Formación', 'BBA Marketing, IE University'],
+        ['Contexto actual', 'CRM, lifecycle, partners de lujo, adopción IA'],
+        ['Trabajo independiente', 'Herramientas de campaña, productos de datos, workflows de marca, sistemas internos'],
+        ['Práctica visual', 'Fotografía, portadas, sistemas de imagen, dirección de arte'],
+        ['Herramientas', 'Next.js, TypeScript, Python, n8n, Codex, Claude Code, workflows OpenAI'],
       ],
     },
     geography: {
@@ -334,139 +330,127 @@ const pageCopy = {
         body: 'Calle, luz y criterio visual como una práctica creativa más silenciosa.',
       },
     ],
-    marquee: [
-      'Proyectos propios',
-      'Fotografía',
-      'Dirección creativa',
-      'OpenAI Codex',
-      'n8n',
-      'Sistemas de marca',
-      'Workflows visuales',
-      'IA técnica',
-      'Dirección de arte',
-    ],
-    timelineTitle: <>Trayectoria <span className="about-landing__serif">hasta ahora</span>.</>,
+    vocabulary: {
+      title: 'Vocabulario de trabajo',
+      terms: [
+        'CRM',
+        'Lifecycle',
+        'Lógica de campaña',
+        'Memoria de marca',
+        'Ritmo de interfaz',
+        'Límites de datos',
+        'Revisión humana',
+        'Códigos de lujo',
+        'Adopción',
+        'Gusto operativo',
+      ],
+    },
+    timelineTitle: <>Capítulos, no solo <span className="about-landing__serif">cargos</span>.</>,
     timelineIntro:
-      'Cinco años moviéndome entre marca, imagen, servicio, herramientas y la capa técnica que permite que las ideas se conviertan en algo usable.',
+      'Una lectura compacta de los contextos que han dado forma al trabajo: mercados, entrega, servicio, construcción, escala y el loop actual.',
     timeline: [
       {
-        date: 'Sep 2021',
-        title: 'Inicio en IE University',
-        org: 'BBA · Marketing',
+        date: '01',
+        title: 'Madrid — aprender el lenguaje de los mercados',
+        org: 'IE University · BBA Marketing',
         desc:
-          'Madrid. Beca IE High Potential Award. Primer contacto con programación, tecnología aplicada a negocio y analítica de marketing digital.',
-        tags: ['Madrid', 'Beca', 'BBA'],
+          'Negocio, marketing, analítica digital y el primer vocabulario técnico para convertir comportamiento de cliente en decisiones.',
+        tags: ['Madrid', 'IE University', 'Marketing'],
       },
       {
-        date: 'Mar 2023',
-        title: 'IE Marketing Lab',
-        org: 'Project Leader · más de 8 empresas',
+        date: '02',
+        title: 'Equipos — aprender a entregar',
+        org: 'IE Marketing Lab',
         desc:
-          'Lideré un equipo de cinco personas entregando soluciones de marketing para empresas colaboradoras. Estrategia, cliente real y ejecución con fecha límite.',
-        tags: ['Liderazgo', 'Estrategia', 'Cliente'],
+          'Trabajo de proyecto con deadlines, partners y handoffs de equipo: la estrategia solo contaba cuando se convertía en algo entregado.',
+        tags: ['Liderazgo', 'Estrategia', 'Entrega'],
       },
       {
-        date: 'Sep 2023',
-        title: 'WeFeel App Challenge',
-        org: 'Branding & Marketing Trainee',
+        date: '03',
+        title: 'Orlando — mirar el servicio desde otro ángulo',
+        org: 'Intercambio UCF',
         desc:
-          'Presenté recomendaciones de negocio sobre marca, propuesta de valor y dirección de producto. Tres de ellas fueron aprobadas para implementarse.',
-        tags: ['Marca', 'Presentación', 'Aprobado'],
+          'Un semestre en University of Central Florida afinó la lectura de servicio, retail y expectativas culturales.',
+        tags: ['Orlando', 'UCF', 'Servicio'],
       },
       {
-        date: 'Jan 2024',
-        title: 'Intercambio · UCF',
-        org: 'University of Central Florida · Orlando',
+        date: '04',
+        title: 'Práctica independiente — aprender a construir',
+        org: 'Sistemas de portfolio',
         desc:
-          'Un semestre fuera que afinó mi intuición sobre experiencia de cliente y me dio otra perspectiva cultural del marketing de servicios.',
-        tags: ['EE. UU.', 'Marketing de servicios'],
+          'Herramientas de campaña, productos de datos, sistemas de imagen y arquitectura web convirtieron posicionamiento en interfaces usables.',
+        tags: ['Prototipos', 'Casos', 'Visuales'],
       },
       {
-        date: 'Jun 2025',
-        title: 'Práctica independiente',
-        org: 'Práctica independiente · Madrid',
+        date: '05',
+        title: 'Primor — trabajar dentro de escala',
+        org: 'CRM · lifecycle · partners de lujo',
         desc:
-          'Empecé a prototipar apps ligeras, sistemas de campaña y workflows visuales con Codex, Claude Code, n8n y herramientas de imagen.',
-        tags: ['Codex', 'n8n', 'Sistemas visuales', 'Herramientas'],
+          'Grandes audiencias, ritmo comercial, segmentación, expectativas de partners y adopción interna hacen que el trabajo sea responsable.',
+        tags: ['CRM', 'Lifecycle', 'Escala'],
       },
       {
-        date: 'Jul 2025',
-        title: 'Graduación',
-        org: 'IE University · BBA, Marketing',
+        date: '06',
+        title: 'Ahora — construir el loop',
+        org: 'Herramientas · workflows de marca · práctica visual',
         desc:
-          'Cerré la etapa con una concentración en marketing, un intercambio internacional y cuatro años de proyectos prácticos detrás.',
-        tags: ['Graduado', 'Marketing'],
-      },
-      {
-        date: 'Aug 2025',
-        title: 'Trabajar dentro de escala',
-        org: 'Perfumerías Primor',
-        desc:
-          'Un contexto profesional para aprender restricciones: ritmo comercial, audiencias grandes, partners de lujo y la disciplina de publicar bajo presión real.',
-        tags: ['Escala', 'Lujo', 'Restricciones'],
-      },
-      {
-        date: 'Ahora',
-        title: 'Construyendo el bucle creativo',
-        org: 'Proyectos propios · Fotografía · Herramientas IA',
-        desc:
-          'Profundizando en el bucle entre fotografiar, diseñar, programar, promptear, probar y ajustar hasta que el trabajo se sienta intencional.',
-        tags: ['Fotografía', 'Herramientas IA', 'Interfaces'],
+          'Construir el loop entre lógica de workflow, diseño de interfaz, memoria de marca, límites de datos y revisión humana.',
+        tags: ['Sistemas', 'Interfaz', 'Gusto'],
       },
     ] satisfies TimelineItem[],
-    practiceTitle: <>Una <span className="about-landing__serif">práctica</span>, no un cargo.</>,
+    practiceTitle: <>Cómo <span className="about-landing__serif">trabajo</span>.</>,
     practiceIntro:
-      'Una práctica con una jerarquía simple: primero criterio creativo, luego los sistemas técnicos que lo vuelven repetible.',
+      'El trabajo empieza por la decisión y termina en una superficie que se puede revisar, usar y mejorar.',
     capabilities: [
       {
         number: '01',
-        kicker: 'Práctica principal',
-        title: <>Sistemas <span>IA</span><br />creativos.</>,
+        kicker: 'Decisión',
+        title: <>Empezar por la <span>decisión</span>.</>,
         body:
-          'Herramientas y workflows para pensamiento de campaña, investigación, auditorías, dirección de imagen y el paso entre idea y salida.',
-        tools: ['Claude Code', 'OpenAI Codex', 'n8n', 'Bucles de revisión', 'Interfaces'],
+          'Qué necesita entender, elegir, aprobar o repetir la persona que usa el sistema.',
+        tools: ['Pregunta', 'Contexto', 'Criterio'],
         featured: true,
       },
       {
         number: '02',
-        kicker: 'Creativo',
-        title: <>Dirección<br /><span>creativa</span>.</>,
+        kicker: 'Workflow',
+        title: <>Mapear el <span>workflow</span>.</>,
         body:
-          'Dirección de arte, voz de marca e identidad visual para productos digitales y campañas. La capa de criterio que mantiene humano el sistema.',
-        tools: ['Identidad', 'Voz', 'Dirección de arte'],
+          'Inputs, restricciones, handoffs, puntos de revisión, riesgos y outputs.',
+        tools: ['Inputs', 'Handoffs', 'Riesgos'],
       },
       {
         number: '03',
-        kicker: 'Software',
-        title: <>Prototipos<br />y <span>herramientas</span>.</>,
+        kicker: 'Interfaz',
+        title: <>Construir la <span>interfaz</span>.</>,
         body:
-          'Apps pequeñas e interfaces que hacen tangible un proyecto: suficiente estructura para probar la idea, suficiente gusto para mantenerla viva.',
-        tools: ['React', 'Next.js', 'Claude Code'],
+          'Prototipar la superficie donde el trabajo se vuelve visible y usable.',
+        tools: ['Superficie', 'Estados', 'Feedback'],
       },
       {
         number: '04',
-        kicker: 'Marca',
-        title: <>Marca como<br /><span>sistema</span>.</>,
+        kicker: 'Inteligencia',
+        title: <>Añadir inteligencia con <span>cuidado</span>.</>,
         body:
-          'Convertir un mundo de marca en reglas reutilizables para tono, imagen, ritmo y comportamiento de interfaz.',
-        tools: ['Posicionamiento', 'Tono', 'Reglas de imagen'],
+          'Usar IA o ML cuando mejora velocidad, síntesis o diagnóstico — no cuando elimina responsabilidad.',
+        tools: ['IA', 'ML', 'Revisión'],
       },
       {
         number: '05',
-        kicker: 'Generativo',
-        title: <>Sistemas <span>visuales</span> generativos.</>,
+        kicker: 'Gusto',
+        title: <>Mantener el gusto dentro del <span>sistema</span>.</>,
         body:
-          'Workflows de imagen que pueden explorar variaciones manteniendo dirección de arte, luz y continuidad.',
-        tools: ['n8n', 'Modelos de imagen', 'Bloqueos de estilo', 'Continuidad'],
+          'Voz de marca, lógica visual, ritmo y criterio siguen siendo parte del sistema.',
+        tools: ['Voz', 'Imagen', 'Ritmo'],
       },
-      {
-        number: '06',
-        kicker: 'Fotografía',
-        title: <>Entrenar<br />la <span>mirada</span>.</>,
-        body:
-          'Usar cámara, luz de calle, referencias y edición como una forma de mantener responsables a los sistemas técnicos.',
-        tools: ['Calle', 'Luz', 'Edición'],
-      },
+    ],
+    proofLinksTitle: 'Prueba en el trabajo',
+    proofLinks: [
+      ['Campaign Pulse', 'Inteligencia de marketing', '/case-studies/campaign-pulse'],
+      ['DemandOS', 'Inteligencia operativa', '/case-studies/demandos'],
+      ['Campaign Sandbox', 'Estrategia de campaña', '/case-studies/campaign-sandbox'],
+      ['Remoria', 'Mundo de marca', '/case-studies/remoria'],
+      ['AI Sports', 'Producción visual controlada', '/case-studies/ai-sports'],
     ],
     ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
     contactMeta: ['Disponible T3 2026', 'Madrid · Remoto · UE'],
@@ -651,7 +635,6 @@ export default function AboutPage() {
   const locale = getLocaleFromPath(pathname)
   const copy = pageCopy[locale]
   const { timelineRef, progressRef, hintRef, ghostRef } = useAboutLandingMotion()
-  const doubledMarquee = useMemo(() => [...copy.marquee, ...copy.marquee], [copy.marquee])
 
   return (
     <>
@@ -701,8 +684,11 @@ export default function AboutPage() {
           </div>
 
           <div className="about-landing__tag" data-about-reveal>
-            <p>{copy.heroTag}</p>
-            <div>
+            <div className="about-landing__hero-copy">
+              <p>{copy.heroTag}</p>
+              <p>{copy.heroSupport}</p>
+            </div>
+            <div className="about-landing__hero-meta">
               {copy.current[0]}
               <b>{copy.current[1]}</b>
               {copy.current[2]}
@@ -745,11 +731,14 @@ export default function AboutPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              <article className="about-current-focus" data-about-reveal>
-                <h3>{copy.currentFocus.title}</h3>
+              <article className="about-operating-profile" data-about-reveal>
+                <h3>{copy.operatingProfile.title}</h3>
                 <ul>
-                  {copy.currentFocus.items.map(item => (
-                    <li key={item}>{item}</li>
+                  {copy.operatingProfile.items.map(([label, value]) => (
+                    <li key={label}>
+                      <span>{label}</span>
+                      <b>{value}</b>
+                    </li>
                   ))}
                 </ul>
               </article>
@@ -819,13 +808,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className="about-marquee" aria-hidden="true">
-        <div>
-          {doubledMarquee.map((item, index) => (
-            <span key={`${item}-${index}`}>{item}</span>
-          ))}
+      <section className="about-vocabulary" aria-labelledby="about-vocabulary-title">
+        <div className="about-landing__container">
+          <p id="about-vocabulary-title" className="about-landing__eyebrow" data-about-reveal>
+            {copy.vocabulary.title}
+          </p>
+          <div className="about-vocabulary__terms" data-about-reveal>
+            {copy.vocabulary.terms.map((term, index) => (
+              <span key={term}>
+                <i>{String(index + 1).padStart(2, '0')}</i>
+                {term}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       <section className="about-timeline" id="trajectory" aria-labelledby="about-timeline-title">
         <div className="about-landing__container">
@@ -890,6 +887,27 @@ export default function AboutPage() {
                   </div>
                 </div>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="about-proof-links" aria-labelledby="about-proof-links-title">
+        <div className="about-landing__container">
+          <div className="about-proof-links__head">
+            <p className="about-landing__eyebrow" data-about-reveal>
+              {locale === 'es' ? 'Casos' : 'Case studies'}
+            </p>
+            <h2 id="about-proof-links-title" data-about-reveal>
+              {copy.proofLinksTitle}
+            </h2>
+          </div>
+          <div className="about-proof-links__grid" data-about-reveal>
+            {copy.proofLinks.map(([title, label, href]) => (
+              <Link href={localizePath(href, locale)} key={title}>
+                <span>{title}</span>
+                <b>{label}</b>
+              </Link>
             ))}
           </div>
         </div>
