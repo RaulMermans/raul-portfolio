@@ -145,8 +145,9 @@ test.describe('Mobile Regression', () => {
     }))
     expect(overflow.documentWidth).toBeLessThanOrEqual(overflow.viewportWidth)
 
-    await cards.first().click()
-    await expect(page).toHaveURL(/\/en\/case-studies$/)
+    await cards.first().focus()
+    await page.keyboard.press('Enter')
+    await expect(page).toHaveURL(/\/en\/case-studies\/?$/)
   })
 
   test('homepage section carousel remains available on desktop', async ({ page }) => {
