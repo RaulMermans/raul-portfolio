@@ -104,8 +104,8 @@ jobs:
             return 1
           }
 
-          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Creative infrastructure for AI-assisted execution"
-          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Infraestructura creativa para ejecución asistida por IA"
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "AI systems for brand and creative teams."
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Sistemas de IA para equipos de marca y creatividad."
           verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "View case study: BlogAgent"
           verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Ver caso de estudio: BlogAgent"
           verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "human review before publication"
@@ -116,13 +116,13 @@ jobs:
 
           verify_copy "https://www.raulmermans.com/en/services/ai-integrations/" /tmp/service-ai-en.html "AI Integrations for Creative Systems"
           verify_copy "https://www.raulmermans.com/en/services/creative-automation/" /tmp/service-automation-en.html "Creative Automation"
-          verify_copy "https://www.raulmermans.com/en/services/brand-systems/" /tmp/service-brand-en.html "Brand Intelligence Systems"
-          verify_copy "https://www.raulmermans.com/en/services/product-prototypes/" /tmp/service-prototype-en.html "AI Product Prototypes"
+          verify_copy "https://www.raulmermans.com/en/services/brand-systems/" /tmp/service-brand-en.html "Brand Systems & Creative Direction"
+          verify_copy "https://www.raulmermans.com/en/services/product-prototypes/" /tmp/service-prototype-en.html "AI Product Prototypes & Internal Tools"
 
           verify_copy "https://www.raulmermans.com/services/integraciones-ia/" /tmp/service-ai-es.html "Integraciones IA para Sistemas Creativos"
           verify_copy "https://www.raulmermans.com/services/automatizacion-creativa/" /tmp/service-automation-es.html "Automatización Creativa"
-          verify_copy "https://www.raulmermans.com/services/sistemas-de-marca/" /tmp/service-brand-es.html "Sistemas de Inteligencia de Marca"
-          verify_copy "https://www.raulmermans.com/services/prototipos-producto-ia/" /tmp/service-prototype-es.html "Prototipos de Producto IA"
+          verify_copy "https://www.raulmermans.com/services/sistemas-de-marca/" /tmp/service-brand-es.html "Sistemas de Marca y Dirección Creativa"
+          verify_copy "https://www.raulmermans.com/services/prototipos-producto-ia/" /tmp/service-prototype-es.html "Prototipos de Producto IA y Herramientas Internas"
 
           ! grep -Fq "Request an AI Workflow Audit" /tmp/raul-en.html
           ! grep -Fq "Marketing + CRM" /tmp/raul-en.html
