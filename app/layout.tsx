@@ -10,9 +10,9 @@ import LocaleDocument from '@/components/LocaleDocument'
 import '@/lib/env-validation'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-const rootTitle = 'Raúl Mermans — Integraciones de IA para Sistemas Creativos y Flujos de Marca'
+const rootTitle = 'Raúl Mermans — Sistemas de IA para Equipos de Marca y Creatividad'
 const rootDescription =
-  'Sistemas de IA aplicada, capas de automatización y herramientas internas para equipos creativos, marcas y proyectos culturales que necesitan ejecutar más rápido con criterio, control y coherencia de marca.'
+  'Diseño y construyo sistemas de IA para equipos de marca y creatividad: estrategia de flujos, diseño de interfaz, herramientas internas y prototipos funcionales.'
 
 const bebasNeue = localFont({
   src: './fonts/bebas-neue-400.woff2',

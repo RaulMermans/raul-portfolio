@@ -179,6 +179,104 @@
   text-align: center;
 }
 
+.sprintSection {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.sprintHeader {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.sprintHeader .sectionLabel {
+  margin: 0;
+}
+
+.sprintTitle {
+  max-width: 13ch;
+  margin: 0;
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(3.4rem, 7vw, 7.2rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.sprintGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.sprintGrid > div > p {
+  max-width: 32rem;
+  margin: 0;
+  color: rgba(245, 240, 235, 0.82);
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1.5;
+}
+
+.sprintGrid .sprintDuration {
+  margin-top: 1.5rem;
+  color: var(--accent);
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sprintGrid ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(245, 240, 235, 0.24);
+  list-style: none;
+}
+
+.sprintGrid li {
+  position: relative;
+  padding: 0.8rem 0 0.8rem 1.4rem;
+  border-bottom: 1px solid rgba(245, 240, 235, 0.24);
+  color: rgba(245, 240, 235, 0.86);
+}
+
+.sprintGrid li::before {
+  content: "/";
+  position: absolute;
+  margin-left: -1.4rem;
+  color: var(--accent);
+  font-family: var(--font-mono), "Space Mono", monospace;
+}
+
+.sprintOutcome {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 60rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.sprintOutcome p {
+  margin: 0;
+  font-family: var(--font-reading), "Source Serif 4", serif;
+  font-size: clamp(1.35rem, 2.5vw, 2.2rem);
+  line-height: 1.28;
+}
+
+.sprintOutcome > span {
+  color: rgba(26, 23, 20, 0.7);
+  line-height: 1.6;
+}
+
+.sprintOutcome .button {
+  width: fit-content;
+}
+
 .sectionHeader {
   position: relative;
   display: grid;
@@ -472,6 +570,10 @@
   .faqItem {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .sprintGrid {
+    grid-template-columns: 1fr;
   }
 
   .sectionHeader {

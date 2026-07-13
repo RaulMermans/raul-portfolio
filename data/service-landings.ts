@@ -13,6 +13,16 @@ export type ServiceLanding = {
   keywords: string[]
   tags: string[]
   answer: string
+  flagshipOffer?: {
+    label: string
+    title: string
+    audience: string
+    duration: string
+    included: string[]
+    outcome: string
+    followUp: string
+    ctaLabel: string
+  }
   problems: Array<{
     title: string
     body: string
@@ -61,7 +71,24 @@ const englishLandings: ServiceLanding[] = [
     ],
     tags: ['Workflow Logic', 'Human Review', 'Brand Guardrails'],
     answer:
-      'AI integrations for creative systems are structured workflows, tools, and automation layers that help teams use AI inside real brand, content, campaign, and visual processes. The goal is not to replace creative judgment, but to make repeatable creative work faster, more consistent, and easier to review.',
+      'AI systems for creative teams are structured workflows, tools, and automation layers that make research, concept development, production, and review easier to run. A campaign system, for example, can turn a brief into channel-specific concepts, check them against agreed brand criteria, and prepare them for human approval.',
+    flagshipOffer: {
+      label: 'Flagship engagement',
+      title: 'Creative AI Systems Sprint',
+      audience: 'For brand and creative teams with fragmented, repetitive, or inconsistent AI-assisted workflows.',
+      duration: 'Typically 2–4 weeks, depending on scope.',
+      included: [
+        'Workflow and opportunity audit',
+        'Identification of high-value AI use cases',
+        'System and workflow architecture',
+        'Working prototype or internal tool',
+        'Brand, quality, and human-review guardrails',
+        'Implementation and iteration roadmap',
+      ],
+      outcome: 'A tested, usable system that demonstrates how AI can improve execution while preserving human judgment and brand coherence.',
+      followUp: 'This is an entry engagement. Larger strategy, implementation, product development, and ongoing advisory work can follow.',
+      ctaLabel: 'Discuss a Creative AI Systems Sprint',
+    },
     problems: [
       {
         title: 'Inconsistent outputs',
@@ -334,22 +361,22 @@ const englishLandings: ServiceLanding[] = [
     locale: 'en',
     href: '/en/services/brand-systems',
     alternateHref: '/services/sistemas-de-marca',
-    title: 'Brand Intelligence Systems',
+    title: 'Brand Systems & Creative Direction',
     eyebrow: 'Brand Systems',
     description:
       'I translate brand strategy into usable systems: tone rules, creative criteria, prompt structures, review logic, and workflow guidelines that help AI-assisted outputs stay coherent.',
-    metaTitle: 'Brand Intelligence Systems for AI-Assisted Creative Work — Raúl Mermans',
+    metaTitle: 'Brand Systems and Creative Direction for AI-Assisted Work — Raúl Mermans',
     metaDescription:
-      'Brand intelligence systems, tone rules, prompt structures, and review criteria for AI-assisted content, campaigns, and visual workflows.',
+      'Brand systems, tone rules, prompt structures, and review criteria for AI-assisted content, campaigns, and visual workflows.',
     keywords: [
-      'brand intelligence systems',
+      'brand systems',
       'AI brand guidelines',
       'brand prompt systems',
       'creative review frameworks',
     ],
     tags: ['Brand Logic', 'Prompt Structures', 'Review Criteria'],
     answer:
-      'A brand intelligence system turns brand strategy into operational rules that can guide content, campaigns, visual production, and AI-assisted workflows. It helps teams evaluate whether an output sounds, looks, and behaves like the brand before it reaches the public.',
+      'A brand system turns strategy into usable rules for content, campaigns, visual production, and AI-assisted workflows. It gives teams practical examples and review criteria so they can check whether an output sounds, looks, and behaves like the brand before it reaches the public.',
     problems: [
       {
         title: 'Static guidelines',
@@ -431,14 +458,14 @@ const englishLandings: ServiceLanding[] = [
     relatedCaseStudies: ['remoria', 'ai-sports', 'raul-portfolio'],
     faqs: [
       {
-        question: 'What is a brand intelligence system?',
+        question: 'What is a brand system for AI-assisted work?',
         answer:
-          'It is an operational layer that turns brand strategy into rules, examples, prompts, and review criteria that teams can use while creating and evaluating work.',
+          'It turns brand strategy into rules, examples, prompts, and review criteria that teams can use while creating and evaluating work.',
       },
       {
         question: 'How is this different from brand guidelines?',
         answer:
-          'Traditional guidelines document identity. A brand intelligence system focuses on applying that identity inside recurring decisions, workflows, AI tools, and review processes.',
+          'Traditional guidelines document identity. A brand system applies that identity inside recurring decisions, workflows, AI tools, and review processes.',
       },
       {
         question: 'Can this help with AI-generated content?',
@@ -640,7 +667,24 @@ const spanishLandings: ServiceLanding[] = [
     ],
     tags: ['Lógica de Flujo', 'Revisión Humana', 'Límites de Marca'],
     answer:
-      'Las integraciones de IA para sistemas creativos son flujos, herramientas y capas de automatización estructuradas para usar IA dentro de procesos reales de marca, contenido, campaña e imagen. No buscan sustituir el criterio creativo, sino hacer el trabajo repetible más rápido, coherente y fácil de revisar.',
+      'Los sistemas de IA para equipos creativos son flujos, herramientas y capas de automatización que hacen más fácil investigar, desarrollar conceptos, producir y revisar. Por ejemplo, un sistema de campaña puede convertir un brief en conceptos por canal, contrastarlos con criterios de marca y prepararlos para revisión humana.',
+    flagshipOffer: {
+      label: 'Colaboración principal',
+      title: 'Sprint de Sistemas Creativos con IA',
+      audience: 'Para equipos de marca y creatividad con flujos asistidos por IA fragmentados, repetitivos o inconsistentes.',
+      duration: 'Normalmente 2–4 semanas, según el alcance.',
+      included: [
+        'Auditoría de flujo y oportunidades',
+        'Identificación de casos de uso de IA de alto valor',
+        'Arquitectura de sistema y flujo',
+        'Prototipo funcional o herramienta interna',
+        'Criterios de marca, calidad y revisión humana',
+        'Hoja de ruta para implementación e iteración',
+      ],
+      outcome: 'Un sistema probado y usable que demuestra cómo la IA puede mejorar la ejecución sin perder criterio humano ni coherencia de marca.',
+      followUp: 'Es una colaboración de entrada. Después pueden seguir estrategia, implementación, desarrollo de producto o acompañamiento continuo.',
+      ctaLabel: 'Hablar de un Sprint de Sistemas Creativos con IA',
+    },
     problems: [
       {
         title: 'Resultados inconsistentes',
@@ -913,15 +957,15 @@ const spanishLandings: ServiceLanding[] = [
     locale: 'es',
     href: '/services/sistemas-de-marca',
     alternateHref: '/en/services/brand-systems',
-    title: 'Sistemas de Inteligencia de Marca',
+    title: 'Sistemas de Marca y Dirección Creativa',
     eyebrow: 'Sistemas de Marca',
     description:
       'Traduzco estrategia de marca en sistemas utilizables: reglas de tono, criterios creativos, estructuras de prompts, lógica de revisión y guías de flujo para mantener coherencia en resultados asistidos por IA.',
-    metaTitle: 'Sistemas de Inteligencia de Marca para Trabajo Creativo con IA — Raúl Mermans',
+    metaTitle: 'Sistemas de Marca y Dirección Creativa para Trabajo con IA — Raúl Mermans',
     metaDescription:
-      'Sistemas de inteligencia de marca, reglas de tono, prompts y criterios de revisión para contenido, campañas y flujos visuales asistidos por IA.',
+      'Sistemas de marca, reglas de tono, prompts y criterios de revisión para contenido, campañas y flujos visuales asistidos por IA.',
     keywords: [
-      'sistemas de inteligencia de marca',
+      'sistemas de marca',
       'guías de marca para IA',
       'sistemas de prompts de marca',
       'criterios de revisión creativa',

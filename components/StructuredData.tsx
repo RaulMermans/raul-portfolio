@@ -46,17 +46,15 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       },
       knowsAbout: [
         'AI Systems Design',
-        'Agentic Workflows',
         'Creative AI Systems',
         'AI Integrations',
-        'Brand Intelligence Systems',
+        'Brand Systems',
         'Creative Automation',
         'AI Campaign Systems',
         'Internal Creative Tools',
         'Generative Visual Systems',
         'Brand Workflows',
         'Content Systems',
-        'Creative Infrastructure',
         'Product Prototyping',
       ],
       ...data,
@@ -90,7 +88,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'AI Systems',
           serviceType: 'AI workflow architecture and internal AI tools',
           description:
-            'AI-assisted creative systems, internal tools, and agentic workflows for teams that need structured execution, reviewable outputs, and brand-aware reliability.',
+            'AI-assisted systems and internal tools that help brand and creative teams research, develop, review, and produce work more consistently.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -138,7 +136,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'Brand Systems and Creative Direction',
           serviceType: 'Creative Direction and Brand Systems',
           description:
-            'Brand intelligence systems, prompt structures, and review criteria that help teams keep AI-assisted content and creative outputs coherent.',
+            'Brand systems, prompt structures, and review criteria that help teams keep AI-assisted content and creative outputs coherent.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,

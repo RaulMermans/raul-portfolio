@@ -98,6 +98,7 @@ export default function Footer({ locale = 'en' }: FooterProps) {
             <p>
               {isSpanish ? 'Con base en Madrid' : 'Based in Madrid'}
             </p>
+            <p>{copy.availability}</p>
             <div className="footer__legal">
               <Link href={localizePath('/privacy', locale)}>{copy.privacy}</Link>
               <Link href={localizePath('/terms', locale)}>{copy.terms}</Link>

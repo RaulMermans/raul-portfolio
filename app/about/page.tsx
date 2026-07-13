@@ -1,15 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import type { CSSProperties } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ComposableMap, Geographies, Geography, Marker, Line } from 'react-simple-maps'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { PUBLIC_CONTACT_EMAIL, PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
-import { getLocaleFromPath, localizePath } from '@/lib/i18n'
+import { getLocaleFromPath } from '@/lib/i18n'
 
 type TimelineItem = {
   date: string
@@ -21,35 +18,34 @@ type TimelineItem = {
 
 const pageCopy = {
   en: {
-    heroTag: 'I build the systems behind creative work.',
+    heroTag: 'AI systems for brand and creative teams.',
     heroSupport:
-      'I started in marketing and brand, moved through CRM, luxury retail, and visual practice, and now build AI-assisted tools that help teams make better decisions without losing taste, context, or control.',
+      'I work at the intersection of AI systems, brand strategy, creative direction, and product design. I help teams turn emerging technology into structured, usable, and culturally coherent tools.',
     current: ['Base', 'Madrid', 'Origin', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
-        title: 'CRM at scale',
-        body: 'Lifecycle and CRM work around an 8M+ user database, commercial campaigns, segmentation, and adoption inside a large beauty retailer.',
+        title: 'CRM and commercial systems',
+        body: 'Lifecycle and CRM work around a large customer database, commercial campaigns, segmentation, luxury partners, and internal adoption.',
       },
       {
         number: '02',
-        title: 'Systems that ship',
-        body: 'Portfolio projects built as working prototypes: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
+        title: 'Strategy to prototype',
+        body: 'Campaign, data, audit, and reporting tools built as working prototypes so their logic can be tested, not only described.',
       },
       {
         number: '03',
-        title: 'Taste as interface',
-        body: 'Photography, visual studies, luxury references, and brand systems used as the judgment layer around technical tools.',
+        title: 'Visual judgment',
+        body: 'Photography, visual research, and brand systems that keep interfaces and outputs distinctive, credible, and appropriate.',
       },
     ],
     aboutEyebrow: 'About',
-    aboutTitle: <>A profile built from <span className="about-landing__serif">work</span>, place, and practice.</>,
+    aboutTitle: <>Why strategy, design, and <span className="about-landing__serif">systems</span> belong together.</>,
     lede:
-      'The common thread is operational taste: knowing what should be structured, what should stay editable, and where a person still needs to make the call.',
+      'Creative systems only work when the business context, interaction design, and human judgment are designed together.',
     body: [
-      'Málaga is the origin point; Madrid is where the practice became sharper through IE University, marketing, CRM, and work inside commercial teams.',
-      'Orlando added another way of reading service, behavior, and expectation. Primor adds the pressure of scale: lifecycle work, segmentation, luxury partners, and internal adoption around a very large customer database.',
-      'The portfolio is the proof layer. Campaign tools, data products, audits, brand worlds, and visual studies are built as working surfaces so the thinking can be tested, not just described.',
+      'My background in marketing, CRM, retail, and creative work means I start with the decision a team needs to make—not a generic model capability. The technical layer needs a clear purpose, usable inputs, and visible points for review.',
+      'I bring that perspective into product surfaces and working prototypes. A tool is only useful when people can understand what it is doing, assess the output, and keep the brand’s point of view intact.',
     ],
     operatingProfile: {
       title: 'Operating profile',
@@ -127,36 +123,19 @@ const pageCopy = {
         'Operational taste',
       ],
     },
-    timelineTitle: <>Chapters, not <span className="about-landing__serif">job titles</span>.</>,
+    timelineTitle: <>The background behind the <span className="about-landing__serif">practice</span>.</>,
     timelineIntro:
-      'A compact read of the contexts that shaped the work: markets, delivery, service, building, scale, and the current loop.',
+      'A short path through the contexts that make the current work possible.',
     timeline: [
       {
         date: '01',
-        title: 'Madrid — learning the language of markets',
+        title: 'Marketing and business foundations',
         org: 'IE University · BBA Marketing',
-        desc:
-          'Business, marketing, digital analytics, and the first technical vocabulary for turning customer behavior into decisions.',
+        desc: 'Business, marketing, and digital analytics at IE University created the first technical vocabulary for turning customer behavior into decisions.',
         tags: ['Madrid', 'IE University', 'Marketing'],
       },
       {
         date: '02',
-        title: 'Teams — learning delivery',
-        org: 'IE Marketing Lab',
-        desc:
-          'Project work with deadlines, partners, and team handoffs: strategy only counted when it became something delivered.',
-        tags: ['Leadership', 'Strategy', 'Delivery'],
-      },
-      {
-        date: '03',
-        title: 'Orlando — seeing service differently',
-        org: 'UCF exchange',
-        desc:
-          'A semester at the University of Central Florida sharpened the read on service, retail behavior, and cultural expectations.',
-        tags: ['Orlando', 'UCF', 'Service'],
-      },
-      {
-        date: '04',
         title: 'Independent practice — learning to build',
         org: 'Portfolio systems',
         desc:
@@ -164,25 +143,17 @@ const pageCopy = {
         tags: ['Prototypes', 'Case studies', 'Visuals'],
       },
       {
-        date: '05',
-        title: 'Primor — working inside scale',
+        date: '03',
+        title: 'CRM and lifecycle work at scale',
         org: 'CRM · lifecycle · luxury partners',
         desc:
           'Large audiences, commercial cadence, segmentation, partner expectations, and internal AI adoption make the work accountable.',
         tags: ['CRM', 'Lifecycle', 'Scale'],
       },
-      {
-        date: '06',
-        title: 'Now — building the loop',
-        org: 'Tools · brand workflows · visual practice',
-        desc:
-          'Building the loop between workflow logic, interface design, brand memory, data boundaries, and human review.',
-        tags: ['Systems', 'Interface', 'Taste'],
-      },
     ] satisfies TimelineItem[],
     practiceTitle: <>How I <span className="about-landing__serif">work</span>.</>,
     practiceIntro:
-      'The work starts with the decision and ends with a surface people can review, use, and improve.',
+      'A concise process from business context to a working, reviewable system.',
     capabilities: [
       {
         number: '01',
@@ -226,48 +197,39 @@ const pageCopy = {
         tools: ['Voice', 'Image logic', 'Pacing'],
       },
     ],
-    proofLinksTitle: 'Proof in the work',
-    proofLinks: [
-      ['Campaign Pulse', 'Marketing intelligence', '/case-studies/campaign-pulse'],
-      ['DemandOS', 'Operational intelligence', '/case-studies/demandos'],
-      ['Campaign Sandbox', 'Campaign strategy', '/case-studies/campaign-sandbox'],
-      ['Remoria', 'Brand world', '/case-studies/remoria'],
-      ['AI Sports', 'Controlled visual production', '/case-studies/ai-sports'],
-    ],
-    ctaTitle: <>Let&apos;s make <span className="about-landing__serif">something</span> work.</>,
-    contactMeta: ['Available Q3 2026', 'Madrid · Remote · EU'],
+    ctaTitle: <>Let&apos;s discuss a <span className="about-landing__serif">system</span>.</>,
+    contactMeta: ['Open to selected projects and collaborations.', 'Madrid · Remote · EU'],
     githubCta: 'View GitHub',
   },
   es: {
-    heroTag: 'Construyo los sistemas detrás del trabajo creativo.',
+    heroTag: 'Sistemas de IA para equipos de marca y creatividad.',
     heroSupport:
-      'Empecé desde marketing y marca, pasé por CRM, retail beauty, lujo y práctica visual, y ahora construyo herramientas asistidas por IA que ayudan a equipos a decidir mejor sin perder gusto, contexto ni control.',
+      'Trabajo en la intersección de sistemas de IA, estrategia de marca, dirección creativa y diseño de producto. Ayudo a equipos a convertir tecnología emergente en herramientas estructuradas, usables y culturalmente coherentes.',
     current: ['Base', 'Madrid', 'Origen', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
-        title: 'CRM a escala',
-        body: 'Trabajo de lifecycle y CRM alrededor de una base de 8M+ usuarios, campañas comerciales, segmentación y adopción interna en retail beauty.',
+        title: 'CRM y sistemas comerciales',
+        body: 'Trabajo de lifecycle y CRM con una gran base de clientes, campañas comerciales, segmentación, partners de lujo y adopción interna.',
       },
       {
         number: '02',
-        title: 'Sistemas que se publican',
-        body: 'Proyectos construidos como prototipos funcionales: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
+        title: 'De estrategia a prototipo',
+        body: 'Herramientas de campaña, datos, auditoría y reporting construidas como prototipos funcionales para probar la lógica, no solo describirla.',
       },
       {
         number: '03',
-        title: 'El gusto como interfaz',
-        body: 'Fotografía, estudios visuales, referencias de lujo y sistemas de marca como capa de criterio alrededor de herramientas técnicas.',
+        title: 'Criterio visual',
+        body: 'Fotografía, investigación visual y sistemas de marca que mantienen las interfaces y los resultados distintivos, creíbles y apropiados.',
       },
     ],
     aboutEyebrow: 'Sobre mí',
-    aboutTitle: <>Un perfil hecho de <span className="about-landing__serif">trabajo</span>, lugar y práctica.</>,
+    aboutTitle: <>Por qué estrategia, diseño y <span className="about-landing__serif">sistemas</span> van juntos.</>,
     lede:
-      'El hilo común es el gusto operativo: saber qué debe estructurarse, qué debe seguir editable y dónde una persona todavía tiene que decidir.',
+      'Los sistemas creativos solo funcionan cuando se diseñan juntos el contexto de negocio, la interacción y el criterio humano.',
     body: [
-      'Málaga es el punto de origen; Madrid es donde la práctica se afinó con IE University, marketing, CRM y trabajo dentro de equipos comerciales.',
-      'Orlando añadió otra forma de leer servicio, comportamiento y expectativa. Primor añade la presión de escala: lifecycle, segmentación, partners de lujo y adopción interna alrededor de una base de clientes muy grande.',
-      'El portfolio es la capa de prueba. Herramientas de campaña, productos de datos, auditorías, mundos de marca y estudios visuales se construyen como superficies funcionales para poder probar el pensamiento, no solo describirlo.',
+      'Mi experiencia en marketing, CRM, retail y trabajo creativo hace que empiece por la decisión que un equipo necesita tomar, no por una capacidad genérica del modelo. La capa técnica necesita un propósito claro, inputs usables y puntos visibles de revisión.',
+      'Llevo esa perspectiva a superficies de producto y prototipos funcionales. Una herramienta solo sirve cuando las personas entienden qué hace, pueden valorar el resultado y mantienen el punto de vista de la marca.',
     ],
     operatingProfile: {
       title: 'Perfil operativo',
@@ -345,36 +307,19 @@ const pageCopy = {
         'Gusto operativo',
       ],
     },
-    timelineTitle: <>Capítulos, no solo <span className="about-landing__serif">cargos</span>.</>,
+    timelineTitle: <>El recorrido detrás de la <span className="about-landing__serif">práctica</span>.</>,
     timelineIntro:
-      'Una lectura compacta de los contextos que han dado forma al trabajo: mercados, entrega, servicio, construcción, escala y el loop actual.',
+      'Un recorrido breve por los contextos que hacen posible el trabajo actual.',
     timeline: [
       {
         date: '01',
-        title: 'Madrid — aprender el lenguaje de los mercados',
+        title: 'Fundamentos de negocio y marketing',
         org: 'IE University · BBA Marketing',
-        desc:
-          'Negocio, marketing, analítica digital y el primer vocabulario técnico para convertir comportamiento de cliente en decisiones.',
+        desc: 'Negocio, marketing y analítica digital en IE University crearon el primer vocabulario técnico para convertir comportamiento de cliente en decisiones.',
         tags: ['Madrid', 'IE University', 'Marketing'],
       },
       {
         date: '02',
-        title: 'Equipos — aprender a entregar',
-        org: 'IE Marketing Lab',
-        desc:
-          'Trabajo de proyecto con deadlines, partners y handoffs de equipo: la estrategia solo contaba cuando se convertía en algo entregado.',
-        tags: ['Liderazgo', 'Estrategia', 'Entrega'],
-      },
-      {
-        date: '03',
-        title: 'Orlando — mirar el servicio desde otro ángulo',
-        org: 'Intercambio UCF',
-        desc:
-          'Un semestre en University of Central Florida afinó la lectura de servicio, retail y expectativas culturales.',
-        tags: ['Orlando', 'UCF', 'Servicio'],
-      },
-      {
-        date: '04',
         title: 'Práctica independiente — aprender a construir',
         org: 'Sistemas de portfolio',
         desc:
@@ -382,25 +327,17 @@ const pageCopy = {
         tags: ['Prototipos', 'Casos', 'Visuales'],
       },
       {
-        date: '05',
-        title: 'Primor — trabajar dentro de escala',
+        date: '03',
+        title: 'CRM y lifecycle a escala',
         org: 'CRM · lifecycle · partners de lujo',
         desc:
           'Grandes audiencias, ritmo comercial, segmentación, expectativas de partners y adopción interna hacen que el trabajo sea responsable.',
         tags: ['CRM', 'Lifecycle', 'Escala'],
       },
-      {
-        date: '06',
-        title: 'Ahora — construir el loop',
-        org: 'Herramientas · workflows de marca · práctica visual',
-        desc:
-          'Construir el loop entre lógica de workflow, diseño de interfaz, memoria de marca, límites de datos y revisión humana.',
-        tags: ['Sistemas', 'Interfaz', 'Gusto'],
-      },
     ] satisfies TimelineItem[],
     practiceTitle: <>Cómo <span className="about-landing__serif">trabajo</span>.</>,
     practiceIntro:
-      'El trabajo empieza por la decisión y termina en una superficie que se puede revisar, usar y mejorar.',
+      'Un proceso conciso desde el contexto de negocio hasta un sistema funcional y revisable.',
     capabilities: [
       {
         number: '01',
@@ -444,16 +381,8 @@ const pageCopy = {
         tools: ['Voz', 'Imagen', 'Ritmo'],
       },
     ],
-    proofLinksTitle: 'Prueba en el trabajo',
-    proofLinks: [
-      ['Campaign Pulse', 'Inteligencia de marketing', '/case-studies/campaign-pulse'],
-      ['DemandOS', 'Inteligencia operativa', '/case-studies/demandos'],
-      ['Campaign Sandbox', 'Estrategia de campaña', '/case-studies/campaign-sandbox'],
-      ['Remoria', 'Mundo de marca', '/case-studies/remoria'],
-      ['AI Sports', 'Producción visual controlada', '/case-studies/ai-sports'],
-    ],
-    ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
-    contactMeta: ['Disponible T3 2026', 'Madrid · Remoto · UE'],
+    ctaTitle: <>Hablemos de un <span className="about-landing__serif">sistema</span>.</>,
+    contactMeta: ['Abierto a proyectos y colaboraciones seleccionadas.', 'Madrid · Remoto · UE'],
     githubCta: 'Ver GitHub',
   },
 }
@@ -551,83 +480,6 @@ function useAboutLandingMotion() {
   }, [])
 
   return { timelineRef, progressRef, hintRef, ghostRef }
-}
-
-const MAP_CITIES: { coords: [number, number]; delay: number }[] = [
-  { coords: [-4.42, 36.72], delay: 0 },
-  { coords: [-3.7, 40.42], delay: 0.55 },
-  { coords: [-81.38, 28.54], delay: 1.1 },
-]
-
-function MapGraphic() {
-  return (
-    <ComposableMap
-      className="about-map"
-      projection="geoNaturalEarth1"
-      projectionConfig={{ scale: 153 }}
-      width={800}
-      height={400}
-      aria-hidden="true"
-    >
-      <defs>
-        <pattern id="about-map-stip" patternUnits="userSpaceOnUse" width="5" height="5">
-          <circle cx="1" cy="1" r="0.9" fill="rgba(240,236,226,.22)" />
-        </pattern>
-      </defs>
-      <Geographies geography="/world-110m.json">
-        {({ geographies }) =>
-          geographies.map((geo) => (
-            <Geography
-              key={geo.rsmKey}
-              geography={geo}
-              style={{
-                default: {
-                  fill: 'url(#about-map-stip)',
-                  stroke: 'rgba(240,236,226,0.18)',
-                  strokeWidth: 0.5,
-                  outline: 'none',
-                },
-                hover: {
-                  fill: 'url(#about-map-stip)',
-                  stroke: 'rgba(240,236,226,0.18)',
-                  strokeWidth: 0.5,
-                  outline: 'none',
-                },
-                pressed: {
-                  fill: 'url(#about-map-stip)',
-                  stroke: 'rgba(240,236,226,0.18)',
-                  strokeWidth: 0.5,
-                  outline: 'none',
-                },
-              }}
-            />
-          ))
-        }
-      </Geographies>
-      {/* Trail: Málaga → Madrid */}
-      <Line
-        from={[-4.42, 36.72]}
-        to={[-3.7, 40.42]}
-        className="about-map__trail"
-      />
-      {/* Trail: Spain → Orlando */}
-      <Line
-        from={[-4.06, 38.57]}
-        to={[-81.38, 28.54]}
-        className="about-map__trail"
-      />
-      {MAP_CITIES.map(({ coords, delay }) => (
-        <Marker key={coords.join(',')} coordinates={coords}>
-          <circle
-            r="16"
-            className="about-map__halo"
-            style={{ '--ping-delay': `${delay}s` } as CSSProperties}
-          />
-          <circle r="4" className="about-map__pin" />
-        </Marker>
-      ))}
-    </ComposableMap>
-  )
 }
 
 export default function AboutPage() {
@@ -731,95 +583,7 @@ export default function AboutPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              <article className="about-operating-profile" data-about-reveal>
-                <h3>{copy.operatingProfile.title}</h3>
-                <ul>
-                  {copy.operatingProfile.items.map(([label, value]) => (
-                    <li key={label}>
-                      <span>{label}</span>
-                      <b>{value}</b>
-                    </li>
-                  ))}
-                </ul>
-              </article>
             </div>
-          </div>
-
-          <div className="about-notes" data-about-reveal>
-            <article className="about-note about-note--map">
-              <div className="about-note__head">
-                <span>{copy.geography.kicker}</span>
-                <span>{copy.geography.meta}</span>
-              </div>
-              <MapGraphic />
-              <div className="about-map__legend">
-                {copy.geography.cities.map(([city, coord, label]) => (
-                  <div key={city}>
-                    <span aria-hidden="true" />
-                    <b>{city}</b>
-                    <i>{coord}</i>
-                    <em>{label}</em>
-                  </div>
-                ))}
-              </div>
-            </article>
-
-            <article className="about-note about-note--lang">
-              <div className="about-note__head">
-                <span>{copy.languages.title}</span>
-                <span className="about-note__marker" aria-hidden="true" />
-              </div>
-              <ul className="about-language-list" aria-label={copy.languages.title}>
-                {copy.languages.items.map(([code, name, level, dots]) => (
-                  <li key={code}>
-                    <span>{code}</span>
-                    <b>{name}</b>
-                    <span className="about-language-list__dots" aria-hidden="true">
-                      {[1, 2, 3, 4, 5].map((dot) => (
-                        <i key={dot} data-active={dot <= dots ? 'true' : undefined} />
-                      ))}
-                    </span>
-                    <em>{level}</em>
-                  </li>
-                ))}
-              </ul>
-            </article>
-
-            {copy.work.map((item) => (
-              <Link
-                href={localizePath(item.href, locale)}
-                className="about-note about-note--work"
-                key={item.kicker}
-              >
-                <div className="about-note__head">
-                  <span>{item.kicker}</span>
-                  <span className="about-note__marker" aria-hidden="true" />
-                </div>
-                <div className="about-note__image">
-                  <Image src={item.image} alt="" fill sizes="(max-width: 900px) 100vw, 280px" />
-                </div>
-                <div className="about-note__meta">
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="about-vocabulary" aria-labelledby="about-vocabulary-title">
-        <div className="about-landing__container">
-          <p id="about-vocabulary-title" className="about-landing__eyebrow" data-about-reveal>
-            {copy.vocabulary.title}
-          </p>
-          <div className="about-vocabulary__terms" data-about-reveal>
-            {copy.vocabulary.terms.map((term, index) => (
-              <span key={term}>
-                <i>{String(index + 1).padStart(2, '0')}</i>
-                {term}
-              </span>
-            ))}
           </div>
         </div>
       </section>
@@ -887,27 +651,6 @@ export default function AboutPage() {
                   </div>
                 </div>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="about-proof-links" aria-labelledby="about-proof-links-title">
-        <div className="about-landing__container">
-          <div className="about-proof-links__head">
-            <p className="about-landing__eyebrow" data-about-reveal>
-              {locale === 'es' ? 'Casos' : 'Case studies'}
-            </p>
-            <h2 id="about-proof-links-title" data-about-reveal>
-              {copy.proofLinksTitle}
-            </h2>
-          </div>
-          <div className="about-proof-links__grid" data-about-reveal>
-            {copy.proofLinks.map(([title, label, href]) => (
-              <Link href={localizePath(href, locale)} key={title}>
-                <span>{title}</span>
-                <b>{label}</b>
-              </Link>
             ))}
           </div>
         </div>
