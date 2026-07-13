@@ -14,8 +14,6 @@ const HeroBackground = dynamic(() => import('./HeroBackground'), {
   loading: () => <div className={styles.background} aria-hidden="true" />
 })
 
-const githubUrl = 'https://github.com/RaulMermans'
-
 interface HeroProps {
   locale?: Locale
 }
@@ -40,7 +38,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
   const surnameLetters = surname.split('')
 
   const handleScrollToWork = () => {
-    const workSection = document.getElementById('work')
+    const workSection = document.getElementById('selected-ai-systems')
     if (workSection) {
       workSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -76,18 +74,14 @@ export default function Hero({ locale = 'en' }: HeroProps) {
           </span>
         </p>
 
-        {/* SEO-optimized H1 — accessible label includes the name so screen readers
-            get "Raúl Mermans — AI Systems · Agents · Automation" */}
         <h1
           id="hero-title"
           className={`${styles.services} reveal reveal-delay-1`}
           aria-label={copy.ariaLabel}
         >
-          <span className={styles.service} aria-hidden="true">{copy.services[0]}</span>
-          <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">{copy.services[1]}</span>
-          <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">{copy.services[2]}</span>
+          {copy.services.map((service) => (
+            <span key={service} className={styles.service} aria-hidden="true">{service}</span>
+          ))}
         </h1>
 
         <p className={`${styles.summary} reveal reveal-delay-2`}>
@@ -114,18 +108,6 @@ export default function Hero({ locale = 'en' }: HeroProps) {
               <span>{copy.secondaryCta}</span>
               <span className={styles.ctaArrow}>→</span>
             </Link>
-          </MagneticButton>
-          <MagneticButton className={styles.ctaWrapper} intensity={18}>
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.cta} ${styles.tertiary}`}
-              data-mobile-audit="hero-cta"
-            >
-              <span>{copy.tertiaryCta}</span>
-              <span className={styles.ctaArrow}>↗</span>
-            </a>
           </MagneticButton>
         </div>
       </div>

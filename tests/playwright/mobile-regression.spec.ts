@@ -86,11 +86,28 @@ test.describe('Mobile Regression', () => {
 
     const hero = page.locator('[data-home-section="hero"]')
     const heroCtas = hero.locator('[data-mobile-audit="hero-cta"]')
-    await expect(heroCtas).toHaveCount(3)
-    await expect(hero.getByRole('link', { name: 'Discuss an AI Integration' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: 'View Case Studies' })).toBeVisible()
+    await expect(heroCtas).toHaveCount(2)
+    await expect(hero.getByRole('link', { name: 'Discuss a system' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'View selected work' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: /GitHub/i })).toHaveCount(0)
 
     await expectStableScreenshot(hero, 'home-hero.png')
+  })
+
+  test('Creative AI Systems Sprint is prominent and localized', async ({ page }) => {
+    await preparePage(page, '/en/')
+
+    const sprint = page.locator('#creative-ai-systems-sprint')
+    await sprint.scrollIntoViewIfNeeded()
+    await expect(sprint.getByRole('heading', { name: 'Creative AI Systems Sprint' })).toBeVisible()
+    await expect(sprint.getByText('Typically 2–4 weeks, depending on scope.')).toBeVisible()
+    await expect(sprint.getByRole('link', { name: 'Discuss a Creative AI Systems Sprint' })).toBeVisible()
+
+    await preparePage(page, '/')
+    const spanishSprint = page.locator('#creative-ai-systems-sprint')
+    await spanishSprint.scrollIntoViewIfNeeded()
+    await expect(spanishSprint.getByRole('heading', { name: 'Sprint de Sistemas Creativos con IA' })).toBeVisible()
+    await expect(spanishSprint.getByRole('link', { name: 'Hablar de un Sprint de Sistemas Creativos con IA' })).toBeVisible()
   })
 
   test('mobile menu opens as a modal and restores focus when closed', async ({ page }) => {

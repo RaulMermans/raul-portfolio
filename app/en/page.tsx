@@ -3,9 +3,9 @@ import HomePage from '../page'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'AI Integrations for Creative Systems, Brand Workflows, and Cultural Execution',
+  title: 'AI Systems for Brand and Creative Teams',
   description:
-    'Applied AI systems, automation layers, and internal tools for creative teams, brand builders, and culture-led projects that need faster execution with taste, control, and brand coherence.',
+    'Raúl Mermans designs and builds AI systems for brand and creative teams, from workflow strategy and interface design to functioning internal tools.',
   path: '/',
   locale: 'en',
   image: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = buildPageMetadata({
     'brand workflows',
     'internal creative tools',
     'AI campaign systems',
-    'brand intelligence',
+    'brand systems',
   ],
 })
 

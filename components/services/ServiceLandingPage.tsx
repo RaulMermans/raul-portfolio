@@ -254,6 +254,34 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
           </div>
         </section>
 
+        {service.flagshipOffer && (
+          <section className={`${styles.section} ${styles.sprintSection}`} aria-labelledby="sprint-title">
+            <div className={styles.sectionInner}>
+              <div className={styles.sprintHeader}>
+                <p className={styles.sectionLabel}>{service.flagshipOffer.label}</p>
+                <h2 id="sprint-title" className={styles.sprintTitle}>{service.flagshipOffer.title}</h2>
+              </div>
+              <div className={styles.sprintGrid}>
+                <div>
+                  <p>{service.flagshipOffer.audience}</p>
+                  <p className={styles.sprintDuration}>{service.flagshipOffer.duration}</p>
+                </div>
+                <ul>
+                  {service.flagshipOffer.included.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </div>
+              <div className={styles.sprintOutcome}>
+                <p>{service.flagshipOffer.outcome}</p>
+                <span>{service.flagshipOffer.followUp}</span>
+                <a href={emailHref} className={styles.button}>
+                  {service.flagshipOffer.ctaLabel}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className={styles.section} aria-labelledby="service-problems-title">
           <div className={styles.sectionInner}>
             <ServiceSectionHeading

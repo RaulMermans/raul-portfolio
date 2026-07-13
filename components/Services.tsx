@@ -17,11 +17,6 @@ export default function Services({ locale = 'en' }: ServicesProps) {
     backgroundColor?: string
   }> = [
     { src: '/images/services/Services_AI_Agents.webp' },
-    {
-      src: '/images/services/Services_Automation.webp',
-      fit: 'contain',
-      backgroundColor: '#000',
-    },
     { src: '/images/services/Services_Web_Development.webp' },
     { src: '/images/services/Services_Creative_Direction.webp' },
     { src: '/images/services/Services_Photography.webp' },
