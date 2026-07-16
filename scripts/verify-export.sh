@@ -47,30 +47,30 @@ assert_file out/services/automatizacion-creativa/index.html
 assert_file out/services/sistemas-de-marca/index.html
 assert_file out/services/prototipos-producto-ia/index.html
 
-assert_contains out/en/index.html "AI Integrations"
-assert_contains out/en/index.html "Discuss an AI Integration"
-assert_contains out/en/index.html "Creative infrastructure for AI-assisted execution"
-assert_contains out/en/index.html "Start with the creative system"
+assert_contains out/en/index.html "Creative strategy"
+assert_contains out/en/index.html "Discuss a project"
+assert_contains out/en/index.html "The idea, audience, and direction come first"
+assert_contains out/en/index.html "Start with the idea, challenge, or opportunity"
 assert_contains out/en/index.html "Direct contact options"
-assert_contains out/en/index.html "Available Q3 2026"
+assert_contains out/en/index.html "Open to selected projects and collaborations"
 assert_contains out/en/index.html "raulmermans@gmail.com"
 
-assert_contains out/index.html "Integraciones IA"
-assert_contains out/index.html "Hablar de una integración IA"
-assert_contains out/index.html "Infraestructura creativa para ejecución asistida por IA"
-assert_contains out/index.html "Empieza por el sistema creativo"
+assert_contains out/index.html "Estrategia creativa"
+assert_contains out/index.html "Hablar de un proyecto"
+assert_contains out/index.html "La idea, la audiencia y la dirección van primero"
+assert_contains out/index.html "Empecemos por la idea, el reto o la oportunidad"
 assert_contains out/index.html "Opciones de contacto directo"
-assert_contains out/index.html "Disponible T3 2026"
+assert_contains out/index.html "Abierto a proyectos y colaboraciones seleccionadas"
 assert_contains out/index.html "raulmermans@gmail.com"
 
 assert_contains out/en/services/ai-integrations/index.html "AI Integrations for Creative Systems"
 assert_contains out/en/services/creative-automation/index.html "Creative Automation"
-assert_contains out/en/services/brand-systems/index.html "Brand Intelligence Systems"
+assert_contains out/en/services/brand-systems/index.html "Brand Systems and Creative Direction"
 assert_contains out/en/services/product-prototypes/index.html "AI Product Prototypes"
 
 assert_contains out/services/integraciones-ia/index.html "Integraciones IA para Sistemas Creativos"
 assert_contains out/services/automatizacion-creativa/index.html "Automatización Creativa"
-assert_contains out/services/sistemas-de-marca/index.html "Sistemas de Inteligencia de Marca"
+assert_contains out/services/sistemas-de-marca/index.html "Sistemas de Marca y Dirección Creativa"
 assert_contains out/services/prototipos-producto-ia/index.html "Prototipos de Producto IA"
 
 assert_contains out/en/case-studies/index.html "View case study: AI Sports Campaign"
@@ -90,9 +90,11 @@ assert_absent out/en/index.html "Marketing + CRM"
 assert_absent out/en/index.html "Start with the workflow"
 assert_absent out/en/index.html "Send Project Brief"
 assert_absent out/en/index.html "Send Creative Systems Brief"
+assert_absent out/en/index.html "Discuss an AI Integration"
 assert_absent out/index.html "Sistemas de IA · Agentes · Automatización"
 assert_absent out/index.html "Automatización CRM"
 assert_absent out/index.html "Enviar brief de sistema creativo"
+assert_absent out/index.html "Hablar de una integración IA"
 
 node <<'NODE'
 const fs = require('node:fs')
@@ -121,7 +123,7 @@ assertOrder('out/en/case-studies/index.html', [
   'Campaign Sandbox',
   'DataBrief AI',
   'Website Audit Agent',
-  'Benchmark Dashboard Template',
+  'Benchmark Intelligence Engine',
   'AI Sports Campaign',
   'Remoria',
   'BlogAgent',
@@ -134,7 +136,7 @@ assertOrder('out/case-studies/index.html', [
   'Campaign Sandbox',
   'DataBrief AI',
   'Website Audit Agent',
-  'Benchmark Dashboard Template',
+  'Benchmark Intelligence Engine',
   'Campaña deportiva con IA',
   'Remoria',
   'BlogAgent',

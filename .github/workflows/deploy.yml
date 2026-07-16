@@ -104,8 +104,8 @@ jobs:
             return 1
           }
 
-          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "AI systems for brand and creative teams."
-          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Sistemas de IA para equipos de marca y creatividad."
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Raúl Mermans — multidisciplinary creative strategist across brand, marketing, culture, data, design, and technology."
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Raúl Mermans — estratega creativo multidisciplinar entre marca, marketing, cultura, datos, diseño y tecnología."
           verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "View case study: BlogAgent"
           verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Ver caso de estudio: BlogAgent"
           verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "human review before publication"
