@@ -9,21 +9,37 @@ interface ServicesProps {
   locale?: Locale
 }
 
+type ServiceImage = {
+  src: string
+  fit?: 'cover' | 'contain'
+  backgroundColor?: string
+}
+
+const serviceImages: Record<string, ServiceImage> = {
+  '00-1': {
+    src: '/images/services/Services_Web_Development.webp',
+  },
+  '00-2': {
+    src: '/images/services/Services_Creative_Direction.webp',
+  },
+  '00-3': {
+    src: '/images/services/Services_Automation.webp',
+    fit: 'contain',
+    backgroundColor: '#050505',
+  },
+  '00-4': {
+    src: '/images/services/Services_AI_Agents.webp',
+  },
+  '00-5': {
+    src: '/images/services/Services_Photography.webp',
+  },
+}
+
 export default function Services({ locale = 'en' }: ServicesProps) {
   const copy = getSiteCopy(locale).home.services
-  const serviceImages: Array<{
-    src: string
-    fit?: 'cover' | 'contain'
-    backgroundColor?: string
-  }> = [
-    { src: '/images/services/Services_AI_Agents.webp' },
-    { src: '/images/services/Services_Web_Development.webp' },
-    { src: '/images/services/Services_Creative_Direction.webp' },
-    { src: '/images/services/Services_Photography.webp' },
-  ]
-  const services = copy.items.map((item, index) => ({
+  const services = copy.items.map((item) => ({
     ...item,
-    image: serviceImages[index] ?? serviceImages[0],
+    image: serviceImages[item.number],
   }))
   return (
     <section id="services" className="services" aria-labelledby="services-title">
