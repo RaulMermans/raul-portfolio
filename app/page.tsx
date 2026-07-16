@@ -10,6 +10,7 @@ import Hero from '@/components/Hero'
 import SelectedAISystems from '@/components/SelectedAISystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
 import CreativeAISystemsSprint from '@/components/CreativeAISystemsSprint'
+import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
 import Services from '@/components/Services'
 import Contact from '@/components/Contact'
@@ -26,11 +27,13 @@ function getHomeServiceSchema(locale: Locale) {
     locale === 'es'
       ? {
           ai: '/services/integraciones-ia',
+          automation: '/services/automatizacion-creativa',
           prototypes: '/services/prototipos-producto-ia',
           brand: '/services/sistemas-de-marca',
         }
       : {
           ai: '/en/services/ai-integrations',
+          automation: '/en/services/creative-automation',
           prototypes: '/en/services/product-prototypes',
           brand: '/en/services/brand-systems',
         }
@@ -45,10 +48,10 @@ function getHomeServiceSchema(locale: Locale) {
         {
           '@type': 'Service',
           position: 1,
-          name: 'Sistemas de IA',
-          serviceType: 'Diseño de sistemas de IA aplicados',
+          name: 'Estrategia Creativa y Marketing',
+          serviceType: 'Estrategia creativa y de marketing',
           description:
-            'Sistemas asistidos por IA y herramientas internas que ayudan a equipos de marca y creatividad a investigar, desarrollar, revisar y producir trabajo con más consistencia.',
+            'Estrategia que conecta objetivos de negocio, insight de audiencia, contexto cultural y ejecución creativa.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(servicePaths.ai),
@@ -56,32 +59,43 @@ function getHomeServiceSchema(locale: Locale) {
         {
           '@type': 'Service',
           position: 2,
-          name: 'Prototipos de producto y web',
-          serviceType: 'Diseño de interfaces y prototipos de producto',
+          name: 'Sistemas de Marca y Dirección Creativa',
+          serviceType: 'Sistemas de marca y dirección creativa',
           description:
-            'Interfaces y prototipos funcionales para hacer comprobables sistemas, servicios e ideas técnicas antes del desarrollo completo.',
+            'Sistemas de marca y creatividad que hacen las ideas reconocibles, coherentes y culturalmente relevantes en campañas, contenido y experiencias digitales.',
+          provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+          areaServed: { '@type': 'Country', name: 'Spain' },
+          url: absoluteRouteUrl(servicePaths.automation),
+        },
+        {
+          '@type': 'Service',
+          position: 3,
+          name: 'Datos, Investigación e Inteligencia',
+          serviceType: 'Datos, investigación y apoyo a decisiones',
+          description:
+            'Herramientas de investigación y datos que hacen la información compleja más fácil de entender y convertir en acción.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(servicePaths.prototypes),
         },
         {
           '@type': 'Service',
-          position: 3,
-          name: 'Sistemas de marca y dirección creativa',
-          serviceType: 'Dirección creativa y sistemas de marca',
+          position: 4,
+          name: 'Productos Digitales, IA y Prototipado',
+          serviceType: 'Productos digitales, IA y prototipado',
           description:
-            'Criterios de marca, tono, dirección visual y revisión que mantienen herramientas y resultados coherentes y apropiados.',
+            'Productos digitales y prototipos que vuelven tangibles estrategias, flujos e ideas, usando IA donde aporta valor real.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(servicePaths.brand),
         },
         {
           '@type': 'Service',
-          position: 4,
-          name: 'Fotografía e investigación visual',
-          serviceType: 'Práctica visual de apoyo',
+          position: 5,
+          name: 'Fotografía y Dirección Visual',
+          serviceType: 'Fotografía, sistemas de imagen e investigación visual',
           description:
-            'Fotografía e investigación visual como práctica de apoyo para la composición, la observación cultural y el criterio de imagen.',
+            'Fotografía e imagen como práctica visual de apoyo para reforzar composición, lectura cultural y criterio de marca.',
           provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
           areaServed: { '@type': 'Country', name: 'Spain' },
           url: absoluteRouteUrl(localizedPhotography),
@@ -99,10 +113,10 @@ function getHomeServiceSchema(locale: Locale) {
       {
         '@type': 'Service',
         position: 1,
-        name: 'AI Systems',
-        serviceType: 'AI workflow architecture and internal AI tools',
+        name: 'Creative Strategy and Marketing',
+        serviceType: 'Creative and marketing strategy',
         description:
-          'AI-assisted systems and internal tools that help brand and creative teams research, develop, review, and produce work more consistently.',
+          'Strategy connecting business objectives, audience insight, cultural context, and creative execution.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(servicePaths.ai),
@@ -110,32 +124,43 @@ function getHomeServiceSchema(locale: Locale) {
       {
         '@type': 'Service',
         position: 2,
-        name: 'Product and Web Prototypes',
-        serviceType: 'Interface Design and Product Prototyping',
+        name: 'Brand Systems and Creative Direction',
+        serviceType: 'Brand systems and creative direction',
         description:
-          'Working interfaces and prototypes that make systems, services, and technical ideas testable before full development.',
+          'Brand and creative systems that make ideas recognisable, coherent, and culturally relevant across campaigns, content, and digital experiences.',
+        provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+        areaServed: { '@type': 'Country', name: 'Spain' },
+        url: absoluteRouteUrl(servicePaths.automation),
+      },
+      {
+        '@type': 'Service',
+        position: 3,
+        name: 'Data, Research and Intelligence',
+        serviceType: 'Data, research and decision support',
+        description:
+          'Research and data tools that make complex information easier to understand and act on.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(servicePaths.prototypes),
       },
       {
         '@type': 'Service',
-        position: 3,
-        name: 'Brand Systems and Creative Direction',
-        serviceType: 'Creative Direction and Brand Systems',
+        position: 4,
+        name: 'Digital Products, AI and Prototyping',
+        serviceType: 'Digital products, AI and prototyping',
         description:
-          'Brand criteria, tone, visual direction, and review logic that keep tools and outputs coherent and appropriate.',
+          'Digital products and prototypes that make strategies, workflows, and ideas tangible, using AI where it creates meaningful value.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(servicePaths.brand),
       },
       {
         '@type': 'Service',
-        position: 4,
-        name: 'Photography and Visual Research',
-        serviceType: 'Supporting Visual Practice',
+        position: 5,
+        name: 'Photography and Visual Direction',
+        serviceType: 'Photography, Image Systems, and Visual Research',
         description:
-          'Photography and visual research as a supporting practice for composition, cultural observation, and image judgment.',
+          'Photography and image-making as a supporting visual practice for composition, cultural reading, and brand judgment.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(localizedPhotography),
@@ -203,7 +228,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="positioning"], .selected-ai-systems, .about, .services, .contact, .socials'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="positioning"], [data-home-section="work"], .selected-ai-systems, #creative-strategy-sprint, .about, .services, .contact, .socials'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -243,10 +268,35 @@ export default function Home() {
         <Header locale={locale} />
         <Hero locale={locale} />
         <SelectedAISystems locale={locale} />
-        <CreativeAISystemsSprint locale={locale} />
-        <Services locale={locale} />
         <CreativeInfrastructure locale={locale} />
+        <CreativeAISystemsSprint locale={locale} />
+        <SectionCards locale={locale} />
+
+        {/* Social Proof Section - Placeholder for future content
+        * Suggested location for "Trusted By" logos or testimonial quotes
+        * Uncomment and populate when client logos/testimonials are available
+        *
+        * <section className="social-proof" aria-label="Client testimonials">
+        *   <div className="social-proof__inner">
+        *     <p className="social-proof__label">Trusted By</p>
+        *     <div className="social-proof__logos">
+        *       {/* Add client logos here - recommended: 4-6 logos *}
+        *       {/* <Image src="/images/clients/logo1.svg" alt="Client Name" width={120} height={40} /> *}
+        *     </div>
+        *     <blockquote className="social-proof__testimonial">
+        *       <p className="social-proof__quote">
+        *         "Quote from a satisfied client about the quality of work and results achieved."
+        *       </p>
+        *       <cite className="social-proof__cite">
+        *         — Client Name, Company
+        *       </cite>
+        *     </blockquote>
+        *   </div>
+        * </section>
+        */}
+
         <About locale={locale} />
+        <Services locale={locale} />
         <Contact locale={locale} />
         <Socials locale={locale} />
         <Footer locale={locale} />

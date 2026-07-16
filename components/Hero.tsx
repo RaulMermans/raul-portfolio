@@ -38,7 +38,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
   const surnameLetters = surname.split('')
 
   const handleScrollToWork = () => {
-    const workSection = document.getElementById('selected-ai-systems')
+    const workSection = document.getElementById('work')
     if (workSection) {
       workSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -74,14 +74,18 @@ export default function Hero({ locale = 'en' }: HeroProps) {
           </span>
         </p>
 
+        {/* The visual treatment is hidden from assistive technology; the full
+            multidisciplinary positioning is conveyed through the accessible label. */}
         <h1
           id="hero-title"
           className={`${styles.services} reveal reveal-delay-1`}
           aria-label={copy.ariaLabel}
         >
-          {copy.services.map((service) => (
-            <span key={service} className={styles.service} aria-hidden="true">{service}</span>
-          ))}
+          <span className={styles.service} aria-hidden="true">{copy.services[0]}</span>
+          <span className={styles.divider} aria-hidden="true">·</span>
+          <span className={styles.service} aria-hidden="true">{copy.services[1]}</span>
+          <span className={styles.divider} aria-hidden="true">·</span>
+          <span className={styles.service} aria-hidden="true">{copy.services[2]}</span>
         </h1>
 
         <p className={`${styles.summary} reveal reveal-delay-2`}>

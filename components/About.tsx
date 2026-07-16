@@ -65,17 +65,19 @@ export default function About({ locale = 'en' }: AboutProps) {
           <p className="about__text reveal reveal-delay-2">
             {locale === 'es' ? (
               <>
-                Construyo <span className="highlight">herramientas asistidas por IA</span>,{' '}
-                <span className="highlight">lógica CRM</span> y{' '}
-                <span className="highlight">workflows de marca</span> que convierten inputs dispersos
-                en decisiones más claras sin perder criterio visual ni control humano.
+                Trabajo entre <span className="highlight">estrategia creativa</span>,{' '}
+                <span className="highlight">marketing</span>, <span className="highlight">marca</span>,{' '}
+                <span className="highlight">cultura</span>, datos, diseño y tecnología. Combino pensamiento
+                analítico con criterio creativo para pasar de la investigación y el posicionamiento a campañas,
+                dirección visual, productos digitales y prototipos funcionales.
               </>
             ) : (
               <>
-                I build <span className="highlight">AI-assisted tools</span>,{' '}
-                <span className="highlight">CRM logic</span>, and{' '}
-                <span className="highlight">brand workflows</span> that turn scattered inputs into clearer
-                decisions without losing visual judgment or human control.
+                I work across <span className="highlight">creative strategy</span>,{' '}
+                <span className="highlight">marketing</span>, <span className="highlight">brand</span>,{' '}
+                <span className="highlight">culture</span>, data, design, and technology. My approach combines
+                analytical thinking with creative judgment, moving from research and positioning to campaigns,
+                visual direction, digital products, and functioning prototypes.
               </>
             )}
           </p>
