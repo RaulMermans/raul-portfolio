@@ -13,7 +13,7 @@ export default function CreativeAISystemsSprint({
   const copy = getSiteCopy(locale).home.sprint
 
   return (
-    <section id="creative-ai-systems-sprint" className={styles.section} aria-labelledby="sprint-title">
+    <section id="creative-strategy-sprint" className={styles.section} aria-labelledby="sprint-title">
       <div className={styles.inner}>
         <div className={styles.intro}>
           <p className={styles.eyebrow}>{copy.eyebrow}</p>

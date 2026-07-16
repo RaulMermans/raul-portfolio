@@ -3,16 +3,16 @@ import HomePage from '../page'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Sistemas de IA para Equipos de Marca y Creatividad',
+  title: 'Estrategia Creativa entre Marca, Marketing, Cultura, Datos y Tecnología',
   description:
-    'Raúl Mermans diseña y construye sistemas de IA para equipos de marca y creatividad, desde la estrategia de flujos y el diseño de interfaz hasta herramientas internas funcionales.',
+    'Raúl Mermans es un estratega creativo multidisciplinar que trabaja entre marca, marketing, cultura, datos, diseño, productos digitales y tecnología emergente.',
   path: '/',
   locale: 'es',
   image: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Portfolio de Raúl Mermans',
   },
-  keywords: ['sistemas creativos con IA', 'integraciones de IA', 'flujos de marca', 'herramientas creativas internas', 'sistemas de campaña con IA', 'sistemas de marca'],
+  keywords: ['estrategia creativa', 'estrategia de marca', 'estrategia de marketing', 'datos y analítica', 'dirección creativa', 'IA y tecnología emergente'],
 })
 
 export default function SpanishHomePage() {

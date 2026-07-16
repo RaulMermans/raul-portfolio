@@ -30,7 +30,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'Person',
       '@id': `${siteConfig.url}/#person`,
       name: siteConfig.name,
-      jobTitle: 'Arquitecto de Sistemas de IA Aplicada',
+      jobTitle: 'Multidisciplinary Creative Strategist',
       description: siteConfig.defaultDescription,
       url: siteConfig.url,
       image: absoluteUrl('/images/about/profile.webp'),
@@ -45,17 +45,16 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         addressCountry: 'ES',
       },
       knowsAbout: [
-        'AI Systems Design',
-        'Creative AI Systems',
-        'AI Integrations',
-        'Brand Systems',
-        'Creative Automation',
-        'AI Campaign Systems',
-        'Internal Creative Tools',
-        'Generative Visual Systems',
-        'Brand Workflows',
-        'Content Systems',
+        'Creative Strategy',
+        'Brand Strategy',
+        'Marketing Strategy',
+        'Cultural Strategy',
+        'Data and Analytics',
+        'Creative Direction',
+        'Digital Products',
         'Product Prototyping',
+        'AI and Emerging Technology',
+        'Photography and Visual Research',
       ],
       ...data,
     }
@@ -85,10 +84,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 1,
-          name: 'AI Systems',
-          serviceType: 'AI workflow architecture and internal AI tools',
+          name: 'Creative Strategy and Marketing',
+          serviceType: 'Creative and marketing strategy',
           description:
-            'AI-assisted systems and internal tools that help brand and creative teams research, develop, review, and produce work more consistently.',
+            'Strategy connecting business objectives, audience insight, cultural context, and creative execution.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -101,10 +100,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 2,
-          name: 'Automation and Internal Tools',
-          serviceType: 'Creative Automation and Internal Interfaces',
+          name: 'Brand Systems and Creative Direction',
+          serviceType: 'Brand systems and creative direction',
           description:
-            'Automation layers and internal tools for creative workflows, content production, research, asset handling, and team coordination — built to support judgment, not replace it.',
+            'Brand and creative systems that make ideas recognisable, coherent, and culturally relevant across campaigns, content, and digital experiences.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -117,10 +116,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 3,
-          name: 'Web and Product Prototypes',
-          serviceType: 'Web Design and Product Prototyping',
+          name: 'Data, Research and Intelligence',
+          serviceType: 'Data, research and decision support',
           description:
-            'Product-minded web experiences and prototypes built to make workflows, offers, and technical ideas usable, credible, and ready for iteration.',
+            'Research and data tools that make complex information easier to understand and act on.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -133,10 +132,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 4,
-          name: 'Brand Systems and Creative Direction',
-          serviceType: 'Creative Direction and Brand Systems',
+          name: 'Digital Products, AI and Prototyping',
+          serviceType: 'Digital products, AI and prototyping',
           description:
-            'Brand systems, prompt structures, and review criteria that help teams keep AI-assisted content and creative outputs coherent.',
+            'Digital products and prototypes that make strategies, workflows, and ideas tangible, using AI where it creates meaningful value.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -149,7 +148,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 5,
-          name: 'Creative Practice',
+        name: 'Photography and Visual Direction',
           serviceType: 'Photography, Image Systems, and Visual Research',
           description:
             'Photography and image-making as a supporting visual practice for composition, cultural reading, and brand judgment.',

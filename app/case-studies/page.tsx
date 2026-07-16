@@ -29,8 +29,8 @@ function getSchemas(locale: Locale) {
       '@id': `${siteConfig.url}/#case-studies-page`,
       name: isSpanish ? 'Casos de estudio' : 'Case Studies',
       description: isSpanish
-        ? 'Casos de estudio de Raúl Mermans sobre sistemas de IA, flujos de automatización, sistemas de marca y ejecución creativa con criterio de producto.'
-        : 'Case studies by Raúl Mermans covering AI systems, automation workflows, brand systems, and product-minded creative execution.',
+        ? 'Casos de estudio de Raúl Mermans sobre campañas, inteligencia de marketing, productos digitales, marca, dirección visual y herramientas asistidas por IA.'
+        : 'Case studies by Raúl Mermans spanning campaigns, marketing intelligence, digital products, brand thinking, visual direction, and AI-assisted tools.',
       url: absoluteRouteUrl(localizedCaseStudies),
       isPartOf: { '@type': 'WebSite', '@id': `${siteConfig.url}/#website` },
       about: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
@@ -67,8 +67,8 @@ export default function CaseStudiesPage() {
   const isSpanish = locale === 'es'
   const browserTitle = isSpanish ? 'Casos de estudio' : 'Case Studies'
   const browserLead = isSpanish
-    ? 'Sistemas, interfaces y trabajo de marca construidos alrededor de prueba, contención y ejecución.'
-    : 'Systems, interfaces, and brand work built around proof, restraint, and execution.'
+    ? 'Campañas, datos, productos digitales, marca y herramientas asistidas por IA construidos alrededor de una oportunidad concreta.'
+    : 'Campaigns, data, digital products, brand work, and AI-assisted tools built around a specific opportunity.'
   const filterLabel = isSpanish
     ? 'Filtrar casos de estudio'
     : 'Filter case studies'
