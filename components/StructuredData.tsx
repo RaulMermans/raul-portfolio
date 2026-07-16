@@ -135,7 +135,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: 'Digital Products, AI and Prototyping',
           serviceType: 'Digital products, AI and prototyping',
           description:
-            'Digital products and prototypes that make strategies, workflows, and ideas tangible, using AI where it creates meaningful value.',
+            'Digital products and prototypes that make strategies, workflows, and ideas easier to test and use, with AI where it helps.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,

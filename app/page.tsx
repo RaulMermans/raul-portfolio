@@ -149,7 +149,7 @@ function getHomeServiceSchema(locale: Locale) {
         name: 'Digital Products, AI and Prototyping',
         serviceType: 'Digital products, AI and prototyping',
         description:
-          'Digital products and prototypes that make strategies, workflows, and ideas tangible, using AI where it creates meaningful value.',
+          'Digital products and prototypes that make strategies, workflows, and ideas easier to test and use, with AI where it helps.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(servicePaths.brand),
@@ -288,7 +288,7 @@ export default function Home() {
         *         "Quote from a satisfied client about the quality of work and results achieved."
         *       </p>
         *       <cite className="social-proof__cite">
-        *         — Client Name, Company
+        *         Client Name, Company
         *       </cite>
         *     </blockquote>
         *   </div>

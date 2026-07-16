@@ -5,7 +5,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'Creative Strategy Across Brand, Marketing, Culture, Data, and Technology',
   description:
-    'Raúl Mermans is a multidisciplinary creative strategist working across brand, marketing, culture, data, design, digital products, and emerging technology.',
+    'Raúl Mermans works across brand, marketing, culture, data, design, digital products, and technology.',
   path: '/',
   locale: 'en',
   image: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = buildPageMetadata({
     'marketing strategy',
     'data and analytics',
     'creative direction',
-    'AI and emerging technology',
+    'AI and technology',
   ],
 })
 

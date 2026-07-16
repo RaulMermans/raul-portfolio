@@ -27,12 +27,12 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com',
   locale: 'es_ES',
   twitterHandle: '@raulmermans',
-  defaultTitle: 'Raúl Mermans — Multidisciplinary Creative Strategist',
+  defaultTitle: 'Raúl Mermans, Creative Strategist',
   defaultDescription:
-    'Raúl Mermans is a multidisciplinary creative strategist working across brand, marketing, culture, data, design, digital products, and emerging technology.',
+    'Raúl Mermans works across brand, marketing, culture, data, design, digital products, and technology.',
   defaultImage: {
     url: '/images/sections/case-studies-bg.webp',
-    alt: 'Portfolio de Raúl Mermans — estrategia creativa, proyectos y tecnología',
+    alt: 'Portfolio de Raúl Mermans, estrategia creativa, proyectos y tecnología',
   },
 } as const
 
@@ -51,8 +51,8 @@ export const defaultKeywords = [
   'dirección creativa',
   'digital products',
   'productos digitales',
-  'AI and emerging technology',
-  'IA y tecnología emergente',
+  'AI and technology',
+  'IA y tecnología',
   'prototyping',
   'prototipado',
   'Madrid creative strategist',
@@ -78,7 +78,7 @@ export function absoluteRouteUrl(path = '/') {
 }
 
 export function resolveSeoTitle(title?: string) {
-  return title ? `${title} — ${siteConfig.name}` : siteConfig.defaultTitle
+  return title ? `${title}: ${siteConfig.name}` : siteConfig.defaultTitle
 }
 
 export function localeToOpenGraphLocale(locale: Locale) {

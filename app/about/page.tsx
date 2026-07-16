@@ -70,7 +70,7 @@ const pageCopy = {
     ],
     focusTitle: 'Current focus',
     focusBody:
-      'AI is part of the practice, particularly in research, exploration, prototyping, automation, and production. It expands what I can test and build, but it is not the starting point or the limit of the work.',
+      'AI is one of the tools I use for research, exploration, prototyping, automation, and production. It helps me test and make more, but it does not decide where the work begins or ends.',
     focusItems: [
       'CRM intelligence and lifecycle systems',
       'Brand, campaign, and cultural strategy',
@@ -124,7 +124,7 @@ const pageCopy = {
         marker: '04',
         title: 'Independent practice - learning to build',
         location: 'Madrid',
-        body: 'AI-assisted tools, Codex, Claude Code, n8n, and internal workflows became a way to prototype the operating layer, not just describe it.',
+        body: 'Tools such as AI, Codex, Claude Code, n8n, and internal workflows became a way to prototype the operating layer, not just describe it.',
         tags: ['Codex', 'n8n', 'Prototypes'],
       },
       {
@@ -284,7 +284,7 @@ const pageCopy = {
     ],
     focusTitle: 'Foco actual',
     focusBody:
-      'La IA forma parte de esta práctica, especialmente en investigación, exploración, prototipado, automatización y producción. Amplía lo que puedo probar y construir, pero no es el punto de partida ni el límite del trabajo.',
+      'La IA es una de las herramientas que uso para investigar, explorar, prototipar, automatizar y producir. Me ayuda a probar y hacer más, pero no decide por dónde empieza ni termina el trabajo.',
     focusItems: [
       'Inteligencia CRM y sistemas de lifecycle',
       'Estrategia de marca, campaña y cultura',

@@ -49,7 +49,7 @@ assert_file out/services/prototipos-producto-ia/index.html
 
 assert_contains out/en/index.html "Creative strategy"
 assert_contains out/en/index.html "Discuss a project"
-assert_contains out/en/index.html "The idea, audience, and direction come first"
+assert_contains out/en/index.html "Start with the people and the problem"
 assert_contains out/en/index.html "Start with the idea, challenge, or opportunity"
 assert_contains out/en/index.html "Direct contact options"
 assert_contains out/en/index.html "Open to selected projects and collaborations"
@@ -57,7 +57,7 @@ assert_contains out/en/index.html "raulmermans@gmail.com"
 
 assert_contains out/index.html "Estrategia creativa"
 assert_contains out/index.html "Hablar de un proyecto"
-assert_contains out/index.html "La idea, la audiencia y la dirección van primero"
+assert_contains out/index.html "Empezar por las personas y el problema"
 assert_contains out/index.html "Empecemos por la idea, el reto o la oportunidad"
 assert_contains out/index.html "Opciones de contacto directo"
 assert_contains out/index.html "Abierto a proyectos y colaboraciones seleccionadas"
