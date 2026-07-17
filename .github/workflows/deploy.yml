@@ -104,12 +104,12 @@ jobs:
             return 1
           }
 
-          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Raúl Mermans, a creative strategist working across brand, marketing, culture, data, design, and technology."
-          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Raúl Mermans, estratega creativo que trabaja entre marca, marketing, cultura, datos, diseño y tecnología."
-          verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "View case study: BlogAgent"
-          verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Ver caso de estudio: BlogAgent"
-          verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "human review before publication"
-          verify_copy "https://www.raulmermans.com/case-studies/blogagent/" /tmp/blogagent-es.html "revisión humana antes de publicar"
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "I turn complex ideas into intelligent systems."
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Convierto ideas complejas en sistemas inteligentes."
+          verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "Campaign Sandbox"
+          verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Campaign Sandbox"
+          verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "reviewer veto before publication"
+          verify_copy "https://www.raulmermans.com/case-studies/blogagent/" /tmp/blogagent-es.html "poder de veto antes de publicar"
           verify_copy "https://www.raulmermans.com/en/case-studies/benchmark-dashboard/" /tmp/benchmark-en.html "source_monthly is the source contract"
           verify_copy "https://www.raulmermans.com/case-studies/benchmark-dashboard/" /tmp/benchmark-default.html "source_monthly es el contrato fuente"
           verify_copy "https://www.raulmermans.com/es/case-studies/benchmark-dashboard/" /tmp/benchmark-es.html "source_monthly es el contrato fuente"
