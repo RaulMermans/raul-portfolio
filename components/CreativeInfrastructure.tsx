@@ -28,11 +28,14 @@ export default function CreativeInfrastructure({
           <p className={styles.body}>{copy.body}</p>
           <div className={styles.points}>
             {copy.points.map((point, index) => (
-              <div key={point} className={styles.point}>
+              <div key={point.title} className={styles.point}>
                 <span className={styles.pointIndex}>
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <p className={styles.pointText}>{point}</p>
+                <div className={styles.pointCopy}>
+                  <h3>{point.title}</h3>
+                  <p className={styles.pointText}>{point.body}</p>
+                </div>
               </div>
             ))}
           </div>

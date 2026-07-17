@@ -105,13 +105,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     ...item,
     href: localizePath(item.href, locale),
   }))
-  const desktopItemOrder = ['Case Studies', 'About', 'Services', 'Contact', 'Casos', 'Sobre mí', 'Servicios', 'Contacto']
-  const desktopMenuItems = [...menuItems].sort((a, b) => {
-    const aIndex = desktopItemOrder.indexOf(a.label)
-    const bIndex = desktopItemOrder.indexOf(b.label)
-
-    return (aIndex === -1 ? desktopItemOrder.length : aIndex) - (bIndex === -1 ? desktopItemOrder.length : bIndex)
-  })
+  const desktopMenuItems = menuItems
   const activePath = pathname || localizePath('/', locale)
   const isCaseStudiesRoute = activePath.includes('/case-studies')
   const hasDarkCaseStudyHero =

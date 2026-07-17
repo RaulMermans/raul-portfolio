@@ -100,29 +100,16 @@
 }
 
 .services {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
+  max-width: 11ch;
   margin: 0 0 var(--space-5);
-  flex-wrap: wrap;
-}
-
-.service,
-.divider {
-  font-family: var(--font-mono), "Space Mono", monospace;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wider);
+  color: var(--ink);
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(3.1rem, 6.4vw, 6.75rem);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.9;
   text-transform: uppercase;
-}
-
-.service {
-  max-width: 38rem;
-  color: var(--ink-muted);
-}
-
-.divider {
-  color: var(--ink-faint);
+  text-wrap: balance;
 }
 
 .summary {
@@ -217,6 +204,22 @@
   color: var(--cream);
 }
 
+.tertiary {
+  min-width: 132px;
+  border-color: rgba(26, 23, 20, 0.34);
+  color: rgba(26, 23, 20, 0.76);
+}
+
+.tertiary::before {
+  background: var(--ink);
+}
+
+.tertiary:hover,
+.tertiary:focus-visible {
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
 .ctaArrow {
   display: inline-block;
   transition: transform 0.4s var(--ease);
@@ -308,13 +311,9 @@
   }
 
   .services {
-    gap: var(--space-2);
+    max-width: 10ch;
     margin-bottom: var(--space-4);
-  }
-
-  .service,
-  .divider {
-    font-size: clamp(0.75rem, 2vw, 0.8125rem);
+    font-size: clamp(2.65rem, 13vw, 4.5rem);
   }
 
   .summary {

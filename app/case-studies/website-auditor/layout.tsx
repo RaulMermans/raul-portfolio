@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'Website Audit Agent — Flujo de Auditoría IA Basado en Evidencia'
+const title = 'Website Auditor — Evidence-Bounded Website Intelligence'
 const description =
-  'Caso técnico de Website Audit Agent, un flujo de auditoría web basado en evidencia que separa puntuación determinista y síntesis LLM acotada.'
+  'An evidence-bounded website intelligence system that captures public signals, produces deterministic findings, and translates them into strategic insights.'
 const image = '/images/case-studies/website-auditor/thumb/thumb.webp'
 const keywords = [
   'website audit agent',
@@ -22,7 +22,7 @@ export const metadata: Metadata = buildPageMetadata({
   locale: 'es',
   image: {
     url: image,
-    alt: 'Caso de estudio Website Audit Agent por Raúl Mermans',
+    alt: 'Website Auditor case study by Raúl Mermans',
   },
   type: 'article',
   keywords,
@@ -49,7 +49,7 @@ function BreadcrumbSchema() {
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Website Audit Agent',
+        name: 'Website Auditor',
         item: `${siteConfig.url}/case-studies/website-auditor`,
       },
     ],
@@ -71,7 +71,7 @@ export default function WebsiteAuditorLayout({
         data={{
           '@id': `${siteConfig.url}/#website-auditor-case-study`,
           headline: title,
-          name: 'Website Audit Agent',
+          name: 'Website Auditor',
           description,
           url: absoluteRouteUrl('/case-studies/website-auditor'),
           mainEntityOfPage: absoluteRouteUrl('/case-studies/website-auditor'),

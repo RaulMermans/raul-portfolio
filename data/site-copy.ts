@@ -6,16 +6,17 @@ export const siteCopy = {
     header: {
       logoLabel: 'Home',
       nav: [
-        { label: 'Case Studies', href: '/case-studies' },
+        { label: 'Work', href: '/#selected-work', hash: '#selected-work' },
         { label: 'About', href: '/about' },
-        { label: 'Services', href: '/#services', hash: '#services' },
+        { label: 'Archive', href: '/case-studies' },
+        { label: 'Photography', href: '/photography' },
         { label: 'Contact', href: '/#contact', hash: '#contact' },
       ],
       mobileEyebrow: 'Navigation',
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       menuMeta:
-        'Creative strategy, brand thinking, data, and technology for teams turning ideas into meaningful work.',
+        'AI, product, data, and brand work for problems that need both clear thinking and practical execution.',
       menuCta: 'Discuss a project',
       toggleLabel: 'Language switcher',
       languageShort: {
@@ -25,7 +26,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Creative strategy across brand, marketing, culture, data, and technology.',
+        'AI-powered products, decision tools, and brand systems across business, technology, and culture.',
       work: 'Work',
       services: 'Services',
       resources: 'Resources',
@@ -51,7 +52,6 @@ export const siteCopy = {
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
       builtBy: 'Designed and built by Raúl Mermans.',
-      availability: 'Open to selected projects and collaborations.',
     },
     home: {
       schema: {
@@ -63,24 +63,24 @@ export const siteCopy = {
           afternoon: 'GOOD AFTERNOON',
           evening: 'GOOD EVENING',
         },
-        ariaLabel: 'Raúl Mermans, a creative strategist working across brand, marketing, culture, data, design, and technology.',
-        services: ['Creative strategy', 'brand, marketing, culture', 'data, and technology'],
+        ariaLabel: 'Raúl Mermans — I turn complex ideas into intelligent systems.',
+        headline: 'I turn complex ideas into intelligent systems.',
         summary:
-          'I bring together research, creative direction, and practical making to shape ideas, campaigns, experiences, and digital products. I use AI when it helps, but the work always starts with the people, the context, and the idea.',
-        primaryCta: 'Discuss a project',
-        secondaryCta: 'View selected work',
+          'I build AI-powered products, decision tools, and brand systems across business, technology, and culture.',
+        primaryCta: 'Selected work',
+        secondaryCta: 'About me',
         scrollAria: 'Scroll to explore',
         scrollLabel: 'Explore',
       },
       positioning: {
-        eyebrow: 'Creative practice',
-        title: 'Start with the people and the problem.',
+        eyebrow: 'The common thread',
+        title: 'Different outputs. The same underlying approach.',
         body:
-          'Some projects need research, others need a sharper point of view, a prototype, or a better way of working. I bring in technology, including AI, when it genuinely helps move the work forward.',
+          'Some projects become products, dashboards, workflows, brands, or digital experiences. The common thread is turning complexity into something structured, usable, and easier to act on.',
         points: [
-          'Business, audience, and cultural context before execution',
-          'Research and instinct working side by side',
-          'Tools chosen for the job, not for the hype',
+          { title: 'AI Products and Workflows', body: 'Tools, agents, automation, validation, and human review.' },
+          { title: 'Intelligence and Decision Systems', body: 'Analytics, forecasting, CRM, reporting, and operational tools.' },
+          { title: 'Brand and Product Systems', body: 'Positioning, interfaces, narrative, creative direction, and digital experiences.' },
         ],
       },
       sprint: {
@@ -89,7 +89,7 @@ export const siteCopy = {
         forLabel: 'For',
         for: 'Brands, marketing teams, founders, and creative teams that need a clearer direction, stronger concept, or more coherent way to turn ideas into execution.',
         durationLabel: 'Duration',
-        duration: 'Usually two to four weeks, depending on the scope.',
+        duration: 'Typically 2–4 weeks, depending on scope.',
         includedLabel: 'What is included',
         included: [
           'Business, audience, and cultural context review',
@@ -107,9 +107,9 @@ export const siteCopy = {
       },
       selectedAiSystems: {
         eyebrow: 'Selected work',
-        title: 'Strategy, creativity, data, and technology in practice.',
+        title: 'Selected work, built around real decisions.',
         description:
-          'Work across campaigns, marketing intelligence, digital products, brand thinking, visual direction, and practical tools. Each project begins with a real problem, audience, or opportunity.',
+          'Three projects that show how strategy, technical execution, data logic, and visual judgment work together.',
         viewCase: 'View case',
         viewAll: 'View all case studies',
         githubCta: 'View GitHub',
@@ -117,17 +117,17 @@ export const siteCopy = {
           'campaign-pulse': {
             label: 'Marketing intelligence',
             proof:
-              'Marketing intelligence command center for newsletters, targets, audience pressure, and monthly reporting.',
+              'A marketing intelligence dashboard for analyzing campaign performance, audience pressure, revenue, targets, and segment movement.',
           },
-          demandos: {
-            label: 'Machine learning',
+          'website-auditor': {
+            label: 'Evidence-bounded intelligence',
             proof:
-              'Deterministic ML system for demand forecasting, stockout risk, and internal reorder guidance.',
+              'An evidence-bounded website intelligence system that captures public signals, produces deterministic findings, and translates them into strategic insights.',
           },
           'campaign-sandbox': {
             label: 'Campaign strategy',
             proof:
-              'Strategy workspace for campaign routes, audience simulation, risk review, and execution planning.',
+              'An AI-assisted campaign strategy workspace that turns rough briefs into structured strategic routes, risk reviews, and execution-ready plans.',
           },
           'data-brief-ai': {
             label: 'Bounded reporting',
@@ -148,7 +148,7 @@ export const siteCopy = {
             eyebrow: 'Strategy, marketing, data, and brand thinking',
             title: 'Case Studies',
             description:
-              'Case studies across campaigns, marketing intelligence, digital products, practical tools, and the brand thinking that keeps the work coherent.',
+              'Case studies spanning campaigns, marketing intelligence, digital products, AI-assisted tools, and the brand thinking that makes execution coherent.',
           },
           {
             id: 'apps',
@@ -172,13 +172,13 @@ export const siteCopy = {
             eyebrow: 'Visual direction, image-making, and experimentation',
             title: 'Visuals',
             description:
-              'Visual studies, album covers, photography, and image work shaped through composition, observation, and cultural sensitivity.',
+              'Visual studies, album covers, photography, and AI-assisted image work shaped through composition, observation, and cultural sensitivity.',
           },
         ],
       },
       aboutPreview: {
         label: 'About',
-        title: 'One creative practice, many ways of working.',
+        title: 'A multidisciplinary creative practice.',
         body:
           'I work across <span class="highlight">creative strategy</span>, <span class="highlight">marketing</span>, <span class="highlight">brand</span>, <span class="highlight">culture</span>, <span class="highlight">data</span>, design, and technology.',
         cta: 'View Profile',
@@ -221,9 +221,9 @@ export const siteCopy = {
             number: '00-4',
             title: 'Digital Products, AI & Prototyping',
             titleShort: 'Products',
-            items: ['Digital products and internal tools', 'Interactive prototypes', 'AI where it helps', 'Automation and technical experiments'],
+            items: ['Digital products and internal tools', 'Interactive prototypes', 'AI-assisted workflows', 'Automation and technical experimentation'],
             description:
-              'Digital products and prototypes that turn ideas into something people can use, test, and discuss. AI can help with research, exploration, production, or decisions when it suits the job.',
+              'Digital products and prototypes that make strategies, workflows, and ideas tangible. AI is used where it improves research, exploration, production, or decision-making without replacing human judgment.',
             cta: 'Discuss a project',
             ctaHref: '/#contact',
           },
@@ -240,15 +240,16 @@ export const siteCopy = {
         ],
       },
       contact: {
-        title: 'Start with the idea, challenge, or opportunity.',
+        title: 'The best work often starts with an unclear problem.',
         subtitle:
-          'Tell me about the brand, campaign, audience, product, workflow, or business problem you want to develop. I work across strategy, marketing, creative direction, data, digital products, and technology.',
-        intro: 'You do not need a finished brief. A clear challenge, current context, and desired outcome are enough to begin.',
+          'I am interested in ambitious work across AI, product, data, marketing, and brand—particularly where the problem is complex and the path forward is not obvious.',
+        intro: 'You do not need a finished brief. A real constraint, context, and decision worth improving are enough to begin.',
         availability: 'Open to selected projects and collaborations.',
         location: 'Madrid · Remote · EU',
         linksLabel: 'Direct contact options',
         emailLabel: 'Email',
         linkedinLabel: 'LinkedIn',
+        githubLabel: 'GitHub',
       },
       contactForm: {
         projectTypePlaceholder: 'Select focus area',
@@ -313,10 +314,10 @@ export const siteCopy = {
     },
     aboutPage: {
       label: 'About',
-      title: 'One creative practice, many ways of working',
+      title: 'A multidisciplinary creative practice',
       paragraphs: [
         'I work across <span class="highlight">creative strategy</span>, marketing, brand, culture, data, design, and technology. That breadth lets me move from research and positioning to campaigns, visual direction, digital products, and working prototypes.',
-        'AI is one of the tools I use for research, exploration, prototyping, automation, and production. It helps me test and make more, but it does not decide where the work begins or ends.',
+        'AI is part of the practice, particularly in research, exploration, prototyping, automation, and production. It expands what I can test and build, but it is not the starting point or the limit of the work.',
         'My background in brand, visuals, CRM, and image-making brings <span class="highlight">creative judgment</span> to analytical and technical work. It helps make ideas culturally aware, commercially credible, and clear enough to put into practice.',
         'I work with brands and teams that need <span class="highlight">a clearer direction</span>, stronger concepts, useful tools, and a practical route from opportunity to execution.',
       ],
@@ -325,7 +326,7 @@ export const siteCopy = {
       pageEyebrow: 'Strategy · Creativity · Data · Technology',
       pageTitle: 'Case Studies',
       pageDescription:
-        'Selected work across campaigns, marketing intelligence, digital products, brand thinking, visual direction, and practical tools. Each project starts with a specific problem, audience, or opportunity.',
+        'Selected work across campaigns, marketing intelligence, digital products, brand thinking, visual direction, and AI-assisted tools—each built around a specific problem, audience, or opportunity.',
       viewProject: 'View Project',
       overview: 'Overview',
       challenge: 'The Challenge',
@@ -364,16 +365,17 @@ export const siteCopy = {
     header: {
       logoLabel: 'Inicio',
       nav: [
-        { label: 'Casos', href: '/case-studies' },
+        { label: 'Trabajo', href: '/#selected-work', hash: '#selected-work' },
         { label: 'Sobre mí', href: '/about' },
-        { label: 'Servicios', href: '/#services', hash: '#services' },
+        { label: 'Archivo', href: '/case-studies' },
+        { label: 'Fotografía', href: '/photography' },
         { label: 'Contacto', href: '/#contact', hash: '#contact' },
       ],
       mobileEyebrow: 'Navegación',
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú',
       menuMeta:
-        'Estrategia creativa, marca, datos y tecnología para convertir ideas en trabajo con sentido.',
+        'IA, producto, datos y marca para problemas que necesitan pensamiento claro y ejecución práctica.',
       menuCta: 'Hablar de un proyecto',
       toggleLabel: 'Selector de idioma',
       languageShort: {
@@ -383,7 +385,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Estrategia creativa entre marca, marketing, cultura, datos y tecnología.',
+        'Productos con IA, herramientas de decisión y sistemas de marca entre negocio, tecnología y cultura.',
       work: 'Trabajo',
       services: 'Servicios',
       resources: 'Recursos',
@@ -409,7 +411,6 @@ export const siteCopy = {
       privacy: 'Política de privacidad',
       terms: 'Términos del servicio',
       builtBy: 'Diseñado y desarrollado por Raúl Mermans.',
-      availability: 'Abierto a proyectos y colaboraciones seleccionadas.',
     },
     home: {
       schema: {
@@ -421,24 +422,24 @@ export const siteCopy = {
           afternoon: 'BUENAS TARDES',
           evening: 'BUENAS NOCHES',
         },
-        ariaLabel: 'Raúl Mermans, estratega creativo que trabaja entre marca, marketing, cultura, datos, diseño y tecnología.',
-        services: ['Estrategia creativa', 'marca, marketing y cultura', 'datos y tecnología'],
+        ariaLabel: 'Raúl Mermans — convierto ideas complejas en sistemas inteligentes.',
+        headline: 'Convierto ideas complejas en sistemas inteligentes.',
         summary:
-          'Uno investigación, dirección creativa y ejecución práctica para dar forma a ideas, campañas, experiencias y productos digitales. Uso IA cuando ayuda, pero el trabajo empieza siempre por las personas, el contexto y la idea.',
-        primaryCta: 'Hablar de un proyecto',
-        secondaryCta: 'Ver proyectos seleccionados',
+          'Construyo productos con IA, herramientas de decisión y sistemas de marca entre negocio, tecnología y cultura.',
+        primaryCta: 'Trabajo seleccionado',
+        secondaryCta: 'Sobre mí',
         scrollAria: 'Desplazar para explorar',
         scrollLabel: 'Explorar',
       },
       positioning: {
-        eyebrow: 'Práctica creativa',
-        title: 'Empezar por las personas y el problema.',
+        eyebrow: 'El hilo común',
+        title: 'Distintos resultados. El mismo enfoque de fondo.',
         body:
-          'Algunos proyectos piden investigación, otros una mirada más clara, un prototipo o una mejor forma de trabajar. Recurro a la tecnología, incluida la IA, cuando ayuda de verdad a avanzar.',
+          'Algunos proyectos se convierten en productos, dashboards, workflows, marcas o experiencias digitales. El hilo común es convertir complejidad en algo estructurado, usable y más fácil de llevar a la acción.',
         points: [
-          'Contexto de negocio, audiencia y cultura antes de ejecutar',
-          'Investigación e intuición trabajando juntas',
-          'Herramientas elegidas para el trabajo, no por moda',
+          { title: 'Productos y workflows con IA', body: 'Herramientas, agentes, automatización, validación y revisión humana.' },
+          { title: 'Sistemas de inteligencia y decisión', body: 'Analítica, forecasting, CRM, reporting y herramientas operativas.' },
+          { title: 'Sistemas de marca y producto', body: 'Posicionamiento, interfaces, narrativa, dirección creativa y experiencias digitales.' },
         ],
       },
       sprint: {
@@ -447,7 +448,7 @@ export const siteCopy = {
         forLabel: 'Para',
         for: 'Marcas, equipos de marketing, founders y equipos creativos que necesitan una dirección más clara, un concepto más sólido o una forma más coherente de llevar las ideas a la ejecución.',
         durationLabel: 'Duración',
-        duration: 'Normalmente dos a cuatro semanas, según el alcance.',
+        duration: 'Normalmente entre 2 y 4 semanas, según el alcance.',
         includedLabel: 'Qué incluye',
         included: [
           'Revisión de contexto de negocio, audiencia y cultura',
@@ -465,9 +466,9 @@ export const siteCopy = {
       },
       selectedAiSystems: {
         eyebrow: 'Proyectos seleccionados',
-        title: 'Estrategia, creatividad, datos y tecnología en práctica.',
+        title: 'Trabajo seleccionado, construido alrededor de decisiones reales.',
         description:
-          'Trabajo de campañas, inteligencia de marketing, productos digitales, marca, dirección visual y herramientas prácticas. Cada proyecto parte de un problema, una audiencia o una oportunidad concreta.',
+          'Tres proyectos que muestran cómo conviven estrategia, ejecución técnica, lógica de datos y criterio visual.',
         viewCase: 'Ver caso',
         viewAll: 'Ver todos los casos',
         githubCta: 'Ver GitHub',
@@ -475,17 +476,17 @@ export const siteCopy = {
           'campaign-pulse': {
             label: 'Inteligencia de marketing',
             proof:
-              'Centro de mando para newsletters, objetivos, presión de audiencia e informes mensuales.',
+              'Un dashboard de inteligencia de marketing para analizar rendimiento, presión de audiencia, ingresos, objetivos y movimiento de segmentos.',
           },
-          demandos: {
-            label: 'Machine learning',
+          'website-auditor': {
+            label: 'Inteligencia acotada por evidencia',
             proof:
-              'Sistema determinista de ML para previsión de demanda, riesgo de stockout y guía interna de reposición.',
+              'Un sistema de inteligencia web acotado por evidencia que captura señales públicas, produce hallazgos deterministas y los convierte en insights estratégicos.',
           },
           'campaign-sandbox': {
             label: 'Estrategia de campaña',
             proof:
-              'Workspace asistido por IA para rutas de campaña, simulación de audiencia, revisión de riesgo y planificación.',
+              'Un espacio de estrategia asistido por IA que convierte briefs iniciales en rutas estructuradas, revisiones de riesgo y planes listos para ejecutar.',
           },
           'data-brief-ai': {
             label: 'Reporting acotado',
@@ -536,7 +537,7 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'Sobre mí',
-        title: 'Una práctica creativa con muchas formas de trabajar.',
+        title: 'Una práctica creativa multidisciplinar.',
         body:
           'Trabajo entre <span class="highlight">estrategia creativa</span>, <span class="highlight">marketing</span>, <span class="highlight">marca</span>, <span class="highlight">cultura</span>, <span class="highlight">datos</span>, diseño y tecnología.',
         cta: 'Leer más',
@@ -579,9 +580,9 @@ export const siteCopy = {
             number: '00-4',
             title: 'Productos Digitales, IA y Prototipado',
             titleShort: 'Productos',
-            items: ['Productos digitales y herramientas internas', 'Prototipos interactivos', 'IA cuando ayuda', 'Automatización y experimentos técnicos'],
+            items: ['Productos digitales y herramientas internas', 'Prototipos interactivos', 'Flujos asistidos por IA', 'Automatización y experimentación técnica'],
             description:
-              'Productos digitales y prototipos que convierten ideas en algo que se puede usar, probar y conversar. La IA puede ayudar en investigación, exploración, producción o decisiones cuando encaja con el trabajo.',
+              'Productos digitales y prototipos que vuelven tangibles las estrategias, los flujos y las ideas. La IA se utiliza cuando mejora la investigación, exploración, producción o toma de decisiones sin reemplazar el criterio humano.',
             cta: 'Hablar de un proyecto',
             ctaHref: '/#contact',
           },
@@ -598,15 +599,16 @@ export const siteCopy = {
         ],
       },
       contact: {
-        title: 'Empecemos por la idea, el reto o la oportunidad.',
+        title: 'El mejor trabajo suele empezar con un problema poco claro.',
         subtitle:
-          'Cuéntame sobre la marca, campaña, audiencia, producto, proceso o problema de negocio que quieres desarrollar. Trabajo entre estrategia, marketing, dirección creativa, datos, productos digitales y tecnología.',
-        intro: 'No necesitas un briefing terminado. Un reto claro, el contexto actual y el resultado deseado son suficientes para empezar.',
+          'Me interesan proyectos ambiciosos entre IA, producto, datos, marketing y marca, especialmente cuando el problema es complejo y el camino todavía no está claro.',
+        intro: 'No necesitas un briefing terminado. Basta con una restricción real, contexto y una decisión que merezca mejorar.',
         availability: 'Abierto a proyectos y colaboraciones seleccionadas.',
         location: 'Madrid · Remoto · UE',
         linksLabel: 'Opciones de contacto directo',
         emailLabel: 'Email',
         linkedinLabel: 'LinkedIn',
+        githubLabel: 'GitHub',
       },
       contactForm: {
         projectTypePlaceholder: 'Selecciona el enfoque',
@@ -671,10 +673,10 @@ export const siteCopy = {
     },
     aboutPage: {
       label: 'Sobre mí',
-      title: 'Una práctica creativa con muchas formas de trabajar',
+      title: 'Una práctica creativa multidisciplinar',
       paragraphs: [
         'Trabajo entre <span class="highlight">estrategia creativa</span>, marketing, marca, cultura, datos, diseño y tecnología. Esta amplitud me permite pasar de la investigación y el posicionamiento a campañas, dirección visual, productos digitales y prototipos funcionales.',
-        'La IA es una de las herramientas que uso para investigar, explorar, prototipar, automatizar y producir. Me ayuda a probar y hacer más, pero no decide por dónde empieza ni termina el trabajo.',
+        'La IA forma parte de la práctica, especialmente en investigación, exploración, prototipado, automatización y producción. Amplía lo que puedo probar y construir, pero no es el punto de partida ni el límite del trabajo.',
         'Mi experiencia en marca, visuales, CRM e imagen aporta <span class="highlight">criterio creativo</span> al trabajo analítico y técnico. Ayuda a que las ideas sean culturalmente conscientes, comercialmente creíbles y claras para ponerlas en práctica.',
         'Trabajo con marcas y equipos que necesitan <span class="highlight">una dirección más clara</span>, conceptos más sólidos, herramientas útiles y una ruta práctica desde la oportunidad hasta la ejecución.',
       ],

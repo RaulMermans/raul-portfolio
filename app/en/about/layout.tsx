@@ -4,7 +4,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'About',
   description:
-    'About Raúl Mermans: a multidisciplinary creative strategist working across brand, marketing, culture, data, design, digital products, and emerging technology.',
+    'Raúl Mermans uses code, data, product thinking, and brand judgment to turn complex problems into usable tools and experiences.',
   path: '/about',
   locale: 'en',
   image: {
@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
     alt: 'Portrait of Raúl Mermans',
   },
   type: 'profile',
-  keywords: ['about Raúl Mermans', 'creative strategy', 'marketing', 'brand', 'data', 'creative direction'],
+  keywords: ['about Raúl Mermans', 'applied AI', 'product development', 'data intelligence', 'CRM', 'brand systems'],
 })
 
 export default function EnglishAboutLayout({

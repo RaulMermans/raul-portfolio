@@ -17,6 +17,7 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 type FilterKey = 'all' | CaseStudyCategorySlug
 
 const tileVariants = ['portrait', 'landscape', 'square', 'tall'] as const
+const flagshipSlugs = ['campaign-sandbox', 'website-auditor', 'campaign-pulse'] as const
 function getSchemas(locale: Locale) {
   const isSpanish = locale === 'es'
   const localizedHome = localizePath('/', locale)
@@ -123,6 +124,8 @@ export default function CaseStudiesPage() {
         ?.some(category => category.slug === activeFilter)
     )
   }, [activeFilter, orderedStudies, studyCategoryMap])
+  const flagshipStudies = visibleStudies.filter(study => flagshipSlugs.includes(study.slug as typeof flagshipSlugs[number]))
+  const archiveStudies = visibleStudies.filter(study => !flagshipSlugs.includes(study.slug as typeof flagshipSlugs[number]))
 
   const handleBrowserSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -204,13 +207,64 @@ export default function CaseStudiesPage() {
           </div>
         </section>
 
+        {flagshipStudies.length > 0 && (
+          <section className="case-study-archive-section" aria-labelledby="flagship-projects-title">
+            <header className="case-study-archive-section__header">
+              <p>{isSpanish ? 'Proyectos principales' : 'Flagship projects'}</p>
+              <h2 id="flagship-projects-title">
+                {isSpanish ? 'Trabajo que define la práctica actual.' : 'Work that defines the current practice.'}
+              </h2>
+              <span>
+                {isSpanish
+                  ? 'Productos y herramientas donde estrategia, datos, IA y criterio humano se encuentran.'
+                  : 'Products and tools where strategy, data, AI, and human judgment meet.'}
+              </span>
+            </header>
+            <div className="case-study-project-grid case-study-project-grid--flagship">
+              {flagshipStudies.map((study, index) => {
+                const variant = tileVariants[(study.id + index) % tileVariants.length]
+
+                return (
+                  <Link
+                    key={study.href}
+                    href={study.href}
+                    className={`case-study-project-tile case-study-project-tile--${variant}`}
+                    aria-label={isSpanish ? `Ver caso de estudio: ${study.title}` : `View case study: ${study.title}`}
+                    data-mobile-audit="case-study-card"
+                  >
+                    <span className="case-study-project-tile__frame">
+                      <Image src={study.image} alt="" width={study.imageWidth} height={study.imageHeight} sizes="(max-width: 560px) 100vw, (max-width: 880px) 50vw, 33vw" className="case-study-project-tile__image" priority={index < 2} />
+                      <span className="case-study-project-tile__reveal" aria-hidden="true"><span>{study.cta ?? readCase}</span><span className="case-study-project-tile__arrow">→</span></span>
+                    </span>
+                    <span className="case-study-project-tile__caption">
+                      <span className="case-study-project-tile__meta">{study.category && <span>{study.category}</span>}{study.proofTags?.slice(0, 2).map(tag => <span key={tag}>{tag}</span>)}</span>
+                      <span className="case-study-project-tile__title">{study.title}</span>
+                      <span className="case-study-project-tile__description">{study.description}</span>
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+          </section>
+        )}
+
         <section
           id="case-study-grid"
-          className="case-study-project-grid"
-          aria-label={isSpanish ? 'Proyectos' : 'Projects'}
+          className="case-study-archive-section"
+          aria-labelledby="experiment-projects-title"
           data-mobile-audit="case-study-grid"
         >
-          {visibleStudies.map((study, index) => {
+          <header className="case-study-archive-section__header">
+            <p>{isSpanish ? 'Experimentos y prototipos' : 'Experiments and prototypes'}</p>
+            <h2 id="experiment-projects-title">
+              {isSpanish ? 'Exploraciones que amplían la práctica.' : 'Explorations that extend the practice.'}
+            </h2>
+            <span>
+              {isSpanish ? 'Proyectos que prueban una capacidad, una hipótesis o una nueva dirección.' : 'Projects that test a capability, hypothesis, or new direction.'}
+            </span>
+          </header>
+          <div className="case-study-project-grid">
+          {archiveStudies.map((study, index) => {
             const variant =
               tileVariants[(study.id + index) % tileVariants.length]
 
@@ -266,6 +320,7 @@ export default function CaseStudiesPage() {
               </Link>
             )
           })}
+          </div>
         </section>
       </main>
       <Footer locale={locale} />

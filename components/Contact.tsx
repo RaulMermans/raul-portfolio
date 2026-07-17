@@ -9,6 +9,7 @@ interface ContactProps {
 }
 
 const LINKEDIN_URL = 'https://linkedin.com/in/raulmermans'
+const GITHUB_URL = 'https://github.com/RaulMermans'
 
 export default function Contact({ locale = 'en' }: ContactProps) {
   const copy = getSiteCopy(locale).home.contact
@@ -46,6 +47,16 @@ export default function Contact({ locale = 'en' }: ContactProps) {
             >
               <span>{copy.linkedinLabel}</span>
               <strong>Raúl Mermans</strong>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-direct__link"
+            >
+              <span>{copy.githubLabel}</span>
+              <strong>RaulMermans</strong>
               <span aria-hidden="true">↗</span>
             </a>
           </div>

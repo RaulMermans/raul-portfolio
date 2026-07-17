@@ -75,6 +75,19 @@
   line-height: 1.5;
 }
 
+.pointCopy h3 {
+  margin: 0 0 0.35rem;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.pointCopy .pointText {
+  margin: 0;
+}
+
 @media (max-width: 800px) {
   .section {
     padding-inline: var(--section-padding-mobile);

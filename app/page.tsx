@@ -9,10 +9,7 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import SelectedAISystems from '@/components/SelectedAISystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
-import CreativeAISystemsSprint from '@/components/CreativeAISystemsSprint'
-import SectionCards from '@/components/SectionCards'
-import About from '@/components/About'
-import Services from '@/components/Services'
+import HomeNarrative from '@/components/HomeNarrative'
 import Contact from '@/components/Contact'
 import Socials from '@/components/Socials'
 import ErrorBoundary from '@/components/ErrorBoundary'
@@ -149,7 +146,7 @@ function getHomeServiceSchema(locale: Locale) {
         name: 'Digital Products, AI and Prototyping',
         serviceType: 'Digital products, AI and prototyping',
         description:
-          'Digital products and prototypes that make strategies, workflows, and ideas easier to test and use, with AI where it helps.',
+          'Digital products and prototypes that make strategies, workflows, and ideas tangible, using AI where it creates meaningful value.',
         provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'Country', name: 'Spain' },
         url: absoluteRouteUrl(servicePaths.brand),
@@ -172,7 +169,6 @@ function getHomeServiceSchema(locale: Locale) {
 export default function Home() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
-  const homeServiceSchema = getHomeServiceSchema(locale)
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -228,7 +224,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="positioning"], [data-home-section="work"], .selected-ai-systems, #creative-strategy-sprint, .about, .services, .contact, .socials'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="positioning"], .selected-ai-systems, .contact, .socials'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -261,42 +257,11 @@ export default function Home() {
   return (
     <ErrorBoundary>
       <main id="main-content">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeServiceSchema) }}
-        />
         <Header locale={locale} />
         <Hero locale={locale} />
         <SelectedAISystems locale={locale} />
         <CreativeInfrastructure locale={locale} />
-        <CreativeAISystemsSprint locale={locale} />
-        <SectionCards locale={locale} />
-
-        {/* Social Proof Section - Placeholder for future content
-        * Suggested location for "Trusted By" logos or testimonial quotes
-        * Uncomment and populate when client logos/testimonials are available
-        *
-        * <section className="social-proof" aria-label="Client testimonials">
-        *   <div className="social-proof__inner">
-        *     <p className="social-proof__label">Trusted By</p>
-        *     <div className="social-proof__logos">
-        *       {/* Add client logos here - recommended: 4-6 logos *}
-        *       {/* <Image src="/images/clients/logo1.svg" alt="Client Name" width={120} height={40} /> *}
-        *     </div>
-        *     <blockquote className="social-proof__testimonial">
-        *       <p className="social-proof__quote">
-        *         "Quote from a satisfied client about the quality of work and results achieved."
-        *       </p>
-        *       <cite className="social-proof__cite">
-        *         Client Name, Company
-        *       </cite>
-        *     </blockquote>
-        *   </div>
-        * </section>
-        */}
-
-        <About locale={locale} />
-        <Services locale={locale} />
+        <HomeNarrative locale={locale} />
         <Contact locale={locale} />
         <Socials locale={locale} />
         <Footer locale={locale} />

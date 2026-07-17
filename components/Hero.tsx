@@ -38,7 +38,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
   const surnameLetters = surname.split('')
 
   const handleScrollToWork = () => {
-    const workSection = document.getElementById('work')
+    const workSection = document.getElementById('selected-work')
     if (workSection) {
       workSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -74,18 +74,12 @@ export default function Hero({ locale = 'en' }: HeroProps) {
           </span>
         </p>
 
-        {/* The visual treatment is hidden from assistive technology; the full
-            multidisciplinary positioning is conveyed through the accessible label. */}
         <h1
           id="hero-title"
           className={`${styles.services} reveal reveal-delay-1`}
           aria-label={copy.ariaLabel}
         >
-          <span className={styles.service} aria-hidden="true">{copy.services[0]}</span>
-          <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">{copy.services[1]}</span>
-          <span className={styles.divider} aria-hidden="true">·</span>
-          <span className={styles.service} aria-hidden="true">{copy.services[2]}</span>
+          {copy.headline}
         </h1>
 
         <p className={`${styles.summary} reveal reveal-delay-2`}>
@@ -105,7 +99,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={20}>
             <Link
-              href={localizePath('/case-studies', locale)}
+              href={localizePath('/about', locale)}
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >

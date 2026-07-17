@@ -3,16 +3,16 @@ import HomePage from '../page'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Estrategia Creativa entre Marca, Marketing, Cultura, Datos y Tecnología',
+  title: 'IA, Producto, Datos y Sistemas de Marca',
   description:
-    'Raúl Mermans trabaja entre marca, marketing, cultura, datos, diseño, productos digitales y tecnología.',
+    'Raúl Mermans construye productos con IA, herramientas de decisión y sistemas de marca entre negocio, tecnología y cultura.',
   path: '/',
   locale: 'es',
   image: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Portfolio de Raúl Mermans',
   },
-  keywords: ['estrategia creativa', 'estrategia de marca', 'estrategia de marketing', 'datos y analítica', 'dirección creativa', 'IA y tecnología'],
+  keywords: ['IA aplicada', 'productos digitales', 'inteligencia de datos', 'sistemas CRM', 'sistemas de marca'],
 })
 
 export default function SpanishHomePage() {

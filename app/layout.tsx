@@ -10,9 +10,9 @@ import LocaleDocument from '@/components/LocaleDocument'
 import '@/lib/env-validation'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-const rootTitle = 'Raúl Mermans, estrategia creativa, marca y tecnología'
+const rootTitle = 'Raúl Mermans — AI, Product, Data and Brand Systems'
 const rootDescription =
-  'Diseño y construyo sistemas de IA para equipos de marca y creatividad: estrategia de flujos, diseño de interfaz, herramientas internas y prototipos funcionales.'
+  'Raúl Mermans builds AI-powered products, decision tools, and brand systems across business, technology, and culture.'
 
 const bebasNeue = localFont({
   src: './fonts/bebas-neue-400.woff2',
@@ -52,7 +52,7 @@ const sourceSerif4 = localFont({
 export const metadata: Metadata = {
   title: {
     default: rootTitle,
-    template: `%s: ${siteConfig.name}`,
+    template: `%s — ${siteConfig.name}`,
   },
   description: rootDescription,
   icons: {

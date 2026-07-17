@@ -2,13 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getCaseStudies, type CaseStudy } from '@/data/case-studies'
 import { getSiteCopy } from '@/data/site-copy'
-import { type Locale } from '@/lib/i18n'
+import { type Locale, localizePath } from '@/lib/i18n'
 
 interface SelectedAISystemsProps {
   locale?: Locale
 }
 
-const selectedSlugs = ['campaign-pulse', 'demandos', 'campaign-sandbox', 'data-brief-ai'] as const
+const selectedSlugs = ['campaign-sandbox', 'website-auditor', 'campaign-pulse'] as const
 
 export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsProps) {
   const copy = getSiteCopy(locale).home.selectedAiSystems
@@ -18,7 +18,7 @@ export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsPr
     .filter((study): study is CaseStudy => Boolean(study))
 
   return (
-    <section id="selected-ai-systems" className="selected-ai-systems" aria-labelledby="selected-systems-title">
+    <section id="selected-work" className="selected-ai-systems" aria-labelledby="selected-systems-title">
       <div className="selected-ai-systems__inner">
         <div className="selected-ai-systems__header">
           <p className="selected-ai-systems__eyebrow">{copy.eyebrow}</p>
@@ -61,6 +61,12 @@ export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsPr
               </Link>
             )
           })}
+        </div>
+        <div className="selected-ai-systems__actions">
+          <Link href={localizePath('/case-studies', locale)} className="selected-ai-systems__link">
+            {copy.viewAll}
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>
