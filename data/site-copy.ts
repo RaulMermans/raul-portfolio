@@ -52,6 +52,7 @@ export const siteCopy = {
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
       builtBy: 'Designed and built by Raúl Mermans.',
+      availability: 'Open to selected projects and collaborations.',
     },
     home: {
       schema: {
@@ -411,6 +412,7 @@ export const siteCopy = {
       privacy: 'Política de privacidad',
       terms: 'Términos del servicio',
       builtBy: 'Diseñado y desarrollado por Raúl Mermans.',
+      availability: 'Abierto a proyectos y colaboraciones seleccionadas.',
     },
     home: {
       schema: {
