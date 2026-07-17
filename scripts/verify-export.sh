@@ -47,18 +47,18 @@ assert_file out/services/automatizacion-creativa/index.html
 assert_file out/services/sistemas-de-marca/index.html
 assert_file out/services/prototipos-producto-ia/index.html
 
-assert_contains out/en/index.html "Creative strategy"
-assert_contains out/en/index.html "Discuss a project"
-assert_contains out/en/index.html "Start with the people and the problem"
-assert_contains out/en/index.html "Start with the idea, challenge, or opportunity"
+assert_contains out/en/index.html "I turn complex ideas into intelligent systems."
+assert_contains out/en/index.html "Selected work, built around real decisions."
+assert_contains out/en/index.html "Different outputs. The same underlying approach."
+assert_contains out/en/index.html "The best work often starts with an unclear problem."
 assert_contains out/en/index.html "Direct contact options"
 assert_contains out/en/index.html "Open to selected projects and collaborations"
 assert_contains out/en/index.html "raulmermans@gmail.com"
 
-assert_contains out/index.html "Estrategia creativa"
-assert_contains out/index.html "Hablar de un proyecto"
-assert_contains out/index.html "Empezar por las personas y el problema"
-assert_contains out/index.html "Empecemos por la idea, el reto o la oportunidad"
+assert_contains out/index.html "Convierto ideas complejas en sistemas inteligentes."
+assert_contains out/index.html "Trabajo seleccionado, construido alrededor de decisiones reales."
+assert_contains out/index.html "Distintos resultados. El mismo enfoque de fondo."
+assert_contains out/index.html "El mejor trabajo suele empezar con un problema poco claro."
 assert_contains out/index.html "Opciones de contacto directo"
 assert_contains out/index.html "Abierto a proyectos y colaboraciones seleccionadas"
 assert_contains out/index.html "raulmermans@gmail.com"
@@ -121,8 +121,8 @@ function assertOrder(file, labels) {
 assertOrder('out/en/case-studies/index.html', [
   'Campaign Pulse',
   'Campaign Sandbox',
-  'DataBrief AI',
   'Website Audit Agent',
+  'DataBrief AI',
   'Benchmark Intelligence Engine',
   'AI Sports Campaign',
   'Remoria',
@@ -134,8 +134,8 @@ assertOrder('out/en/case-studies/index.html', [
 assertOrder('out/case-studies/index.html', [
   'Campaign Pulse',
   'Campaign Sandbox',
-  'DataBrief AI',
   'Website Audit Agent',
+  'DataBrief AI',
   'Benchmark Intelligence Engine',
   'Campaña deportiva con IA',
   'Remoria',
