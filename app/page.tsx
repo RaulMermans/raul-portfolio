@@ -9,7 +9,10 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import SelectedAISystems from '@/components/SelectedAISystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
-import HomeNarrative from '@/components/HomeNarrative'
+import CreativeAISystemsSprint from '@/components/CreativeAISystemsSprint'
+import SectionCards from '@/components/SectionCards'
+import About from '@/components/About'
+import Services from '@/components/Services'
 import Contact from '@/components/Contact'
 import Socials from '@/components/Socials'
 import ErrorBoundary from '@/components/ErrorBoundary'
@@ -169,6 +172,7 @@ function getHomeServiceSchema(locale: Locale) {
 export default function Home() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
+  const homeServiceSchema = getHomeServiceSchema(locale)
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -224,7 +228,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="positioning"], .selected-ai-systems, .contact, .socials'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="positioning"], [data-home-section="work"], .selected-ai-systems, #creative-strategy-sprint, .about, .services, .contact, .socials'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -257,11 +261,18 @@ export default function Home() {
   return (
     <ErrorBoundary>
       <main id="main-content">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeServiceSchema) }}
+        />
         <Header locale={locale} />
         <Hero locale={locale} />
         <SelectedAISystems locale={locale} />
         <CreativeInfrastructure locale={locale} />
-        <HomeNarrative locale={locale} />
+        <CreativeAISystemsSprint locale={locale} />
+        <SectionCards locale={locale} />
+        <About locale={locale} />
+        <Services locale={locale} />
         <Contact locale={locale} />
         <Socials locale={locale} />
         <Footer locale={locale} />

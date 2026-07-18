@@ -65,19 +65,14 @@ export default function About({ locale = 'en' }: AboutProps) {
           <p className="about__text reveal reveal-delay-2">
             {locale === 'es' ? (
               <>
-                Trabajo entre <span className="highlight">estrategia creativa</span>,{' '}
-                <span className="highlight">marketing</span>, <span className="highlight">marca</span>,{' '}
-                <span className="highlight">cultura</span>, datos, diseño y tecnología. Combino pensamiento
-                analítico con criterio creativo para pasar de la investigación y el posicionamiento a campañas,
-                dirección visual, productos digitales y prototipos funcionales.
+                Uso el <span className="highlight">código</span> para estructurar ideas. Entre estrategia,
+                datos, marca y producto, convierto problemas complejos en trabajo que la gente puede entender y
+                llevar a la acción.
               </>
             ) : (
               <>
-                I work across <span className="highlight">creative strategy</span>,{' '}
-                <span className="highlight">marketing</span>, <span className="highlight">brand</span>,{' '}
-                <span className="highlight">culture</span>, data, design, and technology. My approach combines
-                analytical thinking with creative judgment, moving from research and positioning to campaigns,
-                visual direction, digital products, and functioning prototypes.
+                I use <span className="highlight">code</span> as a way to structure ideas. Across strategy,
+                data, brand, and product, I turn complex problems into work people can understand and act on.
               </>
             )}
           </p>

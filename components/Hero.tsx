@@ -89,7 +89,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
         <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
-              href={localizePath('/#contact', locale)}
+              href={localizePath('/#selected-work', locale)}
               className={`${styles.cta} ${styles.primary}`}
               data-mobile-audit="hero-cta"
             >

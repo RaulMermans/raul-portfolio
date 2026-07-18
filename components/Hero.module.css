@@ -7,9 +7,9 @@
   min-height: 100svh;
   min-height: 100dvh;
   padding:
-    calc(var(--header-height) + env(safe-area-inset-top) + var(--space-5))
+    calc(var(--header-height) + env(safe-area-inset-top) + var(--space-4))
     var(--section-padding)
-    calc(env(safe-area-inset-bottom) + clamp(5.5rem, 12vh, 7rem));
+    calc(env(safe-area-inset-bottom) + clamp(4rem, 8vh, 5rem));
   background: var(--cream);
   overflow-x: clip;
   box-sizing: border-box;
@@ -37,7 +37,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 var(--space-4) clamp(4.5rem, 8vh, 6rem);
+  padding: 0 var(--space-4) clamp(3.25rem, 5vh, 4rem);
   text-align: center;
 }
 
@@ -64,7 +64,7 @@
 .name {
   margin: 0 0 var(--space-4);
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(3.75rem, 12vw, 10rem);
+  font-size: clamp(3.75rem, 8vw, 6.5rem);
   line-height: 0.88;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
@@ -100,11 +100,11 @@
 }
 
 .services {
-  max-width: 11ch;
+  max-width: 15ch;
   margin: 0 0 var(--space-5);
   color: var(--ink);
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(3.1rem, 6.4vw, 6.75rem);
+  font-size: clamp(2.4rem, 4vw, 4.5rem);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
   line-height: 0.9;
@@ -311,9 +311,9 @@
   }
 
   .services {
-    max-width: 10ch;
+    max-width: 13ch;
     margin-bottom: var(--space-4);
-    font-size: clamp(2.65rem, 13vw, 4.5rem);
+    font-size: clamp(2.35rem, 10.5vw, 3.35rem);
   }
 
   .summary {

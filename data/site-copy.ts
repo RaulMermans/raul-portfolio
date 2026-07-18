@@ -179,7 +179,7 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'About',
-        title: 'A multidisciplinary creative practice.',
+        title: 'Ideas become useful when they can be built.',
         body:
           'I work across <span class="highlight">creative strategy</span>, <span class="highlight">marketing</span>, <span class="highlight">brand</span>, <span class="highlight">culture</span>, <span class="highlight">data</span>, design, and technology.',
         cta: 'View Profile',
@@ -539,7 +539,7 @@ export const siteCopy = {
       },
       aboutPreview: {
         label: 'Sobre mí',
-        title: 'Una práctica creativa multidisciplinar.',
+        title: 'Las ideas son útiles cuando se pueden construir.',
         body:
           'Trabajo entre <span class="highlight">estrategia creativa</span>, <span class="highlight">marketing</span>, <span class="highlight">marca</span>, <span class="highlight">cultura</span>, <span class="highlight">datos</span>, diseño y tecnología.',
         cta: 'Leer más',
