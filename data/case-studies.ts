@@ -67,9 +67,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'campaign-pulse',
       title: 'Campaign Pulse',
       description:
-        'Local-first marketing intelligence command center for newsletter performance, CSV ingestion, target-aware diagnostics, audience pressure, and monthly reporting.',
+        'A marketing intelligence product designed to turn campaign and audience activity into clearer commercial decisions.',
       commercialRelevance:
-        'A portfolio-grade internal tool prototype showing how normalized campaign and audience facts can become clear operating decisions.',
+        'Explores how campaign teams can move from scattered activity to a more legible commercial picture, before technical implementation becomes the story.',
       tags: [
         'Next.js',
         'TypeScript',
@@ -164,9 +164,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'campaign-sandbox',
       title: 'Campaign Sandbox',
       description:
-        'An internal AI workspace that turns messy campaign briefs into structured creative routes, synthetic audience simulations, risk reviews, execution plans, and exportable strategy reports.',
+        'A new model for how creative teams develop, compare, and strengthen campaign ideas.',
       commercialRelevance:
-        'A case study in reliable AI workflow design for creative strategy teams that need faster synthesis without giving up human judgment.',
+        'Shows how a better creative workflow can make space for strategic comparison, stronger ideas, and human judgment before production begins.',
       tags: [
         'AI Workflows',
         'Creative Strategy',
@@ -305,9 +305,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'campaign-pulse',
       title: 'Campaign Pulse',
       description:
-        'Centro de mando local-first para rendimiento de newsletters, ingesta CSV, diagnósticos frente a objetivos, presión de audiencia e informes mensuales.',
+        'Un producto de inteligencia de marketing diseñado para convertir la actividad de campañas y audiencias en decisiones comerciales más claras.',
       commercialRelevance:
-        'Un prototipo de herramienta interna listo para portfolio que convierte datos normalizados de campañas y audiencias en decisiones operativas claras.',
+        'Explora cómo los equipos de campaña pueden pasar de actividad dispersa a una visión comercial más legible antes de que la implementación técnica sea el centro del relato.',
       tags: [
         'Next.js',
         'TypeScript',
@@ -406,9 +406,9 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       slug: 'campaign-sandbox',
       title: 'Campaign Sandbox',
       description:
-        'Un espacio interno de IA que convierte briefs de campaña desordenados en rutas creativas estructuradas, simulaciones sintéticas de audiencia, revisiones de riesgo, planes de ejecución e informes exportables.',
+        'Un nuevo modelo para que los equipos creativos desarrollen, comparen y fortalezcan ideas de campaña.',
       commercialRelevance:
-        'Un caso de diseño fiable de flujos con IA para equipos de estrategia creativa que necesitan sintetizar más rápido sin renunciar al criterio humano.',
+        'Muestra cómo un mejor flujo creativo puede abrir espacio para la comparación estratégica, ideas más sólidas y criterio humano antes de empezar la producción.',
       tags: [
         'Flujos IA',
         'Estrategia creativa',

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { getSiteCopy } from '@/data/site-copy'
@@ -22,23 +22,13 @@ export default function Hero({ locale = 'en' }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null)
   const copy = getSiteCopy(locale).home.hero
 
-  const [greeting, setGreeting] = useState<string>(copy.greetings.morning)
-
-  useEffect(() => {
-    // Set greeting based on local time
-    const hour = new Date().getHours()
-    if (hour < 12) setGreeting(copy.greetings.morning)
-    else if (hour < 18) setGreeting(copy.greetings.afternoon)
-    else setGreeting(copy.greetings.evening)
-  }, [copy.greetings.afternoon, copy.greetings.evening, copy.greetings.morning])
-
   const name = 'RAÚL'
   const surname = 'MERMANS'
   const nameLetters = name.split('')
   const surnameLetters = surname.split('')
 
   const handleScrollToWork = () => {
-    const workSection = document.getElementById('selected-work')
+    const workSection = document.getElementById('building-now')
     if (workSection) {
       workSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -53,7 +43,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
     >
       <HeroBackground className={styles.background} />
       <div className={styles.content} data-mobile-audit="hero-content">
-        <p className={`${styles.greeting} reveal`}>{greeting}</p>
+        <p className={`${styles.greeting} reveal`}>{copy.eyebrow}</p>
 
         {/* Name display - visual treatment. Hidden from assistive tech because
             the H1 carries the full accessible label combining name + positioning. */}
@@ -89,7 +79,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
         <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
-              href={localizePath('/#selected-work', locale)}
+              href={localizePath('/#building-now', locale)}
               className={`${styles.cta} ${styles.primary}`}
               data-mobile-audit="hero-cta"
             >
@@ -99,7 +89,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={20}>
             <Link
-              href={localizePath('/about', locale)}
+              href={localizePath('/#contact', locale)}
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >

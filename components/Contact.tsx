@@ -9,6 +9,7 @@ interface ContactProps {
 }
 
 const LINKEDIN_URL = 'https://linkedin.com/in/raulmermans'
+const INSTAGRAM_URL = 'https://www.instagram.com/raulmeermans/'
 const GITHUB_URL = 'https://github.com/RaulMermans'
 
 export default function Contact({ locale = 'en' }: ContactProps) {
@@ -47,6 +48,16 @@ export default function Contact({ locale = 'en' }: ContactProps) {
             >
               <span>{copy.linkedinLabel}</span>
               <strong>Raúl Mermans</strong>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-direct__link"
+            >
+              <span>{copy.instagramLabel}</span>
+              <strong>@raulmeermans</strong>
               <span aria-hidden="true">↗</span>
             </a>
             <a

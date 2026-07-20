@@ -3,16 +3,17 @@ import HomePage from '../page'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'IA, Producto, Datos y Sistemas de Marca',
+  title: 'Raul Mermans — Emprendedor y creador',
   description:
-    'Raúl Mermans construye productos con IA, herramientas de decisión y sistemas de marca entre negocio, tecnología y cultura.',
+    'Raul Mermans construye marcas, productos y nuevos proyectos entre la cultura, el negocio, la narrativa y la tecnología.',
   path: '/',
   locale: 'es',
   image: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Portfolio de Raúl Mermans',
   },
-  keywords: ['IA aplicada', 'productos digitales', 'inteligencia de datos', 'sistemas CRM', 'sistemas de marca'],
+  keywords: ['emprendedor', 'creador', 'marcas', 'productos', 'nuevos proyectos'],
+  absoluteTitle: true,
 })
 
 export default function SpanishHomePage() {

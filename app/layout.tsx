@@ -10,9 +10,9 @@ import LocaleDocument from '@/components/LocaleDocument'
 import '@/lib/env-validation'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-const rootTitle = 'Raúl Mermans — AI, Product, Data and Brand Systems'
+const rootTitle = 'Raúl Mermans — Entrepreneur & Creator'
 const rootDescription =
-  'Raúl Mermans builds AI-powered products, decision tools, and brand systems across business, technology, and culture.'
+  'Raul Mermans builds brands, products, and ventures across culture, business, storytelling, and technology.'
 
 const bebasNeue = localFont({
   src: './fonts/bebas-neue-400.woff2',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     apple: '/favicon.jpg',
   },
   manifest: '/manifest.webmanifest',
-  category: 'technology',
+  category: 'business',
   keywords: defaultKeywords,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,

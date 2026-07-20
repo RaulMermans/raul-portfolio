@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getSiteCopy } from '@/data/site-copy'
 import { type Locale, localizePath } from '@/lib/i18n'
-import Reveal from './Reveal'
 
 interface AboutProps {
   locale?: Locale
@@ -62,20 +61,9 @@ export default function About({ locale = 'en' }: AboutProps) {
           <h2 id="about-title" className="about__headline reveal reveal-delay-1">
             {copy.title}
           </h2>
-          <p className="about__text reveal reveal-delay-2">
-            {locale === 'es' ? (
-              <>
-                Uso el <span className="highlight">código</span> para estructurar ideas. Entre estrategia,
-                datos, marca y producto, convierto problemas complejos en trabajo que la gente puede entender y
-                llevar a la acción.
-              </>
-            ) : (
-              <>
-                I use <span className="highlight">code</span> as a way to structure ideas. Across strategy,
-                data, brand, and product, I turn complex problems into work people can understand and act on.
-              </>
-            )}
-          </p>
+          <p className="about__text reveal reveal-delay-2">{copy.body}</p>
+          <p className="about__text reveal reveal-delay-2">{copy.bodySecondary}</p>
+          <p className="about__text reveal reveal-delay-2">{copy.bodyTertiary}</p>
           
           <Link
             href={localizePath('/about', locale)}

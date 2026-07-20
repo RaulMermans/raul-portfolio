@@ -27,9 +27,9 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com',
   locale: 'es_ES',
   twitterHandle: '@raulmermans',
-  defaultTitle: 'Raúl Mermans — AI, Product, Data and Brand Systems',
+  defaultTitle: 'Raúl Mermans — Entrepreneur & Creator',
   defaultDescription:
-    'Raúl Mermans builds AI-powered products, decision tools, and brand systems across business, technology, and culture.',
+    'Raul Mermans builds brands, products, and ventures across culture, business, storytelling, and technology.',
   defaultImage: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Portfolio de Raúl Mermans — estrategia creativa, proyectos y tecnología',
@@ -38,15 +38,12 @@ export const siteConfig = {
 
 export const defaultKeywords = [
   'Raúl Mermans',
-  'applied AI',
-  'AI products',
-  'decision tools',
-  'data and business intelligence',
-  'CRM and marketing systems',
-  'brand systems',
+  'entrepreneur',
+  'creator',
+  'brand building',
   'product development',
-  'automation',
-  'human-centered AI',
+  'ventures',
+  'storytelling',
   'Raúl Mermans Madrid',
 ]
 
@@ -88,7 +85,7 @@ export function buildPageMetadata({
   noIndex = false,
   absoluteTitle = false,
 }: BuildPageMetadataOptions): Metadata {
-  const fullTitle = resolveSeoTitle(title)
+  const fullTitle = absoluteTitle && title ? title : resolveSeoTitle(title)
   const imageUrl = absoluteUrl(image.url)
   const localizedPath = localizePath(path, locale)
   const routeUrl = absoluteRouteUrl(localizedPath)

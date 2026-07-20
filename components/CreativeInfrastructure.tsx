@@ -9,18 +9,19 @@ type CreativeInfrastructureProps = {
 export default function CreativeInfrastructure({
   locale = 'en',
 }: CreativeInfrastructureProps) {
-  const copy = getSiteCopy(locale).home.positioning
+  const copy = getSiteCopy(locale).home.buildingNow
 
   return (
     <section
       className={styles.section}
-      data-home-section="positioning"
-      aria-labelledby="creative-infrastructure-title"
+      id="building-now"
+      data-home-section="building-now"
+      aria-labelledby="building-now-title"
     >
       <div className={styles.inner}>
         <div>
           <p className={styles.eyebrow}>{copy.eyebrow}</p>
-          <h2 id="creative-infrastructure-title" className={styles.title}>
+          <h2 id="building-now-title" className={styles.title}>
             {copy.title}
           </h2>
         </div>

@@ -2105,6 +2105,30 @@ html.homepage .footer {
   line-height: 1.65;
 }
 
+.selected-ai-card__details {
+  display: grid;
+  gap: 0.45rem;
+  color: rgba(26, 23, 20, 0.62);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.selected-ai-card__details > span {
+  display: block;
+}
+
+.selected-ai-card__details b {
+  display: inline-block;
+  min-width: 5.2rem;
+  margin-right: 0.45rem;
+  color: var(--accent);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .selected-ai-card__cta {
   align-self: end;
   display: inline-flex;

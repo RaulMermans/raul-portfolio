@@ -11,10 +11,9 @@ import SelectedAISystems from '@/components/SelectedAISystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
 import CreativeAISystemsSprint from '@/components/CreativeAISystemsSprint'
 import SectionCards from '@/components/SectionCards'
+import IdeasExploring from '@/components/IdeasExploring'
 import About from '@/components/About'
-import Services from '@/components/Services'
 import Contact from '@/components/Contact'
-import Socials from '@/components/Socials'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
@@ -22,6 +21,23 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 
 function getHomeServiceSchema(locale: Locale) {
+  const localizedContact = localizePath('/#contact', locale)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteConfig.url}/#brand-venture-sprint`,
+    name: locale === 'es' ? 'Sprint de marca y proyecto' : 'Brand & Venture Sprint',
+    description:
+      locale === 'es'
+        ? 'Una colaboración focalizada para convertir ideas prometedoras en marcas más claras, productos más sólidos y conceptos preparados para salir al mercado.'
+        : 'A focused collaboration that turns promising ideas into clearer brands, stronger products, and launchable concepts.',
+    provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+    areaServed: { '@type': 'Country', name: 'Spain' },
+    url: absoluteRouteUrl(localizedContact),
+  }
+
+  /* Legacy service-list mapping retained below for route compatibility. */
   const localizedPhotography = localizePath('/photography', locale)
   const servicePaths =
     locale === 'es'
@@ -228,7 +244,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="positioning"], [data-home-section="work"], .selected-ai-systems, #creative-strategy-sprint, .about, .services, .contact, .socials'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], [data-home-section="building-now"], .selected-ai-systems, #creative-strategy-sprint, .about, #ideas, .contact'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -267,14 +283,13 @@ export default function Home() {
         />
         <Header locale={locale} />
         <Hero locale={locale} />
-        <SelectedAISystems locale={locale} />
-        <CreativeInfrastructure locale={locale} />
-        <CreativeAISystemsSprint locale={locale} />
         <SectionCards locale={locale} />
+        <CreativeInfrastructure locale={locale} />
+        <SelectedAISystems locale={locale} />
         <About locale={locale} />
-        <Services locale={locale} />
+        <CreativeAISystemsSprint locale={locale} />
+        <IdeasExploring locale={locale} />
         <Contact locale={locale} />
-        <Socials locale={locale} />
         <Footer locale={locale} />
         <BackToTop />
       </main>

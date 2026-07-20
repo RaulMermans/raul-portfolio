@@ -8,7 +8,7 @@ interface SelectedAISystemsProps {
   locale?: Locale
 }
 
-const selectedSlugs = ['campaign-sandbox', 'website-auditor', 'campaign-pulse'] as const
+const selectedSlugs = ['campaign-sandbox', 'campaign-pulse', 'remoria'] as const
 
 export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsProps) {
   const copy = getSiteCopy(locale).home.selectedAiSystems
@@ -52,7 +52,13 @@ export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsPr
                     <span>{cardCopy.label}</span>
                   </span>
                   <span className="selected-ai-card__title">{study.title}</span>
-                  <span className="selected-ai-card__description">{cardCopy.proof}</span>
+                  <span className="selected-ai-card__description">{cardCopy.idea}</span>
+                  <span className="selected-ai-card__details">
+                    <span><b>{copy.opportunityLabel}</b>{cardCopy.opportunity}</span>
+                    <span><b>{copy.roleLabel}</b>{cardCopy.role}</span>
+                    <span><b>{copy.builtLabel}</b>{cardCopy.built}</span>
+                    <span><b>{copy.provesLabel}</b>{cardCopy.proves}</span>
+                  </span>
                   <span className="selected-ai-card__cta">
                     {copy.viewCase}
                     <span aria-hidden="true">→</span>

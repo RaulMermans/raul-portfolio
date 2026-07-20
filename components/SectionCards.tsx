@@ -254,6 +254,10 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
 
   return (
     <section id="work" className={styles.container} data-home-section="work">
+      <header className={styles.intro}>
+        <p>{copy.eyebrow}</p>
+        <h2>{copy.title}</h2>
+      </header>
       {!isMobileView && (
       <div className={styles.desktopCarousel}>
         <div className={styles.controls}>
@@ -358,9 +362,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
                       </div>
 
                       <div className={styles.copy}>
-                        <h2 id={titleId} className={styles.title}>
-                          {section.title}
-                        </h2>
+                        <h3 id={titleId} className={styles.title}>{section.title}</h3>
                         <p className={styles.description}>{section.description}</p>
                       </div>
 
@@ -427,9 +429,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
                 </div>
 
                 <div className={styles.copy}>
-                  <h2 id={titleId} className={styles.title}>
-                    {section.title}
-                  </h2>
+                  <h3 id={titleId} className={styles.title}>{section.title}</h3>
                   <p className={styles.description}>{section.description}</p>
                 </div>
 
