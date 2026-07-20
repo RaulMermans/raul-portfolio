@@ -47,18 +47,18 @@ assert_file out/services/automatizacion-creativa/index.html
 assert_file out/services/sistemas-de-marca/index.html
 assert_file out/services/prototipos-producto-ia/index.html
 
-assert_contains out/en/index.html "I turn complex ideas into intelligent systems."
-assert_contains out/en/index.html "Selected work, built around real decisions."
-assert_contains out/en/index.html "Different outputs. The same underlying approach."
-assert_contains out/en/index.html "The best work often starts with an unclear problem."
+assert_contains out/en/index.html "Building ideas into brands, products, and ventures."
+assert_contains out/en/index.html "Ideas made tangible."
+assert_contains out/en/index.html "An independent practice with room to grow."
+assert_contains out/en/index.html "For collaborations, conversations, and ambitious ideas."
 assert_contains out/en/index.html "Direct contact options"
 assert_contains out/en/index.html "Open to selected projects and collaborations"
 assert_contains out/en/index.html "raulmermans@gmail.com"
 
-assert_contains out/index.html "Convierto ideas complejas en sistemas inteligentes."
-assert_contains out/index.html "Trabajo seleccionado, construido alrededor de decisiones reales."
-assert_contains out/index.html "Distintos resultados. El mismo enfoque de fondo."
-assert_contains out/index.html "El mejor trabajo suele empezar con un problema poco claro."
+assert_contains out/index.html "Convirtiendo ideas en marcas, productos y nuevos proyectos."
+assert_contains out/index.html "Ideas hechas realidad."
+assert_contains out/index.html "Lo que estoy construyendo"
+assert_contains out/index.html "Para colaboraciones, conversaciones e ideas ambiciosas."
 assert_contains out/index.html "Opciones de contacto directo"
 assert_contains out/index.html "Abierto a proyectos y colaboraciones seleccionadas"
 assert_contains out/index.html "raulmermans@gmail.com"

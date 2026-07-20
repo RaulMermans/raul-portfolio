@@ -104,8 +104,8 @@ jobs:
             return 1
           }
 
-          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "I turn complex ideas into intelligent systems."
-          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Convierto ideas complejas en sistemas inteligentes."
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Building ideas into brands, products, and ventures."
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Convirtiendo ideas en marcas, productos y nuevos proyectos."
           verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "Campaign Sandbox"
           verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Campaign Sandbox"
           verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "reviewer veto before publication"
