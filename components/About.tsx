@@ -61,9 +61,20 @@ export default function About({ locale = 'en' }: AboutProps) {
           <h2 id="about-title" className="about__headline reveal reveal-delay-1">
             {copy.title}
           </h2>
-          <p className="about__text reveal reveal-delay-2">{copy.body}</p>
-          <p className="about__text reveal reveal-delay-2">{copy.bodySecondary}</p>
-          <p className="about__text reveal reveal-delay-2">{copy.bodyTertiary}</p>
+          <p className="about__text reveal reveal-delay-2">
+            {locale === 'es' ? (
+              <>
+                Uso el <span className="highlight">código</span> para estructurar el trabajo. Entre estrategia,
+                datos, marca y producto, convierto problemas complejos en resultados que la gente puede entender y
+                llevar a la acción.
+              </>
+            ) : (
+              <>
+                I use <span className="highlight">code</span> to structure the work. Across strategy,
+                data, brand, and product, I turn complex problems into results people can understand and act on.
+              </>
+            )}
+          </p>
           
           <Link
             href={localizePath('/about', locale)}

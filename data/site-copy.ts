@@ -178,10 +178,6 @@ export const siteCopy = {
         title: 'Building with both business sense and artistic direction.',
         body:
           'I’m Raul Mermans, an entrepreneur and creator interested in how cultural insight becomes meaningful brands, useful products, and commercially relevant ventures.',
-        bodySecondary:
-          'My work moves between business strategy and artistic direction. I use cultural research, storytelling, design, technology, and experimentation to identify opportunities and make them tangible.',
-        bodyTertiary:
-          'I’m currently studying Business Administration and Marketing at IE University while building independently, collaborating with founders, and developing my own projects.',
         cta: 'More about me',
       },
       services: {
@@ -539,10 +535,6 @@ export const siteCopy = {
         title: 'Construir entre el sentido de negocio y la dirección artística.',
         body:
           'Soy Raul Mermans, emprendedor y creador, interesado en cómo la visión cultural se convierte en marcas con significado, productos útiles y proyectos comercialmente relevantes.',
-        bodySecondary:
-          'Mi trabajo se mueve entre la estrategia empresarial y la dirección artística. Utilizo la investigación cultural, la narrativa, el diseño, la tecnología y la experimentación para detectar oportunidades y convertirlas en realidades.',
-        bodyTertiary:
-          'Actualmente estudio Administración de Empresas y Marketing en IE University mientras construyo de forma independiente, colaboro con fundadores y desarrollo mis propios proyectos.',
         cta: 'Leer más',
       },
       services: {
