@@ -9,7 +9,6 @@ export const siteCopy = {
         { label: 'Work', href: '/#selected-work', hash: '#selected-work' },
         { label: 'About', href: '/about' },
         { label: 'Photography', href: '/photography' },
-        { label: 'Ideas', href: '/#ideas', hash: '#ideas' },
         { label: 'Contact', href: '/#contact', hash: '#contact' },
       ],
       mobileEyebrow: 'Navigation',
@@ -78,32 +77,16 @@ export const siteCopy = {
         eyebrow: 'What I’m building now',
         title: 'An independent practice with room to grow.',
         body:
-          'I’m building an independent practice and a portfolio of projects around brands, culture, products, and media. My current focus is collaborating with ambitious founders, publishing what I learn, and developing ideas that can become businesses of their own.',
+          'I’m building an independent practice and a portfolio of projects around brands, culture, products, and media. My current focus is collaborating with ambitious founders, publishing what I learn, and developing concepts that can become businesses of their own.',
         points: [
           { title: 'Selected founder collaborations', body: 'Helping early teams clarify what they are making and how it should meet the world.' },
-          { title: 'Public ideas and cultural analysis', body: 'Sharing observations, references, and working questions in public.' },
+          { title: 'Public perspectives and cultural analysis', body: 'Sharing observations, references, and working questions in public.' },
           { title: 'Original products and ventures', body: 'Developing independent concepts that can become useful, lasting businesses.' },
         ],
       },
-      sprint: {
-        eyebrow: 'Selected collaborations',
-        title: 'Brand & Venture Sprint',
-        intro: 'I work with a limited number of founders and emerging teams to turn promising ideas into clearer brands, stronger products, and launchable concepts.',
-        includedLabel: 'What is included',
-        included: [
-          'Opportunity and cultural context',
-          'Audience and positioning',
-          'Brand narrative',
-          'Offer or product architecture',
-          'Visual-world direction',
-          'Launch concept',
-          'Functional prototype when useful',
-        ],
-        cta: 'Discuss a collaboration',
-      },
       selectedAiSystems: {
         eyebrow: 'Selected projects',
-        title: 'Ideas made tangible.',
+        title: 'Work made tangible.',
         description:
           'A selection of products and identity work that shows brand judgment, business thinking, and independent execution in practice.',
         viewCase: 'View case',
@@ -149,7 +132,7 @@ export const siteCopy = {
         },
       },
       sectionCards: {
-        eyebrow: 'Selected worlds, ideas, and experiments',
+        eyebrow: 'Selected worlds, work, and experiments',
         title: 'A wider creative universe.',
         prev: 'Previous section:',
         next: 'Next section:',
@@ -194,7 +177,7 @@ export const siteCopy = {
         label: 'About me',
         title: 'Building with both business sense and artistic direction.',
         body:
-          'I’m Raul Mermans, an entrepreneur and creator interested in how ideas become meaningful brands, useful products, and commercially relevant ventures.',
+          'I’m Raul Mermans, an entrepreneur and creator interested in how cultural insight becomes meaningful brands, useful products, and commercially relevant ventures.',
         bodySecondary:
           'My work moves between business strategy and artistic direction. I use cultural research, storytelling, design, technology, and experimentation to identify opportunities and make them tangible.',
         bodyTertiary:
@@ -258,9 +241,9 @@ export const siteCopy = {
         ],
       },
       contact: {
-        title: 'For collaborations, conversations, and ambitious ideas.',
+        title: 'For collaborations, conversations, and ambitious projects.',
         subtitle:
-          'If there is a promising idea taking shape, I’d be glad to hear where it could go.',
+          'If there is a promising project taking shape, I’d be glad to hear where it could go.',
         intro: 'You do not need a finished brief. A real opportunity, question, or point of view is enough to begin a conversation.',
         availability: 'Open to selected projects and collaborations.',
         location: 'Madrid · Remote · EU',
@@ -269,16 +252,6 @@ export const siteCopy = {
         linkedinLabel: 'LinkedIn',
         instagramLabel: 'Instagram',
         githubLabel: 'GitHub',
-      },
-      ideas: {
-        eyebrow: 'Ideas I’m exploring',
-        title: 'Questions worth developing in public.',
-        intro: 'Topics and investigations that can later become essays, videos, newsletters, posts, or conversations.',
-        items: [
-          { title: 'Building desire, not just products', status: 'An ongoing investigation' },
-          { title: 'Personal brands as business infrastructure', status: 'An ongoing investigation' },
-          { title: 'Technology as leverage, not identity', status: 'An ongoing investigation' },
-        ],
       },
       contactForm: {
         projectTypePlaceholder: 'Select focus area',
@@ -397,7 +370,6 @@ export const siteCopy = {
         { label: 'Trabajo', href: '/#selected-work', hash: '#selected-work' },
         { label: 'Sobre mí', href: '/about' },
         { label: 'Fotografía', href: '/photography' },
-        { label: 'Ideas', href: '/#ideas', hash: '#ideas' },
         { label: 'Contacto', href: '/#contact', hash: '#contact' },
       ],
       mobileEyebrow: 'Navegación',
@@ -466,32 +438,16 @@ export const siteCopy = {
         eyebrow: 'Lo que estoy construyendo',
         title: 'Una práctica independiente con espacio para crecer.',
         body:
-          'Estoy construyendo una práctica independiente y una cartera de proyectos alrededor de las marcas, la cultura, los productos y los medios. Actualmente colaboro con fundadores ambiciosos, comparto lo que aprendo y desarrollo ideas que puedan convertirse en negocios propios.',
+          'Estoy construyendo una práctica independiente y una cartera de proyectos alrededor de las marcas, la cultura, los productos y los medios. Actualmente colaboro con fundadores ambiciosos, comparto lo que aprendo y desarrollo conceptos que puedan convertirse en negocios propios.',
         points: [
           { title: 'Colaboraciones seleccionadas con fundadores', body: 'Ayudando a equipos emergentes a aclarar qué están construyendo y cómo puede encontrarse con el mundo.' },
-          { title: 'Ideas públicas y análisis cultural', body: 'Compartiendo observaciones, referencias y preguntas de trabajo en público.' },
+          { title: 'Perspectivas públicas y análisis cultural', body: 'Compartiendo observaciones, referencias y preguntas de trabajo en público.' },
           { title: 'Productos y proyectos propios', body: 'Desarrollando conceptos independientes que puedan convertirse en negocios útiles y duraderos.' },
         ],
       },
-      sprint: {
-        eyebrow: 'Colaboraciones seleccionadas',
-        title: 'Sprint de marca y proyecto',
-        intro: 'Trabajo con un número limitado de fundadores y equipos emergentes para convertir ideas prometedoras en marcas más claras, productos más sólidos y conceptos preparados para salir al mercado.',
-        includedLabel: 'Qué incluye',
-        included: [
-          'Oportunidad y contexto cultural',
-          'Audiencia y posicionamiento',
-          'Narrativa de marca',
-          'Arquitectura de oferta o producto',
-          'Dirección del universo visual',
-          'Concepto de lanzamiento',
-          'Prototipo funcional cuando sea útil',
-        ],
-        cta: 'Proponer una colaboración',
-      },
       selectedAiSystems: {
         eyebrow: 'Proyectos seleccionados',
-        title: 'Ideas hechas realidad.',
+        title: 'Trabajo hecho realidad.',
         description:
           'Una selección de productos y trabajo de identidad que demuestra criterio de marca, pensamiento de negocio y ejecución independiente.',
         viewCase: 'Ver caso',
@@ -537,7 +493,7 @@ export const siteCopy = {
         },
       },
       sectionCards: {
-        eyebrow: 'Mundos, ideas y experimentos seleccionados',
+        eyebrow: 'Mundos, trabajo y experimentos seleccionados',
         title: 'Un universo creativo más amplio.',
         prev: 'Sección anterior:',
         next: 'Sección siguiente:',
@@ -582,7 +538,7 @@ export const siteCopy = {
         label: 'Sobre mí',
         title: 'Construir entre el sentido de negocio y la dirección artística.',
         body:
-          'Soy Raul Mermans, emprendedor y creador, interesado en cómo las ideas se convierten en marcas con significado, productos útiles y proyectos comercialmente relevantes.',
+          'Soy Raul Mermans, emprendedor y creador, interesado en cómo la visión cultural se convierte en marcas con significado, productos útiles y proyectos comercialmente relevantes.',
         bodySecondary:
           'Mi trabajo se mueve entre la estrategia empresarial y la dirección artística. Utilizo la investigación cultural, la narrativa, el diseño, la tecnología y la experimentación para detectar oportunidades y convertirlas en realidades.',
         bodyTertiary:
@@ -646,9 +602,9 @@ export const siteCopy = {
         ],
       },
       contact: {
-        title: 'Para colaboraciones, conversaciones e ideas ambiciosas.',
+        title: 'Para colaboraciones, conversaciones y proyectos ambiciosos.',
         subtitle:
-          'Si hay una idea prometedora tomando forma, me encantará escuchar hasta dónde podría llegar.',
+          'Si hay un proyecto prometedor tomando forma, me encantará escuchar hasta dónde podría llegar.',
         intro: 'No necesitas un briefing terminado. Una oportunidad, pregunta o punto de vista real basta para empezar una conversación.',
         availability: 'Abierto a proyectos y colaboraciones seleccionadas.',
         location: 'Madrid · Remoto · UE',
@@ -657,16 +613,6 @@ export const siteCopy = {
         linkedinLabel: 'LinkedIn',
         instagramLabel: 'Instagram',
         githubLabel: 'GitHub',
-      },
-      ideas: {
-        eyebrow: 'Ideas que estoy explorando',
-        title: 'Preguntas que vale la pena desarrollar en público.',
-        intro: 'Temas e investigaciones que más adelante podrán convertirse en ensayos, vídeos, newsletters, posts o conversaciones.',
-        items: [
-          { title: 'Construir deseo, no solo productos', status: 'Una investigación en curso' },
-          { title: 'La marca personal como infraestructura empresarial', status: 'Una investigación en curso' },
-          { title: 'La tecnología como ventaja, no como identidad', status: 'Una investigación en curso' },
-        ],
       },
       contactForm: {
         projectTypePlaceholder: 'Selecciona el enfoque',

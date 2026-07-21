@@ -9,9 +9,7 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import SelectedAISystems from '@/components/SelectedAISystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
-import CreativeAISystemsSprint from '@/components/CreativeAISystemsSprint'
 import SectionCards from '@/components/SectionCards'
-import IdeasExploring from '@/components/IdeasExploring'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import ErrorBoundary from '@/components/ErrorBoundary'
@@ -21,20 +19,19 @@ import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 
 function getHomeServiceSchema(locale: Locale) {
-  const localizedContact = localizePath('/#contact', locale)
+  const localizedHome = localizePath('/', locale)
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': `${siteConfig.url}/#brand-venture-sprint`,
-    name: locale === 'es' ? 'Sprint de marca y proyecto' : 'Brand & Venture Sprint',
+    '@type': 'WebPage',
+    '@id': `${siteConfig.url}/#home`,
+    name: locale === 'es' ? 'Raúl Mermans — Emprendedor y creador' : 'Raúl Mermans — Entrepreneur & Creator',
     description:
       locale === 'es'
-        ? 'Una colaboración focalizada para convertir ideas prometedoras en marcas más claras, productos más sólidos y conceptos preparados para salir al mercado.'
-        : 'A focused collaboration that turns promising ideas into clearer brands, stronger products, and launchable concepts.',
-    provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
-    areaServed: { '@type': 'Country', name: 'Spain' },
-    url: absoluteRouteUrl(localizedContact),
+        ? 'Raúl Mermans construye marcas, productos y nuevos proyectos entre la cultura, el negocio, la narrativa y la tecnología.'
+        : 'Raul Mermans builds brands, products, and ventures across culture, business, storytelling, and technology.',
+    about: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+    url: absoluteRouteUrl(localizedHome),
   }
 
   /* Legacy service-list mapping retained below for route compatibility. */
@@ -244,7 +241,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], [data-home-section="building-now"], .selected-ai-systems, #creative-strategy-sprint, .about, #ideas, .contact'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], [data-home-section="building-now"], .selected-ai-systems, .about, .contact'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -287,8 +284,6 @@ export default function Home() {
         <CreativeInfrastructure locale={locale} />
         <SelectedAISystems locale={locale} />
         <About locale={locale} />
-        <CreativeAISystemsSprint locale={locale} />
-        <IdeasExploring locale={locale} />
         <Contact locale={locale} />
         <Footer locale={locale} />
         <BackToTop />

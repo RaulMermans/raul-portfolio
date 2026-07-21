@@ -48,17 +48,17 @@ assert_file out/services/sistemas-de-marca/index.html
 assert_file out/services/prototipos-producto-ia/index.html
 
 assert_contains out/en/index.html "Building ideas into brands, products, and ventures."
-assert_contains out/en/index.html "Ideas made tangible."
+assert_contains out/en/index.html "Work made tangible."
 assert_contains out/en/index.html "An independent practice with room to grow."
-assert_contains out/en/index.html "For collaborations, conversations, and ambitious ideas."
+assert_contains out/en/index.html "For collaborations, conversations, and ambitious projects."
 assert_contains out/en/index.html "Direct contact options"
 assert_contains out/en/index.html "Open to selected projects and collaborations"
 assert_contains out/en/index.html "raulmermans@gmail.com"
 
 assert_contains out/index.html "Convirtiendo ideas en marcas, productos y nuevos proyectos."
-assert_contains out/index.html "Ideas hechas realidad."
+assert_contains out/index.html "Trabajo hecho realidad."
 assert_contains out/index.html "Lo que estoy construyendo"
-assert_contains out/index.html "Para colaboraciones, conversaciones e ideas ambiciosas."
+assert_contains out/index.html "Para colaboraciones, conversaciones y proyectos ambiciosos."
 assert_contains out/index.html "Opciones de contacto directo"
 assert_contains out/index.html "Abierto a proyectos y colaboraciones seleccionadas"
 assert_contains out/index.html "raulmermans@gmail.com"
