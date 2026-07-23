@@ -7715,39 +7715,37 @@ main.case-study-page-new {
 }
 
 .opstwin-hero {
-  background:
-    radial-gradient(circle at 84% 22%, rgba(168, 214, 102, 0.22), transparent 24rem),
-    linear-gradient(145deg, #141b14, #202a20);
-  color: var(--cream);
+  background: var(--surface-page);
+  color: var(--text-primary);
 }
 
 .opstwin-hero .data-brief-back,
 .opstwin-hero .data-brief-hero__subtitle,
 .opstwin-hero .data-brief-hero__title {
-  color: var(--cream);
+  color: var(--text-primary);
 }
 
 .opstwin-hero .data-brief-hero__description,
 .opstwin-hero .data-brief-hero__visual figcaption {
-  color: rgba(245, 240, 235, 0.7);
+  color: var(--text-secondary);
 }
 
 .opstwin-hero .data-brief-eyebrow,
 .opstwin-hero .data-brief-tags span {
-  color: rgba(245, 240, 235, 0.72);
+  color: var(--text-muted);
 }
 
 .opstwin-hero .data-brief-tags span,
 .opstwin-hero .data-brief-button {
-  border-color: rgba(245, 240, 235, 0.28);
-  background: rgba(245, 240, 235, 0.05);
-  color: var(--cream);
+  border-color: var(--cream-dark);
+  background: transparent;
+  color: var(--text-secondary);
 }
 
 .opstwin-hero .data-brief-button--primary {
-  border-color: var(--opstwin-signal);
-  background: var(--opstwin-signal);
-  color: var(--opstwin-ink);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
 }
 
 .data-brief-button[aria-disabled='true'] {
@@ -7765,9 +7763,9 @@ main.case-study-page-new {
 .opstwin-status {
   display: inline-flex;
   margin: 1.3rem 0 0;
-  border: 1px solid rgba(214, 255, 120, 0.42);
+  border: 1px solid var(--accent);
   padding: 0.5rem 0.7rem;
-  color: var(--opstwin-signal);
+  color: var(--accent);
   font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
