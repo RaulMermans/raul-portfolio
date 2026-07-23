@@ -16,6 +16,7 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
+  'opstwin',
   'campaign-pulse',
   'demandos',
   'campaign-sandbox',
@@ -30,6 +31,43 @@ export const CASE_STUDY_ORDER = [
 ] as const
 
 export const caseStudyEditorial: Record<string, EditorialMeta> = {
+  opstwin: {
+    category: {
+      en: 'Operational simulation',
+      es: 'Simulación operativa',
+    },
+    proofTags: {
+      en: ['Live prototype', 'Versioned contracts', '419 tests'],
+      es: ['Prototipo desplegado', 'Contratos versionados', '419 tests'],
+    },
+    snapshot: {
+      en: {
+        problem:
+          'Operational dashboards explain what happened, but not how queues, staffing pressure, and service levels may respond to a proposed change.',
+        system:
+          'A decision-support workspace that compares a baseline with bounded interventions through paired, repeated discrete-event simulations.',
+        proof:
+          'Live deployment, inspectable repository, versioned contracts, integrity validation, 247 backend tests, 172 frontend tests, and documented production verification.',
+        value:
+          'Creates comparative evidence before a team commits to a staffing change, process redesign, or live operational pilot.',
+        limitation:
+          'A bounded support-operation model: it does not prove causality, predict production outcomes, or autonomously recommend an action.',
+      },
+      es: {
+        problem:
+          'Los dashboards operativos explican qué ocurrió, pero no cómo podrían responder las colas, la presión de plantilla y los niveles de servicio ante un cambio propuesto.',
+        system:
+          'Un espacio de apoyo a la decisión que compara una línea base con intervenciones acotadas mediante simulaciones discretas repetidas y emparejadas.',
+        proof:
+          'Despliegue activo, repositorio inspeccionable, contratos versionados, validación de integridad, 247 tests backend, 172 tests frontend y verificación de producción documentada.',
+        value:
+          'Crea evidencia comparativa antes de comprometerse con un cambio de plantilla, rediseño de proceso o piloto operativo.',
+        limitation:
+          'Un modelo acotado de operaciones de soporte: no prueba causalidad, no predice resultados en producción ni recomienda una acción de forma autónoma.',
+      },
+    },
+    related: ['demandos', 'campaign-pulse', 'data-brief-ai'],
+  },
   demandos: {
     category: { en: 'Machine Learning', es: 'Machine Learning' },
     proofTags: {

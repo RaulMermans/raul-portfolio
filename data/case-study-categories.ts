@@ -51,6 +51,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
   const isSpanish = locale === 'es'
   const caseStudies = getCaseStudies(locale)
   const campaignPulse = findStudy(caseStudies, 'campaign-pulse')
+  const opsTwin = findStudy(caseStudies, 'opstwin')
   const demandOs = findStudy(caseStudies, 'demandos')
   const campaignSandbox = findStudy(caseStudies, 'campaign-sandbox')
   const dataBriefAi = findStudy(caseStudies, 'data-brief-ai')
@@ -130,6 +131,7 @@ export function getCaseStudyCategories(locale: Locale): CaseStudyCategory[] {
         : 'Internal tools, demos, and product surfaces built to test workflow logic.',
       href: indexHref,
       projects: [
+        ...projectFromStudy(opsTwin, isSpanish ? 'Simulación operativa' : 'Operational simulation'),
         ...projectFromStudy(campaignPulse, isSpanish ? 'Producto de datos' : 'Data product'),
         ...projectFromStudy(demandOs, isSpanish ? 'Producto ML' : 'ML product'),
         ...projectFromStudy(dataBriefAi, isSpanish ? 'Producto de reporting' : 'Reporting product'),

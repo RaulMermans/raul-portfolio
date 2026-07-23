@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/about', changeFrequency: 'monthly', priority: 0.9 },
     { path: '/case-studies', changeFrequency: 'monthly', priority: 0.9 },
     { path: '/case-studies/demandos', changeFrequency: 'monthly', priority: 0.88 },
+    { path: '/case-studies/opstwin', changeFrequency: 'monthly', priority: 0.88 },
     { path: '/apps', changeFrequency: 'monthly', priority: 0.88 },
     { path: '/overflow/support', changeFrequency: 'monthly', priority: 0.54 },
     { path: '/overflow/privacy', changeFrequency: 'monthly', priority: 0.46 },

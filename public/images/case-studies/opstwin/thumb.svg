@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">OpsTwin operational simulation decision lab</title>
+  <desc id="desc">A comparison of one baseline and two simulated operational interventions.</desc>
+  <rect width="1600" height="1000" fill="#141713"/>
+  <rect x="78" y="74" width="1444" height="852" rx="4" fill="#1e241e" stroke="#e8e4d7" stroke-opacity=".24"/>
+  <text x="140" y="166" fill="#e8e4d7" font-family="Arial, sans-serif" font-size="32" letter-spacing="7">OPSTWIN / DECISION LAB</text>
+  <text x="140" y="252" fill="#f7f4eb" font-family="Arial, sans-serif" font-size="76" font-weight="700">Compare an operating change.</text>
+  <text x="140" y="304" fill="#b8c0b2" font-family="Arial, sans-serif" font-size="27">Matched simulation evidence · not operational certainty</text>
+  <g transform="translate(140 390)">
+    <rect width="406" height="388" rx="2" fill="#151a15" stroke="#e8e4d7" stroke-opacity=".25"/>
+    <text x="34" y="55" fill="#acb7a7" font-family="Arial, sans-serif" font-size="21" letter-spacing="3">BASELINE</text>
+    <text x="34" y="121" fill="#f7f4eb" font-family="Arial, sans-serif" font-size="53" font-weight="700">42.8h</text>
+    <text x="34" y="158" fill="#b8c0b2" font-family="Arial, sans-serif" font-size="22">Median cycle time</text>
+    <path d="M34 294H360" stroke="#748070" stroke-width="2"/>
+    <path d="M34 294 L108 244 L182 264 L256 176 L360 214" fill="none" stroke="#e8e4d7" stroke-width="7"/>
+  </g>
+  <g transform="translate(596 390)">
+    <rect width="406" height="388" rx="2" fill="#e8e4d7"/>
+    <text x="34" y="55" fill="#5a654f" font-family="Arial, sans-serif" font-size="21" letter-spacing="3">ADD ONE LEVEL 1 AGENT</text>
+    <text x="34" y="121" fill="#141713" font-family="Arial, sans-serif" font-size="53" font-weight="700">−6.2h</text>
+    <text x="34" y="158" fill="#465040" font-family="Arial, sans-serif" font-size="22">Observed difference</text>
+    <text x="34" y="264" fill="#465040" font-family="Arial, sans-serif" font-size="20">Improved in</text>
+    <text x="34" y="318" fill="#141713" font-family="Arial, sans-serif" font-size="47" font-weight="700">43 / 50 runs</text>
+  </g>
+  <g transform="translate(1052 390)">
+    <rect width="406" height="388" rx="2" fill="#151a15" stroke="#e8e4d7" stroke-opacity=".25"/>
+    <text x="34" y="55" fill="#acb7a7" font-family="Arial, sans-serif" font-size="21" letter-spacing="3">REDUCE TRIAGE TIME</text>
+    <text x="34" y="121" fill="#f7f4eb" font-family="Arial, sans-serif" font-size="53" font-weight="700">−3.4h</text>
+    <text x="34" y="158" fill="#b8c0b2" font-family="Arial, sans-serif" font-size="22">Observed difference</text>
+    <text x="34" y="264" fill="#b8c0b2" font-family="Arial, sans-serif" font-size="20">Improved in</text>
+    <text x="34" y="318" fill="#f7f4eb" font-family="Arial, sans-serif" font-size="47" font-weight="700">35 / 50 runs</text>
+  </g>
+  <text x="140" y="854" fill="#acb7a7" font-family="Arial, sans-serif" font-size="20" letter-spacing="3">PAIRED RUNS · COMMON RANDOM NUMBERS · EXPLICIT ASSUMPTIONS</text>
+</svg>

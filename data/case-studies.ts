@@ -34,6 +34,31 @@ type CaseStudyEntry = Omit<CaseStudy, 'href'>
 const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
   en: [
     {
+      id: 11,
+      slug: 'opstwin',
+      title: 'OpsTwin',
+      description:
+        'Operational simulation and decision lab for comparing service-workflow changes under matched simulated conditions.',
+      commercialRelevance:
+        'Shows how teams can examine staffing and workflow tradeoffs before a live operational pilot, without presenting simulation evidence as certainty.',
+      tags: [
+        'Simulation',
+        'Decision support',
+        'Operations',
+        'Next.js',
+        'FastAPI',
+        'Python',
+      ],
+      status: 'Deployed product prototype',
+      cta: 'View case study',
+      image: '/images/case-studies/opstwin/thumb.svg',
+      imageWidth: 1600,
+      imageHeight: 1000,
+      color: 'var(--accent)',
+      subtitle: 'Operational simulation / Decision-support product',
+      mood: ['minimal', 'tech', 'editorial'],
+    },
+    {
       id: 10,
       slug: 'demandos',
       title: 'DemandOS',
@@ -271,6 +296,31 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
     },
   ],
   es: [
+    {
+      id: 11,
+      slug: 'opstwin',
+      title: 'OpsTwin',
+      description:
+        'Laboratorio de simulación operativa y apoyo a decisiones para comparar cambios de servicio bajo condiciones simuladas equivalentes.',
+      commercialRelevance:
+        'Muestra cómo examinar compensaciones de plantilla y workflow antes de un piloto operativo, sin presentar la simulación como certeza.',
+      tags: [
+        'Simulación',
+        'Apoyo a decisiones',
+        'Operaciones',
+        'Next.js',
+        'FastAPI',
+        'Python',
+      ],
+      status: 'Prototipo de producto desplegado',
+      cta: 'Ver caso de estudio',
+      image: '/images/case-studies/opstwin/thumb.svg',
+      imageWidth: 1600,
+      imageHeight: 1000,
+      color: 'var(--accent)',
+      subtitle: 'Simulación operativa / Producto de apoyo a decisiones',
+      mood: ['minimal', 'tech', 'editorial'],
+    },
     {
       id: 10,
       slug: 'demandos',
