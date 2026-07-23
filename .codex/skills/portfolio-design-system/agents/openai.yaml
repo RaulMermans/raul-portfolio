@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Design System"
+  short_description: "Enforce the portfolio visual system"
+  default_prompt: "Use $portfolio-design-system to apply the portfolio visual system to this UI change."
