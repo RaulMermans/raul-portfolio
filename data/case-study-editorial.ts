@@ -37,8 +37,8 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
       es: 'Simulación operativa',
     },
     proofTags: {
-      en: ['Live prototype', 'Versioned contracts', '419 tests'],
-      es: ['Prototipo desplegado', 'Contratos versionados', '419 tests'],
+      en: ['Live prototype', 'Public repository', 'Recorded verification'],
+      es: ['Prototipo desplegado', 'Repositorio público', 'Verificación registrada'],
     },
     snapshot: {
       en: {
@@ -47,7 +47,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'A decision-support workspace that compares a baseline with bounded interventions through paired, repeated discrete-event simulations.',
         proof:
-          'Live deployment, inspectable repository, versioned contracts, integrity validation, 247 backend tests, 172 frontend tests, and documented production verification.',
+          'Live deployment, public repository, versioned contracts, integrity validation, and historical verification records. At the last recorded checkpoint, 247 backend tests and 172 frontend tests passed.',
         value:
           'Creates comparative evidence before a team commits to a staffing change, process redesign, or live operational pilot.',
         limitation:
@@ -59,7 +59,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'Un espacio de apoyo a la decisión que compara una línea base con intervenciones acotadas mediante simulaciones discretas repetidas y emparejadas.',
         proof:
-          'Despliegue activo, repositorio inspeccionable, contratos versionados, validación de integridad, 247 tests backend, 172 tests frontend y verificación de producción documentada.',
+          'Despliegue activo, repositorio público, contratos versionados, validación de integridad y registros históricos de verificación. En el último punto registrado, pasaron 247 tests de backend y 172 de frontend.',
         value:
           'Crea evidencia comparativa antes de comprometerse con un cambio de plantilla, rediseño de proceso o piloto operativo.',
         limitation:

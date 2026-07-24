@@ -57,6 +57,8 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Operational simulation / Decision-support product',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/OpsTwin.git',
+      liveUrl: 'https://ops-twin.vercel.app',
     },
     {
       id: 10,
@@ -320,6 +322,8 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
       color: 'var(--accent)',
       subtitle: 'Simulación operativa / Producto de apoyo a decisiones',
       mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/OpsTwin.git',
+      liveUrl: 'https://ops-twin.vercel.app',
     },
     {
       id: 10,

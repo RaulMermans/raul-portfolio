@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
@@ -8,92 +9,399 @@ import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
-import { getLocaleFromPath, localizePath } from '@/lib/i18n'
+import { getLocaleFromPath, localizePath, type Locale } from '@/lib/i18n'
 
-const stack = ['Next.js', 'React', 'TypeScript', 'FastAPI', 'Python', 'SimPy', 'Pydantic', 'Vercel Services']
+const liveDemoUrl = 'https://ops-twin.vercel.app'
+const githubUrl = 'https://github.com/RaulMermans/OpsTwin.git'
+const stack = ['Next.js', 'React', 'TypeScript', 'FastAPI', 'Python', 'SimPy', 'Pydantic']
 
-const evidenceSurfaces = [
-  ['Flow', 'Maps stages, routes, and resource pools while overlaying scenario changes and returned pressure evidence.'],
-  ['Risk', 'Surfaces the risk classification attached to a comparison instead of hiding uncertainty in a technical table.'],
-  ['Resources', 'Shows where a scenario changes queue pressure or resource utilization across the workflow.'],
-  ['Sensitivity', 'Sweeps one explicit factor across defined tested values, without interpolation, extrapolation, or an implied optimum.'],
-  ['Economics', 'Calculates recurring and one-time cost evidence using only assumptions entered by the user.'],
-  ['Playback', 'Reconstructs one sampled run as an illustration, explicitly separate from aggregate evidence across all runs.'],
-]
+type ProofImage = {
+  src: string
+  width: number
+  height: number
+  alt: string
+  caption: string
+}
 
-const whatIBuilt = [
-  ['Guided comparison', 'One fixed baseline, two candidate changes, one simulation action, and an immediate plain-language result.'],
-  ['Advanced scenario lab', 'A full editing environment for baseline assumptions, up to three scenarios, execution settings, guardrails, and detailed evidence.'],
-  ['Paired simulation engine', 'Repeated baseline and scenario runs use matching random seeds so comparisons are made under equivalent simulated conditions.'],
-  ['Operational evidence layer', 'Flow, risk, and resource views connect the headline result to queue behavior, utilization, and workflow structure.'],
-  ['Integrity validation', 'Contract, deterministic, and mathematical checks validate simulation responses before evidence reaches the interface.'],
-  ['Export system', 'Comparison results and supporting evidence export as structured JSON or CSV artifacts.'],
-]
+type Copy = {
+  back: string
+  eyebrow: string
+  subtitle: string
+  description: string
+  status: string
+  live: string
+  github: string
+  linksLabel: string
+  stackLabel: string
+  heroProof: ProofImage
+  nav: Array<[string, string]>
+  problem: {
+    eyebrow: string
+    title: string
+    paragraphs: string[]
+    options: string[]
+  }
+  product: {
+    eyebrow: string
+    title: string
+    cards: Array<[string, string]>
+  }
+  comparison: {
+    eyebrow: string
+    title: string
+    intro: string
+    facts: Array<[string, string]>
+    image: ProofImage
+  }
+  proof: {
+    eyebrow: string
+    title: string
+    intro: string
+    images: ProofImage[]
+  }
+  method: {
+    eyebrow: string
+    title: string
+    paragraphs: string[]
+    boundaries: string[]
+  }
+  engineering: {
+    eyebrow: string
+    title: string
+    paragraphs: string[]
+    flow: string[]
+  }
+  outcome: {
+    eyebrow: string
+    title: string
+    paragraphs: string[]
+  }
+  limitations: {
+    eyebrow: string
+    title: string
+    items: string[]
+    closing: string
+  }
+  learning: {
+    eyebrow: string
+    title: string
+    paragraphs: string[]
+  }
+  final: {
+    title: string
+    description: string
+    live: string
+    github: string
+    back: string
+  }
+}
 
-const limitations = [
-  'The canonical model represents support operations rather than arbitrary workflows.',
-  'No real-user or real-company data has been processed.',
-  'There is no database, authentication, persistence, or multi-user state.',
-  'Results are simulation evidence, not causal proof or a production-outcome guarantee.',
-  'The product does not autonomously recommend an action or guarantee an optimal configuration.',
-  'Sensitivity analysis tests one factor at a time, and representative playback shows one sampled run rather than an aggregate outcome.',
-  'Human participant usability testing remains pending.',
-]
+const proofImages = {
+  guidedSetup: {
+    src: '/images/case-studies/opstwin/proof/guided-setup.png',
+    width: 1440,
+    height: 1200,
+  },
+  guidedResult: {
+    src: '/images/case-studies/opstwin/proof/guided-result.png',
+    width: 1168,
+    height: 680,
+  },
+  process: {
+    src: '/images/case-studies/opstwin/proof/process-view.png',
+    width: 1168,
+    height: 1078,
+  },
+  workload: {
+    src: '/images/case-studies/opstwin/proof/team-workload.png',
+    width: 1168,
+    height: 1671,
+  },
+} as const
 
-const objectives = [
-  'Represent an explicit operational baseline.',
-  'Compare several bounded changes against that baseline.',
-  'Hold simulated conditions constant across comparisons.',
-  'Show observed impact and uncertainty in plain language.',
-  'Expose the operational evidence behind the headline result.',
-  'Keep assumptions inspectable and editable.',
-  'Separate aggregate evidence from illustrative examples.',
-  'Avoid turning statistical output into an automatic recommendation.',
-]
-
-const usabilityChanges = [
-  'Guided mode became the default entry point.',
-  'The decision moved ahead of the mechanics.',
-  'Results appeared immediately after execution.',
-  'Statistical language received plain-language interpretation.',
-  'Evidence moved into one accessible tab system.',
-  'Advanced controls remained available in a separate mode.',
-  'A first-run orientation and terminology glossary were added.',
-]
-
-function OpsTwinConsole() {
-  return (
-    <div className="opstwin-console" aria-label="Illustrative OpsTwin simulation comparison">
-      <div className="opstwin-console__bar">
-        <span>OPSTWIN / DECISION LAB</span>
-        <span>50 PAIRED RUNS</span>
-      </div>
-      <div className="opstwin-console__decision">
-        <span>Decision under test</span>
-        <strong>Add one Level 1 agent vs. reduce triage time by 25%</strong>
-      </div>
-      <div className="opstwin-console__results">
-        <article>
-          <span>Baseline</span>
-          <strong>42.8h</strong>
-          <p>Median cycle time</p>
-        </article>
-        <article className="opstwin-console__result--selected">
-          <span>Add one agent</span>
-          <strong>−6.2h</strong>
-          <p>Observed difference</p>
-          <small>Improved in 43 / 50 runs</small>
-        </article>
-        <article>
-          <span>Accelerate triage</span>
-          <strong>−3.4h</strong>
-          <p>Observed difference</p>
-          <small>Improved in 35 / 50 runs</small>
-        </article>
-      </div>
-      <p className="opstwin-console__note">Illustrative comparison surface — not a production prediction.</p>
-    </div>
-  )
+const copy: Record<Locale, Copy> = {
+  en: {
+    back: 'Case studies',
+    eyebrow: 'Operational simulation / Decision support',
+    subtitle: 'Test a staffing or workflow change before applying it to a live service operation.',
+    description:
+      'OpsTwin is an operational simulation and decision-support prototype for service operations. Its canonical example compares adding one general support agent with making initial ticket review and assignment 25% faster.',
+    status: 'Public product prototype',
+    live: 'Open live product',
+    github: 'View GitHub repository',
+    linksLabel: 'Project links',
+    stackLabel: 'Technology stack',
+    heroProof: {
+      ...proofImages.guidedSetup,
+      alt: 'OpsTwin guided workspace showing the current support operation and two proposed changes.',
+      caption: 'Guided setup in the public product. The support-operation scenario is fictional.',
+    },
+    nav: [
+      ['Problem', '#problem'],
+      ['Product', '#product'],
+      ['Demonstrated comparison', '#comparison'],
+      ['Interface proof', '#interface-proof'],
+      ['Method', '#method'],
+      ['Engineering', '#engineering'],
+      ['Outcome', '#outcome'],
+      ['Limitations', '#limitations'],
+      ['Learning', '#learning'],
+    ],
+    problem: {
+      eyebrow: '01 / Problem',
+      title: 'Operational dashboards show what happened. They do not test a proposed change.',
+      paragraphs: [
+        'Service teams can see ticket volume, resolution time, and workload after the fact. The harder question is counterfactual: what may change if capacity is added or the first review step is faster?',
+        'Those changes move pressure through the whole workflow. A local improvement can shift queueing or workload elsewhere, so OpsTwin compares each change against the same simulated operating conditions.',
+      ],
+      options: ['Rely on historical averages.', 'Build a bespoke analysis for every question.', 'Test the change in the live operation.'],
+    },
+    product: {
+      eyebrow: '02 / Product',
+      title: 'A guided comparison first. The full workspace when it is needed.',
+      cards: [
+        ['Start with the operation', 'Review the fictional support workflow, its assumptions, and the measure being compared.'],
+        ['Compare two bounded changes', 'Add one general support agent or make review and assignment 25% faster.'],
+        ['Read the evidence', 'Inspect observed average change, matched-test consistency, uncertainty, process effects, and team workload.'],
+      ],
+    },
+    comparison: {
+      eyebrow: '03 / Demonstrated comparison',
+      title: 'The result explains the evidence. It does not choose an action.',
+      intro:
+        'The public guided flow compares the current operation with two proposed changes. The screenshot below is a current result from the fictional support scenario, not evidence from a real company.',
+      facts: [
+        ['Observed average change', 'The difference in the selected measure across matched simulation runs.'],
+        ['Matched-test consistency', 'How often a proposed change performed better than the current operation.'],
+        ['Plausible range', 'A range around the estimated average change that can include improvement, no improvement, or a worse result.'],
+        ['Decision boundary', 'A ranking can be inconclusive. Comparative evidence is not a recommendation.'],
+      ],
+      image: {
+        ...proofImages.guidedResult,
+        alt: 'OpsTwin result view comparing one added general support agent with faster review and assignment in a fictional support operation.',
+        caption: 'Guided result from the current public deployment. Values are generated from the fictional support-operation model.',
+      },
+    },
+    proof: {
+      eyebrow: '04 / Interface proof',
+      title: 'The product keeps the result connected to the operation behind it.',
+      intro:
+        'The Process view shows where a proposed change enters the workflow. Team workload keeps capacity and waiting evidence visible alongside the headline comparison.',
+      images: [
+        {
+          ...proofImages.process,
+          alt: 'OpsTwin Process view showing the fictional support workflow and proposed-change controls.',
+          caption: 'Process view from the current public deployment.',
+        },
+        {
+          ...proofImages.workload,
+          alt: 'OpsTwin Team workload view comparing utilization and waiting evidence for fictional support teams.',
+          caption: 'Team workload evidence from the current public deployment.',
+        },
+      ],
+    },
+    method: {
+      eyebrow: '05 / Method',
+      title: 'Matched simulation makes the comparison fairer.',
+      paragraphs: [
+        'OpsTwin uses common random numbers. Run 1 of the current operation and run 1 of each proposed change share the same simulated conditions. The same pairing applies across repeated runs.',
+        'This reduces the chance that a difference is caused only by unrelated simulated demand. It does not turn the model into a production forecast or causal proof.',
+      ],
+      boundaries: [
+        'Improvement frequency is not a production success probability.',
+        'A plausible range is not a guaranteed outcome range.',
+        'Comparative ranking is not an operational recommendation.',
+        'Simulation evidence is not causal proof.',
+      ],
+    },
+    engineering: {
+      eyebrow: '06 / Engineering and reliability',
+      title: 'The interface exposes evidence only after the model has checked it.',
+      paragraphs: [
+        'The public interface sends a versioned request to a FastAPI simulation service. SimPy runs the discrete-event model, while deterministic child seeds preserve the matched baseline and scenario schedule.',
+        'A deployment failure also clarified an ownership boundary. The web app had depended on a fixture outside its deployed bundle, so the runtime asset was moved into the service that needed it and protected against drift.',
+      ],
+      flow: ['Next.js interface', 'Versioned request contract', 'FastAPI simulation service', 'SimPy execution engine', 'Integrity checks', 'Evidence and export'],
+    },
+    outcome: {
+      eyebrow: '07 / Outcome',
+      title: 'A deployed prototype with inspectable evidence and clear limits.',
+      paragraphs: [
+        'The live product, public repository, and current screenshots make the implementation inspectable. No real-company operational outcome is claimed.',
+        'At the last recorded verification checkpoint, 247 backend tests and 172 frontend tests passed. Those counts are historical records, not a claim about the current full suite.',
+      ],
+    },
+    limitations: {
+      eyebrow: '08 / Limitations',
+      title: 'A bounded support model, not a production optimization platform.',
+      items: [
+        'The canonical scenario represents a fictional support workflow, not an arbitrary operation.',
+        'No real-company or real-user data has been processed.',
+        'The prototype has no database, authentication, persistence, or multi-user state.',
+        'Simulation output is not causal proof or a production-outcome guarantee.',
+        'The product does not autonomously recommend an action or guarantee an optimal configuration.',
+        'No measured business outcome or completed participant study is claimed.',
+      ],
+      closing:
+        'Production use would require model calibration, data integration, security, observability, and validation against organisation-specific operating definitions.',
+    },
+    learning: {
+      eyebrow: '09 / Learning',
+      title: 'The useful boundary is where the model stops speaking for the operator.',
+      paragraphs: [
+        'A mathematically valid model can still fail as a product if people cannot see the decision it supports or the uncertainty it carries.',
+        'OpsTwin treats the result as comparative evidence. The operator still owns the decision, the assumptions, and the next step.',
+      ],
+    },
+    final: {
+      title: 'Explore the comparison, then inspect the model behind it.',
+      description: 'Open the guided product or review the repository and implementation details.',
+      live: 'Open live product',
+      github: 'View GitHub repository',
+      back: 'Back to case studies',
+    },
+  },
+  es: {
+    back: 'Casos de estudio',
+    eyebrow: 'Simulación operativa / Apoyo a decisiones',
+    subtitle: 'Prueba un cambio de plantilla o de flujo antes de aplicarlo en una operación de servicio real.',
+    description:
+      'OpsTwin es un prototipo de simulación operativa y apoyo a decisiones para equipos de servicio. Su ejemplo canónico compara añadir un agente de soporte general con acelerar un 25% la revisión y asignación inicial de tickets.',
+    status: 'Prototipo público de producto',
+    live: 'Abrir producto',
+    github: 'Ver repositorio en GitHub',
+    linksLabel: 'Enlaces del proyecto',
+    stackLabel: 'Tecnologías',
+    heroProof: {
+      ...proofImages.guidedSetup,
+      alt: 'Espacio guiado de OpsTwin con la operación de soporte actual y dos cambios propuestos.',
+      caption: 'Configuración guiada en el producto público. El escenario de soporte es ficticio.',
+    },
+    nav: [
+      ['Problema', '#problem'],
+      ['Producto', '#product'],
+      ['Comparación demostrada', '#comparison'],
+      ['Prueba de interfaz', '#interface-proof'],
+      ['Método', '#method'],
+      ['Ingeniería', '#engineering'],
+      ['Resultado', '#outcome'],
+      ['Límites', '#limitations'],
+      ['Aprendizaje', '#learning'],
+    ],
+    problem: {
+      eyebrow: '01 / Problema',
+      title: 'Los dashboards operativos muestran lo que pasó. No prueban un cambio propuesto.',
+      paragraphs: [
+        'Los equipos de servicio pueden ver volumen de tickets, tiempo de resolución y carga de trabajo después de que ocurran. La pregunta difícil es contrafactual: qué podría cambiar si se añade capacidad o se acelera la primera revisión.',
+        'Estos cambios mueven la presión por todo el flujo. Una mejora local puede desplazar colas o carga a otro punto, por eso OpsTwin compara cada cambio bajo las mismas condiciones simuladas.',
+      ],
+      options: ['Confiar en medias históricas.', 'Construir un análisis a medida para cada pregunta.', 'Probar el cambio en la operación real.'],
+    },
+    product: {
+      eyebrow: '02 / Producto',
+      title: 'Primero una comparación guiada. El espacio completo cuando hace falta.',
+      cards: [
+        ['Empezar por la operación', 'Revisar el flujo de soporte ficticio, sus supuestos y la medida que se compara.'],
+        ['Comparar dos cambios acotados', 'Añadir un agente de soporte general o hacer un 25% más rápida la revisión y asignación.'],
+        ['Leer la evidencia', 'Inspeccionar el cambio medio observado, la consistencia entre pruebas, la incertidumbre, el proceso y la carga de los equipos.'],
+      ],
+    },
+    comparison: {
+      eyebrow: '03 / Comparación demostrada',
+      title: 'El resultado explica la evidencia. No elige una acción.',
+      intro:
+        'El flujo guiado público compara la operación actual con dos cambios propuestos. La captura siguiente es un resultado actual del escenario de soporte ficticio, no evidencia de una empresa real.',
+      facts: [
+        ['Cambio medio observado', 'La diferencia en la medida elegida a través de ejecuciones de simulación emparejadas.'],
+        ['Consistencia entre pruebas', 'Con qué frecuencia un cambio propuesto funciona mejor que la operación actual.'],
+        ['Rango plausible', 'Un rango alrededor del cambio medio estimado que puede incluir mejora, ausencia de mejora o un resultado peor.'],
+        ['Límite de decisión', 'Un ranking puede no ser concluyente. La evidencia comparativa no es una recomendación.'],
+      ],
+      image: {
+        ...proofImages.guidedResult,
+        alt: 'Vista de resultados de OpsTwin que compara un agente de soporte general adicional con una revisión y asignación más rápida en una operación de soporte ficticia.',
+        caption: 'Resultado guiado del despliegue público actual. Los valores los genera el modelo de soporte ficticio.',
+      },
+    },
+    proof: {
+      eyebrow: '04 / Prueba de interfaz',
+      title: 'El producto mantiene el resultado conectado con la operación que lo produce.',
+      intro:
+        'La vista de Proceso muestra dónde entra un cambio propuesto en el flujo. La carga de los equipos mantiene visibles la capacidad y la espera junto a la comparación principal.',
+      images: [
+        {
+          ...proofImages.process,
+          alt: 'Vista de Proceso de OpsTwin con el flujo de soporte ficticio y controles para cambios propuestos.',
+          caption: 'Vista de Proceso del despliegue público actual.',
+        },
+        {
+          ...proofImages.workload,
+          alt: 'Vista de carga de equipos de OpsTwin que compara utilización y espera en equipos de soporte ficticios.',
+          caption: 'Evidencia de carga de equipos del despliegue público actual.',
+        },
+      ],
+    },
+    method: {
+      eyebrow: '05 / Método',
+      title: 'La simulación emparejada hace más justa la comparación.',
+      paragraphs: [
+        'OpsTwin usa números aleatorios comunes. La ejecución 1 de la operación actual y la ejecución 1 de cada cambio propuesto comparten las mismas condiciones simuladas. El emparejamiento se mantiene en las ejecuciones repetidas.',
+        'Esto reduce la posibilidad de que una diferencia proceda solo de una demanda simulada distinta. No convierte el modelo en una previsión de producción ni en una prueba causal.',
+      ],
+      boundaries: [
+        'La frecuencia de mejora no es una probabilidad de éxito en producción.',
+        'Un rango plausible no es un rango de resultado garantizado.',
+        'Un ranking comparativo no es una recomendación operativa.',
+        'La evidencia de simulación no es una prueba causal.',
+      ],
+    },
+    engineering: {
+      eyebrow: '06 / Ingeniería y fiabilidad',
+      title: 'La interfaz muestra evidencia solo después de que el modelo la comprueba.',
+      paragraphs: [
+        'La interfaz pública envía una solicitud versionada a un servicio de simulación en FastAPI. SimPy ejecuta el modelo de eventos discretos y las semillas hijas deterministas preservan el calendario emparejado entre la línea base y los escenarios.',
+        'Un fallo de despliegue también aclaró un límite de propiedad. La web dependía de un fixture fuera de su paquete desplegado, por lo que el activo de ejecución se movió al servicio que lo necesitaba y quedó protegido frente a divergencias.',
+      ],
+      flow: ['Interfaz Next.js', 'Contrato de solicitud versionado', 'Servicio de simulación FastAPI', 'Motor SimPy', 'Comprobaciones de integridad', 'Evidencia y exportación'],
+    },
+    outcome: {
+      eyebrow: '07 / Resultado',
+      title: 'Un prototipo desplegado con evidencia inspeccionable y límites claros.',
+      paragraphs: [
+        'El producto en vivo, el repositorio público y las capturas actuales permiten inspeccionar la implementación. No se afirma ningún resultado operativo de una empresa real.',
+        'En el último punto de verificación registrado, pasaron 247 tests de backend y 172 de frontend. Son registros históricos, no una afirmación sobre la suite completa actual.',
+      ],
+    },
+    limitations: {
+      eyebrow: '08 / Límites',
+      title: 'Un modelo de soporte acotado, no una plataforma de optimización para producción.',
+      items: [
+        'El escenario canónico representa un flujo de soporte ficticio, no una operación arbitraria.',
+        'No se han procesado datos de empresas ni de usuarios reales.',
+        'El prototipo no tiene base de datos, autenticación, persistencia ni estado multiusuario.',
+        'La salida de la simulación no es una prueba causal ni una garantía de resultado en producción.',
+        'El producto no recomienda una acción de forma autónoma ni garantiza una configuración óptima.',
+        'No se afirma un resultado de negocio medido ni un estudio con participantes terminado.',
+      ],
+      closing:
+        'El uso en producción requeriría calibración del modelo, integración de datos, seguridad, observabilidad y validación con definiciones operativas propias de la organización.',
+    },
+    learning: {
+      eyebrow: '09 / Aprendizaje',
+      title: 'El límite útil está donde el modelo deja de hablar por quien opera.',
+      paragraphs: [
+        'Un modelo matemáticamente válido puede fallar como producto si las personas no entienden la decisión que respalda ni la incertidumbre que contiene.',
+        'OpsTwin trata el resultado como evidencia comparativa. La persona operadora conserva la decisión, los supuestos y el siguiente paso.',
+      ],
+    },
+    final: {
+      title: 'Explora la comparación y revisa el modelo que la sostiene.',
+      description: 'Abre el producto guiado o revisa el repositorio y los detalles de implementación.',
+      live: 'Abrir producto',
+      github: 'Ver repositorio en GitHub',
+      back: 'Volver a casos de estudio',
+    },
+  },
 }
 
 function Section({
@@ -126,9 +434,25 @@ function Section({
   )
 }
 
+function ProofFigure({ image, full = false }: { image: ProofImage; full?: boolean }) {
+  return (
+    <figure className={`opstwin-proof-figure${full ? ' opstwin-proof-figure--full' : ''}`}>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        sizes={full ? '(max-width: 900px) 100vw, 92vw' : '(max-width: 900px) 100vw, 46vw'}
+      />
+      <figcaption>{image.caption}</figcaption>
+    </figure>
+  )
+}
+
 export default function OpsTwinPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
+  const content = copy[locale]
 
   useCaseStudySetup()
 
@@ -139,85 +463,49 @@ export default function OpsTwinPage() {
         <section className="data-brief-hero opstwin-hero" aria-labelledby="opstwin-title">
           <div className="data-brief-hero__content">
             <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
-              ← Case studies
+              ← {content.back}
             </Link>
-            <p className="data-brief-eyebrow">Operational simulation / Decision-support product</p>
+            <p className="data-brief-eyebrow">{content.eyebrow}</p>
             <h1 id="opstwin-title" className="data-brief-hero__title">OpsTwin</h1>
-            <p className="data-brief-hero__subtitle">Test an operating change before the queue feels it.</p>
-            <p className="data-brief-hero__description">
-              OpsTwin compares staffing and workflow changes under matched simulated conditions, then surfaces observed impact, uncertainty, risk, resource pressure, and economic tradeoffs—without presenting simulation evidence as operational certainty.
-            </p>
-            <p className="opstwin-status">Deployed product prototype</p>
-            <div className="data-brief-actions" aria-label="Project links">
-              <span className="data-brief-button data-brief-button--primary" aria-disabled="true">View live demo → <small>Link pending</small></span>
-              <span className="data-brief-button" aria-disabled="true">View GitHub → <small>Link pending</small></span>
+            <p className="data-brief-hero__subtitle">{content.subtitle}</p>
+            <p className="data-brief-hero__description">{content.description}</p>
+            <p className="opstwin-status">{content.status}</p>
+            <div className="data-brief-actions" aria-label={content.linksLabel}>
+              <a href={liveDemoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+                {content.live} <span aria-hidden="true">↗</span>
+              </a>
+              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+                {content.github} <span aria-hidden="true">↗</span>
+              </a>
             </div>
-            <div className="data-brief-tags" aria-label="Technology stack">
-              {stack.map(item => <span key={item}>{item}</span>)}
+            <div className="data-brief-tags" aria-label={content.stackLabel}>
+              {stack.map((item) => <span key={item}>{item}</span>)}
             </div>
           </div>
-          <figure className="data-brief-hero__visual">
-            <OpsTwinConsole />
-            <figcaption>OpsTwin frames operational simulation around a specific decision rather than a generic analytics dashboard.</figcaption>
-          </figure>
+          <ProofFigure image={content.heroProof} />
         </section>
 
-        <CaseStudyMiniNav
-          ariaLabel="OpsTwin case study sections"
-          items={[
-            ['Problem', '#problem'], ['Solution', '#solution'], ['Experience', '#experience'],
-            ['Method', '#method'], ['Evidence', '#evidence'], ['Outcome', '#outcome'],
-          ]}
-        />
+        <CaseStudyMiniNav ariaLabel="OpsTwin case study sections" items={content.nav} />
+        <CaseStudySnapshot locale={locale} contextHref="#problem" solutionHref="#product" />
 
-        <CaseStudySnapshot locale={locale} contextHref="#problem" solutionHref="#solution" />
-
-        <Section id="problem" eyebrow="01 / Problem" title="Dashboards describe the queue after it forms.">
+        <Section id="problem" {...content.problem}>
           <div className="opstwin-prose">
-            <p>Operations teams can usually see historical cycle time, service-level attainment, ticket volume, and resource utilization. The harder question is counterfactual: <strong>what changes if we add one Level 1 agent instead of reducing triage time by 25%?</strong></p>
-            <p>Staffing, processing speed, escalation, rework, and downstream resource contention interact. A change that appears straightforward in a spreadsheet can produce less obvious effects once it moves through the full workflow.</p>
+            {content.problem.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
           <div className="data-brief-card-grid data-brief-card-grid--software opstwin-card-grid">
-            {['Reason from historical averages.', 'Build a bespoke analytical model.', 'Test the change directly in production.'].map((item, index) => (
-              <article key={item} className="data-brief-card data-brief-card--architecture">
+            {content.problem.options.map((option, index) => (
+              <article key={option} className="data-brief-card data-brief-card--architecture">
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{item}</h3>
+                <h3>{option}</h3>
               </article>
             ))}
           </div>
-          <p className="opstwin-prose opstwin-prose--closing">OpsTwin creates a narrower fourth option: bounded comparative evidence before intervening in the live operation.</p>
         </Section>
 
-        <Section id="objective" eyebrow="02 / Objective" title="Make operational tradeoffs testable without overstating certainty.">
-          <p className="opstwin-prose">The central principle was simple: <strong>comparative evidence, not prescriptive certainty.</strong></p>
-          <div className="opstwin-objective-grid">
-            {objectives.map((objective, index) => <p key={objective}><span>{String(index + 1).padStart(2, '0')}</span>{objective}</p>)}
-          </div>
-        </Section>
-
-        <Section id="solution" eyebrow="03 / Solution" title="Compare candidate changes under matched simulated conditions.">
-          <div className="opstwin-prose">
-            <p>OpsTwin starts with a support-operation baseline with explicit assumptions about staffing, arrival rates, processing times, escalation, rework, and service-level targets. A user can define up to three intervention scenarios, such as adding one Level 1 agent, reducing triage time by 25%, or changing an escalation threshold.</p>
-            <p>The system runs the baseline and each scenario repeatedly using the same random-seed schedule. Each scenario therefore experiences matched simulated conditions, making the comparison less vulnerable to random variation between unrelated runs.</p>
-          </div>
-          <div className="data-brief-result-grid opstwin-result-grid">
-            {[
-              ['Observed impact', 'Cycle-time change, framed as a measured simulation difference.'],
-              ['Consistency', 'How frequently a scenario improved on the baseline.'],
-              ['Uncertainty', 'A confidence interval around the estimated difference.'],
-              ['Operational pressure', 'Comparative risk, resource, queue, and workflow evidence.'],
-              ['Economics', 'Cost implications only when the user configures assumptions.'],
-              ['Decision boundary', 'The stronger tested result is identified; the product does not decide implementation.'],
-            ].map(([title, description]) => (
-              <article key={title}><h3>{title}</h3><p>{description}</p></article>
-            ))}
-          </div>
-        </Section>
-
-        <Section id="built" eyebrow="04 / What I built" title="A complete operational comparison loop." dark>
-          <div className="data-brief-card-grid data-brief-card-grid--architecture opstwin-built-grid">
-            {whatIBuilt.map(([title, description], index) => (
-              <article key={title} className="data-brief-card data-brief-card--architecture">
+        <Section id="product" {...content.product}>
+          <div className="opstwin-product-grid">
+            {content.product.cards.map(([title, description], index) => (
+              <article key={title}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 <h3>{title}</h3>
                 <p>{description}</p>
@@ -226,97 +514,76 @@ export default function OpsTwinPage() {
           </div>
         </Section>
 
-        <Section id="experience" eyebrow="05 / Product experience" title="Two levels of complexity, one analytical system.">
-          <div className="opstwin-experience-grid">
-            <article>
-              <p className="data-brief-eyebrow">Guided mode / default</p>
-              <h3>Understand the decision before interacting with the model.</h3>
-              <p>Guided mode presents the current operation, two candidate interventions, one comparison action, and an immediate factual result. Supporting evidence then appears one panel at a time.</p>
-              <ol>
-                <li>The current operation.</li><li>Two candidate interventions.</li><li>One comparison action.</li><li>An immediate factual result.</li><li>Supporting evidence one panel at a time.</li>
-              </ol>
-            </article>
-            <article>
-              <p className="data-brief-eyebrow">Advanced mode</p>
-              <h3>Expose the full analytical workspace when it is needed.</h3>
-              <p>Advanced mode makes baseline assumptions, scenario overrides, execution settings, guardrails, and detailed evidence inspectable and editable.</p>
-              <p>The guided interface does not create a simplified analytical path. Both modes use the same simulation engine, contracts, and comparison logic.</p>
-            </article>
-          </div>
-        </Section>
-
-        <Section id="usability" eyebrow="06 / Usability iteration" title="Analytical correctness did not guarantee clarity.">
-          <div className="opstwin-prose"><p>An early version exposed the entire simulation workspace immediately. It was analytically complete but difficult for a first-time visitor to understand: mechanics appeared before the decision, statistical terminology appeared before interpretation, and the central result was buried behind evidence sections.</p></div>
-          <div className="opstwin-objective-grid">
-            {usabilityChanges.map((change, index) => <p key={change}><span>{String(index + 1).padStart(2, '0')}</span>{change}</p>)}
-          </div>
-          <div className="opstwin-prose opstwin-prose--closing"><p>Frontend coverage increased from 142 to 172 tests during this work, with no existing test removed. The iteration is supported by automated regression, expert review, owner walkthrough, and browser quality assurance; a five-participant human usability study has not yet been completed.</p></div>
-        </Section>
-
-        <Section id="method" eyebrow="07 / Methodological decision" title="Paired evidence is stronger than unrelated simulation runs.">
-          <div className="opstwin-prose">
-            <p>Running a baseline once and a scenario once would create a weak comparison: a difference could come from the intervention, or simply because each run received different random conditions.</p>
-            <p>OpsTwin instead applies <strong>common random numbers</strong>. Run 1 of the baseline and run 1 of every scenario use the same random-seed conditions; the same applies to every repeated run. Differences are calculated within these matched pairs.</p>
-            <p>Fifty paired runs are used by default, exposing how consistently an intervention improves on the baseline and how much the estimated effect varies.</p>
-          </div>
-          <div className="opstwin-boundary-list">
-            <p>Improvement frequency is not a production success probability.</p>
-            <p>A confidence interval is not a guaranteed outcome range.</p>
-            <p>Comparative ranking is not an operational recommendation.</p>
-            <p>Simulation evidence is not causal proof.</p>
-          </div>
-        </Section>
-
-        <Section id="evidence" eyebrow="08 / Evidence surfaces" title="The headline result is only the beginning of the analysis." dark>
-          <div className="data-brief-card-grid data-brief-card-grid--architecture opstwin-evidence-grid">
-            {evidenceSurfaces.map(([title, description]) => (
-              <article key={title} className="data-brief-card data-brief-card--architecture"><h3>{title}</h3><p>{description}</p></article>
+        <Section id="comparison" {...content.comparison} dark>
+          <p className="opstwin-prose opstwin-prose--inverse">{content.comparison.intro}</p>
+          <div className="data-brief-result-grid opstwin-result-grid">
+            {content.comparison.facts.map(([title, description]) => (
+              <article key={title}><h3>{title}</h3><p>{description}</p></article>
             ))}
           </div>
+          <ProofFigure image={content.comparison.image} full />
         </Section>
 
-        <Section id="reliability" eyebrow="09 / Engineering and reliability" title="Evidence should fail safely rather than render convincingly.">
-          <div className="opstwin-prose"><p>OpsTwin uses deterministic and contract-driven boundaries throughout the system. SimPy provides discrete-event execution; FastAPI validates versioned Pydantic contracts; deterministic child-seed generation preserves matched baseline and scenario schedules; and structured integrity checks run before evidence reaches the interface.</p><p>The project was developed through an AI-assisted software workflow, while product scope, system architecture, acceptance criteria, verification, and final decisions remained human-directed.</p></div>
-          <div className="data-brief-flow opstwin-flow" aria-label="OpsTwin architecture">
-            {['Next.js interface', 'Versioned request contract', 'FastAPI simulation service', 'SimPy execution engine', 'Integrity validation', 'Structured evidence and export'].map(step => <span key={step}>{step}</span>)}
+        <Section id="interface-proof" {...content.proof}>
+          <div className="opstwin-prose"><p>{content.proof.intro}</p></div>
+          <div className="opstwin-proof-grid">
+            {content.proof.images.map((image) => <ProofFigure key={image.src} image={image} />)}
           </div>
-          <p className="opstwin-prose opstwin-prose--closing">The system is intentionally stateless: no database, authentication, user accounts, persisted simulation history, or external operational data source. This keeps the prototype focused on analytical architecture and product interaction rather than infrastructure the use case does not yet require.</p>
         </Section>
 
-        <Section id="deployment" eyebrow="10 / Deployment recovery" title="Deployment boundaries are architectural boundaries.">
-          <div className="opstwin-prose"><p>The first production deployment failed during the Next.js build. A frontend module imported a baseline fixture from the repository’s <code>examples</code> directory. The directory was excluded from the deployed bundle, so the file was available locally but unreachable inside the production build boundary.</p><p>The symptom was a missing module; the underlying problem was architectural: the web service depended on a runtime asset it did not own.</p></div>
-          <div className="opstwin-deployment-grid"><article><span>01</span><h3>Own the runtime asset</h3><p>Package a runtime-owned copy inside the web service.</p></article><article><span>02</span><h3>Protect the source of truth</h3><p>Add regression verification that fails if the runtime copy diverges from the canonical example.</p></article></div>
-          <p className="opstwin-prose opstwin-prose--closing">The incident became part of the case study rather than being removed from the narrative: packaging rules, deployment configuration, and ignored directories form part of the system architecture.</p>
-        </Section>
-
-        <Section id="outcome" eyebrow="11 / Outcome" title="A deployed decision-support product with inspectable boundaries." dark>
-          <div className="data-brief-result-grid opstwin-verification-grid">
-            <article><h3>247</h3><p>backend tests passing</p></article>
-            <article><h3>172</h3><p>frontend tests across 22 files</p></article>
-            <article><h3>50</h3><p>paired runs used by default</p></article>
-          </div>
+        <Section id="method" {...content.method} dark>
           <div className="opstwin-prose opstwin-prose--inverse">
-            <p>ESLint, Ruff, TypeScript, strict mypy, the Next.js production build, FastAPI build, source-package verification, and Guided and Advanced production routes all passed documented verification.</p>
-            <p>These measurements describe engineering scope and verification depth. They are not business-impact claims: no real-company operational outcome has been measured.</p>
+            {content.method.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
-          <div className="opstwin-product-questions"><p>Which intervention produced the stronger observed improvement?</p><p>How consistent was that improvement, and how uncertain is the estimate?</p><p>Where did pressure move inside the operation?</p><p>What happens economically under explicitly configured costs?</p></div>
+          <div className="opstwin-boundary-list">
+            {content.method.boundaries.map((boundary) => <p key={boundary}>{boundary}</p>)}
+          </div>
         </Section>
 
-        <Section id="limitations" eyebrow="12 / Honest limitations" title="A bounded operational model, not a production optimization platform.">
+        <Section id="engineering" {...content.engineering}>
+          <div className="opstwin-prose">
+            {content.engineering.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+          <div className="data-brief-flow opstwin-flow" aria-label="OpsTwin architecture">
+            {content.engineering.flow.map((step) => <span key={step}>{step}</span>)}
+          </div>
+        </Section>
+
+        <Section id="outcome" {...content.outcome} dark>
+          <div className="opstwin-prose opstwin-prose--inverse">
+            {content.outcome.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+        </Section>
+
+        <Section id="limitations" {...content.limitations}>
           <ul className="opstwin-limitations">
-            {limitations.map(item => <li key={item}>{item}</li>)}
+            {content.limitations.items.map((item) => <li key={item}>{item}</li>)}
           </ul>
-          <div className="opstwin-prose opstwin-prose--closing"><p>Production use would require model calibration, data integration, security, observability, and validation against organization-specific operating definitions.</p></div>
+          <p className="opstwin-prose opstwin-prose--closing">{content.limitations.closing}</p>
         </Section>
 
-        <Section id="learning" eyebrow="13 / What I learned" title="The strongest analytical product is not the one that claims the most." dark>
-          <div className="opstwin-prose opstwin-prose--inverse"><p>A mathematically correct model can still fail as a product when users cannot understand what decision it supports. OpsTwin reinforced that analytical correctness and usability are separate requirements; uncertainty needs interpretation, not decoration; and aggregate and representative evidence answer different questions.</p><p>The central design decision was not adding another simulation feature. It was controlling where the system’s evidence ends.</p></div>
+        <Section id="learning" {...content.learning} dark>
+          <div className="opstwin-prose opstwin-prose--inverse">
+            {content.learning.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
         </Section>
 
         <section id="final-cta" className="data-brief-section data-brief-section--cream ui-section opstwin-final" aria-labelledby="opstwin-final-heading">
           <div className="data-brief-section__container ui-section__container">
-            <div className="data-brief-refresh-heading ui-section-heading"><p className="data-brief-eyebrow ui-eyebrow">OpsTwin</p><h2 id="opstwin-final-heading">Test an operating change before implementing it.</h2><p>Explore the guided comparison, inspect the advanced workspace, or review the architecture and verification evidence.</p></div>
-            <div className="data-brief-actions"><span className="data-brief-button data-brief-button--primary" aria-disabled="true">Open the live product → <small>Link pending</small></span><span className="data-brief-button" aria-disabled="true">View the GitHub repository → <small>Link pending</small></span><Link href={localizePath('/case-studies', locale)} className="data-brief-button">Back to case studies →</Link></div>
+            <div className="data-brief-refresh-heading ui-section-heading">
+              <p className="data-brief-eyebrow ui-eyebrow">OpsTwin</p>
+              <h2 id="opstwin-final-heading">{content.final.title}</h2>
+              <p>{content.final.description}</p>
+            </div>
+            <div className="data-brief-actions">
+              <a href={liveDemoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
+                {content.final.live} <span aria-hidden="true">↗</span>
+              </a>
+              <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
+                {content.final.github} <span aria-hidden="true">↗</span>
+              </a>
+              <Link href={localizePath('/case-studies', locale)} className="data-brief-button">{content.final.back} →</Link>
+            </div>
           </div>
         </section>
       </main>

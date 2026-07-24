@@ -1,0 +1,4 @@
+interface:
+  display_name: "Editorial Language"
+  short_description: "Keep portfolio copy direct and human"
+  default_prompt: "Use $editorial-language to edit this portfolio copy without generic AI phrasing or em/en dashes."

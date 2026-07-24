@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl, absoluteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 
-const title = 'OpsTwin — Operational Simulation and Decision Lab'
-const description = 'OpsTwin compares service-operation changes under matched simulated conditions, revealing observed impact, uncertainty, risk, resource pressure and economic tradeoffs before implementation.'
-const image = '/images/case-studies/opstwin/thumb.svg'
-const keywords = ['OpsTwin', 'operational simulation', 'decision support', 'discrete-event simulation', 'SimPy', 'service operations', 'FastAPI', 'Next.js']
+const title = 'OpsTwin | Simulación operativa para equipos de servicio'
+const description = 'OpsTwin compara cambios de plantilla y de flujo en una operación de servicio ficticia mediante simulación emparejada. Muestra evidencia, incertidumbre y carga de trabajo sin recomendar una acción.'
+const image = '/images/case-studies/opstwin/proof/guided-setup.png'
+const keywords = ['OpsTwin', 'simulación operativa', 'apoyo a decisiones', 'simulación de eventos discretos', 'operaciones de servicio', 'simulación emparejada', 'FastAPI', 'SimPy']
 
 export const metadata: Metadata = buildPageMetadata({
   title,
   description,
   path: '/case-studies/opstwin',
   locale: 'es',
-  image: { url: image, alt: 'OpsTwin operational simulation decision lab', width: 1600, height: 1000 },
+  image: { url: image, alt: 'Espacio guiado de simulación operativa de OpsTwin', width: 1440, height: 1200 },
   type: 'article',
   keywords,
   absoluteTitle: true,

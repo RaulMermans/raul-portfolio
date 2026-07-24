@@ -7772,6 +7772,89 @@ main.case-study-page-new {
   text-transform: uppercase;
 }
 
+.opstwin-proof-figure {
+  display: grid;
+  gap: 0.8rem;
+  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+  border: 1px solid var(--border-light);
+  background: var(--surface-raised);
+}
+
+.opstwin-proof-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.opstwin-proof-figure figcaption {
+  padding: 0 1rem 1rem;
+  color: var(--text-secondary);
+  font-family: var(--font-code), 'Space Mono', monospace;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.opstwin-hero > .opstwin-proof-figure {
+  width: min(100%, 58rem);
+  margin: 0;
+  justify-self: center;
+}
+
+.data-brief-section--dark .opstwin-proof-figure {
+  border-color: rgba(245, 240, 235, 0.24);
+  background: var(--ink);
+}
+
+.data-brief-section--dark .opstwin-proof-figure figcaption {
+  color: rgba(245, 240, 235, 0.72);
+}
+
+.opstwin-product-grid,
+.opstwin-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.opstwin-product-grid article {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 1rem;
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--border-light);
+}
+
+.opstwin-product-grid article > span {
+  color: var(--accent);
+  font-family: var(--font-code), 'Space Mono', monospace;
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+}
+
+.opstwin-product-grid h3 {
+  max-width: 16ch;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
+  line-height: 0.95;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+.opstwin-product-grid p {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.opstwin-proof-grid .opstwin-proof-figure {
+  margin: 0;
+}
+
 .opstwin-console {
   display: grid;
   overflow: hidden;
@@ -8112,7 +8195,7 @@ main.case-study-page-new {
 }
 
 .opstwin-limitations li::before {
-  content: '—';
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -8120,6 +8203,12 @@ main.case-study-page-new {
 
 .opstwin-final .data-brief-actions {
   margin-top: 2rem;
+}
+
+/* Shared case-study heading width: wider editorial measures while preserving natural wrapping. */
+.case-study-page-new .ui-section-heading h2,
+.case-study-page-new .data-brief-section h2 {
+  max-width: 18ch;
 }
 
 @media (max-width: 900px) {

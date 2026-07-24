@@ -29,7 +29,7 @@
 }
 
 .title {
-  max-width: 10ch;
+  max-width: 14ch;
   margin: 0;
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
   font-size: clamp(3.8rem, 7vw, 7.6rem);
@@ -96,5 +96,12 @@
   .inner {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+  }
+
+  .title {
+    max-width: none;
+    font-size: clamp(3rem, 13vw, 4.5rem);
+    overflow-wrap: normal;
+    word-break: normal;
   }
 }

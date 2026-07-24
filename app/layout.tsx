@@ -14,12 +14,6 @@ const rootTitle = 'Raúl Mermans — Entrepreneur & Creator'
 const rootDescription =
   'Raul Mermans builds brands, products, and ventures across culture, business, storytelling, and technology.'
 
-const bebasNeue = localFont({
-  src: './fonts/bebas-neue-400.woff2',
-  variable: '--font-display',
-  display: 'swap',
-})
-
 const dmSans = localFont({
   src: [
     {
@@ -45,7 +39,7 @@ const spaceMono = localFont({
 
 const sourceSerif4 = localFont({
   src: './fonts/source-serif-4-400-600.woff2',
-  variable: '--font-reading',
+  variable: '--font-display',
   display: 'swap',
 })
 
@@ -124,7 +118,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}>
+      <body className={`${sourceSerif4.variable} ${dmSans.variable} ${spaceMono.variable}`}>
         <LocaleDocument />
         <Suspense fallback={null}>
           <GoogleAnalytics />

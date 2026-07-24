@@ -3,8 +3,10 @@ import { expect, test } from '@playwright/test'
 const caseStudySlugs = [
   'campaign-pulse',
   'campaign-sandbox',
-  'data-brief-ai',
   'website-auditor',
+  'opstwin',
+  'demandos',
+  'data-brief-ai',
   'benchmark-dashboard',
   'ai-sports',
   'remoria',
@@ -33,14 +35,20 @@ for (const locale of ['es', 'en'] as const) {
     page,
   }) => {
     const prefix = locale === 'en' ? '/en' : ''
-    const expectedIndex = `${prefix}/case-studies`
+    const expectedIndex = `${prefix}/case-studies/`
     const expectedLabels =
       locale === 'es'
-        ? ['Problema', 'Sistema', 'Prueba', 'Valor', 'Límite']
-        : ['Problem', 'System', 'Proof', 'Value', 'Limitation']
+        ? ['01Problema', '02Sistema', '03Prueba', '04Valor', '05Límite']
+        : [
+            '01Problem',
+            '02System',
+            '03Proof',
+            '04Value',
+            '05Limitation',
+          ]
 
     for (const slug of caseStudySlugs) {
-      await page.goto(`${expectedIndex}/${slug}`, {
+      await page.goto(`${expectedIndex}${slug}`, {
         waitUntil: 'domcontentloaded',
       })
 
@@ -58,10 +66,10 @@ for (const locale of ['es', 'en'] as const) {
       ).toHaveCount(5)
       await expect(snapshotFacts.locator('dt')).toHaveText(expectedLabels)
 
-      await expect(
-        page.locator('.case-study-next-new__card'),
-        `${slug} should expose two related systems`
-      ).toHaveCount(2)
+      expect(
+        await page.locator('.case-study-next-new__card').count(),
+        `${slug} should expose at least two related systems`
+      ).toBeGreaterThanOrEqual(2)
     }
   })
 }

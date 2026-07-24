@@ -205,9 +205,9 @@ export default function Header({ locale = 'en' }: HeaderProps) {
               role="dialog"
               aria-modal="true"
               aria-labelledby={menuTitleId}
-              initial={{ opacity: 0, x: 36 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 36 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
               className={styles.menuPanel}
               onClick={(event) => event.stopPropagation()}
