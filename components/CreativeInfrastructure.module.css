@@ -1,5 +1,6 @@
 .section {
   padding: clamp(4rem, 8vw, 7rem) var(--section-padding);
+  scroll-margin-top: calc(5.55rem + var(--space-4));
   border-top: 1px solid rgba(26, 23, 20, 0.12);
   border-bottom: 1px solid rgba(26, 23, 20, 0.12);
   background: var(--cream);
@@ -10,9 +11,13 @@
   display: grid;
   width: min(100%, 112rem);
   margin: 0 auto;
-  grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.1fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(3rem, 8vw, 9rem);
   align-items: start;
+}
+
+.inner > div {
+  min-width: 0;
 }
 
 .eyebrow,
@@ -29,6 +34,7 @@
 }
 
 .title {
+  max-inline-size: 100%;
   max-width: 14ch;
   margin: 0;
   font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;

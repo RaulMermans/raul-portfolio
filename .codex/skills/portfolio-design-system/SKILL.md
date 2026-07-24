@@ -26,6 +26,7 @@ Use `styles/design-system.css` as the source of truth. Keep changes small, seman
 ### Type and hierarchy
 
 - Use `--font-heading` for display headings, `--font-ui` for interface/body text, `--font-code` for labels and controls, and `--font-prose` for editorial reading copy.
+- The portfolio display direction is bold, condensed Bebas Neue in uppercase. Keep Source Serif for editorial reading copy only. Do not replace the display face with a serif without an explicit request.
 - Preserve semantic order: one page H1, then sequential H2/H3 sections. Do not use heading tags for visual size alone.
 - Use the shared type scale: `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`.
 - Use `--heading-line-height`, `--tracking-tight`, and uppercase display treatment for portfolio headings unless the component has an intentional local contract.
@@ -63,6 +64,7 @@ Before finishing, inspect the diff and answer:
 3. Are colors, borders, spacing, button geometry, focus states, and motion consistent with adjacent UI?
 4. Do long English and Spanish strings remain visible and aligned?
 5. At mobile width, are there no clipped controls, horizontal overflow, header collisions, or inaccessible touch targets?
+6. When a lasting UX or UI preference changes, did the relevant local design guidance change with the implementation?
 
 ## Verification
 
