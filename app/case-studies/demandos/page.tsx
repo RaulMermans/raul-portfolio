@@ -539,8 +539,8 @@ export default function DemandOsPage() {
       ? 'Inventory decisions from raw commerce data.'
       : 'Decisiones de inventario desde datos raw de comercio.',
     description: isEnglish
-      ? 'DemandOS converts raw synthetic commerce records — suppliers, products, stores, orders, inventory snapshots, promotions, and purchase orders — into forecasts, risk signals, reorder guidance, diagnostics, and monitoring surfaces. Raw records in. Inventory decisions out. No fake dashboard metrics in between.'
-      : 'DemandOS convierte registros sintéticos de comercio —proveedores, productos, tiendas, pedidos, snapshots de inventario, promociones y órdenes de compra— en forecasts, señales de riesgo, orientación de reposición, diagnósticos y superficies de monitoring. Registros raw dentro. Decisiones de inventario fuera. Sin métricas falsas de dashboard entre medias.',
+      ? 'DemandOS converts raw synthetic commerce records into forecasts, risk signals, reorder guidance, diagnostics, and monitoring surfaces. Suppliers, products, stores, orders, inventory snapshots, promotions, and purchase orders provide the source data for those outputs.'
+      : 'DemandOS convierte registros sintéticos de comercio en forecasts, señales de riesgo, orientación de reposición, diagnósticos y superficies de monitoring. Proveedores, productos, tiendas, pedidos, snapshots de inventario, promociones y órdenes de compra aportan los datos fuente para esas salidas.',
     heroAlt: isEnglish
       ? 'DemandOS cockpit showing pipeline readiness, inventory risk, and reorder recommendations'
       : 'Cockpit operativo de DemandOS con readiness del pipeline, riesgo de inventario y recomendaciones',
@@ -777,8 +777,8 @@ export default function DemandOsPage() {
               eyebrow={isEnglish ? 'Product objective' : 'Objetivo de producto'}
               title={
                 isEnglish
-                  ? 'An internal ML tool, not just a dashboard'
-                  : 'Una herramienta interna de ML, no solo un dashboard'
+                  ? 'An internal ML tool for inventory guidance'
+                  : 'Una herramienta interna de ML para orientar inventario'
               }
             >
               <p>
@@ -1371,8 +1371,8 @@ export default function DemandOsPage() {
               eyebrow={isEnglish ? 'Result' : 'Resultado'}
               title={
                 isEnglish
-                  ? 'A complete ML product loop, not just a model'
-                  : 'Un producto de ML completo, no solo un modelo'
+                  ? 'A complete ML workflow'
+                  : 'Un flujo completo de ML'
               }
             >
               <p>
@@ -1425,8 +1425,8 @@ export default function DemandOsPage() {
             </h2>
             <p>
               {isEnglish
-                ? 'The most important part was not only training a model. It was building the environment that makes a model usable: data contracts, validation, leakage-safe features, interpretable metrics, observability, safety boundaries, and an interface that helps decide what to review first.'
-                : 'Lo más importante del proyecto no fue solo entrenar un modelo. Fue construir el entorno que hace que un modelo sea usable: contratos de datos, validación, features sin leakage, métricas interpretables, observabilidad, límites de seguridad y una interfaz que ayuda a decidir qué revisar primero.'}
+                ? 'The project combined model training with the environment needed to review its outputs: data contracts, validation, leakage-safe features, interpretable metrics, observability, safety boundaries, and an interface that helps decide what to review first.'
+                : 'El proyecto combina el entrenamiento del modelo con el entorno necesario para revisar sus resultados: contratos de datos, validación, features sin leakage, métricas interpretables, observabilidad, límites de seguridad y una interfaz que ayuda a decidir qué revisar primero.'}
             </p>
             <div className="data-brief-actions">
               <a

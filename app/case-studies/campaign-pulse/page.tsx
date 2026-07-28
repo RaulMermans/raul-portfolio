@@ -80,7 +80,7 @@ const content = {
     problemEyebrow: 'Problem',
     problemTitle: ['Metrics are available.', 'Decisions are still fragmented.'],
     problemBody:
-      'Newsletter teams often have performance data spread across exports, campaign reports, audience segments, and spreadsheets. The hard part is not seeing metrics — it is knowing what changed, which audience is under pressure, and what to do next.',
+      'Newsletter teams often have performance data spread across exports, campaign reports, audience segments, and spreadsheets. They need to know what changed, which audience is under pressure, and what to do next.',
     solutionEyebrow: 'Solution',
     solutionTitle:
       'Normalize the facts, then make the operating decision visible.',
@@ -338,7 +338,7 @@ const content = {
       'Las decisiones siguen fragmentadas.',
     ],
     problemBody:
-      'Los equipos de newsletter suelen repartir sus datos entre exportaciones, informes de campaña, segmentos y hojas de cálculo. El reto no es ver métricas, sino entender qué cambió, qué audiencia está bajo presión y qué hacer después.',
+      'Los equipos de newsletter suelen repartir sus datos entre exportaciones, informes de campaña, segmentos y hojas de cálculo. Necesitan entender qué cambió, qué audiencia está bajo presión y qué hacer después.',
     solutionEyebrow: 'Solución',
     solutionTitle:
       'Normalizar los hechos y hacer visible la decisión operativa.',

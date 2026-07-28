@@ -64,10 +64,10 @@ export const siteCopy = {
           afternoon: 'GOOD AFTERNOON',
           evening: 'GOOD EVENING',
         },
-        ariaLabel: 'Raúl Mermans — Entrepreneur and Creator. Building ideas into brands, products, and ventures.',
+        ariaLabel: 'Raúl Mermans, Entrepreneur and Creator. Building ideas into brands, products, and ventures.',
         headline: 'Building ideas into brands, products, and ventures.',
         summary:
-          'I work across culture, business, storytelling, and technology—creating independently and sharing the process.',
+          'I work across culture, business, storytelling, and technology, creating independently and sharing the process.',
         primaryCta: 'Explore what I’m building',
         secondaryCta: 'Work with me',
         scrollAria: 'Scroll to explore',
@@ -115,7 +115,7 @@ export const siteCopy = {
           },
           'campaign-sandbox': {
             label: 'Campaign strategy',
-            idea: 'A new model for how creative teams develop, compare, and strengthen campaign ideas—with human judgment at its centre.',
+            idea: 'A new model for how creative teams develop, compare, and strengthen campaign ideas, with human judgment at its centre.',
             opportunity: 'Give teams a stronger way to move from a brief to a creative direction.',
             role: 'Product concept, workflow design, and prototyping.',
             built: 'A workspace for shaping and evaluating campaign routes.',
@@ -324,7 +324,7 @@ export const siteCopy = {
       pageEyebrow: 'Strategy · Creativity · Data · Technology',
       pageTitle: 'Case Studies',
       pageDescription:
-        'Selected work across campaigns, marketing intelligence, digital products, brand thinking, visual direction, and AI-assisted tools—each built around a specific problem, audience, or opportunity.',
+        'Selected work across campaigns, marketing intelligence, digital products, brand thinking, visual direction, and AI-assisted tools. Each project addresses a specific problem, audience, or opportunity.',
       viewProject: 'View Project',
       overview: 'Overview',
       challenge: 'The Challenge',
@@ -348,11 +348,11 @@ export const siteCopy = {
     appDetailUi: {
       breadcrumbLabel: 'Apps',
       keyFlows: 'Key flows',
-      keyFlowsTitle: 'Built as a real product surface, not a portfolio thumbnail.',
+      keyFlowsTitle: 'Key flows shaped as working product surfaces.',
       selectedScreens: 'Selected screens',
-      selectedScreensTitle: 'Product moments shaped like a launch.',
+      selectedScreensTitle: 'Screens that show the product in use.',
       selectedScreensBody:
-        'Each module below is designed to read like a premium screenshot even before final captured UI is dropped in, so the landing page does not feel empty while the app is still evolving.',
+        'Each module focuses on a distinct part of the workflow.',
       productStory: 'Product story',
       archiveTitle: 'More app work',
       archiveBody: 'A small archive of product concepts, tools, and working software shaped around calmer interfaces and operational clarity.',
@@ -421,7 +421,7 @@ export const siteCopy = {
           afternoon: 'BUENAS TARDES',
           evening: 'BUENAS NOCHES',
         },
-        ariaLabel: 'Raúl Mermans — Emprendedor y creador. Convirtiendo ideas en marcas, productos y nuevos proyectos.',
+        ariaLabel: 'Raúl Mermans, emprendedor y creador. Convirtiendo ideas en marcas, productos y nuevos proyectos.',
         headline: 'Convirtiendo ideas en marcas, productos y nuevos proyectos.',
         summary:
           'Trabajo entre la cultura, el negocio, la narrativa y la tecnología, construyendo de forma independiente y compartiendo el proceso.',
@@ -705,11 +705,11 @@ export const siteCopy = {
     appDetailUi: {
       breadcrumbLabel: 'Apps',
       keyFlows: 'Flujos clave',
-      keyFlowsTitle: 'Construido como una superficie de producto real, no como una miniatura de portafolio.',
+      keyFlowsTitle: 'Flujos clave planteados como superficies de producto en uso.',
       selectedScreens: 'Pantallas seleccionadas',
-      selectedScreensTitle: 'Momentos de producto diseñados como si fueran un lanzamiento.',
+      selectedScreensTitle: 'Pantallas que muestran el producto en uso.',
       selectedScreensBody:
-        'Cada módulo está diseñado para leerse como una captura premium incluso antes de añadir pantallas definitivas, para que la página no se sienta vacía mientras la app evoluciona.',
+        'Cada módulo se centra en una parte distinta del flujo de trabajo.',
       productStory: 'Historia de producto',
       archiveTitle: 'Más trabajo en apps',
       archiveBody: 'Un pequeño archivo de conceptos, herramientas y software en marcha diseñados alrededor de interfaces más tranquilas y claridad operativa.',

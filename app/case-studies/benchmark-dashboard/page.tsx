@@ -48,7 +48,7 @@ const commercialContent: CommercialCaseStudyContent = {
   businessContext:
     'Competitive analysis often lives in disconnected spreadsheets, screenshots, and one-off decks. The same questions repeat: who is gaining share, who is more efficient, which players are improving, and what may happen next.',
   systemSummary:
-    'The product is not only the chart layer. A clean source_monthly contract feeds a canonical pipeline that validates raw observations, generates benchmark rows, calculates shares/ranks/efficiency metrics, creates local scenario forecasts, and renders the result as a React/Vite executive dashboard.',
+    'A clean source_monthly contract feeds a canonical pipeline that validates raw observations, generates benchmark rows, calculates shares/ranks/efficiency metrics, creates local scenario forecasts, and renders the result as a React/Vite executive dashboard.',
   systemItems: [
     {
       title: 'Inputs',
@@ -115,7 +115,7 @@ const commercialContentEs: CommercialCaseStudyContent = {
   businessContext:
     'El análisis competitivo suele vivir en hojas de cálculo, capturas y decks aislados. Las mismas preguntas se repiten: quién gana cuota, quién es más eficiente, qué players mejoran y qué podría pasar después.',
   systemSummary:
-    'El producto no es solo la capa de gráficos. Un contrato source_monthly alimenta un pipeline canónico que valida observaciones raw, genera filas benchmark, calcula cuotas/rankings/eficiencia, crea escenarios locales de forecast y renderiza el resultado en un dashboard ejecutivo React/Vite.',
+    'Un contrato source_monthly alimenta un pipeline canónico que valida observaciones raw, genera filas benchmark, calcula cuotas/rankings/eficiencia, crea escenarios locales de forecast y renderiza el resultado en un dashboard ejecutivo React/Vite.',
   systemItems: [
     {
       title: 'Inputs',
@@ -409,7 +409,7 @@ const content = {
       'TimesFM remains optional infrastructure only and is not how the public demo is positioned.',
     ],
     resultEyebrow: 'Result',
-    resultH2: 'A public-safe benchmark engine, not just a dashboard template',
+    resultH2: 'A public-safe benchmark engine',
     resultP:
       'The outcome is a repeatable benchmark intelligence engine that starts with raw synthetic observations and produces the analytical layer needed for executive market-share, ranking, monetization, aggregation, and scenario-planning views.',
     buildH3: 'Build',
@@ -426,7 +426,7 @@ const content = {
     ],
     calloutLabel: 'Takeaway',
     calloutText:
-      'The product is not only the chart layer. The product is the repeatable intelligence pipeline behind the chart layer.',
+      'A repeatable intelligence pipeline turns source data into the chart layer.',
   },
   es: {
     back: '← Casos de estudio',
@@ -662,7 +662,7 @@ const content = {
     ],
     resultEyebrow: 'Resultado',
     resultH2:
-      'Un motor benchmark publicable, no solo una plantilla de dashboard',
+      'Un motor benchmark publicable',
     resultP:
       'El resultado es un motor repetible de inteligencia benchmark que empieza con observaciones sintéticas raw y produce la capa analítica necesaria para vistas ejecutivas de cuota, ranking, monetización, agregación y escenarios.',
     buildH3: 'Construcción',
@@ -679,7 +679,7 @@ const content = {
     ],
     calloutLabel: 'Conclusión',
     calloutText:
-      'El producto no es solo la capa de gráficos. El producto es el pipeline repetible de inteligencia detrás de esa capa.',
+      'Un pipeline repetible de inteligencia convierte los datos fuente en la capa de gráficos.',
   },
 }
 

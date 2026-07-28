@@ -18,10 +18,11 @@ Write as the portfolio owner: precise, plainspoken, and grounded in the work.
 
 ## Editing workflow
 
-1. Identify the supported facts and retain them.
-2. Remove filler and replace abstractions with the concrete noun or action already present in the source.
-3. Read the revised copy aloud. If it sounds like product marketing rather than an informed practitioner, simplify it.
-4. Before finishing, scan every changed user-facing string for `—` and `–` and remove them.
+1. Apply `$no-ai-slop` and `$humanizer` to every generated or edited user-facing string. Preserve this portfolio's facts and individual voice; when guidance conflicts, do not invent information or smooth away meaningful character.
+2. Identify the supported facts and retain them.
+3. Remove filler and replace abstractions with the concrete noun or action already present in the source.
+4. Read the revised copy aloud. If it sounds like product marketing rather than an informed practitioner, simplify it.
+5. Before finishing, scan every changed user-facing string for `—` and `–` and remove them.
 
 ## Examples
 

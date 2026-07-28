@@ -119,7 +119,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       gallery: [
         {
           eyebrow: 'Map',
-          title: 'A private atlas, not a listing portal.',
+          title: 'A private atlas for place-based decisions.',
           description:
             'Location markers, shared filters, and dossier access provide spatial context for an internal operating workflow.',
           stats: ['Spain', 'Status', 'Filters'],
@@ -170,7 +170,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       name: 'Overflow',
       tagline: 'A calm performance training journal for iPhone.',
       shortDescription:
-        'Overflow is a calm performance journal for iPhone. Track workouts, build routines, and measure progress — without the noise.',
+        'Overflow is a calm performance journal for iPhone. Track workouts, build routines, and measure progress in one focused place.',
       cardDescription:
         'Frictionless workout logging, routine planning, and progress tracking designed with restraint and intention.',
       heroStatement:
@@ -195,7 +195,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
           eyebrow: 'Effortless input',
           title: 'Log without thinking twice.',
           description:
-            'Tap, select, done. Overflow removes every unnecessary step between you and your training data.',
+            'Log each set with a few taps.',
         },
         {
           eyebrow: 'Weekly structure',
@@ -213,7 +213,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
           eyebrow: 'Quiet reflection',
           title: 'Reflection, not pressure.',
           description:
-            'No leaderboards. No guilt mechanics. Just a quiet, considered record of the work you have done.',
+            'Overflow leaves out leaderboards and guilt mechanics. It keeps a quiet record of the training you complete.',
         },
       ],
       gallery: [
@@ -221,19 +221,19 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
           eyebrow: 'Today',
           title: 'One calm surface to start every session.',
           description:
-            'Your plan, your streak, and your next set — all on one screen with zero decision fatigue.',
+            'Your plan, streak, and next set appear on one screen.',
           stats: ['Plan', 'Streak', 'Next set'],
         },
         {
           eyebrow: 'Log',
           title: 'Every set, tracked with minimal taps.',
           description:
-            'Log weight, reps, and rest intuitively. Overflow learns your patterns so each session starts smarter.',
+            'Log weight, reps, and rest with minimal taps.',
           stats: ['Weight', 'Reps', 'Rest'],
         },
         {
           eyebrow: 'Progress',
-          title: 'See your trajectory, not a dashboard.',
+          title: 'See your training trajectory.',
           description:
             'Weekly volume charts, personal records, and consistency streaks presented without noise.',
           stats: ['Volume', 'Records', 'Trends'],
@@ -242,11 +242,11 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       narrative: {
         title: 'Why Overflow exists',
         description:
-          'Most training apps feel either chaotic or aggressively gamified. Overflow sits in the gap: a calm, structured journal with product discipline underneath.',
+          'Overflow is a calm, structured journal for people who train consistently.',
         bullets: [
           'Designed for people who train consistently and want a tool that matches their focus.',
-          'Every screen is built to reduce friction, not add features for the sake of features.',
-          'The interface respects your time — get in, log, and get back to training.',
+          'Each screen prioritizes logging and review.',
+          'Log the session, then return to training.',
         ],
       },
       ctas: {
@@ -316,7 +316,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       gallery: [
         {
           eyebrow: 'Mapa',
-          title: 'Un atlas privado, no un portal de anuncios.',
+          title: 'Un atlas privado para decisiones vinculadas a lugares.',
           description:
             'Marcadores, filtros compartidos y acceso al dossier aportan contexto espacial al flujo interno.',
           stats: ['España', 'Estado', 'Filtros'],
@@ -367,7 +367,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       name: 'Overflow',
       tagline: 'Un diario de entrenamiento claro para iPhone.',
       shortDescription:
-        'Overflow es un diario de entrenamiento para iPhone. Registra sesiones, crea rutinas y mide tu progreso sin ruido.',
+        'Overflow es un diario de entrenamiento para iPhone. Registra sesiones, crea rutinas y mide tu progreso en un mismo lugar.',
       cardDescription:
         'Registro de entrenamiento sin fricción, planificación de rutinas y seguimiento de progreso diseñados con contención e intención.',
       heroStatement:
@@ -392,7 +392,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
           eyebrow: 'Entrada sin fricción',
           title: 'Registra sin pensarlo dos veces.',
           description:
-            'Toca, selecciona, listo. Overflow elimina pasos innecesarios entre tú y tus datos de entrenamiento.',
+            'Registra cada serie con pocos toques.',
         },
         {
           eyebrow: 'Estructura semanal',
@@ -410,7 +410,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
           eyebrow: 'Reflexión tranquila',
           title: 'Reflexión, no presión.',
           description:
-            'Sin rankings. Sin mecánicas de culpa. Solo un registro tranquilo y considerado del trabajo que has hecho.',
+            'Overflow deja fuera los rankings y las mecánicas de culpa. Mantiene un registro tranquilo de tu entrenamiento.',
         },
       ],
       gallery: [
@@ -418,19 +418,19 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
           eyebrow: 'Hoy',
           title: 'Una superficie clara para empezar cada sesión.',
           description:
-            'Tu plan, tu racha y tu siguiente serie, todo en una sola pantalla y sin fatiga de decisión.',
+            'Tu plan, tu racha y tu siguiente serie aparecen en una sola pantalla.',
           stats: ['Plan', 'Racha', 'Siguiente serie'],
         },
         {
           eyebrow: 'Registro',
           title: 'Cada serie, registrada con mínimos toques.',
           description:
-            'Registra peso, repeticiones y descanso de forma intuitiva. Overflow aprende tus patrones para que cada sesión empiece con más claridad.',
+            'Registra peso, repeticiones y descanso con pocos toques.',
           stats: ['Peso', 'Reps', 'Descanso'],
         },
         {
           eyebrow: 'Progreso',
-          title: 'Ve tu trayectoria, no un panel.',
+          title: 'Sigue tu trayectoria de entrenamiento.',
           description:
             'Volumen semanal, récords personales y constancia presentados sin ruido.',
           stats: ['Volumen', 'Récords', 'Tendencias'],
@@ -439,11 +439,11 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       narrative: {
         title: 'Por qué existe Overflow',
         description:
-          'La mayoría de apps de entrenamiento se sienten caóticas o demasiado gamificadas. Overflow ocupa ese hueco: un diario claro y estructurado con disciplina de producto por debajo.',
+          'Overflow es un diario claro y estructurado para personas que entrenan de forma constante.',
         bullets: [
           'Diseñada para personas que entrenan de forma constante y quieren una herramienta alineada con su foco.',
-          'Cada pantalla está construida para reducir fricción, no para añadir funciones por añadir.',
-          'La interfaz respeta tu tiempo: entras, registras y vuelves a entrenar.',
+          'Cada pantalla prioriza el registro y la revisión.',
+          'Registra la sesión y vuelve a entrenar.',
         ],
       },
       ctas: {

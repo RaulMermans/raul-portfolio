@@ -49,7 +49,7 @@ const pageCopy = {
     body: [
       'Málaga is the origin point; Madrid is where the practice became sharper through IE University, marketing, CRM, and work inside commercial teams.',
       'Orlando added another way of reading service, behavior, and expectation. Primor adds the pressure of scale: lifecycle work, segmentation, luxury partners, and internal adoption around a very large customer database.',
-      'The portfolio is the proof layer. Campaign tools, data products, audits, brand worlds, and visual studies are built as working surfaces so the thinking can be tested, not just described.',
+      'The portfolio puts that thinking into working surfaces: campaign tools, data products, audits, brand worlds, and visual studies.',
     ],
     operatingProfile: {
       title: 'Operating profile',
@@ -267,7 +267,7 @@ const pageCopy = {
     body: [
       'Málaga es el punto de origen; Madrid es donde la práctica se afinó con IE University, marketing, CRM y trabajo dentro de equipos comerciales.',
       'Orlando añadió otra forma de leer servicio, comportamiento y expectativa. Primor añade la presión de escala: lifecycle, segmentación, partners de lujo y adopción interna alrededor de una base de clientes muy grande.',
-      'El portfolio es la capa de prueba. Herramientas de campaña, productos de datos, auditorías, mundos de marca y estudios visuales se construyen como superficies funcionales para poder probar el pensamiento, no solo describirlo.',
+      'El portfolio convierte ese pensamiento en superficies funcionales: herramientas de campaña, productos de datos, auditorías, mundos de marca y estudios visuales.',
     ],
     operatingProfile: {
       title: 'Perfil operativo',

@@ -229,7 +229,7 @@ const content = {
       {
         title: 'Attention as logic',
         description:
-          'Missing and overdue follow-ups are actionable records, not a decorative metric.',
+          'Missing and overdue follow-ups remain actionable records.',
       },
       {
         title: 'Portable by default',
@@ -372,7 +372,7 @@ const content = {
     ],
     closingLabel: 'Closing note',
     closing:
-      'TerritoryOps shows how an internal tool can be small, local-first, and still operationally intelligent — a private atlas for decisions, not just another dashboard.',
+      'TerritoryOps is a local-first internal tool for place-based decisions. It keeps research, follow-up, and deal stages in one private atlas.',
     liveLabel: 'Open live prototype',
     githubLabel: 'View GitHub',
   },
@@ -425,7 +425,7 @@ const content = {
       {
         title: 'Atención como lógica',
         description:
-          'Los seguimientos ausentes o vencidos son registros accionables, no una métrica decorativa.',
+          'Los seguimientos ausentes o vencidos siguen siendo registros accionables.',
       },
       {
         title: 'Portable por defecto',
@@ -569,7 +569,7 @@ const content = {
     ],
     closingLabel: 'Nota final',
     closing:
-      'TerritoryOps muestra cómo una herramienta interna puede ser pequeña, local-first y aun así operativamente inteligente: un atlas privado para decidir, no otro dashboard.',
+      'TerritoryOps es una herramienta interna local-first para decisiones vinculadas a lugares. Reúne investigación, seguimiento y etapas de oportunidad en un atlas privado.',
     liveLabel: 'Abrir prototipo',
     githubLabel: 'Ver GitHub',
   },

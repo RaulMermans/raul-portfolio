@@ -54,7 +54,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
       ],
     },
     approach: {
-      text: 'Make it usable: a **system**, not a poster. The key insight: **campaign consistency** comes from **constraints**, not creativity-by-prompt. I designed the **automation** around a **"constants vs variables" model**: first locking the **non-negotiables** of the **reference shot**, then giving controlled flexibility to **casting and wardrobe**. The **workflow** ingests **three visual inputs** and routes them through a **repeatable pipeline** that prioritizes **continuity over novelty**. **Output selection** stays **human-led**: I pick the final based on **realism, brand fit, and product readability**. Campaigns are **edited**, not merely generated.',
+      text: 'I designed the **automation** to maintain **campaign consistency**. A **"constants vs variables" model** locks the **non-negotiables** of the **reference shot** while keeping **casting and wardrobe** editable. The **workflow** ingests **three visual inputs** and routes them through a **repeatable pipeline** focused on continuity. I select the final output for **realism, brand fit, and product readability**.',
       tools: [
         'n8n',
         'Generative API',
@@ -116,7 +116,7 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
         {
           name: 'Automation Pipeline',
           rationale:
-            'Turns the process into a repeatable asset, not a manual ritual',
+            'Creates a repeatable asset for campaign production',
         },
         {
           name: '3-Input Spec',
@@ -489,7 +489,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
       ],
     },
     approach: {
-      text: 'La clave era hacerlo utilizable: un **sistema**, no un póster. La idea clave fue que la **consistencia de campaña** nace de las **restricciones**, no de la creatividad por prompt. Diseñé la **automatización** alrededor de un modelo de **"constantes vs variables"**: primero fijando los **no negociables** de la imagen de referencia y después dando flexibilidad controlada a **casting y vestuario**. El **flujo** procesa **tres entradas visuales** y las enruta por una secuencia repetible que prioriza la **continuidad por encima de la novedad**. La **selección final** sigue siendo humana: elijo en función de **realismo, ajuste de marca y lectura del producto**. Las campañas se **editan**; no solo se generan.',
+      text: 'Diseñé la **automatización** para mantener la **consistencia de campaña**. Un modelo de **"constantes vs variables"** fija los **no negociables** de la imagen de referencia y permite editar el **casting y el vestuario**. El **flujo** procesa **tres entradas visuales** y las enruta por una secuencia repetible centrada en la continuidad. Selecciono el resultado final por su **realismo, ajuste de marca y lectura del producto**.',
       tools: [
         'n8n',
         'API generativa',
@@ -541,7 +541,7 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
         {
           name: 'Pipeline de automatización',
           rationale:
-            'Convierte el proceso en un activo repetible, no en un ritual manual',
+            'Crea un activo repetible para la producción de campaña',
         },
         {
           name: 'Especificación de 3 entradas',
