@@ -1,23 +1,22 @@
 import { expect, test } from '@playwright/test'
 
 const locales = [
-  { path: '/en/about/', story: 'A profile built from work, place, and practice.' },
-  { path: '/es/about/', story: 'Un perfil hecho de trabajo, lugar y práctica.' },
+  { path: '/en/about/', title: 'I use code as a way to structure ideas.' },
+  { path: '/es/about/', title: 'Uso el código para estructurar ideas.' },
 ] as const
 
 for (const locale of locales) {
-  test(`About retains the expressive landing in ${locale.path}`, async ({ page }, testInfo) => {
+  test(`About retains the clean landing in ${locale.path}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width: 1440, height: 960 })
     await page.goto(locale.path, { waitUntil: 'networkidle' })
 
     const hero = page.locator('.about-landing__hero')
     await expect(hero).toBeVisible()
-    await expect(hero.locator('.about-landing__name')).toContainText('RAÚL')
+    await expect(hero.getByRole('heading', { name: locale.title })).toBeVisible()
     await expect(hero.locator('.about-landing__portrait img')).toBeVisible()
-    await expect(page.getByRole('heading', { name: locale.story })).toBeVisible()
     await expect(page.locator('.about-landing__proof-card')).toHaveCount(3)
-    await expect(page.locator('.about-note--work')).toHaveCount(4)
-    await expect(page.locator('.about-timeline__node')).toHaveCount(6)
+    await expect(page.locator('.about-profile-list')).toBeVisible()
+    await expect(page.locator('.about-timeline__chapter')).toHaveCount(6)
 
     const dimensions = await page.evaluate(() => ({
       viewport: window.innerWidth,

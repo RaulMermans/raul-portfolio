@@ -11,6 +11,7 @@ import SelectedAISystems from '@/components/SelectedAISystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
 import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
+import Services from '@/components/Services'
 import Contact from '@/components/Contact'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
@@ -241,7 +242,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], [data-home-section="building-now"], .selected-ai-systems, .about, .contact'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], [data-home-section="building-now"], .selected-ai-systems, .about, .services, .contact'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -284,6 +285,7 @@ export default function Home() {
         <CreativeInfrastructure locale={locale} />
         <SelectedAISystems locale={locale} />
         <About locale={locale} />
+        <Services locale={locale} />
         <Contact locale={locale} />
         <Footer locale={locale} />
         <BackToTop />
