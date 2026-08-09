@@ -7,7 +7,6 @@ import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
-import SelectedAISystems from '@/components/SelectedAISystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
 import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
@@ -242,7 +241,7 @@ export default function Home() {
     requestAnimationFrame(setupRevealObserver)
 
     // Section transitions - fade/slide when sections enter viewport
-    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], [data-home-section="building-now"], .selected-ai-systems, .about, .services, .contact'
+    const sectionSelectors = '[data-home-section="hero"], [data-home-section="work"], [data-home-section="building-now"], .about, .services, .contact'
     const sectionElements = document.querySelectorAll(sectionSelectors)
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -283,7 +282,6 @@ export default function Home() {
         <Hero locale={locale} />
         <SectionCards locale={locale} />
         <CreativeInfrastructure locale={locale} />
-        <SelectedAISystems locale={locale} />
         <About locale={locale} />
         <Services locale={locale} />
         <Contact locale={locale} />

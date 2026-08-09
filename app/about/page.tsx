@@ -114,9 +114,9 @@ const pageCopy = {
     ],
     vocabulary: {
       title: 'Working vocabulary',
-      heading: <>Language for keeping systems <span className="about-landing__serif">human</span>.</>,
+      heading: 'The language behind the work.',
       intro:
-        'The terms I use to connect commercial systems, brand judgment, and the moments where a person should stay in the loop.',
+        'The ideas I use to shape campaigns, systems, and decisions with clarity and judgment.',
       terms: [
         'CRM',
         'Lifecycle',
@@ -335,9 +335,9 @@ const pageCopy = {
     ],
     vocabulary: {
       title: 'Vocabulario de trabajo',
-      heading: <>Lenguaje para mantener los sistemas <span className="about-landing__serif">humanos</span>.</>,
+      heading: 'El lenguaje detrás del trabajo.',
       intro:
-        'Los términos que uso para conectar sistemas comerciales, criterio de marca y los momentos en los que una persona debe seguir dentro del proceso.',
+        'Las ideas que uso para dar forma a campañas, sistemas y decisiones con claridad y criterio.',
       terms: [
         'CRM',
         'Lifecycle',

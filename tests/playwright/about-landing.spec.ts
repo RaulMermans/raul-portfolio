@@ -22,6 +22,9 @@ for (const locale of locales) {
     await expect(vocabulary.getByRole('heading')).toBeVisible()
     await expect(vocabulary.locator('.about-vocabulary__terms > span')).toHaveCount(10)
 
+    const proofLinks = page.locator('.about-proof-links__grid')
+    await expect(proofLinks.getByRole('link')).toHaveCount(5)
+
     const dimensions = await page.evaluate(() => ({
       viewport: window.innerWidth,
       document: document.documentElement.scrollWidth,
