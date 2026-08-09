@@ -21,8 +21,7 @@ export default function SelectedAISystems({ locale = 'en' }: SelectedAISystemsPr
     <section id="selected-work" className="selected-ai-systems" aria-labelledby="selected-systems-title">
       <div className="selected-ai-systems__inner">
         <div className="selected-ai-systems__header">
-          <p className="selected-ai-systems__eyebrow">{copy.eyebrow}</p>
-          <h2 id="selected-systems-title">{copy.title}</h2>
+          <h2 id="selected-systems-title" className="selected-ai-systems__eyebrow">{copy.eyebrow}</h2>
           <p>{copy.description}</p>
         </div>
         <div className="selected-ai-systems__grid">

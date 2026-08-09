@@ -32,6 +32,8 @@ Before finalizing UI work, check:
 
 - No horizontal document overflow at 360-390px.
 - First viewport communicates the page purpose without hiding all following content behind oversized hero spacing.
+- Every section retains its heading and orienting context at phone width; tags, vocabulary, and metadata wrap into distinct readable groups rather than a concatenated text line.
+- Normal text meets 4.5:1 contrast against its rendered surface (3:1 only for genuinely large text); controls, focus indicators, and meaningful borders meet 3:1.
 - Header/menu does not cover content, trap scrolling, or lose focus management.
 - CTAs, form fields, filters, tabs, and carousel controls are reachable and not cramped.
 - Text wraps cleanly; labels, pills, cards, and buttons do not clip or overlap.

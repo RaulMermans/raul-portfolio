@@ -29,6 +29,15 @@ For shared styles, verify more than the page that prompted the change.
 6. Check browser console errors.
 7. Run repository-native lint, typecheck, tests, and build checks proportional to the change.
 
+## Check contrast and reading context
+
+Measure the values that people actually see, not only the declared design tokens:
+
+- Normal text must reach 4.5:1 against its rendered background. Large text may use 3:1 only when it qualifies as large text; controls, icons, borders that convey state, and focus indicators need 3:1 against adjacent surfaces.
+- Inspect composited areas—images, gradients, overlays, patterned cards, and translucent layers—at the locations where the text sits. A passing token pair is not evidence of a passing rendered pairing.
+- Review headings, labels, metadata, pills, card copy, and hover/focus states separately. Decorative ghost text may be low contrast only when it is genuinely non-essential and does not reduce legibility of nearby content.
+- Inspect the full affected section for context and scanability. Each section needs a topic, an orienting heading, and supporting copy where needed; tags, numbers, or vocabulary terms must appear as distinct, meaningful groups rather than an unstructured run of text.
+
 Never substitute a production page for post-change local verification. A production page may
 provide a baseline only.
 
@@ -76,5 +85,6 @@ Do not finish until:
 - changed routes and representative shared consumers were inspected;
 - required breakpoints and locales were checked;
 - measurable acceptance claims passed;
+- contrast and reading-context checks passed on the rendered surfaces;
 - automated checks passed or blockers were reported precisely;
 - no verification process remains running.

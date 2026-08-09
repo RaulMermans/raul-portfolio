@@ -21,7 +21,8 @@ Use `styles/design-system.css` as the source of truth. Keep changes small, seman
 - Use semantic tokens: `--surface-*`, `--text-*`, `--border-*`, and `--accent`.
 - Use the core palette tokens (`--cream*`, `--ink*`, `--gold`, `--warm`, `--rose`) only when a semantic token does not express the intent.
 - Do not add raw hex, RGB, or RGBA values when a matching token exists. Add a token only when it has at least two meaningful consumers.
-- Preserve accessible contrast for text, borders, focus states, and all hover/active states.
+- Measure contrast against the rendered surface, including gradients, imagery, overlays, transparency, and texture—not token values in isolation. Normal text must reach WCAG AA 4.5:1; large display text may use 3:1 only when it genuinely qualifies as large text. Interactive boundaries, icons, and focus indicators need at least 3:1 against their adjacent surface.
+- Treat low-opacity, muted, and accent text as decorative only until it passes the appropriate threshold. Never use it for headings, body copy, labels, controls, or other information users need to read.
 
 ### Type and hierarchy
 
@@ -31,6 +32,13 @@ Use `styles/design-system.css` as the source of truth. Keep changes small, seman
 - Use the shared type scale: `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`.
 - Use `--heading-line-height`, `--tracking-tight`, and uppercase display treatment for portfolio headings unless the component has an intentional local contract.
 - Keep headings readable: use `text-wrap: balance`; author visual lines per locale when an exact line count is required. Do not force breaks with viewport-dependent hacks.
+
+### Meaning and reading flow
+
+- Give every section a clear topic, an orienting heading, and supporting context before secondary elements such as tags, numbers, or decorative type.
+- Cards must communicate their purpose with a readable heading and supporting copy. Labels, numerals, pills, and visual treatment are supplementary; they cannot be the only meaningful content.
+- A vocabulary, tag, or taxonomy treatment must render as distinct, scannable groups. Do not let it collapse into a concatenated text row or leave it as unexplained words on an otherwise empty surface.
+- Decorative layers must reinforce hierarchy, never compete with or obscure readable content. Reduce or remove any treatment that makes a section harder to scan.
 
 ### Spacing, layout, and components
 
@@ -65,6 +73,8 @@ Before finishing, inspect the diff and answer:
 4. Do long English and Spanish strings remain visible and aligned?
 5. At mobile width, are there no clipped controls, horizontal overflow, header collisions, or inaccessible touch targets?
 6. When a lasting UX or UI preference changes, did the relevant local design guidance change with the implementation?
+7. Has every readable text treatment passed its WCAG contrast threshold against its actual rendered background, including states and overlays?
+8. Does each section still communicate a topic and a reading path without relying on isolated labels, numbers, pills, or decorative text?
 
 ## Verification
 

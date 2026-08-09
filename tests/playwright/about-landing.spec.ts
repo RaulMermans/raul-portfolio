@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test'
 
 const locales = [
-  { path: '/en/about/', title: 'I use code as a way to structure ideas.' },
-  { path: '/es/about/', title: 'Uso el código para estructurar ideas.' },
+  { path: '/en/about/', title: 'RAÚL MERMANS' },
+  { path: '/es/about/', title: 'RAÚL MERMANS' },
 ] as const
 
 for (const locale of locales) {
@@ -15,8 +15,12 @@ for (const locale of locales) {
     await expect(hero.getByRole('heading', { name: locale.title })).toBeVisible()
     await expect(hero.locator('.about-landing__portrait img')).toBeVisible()
     await expect(page.locator('.about-landing__proof-card')).toHaveCount(3)
-    await expect(page.locator('.about-profile-list')).toBeVisible()
-    await expect(page.locator('.about-timeline__chapter')).toHaveCount(6)
+    await expect(page.locator('.about-operating-profile')).toBeVisible()
+    await expect(page.locator('.about-timeline__node')).toHaveCount(6)
+
+    const vocabulary = page.locator('.about-vocabulary')
+    await expect(vocabulary.getByRole('heading')).toBeVisible()
+    await expect(vocabulary.locator('.about-vocabulary__terms > span')).toHaveCount(10)
 
     const dimensions = await page.evaluate(() => ({
       viewport: window.innerWidth,
@@ -25,6 +29,7 @@ for (const locale of locales) {
     expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport)
 
     await hero.screenshot({ path: testInfo.outputPath(`about-${locale.path.includes('/en/') ? 'en' : 'es'}.png`) })
+    await vocabulary.screenshot({ path: testInfo.outputPath(`about-vocabulary-${locale.path.includes('/en/') ? 'en' : 'es'}.png`) })
   })
 }
 

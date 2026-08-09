@@ -86,7 +86,6 @@ export const siteCopy = {
       },
       selectedAiSystems: {
         eyebrow: 'Selected projects',
-        title: 'Work made tangible.',
         description:
           'A selection of products and identity work that shows brand judgment, business thinking, and independent execution in practice.',
         viewCase: 'View case',
@@ -443,7 +442,6 @@ export const siteCopy = {
       },
       selectedAiSystems: {
         eyebrow: 'Proyectos seleccionados',
-        title: 'Trabajo hecho realidad.',
         description:
           'Una selección de productos y trabajo de identidad que demuestra criterio de marca, pensamiento de negocio y ejecución independiente.',
         viewCase: 'Ver caso',

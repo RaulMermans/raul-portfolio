@@ -114,6 +114,9 @@ const pageCopy = {
     ],
     vocabulary: {
       title: 'Working vocabulary',
+      heading: <>Language for keeping systems <span className="about-landing__serif">human</span>.</>,
+      intro:
+        'The terms I use to connect commercial systems, brand judgment, and the moments where a person should stay in the loop.',
       terms: [
         'CRM',
         'Lifecycle',
@@ -332,6 +335,9 @@ const pageCopy = {
     ],
     vocabulary: {
       title: 'Vocabulario de trabajo',
+      heading: <>Lenguaje para mantener los sistemas <span className="about-landing__serif">humanos</span>.</>,
+      intro:
+        'Los términos que uso para conectar sistemas comerciales, criterio de marca y los momentos en los que una persona debe seguir dentro del proceso.',
       terms: [
         'CRM',
         'Lifecycle',
@@ -810,9 +816,11 @@ export default function AboutPage() {
 
       <section className="about-vocabulary" aria-labelledby="about-vocabulary-title">
         <div className="about-landing__container">
-          <p id="about-vocabulary-title" className="about-landing__eyebrow" data-about-reveal>
-            {copy.vocabulary.title}
-          </p>
+          <div className="about-vocabulary__head">
+            <p className="about-landing__eyebrow" data-about-reveal>{copy.vocabulary.title}</p>
+            <h2 id="about-vocabulary-title" data-about-reveal>{copy.vocabulary.heading}</h2>
+            <p data-about-reveal>{copy.vocabulary.intro}</p>
+          </div>
           <div className="about-vocabulary__terms" data-about-reveal>
             {copy.vocabulary.terms.map((term, index) => (
               <span key={term}>
