@@ -9030,84 +9030,6 @@ body:has(.case-studies-main) .page-transition {
   line-height: 1.4;
 }
 
-.about-vocabulary {
-  --about-vocabulary-ink: var(--about-bg);
-  --about-vocabulary-muted: color-mix(in srgb, var(--about-bg) 72%, transparent);
-  --about-vocabulary-line: color-mix(in srgb, var(--about-bg) 18%, transparent);
-  position: relative;
-  padding: 120px 36px;
-  border-block: 1px solid var(--about-line);
-  background: var(--about-ink);
-  color: var(--about-vocabulary-ink);
-}
-
-.about-vocabulary__head {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.28fr) minmax(0, 0.86fr) minmax(240px, 0.54fr);
-  gap: clamp(28px, 5vw, 72px);
-  align-items: end;
-  margin-bottom: clamp(32px, 5vw, 60px);
-}
-
-.about-vocabulary__head .about-landing__eyebrow {
-  margin: 0;
-  color: var(--about-vocabulary-muted);
-}
-
-.about-vocabulary__head h2 {
-  max-width: 12ch;
-  margin: 0;
-  color: var(--about-vocabulary-ink);
-  font-family: var(--about-display);
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
-  font-weight: 400;
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--heading-line-height);
-  text-wrap: balance;
-  text-transform: uppercase;
-}
-
-.about-vocabulary__head > p:last-child {
-  max-width: 31rem;
-  margin: 0;
-  color: var(--about-vocabulary-muted);
-  font-family: var(--about-sans);
-  font-size: var(--text-base);
-  line-height: var(--body-line-height);
-}
-
-.about-vocabulary__terms {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-top: clamp(24px, 3vw, 38px);
-  border-top: 1px solid var(--about-vocabulary-line);
-}
-
-.about-vocabulary__terms span {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 9px;
-  min-height: 44px;
-  border: 1px solid var(--about-vocabulary-line);
-  padding: 10px 14px 8px;
-  color: var(--about-vocabulary-ink);
-  font-family: var(--about-mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.about-vocabulary__terms i {
-  color: var(--about-vocabulary-muted);
-  font-family: var(--about-mono);
-  font-size: 10px;
-  font-style: normal;
-  letter-spacing: 0.12em;
-  line-height: 1;
-}
-
 .about-timeline__wrap {
   --timeline-fill: 0%;
   position: relative;
@@ -9570,91 +9492,6 @@ body:has(.case-studies-main) .page-transition {
   font-style: normal;
 }
 
-.about-proof-links {
-  padding: 120px 36px;
-  border-top: 1px solid var(--about-line);
-  background: var(--about-bg);
-}
-
-.about-proof-links__head {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
-  gap: clamp(28px, 5vw, 72px);
-  align-items: end;
-  margin-bottom: clamp(32px, 5vw, 60px);
-}
-
-.about-proof-links__head .about-landing__eyebrow {
-  margin: 0;
-}
-
-.about-proof-links__head h2 {
-  max-width: 12ch;
-  margin: 0;
-  color: var(--about-ink);
-  font-family: var(--about-display);
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
-  font-weight: 400;
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--heading-line-height);
-  text-transform: uppercase;
-}
-
-.about-proof-links__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-  gap: 1px;
-  border: 1px solid var(--about-line);
-  background: var(--about-line);
-}
-
-.about-proof-links__grid a {
-  display: flex;
-  min-height: 12rem;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 24px;
-  background: var(--about-bg-2);
-  color: var(--about-ink);
-  text-decoration: none;
-  transition:
-    background-color var(--transition-base) var(--ease),
-    color var(--transition-base) var(--ease),
-    transform var(--transition-base) var(--ease);
-}
-
-.about-proof-links__grid a:hover,
-.about-proof-links__grid a:focus-visible {
-  background: var(--about-ink);
-  color: var(--about-bg);
-  outline: none;
-  transform: translateY(-2px);
-}
-
-.about-proof-links__grid span {
-  font-family: var(--about-display);
-  font-size: clamp(2rem, 3vw, 3rem);
-  font-weight: 400;
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--heading-line-height);
-  text-transform: uppercase;
-}
-
-.about-proof-links__grid b {
-  max-width: 26ch;
-  color: var(--about-ink-dim);
-  font-family: var(--about-sans);
-  font-size: var(--text-sm);
-  font-weight: 400;
-  line-height: var(--body-line-height);
-}
-
-.about-proof-links__grid a:hover b,
-.about-proof-links__grid a:focus-visible b {
-  color: var(--about-bg-2);
-}
-
 .about-pull cite {
   display: block;
   margin-top: 48px;
@@ -9805,7 +9642,6 @@ body:has(.case-studies-main) .page-transition {
   .about-landing__story,
   .about-timeline,
   .about-practice,
-  .about-proof-links,
   .about-brands,
   .about-learning,
   .about-pull {
@@ -9843,43 +9679,6 @@ body:has(.case-studies-main) .page-transition {
 
   .about-landing__proof-card {
     min-height: 154px;
-  }
-
-  .about-vocabulary {
-    padding: 82px 22px;
-  }
-
-  .about-vocabulary__head {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    margin-bottom: 32px;
-  }
-
-  .about-vocabulary__head h2 {
-    max-width: 12ch;
-  }
-
-  .about-proof-links__head {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    margin-bottom: 32px;
-  }
-
-  .about-proof-links__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-proof-links__grid a {
-    min-height: 0;
-  }
-
-  .about-vocabulary__terms {
-    gap: 8px;
-  }
-
-  .about-vocabulary__terms span {
-    min-height: 44px;
-    padding: 10px 12px 8px;
   }
 
   .about-landing__tag div {

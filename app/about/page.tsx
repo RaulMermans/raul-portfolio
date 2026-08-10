@@ -23,7 +23,7 @@ const pageCopy = {
   en: {
     heroTag: 'I build the systems behind creative work.',
     heroSupport:
-      'I started in marketing and brand, moved through CRM, luxury retail, and visual practice, and now build AI-assisted tools that help teams make better decisions without losing taste, context, or control.',
+      'I moved from marketing and brand into CRM, luxury retail, and visual practice. Now I build AI-assisted tools that keep context and judgment in the loop.',
     current: ['Base', 'Madrid', 'Origin', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
@@ -45,11 +45,11 @@ const pageCopy = {
     aboutEyebrow: 'About',
     aboutTitle: <>A profile built from <span className="about-landing__serif">work</span>, place, and practice.</>,
     lede:
-      'The common thread is operational taste: knowing what should be structured, what should stay editable, and where a person still needs to make the call.',
+      'Operational taste means knowing what to structure, what to leave editable, and when people need to decide.',
     body: [
-      'Málaga is the origin point; Madrid is where the practice became sharper through IE University, marketing, CRM, and work inside commercial teams.',
-      'Orlando added another way of reading service, behavior, and expectation. Primor adds the pressure of scale: lifecycle work, segmentation, luxury partners, and internal adoption around a very large customer database.',
-      'The portfolio is the proof layer. Campaign tools, data products, audits, brand worlds, and visual studies are built as working surfaces so the thinking can be tested, not just described.',
+      'Málaga is the origin. Madrid sharpened the practice through IE University, marketing, CRM, and commercial teams.',
+      'Orlando changed how I read service. Primor brings the pressure of lifecycle work, segmentation, luxury partners, and scale.',
+      'The portfolio turns that thinking into campaign tools, data products, brand systems, and visual studies.',
     ],
     operatingProfile: {
       title: 'Operating profile',
@@ -112,24 +112,6 @@ const pageCopy = {
         body: 'Street, light, and visual judgment as a quieter creative practice.',
       },
     ],
-    vocabulary: {
-      title: 'Working vocabulary',
-      heading: 'The language behind the work.',
-      intro:
-        'The ideas I use to shape campaigns, systems, and decisions with clarity and judgment.',
-      terms: [
-        'CRM',
-        'Lifecycle',
-        'Campaign logic',
-        'Brand memory',
-        'Interface rhythm',
-        'Data boundaries',
-        'Human review',
-        'Luxury codes',
-        'Adoption',
-        'Operational taste',
-      ],
-    },
     timelineTitle: <>Chapters, not <span className="about-landing__serif">job titles</span>.</>,
     timelineIntro:
       'A compact read of the contexts that shaped the work: markets, delivery, service, building, scale, and the current loop.',
@@ -229,14 +211,6 @@ const pageCopy = {
         tools: ['Voice', 'Image logic', 'Pacing'],
       },
     ],
-    proofLinksTitle: 'Proof in the work',
-    proofLinks: [
-      ['Campaign Pulse', 'Marketing intelligence', '/case-studies/campaign-pulse'],
-      ['DemandOS', 'Operational intelligence', '/case-studies/demandos'],
-      ['Campaign Sandbox', 'Campaign strategy', '/case-studies/campaign-sandbox'],
-      ['Remoria', 'Brand world', '/case-studies/remoria'],
-      ['AI Sports', 'Controlled visual production', '/case-studies/ai-sports'],
-    ],
     ctaTitle: <>Let&apos;s make <span className="about-landing__serif">something</span> work.</>,
     contactMeta: ['Available Q3 2026', 'Madrid · Remote · EU'],
     githubCta: 'View GitHub',
@@ -244,7 +218,7 @@ const pageCopy = {
   es: {
     heroTag: 'Construyo los sistemas detrás del trabajo creativo.',
     heroSupport:
-      'Empecé desde marketing y marca, pasé por CRM, retail beauty, lujo y práctica visual, y ahora construyo herramientas asistidas por IA que ayudan a equipos a decidir mejor sin perder gusto, contexto ni control.',
+      'Pasé de marketing y marca a CRM, retail de lujo y práctica visual. Ahora construyo herramientas con IA que mantienen el contexto y el criterio dentro del proceso.',
     current: ['Base', 'Madrid', 'Origen', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
@@ -266,11 +240,11 @@ const pageCopy = {
     aboutEyebrow: 'Sobre mí',
     aboutTitle: <>Un perfil hecho de <span className="about-landing__serif">trabajo</span>, lugar y práctica.</>,
     lede:
-      'El hilo común es el gusto operativo: saber qué debe estructurarse, qué debe seguir editable y dónde una persona todavía tiene que decidir.',
+      'El gusto operativo consiste en saber qué estructurar, qué dejar editable y cuándo una persona debe decidir.',
     body: [
-      'Málaga es el punto de origen; Madrid es donde la práctica se afinó con IE University, marketing, CRM y trabajo dentro de equipos comerciales.',
-      'Orlando añadió otra forma de leer servicio, comportamiento y expectativa. Primor añade la presión de escala: lifecycle, segmentación, partners de lujo y adopción interna alrededor de una base de clientes muy grande.',
-      'El portfolio es la capa de prueba. Herramientas de campaña, productos de datos, auditorías, mundos de marca y estudios visuales se construyen como superficies funcionales para poder probar el pensamiento, no solo describirlo.',
+      'Málaga es el origen. Madrid afinó la práctica con IE University, marketing, CRM y equipos comerciales.',
+      'Orlando cambió cómo leo el servicio. Primor aporta la presión de lifecycle, segmentación, partners de lujo y escala.',
+      'El portfolio convierte ese pensamiento en herramientas de campaña, productos de datos, sistemas de marca y estudios visuales.',
     ],
     operatingProfile: {
       title: 'Perfil operativo',
@@ -333,24 +307,6 @@ const pageCopy = {
         body: 'Calle, luz y criterio visual como una práctica creativa más silenciosa.',
       },
     ],
-    vocabulary: {
-      title: 'Vocabulario de trabajo',
-      heading: 'El lenguaje detrás del trabajo.',
-      intro:
-        'Las ideas que uso para dar forma a campañas, sistemas y decisiones con claridad y criterio.',
-      terms: [
-        'CRM',
-        'Lifecycle',
-        'Lógica de campaña',
-        'Memoria de marca',
-        'Ritmo de interfaz',
-        'Límites de datos',
-        'Revisión humana',
-        'Códigos de lujo',
-        'Adopción',
-        'Gusto operativo',
-      ],
-    },
     timelineTitle: <>Capítulos, no solo <span className="about-landing__serif">cargos</span>.</>,
     timelineIntro:
       'Una lectura compacta de los contextos que han dado forma al trabajo: mercados, entrega, servicio, construcción, escala y el loop actual.',
@@ -449,14 +405,6 @@ const pageCopy = {
           'Voz de marca, lógica visual, ritmo y criterio siguen siendo parte del sistema.',
         tools: ['Voz', 'Imagen', 'Ritmo'],
       },
-    ],
-    proofLinksTitle: 'Prueba en el trabajo',
-    proofLinks: [
-      ['Campaign Pulse', 'Inteligencia de marketing', '/case-studies/campaign-pulse'],
-      ['DemandOS', 'Inteligencia operativa', '/case-studies/demandos'],
-      ['Campaign Sandbox', 'Estrategia de campaña', '/case-studies/campaign-sandbox'],
-      ['Remoria', 'Mundo de marca', '/case-studies/remoria'],
-      ['AI Sports', 'Producción visual controlada', '/case-studies/ai-sports'],
     ],
     ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
     contactMeta: ['Disponible T3 2026', 'Madrid · Remoto · UE'],
@@ -814,24 +762,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-vocabulary" aria-labelledby="about-vocabulary-title">
-        <div className="about-landing__container">
-          <div className="about-vocabulary__head">
-            <p className="about-landing__eyebrow" data-about-reveal>{copy.vocabulary.title}</p>
-            <h2 id="about-vocabulary-title" data-about-reveal>{copy.vocabulary.heading}</h2>
-            <p data-about-reveal>{copy.vocabulary.intro}</p>
-          </div>
-          <div className="about-vocabulary__terms" data-about-reveal>
-            {copy.vocabulary.terms.map((term, index) => (
-              <span key={term}>
-                <i>{String(index + 1).padStart(2, '0')}</i>
-                {term}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="about-timeline" id="trajectory" aria-labelledby="about-timeline-title">
         <div className="about-landing__container">
           <div className="about-timeline__head">
@@ -895,27 +825,6 @@ export default function AboutPage() {
                   </div>
                 </div>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="about-proof-links" aria-labelledby="about-proof-links-title">
-        <div className="about-landing__container">
-          <div className="about-proof-links__head">
-            <p className="about-landing__eyebrow" data-about-reveal>
-              {locale === 'es' ? 'Casos' : 'Case studies'}
-            </p>
-            <h2 id="about-proof-links-title" data-about-reveal>
-              {copy.proofLinksTitle}
-            </h2>
-          </div>
-          <div className="about-proof-links__grid" data-about-reveal>
-            {copy.proofLinks.map(([title, label, href]) => (
-              <Link href={localizePath(href, locale)} key={title}>
-                <span>{title}</span>
-                <b>{label}</b>
-              </Link>
             ))}
           </div>
         </div>

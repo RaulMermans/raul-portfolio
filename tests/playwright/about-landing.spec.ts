@@ -18,12 +18,8 @@ for (const locale of locales) {
     await expect(page.locator('.about-operating-profile')).toBeVisible()
     await expect(page.locator('.about-timeline__node')).toHaveCount(6)
 
-    const vocabulary = page.locator('.about-vocabulary')
-    await expect(vocabulary.getByRole('heading')).toBeVisible()
-    await expect(vocabulary.locator('.about-vocabulary__terms > span')).toHaveCount(10)
-
-    const proofLinks = page.locator('.about-proof-links__grid')
-    await expect(proofLinks.getByRole('link')).toHaveCount(5)
+    await expect(page.locator('.about-vocabulary')).toHaveCount(0)
+    await expect(page.locator('.about-proof-links')).toHaveCount(0)
 
     const dimensions = await page.evaluate(() => ({
       viewport: window.innerWidth,
@@ -32,7 +28,6 @@ for (const locale of locales) {
     expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport)
 
     await hero.screenshot({ path: testInfo.outputPath(`about-${locale.path.includes('/en/') ? 'en' : 'es'}.png`) })
-    await vocabulary.screenshot({ path: testInfo.outputPath(`about-vocabulary-${locale.path.includes('/en/') ? 'en' : 'es'}.png`) })
   })
 }
 

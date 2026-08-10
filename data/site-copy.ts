@@ -6,7 +6,7 @@ export const siteCopy = {
     header: {
       logoLabel: 'Home',
       nav: [
-        { label: 'Work', href: '/#selected-work', hash: '#selected-work' },
+        { label: 'Work', href: '/#work', hash: '#work' },
         { label: 'About', href: '/about' },
         { label: 'Photography', href: '/photography' },
         { label: 'Contact', href: '/#contact', hash: '#contact' },
@@ -35,7 +35,8 @@ export const siteCopy = {
         { label: 'Visuals', href: '/visuals' },
       ],
       serviceLinks: [
-        { label: 'Creative Strategy & Marketing', href: '/services/ai-integrations' },
+        { label: 'Web Development & Digital Experiences', href: '/services/desarrollo-web' },
+        { label: 'AI Integrations for Creative Systems', href: '/services/ai-integrations' },
         { label: 'Brand Systems & Creative Direction', href: '/services/brand-systems' },
         { label: 'Data, Research & Intelligence', href: '/services/creative-automation' },
         { label: 'Digital Products, AI & Prototyping', href: '/services/product-prototypes' },
@@ -77,7 +78,7 @@ export const siteCopy = {
         eyebrow: 'What I’m building now',
         title: 'An independent practice with room to grow.',
         body:
-          'I’m building an independent practice and a portfolio of projects around brands, culture, products, and media. My current focus is collaborating with ambitious founders, publishing what I learn, and developing concepts that can become businesses of their own.',
+          'I build projects across brands, culture, products, and media. I collaborate with founders, share the process, and develop ideas that can stand on their own.',
         points: [
           { title: 'Selected founder collaborations', body: 'Helping early teams clarify what they are making and how it should meet the world.' },
           { title: 'Public perspectives and cultural analysis', body: 'Sharing observations, references, and working questions in public.' },
@@ -144,7 +145,7 @@ export const siteCopy = {
             eyebrow: 'Strategy, marketing, data, and brand thinking',
             title: 'Case Studies',
             description:
-              'Case studies spanning campaigns, marketing intelligence, digital products, AI-assisted tools, and the brand thinking that makes execution coherent.',
+              'Campaigns, marketing intelligence, products, and the brand thinking behind them.',
           },
           {
             id: 'apps',
@@ -152,7 +153,7 @@ export const siteCopy = {
             eyebrow: 'Prototypes, internal tools, and interface thinking',
             title: 'Apps',
             description:
-              'Apps, tools, and product surfaces that show how I think about workflow logic, calm UX, and applied execution.',
+              'Tools and product surfaces for clearer workflows and calmer UX.',
           },
           {
             id: 'photography',
@@ -160,7 +161,7 @@ export const siteCopy = {
             eyebrow: 'Supporting craft: composition, restraint, image judgment',
             title: 'Photography',
             description:
-              'Photography stays in the practice as a way of sharpening taste, direction, and the visual judgment behind stronger systems.',
+              'Photography sharpens taste, direction, and visual judgment.',
           },
           {
             id: 'visuals',
@@ -168,7 +169,7 @@ export const siteCopy = {
             eyebrow: 'Visual direction, image-making, and experimentation',
             title: 'Visuals',
             description:
-              'Visual studies, album covers, photography, and AI-assisted image work shaped through composition, observation, and cultural sensitivity.',
+              'Visual studies, album covers, photography, and AI-assisted image work.',
           },
         ],
       },
@@ -185,13 +186,13 @@ export const siteCopy = {
         items: [
           {
             number: '00-1',
-            title: 'Creative Strategy & Marketing',
-            titleShort: 'Strategy',
-            items: ['Brand and campaign strategy', 'Audience and market understanding', 'Positioning and messaging', 'Creative concepts and activation'],
+            title: 'Web Development & Digital Experiences',
+            titleShort: 'Web',
+            items: ['Websites and landing pages', 'Responsive component systems', 'Performance and accessibility', 'Content and conversion paths'],
             description:
-              'Strategy that connects business objectives, audience insight, cultural context, and creative execution.',
-            cta: 'Discuss a project',
-            ctaHref: '/#contact',
+              'Websites and digital experiences with clear structure, responsive components, and a focused next step.',
+            cta: 'Explore service',
+            ctaHref: '/en/services/web-development',
           },
           {
             number: '00-2',
@@ -200,8 +201,8 @@ export const siteCopy = {
             items: ['Brand positioning', 'Narrative and storytelling', 'Visual direction and tone', 'Campaign and content systems'],
             description:
               'Brand and creative systems that make ideas recognisable, coherent, and culturally relevant across campaigns, content, and digital experiences.',
-            cta: 'Discuss a project',
-            ctaHref: '/#contact',
+            cta: 'Explore service',
+            ctaHref: '/en/services/brand-systems',
           },
           {
             number: '00-3',
@@ -210,8 +211,8 @@ export const siteCopy = {
             items: ['Marketing analytics', 'Customer and CRM insight', 'Research and data synthesis', 'Reporting and decision support'],
             description:
               'Research and data tools that make complex information easier to understand and act on.',
-            cta: 'Discuss a project',
-            ctaHref: '/#contact',
+            cta: 'Explore service',
+            ctaHref: '/en/services/creative-automation',
           },
           {
             number: '00-4',
@@ -220,8 +221,8 @@ export const siteCopy = {
             items: ['Digital products and internal tools', 'Interactive prototypes', 'AI-assisted workflows', 'Automation and technical experimentation'],
             description:
               'Digital products and prototypes that make strategies, workflows, and ideas tangible. AI is used where it improves research, exploration, production, or decision-making without replacing human judgment.',
-            cta: 'Discuss a project',
-            ctaHref: '/#contact',
+            cta: 'Explore service',
+            ctaHref: '/en/services/product-prototypes',
           },
           {
             number: '00-5',
@@ -362,7 +363,7 @@ export const siteCopy = {
     header: {
       logoLabel: 'Inicio',
       nav: [
-        { label: 'Trabajo', href: '/#selected-work', hash: '#selected-work' },
+        { label: 'Trabajo', href: '/#work', hash: '#work' },
         { label: 'Sobre mí', href: '/about' },
         { label: 'Fotografía', href: '/photography' },
         { label: 'Contacto', href: '/#contact', hash: '#contact' },
@@ -391,7 +392,8 @@ export const siteCopy = {
         { label: 'Visuales', href: '/visuals' },
       ],
       serviceLinks: [
-        { label: 'Estrategia Creativa y Marketing', href: '/services/integraciones-ia' },
+        { label: 'Desarrollo Web y Experiencias Digitales', href: '/services/desarrollo-web' },
+        { label: 'Integraciones IA para Sistemas Creativos', href: '/services/integraciones-ia' },
         { label: 'Sistemas de Marca y Dirección Creativa', href: '/services/sistemas-de-marca' },
         { label: 'Datos, Investigación e Inteligencia', href: '/services/automatizacion-creativa' },
         { label: 'Productos Digitales, IA y Prototipado', href: '/services/prototipos-producto-ia' },
@@ -433,7 +435,7 @@ export const siteCopy = {
         eyebrow: 'Lo que estoy construyendo',
         title: 'Una práctica independiente con espacio para crecer.',
         body:
-          'Estoy construyendo una práctica independiente y una cartera de proyectos alrededor de las marcas, la cultura, los productos y los medios. Actualmente colaboro con fundadores ambiciosos, comparto lo que aprendo y desarrollo conceptos que puedan convertirse en negocios propios.',
+          'Construyo proyectos entre marca, cultura, producto y medios. Colaboro con fundadores, comparto el proceso y desarrollo ideas que puedan sostenerse por sí mismas.',
         points: [
           { title: 'Colaboraciones seleccionadas con fundadores', body: 'Ayudando a equipos emergentes a aclarar qué están construyendo y cómo puede encontrarse con el mundo.' },
           { title: 'Perspectivas públicas y análisis cultural', body: 'Compartiendo observaciones, referencias y preguntas de trabajo en público.' },
@@ -500,7 +502,7 @@ export const siteCopy = {
             eyebrow: 'Estrategia, marketing, datos y pensamiento de marca',
             title: 'Casos de estudio',
             description:
-              'Casos de campañas, inteligencia de marketing, productos digitales, herramientas asistidas por IA y pensamiento de marca para una ejecución coherente.',
+              'Campañas, inteligencia de marketing, productos y el pensamiento de marca que los sostiene.',
           },
           {
             id: 'apps',
@@ -508,7 +510,7 @@ export const siteCopy = {
             eyebrow: 'Prototipos, herramientas internas y pensamiento de interfaz',
             title: 'Apps',
             description:
-              'Apps, herramientas y superficies de producto que muestran lógica de flujo, UX tranquila y ejecución aplicada.',
+              'Herramientas y superficies de producto para flujos más claros y una UX más calmada.',
           },
           {
             id: 'photography',
@@ -516,7 +518,7 @@ export const siteCopy = {
             eyebrow: 'Oficio de apoyo: composición, contención y criterio visual',
             title: 'Fotografía',
             description:
-              'La fotografía sigue en la práctica como una forma de afinar el gusto, la dirección y el criterio visual detrás de sistemas más sólidos.',
+              'La fotografía afina el gusto, la dirección y el criterio visual.',
           },
           {
             id: 'visuals',
@@ -524,7 +526,7 @@ export const siteCopy = {
             eyebrow: 'Dirección visual, imagen y experimentación',
             title: 'Visuales',
             description:
-              'Estudios visuales, portadas, fotografía y trabajo de imagen asistido por IA desde la composición, la observación y la sensibilidad cultural.',
+              'Estudios visuales, portadas, fotografía y trabajo de imagen asistido por IA.',
           },
         ],
       },
@@ -541,13 +543,13 @@ export const siteCopy = {
         items: [
           {
             number: '00-1',
-            title: 'Estrategia Creativa y Marketing',
-            titleShort: 'Estrategia',
-            items: ['Estrategia de marca y campaña', 'Audiencia y mercado', 'Posicionamiento y mensajes', 'Conceptos y activación'],
+            title: 'Desarrollo Web y Experiencias Digitales',
+            titleShort: 'Web',
+            items: ['Webs y landing pages', 'Sistemas de componentes responsive', 'Rendimiento y accesibilidad', 'Contenido y conversión'],
             description:
-              'Estrategia que conecta objetivos de negocio, insight de audiencia, contexto cultural y ejecución creativa.',
-            cta: 'Hablar de un proyecto',
-            ctaHref: '/#contact',
+              'Webs y experiencias digitales con estructura clara, componentes responsive y un siguiente paso definido.',
+            cta: 'Ver servicio',
+            ctaHref: '/services/desarrollo-web',
           },
           {
             number: '00-2',
@@ -556,8 +558,8 @@ export const siteCopy = {
             items: ['Posicionamiento de marca', 'Narrativa y storytelling', 'Dirección visual y tono', 'Sistemas de campaña y contenido'],
             description:
               'Sistemas de marca y creatividad que hacen las ideas reconocibles, coherentes y culturalmente relevantes en campañas, contenido y experiencias digitales.',
-            cta: 'Hablar de un proyecto',
-            ctaHref: '/#contact',
+            cta: 'Ver servicio',
+            ctaHref: '/services/sistemas-de-marca',
           },
           {
             number: '00-3',
@@ -566,8 +568,8 @@ export const siteCopy = {
             items: ['Analítica de marketing', 'Insight de cliente y CRM', 'Investigación y síntesis de datos', 'Reporting y apoyo a decisiones'],
             description:
               'Herramientas de investigación y datos que hacen la información compleja más fácil de entender y convertir en acción.',
-            cta: 'Hablar de un proyecto',
-            ctaHref: '/#contact',
+            cta: 'Ver servicio',
+            ctaHref: '/services/automatizacion-creativa',
           },
           {
             number: '00-4',
@@ -576,8 +578,8 @@ export const siteCopy = {
             items: ['Productos digitales y herramientas internas', 'Prototipos interactivos', 'Flujos asistidos por IA', 'Automatización y experimentación técnica'],
             description:
               'Productos digitales y prototipos que vuelven tangibles las estrategias, los flujos y las ideas. La IA se utiliza cuando mejora la investigación, exploración, producción o toma de decisiones sin reemplazar el criterio humano.',
-            cta: 'Hablar de un proyecto',
-            ctaHref: '/#contact',
+            cta: 'Ver servicio',
+            ctaHref: '/services/prototipos-producto-ia',
           },
           {
             number: '00-5',

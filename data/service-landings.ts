@@ -52,6 +52,140 @@ export type ServiceLanding = {
 
 const englishLandings: ServiceLanding[] = [
   {
+    slug: 'web-development',
+    locale: 'en',
+    href: '/en/services/web-development',
+    alternateHref: '/services/desarrollo-web',
+    title: 'Web Development & Digital Experiences',
+    eyebrow: 'Web Development',
+    description:
+      'I design and build websites, landing pages, and digital experiences with clear structure, responsive components, accessible interaction, and a path to conversion.',
+    metaTitle: 'Web Development and Digital Experiences: Raúl Mermans',
+    metaDescription:
+      'Web development for brand sites, landing pages, and digital experiences. Build clear, responsive, accessible websites with strong structure and conversion paths.',
+    keywords: [
+      'web development',
+      'website design and development',
+      'landing page development',
+      'responsive web design',
+    ],
+    tags: ['Responsive Build', 'Accessible UX', 'Conversion Paths'],
+    answer:
+      'Web development turns a clear offer, content structure, and visual system into a working website. I build the information architecture, responsive interface, component system, and technical foundation so visitors can understand the offer and take the next step.',
+    problems: [
+      {
+        title: 'An unclear first impression',
+        body: 'Visitors cannot quickly tell what the business offers, who it serves, or why it matters.',
+      },
+      {
+        title: 'A visual system without a site system',
+        body: 'Brand direction exists, but the pages, components, and content rules do not support it consistently.',
+      },
+      {
+        title: 'Weak mobile experience',
+        body: 'The desktop design does not translate into a clear, usable small-screen experience.',
+      },
+      {
+        title: 'Content that is hard to maintain',
+        body: 'Small updates require code changes or create inconsistencies across the site.',
+      },
+      {
+        title: 'No clear next step',
+        body: 'The site presents information but gives visitors no focused route to enquire, buy, or continue.',
+      },
+    ],
+    deliverables: [
+      {
+        title: 'Website architecture',
+        body: 'A clear page structure, navigation model, and hierarchy for the people using the site.',
+      },
+      {
+        title: 'Responsive page design',
+        body: 'Layouts and components designed for desktop, tablet, and mobile use.',
+      },
+      {
+        title: 'Front-end development',
+        body: 'A production-ready interface built with reusable components and clean interaction states.',
+      },
+      {
+        title: 'Content and conversion paths',
+        body: 'Page copy, calls to action, and forms arranged around the decision a visitor needs to make.',
+      },
+      {
+        title: 'Accessibility and performance checks',
+        body: 'Practical checks for readable content, keyboard use, image handling, and responsive loading.',
+      },
+      {
+        title: 'Handover and documentation',
+        body: 'A clear record of the components, content model, and sensible next steps for the site.',
+      },
+    ],
+    useCases: [
+      'Brand and portfolio websites',
+      'Campaign landing pages',
+      'Service websites',
+      'Product launch pages',
+      'Editorial and content-led sites',
+      'Website redesigns',
+    ],
+    process: [
+      {
+        step: '01',
+        title: 'Define the site job',
+        body: 'Clarify the audience, the offer, the key decision, and what the site needs to make easier.',
+      },
+      {
+        step: '02',
+        title: 'Structure content and pages',
+        body: 'Set the page hierarchy, content blocks, navigation, and conversion paths before development starts.',
+      },
+      {
+        step: '03',
+        title: 'Design and build the interface',
+        body: 'Create the responsive components, visual rhythm, interaction states, and working pages.',
+      },
+      {
+        step: '04',
+        title: 'Review and hand over',
+        body: 'Check the site with real content, refine the details, and document how it should be maintained.',
+      },
+    ],
+    relatedCaseStudies: ['raul-portfolio', 'website-auditor', 'campaign-pulse', 'remoria'],
+    faqs: [
+      {
+        question: 'What does web development include?',
+        answer:
+          'The work can include site architecture, page design, responsive front-end development, content structure, forms, accessibility checks, and a handover for future updates.',
+      },
+      {
+        question: 'Can you design and build the site?',
+        answer:
+          'Yes. The process connects the information architecture, visual direction, and technical build so the finished site works as one system.',
+      },
+      {
+        question: 'Do you work with existing brand systems?',
+        answer:
+          'Yes. An existing identity can be translated into reusable page rules, components, and content patterns for the web.',
+      },
+      {
+        question: 'Can you improve an existing website?',
+        answer:
+          'Yes. A focused engagement can address the structure, content hierarchy, responsive interface, performance issues, or conversion path of an existing site.',
+      },
+      {
+        question: 'What do you need to start?',
+        answer:
+          'A clear offer, the audiences that matter, available content and brand material, plus the main action the site should support.',
+      },
+    ],
+    cta: {
+      title: 'Need a site that makes the offer clear?',
+      body: 'Send a short note about the business, audience, current site, and the next step you want visitors to take.',
+      emailLabel: 'Send a Web Brief',
+      linkedinLabel: 'Connect on LinkedIn',
+    },
+  },
+  {
     slug: 'ai-integrations',
     locale: 'en',
     href: '/en/services/ai-integrations',
@@ -647,6 +781,140 @@ const englishLandings: ServiceLanding[] = [
 ]
 
 const spanishLandings: ServiceLanding[] = [
+  {
+    slug: 'desarrollo-web',
+    locale: 'es',
+    href: '/services/desarrollo-web',
+    alternateHref: '/en/services/web-development',
+    title: 'Desarrollo Web y Experiencias Digitales',
+    eyebrow: 'Desarrollo Web',
+    description:
+      'Diseño y construyo webs, landing pages y experiencias digitales con estructura clara, componentes responsive, interacción accesible y un camino de conversión definido.',
+    metaTitle: 'Desarrollo Web y Experiencias Digitales: Raúl Mermans',
+    metaDescription:
+      'Desarrollo web para sitios de marca, landing pages y experiencias digitales. Webs claras, responsive y accesibles con estructura y caminos de conversión.',
+    keywords: [
+      'desarrollo web',
+      'diseño y desarrollo web',
+      'desarrollo de landing pages',
+      'diseño web responsive',
+    ],
+    tags: ['Desarrollo Responsive', 'UX Accesible', 'Conversión'],
+    answer:
+      'El desarrollo web convierte una oferta clara, una estructura de contenido y un sistema visual en una web funcional. Construyo la arquitectura, la interfaz responsive, el sistema de componentes y la base técnica para que las personas entiendan la propuesta y sepan qué hacer después.',
+    problems: [
+      {
+        title: 'Una primera impresión poco clara',
+        body: 'La persona no entiende rápido qué ofrece el negocio, para quién es o por qué importa.',
+      },
+      {
+        title: 'Marca sin sistema web',
+        body: 'La dirección visual existe, pero las páginas, componentes y reglas de contenido no la aplican de forma consistente.',
+      },
+      {
+        title: 'Mala experiencia móvil',
+        body: 'El diseño de escritorio no se convierte en una experiencia clara y usable en pantallas pequeñas.',
+      },
+      {
+        title: 'Contenido difícil de mantener',
+        body: 'Los cambios pequeños requieren código o crean inconsistencias entre páginas.',
+      },
+      {
+        title: 'Sin siguiente paso claro',
+        body: 'La web informa, pero no guía a la persona hacia una consulta, compra o acción concreta.',
+      },
+    ],
+    deliverables: [
+      {
+        title: 'Arquitectura web',
+        body: 'Una estructura clara de páginas, navegación y jerarquía para las personas que usan la web.',
+      },
+      {
+        title: 'Diseño responsive',
+        body: 'Layouts y componentes pensados para escritorio, tablet y móvil.',
+      },
+      {
+        title: 'Desarrollo front-end',
+        body: 'Una interfaz lista para producción con componentes reutilizables y estados de interacción claros.',
+      },
+      {
+        title: 'Contenido y conversión',
+        body: 'Copy, llamadas a la acción y formularios organizados alrededor de la decisión que debe tomar la persona.',
+      },
+      {
+        title: 'Accesibilidad y rendimiento',
+        body: 'Revisiones prácticas de lectura, navegación por teclado, imágenes y carga responsive.',
+      },
+      {
+        title: 'Documentación y entrega',
+        body: 'Un registro claro de componentes, modelo de contenido y siguientes pasos para mantener la web.',
+      },
+    ],
+    useCases: [
+      'Webs de marca y portfolio',
+      'Landing pages de campaña',
+      'Webs de servicios',
+      'Páginas de lanzamiento de producto',
+      'Webs editoriales y de contenido',
+      'Rediseños web',
+    ],
+    process: [
+      {
+        step: '01',
+        title: 'Definir el trabajo de la web',
+        body: 'Aclarar audiencia, oferta, decisión principal y qué debe facilitar la web.',
+      },
+      {
+        step: '02',
+        title: 'Estructurar contenido y páginas',
+        body: 'Definir jerarquía, bloques de contenido, navegación y caminos de conversión antes de desarrollar.',
+      },
+      {
+        step: '03',
+        title: 'Diseñar y construir la interfaz',
+        body: 'Crear componentes responsive, ritmo visual, estados de interacción y páginas funcionales.',
+      },
+      {
+        step: '04',
+        title: 'Revisar y entregar',
+        body: 'Comprobar la web con contenido real, afinar detalles y documentar su mantenimiento.',
+      },
+    ],
+    relatedCaseStudies: ['raul-portfolio', 'website-auditor', 'campaign-pulse', 'remoria'],
+    faqs: [
+      {
+        question: '¿Qué incluye el desarrollo web?',
+        answer:
+          'Puede incluir arquitectura, diseño de páginas, desarrollo front-end responsive, estructura de contenido, formularios, accesibilidad y entrega para futuras actualizaciones.',
+      },
+      {
+        question: '¿Puedes diseñar y desarrollar la web?',
+        answer:
+          'Sí. El proceso conecta arquitectura de información, dirección visual y desarrollo técnico para que la web funcione como un sistema.',
+      },
+      {
+        question: '¿Trabajas con sistemas de marca existentes?',
+        answer:
+          'Sí. Una identidad existente puede traducirse en reglas de página, componentes y patrones de contenido reutilizables.',
+      },
+      {
+        question: '¿Puedes mejorar una web existente?',
+        answer:
+          'Sí. Un proyecto enfocado puede mejorar estructura, jerarquía de contenido, interfaz responsive, rendimiento o conversión.',
+      },
+      {
+        question: '¿Qué necesitas para empezar?',
+        answer:
+          'Una oferta clara, las audiencias importantes, el contenido y material de marca disponible, y la acción principal que debe apoyar la web.',
+      },
+    ],
+    cta: {
+      title: '¿Necesitas una web que haga clara la propuesta?',
+      body: 'Envía una nota breve sobre el negocio, la audiencia, la web actual y el siguiente paso que quieres que dé la persona.',
+      emailLabel: 'Enviar brief web',
+      linkedinLabel: 'Conectar en LinkedIn',
+    },
+  },
   {
     slug: 'integraciones-ia',
     locale: 'es',
