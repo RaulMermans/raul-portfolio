@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import { useMemo } from 'react'
+import { type CSSProperties, useMemo } from 'react'
 import { getCaseStudies } from '@/data/case-studies'
 import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
@@ -91,12 +91,16 @@ export default function CaseStudiesPage() {
             {caseStudies.map((study, index) => {
               const variant =
                 tileVariants[(study.id + index) % tileVariants.length]
+              const thumbnailStyle = {
+                '--case-study-thumbnail-ratio': `${study.imageWidth} / ${study.imageHeight}`,
+              } as CSSProperties
 
               return (
                 <Link
                   key={study.href}
                   href={study.href}
                   className={`case-study-project-tile case-study-project-tile--${variant}`}
+                  style={thumbnailStyle}
                   aria-label={
                     isSpanish
                       ? `Ver caso de estudio: ${study.title}`

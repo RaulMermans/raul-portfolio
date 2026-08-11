@@ -6804,14 +6804,13 @@ a[href^='/']:hover {
 
 /* Thumbnail-led case-study landing: deliberately irregular, with titles as the only visible copy. */
 .case-study-thumbnail-gallery {
-  width: min(100%, 96rem);
+  width: min(100%, var(--section-content-max));
   margin: 0 auto;
   padding: 0 var(--section-inline-padding);
 }
 
 .case-study-thumbnail-gallery .case-study-project-grid {
   grid-auto-flow: dense;
-  grid-auto-rows: clamp(0.35rem, 0.7vw, 0.65rem);
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(1.25rem, 2vw, 2rem) clamp(0.65rem, 1vw, 1rem);
   padding: 0;
@@ -6819,28 +6818,24 @@ a[href^='/']:hover {
 
 .case-study-thumbnail-gallery .case-study-project-tile {
   grid-column: span 3;
-  grid-row: span 28;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
 }
 
 .case-study-thumbnail-gallery .case-study-project-tile--portrait {
   grid-column: span 4;
-  grid-row: span 40;
 }
 
 .case-study-thumbnail-gallery .case-study-project-tile--landscape {
-  grid-column: span 6;
-  grid-row: span 31;
+  grid-column: span 5;
 }
 
 .case-study-thumbnail-gallery .case-study-project-tile--tall {
   grid-column: span 3;
-  grid-row: span 40;
 }
 
 .case-study-thumbnail-gallery .case-study-project-tile__frame {
-  height: 100%;
-  aspect-ratio: auto;
+  height: auto;
+  aspect-ratio: var(--case-study-thumbnail-ratio);
   border-radius: var(--radius-sm);
 }
 
@@ -6861,28 +6856,23 @@ a[href^='/']:hover {
 
 @media (max-width: 980px) {
   .case-study-thumbnail-gallery .case-study-project-grid {
-    grid-auto-rows: 0.55rem;
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile {
     grid-column: span 2;
-    grid-row: span 32;
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile--portrait {
     grid-column: span 3;
-    grid-row: span 45;
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile--landscape {
     grid-column: span 3;
-    grid-row: span 31;
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile--tall {
     grid-column: span 2;
-    grid-row: span 42;
   }
 }
 
@@ -6892,29 +6882,24 @@ a[href^='/']:hover {
   }
 
   .case-study-thumbnail-gallery .case-study-project-grid {
-    grid-auto-rows: 0.375rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-5) var(--space-3);
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile {
     grid-column: span 1;
-    grid-row: span 29;
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile--portrait {
     grid-column: span 2;
-    grid-row: span 50;
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile--landscape {
     grid-column: span 2;
-    grid-row: span 38;
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile--tall {
     grid-column: span 1;
-    grid-row: span 43;
   }
 }
 

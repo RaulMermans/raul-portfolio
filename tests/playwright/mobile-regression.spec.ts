@@ -190,11 +190,19 @@ test.describe('Mobile Regression', () => {
       }
 
       const cardRect = card.getBoundingClientRect()
+      const frame = card.querySelector('.case-study-project-tile__frame')
+
+      if (!(frame instanceof HTMLElement)) {
+        throw new Error('Case study thumbnail frame is missing')
+      }
+
+      const frameRect = frame.getBoundingClientRect()
 
       return {
         cardTop: cardRect.top,
         cardLeft: cardRect.left,
         cardRight: cardRect.right,
+        frameRatio: frameRect.width / frameRect.height,
         viewportWidth: window.innerWidth,
         documentWidth: document.documentElement.scrollWidth,
       }
@@ -203,6 +211,7 @@ test.describe('Mobile Regression', () => {
     expect(initialLayout.cardTop).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
+    expect(initialLayout.frameRatio).toBeCloseTo(1672 / 941, 2)
     expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
   })
 
