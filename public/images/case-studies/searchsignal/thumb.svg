@@ -1,0 +1,16 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#1A1714"/>
+  <rect x="74" y="72" width="1052" height="656" rx="8" stroke="#DDD5C8" stroke-opacity=".7"/>
+  <text x="118" y="154" fill="#F5F0EB" font-family="Arial, sans-serif" font-size="72" font-weight="700">SEARCH</text>
+  <text x="473" y="154" fill="#C6A877" font-family="Arial, sans-serif" font-size="72" font-weight="700">SIGNAL</text>
+  <text x="121" y="207" fill="#DDD5C8" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">CATALOG READINESS BEFORE RETRIEVAL</text>
+  <g stroke="#DDD5C8" stroke-opacity=".55">
+    <path d="M205 400H330M408 400H533M611 400H736M814 400H939"/>
+  </g>
+  <g fill="#1A1714" stroke="#DDD5C8">
+    <rect x="115" y="350" width="90" height="100" rx="4"/><rect x="330" y="350" width="78" height="100" rx="4"/><rect x="533" y="350" width="78" height="100" rx="4"/><rect x="736" y="350" width="78" height="100" rx="4"/><rect x="939" y="350" width="135" height="100" rx="4"/>
+  </g>
+  <g fill="#F5F0EB" font-family="Arial, sans-serif" font-size="14" font-weight="700"><text x="133" y="393">CATALOG</text><text x="349" y="393">MAP</text><text x="546" y="393">VALIDATE</text><text x="748" y="393">ASSESS</text><text x="958" y="393">RETRIEVAL</text></g>
+  <g fill="#C6A877"><circle cx="205" cy="400" r="4"/><circle cx="330" cy="400" r="4"/><circle cx="408" cy="400" r="4"/><circle cx="533" cy="400" r="4"/><circle cx="611" cy="400" r="4"/><circle cx="736" cy="400" r="4"/><circle cx="814" cy="400" r="4"/><circle cx="939" cy="400" r="4"/></g>
+  <text x="120" y="610" fill="#DDD5C8" font-family="Arial, sans-serif" font-size="24">VALIDATE → NORMALIZE → ELIGIBILITY → EVALUATE</text>
+</svg>

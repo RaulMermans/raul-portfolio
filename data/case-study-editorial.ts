@@ -17,6 +17,7 @@ type EditorialMeta = {
 
 export const CASE_STUDY_ORDER = [
   'opstwin',
+  'searchsignal',
   'campaign-pulse',
   'demandos',
   'campaign-sandbox',
