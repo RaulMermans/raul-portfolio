@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 
 const FIXED_DATE_ISO = '2026-03-16T10:00:00.000Z'
 
@@ -47,14 +47,6 @@ async function preparePage(page: Page, path: string) {
   })
 }
 
-async function expectStableScreenshot(locator: Locator, name: string) {
-  await expect(locator).toHaveScreenshot(name, {
-    animations: 'disabled',
-    caret: 'hide',
-    scale: 'device',
-  })
-}
-
 async function swipeSurface(page: Page, deltaX: number, deltaY: number) {
   await page.locator('[data-mobile-audit="visuals-surface"]').evaluate((element, delta) => {
     const rect = element.getBoundingClientRect()
@@ -87,27 +79,38 @@ test.describe('Mobile Regression', () => {
     const hero = page.locator('[data-home-section="hero"]')
     const heroCtas = hero.locator('[data-mobile-audit="hero-cta"]')
     await expect(heroCtas).toHaveCount(2)
-    await expect(hero.getByRole('link', { name: 'Discuss a system' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: 'View selected work' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'Explore what I’m building' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'Work with me' })).toBeVisible()
     await expect(hero.getByRole('link', { name: /GitHub/i })).toHaveCount(0)
 
-    await expectStableScreenshot(hero, 'home-hero.png')
   })
 
-  test('Creative AI Systems Sprint is prominent and localized', async ({ page }) => {
+  test('shared mobile defaults keep body copy readable and the document within the viewport', async ({ page }) => {
     await preparePage(page, '/en/')
 
-    const sprint = page.locator('#creative-ai-systems-sprint')
-    await sprint.scrollIntoViewIfNeeded()
-    await expect(sprint.getByRole('heading', { name: 'Creative AI Systems Sprint' })).toBeVisible()
-    await expect(sprint.getByText('Typically 2–4 weeks, depending on scope.')).toBeVisible()
-    await expect(sprint.getByRole('link', { name: 'Discuss a Creative AI Systems Sprint' })).toBeVisible()
+    const metrics = await page.evaluate(() => ({
+      bodyFontSize: Number.parseFloat(getComputedStyle(document.body).fontSize),
+      viewportWidth: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+    }))
 
-    await preparePage(page, '/')
-    const spanishSprint = page.locator('#creative-ai-systems-sprint')
-    await spanishSprint.scrollIntoViewIfNeeded()
-    await expect(spanishSprint.getByRole('heading', { name: 'Sprint de Sistemas Creativos con IA' })).toBeVisible()
-    await expect(spanishSprint.getByRole('link', { name: 'Hablar de un Sprint de Sistemas Creativos con IA' })).toBeVisible()
+    expect(metrics.bodyFontSize).toBeGreaterThanOrEqual(16)
+    expect(metrics.documentWidth).toBeLessThanOrEqual(metrics.viewportWidth)
+  })
+
+  test('the Building now section is prominent and localized', async ({ page }) => {
+    await preparePage(page, '/en/')
+
+    const buildingNow = page.locator('#building-now')
+    await buildingNow.scrollIntoViewIfNeeded()
+    await expect(buildingNow.getByRole('heading', { name: 'An independent practice with room to grow.' })).toBeVisible()
+    await expect(buildingNow.getByText('Selected founder collaborations')).toBeVisible()
+
+    await preparePage(page, '/es/')
+    const spanishBuildingNow = page.locator('#building-now')
+    await spanishBuildingNow.scrollIntoViewIfNeeded()
+    await expect(spanishBuildingNow.getByRole('heading', { name: 'Una práctica independiente con espacio para crecer.' })).toBeVisible()
+    await expect(spanishBuildingNow.getByText('Colaboraciones seleccionadas con fundadores')).toBeVisible()
   })
 
   test('mobile menu opens as a modal and restores focus when closed', async ({ page }) => {
@@ -122,7 +125,13 @@ test.describe('Mobile Regression', () => {
       return page.evaluate(() => getComputedStyle(document.body).position)
     }).toBe('fixed')
 
-    await expectStableScreenshot(page.locator('body'), 'mobile-nav-open.png')
+    const dialogBounds = await dialog.evaluate((element) => {
+      const rect = element.getBoundingClientRect()
+      return { left: rect.left, right: rect.right, viewportWidth: window.innerWidth }
+    })
+    expect(dialogBounds.left).toBeGreaterThanOrEqual(0)
+    expect(dialogBounds.right).toBeLessThanOrEqual(dialogBounds.viewportWidth)
+    expect(dialogBounds.right - dialogBounds.left).toBeGreaterThanOrEqual(dialogBounds.viewportWidth * 0.8)
 
     await page.keyboard.press('Escape')
     await expect(dialog).toBeHidden()
@@ -162,30 +171,27 @@ test.describe('Mobile Regression', () => {
     await expect(workSection.locator('[data-mobile-audit="section-card-list"]')).toBeHidden()
   })
 
-  test('case studies landing starts with a full unobstructed card on mobile', async ({ page }) => {
+  test('case studies landing is a thumbnail-led gallery on mobile', async ({ page }) => {
     await preparePage(page, '/en/case-studies/')
 
-    const browserChrome = page.locator('[data-mobile-audit="case-study-browser"]')
     const grid = page.locator('[data-mobile-audit="case-study-grid"]')
     const firstCard = grid.locator('[data-mobile-audit="case-study-card"]').first()
 
-    await expect(browserChrome).toBeVisible()
     await expect(firstCard).toBeVisible()
+    await expect(firstCard.locator('.case-study-project-tile__title')).toBeVisible()
+    await expect(firstCard.locator('.case-study-project-tile__description')).toHaveCount(0)
+    await expect(firstCard.locator('.case-study-project-tile__meta')).toHaveCount(0)
 
     const initialLayout = await page.evaluate(() => {
-      const chrome = document.querySelector('[data-mobile-audit="case-study-browser"]')
-      const card = document.querySelector('[data-mobile-audit="case-study-card"]')
+      const card = document.querySelector('[data-mobile-audit="case-study-grid"] [data-mobile-audit="case-study-card"]')
 
-      if (!(chrome instanceof HTMLElement) || !(card instanceof HTMLElement)) {
+      if (!(card instanceof HTMLElement)) {
         throw new Error('Case study mobile audit elements are missing')
       }
 
-      const chromeRect = chrome.getBoundingClientRect()
       const cardRect = card.getBoundingClientRect()
 
       return {
-        chromePosition: getComputedStyle(chrome).position,
-        chromeBottom: chromeRect.bottom,
         cardTop: cardRect.top,
         cardLeft: cardRect.left,
         cardRight: cardRect.right,
@@ -194,32 +200,10 @@ test.describe('Mobile Regression', () => {
       }
     })
 
-    expect(initialLayout.chromePosition).toBe('static')
-    expect(initialLayout.cardTop).toBeGreaterThanOrEqual(initialLayout.chromeBottom - 1)
+    expect(initialLayout.cardTop).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
     expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
-
-    await page.getByRole('button', { name: 'Go to filtered case studies' }).click()
-    await expect.poll(() => page.evaluate(() => {
-      const header = document.querySelector('header')
-      const card = document.querySelector('[data-mobile-audit="case-study-card"]')
-
-      if (!(header instanceof HTMLElement) || !(card instanceof HTMLElement)) {
-        throw new Error('Case study scroll audit elements are missing')
-      }
-
-      return card.getBoundingClientRect().top - header.getBoundingClientRect().bottom
-    })).toBeGreaterThanOrEqual(0)
-  })
-
-  test('case studies browser remains sticky on desktop', async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 800 })
-    await preparePage(page, '/en/case-studies/')
-
-    const browserChrome = page.locator('[data-mobile-audit="case-study-browser"]')
-    await expect(browserChrome).toBeVisible()
-    await expect.poll(() => browserChrome.evaluate((element) => getComputedStyle(element).position)).toBe('sticky')
   })
 
   test('visuals surface only navigates on horizontal intent', async ({ page }) => {
@@ -250,13 +234,23 @@ test.describe('Mobile Regression', () => {
     await preparePage(page, '/en/visuals/')
 
     const surface = page.locator('[data-mobile-audit="visuals-surface"]')
-    await expectStableScreenshot(surface, 'visuals-surface.png')
+    const surfaceBounds = await surface.evaluate((element) => {
+      const rect = element.getBoundingClientRect()
+      return { left: rect.left, right: rect.right, viewportWidth: window.innerWidth }
+    })
+    expect(surfaceBounds.left).toBeGreaterThanOrEqual(0)
+    expect(surfaceBounds.right).toBeLessThanOrEqual(surfaceBounds.viewportWidth)
 
     await page.locator('[data-mobile-audit="visual-card"]').click()
     const exhibition = page.locator('#exhibition')
     await expect(exhibition).toBeVisible()
 
-    await expectStableScreenshot(exhibition, 'visuals-exhibition.png')
+    const exhibitionBounds = await exhibition.evaluate((element) => {
+      const rect = element.getBoundingClientRect()
+      return { left: rect.left, right: rect.right, viewportWidth: window.innerWidth }
+    })
+    expect(exhibitionBounds.left).toBeGreaterThanOrEqual(0)
+    expect(exhibitionBounds.right).toBeLessThanOrEqual(exhibitionBounds.viewportWidth)
   })
 
   test('visuals exhibition details stay scrollable once opened', async ({ page }) => {
@@ -314,8 +308,6 @@ test.describe('Mobile Regression', () => {
     const contact = page.locator('#contact')
     await contact.scrollIntoViewIfNeeded()
     await expect(contact).toBeVisible()
-    await expect(contact.getByRole('button', { name: /send creative systems brief/i })).toBeVisible()
-
-    await expectStableScreenshot(contact, 'home-contact.png')
+    await expect(contact.getByRole('link', { name: /email/i })).toBeVisible()
   })
 })

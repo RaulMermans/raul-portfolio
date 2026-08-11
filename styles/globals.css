@@ -55,8 +55,8 @@ body {
 
 @media (max-width: 768px) {
   body {
-    font-size: 0.9375rem;
-    /* 15px base for better mobile readability */
+    font-size: 1rem;
+    /* Keep the base at 16px so body copy remains readable and controls avoid iOS zoom. */
     line-height: 1.65;
   }
 }
@@ -5915,8 +5915,8 @@ a[href^='/']:hover {
   /* Gallery items inherit from mobile section - no width override needed */
 
   html {
-    font-size: 15px;
-    /* Slightly smaller base for very small screens */
+    font-size: 16px;
+    /* Preserve readable body copy and prevent iOS form zoom. */
   }
 
   /* Ensure scroll icon is centered on small screens */
@@ -6802,6 +6802,122 @@ a[href^='/']:hover {
   padding: 0 clamp(0.75rem, 1.25vw, 1rem);
 }
 
+/* Thumbnail-led case-study landing: deliberately irregular, with titles as the only visible copy. */
+.case-study-thumbnail-gallery {
+  width: min(100%, 96rem);
+  margin: 0 auto;
+  padding: 0 var(--section-inline-padding);
+}
+
+.case-study-thumbnail-gallery .case-study-project-grid {
+  grid-auto-flow: dense;
+  grid-auto-rows: clamp(0.35rem, 0.7vw, 0.65rem);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem) clamp(0.65rem, 1vw, 1rem);
+  padding: 0;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile {
+  grid-column: span 3;
+  grid-row: span 28;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile--portrait {
+  grid-column: span 4;
+  grid-row: span 40;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile--landscape {
+  grid-column: span 6;
+  grid-row: span 31;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile--tall {
+  grid-column: span 3;
+  grid-row: span 40;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__frame {
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: var(--radius-sm);
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__frame::after {
+  display: none;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__caption {
+  gap: 0;
+  padding-top: var(--space-3);
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+@media (max-width: 980px) {
+  .case-study-thumbnail-gallery .case-study-project-grid {
+    grid-auto-rows: 0.55rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile {
+    grid-column: span 2;
+    grid-row: span 32;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--portrait {
+    grid-column: span 3;
+    grid-row: span 45;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--landscape {
+    grid-column: span 3;
+    grid-row: span 31;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--tall {
+    grid-column: span 2;
+    grid-row: span 42;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-study-thumbnail-gallery {
+    padding-inline: 0.75rem;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-grid {
+    grid-auto-rows: 0.375rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-3);
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile {
+    grid-column: span 1;
+    grid-row: span 29;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--portrait {
+    grid-column: span 2;
+    grid-row: span 50;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--landscape {
+    grid-column: span 2;
+    grid-row: span 38;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--tall {
+    grid-column: span 1;
+    grid-row: span 43;
+  }
+}
+
 .case-study-project-tile {
   display: grid;
   min-width: 0;
@@ -7426,6 +7542,10 @@ a[href^='/']:hover {
 
   .case-study-project-grid {
     padding-inline: 0.75rem;
+    scroll-margin-top: calc(var(--header-height) + 0.75rem);
+  }
+
+  #case-study-grid {
     scroll-margin-top: calc(var(--header-height) + 0.75rem);
   }
 

@@ -4,7 +4,10 @@ test.describe('SearchSignal case study', () => {
   test('keeps its product story readable on a phone viewport', async ({ page }, testInfo) => {
     await page.goto('/en/case-studies/searchsignal/', { waitUntil: 'networkidle' })
 
+    const hero = page.locator('.searchsignal-hero')
+    await expect(hero).toHaveClass(/data-brief-hero/)
     await expect(page.getByRole('heading', { name: 'SearchSignal' })).toBeVisible()
+    await expect(page.locator('#searchsignal-title span')).toHaveCount(0)
     await expect(page.getByText('Search quality starts before search.')).toBeVisible()
     await expect(page.getByRole('link', { name: 'Open live demonstrator' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'A visible path from source record to search result.' })).toBeVisible()

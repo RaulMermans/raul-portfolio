@@ -35,6 +35,8 @@
   --text-2xl: clamp(2.5rem, 2.1842rem + 1.5789vw, 3.5rem);
   --text-3xl: clamp(3.5rem, 2.8684rem + 3.1579vw, 5.5rem);
   --text-hero: clamp(4rem, 2.8947rem + 5.5263vw, 7.5rem);
+  --heading-line-height: 0.98;
+  --body-line-height: 1.6;
   --tracking-tight: -0.02em;
   --tracking-wide: 0.1em;
   --tracking-wider: 0.2em;
@@ -104,6 +106,32 @@ body {
   color: var(--text-primary);
 }
 
+/* Shared defaults keep unstyled editorial content on the same type system as page components. */
+:where(h1, h2, h3, h4) {
+  color: inherit;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--heading-line-height);
+  text-wrap: balance;
+}
+
+:where(h1:not([class])) {
+  font-size: var(--text-3xl);
+}
+
+:where(h2:not([class])) {
+  font-size: var(--text-2xl);
+}
+
+:where(h3:not([class])) {
+  font-size: var(--text-xl);
+}
+
+:where(p, li) {
+  overflow-wrap: break-word;
+}
+
 .ui-surface {
   border: var(--border-light);
   border-radius: var(--radius-md);
@@ -161,7 +189,7 @@ body {
   font-family: var(--font-heading);
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 0.98;
+  line-height: var(--heading-line-height);
   text-transform: uppercase;
   text-wrap: balance;
 }

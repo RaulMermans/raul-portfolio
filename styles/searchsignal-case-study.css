@@ -932,3 +932,86 @@
     grid-template-columns: 3rem minmax(0, 1fr);
   }
 }
+
+/* Reuse the shared case-study hero rather than maintaining a one-off dark banner. */
+.case-study-page-new--searchsignal .searchsignal-hero {
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+
+.case-study-page-new--searchsignal .data-brief-back {
+  color: var(--text-muted);
+}
+
+.case-study-page-new--searchsignal .data-brief-back:hover,
+.case-study-page-new--searchsignal .data-brief-back:focus-visible {
+  color: var(--text-primary);
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__title {
+  max-width: 10ch;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(3.8rem, 7vw, 8rem);
+  line-height: var(--heading-line-height);
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__subtitle {
+  max-width: 49rem;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__description {
+  max-width: 46rem;
+  color: var(--text-secondary);
+}
+
+.case-study-page-new--searchsignal .searchsignal-status {
+  color: var(--text-muted);
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__visual {
+  width: min(100%, 58rem);
+  justify-self: center;
+}
+
+.case-study-page-new--searchsignal .searchsignal-product-visual {
+  border: var(--border-light);
+  box-shadow: var(--shadow-raised);
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  max-width: 48rem;
+  margin-top: var(--space-6);
+  border: var(--border-light);
+  padding: 0;
+  background: var(--cream-dark);
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta div {
+  padding: var(--space-4);
+  background: var(--surface-raised);
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta dt {
+  color: var(--text-muted);
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta dd {
+  color: var(--text-primary);
+}
+
+@media (max-width: 720px) {
+  .case-study-page-new--searchsignal .data-brief-hero__title {
+    font-size: clamp(3rem, 15vw, 4.2rem);
+  }
+
+  .case-study-page-new--searchsignal .searchsignal-meta {
+    grid-template-columns: 1fr;
+  }
+}
