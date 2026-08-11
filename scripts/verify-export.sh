@@ -97,50 +97,46 @@ assert_absent out/index.html "Hablar de una integración IA"
 node <<'NODE'
 const fs = require('node:fs')
 
-function assertOrder(file, labels) {
+function assertCaseStudyLinkOrder(file, localePrefix, slugs) {
   const html = fs.readFileSync(file, 'utf8')
-  let previousIndex = -1
+  const expectedHrefs = slugs.map(
+    slug => `${localePrefix}/case-studies/${slug}/`
+  )
+  const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map(match => match[1])
+  const caseStudiesPath = `${localePrefix}/case-studies/`
+  const actualHrefs = hrefs.filter(
+    href => href !== caseStudiesPath && href.startsWith(caseStudiesPath)
+  )
 
-  for (const label of labels) {
-    const index = html.indexOf(label)
-
-    if (index === -1) {
-      throw new Error(`Missing archive item in ${file}: ${label}`)
-    }
-
-    if (index <= previousIndex) {
-      throw new Error(`Incorrect archive order in ${file}: ${label}`)
-    }
-
-    previousIndex = index
+  if (JSON.stringify(actualHrefs) !== JSON.stringify(expectedHrefs)) {
+    throw new Error(
+      `Incorrect case-study link order in ${file}: ${actualHrefs.join(', ')}`
+    )
   }
 }
 
-assertOrder('out/en/case-studies/index.html', [
-  'Campaign Pulse',
-  'Campaign Sandbox',
-  'Website Audit Agent',
-  'DataBrief AI',
-  'Benchmark Intelligence Engine',
-  'AI Sports Campaign',
-  'Remoria',
-  'BlogAgent',
-  'TerritoryOps Spain',
-  'Raul Mermans Portfolio',
-])
+const caseStudySlugs = [
+  'opstwin',
+  'searchsignal',
+  'campaign-pulse',
+  'demandos',
+  'campaign-sandbox',
+  'data-brief-ai',
+  'website-auditor',
+  'benchmark-dashboard',
+  'ai-sports',
+  'remoria',
+  'blogagent',
+  'territoryops-spain',
+  'raul-portfolio',
+]
 
-assertOrder('out/case-studies/index.html', [
-  'Campaign Pulse',
-  'Campaign Sandbox',
-  'Website Audit Agent',
-  'DataBrief AI',
-  'Benchmark Intelligence Engine',
-  'Campaña deportiva con IA',
-  'Remoria',
-  'BlogAgent',
-  'TerritoryOps Spain',
-  'Raul Mermans Portfolio',
-])
+assertCaseStudyLinkOrder(
+  'out/en/case-studies/index.html',
+  '/en',
+  caseStudySlugs
+)
+assertCaseStudyLinkOrder('out/case-studies/index.html', '', caseStudySlugs)
 NODE
 
 echo "Static export verification passed."
