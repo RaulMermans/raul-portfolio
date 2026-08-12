@@ -1006,6 +1006,37 @@
   color: var(--text-primary);
 }
 
+/* Reserve dark surfaces for the thesis and outcome, as in the shared editorial case studies. */
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions,
+.case-study-page-new--searchsignal .searchsignal-experience-grid,
+.case-study-page-new--searchsignal .searchsignal-boundary-grid {
+  border-color: var(--cream-dark);
+  background: var(--cream-dark);
+}
+
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions article,
+.case-study-page-new--searchsignal .searchsignal-experience-grid article,
+.case-study-page-new--searchsignal .searchsignal-boundary-grid > article {
+  background: var(--surface-raised);
+}
+
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions h3,
+.case-study-page-new--searchsignal .searchsignal-experience-grid h3,
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions p,
+.case-study-page-new--searchsignal .searchsignal-experience-grid p,
+.case-study-page-new--searchsignal .searchsignal-boundary-grid li {
+  color: var(--text-primary);
+}
+
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions p,
+.case-study-page-new--searchsignal .searchsignal-experience-grid p {
+  color: var(--text-secondary);
+}
+
+.case-study-page-new--searchsignal .searchsignal-boundary-grid li {
+  border-color: var(--cream-dark);
+}
+
 @media (max-width: 720px) {
   .case-study-page-new--searchsignal .data-brief-hero__title {
     font-size: clamp(3rem, 15vw, 4.2rem);
