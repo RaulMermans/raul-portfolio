@@ -21,12 +21,14 @@ export default defineConfig({
       name: 'iphone-13',
       use: {
         ...devices['iPhone 13'],
+        browserName: 'chromium',
       },
     },
     {
       name: 'pixel-5',
       use: {
         ...devices['Pixel 5'],
+        browserName: 'chromium',
       },
     },
   ],

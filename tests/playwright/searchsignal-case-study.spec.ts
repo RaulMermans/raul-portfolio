@@ -9,7 +9,7 @@ test.describe('SearchSignal case study', () => {
     await expect(page.getByRole('heading', { name: 'SearchSignal' })).toBeVisible()
     await expect(page.locator('#searchsignal-title > span')).toHaveCount(2)
     await expect(page.getByText('Search quality starts before search.')).toBeVisible()
-    await expect(page.getByRole('link', { name: 'Open live demonstrator' })).toBeVisible()
+    await expect(page.getByLabel('Project links').getByRole('link', { name: 'Open live demonstrator' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'A visible path from source record to search result.' })).toBeVisible()
     await expect(page.locator('#premise-heading')).toHaveCSS('text-transform', 'uppercase')
     await expect(page.locator('#premise-heading')).toHaveCSS('font-family', /bebasNeue|Bebas Neue|Impact/i)
