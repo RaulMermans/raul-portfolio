@@ -91,7 +91,7 @@ const copy: Record<Locale, Copy> = {
 }
 
 function Section({ id, eyebrow, title, children, dark = false }: { id: string; eyebrow: string; title: string; children: React.ReactNode; dark?: boolean }) {
-  return <section id={id} className={`searchsignal-section ui-section${dark ? ' searchsignal-section--dark' : ''}`} aria-labelledby={`${id}-heading`}><div className="searchsignal-container ui-section__container"><header className="searchsignal-heading ui-section-heading"><p className="ui-eyebrow">{eyebrow}</p><h2 id={`${id}-heading`}>{title}</h2></header>{children}</div></section>
+  return <section id={id} className={`searchsignal-section ui-section${dark ? ' searchsignal-section--dark' : ''}`} aria-labelledby={`${id}-heading`}><div className="searchsignal-container ui-section__container"><header className="searchsignal-heading data-brief-refresh-heading ui-section-heading"><p className="ui-eyebrow">{eyebrow}</p><h2 id={`${id}-heading`}>{title}</h2></header>{children}</div></section>
 }
 
 function PipelineVisual({ steps }: { steps: Array<[string, string]> }) {
