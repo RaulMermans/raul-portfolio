@@ -7,7 +7,7 @@ test.describe('SearchSignal case study', () => {
     const hero = page.locator('.searchsignal-hero')
     await expect(hero).toHaveClass(/data-brief-hero/)
     await expect(page.getByRole('heading', { name: 'SearchSignal' })).toBeVisible()
-    await expect(page.locator('#searchsignal-title span')).toHaveCount(0)
+    await expect(page.locator('#searchsignal-title > span')).toHaveCount(2)
     await expect(page.getByText('Search quality starts before search.')).toBeVisible()
     await expect(page.getByRole('link', { name: 'Open live demonstrator' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'A visible path from source record to search result.' })).toBeVisible()
@@ -20,7 +20,7 @@ test.describe('SearchSignal case study', () => {
     }))
     expect(viewport.documentWidth).toBeLessThanOrEqual(viewport.viewportWidth)
 
-    await page.screenshot({ path: `/private/tmp/searchsignal-mobile-${testInfo.project.name}.png`, fullPage: false })
+    await page.screenshot({ path: testInfo.outputPath(`searchsignal-mobile-${testInfo.project.name}.png`), fullPage: false })
   })
 
   test('keeps its workflow and evidence visible on desktop', async ({ browser }, testInfo) => {
@@ -40,7 +40,7 @@ test.describe('SearchSignal case study', () => {
     }))
     expect(viewport.documentWidth).toBeLessThanOrEqual(viewport.viewportWidth)
 
-    await page.screenshot({ path: `/private/tmp/searchsignal-desktop-${testInfo.project.name}.png`, fullPage: false })
+    await page.screenshot({ path: testInfo.outputPath(`searchsignal-desktop-${testInfo.project.name}.png`), fullPage: false })
     await context.close()
   })
 })
