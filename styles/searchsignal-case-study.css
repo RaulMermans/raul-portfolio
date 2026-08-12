@@ -949,19 +949,24 @@
 }
 
 .case-study-page-new--searchsignal .data-brief-hero__title {
-  max-width: 10ch;
+  max-width: 8ch;
   margin: 0;
   color: var(--text-primary);
-  font-size: clamp(3.8rem, 7vw, 8rem);
-  line-height: var(--heading-line-height);
+  font-family: var(--font-heading);
+  font-size: clamp(4.25rem, 7.2vw, 8.5rem);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.88;
+  text-transform: uppercase;
 }
 
 .case-study-page-new--searchsignal .data-brief-hero__subtitle {
-  max-width: 49rem;
+  max-width: 42rem;
+  margin-top: var(--space-5);
   color: var(--text-primary);
-  font-family: var(--font-ui);
-  font-size: clamp(1.2rem, 2vw, 1.75rem);
-  line-height: 1.25;
+  font-family: var(--font-prose);
+  font-size: clamp(1.35rem, 1.8vw, 1.85rem);
+  line-height: 1.22;
 }
 
 .case-study-page-new--searchsignal .data-brief-hero__description {
@@ -974,13 +979,13 @@
 }
 
 .case-study-page-new--searchsignal .data-brief-hero__visual {
-  width: min(100%, 58rem);
+  width: min(100%, 48rem);
   justify-self: center;
 }
 
 .case-study-page-new--searchsignal .searchsignal-product-visual {
   border: var(--border-light);
-  box-shadow: var(--shadow-raised);
+  box-shadow: none;
 }
 
 .case-study-page-new--searchsignal .searchsignal-meta {
@@ -1039,7 +1044,12 @@
 
 @media (max-width: 720px) {
   .case-study-page-new--searchsignal .data-brief-hero__title {
-    font-size: clamp(3rem, 15vw, 4.2rem);
+    max-width: 100%;
+    font-size: clamp(3.4rem, 17vw, 4.8rem);
+  }
+
+  .case-study-page-new--searchsignal .data-brief-hero__subtitle {
+    font-size: clamp(1.2rem, 5.8vw, 1.5rem);
   }
 
   .case-study-page-new--searchsignal .searchsignal-meta {
