@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import AppCard from '@/components/apps/AppCard'
 import AppVisual from '@/components/apps/AppVisual'
 import { buildPageMetadata } from '@/lib/metadata'
+import styles from './AppsPages.module.css'
 
 export interface AppPageProps {
   params: {
@@ -65,10 +66,6 @@ export function getAppDetailMetadata(slug: string, locale: Locale = 'en'): Metad
   })
 }
 
-const muted = 'rgba(26, 23, 20, 0.45)'
-const bodyColor = 'rgba(26, 23, 20, 0.65)'
-const displayFont = 'var(--font-display), "Bebas Neue", Impact, sans-serif'
-
 interface AppDetailPageViewProps extends AppPageProps {
   locale?: Locale
 }
@@ -86,47 +83,31 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
   return (
     <>
       <Header locale={locale} />
-      <main style={{ background: 'var(--cream)', color: 'var(--ink)' }}>
-        <section className="relative overflow-hidden" style={{ borderBottom: '1px solid var(--cream-dark)' }}>
-          <div className="relative mx-auto max-w-[1400px] px-6 pb-20 pt-32 md:px-10 lg:pb-28 lg:pt-40">
+      <main className={styles.page}>
+        <section className={styles.detailHero}>
+          <div className={styles.container}>
             <Link
               href={localizePath('/apps', locale)}
-              className="mb-8 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] transition duration-300 hover:opacity-70"
-              style={{ color: muted }}
+              className={styles.breadcrumb}
             >
               <span>{copy.breadcrumbLabel}</span>
               <span>/</span>
               <span>{app.name}</span>
             </Link>
 
-            <div className="grid gap-12 lg:grid-cols-[0.84fr,1.16fr] lg:items-end">
-              <div className="max-w-2xl">
-                <div className="mb-6 flex flex-wrap gap-3">
-                  <span
-                    className="rounded-full px-4 py-2 text-[0.64rem] uppercase tracking-[0.26em]"
-                    style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-light)', color: muted }}
-                  >
-                    {app.status}
-                  </span>
-                  <span
-                    className="rounded-full px-4 py-2 text-[0.64rem] uppercase tracking-[0.26em]"
-                    style={{ border: '1px solid var(--cream-dark)', color: muted }}
-                  >
-                    {app.launchStage}
-                  </span>
+            <div className={styles.detailHeroGrid}>
+              <div className={styles.detailCopy}>
+                <div className={styles.detailTags}>
+                  <span className={styles.tag}>{app.status}</span>
+                  <span className={styles.tag}>{app.launchStage}</span>
                 </div>
 
-                <h1
-                  className="text-[clamp(4rem,9vw,7.6rem)] uppercase leading-[0.88]"
-                  style={{ fontFamily: displayFont, color: 'var(--ink)' }}
-                >
-                  {app.name}
-                </h1>
+                <h1 className={styles.detailTitle}>{app.name}</h1>
 
-                <p className="mt-6 max-w-xl text-[1.15rem] leading-8" style={{ color: 'var(--ink)', opacity: 0.78 }}>{app.heroStatement}</p>
-                <p className="mt-6 max-w-xl text-base leading-7" style={{ color: bodyColor }}>{app.shortDescription}</p>
+                <p className={styles.detailStatement}>{app.heroStatement}</p>
+                <p className={styles.detailDescription}>{app.shortDescription}</p>
 
-                <div className="mt-10 flex flex-wrap gap-4">
+                <div className={styles.actions}>
                   <Link
                     href={app.ctas.primary.href}
                     className="ui-button ui-button--primary"
@@ -143,18 +124,14 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
                   ) : null}
                 </div>
 
-                <div className="mt-12 grid gap-4 sm:grid-cols-3">
+                <dl className={styles.detailStats}>
                   {app.metrics.map((metric) => (
-                    <div
-                      key={metric.label}
-                      className="rounded-[22px] px-4 py-4"
-                      style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-light)' }}
-                    >
-                      <p className="text-[0.62rem] uppercase tracking-[0.22em]" style={{ color: muted }}>{metric.label}</p>
-                      <p className="mt-2 text-sm font-medium" style={{ color: 'var(--ink)' }}>{metric.value}</p>
+                    <div key={metric.label} className={`ui-surface ${styles.metric}`}>
+                      <dt>{metric.label}</dt>
+                      <dd>{metric.value}</dd>
                     </div>
                   ))}
-                </div>
+                </dl>
               </div>
 
               <AppVisual app={app} />
@@ -162,112 +139,77 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 lg:py-24">
-          <div className="mb-10 max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.32em]" style={{ color: muted }}>{copy.keyFlows}</p>
-            <h2
-              className="mt-3 text-[clamp(2.8rem,4.8vw,4.6rem)] uppercase leading-[0.92]"
-              style={{ fontFamily: displayFont, color: 'var(--ink)' }}
-            >
-              {copy.keyFlowsTitle}
-            </h2>
+        <section className={styles.detailSection} aria-labelledby="key-flows-title">
+          <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <p className={styles.eyebrow}>{copy.keyFlows}</p>
+            <h2 id="key-flows-title">{copy.keyFlowsTitle}</h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className={styles.featureGrid}>
             {app.features.map((feature) => (
-              <article
-                key={feature.title}
-                className="rounded-[28px] p-6"
-                style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-light)' }}
-              >
-                <p className="text-[0.62rem] uppercase tracking-[0.26em]" style={{ color: muted }}>{feature.eyebrow}</p>
-                <h3 className="mt-4 text-2xl leading-tight" style={{ color: 'var(--ink)' }}>{feature.title}</h3>
-                <p className="mt-4 text-sm leading-7" style={{ color: bodyColor }}>{feature.description}</p>
+              <article key={feature.title} className={styles.featureCard}>
+                <p className={styles.eyebrow}>{feature.eyebrow}</p>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
               </article>
             ))}
           </div>
+          </div>
         </section>
 
-        <section className="mx-auto max-w-[1400px] px-6 pb-20 md:px-10 lg:pb-24">
-          <div className="mb-10 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-xs uppercase tracking-[0.32em]" style={{ color: muted }}>{copy.selectedScreens}</p>
-              <h2
-                className="mt-3 text-[clamp(2.8rem,4.8vw,4.4rem)] uppercase leading-[0.92]"
-                style={{ fontFamily: displayFont, color: 'var(--ink)' }}
-              >
-                {copy.selectedScreensTitle}
-              </h2>
+        <section className={styles.detailSection} aria-labelledby="selected-screens-title">
+          <div className={styles.container}>
+          <div className={styles.sectionHeaderWide}>
+            <div className={styles.sectionHeader}>
+              <p className={styles.eyebrow}>{copy.selectedScreens}</p>
+              <h2 id="selected-screens-title">{copy.selectedScreensTitle}</h2>
             </div>
-            <p className="max-w-xl text-base leading-7" style={{ color: bodyColor }}>
-              {copy.selectedScreensBody}
-            </p>
+            <p>{copy.selectedScreensBody}</p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className={styles.galleryGrid}>
             {app.gallery.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-[30px] p-6"
-                style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-light)' }}
-              >
-                <p className="text-[0.62rem] uppercase tracking-[0.28em]" style={{ color: muted }}>{item.eyebrow}</p>
-                <h3 className="mt-4 text-[1.8rem] leading-tight" style={{ color: 'var(--ink)' }}>{item.title}</h3>
-                <p className="mt-4 text-sm leading-7" style={{ color: bodyColor }}>{item.description}</p>
-                <div className="mt-8 flex flex-wrap gap-2">
+              <article key={item.title} className={styles.galleryCard}>
+                <p className={styles.eyebrow}>{item.eyebrow}</p>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <div className={styles.galleryStats}>
                   {item.stats.map((stat) => (
-                    <span
-                      key={stat}
-                      className="rounded-full px-3 py-1 text-[0.62rem] uppercase tracking-[0.22em]"
-                      style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-warm)', color: muted }}
-                    >
-                      {stat}
-                    </span>
+                    <span key={stat}>{stat}</span>
                   ))}
                 </div>
               </article>
             ))}
           </div>
-        </section>
-
-        <section className="mx-auto max-w-[1400px] px-6 pb-20 md:px-10 lg:pb-24">
-          <div className="grid gap-6 lg:grid-cols-[0.78fr,1.22fr]">
-            <article className="rounded-[32px] p-8" style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-light)' }}>
-              <p className="text-xs uppercase tracking-[0.3em]" style={{ color: muted }}>{copy.productStory}</p>
-              <h2
-                className="mt-4 text-[clamp(2.4rem,4vw,3.6rem)] uppercase leading-[0.95]"
-                style={{ fontFamily: displayFont, color: 'var(--ink)' }}
-              >
-                {app.narrative.title}
-              </h2>
-              <p className="mt-5 text-base leading-7" style={{ color: bodyColor }}>{app.narrative.description}</p>
-            </article>
-
-            <div className="grid gap-4 sm:grid-cols-3">
-              {app.narrative.bullets.map((bullet) => (
-                <article
-                  key={bullet}
-                  className="rounded-[28px] p-6 text-sm leading-7"
-                  style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-warm)', color: bodyColor }}
-                >
-                  {bullet}
-                </article>
-              ))}
-            </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1400px] px-6 pb-24 md:px-10 lg:pb-28">
-          <div className="rounded-[36px] p-8 lg:p-10" style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-light)' }}>
-            <div className="mb-8 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+        <section className={styles.detailSection} aria-labelledby="product-story-title">
+          <div className={styles.container}>
+          <div className={styles.narrativeGrid}>
+            <article className={styles.narrativeCard}>
+              <p className={styles.eyebrow}>{copy.productStory}</p>
+              <h2 id="product-story-title" className={styles.narrativeTitle}>{app.narrative.title}</h2>
+              <p className={styles.narrativeCopy}>{app.narrative.description}</p>
+            </article>
+
+            <div className={styles.bulletGrid}>
+              {app.narrative.bullets.map((bullet) => (
+                <article key={bullet} className={styles.bulletCard}>{bullet}</article>
+              ))}
+            </div>
+          </div>
+          </div>
+        </section>
+
+        <section className={styles.detailSection} aria-labelledby="apps-archive-title">
+          <div className={styles.container}>
+          <div className={styles.archivePanel}>
+            <div className={styles.archiveHeader}>
               <div>
-                <p className="text-xs uppercase tracking-[0.32em]" style={{ color: muted }}>{locale === 'es' ? 'Productos seleccionados' : 'Selected products'}</p>
-                <h2
-                  className="mt-3 text-[clamp(2.6rem,4.5vw,4.2rem)] uppercase leading-[0.94]"
-                  style={{ fontFamily: displayFont, color: 'var(--ink)' }}
-                >
-                  {copy.archiveTitle}
-                </h2>
+                <p className={styles.eyebrow}>{locale === 'es' ? 'Productos seleccionados' : 'Selected products'}</p>
+                <h2 id="apps-archive-title" className={styles.archiveTitle}>{copy.archiveTitle}</h2>
               </div>
               <Link
                 href={localizePath('/apps', locale)}
@@ -277,7 +219,7 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
               </Link>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className={styles.relatedGrid}>
               {relatedApps.length > 0 ? (
                 relatedApps.map((relatedApp) => (
                   <AppCard
@@ -288,20 +230,15 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
                 ))
               ) : (
                 <>
-                  <article className="rounded-[32px] p-8" style={{ border: '1px solid var(--cream-dark)', background: 'var(--cream-warm)' }}>
-                    <p className="text-xs uppercase tracking-[0.3em]" style={{ color: muted }}>{locale === 'es' ? 'Resumen del archivo' : 'Archive overview'}</p>
-                    <h3
-                      className="mt-4 text-[clamp(2.2rem,3.8vw,3.2rem)] uppercase leading-[0.95]"
-                      style={{ fontFamily: displayFont, color: 'var(--ink)' }}
-                    >
-                      {locale === 'es' ? 'La rama de apps ya está activa.' : 'The apps branch is now live.'}
-                    </h3>
-                    <p className="mt-5 max-w-lg text-base leading-7" style={{ color: bodyColor }}>
+                  <article className={styles.emptyCard}>
+                    <p className={styles.eyebrow}>{locale === 'es' ? 'Resumen del archivo' : 'Archive overview'}</p>
+                    <h3>{locale === 'es' ? 'La sección de apps ya está activa.' : 'The apps section is live.'}</h3>
+                    <p>
                       {locale === 'es'
                         ? 'Overflow es la primera página viva de app, pero la estructura ya soporta un catálogo creciente de lanzamientos de producto, sistemas de interfaz y futuros experimentos.'
                         : 'Overflow is the first live app page, but the structure now supports a growing catalog of product launches, interface systems, and future app experiments.'}
                     </p>
-                    <div className="mt-8 flex flex-wrap gap-3">
+                    <div className={styles.actions}>
                       <Link
                         href={localizePath('/apps', locale)}
                         className="ui-button"
@@ -317,15 +254,10 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
                     </div>
                   </article>
 
-                  <article className="rounded-[32px] p-8" style={{ border: '1px dashed var(--cream-dark)', background: 'var(--cream-light)' }}>
-                    <p className="text-xs uppercase tracking-[0.3em]" style={{ color: muted }}>{locale === 'es' ? 'En desarrollo' : 'In development'}</p>
-                    <h3
-                      className="mt-4 text-[clamp(2.2rem,3.8vw,3.2rem)] uppercase leading-[0.95]"
-                      style={{ fontFamily: displayFont, color: 'var(--ink)' }}
-                    >
-                      {locale === 'es' ? 'Más productos entrarán en este sistema.' : 'More products will slot into this system.'}
-                    </h3>
-                    <p className="mt-5 max-w-lg text-base leading-7" style={{ color: bodyColor }}>
+                  <article className={styles.emptyCard}>
+                    <p className={styles.eyebrow}>{locale === 'es' ? 'En desarrollo' : 'In development'}</p>
+                    <h3>{locale === 'es' ? 'Más productos llegarán a este archivo.' : 'More products will join this archive.'}</h3>
+                    <p>
                       {locale === 'es'
                         ? 'Cuando la siguiente app esté lista, tendrá su ficha en el archivo y su propia landing de producto sin cambiar cómo navega la gente por el sitio.'
                         : 'When the next app is ready, it gets a tile in the archive and its own product landing without changing how visitors move through the site.'}
@@ -334,6 +266,7 @@ export function AppDetailPageView({ params, locale = 'en' }: AppDetailPageViewPr
                 </>
               )}
             </div>
+          </div>
           </div>
         </section>
       </main>

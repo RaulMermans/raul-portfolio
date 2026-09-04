@@ -23,7 +23,7 @@ export default function AppVisual({ app, compact = false }: AppVisualProps) {
 
   return (
     <div
-      className={`relative isolate overflow-hidden rounded-[32px] border border-white/10 shadow-[0_28px_90px_rgba(0,0,0,0.28)] ${
+      className={`relative isolate overflow-hidden rounded-[var(--radius-md)] border border-white/10 shadow-[0_28px_90px_rgba(0,0,0,0.28)] ${
         compact ? 'p-3 sm:p-4' : 'p-4 sm:p-6'
       }`}
       style={wrapperStyle}
@@ -35,15 +35,15 @@ export default function AppVisual({ app, compact = false }: AppVisualProps) {
             'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 45%, rgba(255, 255, 255, 0.02) 100%)',
         }}
       />
-      <div className="relative mx-auto max-w-[660px] rounded-[28px] border border-white/10 bg-black/30 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-4">
-        <div className="flex items-center justify-between gap-4 rounded-[20px] border border-white/10 bg-white/5 px-4 py-3 text-[0.64rem] uppercase tracking-[0.28em] text-white/50">
+      <div className="relative mx-auto max-w-[660px] rounded-[var(--radius-md)] border border-white/10 bg-black/30 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-4">
+        <div className="flex items-center justify-between gap-4 rounded-[var(--radius-md)] border border-white/10 bg-white/5 px-4 py-3 text-[0.64rem] uppercase tracking-[0.28em] text-white/50">
           <span>{app.name}</span>
           <span>{app.launchStage}</span>
         </div>
 
         <div className={`grid gap-3 pt-3 ${compact ? 'sm:grid-cols-[1.06fr,0.94fr]' : 'md:grid-cols-[1.08fr,0.92fr] md:gap-4 md:pt-4'}`}>
           <article
-            className={`flex h-full flex-col justify-between rounded-[24px] border p-5 text-white ${
+            className={`flex h-full flex-col justify-between rounded-[var(--radius-md)] border p-5 text-white ${
               compact ? 'min-h-[200px]' : 'min-h-[280px]'
             }`}
             style={primaryPanelStyle}
@@ -52,7 +52,7 @@ export default function AppVisual({ app, compact = false }: AppVisualProps) {
               <p className="text-[0.62rem] uppercase tracking-[0.28em] text-white/[0.48]">
                 {app.gallery[0]?.eyebrow}
               </p>
-              <h3 className={`${compact ? 'text-xl' : 'text-[1.75rem]'} font-medium leading-[1.05]`}>
+              <h3 className={`${compact ? 'text-xl' : 'text-[1.75rem]'} font-normal leading-[1.05]`}>
                 {app.gallery[0]?.title}
               </h3>
               <p className="max-w-sm text-sm leading-6 text-white/70">
@@ -76,12 +76,12 @@ export default function AppVisual({ app, compact = false }: AppVisualProps) {
             {app.gallery.slice(1).map((item) => (
               <article
                 key={item.title}
-                className="flex min-h-[132px] flex-col justify-between rounded-[22px] border p-4 text-white"
+                className="flex min-h-[132px] flex-col justify-between rounded-[var(--radius-md)] border p-4 text-white"
                 style={panelStyle}
               >
                 <div className="space-y-2">
                   <p className="text-[0.6rem] uppercase tracking-[0.24em] text-white/[0.45]">{item.eyebrow}</p>
-                  <h4 className="text-base font-medium leading-tight">{item.title}</h4>
+                  <h4 className="text-base font-normal leading-tight">{item.title}</h4>
                   <p className="text-sm leading-6 text-white/[0.65]">{item.description}</p>
                 </div>
 
@@ -105,7 +105,7 @@ export default function AppVisual({ app, compact = false }: AppVisualProps) {
             {app.metrics.map((metric) => (
               <div
                 key={metric.label}
-                className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-4"
+                className="rounded-[var(--radius-md)] border border-white/10 bg-white/5 px-4 py-4"
               >
                 <p className="text-[0.62rem] uppercase tracking-[0.22em] text-white/[0.42]">{metric.label}</p>
                 <p className="mt-2 text-sm font-medium text-white/[0.82]">{metric.value}</p>

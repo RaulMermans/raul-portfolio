@@ -364,18 +364,25 @@ export default function PhotographyPage() {
 
   return (
     <>
-      <div className="grain" aria-hidden="true"></div>
-
       <Header locale={locale} />
 
       {/* Masonry Gallery */}
-      <main id="main-content" role="main" className="gallery" aria-label={locale === 'es' ? 'Galería de fotografía' : 'Photography gallery'}>
-        <h1 className="visually-hidden">{locale === 'es' ? 'Fotografía' : 'Photography'}</h1>
+      <main id="main-content" role="main" className="gallery photography-page" aria-labelledby="photography-title">
+        <section className="ui-page-intro photography-intro">
+          <div className="ui-page-intro__container">
+            <div className="ui-page-intro__content">
+              <p className="ui-eyebrow">{locale === 'es' ? 'Archivo visual' : 'Visual archive'}</p>
+              <h1 id="photography-title">{locale === 'es' ? 'Fotografía' : 'Photography'}</h1>
+              <p>{locale === 'es' ? 'Una selección de fotografía de paisaje, arquitectura y calle.' : 'A selection of landscape, architecture, and street photography.'}</p>
+            </div>
+          </div>
+        </section>
+
         {/* Mobile category header */}
         <div className="photography-header-mobile">
           <div className="photography-header-mobile__inner">
             <div>
-              <p className="photography-header-mobile__eyebrow">{locale === 'es' ? 'Fotografía' : 'Photography'}</p>
+              <p className="photography-header-mobile__eyebrow">{locale === 'es' ? 'Categoría' : 'Category'}</p>
               <div className="photography-header-mobile__heading">
                 <p className="photography-category-title-mobile">
                   {categoriesState[activeCategory]?.name || (locale === 'es' ? 'Paisaje' : 'Landscape')}

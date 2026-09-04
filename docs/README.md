@@ -9,6 +9,12 @@
 - **`styles/`** - Global CSS
 - **`types/`** - TypeScript definitions
 
+## Portfolio governance
+
+- **[Portfolio experience system](PORTFOLIO_EXPERIENCE_SYSTEM.md)** - The canonical brand, UX, art-direction, case-study, and quality rules for public portfolio work.
+
+The corresponding routed skills live in `.codex/skills/`. Start any public-route change with `$portfolio-experience-system`.
+
 ## Image Upload Locations
 
 - **Case Studies:** `public/images/case-studies/{case-study-name}/`

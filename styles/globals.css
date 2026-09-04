@@ -55,8 +55,8 @@ body {
 
 @media (max-width: 768px) {
   body {
-    font-size: 0.9375rem;
-    /* 15px base for better mobile readability */
+    font-size: 1rem;
+    /* Keep the base at 16px so body copy remains readable and controls avoid iOS zoom. */
     line-height: 1.65;
   }
 }
@@ -3459,6 +3459,16 @@ html.homepage .footer {
   /* Less padding needed since nav moved to top */
 }
 
+.gallery.photography-page {
+  padding-top: 0;
+}
+
+.photography-intro {
+  padding-top: calc(var(--header-height) + var(--section-block-padding));
+  padding-bottom: var(--section-block-padding-compact);
+  border-bottom: var(--border-light);
+}
+
 .gallery::-webkit-scrollbar {
   width: 4px;
 }
@@ -3829,12 +3839,10 @@ html.homepage .footer {
     width: 100%;
     gap: var(--space-3);
     padding: var(--space-4);
-    border: 1px solid rgba(26, 23, 20, 0.08);
-    border-radius: 1.6rem;
-    background: rgba(250, 247, 243, 0.9);
-    box-shadow:
-      0 20px 44px rgba(26, 23, 20, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    border: var(--border-light);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-raised);
   }
 
   .photography-header-mobile__eyebrow {
@@ -3904,9 +3912,9 @@ html.homepage .footer {
     min-height: 48px;
     padding: 0 var(--space-4);
     padding-right: calc(var(--space-6) + 20px);
-    border: 1px solid rgba(26, 23, 20, 0.12);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.92);
+    border: var(--border-light);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
     color: var(--ink);
     font-family: var(--font-mono), 'Space Mono', monospace;
     font-size: 0.75rem;
@@ -3946,6 +3954,15 @@ html.homepage .footer {
     padding-right: 0;
   }
 
+  .gallery.photography-page {
+    padding-top: 0;
+  }
+
+  .photography-intro {
+    padding-top: calc(var(--header-height) + var(--space-8));
+    padding-bottom: var(--space-7);
+  }
+
   /* Single column editorial layout on mobile */
   .gallery__grid {
     columns: 1;
@@ -3959,7 +3976,7 @@ html.homepage .footer {
     break-inside: avoid;
     margin-bottom: var(--space-4);
     width: 100%;
-    border-radius: 1.1rem;
+    border-radius: var(--radius-md);
     overflow: hidden;
   }
 
@@ -5915,8 +5932,8 @@ a[href^='/']:hover {
   /* Gallery items inherit from mobile section - no width override needed */
 
   html {
-    font-size: 15px;
-    /* Slightly smaller base for very small screens */
+    font-size: 16px;
+    /* Preserve readable body copy and prevent iOS form zoom. */
   }
 
   /* Ensure scroll icon is centered on small screens */
@@ -6524,6 +6541,10 @@ a[href^='/']:hover {
   padding-bottom: clamp(4rem, 8vw, 8rem);
 }
 
+.case-studies-index--gallery .ui-page-intro {
+  padding-top: 0;
+}
+
 .case-studies-index--browser {
   min-height: 100svh;
   padding-top: calc(var(--header-height) + clamp(0.35rem, 1vw, 0.85rem));
@@ -6800,6 +6821,107 @@ a[href^='/']:hover {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(2rem, 3vw, 3rem) clamp(0.75rem, 1.2vw, 1.1rem);
   padding: 0 clamp(0.75rem, 1.25vw, 1rem);
+}
+
+/* Thumbnail-led case-study landing: deliberately irregular, with titles as the only visible copy. */
+.case-study-thumbnail-gallery {
+  width: min(100%, var(--section-content-max));
+  margin: 0 auto;
+  padding: 0 var(--section-inline-padding);
+}
+
+.case-study-thumbnail-gallery .case-study-project-grid {
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem) clamp(0.65rem, 1vw, 1rem);
+  padding: 0;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile {
+  grid-column: span 3;
+  grid-template-rows: auto auto;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile--portrait {
+  grid-column: span 4;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile--landscape {
+  grid-column: span 5;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile--tall {
+  grid-column: span 3;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__frame {
+  height: auto;
+  aspect-ratio: var(--case-study-thumbnail-ratio);
+  border-radius: var(--radius-sm);
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__frame::after {
+  display: none;
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__caption {
+  gap: 0;
+  padding-top: var(--space-3);
+}
+
+.case-study-thumbnail-gallery .case-study-project-tile__title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+@media (max-width: 980px) {
+  .case-study-thumbnail-gallery .case-study-project-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile {
+    grid-column: span 2;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--portrait {
+    grid-column: span 3;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--landscape {
+    grid-column: span 3;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--tall {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-study-thumbnail-gallery {
+    padding-inline: 0.75rem;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-3);
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile {
+    grid-column: span 1;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--portrait {
+    grid-column: span 2;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--landscape {
+    grid-column: span 2;
+  }
+
+  .case-study-thumbnail-gallery .case-study-project-tile--tall {
+    grid-column: span 1;
+  }
 }
 
 .case-study-project-tile {
@@ -7426,6 +7548,10 @@ a[href^='/']:hover {
 
   .case-study-project-grid {
     padding-inline: 0.75rem;
+    scroll-margin-top: calc(var(--header-height) + 0.75rem);
+  }
+
+  #case-study-grid {
     scroll-margin-top: calc(var(--header-height) + 0.75rem);
   }
 

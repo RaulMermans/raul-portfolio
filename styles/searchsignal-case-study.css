@@ -4,6 +4,7 @@
   --signal-line: var(--cream-dark);
   --signal-muted: var(--text-muted);
   --signal-accent: var(--gold);
+  --font-heading: var(--font-display);
   background: var(--signal-light);
   color: var(--text-primary);
 }
@@ -930,5 +931,185 @@
 
   .searchsignal-next-list li {
     grid-template-columns: 3rem minmax(0, 1fr);
+  }
+}
+
+/* Reuse the shared case-study hero rather than maintaining a one-off dark banner. */
+.case-study-page-new--searchsignal .searchsignal-hero {
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+
+.case-study-page-new--searchsignal .data-brief-back {
+  color: var(--text-muted);
+}
+
+.case-study-page-new--searchsignal .data-brief-back:hover,
+.case-study-page-new--searchsignal .data-brief-back:focus-visible {
+  color: var(--text-primary);
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__title {
+  max-width: 6.75ch;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
+  font-size: clamp(4.5rem, 7vw, 8rem);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.84;
+  text-transform: uppercase;
+  text-wrap: initial;
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__title > span {
+  display: block;
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__subtitle {
+  max-width: 42rem;
+  margin-top: var(--space-5);
+  color: var(--text-primary);
+  font-family: var(--font-prose);
+  font-size: clamp(1.35rem, 1.8vw, 1.85rem);
+  line-height: 1.22;
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__description {
+  max-width: 46rem;
+  color: var(--text-secondary);
+}
+
+.case-study-page-new--searchsignal .searchsignal-status {
+  color: var(--text-muted);
+}
+
+.case-study-page-new--searchsignal .data-brief-hero__visual {
+  width: min(100%, 42rem);
+  justify-self: center;
+}
+
+.case-study-page-new--searchsignal .searchsignal-product-visual {
+  border: var(--border-light);
+  box-shadow: none;
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  max-width: 48rem;
+  margin-top: var(--space-6);
+  border: var(--border-light);
+  padding: 0;
+  background: var(--cream-dark);
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta div {
+  padding: var(--space-4);
+  background: var(--surface-raised);
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta dt {
+  color: var(--text-muted);
+}
+
+.case-study-page-new--searchsignal .searchsignal-meta dd {
+  color: var(--text-primary);
+}
+
+/* Reserve dark surfaces for the thesis and outcome, as in the shared editorial case studies. */
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions,
+.case-study-page-new--searchsignal .searchsignal-experience-grid,
+.case-study-page-new--searchsignal .searchsignal-boundary-grid {
+  border-color: var(--cream-dark);
+  background: var(--cream-dark);
+}
+
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions article,
+.case-study-page-new--searchsignal .searchsignal-experience-grid article,
+.case-study-page-new--searchsignal .searchsignal-boundary-grid > article {
+  background: var(--surface-raised);
+}
+
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions h3,
+.case-study-page-new--searchsignal .searchsignal-experience-grid h3,
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions p,
+.case-study-page-new--searchsignal .searchsignal-experience-grid p,
+.case-study-page-new--searchsignal .searchsignal-boundary-grid li {
+  color: var(--text-primary);
+}
+
+.case-study-page-new--searchsignal .searchsignal-card-grid--decisions p,
+.case-study-page-new--searchsignal .searchsignal-experience-grid p {
+  color: var(--text-secondary);
+}
+
+.case-study-page-new--searchsignal .searchsignal-boundary-grid li {
+  border-color: var(--cream-dark);
+}
+
+/* SearchSignal chapters use the same single-axis editorial heading treatment as OpsTwin. */
+.case-study-page-new--searchsignal .searchsignal-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--section-heading-gap);
+  max-width: var(--section-copy-max);
+  margin-bottom: var(--section-content-gap);
+}
+
+.case-study-page-new--searchsignal .searchsignal-heading h2,
+.case-study-page-new--searchsignal .searchsignal-final h2 {
+  max-width: 14ch;
+  color: var(--text-primary);
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
+  font-size: clamp(3.1rem, 6vw, 6.5rem);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.case-study-page-new--searchsignal .searchsignal-section--dark .searchsignal-heading h2,
+.case-study-page-new--searchsignal .searchsignal-final h2 {
+  color: var(--cream);
+}
+
+.case-study-page-new--searchsignal .searchsignal-premise > p {
+  color: var(--text-secondary);
+}
+
+/* The full case study shares the portfolio's display, reading, and utility font roles. */
+.case-study-page-new--searchsignal :is(h1, h2, h3) {
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.case-study-page-new--searchsignal :is(.ui-eyebrow, .data-brief-eyebrow, dt, .searchsignal-status, .searchsignal-meta dt) {
+  font-family: var(--font-code);
+}
+
+.case-study-page-new--searchsignal :is(.searchsignal-prose p, .searchsignal-premise > p, .searchsignal-insight > p, .searchsignal-final > p) {
+  font-family: var(--font-prose);
+}
+
+@media (max-width: 720px) {
+  .case-study-page-new--searchsignal .data-brief-hero__title {
+    max-width: 100%;
+    font-size: clamp(3.6rem, 16vw, 4.8rem);
+  }
+
+  .case-study-page-new--searchsignal .data-brief-hero__subtitle {
+    font-size: clamp(1.2rem, 5.8vw, 1.5rem);
+  }
+
+  .case-study-page-new--searchsignal .searchsignal-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-page-new--searchsignal .searchsignal-heading h2,
+  .case-study-page-new--searchsignal .searchsignal-final h2 {
+    max-width: 100%;
+    font-size: clamp(3rem, 14vw, 4.5rem);
   }
 }

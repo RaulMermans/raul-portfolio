@@ -34,6 +34,31 @@ type CaseStudyEntry = Omit<CaseStudy, 'href'>
 const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
   en: [
     {
+      id: 13,
+      slug: 'relay',
+      title: 'Relay',
+      description:
+        'Marketing intelligence workspace that turns Meta Ads, Google Ads, and Shopify exports into validated performance reporting.',
+      commercialRelevance:
+        'Shows how a reporting workflow can keep ecommerce revenue, platform attribution, data quality, and interpretation distinct and inspectable.',
+      tags: [
+        'Marketing Intelligence',
+        'Data Health',
+        'Reporting',
+        'Next.js',
+        'TypeScript',
+      ],
+      status: 'Protected private beta',
+      cta: 'View case study',
+      image: '/images/case-studies/relay/thumb.svg',
+      imageWidth: 1200,
+      imageHeight: 800,
+      color: 'var(--accent)',
+      subtitle: 'Marketing intelligence / Data product',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/Relay',
+    },
+    {
       id: 11,
       slug: 'opstwin',
       title: 'OpsTwin',
@@ -324,6 +349,31 @@ const caseStudyEntries: Record<Locale, CaseStudyEntry[]> = {
     },
   ],
   es: [
+    {
+      id: 13,
+      slug: 'relay',
+      title: 'Relay',
+      description:
+        'Espacio de inteligencia de marketing que convierte exportaciones de Meta Ads, Google Ads y Shopify en reporting de rendimiento validado.',
+      commercialRelevance:
+        'Muestra cómo un flujo de reporting puede mantener separados e inspeccionables los ingresos ecommerce, la atribución de plataforma, la calidad de datos y la interpretación.',
+      tags: [
+        'Inteligencia de marketing',
+        'Data Health',
+        'Reporting',
+        'Next.js',
+        'TypeScript',
+      ],
+      status: 'Beta privada protegida',
+      cta: 'Ver caso de estudio',
+      image: '/images/case-studies/relay/thumb.svg',
+      imageWidth: 1200,
+      imageHeight: 800,
+      color: 'var(--accent)',
+      subtitle: 'Inteligencia de marketing / Producto de datos',
+      mood: ['minimal', 'tech', 'editorial'],
+      githubUrl: 'https://github.com/RaulMermans/Relay',
+    },
     {
       id: 11,
       slug: 'opstwin',

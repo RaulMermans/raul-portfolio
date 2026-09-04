@@ -1,0 +1,4 @@
+interface:
+  display_name: "Home Page Design Language"
+  short_description: "Enforce the portfolio visual baseline"
+  default_prompt: "Apply the home-page design language to this frontend change and verify it against the portfolio baseline."

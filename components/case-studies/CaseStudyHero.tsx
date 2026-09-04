@@ -1,6 +1,4 @@
 'use client'
-
-import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { CaseStudyHero as CaseStudyHeroType } from '@/types/case-study'
@@ -14,33 +12,10 @@ interface CaseStudyHeroProps {
 }
 
 export default function CaseStudyHero({ hero, accentColor, locale = 'en' }: CaseStudyHeroProps) {
-  const heroRef = useRef<HTMLElement>(null)
   const copy = getSiteCopy(locale).caseStudiesUi
 
-  useEffect(() => {
-    // Parallax effect on scroll — rAF-throttled to avoid layout thrash every frame
-    let ticking = false
-    const handleScroll = () => {
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(() => {
-        if (!heroRef.current) { ticking = false; return }
-        const scrolled = window.scrollY
-        const heroImage = heroRef.current.querySelector<HTMLElement>('.case-study-hero-new__image')
-        if (heroImage) {
-          heroImage.style.transform = `translateY(${scrolled * 0.2}px)`
-        }
-        ticking = false
-      })
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   return (
-    <section 
-      ref={heroRef}
+    <section
       className="case-study-hero-new"
       style={{ '--accent-color': accentColor } as React.CSSProperties}
     >
@@ -60,7 +35,6 @@ export default function CaseStudyHero({ hero, accentColor, locale = 'en' }: Case
           <div className="case-study-hero-new__overlay"></div>
         </div>
       </div>
-      
       <div className="case-study-hero-new__content">
         <div className="case-study-hero-new__container">
           <Link href={localizePath('/case-studies', locale)} className="data-brief-back">

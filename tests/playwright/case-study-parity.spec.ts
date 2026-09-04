@@ -1,12 +1,13 @@
 import { expect, test } from '@playwright/test'
 
 const caseStudySlugs = [
-  'campaign-pulse',
-  'campaign-sandbox',
-  'website-auditor',
   'opstwin',
+  'searchsignal',
+  'campaign-pulse',
   'demandos',
+  'campaign-sandbox',
   'data-brief-ai',
+  'website-auditor',
   'benchmark-dashboard',
   'ai-sports',
   'remoria',
@@ -16,6 +17,22 @@ const caseStudySlugs = [
 ] as const
 
 for (const locale of ['es', 'en'] as const) {
+  test(`case-study index has a visible collection introduction in ${locale}`, async ({
+    page,
+  }) => {
+    const prefix = locale === 'en' ? '/en' : ''
+    const title = locale === 'es' ? 'Casos de estudio' : 'Case Studies'
+
+    await page.goto(`${prefix}/case-studies`, { waitUntil: 'domcontentloaded' })
+
+    const intro = page.locator('.ui-page-intro')
+    await expect(intro).toBeVisible()
+    await expect(intro.getByRole('heading', { level: 1, name: title })).toBeVisible()
+    await expect(intro.locator('.ui-eyebrow')).toHaveText(
+      locale === 'es' ? 'Trabajo seleccionado' : 'Selected work'
+    )
+  })
+
   test(`case-study index follows the portfolio priority order in ${locale}`, async ({
     page,
   }) => {
