@@ -1,0 +1,105 @@
+.card {
+  position: relative;
+  display: block;
+  overflow: clip;
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-base) var(--ease),
+    box-shadow var(--transition-base) var(--ease),
+    transform var(--transition-base) var(--ease);
+}
+
+.card:hover {
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-raised);
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.label {
+  display: inline-flex;
+  min-height: var(--touch-min);
+  align-items: center;
+  padding-inline: var(--space-3);
+  border: var(--border-light);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.arrow {
+  color: var(--text-muted);
+  font-size: var(--text-md);
+  line-height: var(--touch-min);
+  transition: transform var(--transition-base) var(--ease);
+}
+
+.card:hover .arrow {
+  transform: translateX(var(--space-2));
+}
+
+.content {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.title {
+  min-block-size: var(--card-heading-block);
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--heading-line-height);
+  text-transform: uppercase;
+}
+
+.stage {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.description {
+  max-width: var(--prose-measure);
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  line-height: var(--body-line-height);
+}
+
+.visual {
+  margin-top: var(--space-7);
+}
+
+@media (max-width: 47.99rem) {
+  .title {
+    min-block-size: auto;
+  }
+}

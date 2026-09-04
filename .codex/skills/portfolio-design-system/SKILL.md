@@ -7,6 +7,8 @@ description: Enforce the Raúl Mermans portfolio design system when creating, ed
 
 Use `styles/design-system.css` as the source of truth. Keep changes small, semantic, and reusable; do not introduce a new visual direction from one page or case study.
 
+For public routes, start with `$portfolio-experience-system`. It selects the applicable page, case-study, art-direction, and interface-quality contracts before this skill governs token-level implementation.
+
 ## Start every UI task
 
 1. Read `styles/design-system.css`, the affected component, and its adjacent styles.

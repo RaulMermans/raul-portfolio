@@ -37,6 +37,7 @@
   --text-hero: clamp(4rem, 2.8947rem + 5.5263vw, 7.5rem);
   --heading-line-height: 0.98;
   --body-line-height: 1.6;
+  --prose-line-height: 1.6;
   --tracking-tight: -0.02em;
   --tracking-wide: 0.1em;
   --tracking-wider: 0.2em;
@@ -63,6 +64,8 @@
   --section-inline-padding: clamp(1.25rem, 5vw, 5rem);
   --section-content-max: 86rem;
   --section-copy-max: 58rem;
+  --prose-measure: 42rem;
+  --prose-paragraph-gap: var(--space-5);
   --section-heading-gap: clamp(1rem, 2vw, 1.5rem);
   --section-content-gap: clamp(2.5rem, 5vw, 4rem);
   --card-heading-block: 2lh;
@@ -84,6 +87,7 @@
   --surface-raised: var(--cream-light);
   --surface-muted: var(--cream-warm);
   --surface-inverse: var(--ink);
+  --surface-accent-subtle: rgba(196, 30, 58, 0.06);
   --text-primary: var(--ink);
   --text-secondary: var(--ink-soft);
   --text-muted: var(--ink-muted);
@@ -91,6 +95,7 @@
   --border-dark: 1px solid var(--ink);
   --border-faint: 1px solid rgba(255, 255, 255, 0.15);
   --shadow-raised: 0 18px 48px rgba(26, 23, 20, 0.08);
+  --shadow-accent: 0 10px 24px rgba(196, 30, 58, 0.12);
 
   /* Shared breakpoint labels for docs and JS/CSS parity */
   --mobile-xs: 480px;
@@ -166,6 +171,42 @@ body {
   margin-inline: auto;
 }
 
+.ui-page-intro {
+  padding: var(--section-block-padding) var(--section-inline-padding) var(--section-block-padding-compact);
+}
+
+.ui-page-intro__container {
+  width: min(100%, var(--section-content-max));
+  margin-inline: auto;
+}
+
+.ui-page-intro__content {
+  display: grid;
+  gap: var(--section-heading-gap);
+  max-width: var(--section-copy-max);
+}
+
+.ui-page-intro__content h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-hero);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--heading-line-height);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.ui-page-intro__content > p:not(.ui-eyebrow) {
+  max-width: var(--prose-measure);
+  margin: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-prose);
+  font-size: var(--text-md);
+  line-height: var(--prose-line-height);
+}
+
 .ui-section-heading {
   display: grid;
   gap: var(--section-heading-gap);
@@ -212,7 +253,51 @@ body {
   color: var(--text-secondary);
   font-family: var(--font-prose);
   font-size: clamp(1.05rem, 1.5vw, 1.22rem);
-  line-height: 1.7;
+  line-height: var(--prose-line-height);
+}
+
+.ui-prose {
+  max-width: var(--prose-measure);
+  font-family: var(--font-prose);
+  font-size: var(--text-base);
+  line-height: var(--prose-line-height);
+}
+
+.ui-prose > * + * {
+  margin-block-start: var(--prose-paragraph-gap);
+}
+
+.ui-media {
+  margin: 0;
+  overflow: clip;
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+}
+
+.ui-media > img,
+.ui-media picture > img {
+  width: 100%;
+  height: auto;
+}
+
+.ui-media--contained > img,
+.ui-media--contained picture > img {
+  object-fit: contain;
+}
+
+.ui-media figcaption {
+  padding: var(--space-4) var(--space-5);
+  border-top: var(--border-light);
+  color: var(--text-secondary);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1.5;
+}
+
+.ui-media--full {
+  width: 100%;
 }
 
 .ui-button,
@@ -227,7 +312,7 @@ body {
   justify-content: center;
   gap: 0.75rem;
   border: 1px solid var(--cream-dark);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-button);
   background: transparent;
   color: var(--ink-soft);
   font-family: var(--font-code);
@@ -265,10 +350,10 @@ body {
 .case-studies-split__cta:hover,
 .case-studies-split__cta:focus-visible {
   border-color: var(--accent);
-  background: rgba(196, 30, 58, 0.06);
+  background: var(--surface-accent-subtle);
   color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(196, 30, 58, 0.12);
+  box-shadow: var(--shadow-accent);
 }
 
 .ui-button--primary,

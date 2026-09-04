@@ -57,6 +57,9 @@ export default function CaseStudiesPage() {
   const schemas = getSchemas(locale)
   const isSpanish = locale === 'es'
   const heading = isSpanish ? 'Casos de estudio' : 'Case Studies'
+  const intro = isSpanish
+    ? 'Productos, campañas y sistemas de marca. Cada caso sigue el trabajo desde el contexto hasta las decisiones, pruebas y límites que le dieron forma.'
+    : 'Products, campaigns, and brand systems. Each case follows the work from context to the decisions, evidence, and limits that shaped it.'
 
   return (
     <>
@@ -78,6 +81,17 @@ export default function CaseStudiesPage() {
             __html: JSON.stringify(schemas.breadcrumb),
           }}
         />
+        <section className="ui-page-intro" aria-labelledby="case-studies-heading">
+          <div className="ui-page-intro__container">
+            <div className="ui-page-intro__content">
+              <p className="ui-eyebrow">
+                {isSpanish ? 'Trabajo seleccionado' : 'Selected work'}
+              </p>
+              <h1 id="case-studies-heading">{heading}</h1>
+              <p>{intro}</p>
+            </div>
+          </div>
+        </section>
         <section
           id="case-study-grid"
           className="case-study-thumbnail-gallery"
@@ -85,9 +99,6 @@ export default function CaseStudiesPage() {
           data-mobile-audit="case-study-grid"
         >
           <div className="case-study-project-grid">
-            <h1 id="case-studies-heading" className="visually-hidden">
-              {heading}
-            </h1>
             {caseStudies.map((study, index) => {
               const variant =
                 tileVariants[(study.id + index) % tileVariants.length]

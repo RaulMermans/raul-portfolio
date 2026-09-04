@@ -36,6 +36,9 @@ assert_file out/en/case-studies/index.html
 assert_file out/case-studies/blogagent/index.html
 assert_file out/en/case-studies/blogagent/index.html
 assert_file out/es/case-studies/blogagent/index.html
+assert_file out/case-studies/relay/index.html
+assert_file out/en/case-studies/relay/index.html
+assert_file out/es/case-studies/relay/index.html
 
 assert_file out/en/services/ai-integrations/index.html
 assert_file out/en/services/creative-automation/index.html
@@ -73,8 +76,10 @@ assert_contains out/services/prototipos-producto-ia/index.html "Prototipos de Pr
 
 assert_contains out/en/case-studies/index.html "View case study: AI Sports Campaign"
 assert_contains out/en/case-studies/index.html "View case study: BlogAgent"
+assert_contains out/en/case-studies/index.html "View case study: Relay"
 assert_contains out/case-studies/index.html "Ver caso de estudio: Campaña deportiva con IA"
 assert_contains out/case-studies/index.html "Ver caso de estudio: BlogAgent"
+assert_contains out/case-studies/index.html "Ver caso de estudio: Relay"
 
 assert_contains out/en/case-studies/blogagent/index.html "reviewer veto before publication"
 assert_contains out/case-studies/blogagent/index.html "poder de veto antes de publicar"
@@ -129,6 +134,7 @@ const caseStudySlugs = [
   'blogagent',
   'territoryops-spain',
   'raul-portfolio',
+  'relay',
 ]
 
 assertCaseStudyLinkOrder(

@@ -1,9 +1,13 @@
 ---
 name: home-page-design-language
-description: Enforce the Raúl Mermans portfolio home-page visual language for every frontend design, implementation, audit, landing page, case study, component, and CSS change in this repository. Use whenever typography, color, spacing, layout, cards, controls, motion, responsive behavior, or visual hierarchy could change.
+description: Use the Raúl Mermans home page as the canonical visual reference when implementing or reviewing its components, or when a routed portfolio experience task needs to validate shared typography, surface, hierarchy, and rhythm against the live home page.
 ---
 
 # Home page design language
+
+## Place in the system
+
+`$portfolio-experience-system` is the public-route entrypoint. It routes landing pages, case studies, media, and interface review to their dedicated contracts. Use this skill as the live visual reference, not as a competing page-architecture system. The home page shows the foundation in practice; it does not require every other route to copy its layout.
 
 Treat the home page as the canonical visual reference. Use `styles/design-system.css` for tokens and `components/Hero.module.css`, `components/HomeNarrative.module.css`, and the rendered home page for the visual baseline.
 

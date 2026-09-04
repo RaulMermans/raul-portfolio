@@ -69,6 +69,9 @@ jobs:
       - name: Verify export output
         run: npm run verify:export
 
+      - name: Verify portfolio experience system
+        run: npm run verify:experience-system
+
       - name: Check DemandOS public copy
         run: |
           set -euo pipefail

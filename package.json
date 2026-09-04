@@ -10,6 +10,7 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "verify:export": "bash scripts/verify-export.sh",
+    "verify:experience-system": "node scripts/verify-portfolio-system.mjs",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots",
     "analyze": "ANALYZE=true next build"
