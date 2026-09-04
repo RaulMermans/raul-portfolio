@@ -38,6 +38,7 @@ assert_file out/en/case-studies/blogagent/index.html
 assert_file out/es/case-studies/blogagent/index.html
 assert_file out/case-studies/relay/index.html
 assert_file out/en/case-studies/relay/index.html
+assert_file out/es/case-studies/relay/index.html
 
 assert_file out/en/services/ai-integrations/index.html
 assert_file out/en/services/creative-automation/index.html
