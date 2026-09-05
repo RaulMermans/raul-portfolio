@@ -14,6 +14,12 @@ Every full case study uses this sequence, combining adjacent chapters only when 
 
 Metadata may sit after the hero or beside the introduction. It must not displace the project purpose or become an oversized dashboard.
 
+## Enforceable foundation
+
+Every full route must expose one `data-case-study-hero` with a valid `data-presentation-family`, return link, visible shared case-study label, H1, and purpose/tagline. The hero is followed by the shared `CaseStudyMiniNav` and exactly one `CaseStudySnapshot` with Problem, System, Proof, Value, and Limitation facts. It ends with `CaseStudyNext`.
+
+The first three elements are not project-level design choices. Technical, creative, and hybrid work may change only the evidence composition, image mood, proof modules, and accent treatment around that foundation. Register the project in `data/case-study-editorial.ts`; its snapshot and related work must be real, project-specific, and localized.
+
 ## Chapter navigation
 
 When a full case study needs in-page chapter links, render them with `CaseStudyMiniNav`. The chapter path is a single horizontal sequence at desktop widths. At smaller widths it remains a single, touch-scrollable row instead of wrapping into multiple lines or a vertical stack. Visual families may vary color, border, and background only; they do not change this navigation geometry.

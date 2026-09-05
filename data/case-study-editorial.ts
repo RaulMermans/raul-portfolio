@@ -16,6 +16,7 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
+  'relay',
   'opstwin',
   'searchsignal',
   'campaign-pulse',
@@ -68,6 +69,40 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
       },
     },
     related: ['demandos', 'campaign-pulse', 'data-brief-ai'],
+  },
+  searchsignal: {
+    category: { en: 'Ecommerce Search', es: 'Búsqueda ecommerce' },
+    proofTags: {
+      en: ['Live demonstrator', 'Public repository', 'Catalog rules'],
+      es: ['Demostrador en vivo', 'Repositorio público', 'Reglas de catálogo'],
+    },
+    snapshot: {
+      en: {
+        problem:
+          'Search quality fails upstream when products arrive with incomplete, ambiguous, or inconsistent catalog facts.',
+        system:
+          'An inspectable catalog-readiness framework that normalizes product records, exposes gaps, and keeps keyword, semantic, and hybrid search tied to canonical data.',
+        proof:
+          'A deployed synthetic demonstrator, public repository, product-state illustrations, explicit readiness checks, and documented product decisions.',
+        value:
+          'Helps ecommerce teams treat search quality as a catalog and information-architecture decision before it becomes a ranking problem.',
+        limitation:
+          'Portfolio demonstrator only: product data is synthetic, it is not connected to a live store, and it does not claim production search performance.',
+      },
+      es: {
+        problem:
+          'La calidad de búsqueda falla antes cuando los productos llegan con datos de catálogo incompletos, ambiguos o inconsistentes.',
+        system:
+          'Un marco inspeccionable de readiness de catálogo que normaliza fichas, muestra gaps y vincula búsqueda por keyword, semántica e híbrida con datos canónicos.',
+        proof:
+          'Un demostrador sintético desplegado, repositorio público, ilustraciones de estados de producto, comprobaciones de readiness y decisiones documentadas.',
+        value:
+          'Ayuda a equipos ecommerce a tratar la calidad de búsqueda como una decisión de catálogo y arquitectura de información antes de convertirla en problema de ranking.',
+        limitation:
+          'Solo demostrador de portfolio: los datos son sintéticos, no conecta con una tienda en vivo ni afirma rendimiento de búsqueda en producción.',
+      },
+    },
+    related: ['relay', 'website-auditor'],
   },
   demandos: {
     category: { en: 'Machine Learning', es: 'Machine Learning' },
@@ -374,6 +409,40 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
       },
     },
     related: ['website-auditor', 'data-brief-ai'],
+  },
+  relay: {
+    category: { en: 'Marketing Intelligence', es: 'Inteligencia de marketing' },
+    proofTags: {
+      en: ['Private beta', 'Automated verification', 'Synthetic data'],
+      es: ['Beta privada', 'Verificación automatizada', 'Datos sintéticos'],
+    },
+    snapshot: {
+      en: {
+        problem:
+          'Performance reporting becomes fragile when exports, metric definitions, data quality, and client commentary are handled as disconnected work.',
+        system:
+          'A deterministic workspace that maps Meta Ads, Google Ads, and Shopify exports into canonical facts, data-health checks, KPI logic, and explainable reporting.',
+        proof:
+          'A protected V1 with automated test coverage, browser verification, public repository evidence, and a controlled synthetic multi-source workspace.',
+        value:
+          'Makes the route from source export to client report easier to inspect without pretending platform-attributed and commerce revenue are interchangeable.',
+        limitation:
+          'Private beta only: manual CSV ingestion, device-specific browser memory, no live provider synchronization, cloud collaboration, or autonomous AI analysis.',
+      },
+      es: {
+        problem:
+          'El reporting de rendimiento se vuelve frágil cuando exportaciones, definiciones de métricas, calidad de datos y comentario para cliente se tratan como trabajo desconectado.',
+        system:
+          'Un espacio determinista que convierte exportaciones de Meta Ads, Google Ads y Shopify en hechos canónicos, controles de Data Health, lógica KPI y reporting explicable.',
+        proof:
+          'Una V1 protegida con cobertura de tests automatizados, verificación en navegador, evidencia del repositorio público y un espacio controlado con múltiples fuentes sintéticas.',
+        value:
+          'Hace más inspeccionable el camino de exportación a informe de cliente sin fingir que ingresos de plataforma e ingresos de comercio son intercambiables.',
+        limitation:
+          'Solo beta privada: ingestión manual de CSV, memoria del navegador por dispositivo, sin sincronización en vivo, colaboración en la nube ni análisis IA autónomo.',
+      },
+    },
+    related: ['opstwin', 'campaign-pulse'],
   },
   'territoryops-spain': {
     category: { en: 'Intelligence Systems', es: 'Sistemas de inteligencia' },

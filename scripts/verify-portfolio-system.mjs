@@ -86,6 +86,72 @@ forbidText(caseStudyIndex, '<h1 id="case-studies-heading" className="visually-hi
 
 const caseStudyHero = 'components/case-studies/CaseStudyHero.tsx'
 forbidText(caseStudyHero, "window.addEventListener('scroll'")
+for (const contractAttribute of [
+  'data-case-study-hero',
+  'data-presentation-family={presentationFamily}',
+  'data-case-study-hero-back',
+  'data-case-study-hero-label',
+  'data-case-study-hero-tagline',
+]) {
+  requireText(caseStudyHero, contractAttribute)
+}
+
+const fullCaseStudyPages = [
+  'ai-sports',
+  'remoria',
+  'relay',
+  'opstwin',
+  'searchsignal',
+  'campaign-pulse',
+  'demandos',
+  'campaign-sandbox',
+  'data-brief-ai',
+  'website-auditor',
+  'benchmark-dashboard',
+  'blogagent',
+  'territoryops-spain',
+  'raul-portfolio',
+]
+
+for (const slug of fullCaseStudyPages) {
+  const page = `app/case-studies/${slug}/page.tsx`
+  const source = read(page)
+
+  if (!source.includes('CaseStudyMiniNav')) {
+    failures.push(`${slug} must use CaseStudyMiniNav for its shared chapter path.`)
+  }
+
+  if (!source.includes('CaseStudySnapshot') && !source.includes('CommercialCaseStudyIntro')) {
+    failures.push(`${slug} must include the shared five-part case-study snapshot.`)
+  }
+
+  if (
+    !source.includes('CaseStudyHero') &&
+    !source.includes('data-case-study-hero')
+  ) {
+    failures.push(`${slug} must expose the shared case-study hero contract.`)
+  }
+
+  if (
+    !source.includes('CaseStudyHero') &&
+    !source.includes('CaseStudyHeroLabel') &&
+    !source.includes('data-case-study-hero-label')
+  ) {
+    failures.push(`${slug} must render the shared case-study label.`)
+  }
+}
+
+const caseStudyEditorial = 'data/case-study-editorial.ts'
+requireText(caseStudyEditorial, "'relay'")
+
+const caseStudyStyles = 'styles/case-study-new.css'
+for (const selector of [
+  'CASE-STUDY FOUNDATION LOCK',
+  '.case-study-hero-foundation__label',
+  'nav.case-study-mini-nav[data-case-study-mini-nav]',
+]) {
+  requireText(caseStudyStyles, selector)
+}
 
 const photographyPage = 'app/photography/page.tsx'
 requireText(photographyPage, 'className="gallery photography-page"')

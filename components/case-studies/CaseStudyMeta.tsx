@@ -11,7 +11,7 @@ export default function CaseStudyMeta({ meta, accentColor }: CaseStudyMetaProps)
   if (!meta || meta.length === 0) return null
 
   return (
-    <section className="case-study-meta-new">
+    <section className="case-study-meta-new" data-case-study-hero-meta>
       <div className="case-study-meta-new__container">
         <div className="case-study-meta-new__grid">
           {meta.map((item, index) => (

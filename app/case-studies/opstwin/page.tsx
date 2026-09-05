@@ -7,7 +7,10 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
-import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
+import {
+  CaseStudyHeroLabel,
+  CaseStudySnapshot,
+} from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath, type Locale } from '@/lib/i18n'
 
@@ -460,11 +463,17 @@ export default function OpsTwinPage() {
     <>
       <Header locale={locale} />
       <main id="main-content" className="case-study-page-new case-study-page-new--data-brief case-study-page-new--opstwin">
-        <section className="data-brief-hero opstwin-hero" aria-labelledby="opstwin-title">
+        <section
+          className="data-brief-hero opstwin-hero"
+          aria-labelledby="opstwin-title"
+          data-case-study-hero
+          data-presentation-family="technical-product"
+        >
           <div className="data-brief-hero__content">
             <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
               ← {content.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{content.eyebrow}</p>
             <h1 id="opstwin-title" className="data-brief-hero__title">OpsTwin</h1>
             <p className="data-brief-hero__subtitle">{content.subtitle}</p>

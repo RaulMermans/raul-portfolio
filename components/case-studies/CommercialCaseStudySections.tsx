@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { type Locale, localizePath } from '@/lib/i18n'
 import { getCaseStudyEditorial } from '@/data/case-study-editorial'
+import { getSiteCopy } from '@/data/site-copy'
 
 export type SnapshotItem = {
   label: string
@@ -30,6 +31,19 @@ export type CommercialCaseStudyContent = {
   whyItMatters: string
   clientRelevance: string
   ctaCopy: string
+}
+
+/**
+ * The visual proof can change from project to project. The case-study marker
+ * cannot: it gives every project the same first-read context before its own
+ * category and evidence are introduced.
+ */
+export function CaseStudyHeroLabel({ locale = 'en' }: { locale?: Locale }) {
+  return (
+    <p className="case-study-hero-foundation__label" data-case-study-hero-label>
+      {getSiteCopy(locale).caseStudiesUi.caseStudyBadge}
+    </p>
+  )
 }
 
 function ProjectLinks({ links }: { links?: ProjectLink[] }) {
@@ -80,9 +94,9 @@ const sectionCopy = {
     whyTitle: 'Reliability beats novelty',
     relevanceEyebrow: 'Client Relevance',
     relevanceTitle: 'Where this becomes useful',
-    ctaEyebrow: 'Discuss a Similar AI System',
-    ctaTitle: 'Have a creative system worth extending?',
-    ctaLabel: 'Start Creative Systems Brief',
+    ctaEyebrow: 'Discuss a Similar System',
+    ctaTitle: 'Have a system worth extending?',
+    ctaLabel: 'Start a Project Brief',
   },
   es: {
     snapshotEyebrow: 'Resumen del caso',
@@ -101,9 +115,9 @@ const sectionCopy = {
     whyTitle: 'La fiabilidad pesa más que la novedad',
     relevanceEyebrow: 'Uso para clientes',
     relevanceTitle: 'Dónde se vuelve útil',
-    ctaEyebrow: 'Hablar de un sistema IA similar',
-    ctaTitle: '¿Tienes un sistema creativo que merece desarrollarse?',
-    ctaLabel: 'Enviar brief de sistema creativo',
+    ctaEyebrow: 'Hablar de un sistema similar',
+    ctaTitle: '¿Tienes un sistema que merece desarrollarse?',
+    ctaLabel: 'Enviar brief de proyecto',
   },
 } as const
 

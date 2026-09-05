@@ -10,6 +10,7 @@ import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
+  CaseStudyHeroLabel,
   CommercialCaseStudyClosing,
   CommercialCaseStudyIntro,
   type CommercialCaseStudyContent,
@@ -699,7 +700,12 @@ export default function BenchmarkDashboardPage() {
         className="case-study-page-new case-study-page-new--benchmark"
       >
         {/* ── HERO ── */}
-        <section className="benchmark-hero" aria-labelledby="benchmark-title">
+        <section
+          className="benchmark-hero"
+          aria-labelledby="benchmark-title"
+          data-case-study-hero
+          data-presentation-family="technical-product"
+        >
           <div className="benchmark-hero__content">
             <Link
               href={localizePath('/case-studies', locale)}
@@ -707,6 +713,7 @@ export default function BenchmarkDashboardPage() {
             >
               {t.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.heroEyebrow}</p>
             <h1 id="benchmark-title" className="benchmark-hero__title">
               {t.heroTitle}

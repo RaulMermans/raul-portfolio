@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
+  CaseStudyHeroLabel,
   CommercialCaseStudyClosing,
   CommercialCaseStudyIntro,
   type CommercialCaseStudyContent,
@@ -715,7 +716,12 @@ export default function DataBriefAiPage() {
         id="main-content"
         className="case-study-page-new case-study-page-new--data-brief"
       >
-        <section className="data-brief-hero" aria-labelledby="data-brief-title">
+        <section
+          className="data-brief-hero"
+          aria-labelledby="data-brief-title"
+          data-case-study-hero
+          data-presentation-family="technical-product"
+        >
           <div className="data-brief-hero__content">
             <Link
               href={localizePath('/case-studies', locale)}
@@ -723,6 +729,7 @@ export default function DataBriefAiPage() {
             >
               {t.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="data-brief-title" className="data-brief-hero__title">
               {t.heroTitle}

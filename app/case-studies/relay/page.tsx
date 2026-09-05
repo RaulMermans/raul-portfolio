@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { getSiteCopy } from '@/data/site-copy'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath, type Locale } from '@/lib/i18n'
@@ -396,6 +397,12 @@ export default function RelayCaseStudyPage() {
         </section>
 
         <CaseStudyMiniNav ariaLabel={content.navLabel} items={content.nav} />
+
+        <CaseStudySnapshot
+          locale={locale}
+          contextHref="#problem"
+          solutionHref="#system"
+        />
 
         <Section id="problem" {...content.problem}>
           <div className={styles.prose}>

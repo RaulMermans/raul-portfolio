@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
+  CaseStudyHeroLabel,
   CommercialCaseStudyClosing,
   CommercialCaseStudyIntro,
   type CommercialCaseStudyContent,
@@ -624,11 +625,17 @@ export default function WebsiteAuditorPage() {
     <>
       <Header locale={locale} />
       <main id="main-content" className="case-study-page-new case-study-page-new--data-brief case-study-page-new--website-auditor">
-        <section className="data-brief-hero website-auditor-hero" aria-labelledby="website-auditor-title">
+        <section
+          className="data-brief-hero website-auditor-hero"
+          aria-labelledby="website-auditor-title"
+          data-case-study-hero
+          data-presentation-family="technical-product"
+        >
           <div className="data-brief-hero__content">
             <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
               {t.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="website-auditor-title" className="data-brief-hero__title">
               {t.heroTitle}

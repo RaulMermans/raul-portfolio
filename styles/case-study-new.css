@@ -9095,3 +9095,185 @@ nav.case-study-mini-nav[data-case-study-mini-nav]
   > li.case-study-mini-nav__item {
   flex: 0 0 auto;
 }
+
+/* ========================================================================
+   CASE-STUDY FOUNDATION LOCK
+   The proof changes by project; the reading interface does not. These rules
+   intentionally come last so a project may art-direct its evidence without
+   silently redefining the case-study hierarchy, type system, or chapter path.
+   ======================================================================== */
+
+.case-study-page-new {
+  --case-study-hero-copy-measure: 42rem;
+  --case-study-hero-min-height: min(46rem, 100svh);
+  --case-study-section-rule: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.case-study-page-new [data-case-study-hero]:not(.case-study-hero-new) {
+  min-block-size: var(--case-study-hero-min-height);
+}
+
+.case-study-page-new [data-case-study-hero] .data-brief-back,
+.case-study-page-new [data-case-study-hero] .case-study-hero-new__back,
+.case-study-page-new [data-case-study-hero] .back {
+  min-block-size: var(--touch-min);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.case-study-hero-foundation__label {
+  margin: var(--space-5) 0 0;
+  color: var(--ink);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wider);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.case-study-page-new [data-case-study-hero] .data-brief-eyebrow,
+.case-study-page-new [data-case-study-hero] .eyebrow {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.case-study-page-new [data-case-study-hero]:not(.case-study-hero-new) h1 {
+  max-inline-size: 12ch;
+  margin: var(--space-3) 0 0;
+  color: inherit;
+  font-family: var(--font-heading) !important;
+  font-size: var(--text-hero) !important;
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--heading-line-height);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.case-study-page-new [data-case-study-hero] .data-brief-hero__subtitle,
+.case-study-page-new [data-case-study-hero] .benchmark-hero__subtitle,
+.case-study-page-new [data-case-study-hero] .campaign-pulse-hero__subtitle,
+.case-study-page-new [data-case-study-hero] .portfolio-hero__subtitle,
+.case-study-page-new [data-case-study-hero] .heroSubtitle,
+.case-study-page-new [data-case-study-hero] .case-study-hero-new__tagline {
+  max-inline-size: 28ch;
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-prose);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.case-study-page-new [data-case-study-hero] .data-brief-hero__description,
+.case-study-page-new [data-case-study-hero] .benchmark-hero__description,
+.case-study-page-new [data-case-study-hero] .campaign-pulse-hero__description,
+.case-study-page-new [data-case-study-hero] .portfolio-hero__description,
+.case-study-page-new [data-case-study-hero] .heroDescription,
+.case-study-page-new [data-case-study-hero] .case-study-hero-new__description {
+  max-inline-size: var(--case-study-hero-copy-measure);
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-prose);
+  font-size: var(--text-md);
+  line-height: var(--prose-line-height);
+}
+
+.case-study-page-new [data-case-study-hero] .data-brief-actions,
+.case-study-page-new [data-case-study-hero] .heroMeta {
+  margin-top: var(--space-5);
+}
+
+.case-study-page-new .data-brief-section h2,
+.case-study-page-new .case-study-section-new__title,
+.case-study-page-new .data-brief-refresh-heading h2 {
+  max-inline-size: 16ch;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--heading-line-height);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.case-study-page-new .data-brief-section p,
+.case-study-page-new .case-study-section-new__content {
+  font-family: var(--font-prose);
+}
+
+nav.case-study-mini-nav[data-case-study-mini-nav] {
+  position: relative;
+  z-index: 1;
+  inline-size: 100%;
+  min-block-size: var(--touch-min);
+  padding-inline: var(--section-inline-padding);
+  border-block: 1px solid var(--case-study-section-rule);
+  background: var(--cream-light);
+  color: var(--ink);
+  scrollbar-width: thin;
+}
+
+nav.case-study-mini-nav[data-case-study-mini-nav] > ul.case-study-mini-nav__list {
+  gap: 0;
+  margin-inline: auto;
+  padding: 0;
+}
+
+nav.case-study-mini-nav[data-case-study-mini-nav] .case-study-mini-nav__item {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--touch-min);
+}
+
+nav.case-study-mini-nav[data-case-study-mini-nav] a,
+nav.case-study-mini-nav[data-case-study-mini-nav] .data-brief-mini-nav__separator {
+  color: inherit;
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav.case-study-mini-nav[data-case-study-mini-nav] a {
+  padding: var(--space-3) var(--space-2);
+}
+
+nav.case-study-mini-nav[data-case-study-mini-nav] a:hover,
+nav.case-study-mini-nav[data-case-study-mini-nav] a:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--space-2);
+}
+
+@media (max-width: 720px) {
+  .case-study-page-new [data-case-study-hero]:not(.case-study-hero-new) {
+    min-block-size: auto;
+  }
+
+  .case-study-page-new [data-case-study-hero]:not(.case-study-hero-new) h1 {
+    max-inline-size: 100%;
+  }
+
+  .case-study-page-new [data-case-study-hero] .data-brief-hero__subtitle,
+  .case-study-page-new [data-case-study-hero] .benchmark-hero__subtitle,
+  .case-study-page-new [data-case-study-hero] .campaign-pulse-hero__subtitle,
+  .case-study-page-new [data-case-study-hero] .portfolio-hero__subtitle,
+  .case-study-page-new [data-case-study-hero] .heroSubtitle,
+  .case-study-page-new [data-case-study-hero] .case-study-hero-new__tagline {
+    max-inline-size: 100%;
+  }
+
+  nav.case-study-mini-nav[data-case-study-mini-nav] {
+    padding-inline: var(--space-3);
+  }
+}

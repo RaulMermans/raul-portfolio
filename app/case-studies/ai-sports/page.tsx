@@ -8,6 +8,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyHero from '@/components/case-studies/CaseStudyHero'
 import CaseStudyMeta from '@/components/case-studies/CaseStudyMeta'
+import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import CaseStudySection from '@/components/case-studies/CaseStudySection'
 import CaseStudyImage from '@/components/case-studies/CaseStudyImage'
 import CaseStudyImageContainer from '@/components/case-studies/CaseStudyImageContainer'
@@ -75,6 +76,25 @@ const commercialContentEs: CommercialCaseStudyContent = {
     'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
 
+const creativeCaseStudyNav = {
+  en: [
+    ['Snapshot', '#project-snapshot'],
+    ['Context', '#business-context'],
+    ['Creative system', '#approach'],
+    ['Work', '#overview'],
+    ['Effect', '#results'],
+    ['Boundary', '#client-relevance'],
+  ],
+  es: [
+    ['Resumen', '#project-snapshot'],
+    ['Contexto', '#business-context'],
+    ['Sistema creativo', '#approach'],
+    ['Trabajo', '#overview'],
+    ['Efecto', '#results'],
+    ['Límite', '#client-relevance'],
+  ],
+} as const
+
 export default function AISportsCampaignPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
@@ -100,6 +120,11 @@ export default function AISportsCampaignPage() {
           presentationFamily={content.presentationFamily}
           locale={locale}
             />
+
+        <CaseStudyMiniNav
+          items={creativeCaseStudyNav[locale]}
+          ariaLabel={locale === 'es' ? 'Secciones del caso' : 'Case study sections'}
+        />
 
         {/* Meta Section */}
         {content.overview?.meta && (

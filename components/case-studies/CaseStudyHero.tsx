@@ -27,6 +27,8 @@ export default function CaseStudyHero({
     <section
       className={`case-study-hero-new case-study-hero-new--${presentationFamily}`}
       style={{ '--accent-color': accentColor } as React.CSSProperties}
+      data-case-study-hero
+      data-presentation-family={presentationFamily}
     >
       <div className="case-study-hero-new__image-wrapper">
         <div className="case-study-hero-new__image">
@@ -46,7 +48,11 @@ export default function CaseStudyHero({
       </div>
       <div className="case-study-hero-new__navigation">
         <div className="case-study-hero-new__container">
-          <Link href={localizePath('/case-studies', locale)} className="case-study-hero-new__back">
+          <Link
+            href={localizePath('/case-studies', locale)}
+            className="case-study-hero-new__back"
+            data-case-study-hero-back
+          >
             <span aria-hidden="true">←</span>
             <span>{copy.backToCaseStudies}</span>
           </Link>
@@ -54,10 +60,19 @@ export default function CaseStudyHero({
       </div>
       <div className="case-study-hero-new__content">
         <div className="case-study-hero-new__container">
-          <p className="case-study-hero-new__badge">{copy.caseStudyBadge}</p>
+          <p
+            className="case-study-hero-new__badge"
+            data-case-study-hero-label
+          >
+            {copy.caseStudyBadge}
+          </p>
           <h1 className="case-study-hero-new__title">{hero.title}</h1>
           {hero.tagline && (
-            <p className="case-study-hero-new__tagline" aria-label={hero.tagline}>
+            <p
+              className="case-study-hero-new__tagline"
+              aria-label={hero.tagline}
+              data-case-study-hero-tagline
+            >
               {hero.tagline.split(/\s+/).map((word, i) => (
                 <span
                   key={i}

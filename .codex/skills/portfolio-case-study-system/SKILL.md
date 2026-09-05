@@ -15,6 +15,7 @@ Read [references/case-study-contracts.md](references/case-study-contracts.md), t
 
 ## Shared rules
 
+- Every full case-study route must render the foundation in this order: a `data-case-study-hero` with the return link, shared case-study label, H1, purpose/tagline and presentation-family marker; `CaseStudyMiniNav`; `CaseStudySnapshot`; project-specific evidence chapters; `CaseStudyNext`. Use `CaseStudyHero` for image-led creative work and `CaseStudyHeroLabel` for product-led heroes. Do not recreate this anatomy locally.
 - The first viewport identifies the project, its purpose, the work performed, and the case-study context before a reader has to interpret an image.
 - Keep a consistent case-study spine: context, decision/problem, evidence/process, value or outcome, limitation/boundary, and next work. Name each chapter in the project’s own language.
 - Make claimed results traceable. Label prototype work, directional evidence, simulated data, and unmeasured outcomes honestly. Do not manufacture metrics, testimonials, user counts, or adoption claims.
@@ -23,6 +24,7 @@ Read [references/case-study-contracts.md](references/case-study-contracts.md), t
 - Use `CaseStudyMiniNav` for chapter navigation. It is one horizontal reading line on desktop and a deliberately horizontally scrollable line on small viewports; project variants may change its surface treatment, never wrap or stack its chapter links.
 - Technical screenshots retain readable detail and explain the task, state, and implication. Creative work shows the system in use, not only moodboards or isolated beauty shots.
 - Metadata is compact and factual: role, scope, year or status, collaborators when relevant, and tools only where tools clarify the work. It is not the primary narrative.
+- Add a matching entry in `data/case-study-editorial.ts` for every full route. The entry supplies the five snapshot facts, related work, category, and proof tags; an unregistered route is incomplete.
 
 ## Do not do this
 
@@ -34,4 +36,4 @@ Read [references/case-study-contracts.md](references/case-study-contracts.md), t
 
 ## Completion gate
 
-Check that a visitor can identify the project, problem, role, proof, result, and limitation; that the selected family expresses the evidence; and that the route still looks native beside a second case study and the home page.
+Check that a visitor can identify the project, problem, role, proof, result, and limitation; that the selected family expresses the evidence; and that the route still looks native beside a second case study and the home page. Run `node scripts/verify-portfolio-system.mjs` and the case-study parity suite; both are release gates for this foundation.

@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 const caseStudySlugs = [
+  'relay',
   'opstwin',
   'searchsignal',
   'campaign-pulse',
@@ -16,20 +17,7 @@ const caseStudySlugs = [
   'raul-portfolio',
 ] as const
 
-const caseStudyMiniNavSlugs = [
-  'opstwin',
-  'searchsignal',
-  'campaign-pulse',
-  'demandos',
-  'campaign-sandbox',
-  'data-brief-ai',
-  'website-auditor',
-  'benchmark-dashboard',
-  'blogagent',
-  'territoryops-spain',
-  'raul-portfolio',
-  'relay',
-] as const
+const caseStudyMiniNavSlugs = caseStudySlugs
 
 for (const locale of ['es', 'en'] as const) {
   test(`case-study index has a visible collection introduction in ${locale}`, async ({
@@ -100,16 +88,27 @@ for (const locale of ['es', 'en'] as const) {
             '03Proof',
             '04Value',
             '05Limitation',
-          ]
+        ]
+    const expectedCaseStudyLabel =
+      locale === 'es' ? 'Caso de estudio' : 'Case Study'
 
     for (const slug of caseStudySlugs) {
       await page.goto(`${expectedIndex}${slug}`, {
         waitUntil: 'domcontentloaded',
       })
 
-      const backLink = page
-        .locator('main .data-brief-back, main .case-study-hero-new__back')
-        .first()
+      const hero = page.locator('[data-case-study-hero]')
+      await expect(hero, `${slug} should expose one shared hero`).toHaveCount(1)
+      await expect(hero).toHaveAttribute(
+        'data-presentation-family',
+        /^(technical-product|creative-marketing|hybrid)$/
+      )
+      await expect(hero.getByRole('heading', { level: 1 })).toBeVisible()
+      await expect(hero.locator('[data-case-study-hero-label]')).toHaveText(
+        expectedCaseStudyLabel
+      )
+
+      const backLink = hero.locator(`a[href="${expectedIndex}"]`)
       await expect(
         backLink,
         `${slug} should expose the standard back link`

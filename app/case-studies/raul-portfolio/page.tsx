@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
+  CaseStudyHeroLabel,
   CommercialCaseStudyClosing,
   CommercialCaseStudyIntro,
   type CommercialCaseStudyContent,
@@ -300,11 +301,17 @@ export default function RaulPortfolioPage() {
     <>
       <Header locale={locale} />
       <main id="main-content" className="case-study-page-new case-study-page-new--portfolio">
-        <section className="portfolio-hero" aria-labelledby="portfolio-title">
+        <section
+          className="portfolio-hero"
+          aria-labelledby="portfolio-title"
+          data-case-study-hero
+          data-presentation-family="hybrid"
+        >
           <div className="portfolio-hero__content">
             <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
               {t.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="portfolio-title" className="portfolio-hero__title">
               Raul Mermans Portfolio

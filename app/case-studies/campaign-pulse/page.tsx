@@ -7,7 +7,10 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
-import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
+import {
+  CaseStudyHeroLabel,
+  CaseStudySnapshot,
+} from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
@@ -575,6 +578,8 @@ export default function CampaignPulsePage() {
         <section
           className="campaign-pulse-hero"
           aria-labelledby="campaign-pulse-title"
+          data-case-study-hero
+          data-presentation-family="technical-product"
         >
           <div className="campaign-pulse-hero__copy">
             <Link
@@ -583,6 +588,7 @@ export default function CampaignPulsePage() {
             >
               {t.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="campaign-pulse-title">{t.title}</h1>
             <p className="campaign-pulse-hero__subtitle">{t.subtitle}</p>

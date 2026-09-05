@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
+  CaseStudyHeroLabel,
   CommercialCaseStudyIntro,
   type CommercialCaseStudyContent,
 } from '@/components/case-studies/CommercialCaseStudySections'
@@ -592,6 +593,8 @@ export default function TerritoryOpsSpainPage() {
         <section
           className="benchmark-hero territoryops-hero"
           aria-labelledby="territoryops-title"
+          data-case-study-hero
+          data-presentation-family="technical-product"
         >
           <div className="benchmark-hero__content">
             <Link
@@ -600,6 +603,7 @@ export default function TerritoryOpsSpainPage() {
             >
               {t.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.heroEyebrow}</p>
             <h1 id="territoryops-title" className="benchmark-hero__title">
               {t.heroTitle}

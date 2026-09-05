@@ -6,7 +6,10 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
-import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
+import {
+  CaseStudyHeroLabel,
+  CaseStudySnapshot,
+} from '@/components/case-studies/CommercialCaseStudySections'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 
@@ -421,6 +424,8 @@ export default function BlogAgentPage() {
         <section
           className="data-brief-hero blogagent-hero"
           aria-labelledby="blogagent-title"
+          data-case-study-hero
+          data-presentation-family="technical-product"
         >
           <div className="data-brief-hero__content">
             <Link
@@ -429,6 +434,7 @@ export default function BlogAgentPage() {
             >
               {t.back}
             </Link>
+            <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="blogagent-title" className="data-brief-hero__title">
               BlogAgent
