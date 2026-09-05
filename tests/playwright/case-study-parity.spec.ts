@@ -257,6 +257,87 @@ for (const locale of ['es', 'en'] as const) {
   }
 }
 
+for (const locale of ['es', 'en'] as const) {
+  test(`Relay uses shared technical case-study hero structure in ${locale}`, async ({
+    page,
+  }) => {
+    const prefix = locale === 'en' ? '/en' : ''
+    const indexHref = `${prefix}/case-studies/`
+
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto(`${prefix}/case-studies/relay`, {
+      waitUntil: 'domcontentloaded',
+    })
+
+    const hero = page.locator('[data-case-study-hero]')
+    const backLink = hero.locator('[data-case-study-hero-back]')
+    const label = hero.locator('[data-case-study-hero-label]')
+    const title = hero.getByRole('heading', { level: 1, name: 'Relay' })
+    const tagline = hero.locator('[data-case-study-hero-tagline]')
+    const metadata = hero.locator('[data-case-study-hero-meta]')
+    const evidence = hero.locator('[data-case-study-hero-evidence]')
+
+    await expect(hero).toHaveAttribute('data-presentation-family', 'technical-product')
+    await expect(backLink).toBeVisible()
+    await expect(backLink).toHaveAttribute('href', indexHref)
+    await expect(label).toBeVisible()
+    await expect(title).toBeVisible()
+    await expect(tagline).toBeVisible()
+    await expect(metadata).toBeVisible()
+    await expect(evidence).toBeVisible()
+
+    const layout = await page.evaluate(() => {
+      const heroElement = document.querySelector('[data-case-study-hero]')
+      const backElement = document.querySelector('[data-case-study-hero-back]')
+      const labelElement = document.querySelector('[data-case-study-hero-label]')
+      const titleElement = document.querySelector('#relay-title')
+      const taglineElement = document.querySelector('[data-case-study-hero-tagline]')
+
+      if (
+        !(heroElement instanceof HTMLElement) ||
+        !(backElement instanceof HTMLElement) ||
+        !(labelElement instanceof HTMLElement) ||
+        !(titleElement instanceof HTMLElement) ||
+        !(taglineElement instanceof HTMLElement)
+      ) {
+        throw new Error('Relay shared hero elements are missing')
+      }
+
+      const hero = heroElement.getBoundingClientRect()
+      const back = backElement.getBoundingClientRect()
+      const label = labelElement.getBoundingClientRect()
+      const title = titleElement.getBoundingClientRect()
+      const tagline = taglineElement.getBoundingClientRect()
+
+      return {
+        backTop: back.top - hero.top,
+        backBottom: back.bottom - hero.top,
+        labelTop: label.top - hero.top,
+        titleTop: title.top - hero.top,
+        taglineTop: tagline.top - hero.top,
+        documentWidth: document.documentElement.scrollWidth,
+        viewportWidth: window.innerWidth,
+      }
+    })
+
+    expect(layout.backTop).toBeGreaterThanOrEqual(80)
+    expect(layout.backBottom).toBeLessThan(layout.labelTop)
+    expect(layout.labelTop).toBeLessThan(layout.titleTop)
+    expect(layout.titleTop).toBeLessThan(layout.taglineTop)
+    expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+
+    await backLink.focus()
+    await expect(backLink).toBeFocused()
+
+    await page.setViewportSize({ width: 390, height: 844 })
+    const mobileOverflow = await page.evaluate(() => ({
+      viewportWidth: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+    }))
+    expect(mobileOverflow.documentWidth).toBeLessThanOrEqual(mobileOverflow.viewportWidth)
+  })
+}
+
 test('Campaign Sandbox renders complete Spanish page copy', async ({
   page,
 }) => {

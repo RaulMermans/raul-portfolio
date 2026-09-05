@@ -6,14 +6,16 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import { getSiteCopy } from '@/data/site-copy'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath, type Locale } from '@/lib/i18n'
+import type { CaseStudyPresentationFamily } from '@/types/case-study'
 import styles from './RelayCaseStudy.module.css'
 
 const githubUrl = 'https://github.com/RaulMermans/Relay'
 
 type Copy = {
-  back: string
+  presentationFamily: CaseStudyPresentationFamily
   eyebrow: string
   title: string
   subtitle: string
@@ -36,7 +38,7 @@ type Copy = {
 
 const copy: Record<Locale, Copy> = {
   en: {
-    back: 'Case studies',
+    presentationFamily: 'technical-product',
     eyebrow: 'Marketing intelligence / Data product',
     title: 'Relay',
     subtitle: 'A performance workspace built around trustworthy numbers.',
@@ -155,7 +157,7 @@ const copy: Record<Locale, Copy> = {
     },
   },
   es: {
-    back: 'Casos de estudio',
+    presentationFamily: 'technical-product',
     eyebrow: 'Inteligencia de marketing / Producto de datos',
     title: 'Relay',
     subtitle: 'Un espacio de rendimiento construido sobre cifras fiables.',
@@ -305,6 +307,7 @@ export default function RelayCaseStudyPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const content = copy[locale]
+  const uiCopy = getSiteCopy(locale).caseStudiesUi
   const systemLabels = locale === 'es'
     ? {
         overview: 'Resumen del sistema Relay',
@@ -324,27 +327,55 @@ export default function RelayCaseStudyPage() {
   return (
     <>
       <Header locale={locale} />
-      <main id="main-content" className={styles.page}>
-        <section className={styles.hero} aria-labelledby="relay-title">
+      <main
+        id="main-content"
+        className={`case-study-page-new case-study-page-new--relay case-study-page-new--${content.presentationFamily} ${styles.page}`}
+      >
+        <section
+          className={styles.hero}
+          aria-labelledby="relay-title"
+          data-case-study-hero
+          data-presentation-family={content.presentationFamily}
+        >
+          <div className={styles.heroNavigation}>
+            <div className={styles.container}>
+              <Link
+                href={localizePath('/case-studies', locale)}
+                className={styles.back}
+                data-case-study-hero-back
+              >
+                <span aria-hidden="true">←</span>
+                <span>{uiCopy.backToCaseStudies}</span>
+              </Link>
+            </div>
+          </div>
           <div className={styles.container}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <Link href={localizePath('/case-studies', locale)} className={styles.back}>
-                  ← {content.back}
-                </Link>
+                <p className={styles.caseStudyLabel} data-case-study-hero-label>
+                  {uiCopy.caseStudyBadge}
+                </p>
                 <p className={styles.eyebrow}>{content.eyebrow}</p>
                 <h1 id="relay-title">{content.title}</h1>
-                <p className={styles.heroSubtitle}>{content.subtitle}</p>
+                <p className={styles.heroSubtitle} data-case-study-hero-tagline>
+                  {content.subtitle}
+                </p>
                 <p className={styles.heroDescription}>{content.description}</p>
-                <p className={styles.status}>{content.status}</p>
-                <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.primaryAction}>
-                  {content.github} <span aria-hidden="true">↗</span>
-                </a>
+                <div className={styles.heroMeta} data-case-study-hero-meta>
+                  <p className={styles.status}>{content.status}</p>
+                  <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.primaryAction}>
+                    {content.github} <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
                 <div className={styles.tags} aria-label={content.stackLabel}>
                   {content.stack.map((item) => <span key={item}>{item}</span>)}
                 </div>
               </div>
-              <div className={styles.evidencePanel} aria-label={systemLabels.overview}>
+              <div
+                className={styles.evidencePanel}
+                aria-label={systemLabels.overview}
+                data-case-study-hero-evidence
+              >
                 <p className={styles.panelLabel}>{systemLabels.source}</p>
                 <div className={styles.sources}>
                   <span>Shopify</span><span>Meta Ads</span><span>Google Ads</span>

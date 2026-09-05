@@ -16,8 +16,16 @@
 }
 
 .hero {
-  padding-top: max(var(--section-block-padding), 7rem);
+  position: relative;
+  padding-top: calc(var(--header-height) + var(--space-10));
   border-bottom: 1px solid var(--border-light);
+}
+
+.heroNavigation {
+  position: absolute;
+  top: calc(var(--header-height) + var(--space-4));
+  right: 0;
+  left: 0;
 }
 
 .heroGrid {
@@ -49,10 +57,23 @@
 }
 
 .back {
-  margin-bottom: var(--space-8);
+  gap: var(--space-2);
   color: inherit;
 }
 
+.back:hover,
+.back:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--space-2);
+}
+
+.back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: var(--space-2);
+}
+
+.caseStudyLabel,
 .eyebrow,
 .panelLabel,
 .status {
@@ -63,9 +84,18 @@
   text-transform: uppercase;
 }
 
+.caseStudyLabel {
+  margin: 0;
+  color: var(--ink);
+}
+
 .eyebrow,
 .panelLabel {
   color: var(--accent);
+}
+
+.heroCopy > .eyebrow {
+  margin-top: var(--space-2);
 }
 
 .hero h1,
@@ -109,12 +139,20 @@
 }
 
 .heroDescription {
-  margin: var(--space-5) 0 0;
+  margin: var(--space-4) 0 0;
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
 }
 
 .status {
   display: inline-block;
-  margin-top: var(--space-5);
+  margin: 0;
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--border-light);
 }
@@ -129,7 +167,7 @@
 }
 
 .primaryAction {
-  margin-top: var(--space-5);
+  margin-top: 0;
   background: var(--ink);
   color: var(--cream);
 }
@@ -148,7 +186,7 @@
 }
 
 .tags {
-  margin-top: var(--space-6);
+  margin-top: var(--space-5);
 }
 
 .tags span,
@@ -422,11 +460,19 @@
 
 @media (max-width: 699px) {
   .hero {
-    padding-top: max(var(--section-block-padding), 5rem);
+    padding-top: calc(var(--header-height) + var(--space-8));
   }
 
   .heroGrid {
     gap: var(--space-6);
+  }
+
+  .heroMeta {
+    align-items: stretch;
+  }
+
+  .primaryAction {
+    width: 100%;
   }
 
   .sectionHeading {
