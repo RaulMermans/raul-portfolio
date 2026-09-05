@@ -40,7 +40,7 @@ jobs:
         run: npx playwright test tests/playwright/searchsignal-case-study.spec.ts
 
       - name: Check shared portfolio reading flow
-        run: npx playwright test tests/playwright/case-study-parity.spec.ts --grep "brings the first project|photography intro stays connected|creative case-study headings remain sequential|app detail headings remain sequential|creative case-study hero keeps shared navigation|Relay uses shared technical case-study hero structure|chapter navigation stays in a single horizontal row"
+        run: npx playwright test tests/playwright/case-study-parity.spec.ts --grep "all case studies expose the shared editorial system|brings the first project|photography intro stays connected|creative case-study headings remain sequential|app detail headings remain sequential|creative case-study hero keeps shared navigation|Relay uses shared technical case-study hero structure|chapter navigation stays in a single horizontal row"
 
   quality:
     name: Quality checks
