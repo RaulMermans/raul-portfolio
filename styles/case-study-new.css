@@ -9072,3 +9072,23 @@ main.case-study-page-new {
     text-align: left;
   }
 }
+
+/* Shared case-study chapter navigation: one reading line, never a wrapped grid. */
+.case-study-page-new .case-study-mini-nav {
+  display: block;
+  grid-template-columns: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.case-study-page-new .case-study-mini-nav__list {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: max-content;
+  min-width: 100%;
+}
+
+.case-study-page-new .case-study-mini-nav__item {
+  flex: 0 0 auto;
+}

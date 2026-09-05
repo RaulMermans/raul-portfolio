@@ -16,6 +16,21 @@ const caseStudySlugs = [
   'raul-portfolio',
 ] as const
 
+const caseStudyMiniNavSlugs = [
+  'opstwin',
+  'searchsignal',
+  'campaign-pulse',
+  'demandos',
+  'campaign-sandbox',
+  'data-brief-ai',
+  'website-auditor',
+  'benchmark-dashboard',
+  'blogagent',
+  'territoryops-spain',
+  'raul-portfolio',
+  'relay',
+] as const
+
 for (const locale of ['es', 'en'] as const) {
   test(`case-study index has a visible collection introduction in ${locale}`, async ({
     page,
@@ -112,6 +127,53 @@ for (const locale of ['es', 'en'] as const) {
         await page.locator('.case-study-next-new__card').count(),
         `${slug} should expose at least two related systems`
       ).toBeGreaterThanOrEqual(2)
+    }
+  })
+}
+
+for (const locale of ['es', 'en'] as const) {
+  test(`case-study chapter navigation stays in a single horizontal row in ${locale}`, async ({
+    page,
+  }) => {
+    const prefix = locale === 'en' ? '/en' : ''
+
+    for (const viewport of [
+      { width: 1280, height: 800 },
+      { width: 390, height: 844 },
+    ]) {
+      await page.setViewportSize(viewport)
+
+      for (const slug of caseStudyMiniNavSlugs) {
+        await page.goto(`${prefix}/case-studies/${slug}`, {
+          waitUntil: 'domcontentloaded',
+        })
+
+        const nav = page.locator('[data-case-study-mini-nav]')
+        await expect(nav, `${slug} should expose shared chapter navigation`).toBeVisible()
+
+        const layout = await nav.evaluate(element => {
+          const list = element.querySelector('.case-study-mini-nav__list')
+          const links = [...element.querySelectorAll('a')]
+
+          if (!(list instanceof HTMLElement) || links.length < 2) {
+            throw new Error('Case-study chapter navigation is incomplete')
+          }
+
+          const tops = links.map(link => link.getBoundingClientRect().top)
+          return {
+            flexWrap: getComputedStyle(list).flexWrap,
+            overflowX: getComputedStyle(element).overflowX,
+            rowVariance: Math.max(...tops) - Math.min(...tops),
+            documentWidth: document.documentElement.scrollWidth,
+            viewportWidth: window.innerWidth,
+          }
+        })
+
+        expect(layout.flexWrap).toBe('nowrap')
+        expect(layout.overflowX).toBe('auto')
+        expect(layout.rowVariance).toBeLessThanOrEqual(1)
+        expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+      }
     }
   })
 }

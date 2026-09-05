@@ -14,6 +14,10 @@ Every full case study uses this sequence, combining adjacent chapters only when 
 
 Metadata may sit after the hero or beside the introduction. It must not displace the project purpose or become an oversized dashboard.
 
+## Chapter navigation
+
+When a full case study needs in-page chapter links, render them with `CaseStudyMiniNav`. The chapter path is a single horizontal sequence at desktop widths. At smaller widths it remains a single, touch-scrollable row instead of wrapping into multiple lines or a vertical stack. Visual families may vary color, border, and background only; they do not change this navigation geometry.
+
 ## Internal presentation family
 
 Record one internal presentation family for every full case study: `technical-product`, `creative-marketing`, or `hybrid`. This classification chooses the evidence treatment, not the navigation or reading foundation. All families keep the return link in the same hero position, then the case-study label, H1, tagline, and compact metadata in the same order. The family may vary the proof sequence, media treatment, and image mood only when that difference helps the reader understand the work.

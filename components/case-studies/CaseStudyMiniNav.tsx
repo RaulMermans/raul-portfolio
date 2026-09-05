@@ -11,13 +11,16 @@ export default function CaseStudyMiniNav({
 }: CaseStudyMiniNavProps) {
   return (
     <nav
-      className={['data-brief-mini-nav', className].filter(Boolean).join(' ')}
+      className={['case-study-mini-nav', 'data-brief-mini-nav', className]
+        .filter(Boolean)
+        .join(' ')}
       aria-label={ariaLabel}
+      data-case-study-mini-nav
     >
-      <ul>
+      <ul className="case-study-mini-nav__list">
         {items.map(([label, href], index) =>
           label && href ? (
-            <li key={href}>
+            <li key={href} className="case-study-mini-nav__item">
               <a href={href}>{label}</a>
               {index < items.length - 1 && (
                 <span className="data-brief-mini-nav__separator" aria-hidden="true">
