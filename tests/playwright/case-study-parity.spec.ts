@@ -169,10 +169,13 @@ for (const locale of ['es', 'en'] as const) {
           }
         })
 
-        expect(layout.flexWrap).toBe('nowrap')
-        expect(layout.overflowX).toBe('auto')
-        expect(layout.rowVariance).toBeLessThanOrEqual(1)
-        expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+        const context = `${slug} at ${viewport.width}px in ${locale}`
+        expect(layout.flexWrap, `${context} should not wrap chapter links`).toBe('nowrap')
+        expect(layout.overflowX, `${context} should scroll horizontally when needed`).toBe('auto')
+        expect(layout.rowVariance, `${context} should keep chapter links on one row`).toBeLessThanOrEqual(1)
+        expect(layout.documentWidth, `${context} should not widen the document`).toBeLessThanOrEqual(
+          layout.viewportWidth
+        )
       }
     }
   })
