@@ -16,7 +16,6 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
-  'relay',
   'opstwin',
   'searchsignal',
   'campaign-pulse',
@@ -30,6 +29,7 @@ export const CASE_STUDY_ORDER = [
   'blogagent',
   'territoryops-spain',
   'raul-portfolio',
+  'relay',
 ] as const
 
 export const caseStudyEditorial: Record<string, EditorialMeta> = {

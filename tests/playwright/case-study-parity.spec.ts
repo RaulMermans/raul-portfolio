@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test'
 
 const caseStudySlugs = [
-  'relay',
   'opstwin',
   'searchsignal',
   'campaign-pulse',
@@ -15,6 +14,7 @@ const caseStudySlugs = [
   'blogagent',
   'territoryops-spain',
   'raul-portfolio',
+  'relay',
 ] as const
 
 const caseStudyMiniNavSlugs = caseStudySlugs
