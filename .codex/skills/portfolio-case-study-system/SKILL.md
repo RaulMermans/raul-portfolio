@@ -19,6 +19,7 @@ Read [references/case-study-contracts.md](references/case-study-contracts.md), t
 - Keep a consistent case-study spine: context, decision/problem, evidence/process, value or outcome, limitation/boundary, and next work. Name each chapter in the project’s own language.
 - Make claimed results traceable. Label prototype work, directional evidence, simulated data, and unmeasured outcomes honestly. Do not manufacture metrics, testimonials, user counts, or adoption claims.
 - A project may use one accent, one evidence-specific module family, and a restrained image mood. It inherits the portfolio typography, gutters, buttons, chapter rhythm, navigation, focus, and mobile treatment.
+- Store an internal `presentationFamily` (`technical-product`, `creative-marketing`, or `hybrid`) for every full case study. It may guide evidence composition and image treatment, but never changes the shared hero navigation, case-study label, H1, tagline, metadata rhythm, or accessibility behavior.
 - Technical screenshots retain readable detail and explain the task, state, and implication. Creative work shows the system in use, not only moodboards or isolated beauty shots.
 - Metadata is compact and factual: role, scope, year or status, collaborators when relevant, and tools only where tools clarify the work. It is not the primary narrative.
 

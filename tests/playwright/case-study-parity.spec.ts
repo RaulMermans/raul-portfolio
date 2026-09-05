@@ -92,7 +92,9 @@ for (const locale of ['es', 'en'] as const) {
         waitUntil: 'domcontentloaded',
       })
 
-      const backLink = page.locator('main .data-brief-back').first()
+      const backLink = page
+        .locator('main .data-brief-back, main .case-study-hero-new__back')
+        .first()
       await expect(
         backLink,
         `${slug} should expose the standard back link`
@@ -112,6 +114,82 @@ for (const locale of ['es', 'en'] as const) {
       ).toBeGreaterThanOrEqual(2)
     }
   })
+}
+
+for (const locale of ['es', 'en'] as const) {
+  const prefix = locale === 'en' ? '/en' : ''
+
+  for (const slug of ['ai-sports', 'remoria'] as const) {
+    test(`creative case-study hero keeps shared navigation and word spacing for ${slug} in ${locale}`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 1280, height: 800 })
+      await page.goto(`${prefix}/case-studies/${slug}`, { waitUntil: 'domcontentloaded' })
+
+      const hero = page.locator('.case-study-hero-new')
+      const backLink = hero.locator('.case-study-hero-new__back')
+      const badge = hero.locator('.case-study-hero-new__badge')
+      const title = hero.getByRole('heading', { level: 1 })
+
+      await expect(hero).toHaveClass(/case-study-hero-new--creative-marketing/)
+      await expect(backLink).toHaveAttribute('href', `${prefix}/case-studies/`)
+      await expect(backLink).toBeVisible()
+      await expect(badge).toBeVisible()
+      await expect(title).toBeVisible()
+
+      const layout = await page.evaluate(() => {
+        const heroElement = document.querySelector('.case-study-hero-new')
+        const backElement = document.querySelector('.case-study-hero-new__back')
+        const badgeElement = document.querySelector('.case-study-hero-new__badge')
+        const titleElement = document.querySelector('.case-study-hero-new__title')
+        const subtitleElement = document.querySelector('.case-study-hero-new__subtitle')
+        const words = [...document.querySelectorAll('.case-study-hero-new__tagline-word')]
+
+        if (
+          !(heroElement instanceof HTMLElement) ||
+          !(backElement instanceof HTMLElement) ||
+          !(badgeElement instanceof HTMLElement) ||
+          !(titleElement instanceof HTMLElement) ||
+          !(subtitleElement instanceof HTMLElement) ||
+          words.length < 2
+        ) {
+          throw new Error('Creative case-study hero elements are missing')
+        }
+
+        const hero = heroElement.getBoundingClientRect()
+        const back = backElement.getBoundingClientRect()
+        const badge = badgeElement.getBoundingClientRect()
+        const title = titleElement.getBoundingClientRect()
+        const firstWord = words[0].getBoundingClientRect()
+        const secondWord = words[1].getBoundingClientRect()
+
+        return {
+          backTop: back.top - hero.top,
+          backBottom: back.bottom - hero.top,
+          badgeBottom: badge.bottom - hero.top,
+          titleTop: title.top - hero.top,
+          wordGap: secondWord.left - firstWord.right,
+          subtitleWhiteSpace: getComputedStyle(subtitleElement).whiteSpace,
+          viewportWidth: window.innerWidth,
+          documentWidth: document.documentElement.scrollWidth,
+        }
+      })
+
+      expect(layout.backTop).toBeGreaterThanOrEqual(80)
+      expect(layout.backBottom).toBeLessThan(layout.titleTop)
+      expect(layout.badgeBottom).toBeLessThanOrEqual(layout.titleTop)
+      expect(layout.wordGap).toBeGreaterThan(2)
+      expect(layout.subtitleWhiteSpace).not.toBe('nowrap')
+      expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+
+      await page.setViewportSize({ width: 390, height: 844 })
+      const mobileOverflow = await page.evaluate(() => ({
+        viewportWidth: window.innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+      }))
+      expect(mobileOverflow.documentWidth).toBeLessThanOrEqual(mobileOverflow.viewportWidth)
+    })
+  }
 }
 
 test('Campaign Sandbox renders complete Spanish page copy', async ({

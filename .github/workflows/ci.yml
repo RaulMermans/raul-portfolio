@@ -40,7 +40,7 @@ jobs:
         run: npx playwright test tests/playwright/searchsignal-case-study.spec.ts
 
       - name: Check case-study collection reading flow
-        run: npx playwright test tests/playwright/case-study-parity.spec.ts --grep "brings the first project"
+        run: npx playwright test tests/playwright/case-study-parity.spec.ts --grep "brings the first project|creative case-study hero keeps shared navigation"
 
   quality:
     name: Quality checks

@@ -72,11 +72,16 @@ export interface CaseStudyGalleryRow {
 }
 
 export type CaseStudyLayoutVariant = 'default' | 'wide' | 'compact'
+export type CaseStudyPresentationFamily =
+  | 'technical-product'
+  | 'creative-marketing'
+  | 'hybrid'
 
 export interface CaseStudyContent {
   id: string
   accentColor?: string
   layoutVariant?: CaseStudyLayoutVariant
+  presentationFamily: CaseStudyPresentationFamily
   hero: CaseStudyHero
   overview?: CaseStudyOverview
   challenge?: CaseStudyChallenge

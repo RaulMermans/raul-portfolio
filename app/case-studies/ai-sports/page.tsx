@@ -97,6 +97,7 @@ export default function AISportsCampaignPage() {
         <CaseStudyHero 
           hero={content.hero} 
           accentColor={content.accentColor}
+          presentationFamily={content.presentationFamily}
           locale={locale}
             />
 

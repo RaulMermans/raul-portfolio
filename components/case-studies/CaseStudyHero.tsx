@@ -1,22 +1,31 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { CaseStudyHero as CaseStudyHeroType } from '@/types/case-study'
+import type {
+  CaseStudyHero as CaseStudyHeroType,
+  CaseStudyPresentationFamily,
+} from '@/types/case-study'
 import { getSiteCopy } from '@/data/site-copy'
 import { type Locale, localizePath } from '@/lib/i18n'
 
 interface CaseStudyHeroProps {
   hero: CaseStudyHeroType
   accentColor?: string
+  presentationFamily: CaseStudyPresentationFamily
   locale?: Locale
 }
 
-export default function CaseStudyHero({ hero, accentColor, locale = 'en' }: CaseStudyHeroProps) {
+export default function CaseStudyHero({
+  hero,
+  accentColor,
+  presentationFamily,
+  locale = 'en',
+}: CaseStudyHeroProps) {
   const copy = getSiteCopy(locale).caseStudiesUi
 
   return (
     <section
-      className="case-study-hero-new"
+      className={`case-study-hero-new case-study-hero-new--${presentationFamily}`}
       style={{ '--accent-color': accentColor } as React.CSSProperties}
     >
       <div className="case-study-hero-new__image-wrapper">
@@ -35,22 +44,28 @@ export default function CaseStudyHero({ hero, accentColor, locale = 'en' }: Case
           <div className="case-study-hero-new__overlay"></div>
         </div>
       </div>
+      <div className="case-study-hero-new__navigation">
+        <div className="case-study-hero-new__container">
+          <Link href={localizePath('/case-studies', locale)} className="case-study-hero-new__back">
+            <span aria-hidden="true">←</span>
+            <span>{copy.backToCaseStudies}</span>
+          </Link>
+        </div>
+      </div>
       <div className="case-study-hero-new__content">
         <div className="case-study-hero-new__container">
-          <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
-            {copy.backToCaseStudies}
-          </Link>
-          <div className="case-study-hero-new__badge">{copy.caseStudyBadge}</div>
+          <p className="case-study-hero-new__badge">{copy.caseStudyBadge}</p>
           <h1 className="case-study-hero-new__title">{hero.title}</h1>
           {hero.tagline && (
-            <p className="case-study-hero-new__tagline">
+            <p className="case-study-hero-new__tagline" aria-label={hero.tagline}>
               {hero.tagline.split(/\s+/).map((word, i) => (
                 <span
                   key={i}
                   className="case-study-hero-new__tagline-word"
                   style={{ animationDelay: `${i * 0.08}s` }}
+                  aria-hidden="true"
                 >
-                  {word}{' '}
+                  {word}
                 </span>
               ))}
             </p>
