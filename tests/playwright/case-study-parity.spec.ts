@@ -33,6 +33,29 @@ for (const locale of ['es', 'en'] as const) {
     )
   })
 
+  test(`case-study index brings the first project directly after its introduction in ${locale}`, async ({
+    page,
+  }) => {
+    const prefix = locale === 'en' ? '/en' : ''
+
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto(`${prefix}/case-studies`, { waitUntil: 'domcontentloaded' })
+
+    const readingGap = await page.evaluate(() => {
+      const lede = document.querySelector('.ui-page-intro__content > p:not(.ui-eyebrow)')
+      const firstCard = document.querySelector('[data-mobile-audit="case-study-card"]')
+
+      if (!(lede instanceof HTMLElement) || !(firstCard instanceof HTMLElement)) {
+        throw new Error('Case-study index reading-flow elements are missing')
+      }
+
+      return firstCard.getBoundingClientRect().top - lede.getBoundingClientRect().bottom
+    })
+
+    expect(readingGap).toBeGreaterThanOrEqual(0)
+    expect(readingGap).toBeLessThanOrEqual(160)
+  })
+
   test(`case-study index follows the portfolio priority order in ${locale}`, async ({
     page,
   }) => {

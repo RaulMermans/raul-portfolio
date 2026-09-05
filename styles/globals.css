@@ -6545,6 +6545,12 @@ a[href^='/']:hover {
   padding-top: 0;
 }
 
+/* The collection is the immediate evidence for this index, not a second viewport. */
+.case-studies-index--gallery > .ui-page-intro,
+.case-studies-index--gallery > .case-study-thumbnail-gallery {
+  min-height: auto;
+}
+
 .case-studies-index--browser {
   min-height: 100svh;
   padding-top: calc(var(--header-height) + clamp(0.35rem, 1vw, 0.85rem));
