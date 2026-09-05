@@ -9074,16 +9074,14 @@ main.case-study-page-new {
 }
 
 /* Shared case-study chapter navigation: one reading line, never a wrapped grid. */
-main.case-study-page-new nav.case-study-mini-nav[data-case-study-mini-nav] {
+nav.case-study-mini-nav[data-case-study-mini-nav] {
   display: block;
   grid-template-columns: none;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
-main.case-study-page-new
-  nav.case-study-mini-nav[data-case-study-mini-nav]
-  > ul.case-study-mini-nav__list {
+nav.case-study-mini-nav[data-case-study-mini-nav] > ul.case-study-mini-nav__list {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -9092,8 +9090,7 @@ main.case-study-page-new
   min-width: 100%;
 }
 
-main.case-study-page-new
-  nav.case-study-mini-nav[data-case-study-mini-nav]
+nav.case-study-mini-nav[data-case-study-mini-nav]
   > ul.case-study-mini-nav__list
   > li.case-study-mini-nav__item {
   flex: 0 0 auto;
