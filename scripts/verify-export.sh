@@ -44,11 +44,13 @@ assert_file out/en/services/ai-integrations/index.html
 assert_file out/en/services/creative-automation/index.html
 assert_file out/en/services/brand-systems/index.html
 assert_file out/en/services/product-prototypes/index.html
+assert_file out/en/services/web-development/index.html
 
 assert_file out/services/integraciones-ia/index.html
 assert_file out/services/automatizacion-creativa/index.html
 assert_file out/services/sistemas-de-marca/index.html
 assert_file out/services/prototipos-producto-ia/index.html
+assert_file out/services/desarrollo-web/index.html
 
 assert_contains out/en/index.html "Building ideas into brands, products, and ventures."
 assert_contains out/en/index.html "An independent practice with room to grow."
@@ -68,11 +70,13 @@ assert_contains out/en/services/ai-integrations/index.html "AI Integrations for 
 assert_contains out/en/services/creative-automation/index.html "Creative Automation"
 assert_contains out/en/services/brand-systems/index.html "Brand Systems and Creative Direction"
 assert_contains out/en/services/product-prototypes/index.html "AI Product Prototypes"
+assert_contains out/en/services/web-development/index.html "href=\"/services/desarrollo-web/\""
 
 assert_contains out/services/integraciones-ia/index.html "Integraciones IA para Sistemas Creativos"
 assert_contains out/services/automatizacion-creativa/index.html "Automatización Creativa"
 assert_contains out/services/sistemas-de-marca/index.html "Sistemas de Marca y Dirección Creativa"
 assert_contains out/services/prototipos-producto-ia/index.html "Prototipos de Producto IA"
+assert_contains out/services/desarrollo-web/index.html "href=\"/en/services/web-development/\""
 
 assert_contains out/en/case-studies/index.html "View case study: AI Sports Campaign"
 assert_contains out/en/case-studies/index.html "View case study: BlogAgent"

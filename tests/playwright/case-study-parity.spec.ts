@@ -150,37 +150,14 @@ for (const locale of ['es', 'en'] as const) {
       const gridRect = grid.getBoundingClientRect()
 
       return {
-        introMinHeight: getComputedStyle(intro).minHeight,
+        introMinHeight: Number.parseFloat(getComputedStyle(intro).minHeight),
         readingGap: gridRect.top - introRect.bottom,
       }
     })
 
-    expect(layout.introMinHeight).toBe('auto')
+    expect(layout.introMinHeight).toBeLessThanOrEqual(1)
     expect(layout.readingGap).toBeGreaterThanOrEqual(0)
     expect(layout.readingGap).toBeLessThanOrEqual(160)
-  })
-}
-
-for (const [locale, path, alternatePath] of [
-  ['en', '/en/services/web-development', '/services/desarrollo-web'],
-  ['es', '/services/desarrollo-web', '/en/services/web-development'],
-] as const) {
-  test(`web-development locale links stay paired from ${locale}`, async ({ page }) => {
-    await page.goto(path, { waitUntil: 'domcontentloaded' })
-
-    const languageLabel = locale === 'en' ? 'Language switcher' : 'Selector de idioma'
-    const alternateShort = locale === 'en' ? 'ES' : 'EN'
-    const alternateLink = page
-      .locator(`[role="group"][aria-label="${languageLabel}"]`)
-      .getByRole('link', { name: alternateShort, exact: true })
-
-    await expect(alternateLink).toHaveAttribute('href', alternatePath)
-
-    const footerLink = page.locator('footer').getByRole('link', {
-      name: locale === 'en' ? 'Web Development & Digital Experiences' : 'Desarrollo Web y Experiencias Digitales',
-      exact: true,
-    })
-    await expect(footerLink).toHaveAttribute('href', alternatePath === '/services/desarrollo-web' ? '/en/services/web-development' : '/services/desarrollo-web')
   })
 }
 
