@@ -293,9 +293,9 @@ export default function RemoriaPage() {
 
               {content.approach.tools && content.approach.tools.length > 0 && (
                 <div className="case-study-approach__tools">
-                  <h4 className="case-study-approach__tools-title">
+                  <h3 className="case-study-approach__tools-title">
                     {copy.tools}
-                  </h4>
+                  </h3>
                   <div className="case-study-approach__tools-list">
                     {content.approach.tools.map((tool, index) => (
                       <span key={index} className="case-study-approach__tool">

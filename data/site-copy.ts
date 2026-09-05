@@ -35,7 +35,7 @@ export const siteCopy = {
         { label: 'Visuals', href: '/visuals' },
       ],
       serviceLinks: [
-        { label: 'Web Development & Digital Experiences', href: '/services/desarrollo-web' },
+        { label: 'Web Development & Digital Experiences', href: '/services/web-development' },
         { label: 'AI Integrations for Creative Systems', href: '/services/ai-integrations' },
         { label: 'Brand Systems & Creative Direction', href: '/services/brand-systems' },
         { label: 'Data, Research & Intelligence', href: '/services/creative-automation' },

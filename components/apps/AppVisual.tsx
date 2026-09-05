@@ -52,9 +52,9 @@ export default function AppVisual({ app, compact = false }: AppVisualProps) {
               <p className="text-[0.62rem] uppercase tracking-[0.28em] text-white/[0.48]">
                 {app.gallery[0]?.eyebrow}
               </p>
-              <h3 className={`${compact ? 'text-xl' : 'text-[1.75rem]'} font-normal leading-[1.05]`}>
+              <p className={`${compact ? 'text-xl' : 'text-[1.75rem]'} font-normal leading-[1.05]`}>
                 {app.gallery[0]?.title}
-              </h3>
+              </p>
               <p className="max-w-sm text-sm leading-6 text-white/70">
                 {app.gallery[0]?.description}
               </p>
@@ -81,7 +81,7 @@ export default function AppVisual({ app, compact = false }: AppVisualProps) {
               >
                 <div className="space-y-2">
                   <p className="text-[0.6rem] uppercase tracking-[0.24em] text-white/[0.45]">{item.eyebrow}</p>
-                  <h4 className="text-base font-normal leading-tight">{item.title}</h4>
+                  <p className="text-base font-normal leading-tight">{item.title}</p>
                   <p className="text-sm leading-6 text-white/[0.65]">{item.description}</p>
                 </div>
 

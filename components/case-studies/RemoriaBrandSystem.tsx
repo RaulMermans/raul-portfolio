@@ -22,7 +22,7 @@ export default function RemoriaBrandSystem({ items, label = 'The Brand System' }
 
   return (
     <div className="remoria-brand-system">
-      <h4 className="remoria-brand-system__title">{label}</h4>
+      <h3 className="remoria-brand-system__title">{label}</h3>
       
       {/* Color Palette Section */}
       <div className="remoria-brand-system__palette">
@@ -51,7 +51,7 @@ export default function RemoriaBrandSystem({ items, label = 'The Brand System' }
               {String(index + 1).padStart(2, '0')}
             </div>
             <div className="remoria-brand-system__item-content">
-              <h5 className="remoria-brand-system__item-title">{item.title}</h5>
+              <h4 className="remoria-brand-system__item-title">{item.title}</h4>
               <p className="remoria-brand-system__item-desc">{item.description}</p>
             </div>
             <div 
@@ -66,4 +66,3 @@ export default function RemoriaBrandSystem({ items, label = 'The Brand System' }
     </div>
   )
 }
-

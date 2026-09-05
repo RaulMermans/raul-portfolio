@@ -3469,6 +3469,11 @@ html.homepage .footer {
   border-bottom: var(--border-light);
 }
 
+/* The intro is a reading-flow block; do not inherit the global full-viewport section minimum. */
+.gallery.photography-page > .photography-intro {
+  min-height: auto;
+}
+
 .gallery::-webkit-scrollbar {
   width: 4px;
 }

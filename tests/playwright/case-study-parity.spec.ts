@@ -132,6 +132,95 @@ for (const locale of ['es', 'en'] as const) {
 }
 
 for (const locale of ['es', 'en'] as const) {
+  const prefix = locale === 'en' ? '/en' : ''
+
+  test(`photography intro stays connected to the gallery in ${locale}`, async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto(`${prefix}/photography`, { waitUntil: 'domcontentloaded' })
+
+    const layout = await page.evaluate(() => {
+      const intro = document.querySelector('.gallery.photography-page > .photography-intro')
+      const grid = document.querySelector('.gallery.photography-page > .gallery__grid')
+
+      if (!(intro instanceof HTMLElement) || !(grid instanceof HTMLElement)) {
+        throw new Error('Photography intro or gallery is missing')
+      }
+
+      const introRect = intro.getBoundingClientRect()
+      const gridRect = grid.getBoundingClientRect()
+
+      return {
+        introMinHeight: getComputedStyle(intro).minHeight,
+        readingGap: gridRect.top - introRect.bottom,
+      }
+    })
+
+    expect(layout.introMinHeight).toBe('auto')
+    expect(layout.readingGap).toBeGreaterThanOrEqual(0)
+    expect(layout.readingGap).toBeLessThanOrEqual(160)
+  })
+}
+
+for (const [locale, path, alternatePath] of [
+  ['en', '/en/services/web-development', '/services/desarrollo-web'],
+  ['es', '/services/desarrollo-web', '/en/services/web-development'],
+] as const) {
+  test(`web-development locale links stay paired from ${locale}`, async ({ page }) => {
+    await page.goto(path, { waitUntil: 'domcontentloaded' })
+
+    const languageLabel = locale === 'en' ? 'Language switcher' : 'Selector de idioma'
+    const alternateShort = locale === 'en' ? 'ES' : 'EN'
+    const alternateLink = page
+      .locator(`[role="group"][aria-label="${languageLabel}"]`)
+      .getByRole('link', { name: alternateShort, exact: true })
+
+    await expect(alternateLink).toHaveAttribute('href', alternatePath)
+
+    const footerLink = page.locator('footer').getByRole('link', {
+      name: locale === 'en' ? 'Web Development & Digital Experiences' : 'Desarrollo Web y Experiencias Digitales',
+      exact: true,
+    })
+    await expect(footerLink).toHaveAttribute('href', alternatePath === '/services/desarrollo-web' ? '/en/services/web-development' : '/services/desarrollo-web')
+  })
+}
+
+for (const locale of ['es', 'en'] as const) {
+  const prefix = locale === 'en' ? '/en' : ''
+
+  for (const slug of ['ai-sports', 'remoria'] as const) {
+    test(`creative case-study headings remain sequential for ${slug} in ${locale}`, async ({ page }) => {
+      await page.goto(`${prefix}/case-studies/${slug}`, { waitUntil: 'domcontentloaded' })
+
+      const levels = await page.locator('main h1, main h2, main h3, main h4, main h5, main h6').evaluateAll(
+        (headings) => headings.map((heading) => Number(heading.tagName.slice(1))),
+      )
+
+      expect(levels.length).toBeGreaterThan(0)
+      for (let index = 1; index < levels.length; index += 1) {
+        expect(levels[index], `${slug} heading ${index + 1} should not skip a level`).toBeLessThanOrEqual(
+          levels[index - 1] + 1,
+        )
+      }
+    })
+  }
+
+  test(`app detail headings remain sequential in ${locale}`, async ({ page }) => {
+    await page.goto(`${prefix}/apps/territoryops-spain`, { waitUntil: 'domcontentloaded' })
+
+    const levels = await page.locator('main h1, main h2, main h3, main h4, main h5, main h6').evaluateAll(
+      (headings) => headings.map((heading) => Number(heading.tagName.slice(1))),
+    )
+
+    expect(levels.length).toBeGreaterThan(0)
+    for (let index = 1; index < levels.length; index += 1) {
+      expect(levels[index], `app heading ${index + 1} should not skip a level`).toBeLessThanOrEqual(
+        levels[index - 1] + 1,
+      )
+    }
+  })
+}
+
+for (const locale of ['es', 'en'] as const) {
   test(`case-study chapter navigation stays in a single horizontal row in ${locale}`, async ({
     page,
   }) => {

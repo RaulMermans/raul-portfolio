@@ -8,6 +8,10 @@ const EXTERNAL_PROTOCOL_PATTERN = /^(?:[a-z]+:)?\/\//i
 const SPECIAL_LINK_PATTERN = /^(mailto:|tel:|sms:|data:|blob:)/i
 const localizedRoutePairs = [
   {
+    en: '/en/services/web-development',
+    es: '/services/desarrollo-web',
+  },
+  {
     en: '/en/services/ai-integrations',
     es: '/services/integraciones-ia',
   },

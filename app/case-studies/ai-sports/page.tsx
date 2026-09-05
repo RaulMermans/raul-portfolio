@@ -192,7 +192,7 @@ export default function AISportsCampaignPage() {
 
                 {content.approach.tools && content.approach.tools.length > 0 && (
                 <div className="case-study-approach__tools">
-                  <h4 className="case-study-approach__tools-title">{copy.tools}</h4>
+                  <h3 className="case-study-approach__tools-title">{copy.tools}</h3>
                   <div className="case-study-approach__tools-list">
                       {content.approach.tools.map((tool, index) => (
                       <span key={index} className="case-study-approach__tool">
@@ -205,15 +205,15 @@ export default function AISportsCampaignPage() {
 
               {content.approach.system && (
                 <div className="case-study-approach__system">
-                  <h4 className="case-study-approach__system-title">
+                  <h3 className="case-study-approach__system-title">
                     {content.approach.system.label}
-                  </h4>
+                  </h3>
                   <div className="case-study-approach__system-grid">
                     {content.approach.system.items.map((item, index) => (
                       <div key={index} className="case-study-approach__system-item">
-                        <h5 className="case-study-approach__system-item-title">
+                        <h4 className="case-study-approach__system-item-title">
                           {item.title}
-                        </h5>
+                        </h4>
                         <p className="case-study-approach__system-item-desc">
                           {item.description}
                         </p>
