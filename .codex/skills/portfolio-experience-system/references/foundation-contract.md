@@ -16,7 +16,7 @@ Use this reference after `$portfolio-experience-system` has routed a public rout
 | Label | `--font-code`, `--text-xs`, `--tracking-wider`, uppercase | Eyebrows, metadata labels, counters, controls. |
 | Reading prose | `--font-prose`, `--text-base`, `--prose-line-height`, `--prose-measure` | Explanatory paragraphs and editorial narrative. |
 
-The bounded scale is `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`. Do not synthesize intermediate one-off scales. Use `--text-hero` for a page H1, `--text-3xl` for major H2s, `--text-xl` or `--text-2xl` for H3s according to importance, and reserve the smaller scale for interface content.
+The bounded scale is `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`. Do not synthesize intermediate one-off scales. Use `--text-hero` for a page H1, `--case-study-section-heading` for a full case study's primary chapter H2s, `--text-3xl` for other major H2s, and `--text-xl` or `--text-2xl` for H3s according to importance. Reserve the smaller scale for interface content.
 
 Font assets are a shared foundation, not a page-level art-direction choice. `components/SiteDocument.tsx` loads the approved local Bebas Neue, DM Sans, Space Mono, and Source Serif 4 files; retain that source and fallback order unless the user explicitly changes it. Essential first-viewport content must render readable before any motion begins.
 
@@ -47,6 +47,7 @@ Title wrapping is intentional. Use `$author-section-headings` when exact visual 
 - Use cards only for comparable units a reader may compare, select, or revisit. Do not place every paragraph in a card, nest cards, or use cards as the only way to create hierarchy.
 - Required states: default, hover when hover exists, focus-visible, active where useful, disabled/loading/error when the component supports it. State must remain distinguishable without colour alone.
 - Motion may clarify a change of state or reveal evidence. It must be optional under reduced motion, short, and never required to read or operate the page.
+- The fixed shared header stays visible at the top of a page, hides only after a meaningful downward scroll, and returns on upward scroll. Do not hide it while its mobile menu is open or keyboard focus is within it.
 
 ## Media contract
 

@@ -33,6 +33,7 @@ For public routes, start with `$portfolio-experience-system`. It selects the app
 - Typography is a locked shared foundation: `components/SiteDocument.tsx` must load the approved local Bebas Neue, DM Sans, Space Mono, and Source Serif 4 assets. Do not substitute a web font, fallback, or new family without an explicit user decision and a rendered desktop-and-mobile verification.
 - Preserve semantic order: one page H1, then sequential H2/H3 sections. Do not use heading tags for visual size alone.
 - Use the shared type scale: `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`.
+- Full case-study chapter H2s use `--case-study-section-heading`, a deliberately smaller shared scale than a page-level major H2. Keep body copy at `--text-base` or larger on mobile.
 - Use `--heading-line-height`, `--tracking-tight`, and uppercase display treatment for portfolio headings unless the component has an intentional local contract.
 - Keep headings readable: use `text-wrap: balance`; author visual lines per locale when an exact line count is required. Do not force breaks with viewport-dependent hacks.
 
@@ -55,6 +56,7 @@ For public routes, start with `$portfolio-experience-system`. It selects the app
 - Keep every interactive target at least `--touch-min` (44px) on mobile.
 - Retain visible `:focus-visible` feedback, keyboard behavior, accessible names, and state feedback beyond color alone.
 - Respect reduced motion. Do not add motion that blocks reading, scrolling, or input.
+- The shared fixed header stays visible at the page top, hides only after an intentional downward scroll, and returns on upward scroll. It remains available while its mobile menu is open or keyboard focus is inside it.
 
 ## Mobile contract
 

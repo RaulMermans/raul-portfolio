@@ -43,6 +43,12 @@ Do not infer a new visual direction from a single isolated component.
   when they are available.
 - Current button geometry: all native buttons and link-based button controls use square
   corners with zero border radius.
+- Current case-study hierarchy: primary chapter H2s use the shared
+  `--case-study-section-heading` token; project-specific evidence may vary without
+  increasing that reading-level title scale.
+- Current global-navigation behavior: the fixed header hides only on deliberate
+  downward scrolling, returns on upward scrolling, and stays visible for an open
+  mobile menu or keyboard focus within the header.
 
 ## Protect accessibility and motion
 

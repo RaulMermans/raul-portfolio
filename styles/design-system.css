@@ -37,6 +37,7 @@
   --text-2xl: clamp(2.5rem, 2.1842rem + 1.5789vw, 3.5rem);
   --text-3xl: clamp(3.5rem, 2.8684rem + 3.1579vw, 5.5rem);
   --text-hero: clamp(4rem, 2.8947rem + 5.5263vw, 7.5rem);
+  --case-study-section-heading: clamp(2.5rem, 4.25vw, 4.75rem);
   --heading-line-height: 0.98;
   --body-line-height: 1.6;
   --prose-line-height: 1.6;

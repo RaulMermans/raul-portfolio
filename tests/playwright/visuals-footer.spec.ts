@@ -51,3 +51,31 @@ test('closing the Visuals exhibition restores a valid footer scroll position', a
   expect(state.bodyTop).toBe('')
   expect(state.htmlOverflow).toBe('')
 })
+
+test('the root prevents elastic scrolling past the footer', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' })
+
+  expect(
+    await page.evaluate(() => getComputedStyle(document.documentElement).overscrollBehaviorY)
+  ).toBe('none')
+})
+
+for (const route of ['/', '/case-studies', '/about', '/privacy', '/en'] as const) {
+  test(`footer ends the document on ${route}`, async ({ page }) => {
+    await page.setViewportSize({ width: 2048, height: 855 })
+    await page.goto(route, { waitUntil: 'networkidle' })
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
+
+    const bounds = await page.evaluate(() => {
+      const footer = document.querySelector('footer')
+      if (!footer) throw new Error('Footer was not rendered')
+
+      return {
+        documentHeight: document.documentElement.scrollHeight,
+        footerBottom: footer.getBoundingClientRect().bottom + window.scrollY,
+      }
+    })
+
+    expect(Math.abs(bounds.documentHeight - bounds.footerBottom)).toBeLessThanOrEqual(1)
+  })
+}

@@ -20,6 +20,36 @@ const caseStudySlugs = [
 const caseStudyMiniNavSlugs = caseStudySlugs
 
 for (const locale of ['es', 'en'] as const) {
+  const prefix = locale === 'en' ? '/en' : ''
+
+  for (const viewport of [
+    { width: 1440, height: 900, maxPrimaryTitleSize: 65 },
+    { width: 390, height: 844, maxPrimaryTitleSize: 48 },
+  ]) {
+    test(`case-study chapter titles use the compact shared scale in ${locale} at ${viewport.width}px`, async ({
+      page,
+    }) => {
+      await page.setViewportSize(viewport)
+
+      for (const slug of ['opstwin', 'searchsignal'] as const) {
+        await page.goto(`${prefix}/case-studies/${slug}`, { waitUntil: 'domcontentloaded' })
+
+        const titleSizes = await page
+          .locator('main .data-brief-section h2, main .searchsignal-heading h2, main .searchsignal-final h2')
+          .evaluateAll(headings =>
+            headings.map(heading => Number.parseFloat(getComputedStyle(heading).fontSize))
+          )
+
+        expect(titleSizes, `${slug} should expose primary chapter titles`).not.toHaveLength(0)
+        expect(Math.max(...titleSizes), `${slug} title scale at ${viewport.width}px`).toBeLessThanOrEqual(
+          viewport.maxPrimaryTitleSize
+        )
+      }
+    })
+  }
+}
+
+for (const locale of ['es', 'en'] as const) {
   test(`case-study index has a visible collection introduction in ${locale}`, async ({
     page,
   }) => {

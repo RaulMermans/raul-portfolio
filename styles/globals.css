@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  overscroll-behavior-y: none;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }

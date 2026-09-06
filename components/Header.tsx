@@ -13,10 +13,15 @@ interface HeaderProps {
   locale?: Locale
 }
 
+const HEADER_TOP_REVEAL_OFFSET = 80
+const HEADER_VISIBILITY_SCROLL_DELTA = 12
+
 export default function Header({ locale = 'en' }: HeaderProps) {
   const pathname = usePathname()
   const copy = getSiteCopy(locale).header
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
   const scrollLockRef = useRef<{ scrollY: number; bodyOverflow: string; bodyPosition: string; bodyTop: string; bodyWidth: string; htmlOverflow: string } | null>(null)
@@ -24,6 +29,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
   const menuTitleId = useId()
 
   const closeMenu = useCallback((restoreFocus = true) => {
+    setIsHeaderHidden(false)
     setIsMenuOpen(false)
     if (restoreFocus) {
       window.requestAnimationFrame(() => {
@@ -78,7 +84,47 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     }
   }, [isMenuOpen, closeMenu])
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      return
+    }
+
+    let animationFrame: number | null = null
+    let previousScrollY = window.scrollY
+
+    const updateHeaderVisibility = () => {
+      const currentScrollY = window.scrollY
+      const scrollDelta = currentScrollY - previousScrollY
+      const hasKeyboardFocus = headerRef.current?.contains(document.activeElement)
+
+      if (currentScrollY <= HEADER_TOP_REVEAL_OFFSET || hasKeyboardFocus) {
+        setIsHeaderHidden(false)
+        previousScrollY = currentScrollY
+      } else if (Math.abs(scrollDelta) >= HEADER_VISIBILITY_SCROLL_DELTA) {
+        setIsHeaderHidden(scrollDelta > 0)
+        previousScrollY = currentScrollY
+      }
+
+      animationFrame = null
+    }
+
+    const handleScroll = () => {
+      if (animationFrame !== null) return
+      animationFrame = window.requestAnimationFrame(updateHeaderVisibility)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame)
+      }
+    }
+  }, [isMenuOpen])
+
   const toggleMenu = () => {
+    setIsHeaderHidden(false)
     setIsMenuOpen((prev) => !prev)
   }
 
@@ -135,7 +181,12 @@ export default function Header({ locale = 'en' }: HeaderProps) {
 
   return (
     <>
-      <header className={styles.headerBar} data-surface={surface}>
+      <header
+        ref={headerRef}
+        className={styles.headerBar}
+        data-hidden={isHeaderHidden ? 'true' : undefined}
+        data-surface={surface}
+      >
         <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
           RM
         </Link>

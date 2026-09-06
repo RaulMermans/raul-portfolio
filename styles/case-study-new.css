@@ -9199,7 +9199,7 @@ nav.case-study-mini-nav[data-case-study-mini-nav]
 .case-study-page-new .data-brief-refresh-heading h2 {
   max-inline-size: 16ch;
   font-family: var(--font-heading);
-  font-size: var(--text-3xl);
+  font-size: var(--case-study-section-heading);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
   line-height: var(--heading-line-height);

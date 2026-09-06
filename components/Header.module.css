@@ -14,6 +14,14 @@
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+  transform: translateY(0);
+  transition: transform var(--transition-base) var(--ease);
+  will-change: transform;
+}
+
+.headerBar[data-hidden="true"] {
+  pointer-events: none;
+  transform: translateY(calc(-100% - env(safe-area-inset-top)));
 }
 
 .headerBar[data-surface="case-studies"] {
@@ -512,5 +520,11 @@
 
   .menuMeta {
     font-size: 0.9375rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headerBar {
+    transition-duration: 0ms;
   }
 }
