@@ -18,6 +18,8 @@ Use this reference after `$portfolio-experience-system` has routed a public rout
 
 The bounded scale is `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`. Do not synthesize intermediate one-off scales. Use `--text-hero` for a page H1, `--text-3xl` for major H2s, `--text-xl` or `--text-2xl` for H3s according to importance, and reserve the smaller scale for interface content.
 
+Font assets are a shared foundation, not a page-level art-direction choice. `components/SiteDocument.tsx` loads the approved local Bebas Neue, DM Sans, Space Mono, and Source Serif 4 files; retain that source and fallback order unless the user explicitly changes it. Essential first-viewport content must render readable before any motion begins.
+
 ## Page and section geometry
 
 - A page intro uses `.ui-page-intro` and its container. It contains an eyebrow, a visible H1, and one compact supporting paragraph. A local image is optional only when it proves the subject.

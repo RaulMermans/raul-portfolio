@@ -24,9 +24,6 @@ export default function Hero({ locale = 'en' }: HeroProps) {
 
   const name = 'RAÚL'
   const surname = 'MERMANS'
-  const nameLetters = name.split('')
-  const surnameLetters = surname.split('')
-
   const handleScrollToWork = () => {
     const workSection = document.getElementById('building-now')
     if (workSection) {
@@ -48,35 +45,17 @@ export default function Hero({ locale = 'en' }: HeroProps) {
         {/* Name display - visual treatment. Hidden from assistive tech because
             the H1 carries the full accessible label combining name + positioning. */}
         <p className={styles.name} aria-hidden="true">
-          <span className={styles.line}>
-            {nameLetters.map((letter, i) => (
-              <span key={i} className={styles.letter} style={{ animationDelay: `${0.3 + i * 0.06}s` }}>
-                {letter}
-              </span>
-            ))}
-          </span>
-          <span className={styles.line}>
-            {surnameLetters.map((letter, i) => (
-              <span key={i} className={styles.letter} style={{ animationDelay: `${0.5 + i * 0.05}s` }}>
-                {letter}
-              </span>
-            ))}
-          </span>
+          <span className={styles.line}>{name}</span>
+          <span className={styles.line}>{surname}</span>
         </p>
 
-        <h1
-          id="hero-title"
-          className={`${styles.services} reveal reveal-delay-1`}
-          aria-label={copy.ariaLabel}
-        >
+        <h1 id="hero-title" className={styles.services} aria-label={copy.ariaLabel}>
           {copy.headline}
         </h1>
 
-        <p className={`${styles.summary} reveal reveal-delay-2`}>
-          {copy.summary}
-        </p>
+        <p className={styles.summary}>{copy.summary}</p>
 
-        <div className={`${styles.ctaGroup} reveal reveal-delay-3`}>
+        <div className={styles.ctaGroup}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
               href={localizePath('/#building-now', locale)}

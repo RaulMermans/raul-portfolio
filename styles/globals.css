@@ -8572,13 +8572,7 @@ body:has(.case-studies-main) .page-transition {
 
 .about-landing__clip > span {
   display: inline-block;
-  transform: translateY(110%);
-  transition: transform 0.9s var(--about-ease);
-  will-change: transform;
-}
-
-.about-landing__clip.is-visible > span {
-  transform: translateY(0);
+  transform: none;
 }
 
 .about-landing__name-dot {

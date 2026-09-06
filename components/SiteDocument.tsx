@@ -49,8 +49,11 @@ export default function SiteDocument({
   children: React.ReactNode
 }) {
   return (
-    <html lang={locale}>
-      <body className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}>
+    <html
+      lang={locale}
+      className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}
+    >
+      <body>
         <SkipLink locale={locale} />
         <Suspense fallback={null}>
           <GoogleAnalytics />

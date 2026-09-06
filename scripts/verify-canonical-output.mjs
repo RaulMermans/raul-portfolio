@@ -21,6 +21,13 @@ function forbidText(file, text) {
   if (read(file).includes(text)) failures.push(`${file} must not include: ${text}`)
 }
 
+function requireHtmlLang(file, lang) {
+  const htmlTag = read(file).match(/<html\b[^>]*>/i)?.[0] ?? ''
+  if (!new RegExp(`\\blang="${lang}"`).test(htmlTag)) {
+    failures.push(`${file} is missing html lang="${lang}"`)
+  }
+}
+
 const routes = [
   ['out/index.html', 'es', 'https://www.raulmermans.com/'],
   ['out/about/index.html', 'es', 'https://www.raulmermans.com/about/'],
@@ -31,7 +38,7 @@ const routes = [
 ]
 
 for (const [file, lang, canonical] of routes) {
-  requireText(file, `<html lang="${lang}">`)
+  requireHtmlLang(file, lang)
   requireText(file, `<link rel="canonical" href="${canonical}"`)
   requireText(file, 'hrefLang="en-US"')
   requireText(file, 'hrefLang="es-ES"')

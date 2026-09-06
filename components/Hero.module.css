@@ -76,29 +76,6 @@
   overflow: hidden;
 }
 
-.letter {
-  display: inline-block;
-  transform: translateY(100%) rotateX(90deg);
-  opacity: 0;
-  animation: revealLetter3D 0.9s var(--ease) forwards;
-}
-
-@keyframes revealLetter3D {
-  0% {
-    transform: translateY(100%) rotateX(90deg);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0) rotateX(0);
-    opacity: 1;
-  }
-}
-
 .services {
   max-width: 23ch;
   margin: 0 0 var(--space-5);

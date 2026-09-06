@@ -23,7 +23,7 @@
   --color-0: #6B8A9A;
   --color-1: #9A7B6B;
 
-  /* Typography */
+  /* Typography — source lock: SiteDocument loads the approved local font assets. */
   --font-ui: var(--font-body), "DM Sans", system-ui, sans-serif;
   --font-heading: var(--font-display), "Bebas Neue", Impact, sans-serif;
   --font-code: var(--font-mono), "Space Mono", monospace;

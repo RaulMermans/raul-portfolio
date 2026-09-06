@@ -47,6 +47,25 @@ for (const selector of [
   requireText(designSystem, selector)
 }
 
+const siteDocument = 'components/SiteDocument.tsx'
+for (const fontAsset of [
+  'bebas-neue-400.woff2',
+  'dm-sans-normal-400-500.woff2',
+  'dm-sans-italic-400-500.woff2',
+  'space-mono-400.woff2',
+  'source-serif-4-400-600.woff2',
+]) {
+  requireText(siteDocument, fontAsset)
+}
+requireText(siteDocument, '<html\n      lang={locale}\n      className=')
+forbidText(siteDocument, '<body className=')
+
+const homepageHero = 'components/Hero.tsx'
+forbidText(homepageHero, 'reveal-delay')
+forbidText(homepageHero, 'className={styles.letter}')
+forbidText('components/Hero.module.css', 'revealLetter3D')
+forbidText('styles/globals.css', 'transform: translateY(110%);')
+
 const buttonRuleStart = read(designSystem).indexOf('.ui-button,')
 const buttonRuleEnd = read(designSystem).indexOf('}\n\n.btn::before', buttonRuleStart)
 const buttonRule = read(designSystem).slice(buttonRuleStart, buttonRuleEnd)

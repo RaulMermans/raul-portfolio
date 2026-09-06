@@ -81,12 +81,30 @@ test.describe('Mobile Regression', () => {
     await preparePage(page, '/en/')
 
     const hero = page.locator('[data-home-section="hero"]')
+    const heading = hero.getByRole('heading', { level: 1 })
     const heroCtas = hero.locator('[data-mobile-audit="hero-cta"]')
+    await expect(heading).toBeVisible()
+    await expect(heading).toHaveCSS('font-family', /bebasNeue|Bebas Neue|Impact/i)
     await expect(heroCtas).toHaveCount(2)
     await expect(hero.getByRole('link', { name: 'Explore what I’m building' })).toBeVisible()
     await expect(hero.getByRole('link', { name: 'Work with me' })).toBeVisible()
     await expect(hero.getByRole('link', { name: /GitHub/i })).toHaveCount(0)
 
+  })
+
+  test('desktop hero keeps its typography and actions visible without reveal gating', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.emulateMedia({ reducedMotion: 'no-preference' })
+    await page.goto('/en/', { waitUntil: 'domcontentloaded' })
+
+    const hero = page.locator('[data-home-section="hero"]')
+    const heading = hero.getByRole('heading', { level: 1 })
+
+    await expect(heading).toBeVisible()
+    await expect(heading).toHaveCSS('font-family', /bebasNeue|Bebas Neue|Impact/i)
+    expect(await heading.getAttribute('class')).not.toMatch(/\breveal\b/)
+    await expect(hero.getByRole('link', { name: 'Explore what I’m building' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'Work with me' })).toBeVisible()
   })
 
   test('shared mobile defaults keep body copy readable and the document within the viewport', async ({ page }) => {
@@ -177,6 +195,11 @@ test.describe('Mobile Regression', () => {
 
   test('case studies landing is a thumbnail-led gallery on mobile', async ({ page }) => {
     await preparePage(page, '/en/case-studies/')
+
+    await expect(page.getByRole('heading', { level: 1, name: 'Case Studies' })).toHaveCSS(
+      'font-family',
+      /bebasNeue|Bebas Neue|Impact/i
+    )
 
     const grid = page.locator('[data-mobile-audit="case-study-grid"]')
     const firstCard = grid.locator('[data-mobile-audit="case-study-card"]').first()

@@ -30,6 +30,7 @@ For public routes, start with `$portfolio-experience-system`. It selects the app
 
 - Use `--font-heading` for display headings, `--font-ui` for interface/body text, `--font-code` for labels and controls, and `--font-prose` for editorial reading copy.
 - The portfolio display direction is bold, condensed Bebas Neue in uppercase. Keep Source Serif for editorial reading copy only. Do not replace the display face with a serif without an explicit request.
+- Typography is a locked shared foundation: `components/SiteDocument.tsx` must load the approved local Bebas Neue, DM Sans, Space Mono, and Source Serif 4 assets. Do not substitute a web font, fallback, or new family without an explicit user decision and a rendered desktop-and-mobile verification.
 - Preserve semantic order: one page H1, then sequential H2/H3 sections. Do not use heading tags for visual size alone.
 - Use the shared type scale: `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`.
 - Use `--heading-line-height`, `--tracking-tight`, and uppercase display treatment for portfolio headings unless the component has an intentional local contract.

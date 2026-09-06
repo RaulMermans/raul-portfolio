@@ -20,6 +20,7 @@ jobs:
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     env:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
       SFTP_HOST: ${{ secrets.SFTP_HOST || secrets.SFTP_SERVER }}
@@ -75,7 +76,7 @@ jobs:
       - name: Deploy to IONOS via SFTP
         run: |
           lftp -u "$SFTP_USER,$SFTP_PASSWORD" "sftp://$SFTP_HOST:$SFTP_PORT" \
-            -e "set cmd:fail-exit true; set sftp:auto-confirm yes; mirror --reverse --delete --verbose ./out/ $SFTP_REMOTE_PATH; bye"
+            -e "set cmd:fail-exit true; set net:timeout 60; set net:max-retries 2; set net:reconnect-interval-base 5; set net:reconnect-interval-multiplier 1; set sftp:auto-confirm yes; mirror --reverse --delete --verbose ./out/ $SFTP_REMOTE_PATH; bye"
 
       - name: Verify production deployment
         env:
