@@ -2,10 +2,23 @@ export type PhotographyCategory = 'landscape' | 'architecture' | 'street'
 
 export interface PhotographyPhoto {
   src: string
-  alt: string
+  alt: Record<'en' | 'es', string>
   category: PhotographyCategory
   width: number
   height: number
+}
+
+const RESPONSIVE_WIDTHS = [480, 768, 1200, 1600, 2400] as const
+
+export function getPhotoDerivatives(photo: PhotographyPhoto, format: 'avif' | 'webp') {
+  const derivativeBase = photo.src
+    .replace('/images/photography/', '/images/derived/photography/')
+    .replace(/\.webp$/, '')
+
+  return RESPONSIVE_WIDTHS
+    .filter((width) => width <= photo.width)
+    .map((width) => `${derivativeBase}-${width}.${format} ${width}w`)
+    .join(', ')
 }
 
 const landscapeMeta = [
@@ -81,20 +94,47 @@ function buildPhotos(
   category: PhotographyCategory,
   folderName: string,
   filePrefix: string,
-  label: string,
   meta: readonly (readonly [number, number, number])[]
 ): PhotographyPhoto[] {
   return meta.map(([index, width, height]) => ({
     src: `/images/photography/${folderName}/${filePrefix}${index}.webp`,
-    alt: `${label} photography ${index}`,
+    alt: buildPhotoAlt(category, width, height),
     category,
     width,
     height,
   }))
 }
 
+function buildPhotoAlt(
+  category: PhotographyCategory,
+  width: number,
+  height: number
+): Record<'en' | 'es', string> {
+  const framing = width > height ? 'wide' : 'vertical'
+  const encuadre = width > height ? 'Encuadre amplio' : 'Encuadre vertical'
+
+  if (category === 'landscape') {
+    return {
+      en: `${framing} landscape study of land, light, and distance.`,
+      es: `${encuadre} de paisaje que estudia terreno, luz y distancia.`,
+    }
+  }
+
+  if (category === 'architecture') {
+    return {
+      en: `${framing} architectural study of structure, light, and scale.`,
+      es: `${encuadre} de arquitectura que estudia estructura, luz y escala.`,
+    }
+  }
+
+  return {
+    en: `${framing} street photograph of an everyday urban scene.`,
+    es: `${encuadre} de una escena urbana cotidiana.`,
+  }
+}
+
 export const PHOTOGRAPHY_IMAGES = {
-  landscape: buildPhotos('landscape', 'landscape', 'Landscape', 'Landscape', landscapeMeta),
-  architecture: buildPhotos('architecture', 'architecture', 'Arquitecture', 'Architecture', architectureMeta),
-  street: buildPhotos('street', 'street', 'Street', 'Street', streetMeta),
+  landscape: buildPhotos('landscape', 'landscape', 'Landscape', landscapeMeta),
+  architecture: buildPhotos('architecture', 'architecture', 'Arquitecture', architectureMeta),
+  street: buildPhotos('street', 'street', 'Street', streetMeta),
 } satisfies Record<PhotographyCategory, PhotographyPhoto[]>

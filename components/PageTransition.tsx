@@ -22,7 +22,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward')
   const prevPathnameRef = useRef(pathname)
   const isInitialMount = useRef(true)
-  const transitionTimeoutRef = useRef<NodeJS.Timeout>()
+  const transitionTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const scrollPositionRef = useRef(0)
 
   useEffect(() => {

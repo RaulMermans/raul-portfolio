@@ -192,6 +192,7 @@
 
 .sprintHeader .sectionLabel {
   margin: 0;
+  color: var(--accent-inverse);
 }
 
 .sprintTitle {
@@ -221,7 +222,7 @@
 
 .sprintGrid .sprintDuration {
   margin-top: 1.5rem;
-  color: var(--accent);
+  color: var(--accent-inverse);
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -247,7 +248,7 @@
   content: "/";
   position: absolute;
   margin-left: -1.4rem;
-  color: var(--accent);
+  color: var(--accent-inverse);
   font-family: var(--font-mono), "Space Mono", monospace;
 }
 
@@ -393,7 +394,7 @@
 .step {
   display: block;
   margin-bottom: clamp(4rem, 8vw, 8rem);
-  color: var(--accent);
+  color: var(--accent-inverse);
   font-size: 0.68rem;
   letter-spacing: 0.25em;
 }

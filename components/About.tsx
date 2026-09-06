@@ -43,7 +43,7 @@ export default function About({ locale = 'en' }: AboutProps) {
     <section id="about" className="about" aria-labelledby="about-title">
       <div className="about__inner">
         <div className="about__image-wrapper">
-          <div ref={imageRef} className="about__image" id="about-image" style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <div ref={imageRef} className="about__image" id="about-image">
             <Image
               src="/images/about/profile.webp"
               alt="Portrait of Raúl Mermans"

@@ -1,0 +1,5 @@
+import DataBriefAiPage from '../../../../(es)/case-studies/data-brief-ai/page'
+
+export default function EnglishDataBriefAiPage() {
+  return <DataBriefAiPage />
+}

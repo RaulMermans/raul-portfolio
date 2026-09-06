@@ -39,7 +39,7 @@ function contrastRatio(foreground: string, background: string) {
 }
 
 test('BlogAgent dark sections keep copy and secondary CTA readable', async ({ page }) => {
-  await page.goto('/es/case-studies/blogagent', { waitUntil: 'networkidle' })
+  await page.goto('/case-studies/blogagent', { waitUntil: 'networkidle' })
 
   const colors = await page.evaluate(() => {
     const limitation = document.querySelector<HTMLElement>('.blogagent-limitations li')

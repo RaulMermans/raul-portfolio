@@ -29,7 +29,7 @@ interface HeroBackgroundProps {
 
 export default function HeroBackground({ className }: HeroBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     const container = containerRef.current

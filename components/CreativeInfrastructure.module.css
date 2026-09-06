@@ -69,7 +69,7 @@
 }
 
 .pointIndex {
-  color: rgba(26, 23, 20, 0.38);
+  color: var(--ink-muted);
   font-size: 0.64rem;
   letter-spacing: 0.18em;
 }

@@ -8629,6 +8629,10 @@ main.case-study-page-new {
   color: rgba(245, 240, 235, 0.56);
 }
 
+.case-study-snapshot__facts > div:first-child dt span {
+  color: var(--cream);
+}
+
 .case-study-snapshot__facts > div:first-child dd {
   max-width: 26ch;
   color: var(--cream);

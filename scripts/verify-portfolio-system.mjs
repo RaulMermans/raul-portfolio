@@ -79,7 +79,7 @@ for (const skillPath of [
   requireText(skillPath, 'description:')
 }
 
-const caseStudyIndex = 'app/case-studies/page.tsx'
+const caseStudyIndex = 'app/(es)/case-studies/page.tsx'
 requireText(caseStudyIndex, 'className="ui-page-intro"')
 requireText(caseStudyIndex, '<h1 id="case-studies-heading">{heading}</h1>')
 forbidText(caseStudyIndex, '<h1 id="case-studies-heading" className="visually-hidden">')
@@ -114,7 +114,7 @@ const fullCaseStudyPages = [
 ]
 
 for (const slug of fullCaseStudyPages) {
-  const page = `app/case-studies/${slug}/page.tsx`
+  const page = `app/(es)/case-studies/${slug}/page.tsx`
   const source = read(page)
 
   if (!source.includes('CaseStudyMiniNav')) {
@@ -153,14 +153,14 @@ for (const selector of [
   requireText(caseStudyStyles, selector)
 }
 
-const photographyPage = 'app/photography/page.tsx'
+const photographyPage = 'app/(es)/photography/page.tsx'
 requireText(photographyPage, 'className="gallery photography-page"')
 requireText(photographyPage, 'className="ui-page-intro photography-intro"')
 requireText(photographyPage, '<h1 id="photography-title">')
 forbidText(photographyPage, '<h1 className="visually-hidden">')
 forbidText(photographyPage, '<div className="grain" aria-hidden="true"></div>')
 
-const appsIndex = 'app/apps/apps-page-shared.tsx'
+const appsIndex = 'app/(es)/apps/apps-page-shared.tsx'
 requireText(appsIndex, "import styles from './AppsPages.module.css'")
 requireText(appsIndex, 'className={`ui-page-intro ${styles.indexIntro}`}')
 requireText(appsIndex, '<h1 id="apps-title">{copy.title}</h1>')
@@ -168,7 +168,7 @@ requireText(appsIndex, '<h2 className={styles.appCardTitle}>{app.name}</h2>')
 forbidText(appsIndex, 'fontFamily:')
 forbidText(appsIndex, 'rgba(')
 
-const appDetail = 'app/apps/app-detail-shared.tsx'
+const appDetail = 'app/(es)/apps/app-detail-shared.tsx'
 requireText(appDetail, "import styles from './AppsPages.module.css'")
 requireText(appDetail, '<h1 className={styles.detailTitle}>{app.name}</h1>')
 requireText(appDetail, 'className={`ui-surface ${styles.metric}`}')
@@ -176,7 +176,7 @@ for (const legacyStyle of ['fontFamily:', 'rounded-[22px]', 'rounded-[28px]', 'r
   forbidText(appDetail, legacyStyle)
 }
 
-const appsStyles = 'app/apps/AppsPages.module.css'
+const appsStyles = 'app/(es)/apps/AppsPages.module.css'
 for (const token of [
   '--surface-page',
   '--text-primary',

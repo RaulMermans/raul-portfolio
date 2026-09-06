@@ -10,8 +10,10 @@
   --ink: #1A1714;
   --ink-soft: #3A3530;
   --ink-muted: #6B635A;
-  --ink-faint: #8A827A;
+  /* Faint UI text still meets WCAG AA against the paper surface. */
+  --ink-faint: #6B635A;
   --accent: #C41E3A;
+  --accent-inverse: #FFB5A0;
   --gold: #C6A877;
   --warm: #FFAA88;
   --rose: #FFB5A0;

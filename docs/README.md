@@ -13,6 +13,16 @@
 
 - **[Portfolio experience system](PORTFOLIO_EXPERIENCE_SYSTEM.md)** - The canonical brand, UX, art-direction, case-study, and quality rules for public portfolio work.
 
+## Production contracts
+
+- `scripts/verify-export.sh` checks required static files and editorial output.
+- `scripts/verify-canonical-output.mjs` checks rendered language, canonical,
+  hreflang, schema, and default-locale contracts.
+- `data/case-study-editorial.ts` defines the deliberate portfolio order; the
+  case-study index presents it as selected work, experiments, and archive.
+- `data/photography.ts` is the source of truth for localized photography alt
+  text and derivative source sets.
+
 The corresponding routed skills live in `.codex/skills/`. Start any public-route change with `$portfolio-experience-system`.
 
 ## Image Upload Locations

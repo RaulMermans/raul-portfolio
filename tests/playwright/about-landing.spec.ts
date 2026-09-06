@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 const locales = [
   { path: '/en/about/', title: 'RAÚL MERMANS' },
-  { path: '/es/about/', title: 'RAÚL MERMANS' },
+  { path: '/about/', title: 'RAÚL MERMANS' },
 ] as const
 
 for (const locale of locales) {

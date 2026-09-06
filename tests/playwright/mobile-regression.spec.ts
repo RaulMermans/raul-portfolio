@@ -73,6 +73,10 @@ async function swipeSurface(page: Page, deltaX: number, deltaY: number) {
 }
 
 test.describe('Mobile Regression', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+  })
+
   test('homepage hero remains readable on mobile', async ({ page }) => {
     await preparePage(page, '/en/')
 
@@ -106,7 +110,7 @@ test.describe('Mobile Regression', () => {
     await expect(buildingNow.getByRole('heading', { name: 'An independent practice with room to grow.' })).toBeVisible()
     await expect(buildingNow.getByText('Selected founder collaborations')).toBeVisible()
 
-    await preparePage(page, '/es/')
+    await preparePage(page, '/')
     const spanishBuildingNow = page.locator('#building-now')
     await spanishBuildingNow.scrollIntoViewIfNeeded()
     await expect(spanishBuildingNow.getByRole('heading', { name: 'Una práctica independiente con espacio para crecer.' })).toBeVisible()

@@ -97,6 +97,15 @@ export function localizePath(href: string, locale: Locale) {
   }
 
   const { pathname, suffix } = splitHref(href)
+  const normalizedPath = normalizePathname(pathname || '/')
+  const localizedPair = localizedRoutePairs.find(
+    (pair) => normalizePathname(pair.en) === normalizedPath || normalizePathname(pair.es) === normalizedPath,
+  )
+
+  if (localizedPair) {
+    return `${localizedPair[locale]}${suffix}`
+  }
+
   const basePath = stripLocaleFromPath(pathname || '/')
   const prefix = getLocalePrefix(locale)
   const localizedBase =

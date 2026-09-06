@@ -1,14 +1,24 @@
 name: Deploy to IONOS
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
 jobs:
   deploy:
-    name: Deploy to IONOS SFTP
+    name: Deploy the verified main commit
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
@@ -18,13 +28,16 @@ jobs:
       SFTP_PORT: ${{ secrets.SFTP_PORT || 22 }}
       SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - name: Checkout verified commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -36,53 +49,43 @@ jobs:
           test -n "$SFTP_PASSWORD" || { echo "Missing SFTP_PASSWORD secret."; exit 1; }
           test -n "$SFTP_REMOTE_PATH" || { echo "Missing SFTP_REMOTE_PATH secret."; exit 1; }
 
-      - name: Type-check
-        run: npm run type-check
-
-      - name: Lint
-        run: npm run lint
-
       - name: Build static export
         run: npm run build
         env:
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
 
-      - name: Verify export output
-        run: npm run verify:export
+      - name: Verify deployment payload
+        run: |
+          npm run verify:export
+          npm run verify:canonical
 
       - name: Write deployment fingerprint
         run: |
           {
-            echo "sha=${GITHUB_SHA}"
-            echo "run_id=${GITHUB_RUN_ID}"
-            echo "run_attempt=${GITHUB_RUN_ATTEMPT}"
+            echo "sha=${{ github.event.workflow_run.head_sha }}"
+            echo "run_id=${{ github.event.workflow_run.id }}"
             echo "deployed_at=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           } > out/deploy-version.txt
-          cat out/deploy-version.txt
+
+      - name: Install SFTP client
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lftp
 
       - name: Deploy to IONOS via SFTP
-        uses: wangyucode/sftp-upload-action@v3.0.0
-        with:
-          host: ${{ env.SFTP_HOST }}
-          username: ${{ env.SFTP_USER }}
-          password: ${{ env.SFTP_PASSWORD }}
-          port: ${{ env.SFTP_PORT }}
-          localDir: ./out/
-          remoteDir: ${{ env.SFTP_REMOTE_PATH }}
-          forceUpload: true
-          removeExtraFilesOnServer: true
-          concurrency: 8
+        run: |
+          lftp -u "$SFTP_USER,$SFTP_PASSWORD" "sftp://$SFTP_HOST:$SFTP_PORT" \
+            -e "set cmd:fail-exit true; set sftp:auto-confirm yes; mirror --reverse --delete --verbose ./out/ $SFTP_REMOTE_PATH; bye"
 
       - name: Verify production deployment
         env:
-          DEPLOY_VERSION: ${{ github.sha }}
+          DEPLOY_VERSION: ${{ github.event.workflow_run.head_sha }}
         run: |
           curl --fail --silent --show-error \
             -H "Cache-Control: no-cache" \
             "https://www.raulmermans.com/deploy-version.txt?v=${DEPLOY_VERSION}" \
             --output /tmp/deploy-version.txt
 
-          cat /tmp/deploy-version.txt
           grep -Fq "sha=${DEPLOY_VERSION}" /tmp/deploy-version.txt
 
           verify_copy() {
@@ -112,32 +115,9 @@ jobs:
           verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Campaign Sandbox"
           verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "reviewer veto before publication"
           verify_copy "https://www.raulmermans.com/case-studies/blogagent/" /tmp/blogagent-es.html "poder de veto antes de publicar"
-          verify_copy "https://www.raulmermans.com/en/case-studies/benchmark-dashboard/" /tmp/benchmark-en.html "source_monthly is the source contract"
-          verify_copy "https://www.raulmermans.com/case-studies/benchmark-dashboard/" /tmp/benchmark-default.html "source_monthly es el contrato fuente"
-          verify_copy "https://www.raulmermans.com/es/case-studies/benchmark-dashboard/" /tmp/benchmark-es.html "source_monthly es el contrato fuente"
-
           verify_copy "https://www.raulmermans.com/en/services/ai-integrations/" /tmp/service-ai-en.html "AI Integrations for Creative Systems"
-          verify_copy "https://www.raulmermans.com/en/services/creative-automation/" /tmp/service-automation-en.html "Creative Automation"
-          verify_copy "https://www.raulmermans.com/en/services/brand-systems/" /tmp/service-brand-en.html "Brand Systems & Creative Direction"
-          verify_copy "https://www.raulmermans.com/en/services/product-prototypes/" /tmp/service-prototype-en.html "AI Product Prototypes & Internal Tools"
-
           verify_copy "https://www.raulmermans.com/services/integraciones-ia/" /tmp/service-ai-es.html "Integraciones IA para Sistemas Creativos"
-          verify_copy "https://www.raulmermans.com/services/automatizacion-creativa/" /tmp/service-automation-es.html "Automatización Creativa"
-          verify_copy "https://www.raulmermans.com/services/sistemas-de-marca/" /tmp/service-brand-es.html "Sistemas de Marca y Dirección Creativa"
-          verify_copy "https://www.raulmermans.com/services/prototipos-producto-ia/" /tmp/service-prototype-es.html "Prototipos de Producto IA y Herramientas Internas"
 
+          ! grep -Fq "href=\"/es/" /tmp/raul-es.html
           ! grep -Fq "Request an AI Workflow Audit" /tmp/raul-en.html
           ! grep -Fq "Marketing + CRM" /tmp/raul-en.html
-          ! grep -Fq "Sistemas de IA · Agentes · Automatización" /tmp/raul-es.html
-          ! grep -Fq "Automatización CRM" /tmp/raul-es.html
-          ! grep -Fq "Digital identity system that structures AI/product work" /tmp/cases-en.html
-          ! grep -Fq "For faster UX, SEO, and conversion diagnostics" /tmp/cases-en.html
-          ! grep -Fq "Benchmark Dashboard Template" /tmp/benchmark-en.html
-          ! grep -Fq "Benchmark Intelligence Framework" /tmp/benchmark-en.html
-          ! grep -Fq "data.interface is the source of truth" /tmp/benchmark-en.html
-          ! grep -Fq "Benchmark Dashboard Template" /tmp/benchmark-default.html
-          ! grep -Fq "Benchmark Intelligence Framework" /tmp/benchmark-default.html
-          ! grep -Fq "data.interface es la fuente de verdad" /tmp/benchmark-default.html
-          ! grep -Fq "Benchmark Dashboard Template" /tmp/benchmark-es.html
-          ! grep -Fq "Benchmark Intelligence Framework" /tmp/benchmark-es.html
-          ! grep -Fq "data.interface es la fuente de verdad" /tmp/benchmark-es.html

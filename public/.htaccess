@@ -2,6 +2,12 @@ DirectoryIndex index.html
 ErrorDocument 404 /404.html
 Options -MultiViews
 
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^es/?$ / [R=301,L]
+  RewriteRule ^es/(.+)$ /$1 [R=301,L]
+</IfModule>
+
 <IfModule mod_headers.c>
   <FilesMatch "\.html$">
     Header set Cache-Control "public, max-age=0, must-revalidate"

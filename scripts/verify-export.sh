@@ -35,10 +35,8 @@ assert_file out/case-studies/index.html
 assert_file out/en/case-studies/index.html
 assert_file out/case-studies/blogagent/index.html
 assert_file out/en/case-studies/blogagent/index.html
-assert_file out/es/case-studies/blogagent/index.html
 assert_file out/case-studies/relay/index.html
 assert_file out/en/case-studies/relay/index.html
-assert_file out/es/case-studies/relay/index.html
 
 assert_file out/en/services/ai-integrations/index.html
 assert_file out/en/services/creative-automation/index.html
@@ -87,7 +85,11 @@ assert_contains out/case-studies/index.html "Ver caso de estudio: Relay"
 
 assert_contains out/en/case-studies/blogagent/index.html "reviewer veto before publication"
 assert_contains out/case-studies/blogagent/index.html "poder de veto antes de publicar"
-assert_contains out/es/case-studies/blogagent/index.html "poder de veto antes de publicar"
+
+if test -e out/es; then
+  echo "Unexpected duplicate /es export found. Spanish must use the default canonical routes."
+  exit 1
+fi
 
 assert_absent out/en/case-studies/index.html "Digital identity system that structures AI/product work"
 assert_absent out/en/case-studies/index.html "For faster UX, SEO, and conversion diagnostics"

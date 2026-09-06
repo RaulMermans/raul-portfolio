@@ -1,5 +1,3 @@
-'use client'
-
 interface BoldTextProps {
   text: string
   keywords?: string[]
@@ -11,13 +9,20 @@ interface BoldTextProps {
  */
 export default function BoldText({ text, keywords }: BoldTextProps) {
   if (keywords && keywords.length > 0) {
-    // Split text by keywords and wrap matches in <strong>
-    let result = text
-    keywords.forEach((keyword) => {
-      const regex = new RegExp(`(${keyword})`, 'gi')
-      result = result.replace(regex, '<strong>$1</strong>')
-    })
-    return <span dangerouslySetInnerHTML={{ __html: result }} />
+    const normalizedKeywords = [...new Set(keywords.filter(Boolean))].sort((a, b) => b.length - a.length)
+    if (normalizedKeywords.length === 0) return <>{text}</>
+
+    const escapedKeywords = normalizedKeywords.map((keyword) => keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    const parts = text.split(new RegExp(`(${escapedKeywords.join('|')})`, 'gi'))
+    const keywordSet = new Set(normalizedKeywords.map((keyword) => keyword.toLocaleLowerCase()))
+
+    return (
+      <>
+        {parts.map((part, index) =>
+          keywordSet.has(part.toLocaleLowerCase()) ? <strong key={index}>{part}</strong> : <span key={index}>{part}</span>
+        )}
+      </>
+    )
   }
 
   // Support **text** markdown-style syntax
@@ -34,4 +39,3 @@ export default function BoldText({ text, keywords }: BoldTextProps) {
     </>
   )
 }
-

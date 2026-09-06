@@ -4,14 +4,9 @@ import { useEffect, useState } from 'react'
 
 export default function ScrollProgress() {
   const [progress, setProgress] = useState(0)
-  const [visible, setVisible] = useState(true)
-
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) {
-      setVisible(false)
-      return
-    }
+    if (prefersReducedMotion) return
 
     let ticking = false
 
@@ -35,8 +30,6 @@ export default function ScrollProgress() {
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  if (!visible) return null
 
   return (
     <div

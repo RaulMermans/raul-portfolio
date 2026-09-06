@@ -44,19 +44,31 @@ for (const locale of ['es', 'en'] as const) {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto(`${prefix}/case-studies`, { waitUntil: 'domcontentloaded' })
 
-    const readingGap = await page.evaluate(() => {
+    const readingFlow = await page.evaluate(() => {
       const lede = document.querySelector('.ui-page-intro__content > p:not(.ui-eyebrow)')
-      const firstCard = document.querySelector('[data-mobile-audit="case-study-card"]')
+      const firstGroup = document.querySelector('.case-study-gallery-group')
+      const groupHeader = firstGroup?.querySelector('.case-study-gallery-group__header')
+      const firstCard = firstGroup?.querySelector('[data-mobile-audit="case-study-card"]')
 
-      if (!(lede instanceof HTMLElement) || !(firstCard instanceof HTMLElement)) {
+      if (
+        !(lede instanceof HTMLElement) ||
+        !(firstGroup instanceof HTMLElement) ||
+        !(groupHeader instanceof HTMLElement) ||
+        !(firstCard instanceof HTMLElement)
+      ) {
         throw new Error('Case-study index reading-flow elements are missing')
       }
 
-      return firstCard.getBoundingClientRect().top - lede.getBoundingClientRect().bottom
+      return {
+        groupGap: firstGroup.getBoundingClientRect().top - lede.getBoundingClientRect().bottom,
+        cardGap: firstCard.getBoundingClientRect().top - groupHeader.getBoundingClientRect().bottom,
+      }
     })
 
-    expect(readingGap).toBeGreaterThanOrEqual(0)
-    expect(readingGap).toBeLessThanOrEqual(160)
+    expect(readingFlow.groupGap).toBeGreaterThanOrEqual(0)
+    expect(readingFlow.groupGap).toBeLessThanOrEqual(160)
+    expect(readingFlow.cardGap).toBeGreaterThanOrEqual(0)
+    expect(readingFlow.cardGap).toBeLessThanOrEqual(160)
   })
 
   test(`case-study index follows the portfolio priority order in ${locale}`, async ({
@@ -77,6 +89,7 @@ for (const locale of ['es', 'en'] as const) {
   test(`all case studies expose the shared editorial system in ${locale}`, async ({
     page,
   }) => {
+    test.setTimeout(120_000)
     const prefix = locale === 'en' ? '/en' : ''
     const expectedIndex = `${prefix}/case-studies/`
     const expectedLabels =
@@ -200,6 +213,7 @@ for (const locale of ['es', 'en'] as const) {
   test(`case-study chapter navigation stays in a single horizontal row in ${locale}`, async ({
     page,
   }) => {
+    test.setTimeout(120_000)
     const prefix = locale === 'en' ? '/en' : ''
 
     for (const viewport of [

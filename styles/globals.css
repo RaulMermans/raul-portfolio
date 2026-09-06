@@ -291,18 +291,20 @@ img {
   transition: width 0.1s linear;
 }
 
-/* Section transitions - fade/slide on scroll (homepage) */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+}
+
+/* Section transitions - movement only, so pending sections keep readable contrast. */
 @media (prefers-reduced-motion: no-preference) {
   .section-transition {
-    opacity: 0.6;
     transform: translateY(20px);
-    transition:
-      opacity 0.5s ease-out,
-      transform 0.5s ease-out;
+    transition: transform 0.5s ease-out;
   }
 
   .section-transition.section-visible {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -1040,6 +1042,7 @@ html.homepage .footer {
 
 .about__image-wrapper {
   position: relative;
+  width: min(100%, 380px);
   max-width: 380px;
 }
 
@@ -2174,7 +2177,6 @@ html.homepage .footer {
 }
 
 .service__image img,
-.service__image :global(img),
 .service__image-img {
   width: 100%;
   height: 100%;
@@ -2189,7 +2191,6 @@ html.homepage .footer {
 }
 
 .service:hover .service__image img,
-.service:hover .service__image :global(img),
 .service:hover .service__image-img {
   transform: scale(1.08);
   filter: brightness(1.05) contrast(1.02);
@@ -2428,7 +2429,7 @@ html.homepage .footer {
 }
 
 .footer__back-top span:last-child {
-  color: rgba(245, 240, 235, 0.28);
+  color: rgba(245, 240, 235, 0.55);
   font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.42em;
@@ -2442,7 +2443,7 @@ html.homepage .footer {
 
 .footer__column h2 {
   margin: 0 0 clamp(0.9rem, 1.9vw, 1.55rem);
-  color: rgba(245, 240, 235, 0.28);
+  color: rgba(245, 240, 235, 0.55);
   font-size: 0.62rem;
   font-weight: 400;
   letter-spacing: 0.42em;
@@ -2799,7 +2800,7 @@ html.homepage .footer {
 
 .footer__meta span {
   margin-left: 0.9rem;
-  color: rgba(245, 240, 235, 0.42);
+  color: rgba(245, 240, 235, 0.55);
   text-decoration: none;
 }
 
@@ -2813,7 +2814,7 @@ html.homepage .footer {
 }
 
 .footer__legal a {
-  color: rgba(245, 240, 235, 0.45);
+  color: rgba(245, 240, 235, 0.55);
   font-family: var(--font-mono), 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -3578,6 +3579,10 @@ html.homepage .footer {
   opacity: 0;
 }
 
+.gallery__item picture {
+  display: block;
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -3722,9 +3727,11 @@ html.homepage .footer {
   text-align: right;
   z-index: 50;
   pointer-events: none;
-  opacity: 0;
-  animation: fadeIn 0.8s var(--ease-out) 0.5s forwards;
+  opacity: 1;
   max-width: 40vw;
+  padding: var(--space-2) var(--space-3);
+  background: var(--cream-light);
+  box-shadow: 0 8px 24px rgba(26, 23, 20, 0.08);
 }
 
 .category-overlay__title {
@@ -3759,8 +3766,7 @@ html.homepage .footer {
   gap: 0;
   z-index: 100;
   background: var(--cream);
-  opacity: 0;
-  animation: fadeIn 0.8s var(--ease-out) 0.7s forwards;
+  opacity: 1;
   max-width: calc(100% - var(--space-8));
   box-shadow: 0 4px 20px rgba(26, 23, 20, 0.1);
   border-radius: 8px;
@@ -6848,6 +6854,48 @@ a[href^='/']:hover {
   padding: 0;
 }
 
+.case-study-gallery-group + .case-study-gallery-group {
+  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+.case-study-gallery-group__header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-3) clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.case-study-gallery-group__header > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.case-study-gallery-group__header h2,
+.case-study-gallery-group__header > span {
+  margin: 0;
+}
+
+.case-study-gallery-group__header h2 {
+  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(2.8rem, 5.2vw, 5.4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.case-study-gallery-group__header > span {
+  max-width: 38rem;
+  color: var(--ink-muted);
+  font-size: var(--text-md);
+  line-height: 1.55;
+}
+
 .case-study-thumbnail-gallery .case-study-project-tile {
   grid-column: span 3;
   grid-template-rows: auto auto;
@@ -6916,6 +6964,10 @@ a[href^='/']:hover {
   .case-study-thumbnail-gallery .case-study-project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-5) var(--space-3);
+  }
+
+  .case-study-gallery-group__header {
+    grid-template-columns: 1fr;
   }
 
   .case-study-thumbnail-gallery .case-study-project-tile {
@@ -9802,6 +9854,7 @@ body:has(.case-studies-main) .page-transition {
   }
 
   .about-landing__portrait {
+    width: min(100%, 240px);
     max-width: 240px;
   }
 

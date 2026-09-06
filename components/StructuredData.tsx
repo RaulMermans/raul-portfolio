@@ -16,6 +16,8 @@ interface StructuredDataProps {
     | 'Service'
     | 'SoftwareApplication'
     | 'CollectionPage'
+    | 'WebPage'
+    | 'SiteGraph'
   data?: Record<string, unknown>
 }
 
@@ -24,7 +26,52 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     '@context': 'https://schema.org',
   }
 
-  if (type === 'Person') {
+  if (type === 'SiteGraph') {
+    const inLanguage = typeof data?.inLanguage === 'string' ? data.inLanguage : 'es-ES'
+    jsonLd = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Person',
+          '@id': `${siteConfig.url}/#person`,
+          name: siteConfig.name,
+          jobTitle: 'Brand strategist and creative systems builder',
+          description: siteConfig.defaultDescription,
+          url: siteConfig.url,
+          image: absoluteUrl('/images/about/profile.webp'),
+          sameAs: [
+            'https://www.instagram.com/raulmeermans/',
+            'https://linkedin.com/in/raulmermans',
+            'https://unsplash.com/@raulmermans',
+          ],
+          email: PUBLIC_CONTACT_EMAIL,
+          address: {
+            '@type': 'PostalAddress',
+            addressCountry: 'ES',
+          },
+          knowsAbout: [
+            'Brand strategy',
+            'Creative systems',
+            'Cultural strategy',
+            'Product thinking',
+            'Creative direction',
+            'Research and data',
+            'Technology and AI-assisted systems',
+          ],
+        },
+        {
+          '@type': 'WebSite',
+          '@id': `${siteConfig.url}/#website`,
+          name: `${siteConfig.name} Portfolio`,
+          url: absoluteRouteUrl('/'),
+          description: siteConfig.defaultDescription,
+          inLanguage,
+          availableLanguage: ['es', 'en'],
+          author: { '@id': `${siteConfig.url}/#person` },
+        },
+      ],
+    }
+  } else if (type === 'Person') {
     jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Person',
@@ -231,12 +278,23 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       },
       ...data,
     }
+  } else if (type === 'WebPage') {
+    jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': data?.['@id'] ?? `${siteConfig.url}/#webpage`,
+      isPartOf: { '@id': `${siteConfig.url}/#website` },
+      about: { '@id': `${siteConfig.url}/#person` },
+      ...data,
+    }
   }
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+      }}
     />
   )
 }

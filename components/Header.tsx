@@ -112,7 +112,16 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     activePath.includes('/case-studies/ai-sports') ||
     activePath.includes('/case-studies/remoria')
   const isAboutRoute = activePath.includes('/about')
-  const surface = hasDarkCaseStudyHero ? 'dark' : isCaseStudiesRoute ? 'case-studies' : isAboutRoute ? 'dark' : undefined
+  const isHomeRoute = activePath === localizePath('/', locale)
+  const surface = hasDarkCaseStudyHero
+    ? 'dark'
+    : isCaseStudiesRoute
+      ? 'case-studies'
+      : isAboutRoute
+        ? 'dark'
+        : isHomeRoute
+          ? undefined
+          : 'case-studies'
   const isSpanish = locale === 'es'
   const englishPath = switchLocalePath(activePath, 'en')
   const spanishPath = switchLocalePath(activePath, 'es')
@@ -126,7 +135,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
 
   return (
     <>
-      <header className={styles.headerBar} data-surface={surface} data-transparent={isCaseStudiesRoute || undefined}>
+      <header className={styles.headerBar} data-surface={surface}>
         <Link href={localizePath('/', locale)} className={styles.logo} aria-label={copy.logoLabel}>
           RM
         </Link>

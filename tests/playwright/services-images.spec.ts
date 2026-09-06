@@ -52,7 +52,7 @@ for (const locale of serviceLandingLinks) {
     for (const [title, href] of locale.links) {
       const service = services.filter({ hasText: title })
       await expect(service).toHaveCount(1)
-      await expect(service.locator('.service__cta')).toHaveAttribute('href', href)
+      await expect(service.locator('.service__cta')).toHaveAttribute('href', `${href}/`)
     }
   })
 }
@@ -67,6 +67,10 @@ for (const [path, title] of webDevelopmentLandings) {
     await page.goto(path, { waitUntil: 'networkidle' })
 
     await expect(page.getByRole('heading', { level: 1, name: title })).toBeVisible()
-    await expect(page.locator('script[type="application/ld+json"]')).toContainText('FAQPage')
+    const schemaScripts = page.locator('script[type="application/ld+json"]')
+    await expect(schemaScripts).not.toHaveCount(0)
+    expect(
+      await schemaScripts.evaluateAll((scripts) => scripts.some((script) => script.textContent?.includes('FAQPage'))),
+    ).toBe(true)
   })
 }

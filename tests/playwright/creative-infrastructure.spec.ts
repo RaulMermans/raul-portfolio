@@ -39,9 +39,10 @@ test('Building now keeps the bold display font clear of adjacent copy on desktop
 
 for (const [locale, path] of [
   ['English', '/en/'],
-  ['Spanish', '/es/'],
+  ['Spanish', '/'],
 ] as const) {
   test(`Building now anchor clears the fixed header on mobile in ${locale}`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
     await preparePage(page, path)
 
     const metrics = await page.locator('#building-now').evaluate((section) => {

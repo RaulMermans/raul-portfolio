@@ -18,17 +18,25 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'iphone-13',
+      name: 'desktop-chromium',
+      use: {
+        browserName: 'chromium',
+        viewport: { width: 1440, height: 900 },
+      },
+    },
+    {
+      name: 'mobile-chromium',
       use: {
         ...devices['iPhone 13'],
         browserName: 'chromium',
       },
     },
     {
-      name: 'pixel-5',
+      name: 'webkit-smoke',
+      testMatch: /canonicalization\.spec\.ts/,
       use: {
-        ...devices['Pixel 5'],
-        browserName: 'chromium',
+        ...devices['Desktop Safari'],
+        browserName: 'webkit',
       },
     },
   ],

@@ -11,6 +11,7 @@ import {
   type KeyboardEvent,
   type MouseEvent,
   type PointerEvent,
+  type ReactNode,
   type TransitionEvent,
 } from 'react'
 import Link from 'next/link'
@@ -52,6 +53,56 @@ function getSlideStyle(relativeIndex: number): CSSProperties {
 
 interface SectionCardsProps {
   locale?: Locale
+}
+
+interface CarouselCardProps {
+  clone: boolean
+  href: string
+  className: string
+  style: CSSProperties
+  labelledBy: string
+  isActive: boolean
+  children: ReactNode
+  onPrefetch: () => void
+  onClick: (event: MouseEvent<HTMLAnchorElement>) => void
+}
+
+function CarouselCard({
+  clone,
+  href,
+  className,
+  style,
+  labelledBy,
+  isActive,
+  children,
+  onPrefetch,
+  onClick,
+}: CarouselCardProps) {
+  if (clone) {
+    return (
+      <div className={className} style={style} aria-labelledby={labelledBy}>
+        {children}
+      </div>
+    )
+  }
+
+  return (
+    <Link
+      href={href}
+      className={className}
+      style={style}
+      aria-labelledby={labelledBy}
+      aria-current={isActive ? 'true' : undefined}
+      tabIndex={isActive ? 0 : -1}
+      prefetch={false}
+      draggable={false}
+      onMouseEnter={onPrefetch}
+      onFocus={onPrefetch}
+      onClick={onClick}
+    >
+      {children}
+    </Link>
+  )
 }
 
 export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
@@ -329,6 +380,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
             {loopedSections.map((section, slideIndex) => {
               const relativeIndex = slideIndex - visualIndex
               const isActiveSlide = relativeIndex === 0
+              const isClone = slideIndex === 0 || slideIndex === loopedSections.length - 1
               const slideStyle = getSlideStyle(relativeIndex)
               const titleId = `${gridId}-title-${slideIndex}`
 
@@ -338,18 +390,17 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
                   className={styles.slide}
                   style={slideStyle}
                   aria-hidden={!isActiveSlide}
+                  inert={!isActiveSlide || undefined}
+                  data-carousel-clone={isClone || undefined}
                 >
-                  <Link
+                  <CarouselCard
+                    clone={isClone}
                     href={section.href}
                     className={styles.card}
                     style={{ '--section-accent': section.accent } as CSSProperties}
-                    aria-labelledby={titleId}
-                    aria-current={isActiveSlide ? 'true' : undefined}
-                    tabIndex={isActiveSlide ? 0 : -1}
-                    prefetch={false}
-                    draggable={false}
-                    onMouseEnter={() => router.prefetch(section.href)}
-                    onFocus={() => router.prefetch(section.href)}
+                    labelledBy={titleId}
+                    isActive={isActiveSlide}
+                    onPrefetch={() => router.prefetch(section.href)}
                     onClick={(event) => handleCardClick(event, slideIndex, isActiveSlide)}
                   >
                     <div className={styles.content}>
@@ -390,7 +441,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
                       />
                       <div className={styles.imageScrim} />
                     </div>
-                  </Link>
+                  </CarouselCard>
                 </div>
               )
             })}

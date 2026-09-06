@@ -1,6 +1,6 @@
 # Deployment
 
-This portfolio deploys from pushes to `main`.
+This portfolio deploys only after the `CI` workflow succeeds for a push to `main`.
 
 The GitHub Actions workflow builds the static Next.js export and uploads the
 generated `out/` directory to the configured IONOS destination via SFTP.
@@ -16,8 +16,8 @@ the repository.
 - Deploy transport: SFTP from GitHub Actions
 - Workflow: `.github/workflows/deploy.yml`
 
-The workflow runs on pushes to `main` and can also be started manually from the
-GitHub Actions tab.
+The deployment workflow is triggered by that successful CI run and checks out
+the exact verified commit SHA. Pull requests never receive deployment secrets.
 
 ## Required GitHub Secrets
 
@@ -47,6 +47,8 @@ npm ci
 npm run lint
 npm run type-check
 npm run build
+npm run verify:export
+npm run verify:canonical
 ```
 
 After `npm run build`, confirm that `out/` exists.
@@ -59,8 +61,8 @@ Push to `main`:
 git push origin main
 ```
 
-GitHub Actions will install dependencies, build the static export, verify
-`out/`, and upload the contents of `out/` to the configured IONOS SFTP target.
+GitHub Actions will run quality and browser checks first, then build the static
+export, verify `out/`, upload it, and confirm the deployed fingerprint.
 
 Local/private deployment helper scripts are intentionally ignored.
 

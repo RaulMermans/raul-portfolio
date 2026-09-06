@@ -14,45 +14,21 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
-  searchsignal-e2e:
-    name: SearchSignal Playwright checks
-    runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
-
-      - name: Check SearchSignal on desktop and mobile
-        run: npx playwright test tests/playwright/searchsignal-case-study.spec.ts
-
-      - name: Check shared portfolio reading flow
-        run: npx playwright test tests/playwright/case-study-parity.spec.ts --grep "all case studies expose the shared editorial system|brings the first project|photography intro stays connected|creative case-study headings remain sequential|app detail headings remain sequential|creative case-study hero keeps shared navigation|Relay uses shared technical case-study hero structure|chapter navigation stays in a single horizontal row"
-
   quality:
-    name: Quality checks
+    name: Quality and static export checks
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 20
           cache: npm
@@ -74,6 +50,9 @@ jobs:
 
       - name: Verify portfolio experience system
         run: npm run verify:experience-system
+
+      - name: Verify canonical HTML contract
+        run: npm run verify:canonical
 
       - name: Check DemandOS public copy
         run: |
@@ -97,3 +76,28 @@ jobs:
           test -f out/case-studies/demandos/index.html
           test -f out/en/case-studies/demandos/index.html
           test -f out/images/case-studies/demandos/02-home-dashboard.png
+
+  critical-e2e:
+    name: Critical browser and accessibility checks
+    needs: quality
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Run critical Playwright suite
+        run: npm run test:e2e

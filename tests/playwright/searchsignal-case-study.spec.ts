@@ -23,10 +23,11 @@ test.describe('SearchSignal case study', () => {
     await page.screenshot({ path: testInfo.outputPath(`searchsignal-mobile-${testInfo.project.name}.png`), fullPage: false })
   })
 
-  test('keeps its workflow and evidence visible on desktop', async ({ browser }, testInfo) => {
+  test('keeps its workflow and evidence visible on desktop', async ({ baseURL, browser }, testInfo) => {
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } })
     const page = await context.newPage()
-    await page.goto('http://127.0.0.1:3000/en/case-studies/searchsignal/', { waitUntil: 'networkidle' })
+    if (!baseURL) throw new Error('Playwright baseURL is required for the desktop SearchSignal check')
+    await page.goto(`${baseURL}/en/case-studies/searchsignal/`, { waitUntil: 'networkidle' })
 
     const metadata = page.locator('.searchsignal-meta')
     await expect(metadata).toBeVisible()

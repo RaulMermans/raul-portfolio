@@ -13,6 +13,7 @@ test-results/
 # next.js
 /.next/
 out/
+public/images/derived/
 
 # production
 /build
