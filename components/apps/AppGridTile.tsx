@@ -17,7 +17,7 @@ export default function AppGridTile({ app }: AppGridTileProps) {
   return (
     <Link
       href={app.href}
-      className="app-grid-tile group relative flex flex-col items-center overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.03] p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/[0.16]"
+      className="app-grid-tile group relative flex flex-col items-center overflow-hidden rounded-[var(--radius-lg)] border border-white/[0.08] bg-white/[0.03] p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/[0.16]"
       style={
         {
           '--tile-accent': hoverShadowColor,
@@ -42,7 +42,7 @@ export default function AppGridTile({ app }: AppGridTileProps) {
           />
         ) : (
           <div
-            className="h-[100px] w-[100px] rounded-[24px] shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-110"
+            className="h-[100px] w-[100px] rounded-[var(--radius-lg)] shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-110"
             style={{
               background: `linear-gradient(135deg, ${app.theme.accent}, ${app.theme.accentSoft})`,
               boxShadow: `0 12px 40px rgba(0,0,0,0.4), 0 0 60px ${app.theme.glow}`,
@@ -54,8 +54,8 @@ export default function AppGridTile({ app }: AppGridTileProps) {
       {/* Text zone */}
       <div className="relative z-10 mt-2 w-full">
         <h3
-          className="min-h-[2lh] text-2xl uppercase leading-[0.95] text-[#f5f0eb]"
-          style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
+          className="min-h-[2lh] text-2xl uppercase leading-[0.95] text-[var(--cream)]"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           {app.name}
         </h3>

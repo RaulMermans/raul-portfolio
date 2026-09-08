@@ -78,5 +78,8 @@ ENV_SETUP.md
 IMAGES_STATUS.md
 PROJECT_STRUCTURE.md
 
+# Root repository routing contract. Other nested agent notes remain local.
+!AGENTS.md
+
 # OS
 Thumbs.db

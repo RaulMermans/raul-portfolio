@@ -1,3 +1,4 @@
+/* @design-override reason: legacy route foundation migration */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

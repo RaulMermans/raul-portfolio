@@ -32,7 +32,7 @@ export default function Error({
       <h1 style={{ 
         fontSize: 'clamp(2rem, 8vw, 4rem)',
         marginBottom: '1rem',
-        fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif',
+        fontFamily: 'var(--font-heading)',
         textTransform: 'uppercase',
         letterSpacing: 'var(--tracking-tight)',
       }}>
@@ -81,4 +81,3 @@ export default function Error({
     </div>
   )
 }
-

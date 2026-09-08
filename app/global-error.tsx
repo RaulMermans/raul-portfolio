@@ -12,6 +12,7 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  // @design-override reason: global error fallback
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const copy =
@@ -38,9 +39,9 @@ export default function GlobalError({
       <body style={{
         margin: 0,
         padding: 0,
-        fontFamily: 'system-ui, sans-serif',
-        background: '#F5F0EB',
-        color: '#1A1714',
+        fontFamily: 'var(--font-ui, system-ui, sans-serif)',
+        background: 'var(--surface-page, #F5F0EB)',
+        color: 'var(--text-primary, #1A1714)',
       }}>
         <div style={{
           minHeight: '100vh',
@@ -59,7 +60,7 @@ export default function GlobalError({
           </h1>
           <p style={{ 
             marginBottom: '2rem', 
-            color: '#6B635A',
+            color: 'var(--text-muted, #6B635A)',
             fontSize: '1.125rem',
             maxWidth: '500px',
           }}>
@@ -75,10 +76,10 @@ export default function GlobalError({
               onClick={reset}
               style={{
                 padding: '0.75rem 1.5rem',
-                background: '#1A1714',
-                color: '#F5F0EB',
+                background: 'var(--surface-inverse, #1A1714)',
+                color: 'var(--surface-page, #F5F0EB)',
                 border: 'none',
-                borderRadius: '4px',
+                borderRadius: 'var(--radius-button, 0)',
                 cursor: 'pointer',
                 fontSize: '1rem',
                 minWidth: '140px',
@@ -91,9 +92,9 @@ export default function GlobalError({
               style={{
                 padding: '0.75rem 1.5rem',
                 background: 'transparent',
-                color: '#1A1714',
-                border: '1px solid #1A1714',
-                borderRadius: '4px',
+                color: 'var(--text-primary, #1A1714)',
+                border: 'var(--border-dark, 1px solid #1A1714)',
+                borderRadius: 'var(--radius-button, 0)',
                 textDecoration: 'none',
                 fontSize: '1rem',
                 minWidth: '140px',
