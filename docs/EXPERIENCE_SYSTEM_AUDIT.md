@@ -14,7 +14,7 @@ The substantial case studies are registered with one primary discipline, optiona
 
 `app/(es)/apps/overflow/OverflowLanding.tsx` is a project-native product evidence surface. It is exempted only when it declares `@design-override reason: project-native evidence treatment`. The exception does not authorize shared navigation, footer, or page-foundation changes.
 
-The legacy global and case-study CSS files are content-hash locked migration boundaries. Any edit breaks the design lint until the foundation values are migrated and the audited lock is deliberately updated. The Remoria file remains a scoped project-evidence exception. New source outside those narrowly named boundaries is checked by the design lint.
+The remaining legacy foundation values in the named app, shared-component, and case-study files are content-hash locked migration boundaries. Any edit breaks the design lint until those values are migrated and the audited lock is deliberately updated. A new project-evidence exception remains limited to files beneath `app/(es)/apps/` that declare the required reason; it does not apply to shared surfaces.
 
 ## Findings repaired in this pass
 

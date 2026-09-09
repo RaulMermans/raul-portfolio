@@ -46,7 +46,7 @@ try {
 
   rmSync(join(fixture, 'app'), { recursive: true, force: true })
   write(
-    'app/(es)/apps/overflow/OverflowLanding.tsx',
+    'app/(es)/apps/project-evidence/Landing.tsx',
     '// @design-override reason: project-native evidence treatment\nconst view = { fontFamily: "Project evidence face" }'
   )
   const exceptionResult = run(lint)
