@@ -10,13 +10,12 @@ import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudy
 import { getSiteCopy } from '@/data/site-copy'
 import { useCaseStudySetup } from '@/hooks'
 import { getLocaleFromPath, localizePath, type Locale } from '@/lib/i18n'
-import type { CaseStudyPresentationFamily } from '@/types/case-study'
+import { getPresentationFamilyForProject } from '@/data/portfolio-experience'
 import styles from './RelayCaseStudy.module.css'
 
 const githubUrl = 'https://github.com/RaulMermans/Relay'
 
 type Copy = {
-  presentationFamily: CaseStudyPresentationFamily
   eyebrow: string
   title: string
   subtitle: string
@@ -39,7 +38,6 @@ type Copy = {
 
 const copy: Record<Locale, Copy> = {
   en: {
-    presentationFamily: 'technical-product',
     eyebrow: 'Marketing intelligence / Data product',
     title: 'Relay',
     subtitle: 'A performance workspace built around trustworthy numbers.',
@@ -158,7 +156,6 @@ const copy: Record<Locale, Copy> = {
     },
   },
   es: {
-    presentationFamily: 'technical-product',
     eyebrow: 'Inteligencia de marketing / Producto de datos',
     title: 'Relay',
     subtitle: 'Un espacio de rendimiento construido sobre cifras fiables.',
@@ -308,6 +305,7 @@ export default function RelayCaseStudyPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const content = copy[locale]
+  const presentationFamily = getPresentationFamilyForProject('relay')
   const uiCopy = getSiteCopy(locale).caseStudiesUi
   const systemLabels = locale === 'es'
     ? {
@@ -330,13 +328,13 @@ export default function RelayCaseStudyPage() {
       <Header locale={locale} />
       <main
         id="main-content"
-        className={`case-study-page-new case-study-page-new--relay case-study-page-new--${content.presentationFamily} ${styles.page}`}
+        className={`case-study-page-new case-study-page-new--relay case-study-page-new--${presentationFamily} ${styles.page}`}
       >
         <section
           className={styles.hero}
           aria-labelledby="relay-title"
           data-case-study-hero
-          data-presentation-family={content.presentationFamily}
+          data-presentation-family={presentationFamily}
         >
           <div className={styles.heroNavigation}>
             <div className={styles.container}>

@@ -37,7 +37,6 @@ export type ServiceLanding = {
     title: string
     body: string
   }>
-  relatedCaseStudies: string[]
   faqs: Array<{
     question: string
     answer: string
@@ -150,7 +149,6 @@ const englishLandings: ServiceLanding[] = [
         body: 'Check the site with real content, refine the details, and document how it should be maintained.',
       },
     ],
-    relatedCaseStudies: ['raul-portfolio', 'website-auditor', 'campaign-pulse', 'remoria'],
     faqs: [
       {
         question: 'What does web development include?',
@@ -301,7 +299,6 @@ const englishLandings: ServiceLanding[] = [
         body: 'Refine quality criteria, failure handling, documentation, and ownership for day-to-day use.',
       },
     ],
-    relatedCaseStudies: ['ai-sports', 'remoria', 'website-auditor', 'raul-portfolio'],
     faqs: [
       {
         question: 'What is an AI integration for a creative team?',
@@ -445,7 +442,6 @@ const englishLandings: ServiceLanding[] = [
         body: 'Run representative work through the system, refine edge cases, and prepare the operating guide.',
       },
     ],
-    relatedCaseStudies: ['ai-sports', 'data-brief-ai', 'website-auditor', 'benchmark-dashboard'],
     faqs: [
       {
         question: 'What is creative automation?',
@@ -589,7 +585,6 @@ const englishLandings: ServiceLanding[] = [
         body: 'Run representative outputs through the system and adjust where the rules are vague or restrictive.',
       },
     ],
-    relatedCaseStudies: ['remoria', 'ai-sports', 'raul-portfolio'],
     faqs: [
       {
         question: 'What is a brand system for AI-assisted work?',
@@ -733,7 +728,6 @@ const englishLandings: ServiceLanding[] = [
         body: 'Refine the workflow with representative use and document what production development would require.',
       },
     ],
-    relatedCaseStudies: ['data-brief-ai', 'website-auditor', 'benchmark-dashboard', 'raul-portfolio'],
     faqs: [
       {
         question: 'What is an AI product prototype?',
@@ -880,7 +874,6 @@ const spanishLandings: ServiceLanding[] = [
         body: 'Comprobar la web con contenido real, afinar detalles y documentar su mantenimiento.',
       },
     ],
-    relatedCaseStudies: ['raul-portfolio', 'website-auditor', 'campaign-pulse', 'remoria'],
     faqs: [
       {
         question: '¿Qué incluye el desarrollo web?',
@@ -1031,7 +1024,6 @@ const spanishLandings: ServiceLanding[] = [
         body: 'Afinar criterios de calidad, gestión de fallos, documentación y responsabilidad de uso.',
       },
     ],
-    relatedCaseStudies: ['ai-sports', 'remoria', 'website-auditor', 'raul-portfolio'],
     faqs: [
       {
         question: '¿Qué es una integración de IA para un equipo creativo?',
@@ -1175,7 +1167,6 @@ const spanishLandings: ServiceLanding[] = [
         body: 'Ejecutar trabajo representativo, ajustar casos límite y preparar la guía de uso.',
       },
     ],
-    relatedCaseStudies: ['ai-sports', 'data-brief-ai', 'website-auditor', 'benchmark-dashboard'],
     faqs: [
       {
         question: '¿Qué es la automatización creativa?',
@@ -1319,7 +1310,6 @@ const spanishLandings: ServiceLanding[] = [
         body: 'Evaluar resultados representativos y corregir reglas vagas o demasiado restrictivas.',
       },
     ],
-    relatedCaseStudies: ['remoria', 'ai-sports', 'raul-portfolio'],
     faqs: [
       {
         question: '¿Qué es un sistema de inteligencia de marca?',
@@ -1463,7 +1453,6 @@ const spanishLandings: ServiceLanding[] = [
         body: 'Afinar con uso representativo y documentar lo necesario para una fase de producción.',
       },
     ],
-    relatedCaseStudies: ['data-brief-ai', 'website-auditor', 'benchmark-dashboard', 'raul-portfolio'],
     faqs: [
       {
         question: '¿Qué es un prototipo de producto con IA?',
@@ -1520,4 +1509,11 @@ export function getServiceLanding(locale: Locale, slug: string) {
   return serviceLandings.find(
     (landing) => landing.locale === locale && landing.slug === slug,
   )
+}
+
+/** Commercial routing is localized; project relationships always use the English canonical slug. */
+export function getCanonicalServiceSlug(service: Pick<ServiceLanding, 'locale' | 'slug' | 'alternateHref'>) {
+  if (service.locale === 'en') return service.slug
+  const segments = service.alternateHref.split('/')
+  return segments.at(-1) ?? service.slug
 }

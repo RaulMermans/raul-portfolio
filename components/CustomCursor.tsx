@@ -54,7 +54,7 @@ export default function CustomCursor() {
             y: mousePosition.y - 10,
             scale: 1,
             backgroundColor: 'transparent',
-            border: '2px solid rgba(196, 30, 58, 0.7)', // Accent color faint border
+            border: '2px solid rgb(from var(--accent) r g b / 0.7)', // Accent color faint border
             mixBlendMode: 'normal' as const
         },
         hover: {

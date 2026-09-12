@@ -13,7 +13,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 9998;
-  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 0%, transparent 50%, rgba(26, 23, 20, 0.06) 80%, rgba(26, 23, 20, 0.12) 100%);
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 0%, transparent 50%, rgb(from var(--ink) r g b / 0.06) 80%, rgb(from var(--ink) r g b / 0.12) 100%);
 }
 
 .scanlines {
@@ -22,7 +22,7 @@
   pointer-events: none;
   z-index: 9997;
   opacity: 0.015;
-  background: repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(26, 23, 20, 0.3) 1px, rgba(26, 23, 20, 0.3) 2px);
+  background: repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgb(from var(--ink) r g b / 0.3) 1px, rgb(from var(--ink) r g b / 0.3) 2px);
 }
 
 .lightLeak {
@@ -46,7 +46,7 @@
   pointer-events: none;
   z-index: 2;
   filter: blur(100px);
-  background: radial-gradient(ellipse at 40% 60%, rgba(196, 30, 58, 0.04) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 40% 60%, rgb(from var(--accent) r g b / 0.04) 0%, transparent 50%);
 }
 
 .filmBurn {
@@ -100,7 +100,7 @@
   align-items: center;
   gap: 1.25rem;
   margin-bottom: 2rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.5rem;
   letter-spacing: 0.6em;
   text-transform: uppercase;
@@ -115,7 +115,7 @@
 
 .title {
   margin: 0 0 2rem;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(4rem, 10vw, 8rem);
   line-height: 0.9;
   letter-spacing: -0.02em;
@@ -139,7 +139,7 @@
 }
 
 .year {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.45rem;
   letter-spacing: 0.5em;
   color: var(--ink-faint);
@@ -225,7 +225,7 @@
   overflow: hidden;
   border-radius: 12px;
   background: var(--cream-dark);
-  box-shadow: 0 18px 48px rgba(26, 23, 20, 0.14), 0 4px 12px rgba(26, 23, 20, 0.08);
+  box-shadow: 0 18px 48px rgb(from var(--ink) r g b / 0.14), 0 4px 12px rgb(from var(--ink) r g b / 0.08);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -250,7 +250,7 @@
   display: flex;
   align-items: flex-end;
   padding: 2rem;
-  background: linear-gradient(180deg, rgba(26, 23, 20, 0) 0%, rgba(26, 23, 20, 0.06) 45%, rgba(26, 23, 20, 0.88) 100%);
+  background: linear-gradient(180deg, rgb(from var(--ink) r g b / 0) 0%, rgb(from var(--ink) r g b / 0.06) 45%, rgb(from var(--ink) r g b / 0.88) 100%);
   opacity: 0;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -265,7 +265,7 @@
 
 .cardIndex {
   margin: 0 0 0.75rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.5rem;
   letter-spacing: 0.4em;
   color: rgba(255, 255, 255, 0.58);
@@ -273,7 +273,7 @@
 
 .cardTitle {
   margin: 0 0 0.4rem;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 0.92;
   text-transform: uppercase;
@@ -283,7 +283,7 @@
 
 .cardMeta {
   margin: 0 0 1.25rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.55rem;
   letter-spacing: 0.25em;
   color: rgba(255, 255, 255, 0.72);
@@ -298,12 +298,12 @@
   padding: 0.85rem 1.35rem;
   border: 1px solid rgba(255, 255, 255, 0.26);
   border-radius: 999px;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.55rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--cream);
-  background: rgba(26, 23, 20, 0.14);
+  background: rgb(from var(--ink) r g b / 0.14);
   overflow: hidden;
 }
 
@@ -311,7 +311,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 170, 136, 0.18), rgba(196, 30, 58, 0.18));
+  background: linear-gradient(135deg, rgba(255, 170, 136, 0.18), rgb(from var(--accent) r g b / 0.18));
   opacity: 0;
   transition: opacity 0.4s var(--ease);
 }
@@ -330,12 +330,12 @@
   height: 52px;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid rgba(26, 23, 20, 0.14);
+  border: 1.5px solid rgb(from var(--ink) r g b / 0.14);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.82);
   color: var(--ink);
   backdrop-filter: blur(14px);
-  box-shadow: 0 12px 24px rgba(26, 23, 20, 0.12);
+  box-shadow: 0 12px 24px rgb(from var(--ink) r g b / 0.12);
   transition: transform 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease), opacity 0.35s var(--ease);
   z-index: 2;
 }
@@ -363,7 +363,7 @@
   .card:hover .cardImageWrapper,
   .card:focus-visible .cardImageWrapper {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 26px 68px rgba(26, 23, 20, 0.2), 0 10px 24px rgba(26, 23, 20, 0.14);
+    box-shadow: 0 26px 68px rgb(from var(--ink) r g b / 0.2), 0 10px 24px rgb(from var(--ink) r g b / 0.14);
   }
 
   .card:hover .cardImage,
@@ -438,9 +438,9 @@
   height: 48px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(26, 23, 20, 0.14);
+  border: 1px solid rgb(from var(--ink) r g b / 0.14);
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.92);
+  background: rgb(from var(--cream) r g b / 0.92);
   color: var(--ink);
   backdrop-filter: blur(12px);
   transition: transform 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease);
@@ -500,7 +500,7 @@
   position: absolute;
   left: 0;
   bottom: -2.5rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.55rem;
   letter-spacing: 0.4em;
   color: rgba(255, 255, 255, 0.42);
@@ -527,7 +527,7 @@
     clamp(2rem, 4vw, 3.5rem)
     max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   scrollbar-width: thin;
-  scrollbar-color: rgba(26, 23, 20, 0.22) transparent;
+  scrollbar-color: rgb(from var(--ink) r g b / 0.22) transparent;
 }
 
 .exhibitionContent {
@@ -547,7 +547,7 @@
   align-items: center;
   gap: 1.25rem;
   margin-bottom: 2rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.5rem;
   letter-spacing: 0.5em;
   text-transform: uppercase;
@@ -563,7 +563,7 @@
 
 .exhibitionTitle {
   margin: 0 0 0.5rem;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.75rem, 5.5vw, 4rem);
   line-height: 0.92;
   text-transform: uppercase;
@@ -572,7 +572,7 @@
 
 .exhibitionSubtitle {
   margin: 0 0 2rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   color: var(--ink-muted);
@@ -603,7 +603,7 @@
 }
 
 .exhibitionLabel {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.45rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -624,7 +624,7 @@
 
 .exhibitionNoteLabel {
   margin-bottom: 0.85rem;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.45rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -643,9 +643,9 @@
   position: sticky;
   bottom: 0;
   display: flex;
-  background: rgba(245, 240, 235, 0.96);
+  background: rgb(from var(--cream) r g b / 0.96);
   border-top: 1px solid var(--cream-darker);
-  box-shadow: 0 -10px 24px rgba(26, 23, 20, 0.05);
+  box-shadow: 0 -10px 24px rgb(from var(--ink) r g b / 0.05);
 }
 
 .exhibitionNavButton {
@@ -660,7 +660,7 @@
   border-right: 1px solid var(--cream-darker);
   background: transparent;
   color: var(--ink-muted);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.55rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -818,7 +818,7 @@
 
   .cardOverlay {
     padding: var(--space-4);
-    background: linear-gradient(180deg, rgba(26, 23, 20, 0.08) 0%, rgba(26, 23, 20, 0.12) 42%, rgba(26, 23, 20, 0.9) 100%);
+    background: linear-gradient(180deg, rgb(from var(--ink) r g b / 0.08) 0%, rgb(from var(--ink) r g b / 0.12) 42%, rgb(from var(--ink) r g b / 0.9) 100%);
   }
 
   .cardTitle {

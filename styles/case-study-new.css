@@ -24,7 +24,7 @@
 .case-study-page-new {
   position: relative;
   overflow-x: hidden;
-  font-family: var(--font-reading, Georgia, 'Times New Roman', serif);
+  font-family: var(--font-prose);
 }
 
 /* Override global section min-height — case study content sections should auto-size */
@@ -73,7 +73,7 @@
 .film-strip__sprocket {
   width: 14px;
   height: 22px;
-  border: 2px solid var(--ink, #1a1714);
+  border: 2px solid var(--ink, var(--ink));
   border-radius: 2px;
 }
 
@@ -113,7 +113,7 @@ main.case-study-page-new {
   width: 100%;
   height: 100%;
   z-index: 0;
-  background: #1a1714;
+  background: var(--ink);
 }
 
 .case-study-hero-new__image {
@@ -203,7 +203,7 @@ main.case-study-page-new {
 }
 
 .case-study-hero-new__title {
-  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-family: var(--font-heading);
   font-size: clamp(2.5rem, 6vw, 5rem);
   line-height: 0.9;
   letter-spacing: -0.02em;
@@ -301,7 +301,7 @@ main.case-study-page-new {
    META SECTION
    ============================================= */
 .case-study-meta-new {
-  background: var(--cream, #f5f0eb);
+  background: var(--cream, var(--cream));
   padding: var(--case-study-space-lg) 2rem var(--case-study-space-lg) 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   margin: 0;
@@ -345,7 +345,7 @@ main.case-study-page-new {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--ink-muted, #6b635a);
+  color: var(--ink-muted, var(--ink-muted));
   font-weight: 500;
   overflow-wrap: anywhere;
 }
@@ -353,7 +353,7 @@ main.case-study-page-new {
 .case-study-meta-new__value {
   min-width: 0;
   font-size: 1rem;
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
   line-height: 1.5;
   white-space: normal;
   overflow-wrap: anywhere;
@@ -377,13 +377,13 @@ main.case-study-page-new {
 }
 
 .case-study-section-new--light {
-  background: var(--cream, #f5f0eb);
-  color: var(--ink, #1a1714);
+  background: var(--cream, var(--cream));
+  color: var(--ink, var(--ink));
 }
 
 .case-study-section-new--dark {
-  background: var(--ink, #1a1714);
-  color: var(--cream, #f5f0eb);
+  background: var(--ink, var(--ink));
+  color: var(--cream, var(--cream));
 }
 
 .case-study-section-new__container {
@@ -392,7 +392,7 @@ main.case-study-page-new {
 }
 
 .case-study-section-new__title {
-  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 4vw, 2.75rem);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -405,11 +405,11 @@ main.case-study-page-new {
 }
 
 .case-study-section-new--light .case-study-section-new__title {
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
 }
 
 .case-study-section-new--dark .case-study-section-new__title {
-  color: var(--cream, #f5f0eb);
+  color: var(--cream, var(--cream));
 }
 
 .case-study-section-new__title::after {
@@ -419,7 +419,7 @@ main.case-study-page-new {
   left: 0;
   width: 80px;
   height: 4px;
-  background: var(--accent, #c41e3a);
+  background: var(--accent, var(--accent));
 }
 
 .case-study-section-new__content {
@@ -443,15 +443,15 @@ main.case-study-page-new {
 .case-study-approach__text strong,
 .case-study-results__text strong {
   font-weight: 600;
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
 }
 
 .case-study-intro__quote {
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.6;
   font-style: italic;
-  color: var(--ink, #1a1714);
-  border-left: 4px solid var(--accent, #c41e3a);
+  color: var(--ink, var(--ink));
+  border-left: 4px solid var(--accent, var(--accent));
   padding-left: var(--case-study-space-md);
   margin-top: var(--case-study-space-lg);
   margin-bottom: 0;
@@ -466,7 +466,7 @@ main.case-study-page-new {
   line-height: 1.3;
   font-weight: 300;
   margin-bottom: var(--case-study-space-md);
-  color: var(--cream, #f5f0eb);
+  color: var(--cream, var(--cream));
 }
 
 .case-study-challenge__text {
@@ -474,11 +474,11 @@ main.case-study-page-new {
   line-height: 1.75;
   max-width: min(100%, 74rem);
   margin-bottom: var(--case-study-space-lg);
-  color: rgba(245, 240, 235, 0.95);
+  color: rgb(from var(--cream) r g b / 0.95);
 }
 
 .case-study-challenge__text strong {
-  color: var(--cream, #f5f0eb);
+  color: var(--cream, var(--cream));
   font-weight: 600;
 }
 
@@ -492,7 +492,7 @@ main.case-study-page-new {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: var(--case-study-space-xs);
-  color: var(--cream, #f5f0eb);
+  color: var(--cream, var(--cream));
 }
 
 .case-study-challenge__criteria-list {
@@ -508,14 +508,14 @@ main.case-study-page-new {
   line-height: 1.6;
   padding-left: var(--case-study-space-sm);
   position: relative;
-  color: rgba(245, 240, 235, 0.9);
+  color: rgb(from var(--cream) r g b / 0.9);
 }
 
 .case-study-challenge__criteria-item::before {
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--accent, #c41e3a);
+  color: var(--accent, var(--accent));
   font-weight: bold;
 }
 
@@ -563,7 +563,7 @@ main.case-study-page-new {
   align-items: center;
   justify-content: center;
   min-height: 200px;
-  color: var(--ink-muted, #6b635a);
+  color: var(--ink-muted, var(--ink-muted));
 }
 
 /* =============================================
@@ -607,7 +607,7 @@ main.case-study-page-new {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: var(--case-study-space-xs);
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
 }
 
 .case-study-approach__tools-list {
@@ -622,7 +622,7 @@ main.case-study-page-new {
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50px;
   font-size: 0.875rem;
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
   font-weight: 500;
   transition: all 0.3s ease;
 }
@@ -640,7 +640,7 @@ main.case-study-page-new {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 600;
   margin-bottom: var(--case-study-space-sm);
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
 }
 
 .case-study-approach__system-grid {
@@ -660,7 +660,7 @@ main.case-study-page-new {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: var(--case-study-space-xs);
-  color: var(--accent, #c41e3a);
+  color: var(--accent, var(--accent));
 }
 
 .case-study-approach__system-item-desc {
@@ -687,7 +687,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2rem, 4vw, 3rem);
-  background: rgba(26, 23, 20, 0.16);
+  background: rgb(from var(--ink) r g b / 0.16);
 }
 
 .ai-sports-consistency-review article {
@@ -701,11 +701,11 @@ main.case-study-page-new {
 
 .ai-sports-consistency-review span {
   width: fit-content;
-  border: 1px solid rgba(26, 23, 20, 0.16);
+  border: 1px solid rgb(from var(--ink) r g b / 0.16);
   border-radius: 999px;
   padding: 0.4rem 0.68rem;
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.4;
@@ -714,7 +714,7 @@ main.case-study-page-new {
 
 .ai-sports-consistency-review p {
   margin: 0;
-  color: rgba(26, 23, 20, 0.72);
+  color: rgb(from var(--ink) r g b / 0.72);
   font-size: 0.96rem;
   line-height: 1.6;
 }
@@ -739,17 +739,17 @@ main.case-study-page-new {
 .remoria-positioning-map__chart {
   position: relative;
   min-height: clamp(20rem, 38vw, 30rem);
-  border: 1px solid rgba(26, 23, 20, 0.14);
+  border: 1px solid rgb(from var(--ink) r g b / 0.14);
   background:
-    linear-gradient(90deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(from var(--ink) r g b / 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgb(from var(--ink) r g b / 0.05) 1px, transparent 1px),
     var(--cream-light);
   background-size: 25% 25%;
 }
 
 .remoria-positioning-map__line {
   position: absolute;
-  background: rgba(26, 23, 20, 0.18);
+  background: rgb(from var(--ink) r g b / 0.18);
 }
 
 .remoria-positioning-map__line--x {
@@ -771,8 +771,8 @@ main.case-study-page-new {
   z-index: 1;
   display: flex;
   justify-content: space-between;
-  color: rgba(26, 23, 20, 0.56);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--ink) r g b / 0.56);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.4;
@@ -801,12 +801,12 @@ main.case-study-page-new {
   right: 18%;
   bottom: 20%;
   z-index: 2;
-  border: 1px solid rgba(26, 23, 20, 0.22);
+  border: 1px solid rgb(from var(--ink) r g b / 0.22);
   border-radius: 999px;
   padding: 0.55rem 0.8rem;
   background: var(--ink);
   color: var(--cream);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -816,7 +816,7 @@ main.case-study-page-new {
 
 .remoria-positioning-map p {
   margin: 0;
-  color: rgba(26, 23, 20, 0.72);
+  color: rgb(from var(--ink) r g b / 0.72);
   font-size: clamp(1rem, 1.5vw, 1.18rem);
   line-height: 1.7;
 }
@@ -850,7 +850,7 @@ main.case-study-page-new {
    GALLERY SECTION - Magazine-style, editorial
    ============================================= */
 .case-study-gallery-new {
-  background: var(--cream, #f5f0eb);
+  background: var(--cream, var(--cream));
   padding: var(--case-study-space-xl) clamp(2rem, 6vw, 4rem);
 }
 
@@ -861,7 +861,7 @@ main.case-study-page-new {
 
 /* Match section headers for consistency and SEO (h2) */
 .case-study-gallery-new__title {
-  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 4vw, 2.75rem);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -870,7 +870,7 @@ main.case-study-page-new {
   margin-top: 0;
   position: relative;
   display: inline-block;
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
 }
 
 .case-study-gallery-new__title::after {
@@ -880,7 +880,7 @@ main.case-study-page-new {
   left: 0;
   width: 80px;
   height: 4px;
-  background: var(--accent, #c41e3a);
+  background: var(--accent, var(--accent));
 }
 
 /* Rows container - no box, images breathe on cream background */
@@ -989,11 +989,11 @@ main.case-study-page-new {
   line-height: 1.9;
   max-width: min(100%, 74rem);
   margin-bottom: var(--case-study-space-md);
-  color: rgba(245, 240, 235, 0.95);
+  color: rgb(from var(--cream) r g b / 0.95);
 }
 
 .case-study-results__text strong {
-  color: var(--cream, #f5f0eb);
+  color: var(--cream, var(--cream));
   font-weight: 600;
 }
 
@@ -1001,8 +1001,8 @@ main.case-study-page-new {
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   line-height: 1.5;
   font-style: italic;
-  color: var(--cream, #f5f0eb);
-  border-left: 4px solid var(--accent, #c41e3a);
+  color: var(--cream, var(--cream));
+  border-left: 4px solid var(--accent, var(--accent));
   padding-left: var(--case-study-space-sm);
   margin-top: var(--case-study-space-md);
   margin-bottom: 0;
@@ -1038,9 +1038,9 @@ main.case-study-page-new {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--ink-muted, #6b635a);
+  color: var(--ink-muted, var(--ink-muted));
   font-weight: 500;
-  background: rgba(245, 240, 235, 0.9);
+  background: rgb(from var(--cream) r g b / 0.9);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   backdrop-filter: blur(10px);
@@ -1048,7 +1048,7 @@ main.case-study-page-new {
 
 .case-study-scroll-hint__arrow {
   font-size: 1.5rem;
-  color: var(--ink-muted, #6b635a);
+  color: var(--ink-muted, var(--ink-muted));
   animation: bounceArrow 1.5s infinite;
 }
 
@@ -1078,7 +1078,7 @@ main.case-study-page-new {
    NEXT CASE STUDY
    ============================================= */
 .case-study-next-new {
-  background: var(--cream, #f5f0eb);
+  background: var(--cream, var(--cream));
   padding: var(--case-study-space-lg) 2rem;
   position: relative;
   min-height: auto;
@@ -1096,7 +1096,7 @@ main.case-study-page-new {
 .case-study-next-new__divider {
   width: 100px;
   height: 2px;
-  background: var(--ink, #1a1714);
+  background: var(--ink, var(--ink));
   margin: 0 auto var(--case-study-space-md);
 }
 
@@ -1181,14 +1181,14 @@ main.case-study-page-new {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--ink-muted, #6b635a);
+  color: var(--ink-muted, var(--ink-muted));
   margin-bottom: var(--case-study-space-xs);
 }
 
 .case-study-next-new__link {
   display: inline-block;
   text-decoration: none;
-  color: var(--ink, #1a1714);
+  color: var(--ink, var(--ink));
   transition: transform 0.3s ease;
 }
 
@@ -1197,7 +1197,7 @@ main.case-study-page-new {
 }
 
 .case-study-next-new__title {
-  font-family: var(--font-display, 'Bebas Neue', Impact, sans-serif);
+  font-family: var(--font-heading);
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -1208,7 +1208,7 @@ main.case-study-page-new {
 
 .case-study-next-new__subtitle {
   font-size: 1rem;
-  color: var(--ink-muted, #6b635a);
+  color: var(--ink-muted, var(--ink-muted));
   margin-bottom: var(--case-study-space-xs);
 }
 
@@ -1363,7 +1363,7 @@ main.case-study-page-new {
    DATABRIEF AI CASE STUDY
    ============================================= */
 .case-study-page-new--data-brief {
-  --data-brief-line: rgba(245, 240, 235, 0.14);
+  --data-brief-line: rgb(from var(--cream) r g b / 0.14);
   --data-brief-section-pad: clamp(3.75rem, 7vw, 6.25rem);
   background: var(--cream);
   color: var(--ink);
@@ -1379,10 +1379,10 @@ main.case-study-page-new {
   overflow: hidden;
   padding: calc(var(--header-height) + 3.5rem) clamp(1.25rem, 5vw, 5rem) 3.5rem;
   background:
-    linear-gradient(135deg, rgba(26, 23, 20, 0.92), rgba(26, 23, 20, 0.76)),
+    linear-gradient(135deg, rgb(from var(--ink) r g b / 0.92), rgb(from var(--ink) r g b / 0.76)),
     radial-gradient(
       circle at 78% 18%,
-      rgba(196, 30, 58, 0.18),
+      rgb(from var(--accent) r g b / 0.18),
       transparent 30rem
     ),
     var(--ink);
@@ -1417,7 +1417,7 @@ main.case-study-page-new {
 .data-brief-button,
 .data-brief-text-link,
 .data-brief-tags span {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1427,7 +1427,7 @@ main.case-study-page-new {
   min-height: 44px;
   align-items: center;
   margin-bottom: 1.5rem;
-  color: rgba(245, 240, 235, 0.72);
+  color: rgb(from var(--cream) r g b / 0.72);
   font-size: 0.72rem;
   text-decoration: none;
 }
@@ -1446,7 +1446,7 @@ main.case-study-page-new {
 
 .data-brief-hero__title,
 .data-brief-section h2 {
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -1462,7 +1462,7 @@ main.case-study-page-new {
 .data-brief-hero__subtitle {
   max-width: 43rem;
   margin: 1.25rem 0 0;
-  color: rgba(245, 240, 235, 0.94);
+  color: rgb(from var(--cream) r g b / 0.94);
   font-size: clamp(1.08rem, 1.6vw, 1.32rem);
   line-height: 1.5;
 }
@@ -1470,7 +1470,7 @@ main.case-study-page-new {
 .data-brief-hero__description {
   max-width: 43rem;
   margin: 1rem 0 0;
-  color: rgba(245, 240, 235, 0.78);
+  color: rgb(from var(--cream) r g b / 0.78);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -1481,14 +1481,14 @@ main.case-study-page-new {
   gap: 1px;
   max-width: 43rem;
   margin: 1.5rem 0 0;
-  border: 1px solid rgba(245, 240, 235, 0.14);
-  background: rgba(245, 240, 235, 0.14);
+  border: 1px solid rgb(from var(--cream) r g b / 0.14);
+  background: rgb(from var(--cream) r g b / 0.14);
 }
 
 .data-brief-hero__facts div {
   min-width: 0;
   padding: 0.85rem;
-  background: rgba(26, 23, 20, 0.62);
+  background: rgb(from var(--ink) r g b / 0.62);
 }
 
 .data-brief-hero__facts dt,
@@ -1497,8 +1497,8 @@ main.case-study-page-new {
 }
 
 .data-brief-hero__facts dt {
-  color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.5);
+  font-family: var(--font-code);
   font-size: 0.64rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1526,10 +1526,10 @@ main.case-study-page-new {
   display: inline-flex;
   min-height: 2rem;
   align-items: center;
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   border-radius: 999px;
   padding: 0 0.8rem;
-  color: rgba(245, 240, 235, 0.76);
+  color: rgb(from var(--cream) r g b / 0.76);
   font-size: 0.68rem;
 }
 
@@ -1549,17 +1549,17 @@ main.case-study-page-new {
 }
 
 .data-brief-terminal {
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   border-radius: 8px;
   overflow: hidden;
-  background: rgba(26, 23, 20, 0.72);
+  background: rgb(from var(--ink) r g b / 0.72);
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.22);
 }
 
 .data-brief-terminal__bar {
   display: flex;
   gap: 0.5rem;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.12);
   padding: 0.8rem;
 }
 
@@ -1567,19 +1567,19 @@ main.case-study-page-new {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.42);
+  background: rgb(from var(--cream) r g b / 0.42);
 }
 
 .data-brief-terminal__body {
   padding: 1.25rem;
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.82rem;
   line-height: 1.9;
 }
 
 .data-brief-terminal__body p {
   margin: 0;
-  color: rgba(245, 240, 235, 0.82);
+  color: rgb(from var(--cream) r g b / 0.82);
 }
 
 .data-brief-section {
@@ -1667,7 +1667,7 @@ main.case-study-page-new {
 .data-brief-section--dark
   .data-brief-refresh-heading.ui-section-heading
   > p:not(:first-child) {
-  color: rgba(245, 240, 235, 0.82);
+  color: rgb(from var(--cream) r g b / 0.82);
 }
 
 .data-brief-section p {
@@ -1679,7 +1679,7 @@ main.case-study-page-new {
 
 .data-brief-section--dark p,
 .data-brief-section--closing p {
-  color: rgba(245, 240, 235, 0.82);
+  color: rgb(from var(--cream) r g b / 0.82);
 }
 
 .data-brief-section__lede {
@@ -1721,7 +1721,7 @@ main.case-study-page-new {
 .data-brief-story-card span {
   margin-bottom: 2.25rem;
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1729,7 +1729,7 @@ main.case-study-page-new {
 
 .data-brief-story-card h3 {
   margin: 0 0 0.85rem;
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.4vw, 3.2rem);
   font-weight: 400;
   line-height: 0.92;
@@ -1741,7 +1741,7 @@ main.case-study-page-new {
 }
 
 .data-brief-story-card--dark p {
-  color: rgba(245, 240, 235, 0.82);
+  color: rgb(from var(--cream) r g b / 0.82);
 }
 
 .data-brief-flow {
@@ -1807,7 +1807,7 @@ main.case-study-page-new {
   display: block;
   margin-bottom: 1.4rem;
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1884,7 +1884,7 @@ main.case-study-page-new {
 .data-brief-output-card h3 {
   max-width: 10ch;
   margin: 0 0 1rem;
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.3rem, 3.8vw, 3.8rem);
   font-weight: 400;
   line-height: 0.9;
@@ -1906,8 +1906,8 @@ main.case-study-page-new {
   place-items: center;
   border-bottom: 1px solid var(--cream-dark);
   background:
-    linear-gradient(90deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(26, 23, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(from var(--ink) r g b / 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgb(from var(--ink) r g b / 0.05) 1px, transparent 1px),
     var(--cream-light);
   background-size: 1rem 1rem;
 }
@@ -1918,7 +1918,7 @@ main.case-study-page-new {
   padding: 0.55rem 0.8rem;
   background: var(--cream);
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   text-transform: uppercase;
 }
@@ -1941,7 +1941,7 @@ main.case-study-page-new {
 .data-brief-list li {
   position: relative;
   padding-left: 1.25rem;
-  color: rgba(245, 240, 235, 0.84);
+  color: rgb(from var(--cream) r g b / 0.84);
   line-height: 1.7;
 }
 
@@ -2035,7 +2035,7 @@ main.case-study-page-new {
 
 /* Campaign Sandbox */
 .case-study-page-new--campaign-sandbox {
-  --campaign-sandbox-line: rgba(26, 23, 20, 0.13);
+  --campaign-sandbox-line: rgb(from var(--ink) r g b / 0.13);
 }
 
 .case-study-page-new--campaign-sandbox .campaign-sandbox-hero {
@@ -2059,12 +2059,12 @@ main.case-study-page-new {
 }
 
 .campaign-sandbox-hero__visual .campaign-sandbox-shot__frame {
-  border-color: rgba(245, 240, 235, 0.18);
+  border-color: rgb(from var(--cream) r g b / 0.18);
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.28);
 }
 
 .campaign-sandbox-hero__visual .campaign-sandbox-shot figcaption {
-  color: rgba(245, 240, 235, 0.58);
+  color: rgb(from var(--cream) r g b / 0.58);
 }
 
 .campaign-sandbox-mini-nav {
@@ -2081,7 +2081,7 @@ main.case-study-page-new {
 .campaign-sandbox-access-note h3 {
   margin: 0 0 0.75rem;
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2115,7 +2115,7 @@ main.case-study-page-new {
   padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 4vw, 2.5rem);
   background: var(--ink);
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 4.5vw, 4.5rem);
   font-style: normal;
   line-height: 0.96;
@@ -2156,7 +2156,7 @@ main.case-study-page-new {
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
 }
 
 .campaign-sandbox-workflow {
@@ -2164,7 +2164,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  background: rgba(245, 240, 235, 0.14);
+  background: rgb(from var(--cream) r g b / 0.14);
 }
 
 .campaign-sandbox-workflow span {
@@ -2173,9 +2173,9 @@ main.case-study-page-new {
   align-content: space-between;
   gap: 1rem;
   padding: 1.25rem;
-  background: rgba(245, 240, 235, 0.05);
-  color: rgba(245, 240, 235, 0.86);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  background: rgb(from var(--cream) r g b / 0.05);
+  color: rgb(from var(--cream) r g b / 0.86);
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   line-height: 1.45;
@@ -2196,9 +2196,9 @@ main.case-study-page-new {
 
 .campaign-sandbox-reasons p {
   margin: 0;
-  border-top: 1px solid rgba(245, 240, 235, 0.18);
+  border-top: 1px solid rgb(from var(--cream) r g b / 0.18);
   padding-top: 1rem;
-  color: rgba(245, 240, 235, 0.62);
+  color: rgb(from var(--cream) r g b / 0.62);
   font-size: 0.85rem;
   line-height: 1.55;
 }
@@ -2212,7 +2212,7 @@ main.case-study-page-new {
   border: 1px solid var(--campaign-sandbox-line);
   border-radius: 10px;
   background: #f4f4f4;
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.1);
 }
 
 .campaign-sandbox-shot__frame img {
@@ -2225,7 +2225,7 @@ main.case-study-page-new {
   max-width: 62rem;
   margin-top: 0.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   line-height: 1.55;
@@ -2253,11 +2253,11 @@ main.case-study-page-new {
   display: inline-flex;
   min-height: 2.5rem;
   align-items: center;
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   border-radius: 999px;
   padding: 0 1rem;
-  color: rgba(245, 240, 235, 0.76);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.76);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2275,7 +2275,7 @@ main.case-study-page-new {
 }
 
 .campaign-sandbox-access-note p {
-  color: rgba(245, 240, 235, 0.68);
+  color: rgb(from var(--cream) r g b / 0.68);
 }
 
 .campaign-sandbox-stack {
@@ -2287,8 +2287,8 @@ main.case-study-page-new {
 }
 
 .campaign-sandbox-limitations li {
-  border-color: rgba(245, 240, 235, 0.16);
-  color: rgba(245, 240, 235, 0.7);
+  border-color: rgb(from var(--cream) r g b / 0.16);
+  color: rgb(from var(--cream) r g b / 0.7);
 }
 
 @media (max-width: 1180px) {
@@ -2379,7 +2379,7 @@ main.case-study-page-new {
 .case-study-page-new--data-brief {
   --data-brief-section-pad: clamp(4rem, 7vw, 6.5rem);
   --data-brief-card-radius: 8px;
-  --data-brief-muted: rgba(26, 23, 20, 0.62);
+  --data-brief-muted: rgb(from var(--ink) r g b / 0.62);
   background: var(--cream);
 }
 
@@ -2394,10 +2394,10 @@ main.case-study-page-new {
   padding: calc(var(--header-height) + clamp(3rem, 6vw, 5.5rem))
     clamp(1.25rem, 5vw, 5rem) clamp(2.75rem, 6vw, 5rem);
   background:
-    linear-gradient(135deg, rgba(26, 23, 20, 0.96), rgba(26, 23, 20, 0.82)),
+    linear-gradient(135deg, rgb(from var(--ink) r g b / 0.96), rgb(from var(--ink) r g b / 0.82)),
     radial-gradient(
       circle at 74% 16%,
-      rgba(196, 30, 58, 0.2),
+      rgb(from var(--accent) r g b / 0.2),
       transparent 31rem
     ),
     var(--ink);
@@ -2425,7 +2425,7 @@ main.case-study-page-new {
 
 .data-brief-hero__description {
   max-width: 47rem;
-  color: rgba(245, 240, 235, 0.76);
+  color: rgb(from var(--cream) r g b / 0.76);
 }
 
 .data-brief-hero__visual {
@@ -2436,8 +2436,8 @@ main.case-study-page-new {
 
 .data-brief-hero__visual figcaption {
   margin-top: 0.8rem;
-  color: rgba(245, 240, 235, 0.62);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.62);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.55;
@@ -2451,7 +2451,7 @@ main.case-study-page-new {
 
 .data-brief-tags span {
   min-height: 2.2rem;
-  background: rgba(245, 240, 235, 0.05);
+  background: rgb(from var(--cream) r g b / 0.05);
 }
 
 .data-brief-actions {
@@ -2465,10 +2465,10 @@ main.case-study-page-new {
   display: flex;
   gap: 0.4rem;
   overflow-x: auto;
-  border-top: 1px solid rgba(26, 23, 20, 0.14);
-  border-bottom: 1px solid rgba(26, 23, 20, 0.14);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.14);
+  border-bottom: 1px solid rgb(from var(--ink) r g b / 0.14);
   padding: 0.65rem clamp(1.25rem, 5vw, 5rem);
-  background: rgba(245, 240, 235, 0.92);
+  background: rgb(from var(--cream) r g b / 0.92);
   backdrop-filter: blur(14px);
   -webkit-overflow-scrolling: touch;
 }
@@ -2491,8 +2491,8 @@ main.case-study-page-new {
 
 .data-brief-mini-nav__separator {
   align-self: center;
-  color: rgba(26, 23, 20, 0.34);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--ink) r g b / 0.34);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   line-height: 1;
 }
@@ -2501,11 +2501,11 @@ main.case-study-page-new {
   display: inline-flex;
   min-height: 36px;
   align-items: center;
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: 999px;
   padding: 0 0.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -2556,7 +2556,7 @@ main.case-study-page-new {
 
 .data-brief-section--proof .data-brief-section__header p {
   max-width: 54rem;
-  color: rgba(245, 240, 235, 0.78);
+  color: rgb(from var(--cream) r g b / 0.78);
 }
 
 .data-brief-proof-grid {
@@ -2569,18 +2569,18 @@ main.case-study-page-new {
   display: grid;
   min-height: 18rem;
   align-content: end;
-  border: 1px solid rgba(245, 240, 235, 0.16);
+  border: 1px solid rgb(from var(--cream) r g b / 0.16);
   border-radius: var(--data-brief-card-radius);
   padding: clamp(1.25rem, 3vw, 2rem);
   background:
-    linear-gradient(135deg, rgba(196, 30, 58, 0.2), transparent 42%),
-    rgba(245, 240, 235, 0.06);
+    linear-gradient(135deg, rgb(from var(--accent) r g b / 0.2), transparent 42%),
+    rgb(from var(--cream) r g b / 0.06);
 }
 
 .data-brief-proof-card span,
 .data-brief-callout span {
-  color: rgba(245, 240, 235, 0.58);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.58);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2590,7 +2590,7 @@ main.case-study-page-new {
   max-width: 16ch;
   margin: 1rem 0;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.6rem, 5vw, 5.2rem);
   font-weight: 400;
   line-height: 0.9;
@@ -2598,7 +2598,7 @@ main.case-study-page-new {
 }
 
 .data-brief-proof-card p {
-  color: rgba(245, 240, 235, 0.78);
+  color: rgb(from var(--cream) r g b / 0.78);
 }
 
 .data-brief-proof-card__details {
@@ -2658,7 +2658,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .case-study-page-new--data-brief
@@ -2675,7 +2675,7 @@ main.case-study-page-new {
 }
 
 .data-brief-card h3 {
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.75rem, 2.6vw, 2.8rem);
   font-weight: 400;
   line-height: 0.92;
@@ -2694,7 +2694,7 @@ main.case-study-page-new {
 .data-brief-card--dataset h4 {
   margin: 1.35rem 0 0.75rem;
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2729,7 +2729,7 @@ main.case-study-page-new {
 
 .data-brief-preview figcaption span {
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2738,7 +2738,7 @@ main.case-study-page-new {
 .data-brief-report {
   display: grid;
   gap: 1rem;
-  border: 1px solid rgba(245, 240, 235, 0.14);
+  border: 1px solid rgb(from var(--cream) r g b / 0.14);
   border-radius: 10px;
   padding: clamp(1rem, 2vw, 1.35rem);
   background:
@@ -2768,7 +2768,7 @@ main.case-study-page-new {
 }
 
 .data-brief-report__topline span {
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 4vw, 4.2rem);
   line-height: 0.9;
   text-transform: uppercase;
@@ -2778,7 +2778,7 @@ main.case-study-page-new {
 .data-brief-report__status span,
 .data-brief-report__metrics span,
 .data-brief-export-list span {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2846,8 +2846,8 @@ main.case-study-page-new {
 }
 
 .data-brief-report__findings .data-brief-report__caveat {
-  border-color: rgba(196, 30, 58, 0.26);
-  background: rgba(196, 30, 58, 0.07);
+  border-color: rgb(from var(--accent) r g b / 0.26);
+  background: rgb(from var(--accent) r g b / 0.07);
   color: var(--ink);
 }
 
@@ -2860,7 +2860,7 @@ main.case-study-page-new {
   border-radius: 8px;
   padding: 1rem;
   background:
-    linear-gradient(180deg, transparent 74%, rgba(26, 23, 20, 0.08) 75%),
+    linear-gradient(180deg, transparent 74%, rgb(from var(--ink) r g b / 0.08) 75%),
     var(--cream);
   background-size: 100% 25%;
 }
@@ -2888,15 +2888,15 @@ main.case-study-page-new {
 .data-brief-callout {
   display: grid;
   gap: 0.5rem;
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   border-radius: var(--data-brief-card-radius);
   padding: 1rem;
-  background: rgba(245, 240, 235, 0.08);
+  background: rgb(from var(--cream) r g b / 0.08);
 }
 
 .data-brief-callout strong {
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 3.2rem);
   font-weight: 400;
   line-height: 0.92;
@@ -2918,14 +2918,14 @@ main.case-study-page-new {
   padding: 0 1rem;
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .data-brief-section--closing .data-brief-eyebrow {
-  color: rgba(245, 240, 235, 0.68);
+  color: rgb(from var(--cream) r g b / 0.68);
 }
 
 .data-brief-section--closing .data-brief-actions {
@@ -2994,7 +2994,7 @@ main.case-study-page-new {
 
 /* Campaign Pulse */
 .case-study-page-new--campaign-pulse {
-  --campaign-pulse-line: rgba(26, 23, 20, 0.14);
+  --campaign-pulse-line: rgb(from var(--ink) r g b / 0.14);
   background: var(--cream);
   color: var(--ink);
 }
@@ -3028,7 +3028,7 @@ main.case-study-page-new {
   max-width: 7ch;
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(5.8rem, 10vw, 11rem);
   font-weight: 400;
   letter-spacing: -0.015em;
@@ -3040,7 +3040,7 @@ main.case-study-page-new {
   max-width: 34rem;
   margin: 1.5rem 0 0;
   color: var(--cream);
-  font-family: var(--font-reading), Georgia, serif;
+  font-family: var(--font-prose);
   font-size: clamp(1.45rem, 2.4vw, 2.35rem);
   line-height: 1.12;
 }
@@ -3048,13 +3048,13 @@ main.case-study-page-new {
 .campaign-pulse-hero__description {
   max-width: 43rem;
   margin: 1.25rem 0 0;
-  color: rgba(245, 240, 235, 0.72);
+  color: rgb(from var(--cream) r g b / 0.72);
   font-size: 1rem;
   line-height: 1.72;
 }
 
 .campaign-pulse-hero .data-brief-button {
-  border-color: rgba(245, 240, 235, 0.5);
+  border-color: rgb(from var(--cream) r g b / 0.5);
   color: var(--cream);
 }
 
@@ -3069,10 +3069,10 @@ main.case-study-page-new {
   min-height: 2.2rem;
   align-items: center;
   margin-top: 1.35rem;
-  border: 1px solid rgba(245, 240, 235, 0.22);
+  border: 1px solid rgb(from var(--cream) r g b / 0.22);
   padding: 0 0.8rem;
-  color: rgba(245, 240, 235, 0.82);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.82);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3083,9 +3083,9 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-stack span {
-  border-color: rgba(245, 240, 235, 0.18);
-  background: rgba(245, 240, 235, 0.05);
-  color: rgba(245, 240, 235, 0.74);
+  border-color: rgb(from var(--cream) r g b / 0.18);
+  background: rgb(from var(--cream) r g b / 0.05);
+  color: rgb(from var(--cream) r g b / 0.74);
 }
 
 .campaign-pulse-hero__visual {
@@ -3097,7 +3097,7 @@ main.case-study-page-new {
 .campaign-pulse-shot,
 .campaign-pulse-gallery__frame {
   overflow: hidden;
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   border-radius: 10px;
   background: #f3f4f1;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.34);
@@ -3118,8 +3118,8 @@ main.case-study-page-new {
 .campaign-pulse-hero__visual figcaption {
   max-width: 46rem;
   margin-top: 0.85rem;
-  color: rgba(245, 240, 235, 0.56);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.56);
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   line-height: 1.6;
@@ -3149,7 +3149,7 @@ main.case-study-page-new {
 .campaign-pulse-snapshot span,
 .campaign-pulse-feature-grid > article > span {
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -3181,7 +3181,7 @@ main.case-study-page-new {
 .campaign-pulse-problem > article > p:last-child {
   max-width: 48rem;
   margin-top: 1.5rem;
-  font-family: var(--font-reading), Georgia, serif;
+  font-family: var(--font-prose);
   font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   line-height: 1.65;
 }
@@ -3194,7 +3194,7 @@ main.case-study-page-new {
 .campaign-pulse-problem__solution h3 {
   margin: 0 0 1rem;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.25rem, 3.8vw, 3.8rem);
   font-weight: 400;
   line-height: 0.94;
@@ -3233,8 +3233,8 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(7, minmax(9.5rem, 1fr));
   overflow-x: auto;
-  border: 1px solid rgba(245, 240, 235, 0.16);
-  background: rgba(245, 240, 235, 0.08);
+  border: 1px solid rgb(from var(--cream) r g b / 0.16);
+  background: rgb(from var(--cream) r g b / 0.08);
 }
 
 .campaign-pulse-flow div {
@@ -3243,7 +3243,7 @@ main.case-study-page-new {
   min-height: 9rem;
   align-content: space-between;
   gap: 1rem;
-  border-right: 1px solid rgba(245, 240, 235, 0.16);
+  border-right: 1px solid rgb(from var(--cream) r g b / 0.16);
   padding: 1.2rem;
 }
 
@@ -3266,8 +3266,8 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-flow span {
-  color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.5);
+  font-family: var(--font-code);
   font-size: 0.66rem;
 }
 
@@ -3287,15 +3287,15 @@ main.case-study-page-new {
 
 .campaign-pulse-layer-grid article {
   min-height: 12rem;
-  border: 1px solid rgba(245, 240, 235, 0.16);
+  border: 1px solid rgb(from var(--cream) r g b / 0.16);
   padding: 1.25rem;
-  background: rgba(245, 240, 235, 0.05);
+  background: rgb(from var(--cream) r g b / 0.05);
 }
 
 .campaign-pulse-layer-grid h3 {
   margin: 0 0 1rem;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.92;
@@ -3319,7 +3319,7 @@ main.case-study-page-new {
 
 .campaign-pulse-gallery__frame {
   border-color: var(--campaign-pulse-line);
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.12);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.12);
 }
 
 .campaign-pulse-gallery figcaption {
@@ -3357,7 +3357,7 @@ main.case-study-page-new {
   min-block-size: 1lh;
   margin: 0 0 1.5rem;
   color: var(--accent);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.88;
@@ -3378,7 +3378,7 @@ main.case-study-page-new {
 
 .campaign-pulse-reference {
   margin-top: 2rem !important;
-  border-top: 1px solid rgba(245, 240, 235, 0.16);
+  border-top: 1px solid rgb(from var(--cream) r g b / 0.16);
   padding-top: 1.25rem;
   font-size: 0.86rem !important;
 }
@@ -3388,15 +3388,15 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-limitations {
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   padding: clamp(1.4rem, 3vw, 2rem);
-  background: rgba(245, 240, 235, 0.07);
+  background: rgb(from var(--cream) r g b / 0.07);
 }
 
 .campaign-pulse-limitations h3 {
   margin: 0 0 1.5rem;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.6rem, 4vw, 4.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -3412,9 +3412,9 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-limitations li {
-  border-top: 1px solid rgba(245, 240, 235, 0.14);
+  border-top: 1px solid rgb(from var(--cream) r g b / 0.14);
   padding: 0.9rem 0;
-  color: rgba(245, 240, 235, 0.74);
+  color: rgb(from var(--cream) r g b / 0.74);
   font-size: 0.92rem;
   line-height: 1.6;
 }
@@ -3424,13 +3424,13 @@ main.case-study-page-new {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   margin-top: 2rem;
-  background: rgba(245, 240, 235, 0.24);
+  background: rgb(from var(--cream) r g b / 0.24);
 }
 
 .campaign-pulse-outcome-grid article {
   min-height: 14rem;
   padding: 1.35rem;
-  background: rgba(26, 23, 20, 0.14);
+  background: rgb(from var(--ink) r g b / 0.14);
 }
 
 .campaign-pulse-outcome-grid h3 {
@@ -3915,7 +3915,7 @@ main.case-study-page-new {
 }
 
 .case-study-page-new--data-brief .data-brief-back {
-  color: rgba(26, 23, 20, 0.62);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .case-study-page-new--data-brief .data-brief-back:hover,
@@ -3935,7 +3935,7 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(0.5rem, 1vw, 0.85rem);
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: var(--data-brief-card-radius);
   padding: 0.5rem;
 }
@@ -3953,7 +3953,7 @@ main.case-study-page-new {
   gap: clamp(2.5rem, 5.5vw, 6rem);
   padding: calc(var(--header-height) + clamp(4.25rem, 7vw, 7rem))
     clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
-  border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+  border-bottom: 1px solid rgb(from var(--ink) r g b / 0.1);
   background: var(--cream);
   color: var(--ink);
 }
@@ -3977,7 +3977,7 @@ main.case-study-page-new {
 
 .data-brief-hero__description {
   max-width: 46rem;
-  color: rgba(26, 23, 20, 0.68);
+  color: rgb(from var(--ink) r g b / 0.68);
 }
 
 .case-study-page-new--data-brief .data-brief-hero__visual {
@@ -3987,12 +3987,12 @@ main.case-study-page-new {
 
 .case-study-page-new--data-brief .data-brief-hero__visual .data-brief-report {
   margin-inline: auto;
-  border-color: rgba(26, 23, 20, 0.1);
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+  border-color: rgb(from var(--ink) r g b / 0.1);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.1);
 }
 
 .case-study-page-new--data-brief .data-brief-hero__visual figcaption {
-  color: rgba(26, 23, 20, 0.46);
+  color: rgb(from var(--ink) r g b / 0.46);
 }
 
 .case-study-page-new--data-brief .data-brief-tags {
@@ -4001,9 +4001,9 @@ main.case-study-page-new {
 
 .case-study-page-new--data-brief .data-brief-tags span {
   min-height: 2rem;
-  border-color: rgba(26, 23, 20, 0.1);
-  background: rgba(26, 23, 20, 0.035);
-  color: rgba(26, 23, 20, 0.62);
+  border-color: rgb(from var(--ink) r g b / 0.1);
+  background: rgb(from var(--ink) r g b / 0.035);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .data-brief-refresh-heading {
@@ -4032,7 +4032,7 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .data-brief-refusal-card,
@@ -4051,8 +4051,8 @@ main.case-study-page-new {
 
 .data-brief-refusal-card span,
 .data-brief-principle-card span {
-  color: rgba(26, 23, 20, 0.54);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--ink) r g b / 0.54);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4062,7 +4062,7 @@ main.case-study-page-new {
 .data-brief-principle-card strong {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.45rem, 4vw, 4.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4076,14 +4076,14 @@ main.case-study-page-new {
 }
 
 .data-brief-refusal-card dl div {
-  border-top: 1px solid rgba(26, 23, 20, 0.12);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.12);
   padding-top: 0.85rem;
 }
 
 .data-brief-refusal-card dt {
   margin-bottom: 0.35rem;
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -4091,7 +4091,7 @@ main.case-study-page-new {
 
 .data-brief-refusal-card dd {
   margin: 0;
-  color: rgba(26, 23, 20, 0.66);
+  color: rgb(from var(--ink) r g b / 0.66);
   line-height: 1.6;
 }
 
@@ -4100,7 +4100,7 @@ main.case-study-page-new {
 }
 
 .data-brief-principle-card span {
-  color: rgba(245, 240, 235, 0.58);
+  color: rgb(from var(--cream) r g b / 0.58);
 }
 
 .data-brief-principle-card strong {
@@ -4108,7 +4108,7 @@ main.case-study-page-new {
 }
 
 .data-brief-principle-card p {
-  color: rgba(245, 240, 235, 0.68);
+  color: rgb(from var(--cream) r g b / 0.68);
 }
 
 .case-study-page-new--data-brief .data-brief-flow {
@@ -4126,7 +4126,7 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .data-brief-phase-card {
@@ -4142,7 +4142,7 @@ main.case-study-page-new {
 .data-brief-phase-card h3 {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 3.4vw, 3.6rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4158,7 +4158,7 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .data-brief-output-main,
@@ -4181,7 +4181,7 @@ main.case-study-page-new {
 
 .data-brief-output-main figcaption {
   color: var(--ink-muted);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.55;
@@ -4191,7 +4191,7 @@ main.case-study-page-new {
 .data-brief-output-list {
   display: grid;
   gap: 1px;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .data-brief-output-list article {
@@ -4204,7 +4204,7 @@ main.case-study-page-new {
 
 .data-brief-output-list span {
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4213,7 +4213,7 @@ main.case-study-page-new {
 .data-brief-output-list h3 {
   margin: 1.25rem 0 0.6rem;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4223,7 +4223,7 @@ main.case-study-page-new {
 .data-brief-card-grid--datasets {
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .case-study-page-new--data-brief .data-brief-card--dataset {
@@ -4237,7 +4237,7 @@ main.case-study-page-new {
 }
 
 .data-brief-section--result .data-brief-refresh-heading p {
-  color: rgba(245, 240, 235, 0.74);
+  color: rgb(from var(--cream) r g b / 0.74);
 }
 
 .data-brief-result-grid {
@@ -4245,19 +4245,19 @@ main.case-study-page-new {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  background: rgba(245, 240, 235, 0.16);
+  background: rgb(from var(--cream) r g b / 0.16);
 }
 
 .data-brief-result-grid article {
   min-height: 18rem;
   padding: clamp(1.35rem, 3vw, 2rem);
-  background: rgba(245, 240, 235, 0.06);
+  background: rgb(from var(--cream) r g b / 0.06);
 }
 
 .data-brief-result-grid h3 {
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 3.5vw, 3.8rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4273,12 +4273,12 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3rem);
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  border-top: 1px solid rgba(245, 240, 235, 0.16);
+  border-top: 1px solid rgb(from var(--cream) r g b / 0.16);
   padding-top: clamp(2rem, 4vw, 3rem);
 }
 
 .data-brief-boundary-panel .data-brief-eyebrow {
-  color: rgba(245, 240, 235, 0.58);
+  color: rgb(from var(--cream) r g b / 0.58);
 }
 
 .data-brief-section--result .data-brief-actions {
@@ -4343,10 +4343,10 @@ main.case-study-page-new {
   padding: calc(var(--header-height) + clamp(3rem, 6vw, 5.5rem))
     clamp(1.25rem, 5vw, 5rem) clamp(2.75rem, 6vw, 5rem);
   background:
-    linear-gradient(135deg, rgba(26, 23, 20, 0.96), rgba(26, 23, 20, 0.82)),
+    linear-gradient(135deg, rgb(from var(--ink) r g b / 0.96), rgb(from var(--ink) r g b / 0.82)),
     radial-gradient(
       circle at 70% 20%,
-      rgba(196, 30, 58, 0.18),
+      rgb(from var(--accent) r g b / 0.18),
       transparent 28rem
     ),
     var(--ink);
@@ -4363,7 +4363,7 @@ main.case-study-page-new {
   max-width: 16ch;
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(3.4rem, 7vw, 7.8rem);
   font-weight: 400;
   line-height: 0.9;
@@ -4373,7 +4373,7 @@ main.case-study-page-new {
 .benchmark-hero__subtitle {
   max-width: 52rem;
   margin: 1.35rem 0 0;
-  color: rgba(245, 240, 235, 0.94);
+  color: rgb(from var(--cream) r g b / 0.94);
   font-size: clamp(1.12rem, 2vw, 1.8rem);
   line-height: 1.3;
 }
@@ -4381,7 +4381,7 @@ main.case-study-page-new {
 .benchmark-hero__description {
   max-width: 47rem;
   margin: 1rem 0 0;
-  color: rgba(245, 240, 235, 0.76);
+  color: rgb(from var(--cream) r g b / 0.76);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -4397,8 +4397,8 @@ main.case-study-page-new {
 
 .benchmark-hero__visual figcaption {
   margin-top: 0.8rem;
-  color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.5);
+  font-family: var(--font-code);
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   line-height: 1.55;
@@ -4418,10 +4418,10 @@ main.case-study-page-new {
 
 /* Dashboard mockup */
 .benchmark-mockup {
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   border-radius: 8px;
   overflow: hidden;
-  background: rgba(26, 23, 20, 0.72);
+  background: rgb(from var(--ink) r g b / 0.72);
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.22);
 }
 
@@ -4429,7 +4429,7 @@ main.case-study-page-new {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.12);
   padding: 0.75rem 1rem;
 }
 
@@ -4442,15 +4442,15 @@ main.case-study-page-new {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.28);
+  background: rgb(from var(--cream) r g b / 0.28);
 }
 
 .benchmark-mockup__label {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(245, 240, 235, 0.42);
+  color: rgb(from var(--cream) r g b / 0.42);
 }
 
 .benchmark-mockup__body {
@@ -4466,31 +4466,31 @@ main.case-study-page-new {
 }
 
 .benchmark-metric {
-  border: 1px solid rgba(245, 240, 235, 0.1);
+  border: 1px solid rgb(from var(--cream) r g b / 0.1);
   border-radius: 6px;
   padding: 0.7rem;
-  background: rgba(245, 240, 235, 0.05);
+  background: rgb(from var(--cream) r g b / 0.05);
 }
 
 .benchmark-metric__label {
   display: block;
   margin-bottom: 0.35rem;
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.56rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(245, 240, 235, 0.42);
+  color: rgb(from var(--cream) r g b / 0.42);
 }
 
 .benchmark-metric__value {
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: 1.6rem;
   line-height: 1;
   color: var(--cream);
 }
 
 .benchmark-ranking {
-  border: 1px solid rgba(245, 240, 235, 0.1);
+  border: 1px solid rgb(from var(--cream) r g b / 0.1);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -4499,12 +4499,12 @@ main.case-study-page-new {
   display: flex;
   justify-content: space-between;
   padding: 0.45rem 0.75rem;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.1);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.1);
+  font-family: var(--font-code);
   font-size: 0.56rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(245, 240, 235, 0.38);
+  color: rgb(from var(--cream) r g b / 0.38);
 }
 
 .benchmark-ranking__row {
@@ -4512,7 +4512,7 @@ main.case-study-page-new {
   align-items: center;
   gap: 0.6rem;
   padding: 0.4rem 0.75rem;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.06);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.06);
 }
 
 .benchmark-ranking__row:last-child {
@@ -4521,23 +4521,23 @@ main.case-study-page-new {
 
 .benchmark-ranking__pos {
   width: 1rem;
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.58rem;
-  color: rgba(245, 240, 235, 0.36);
+  color: rgb(from var(--cream) r g b / 0.36);
   text-align: right;
 }
 
 .benchmark-ranking__name {
   flex: 1;
   font-size: 0.76rem;
-  color: rgba(245, 240, 235, 0.8);
+  color: rgb(from var(--cream) r g b / 0.8);
 }
 
 .benchmark-ranking__bar-track {
   width: 4.5rem;
   height: 4px;
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.12);
+  background: rgb(from var(--cream) r g b / 0.12);
   overflow: hidden;
 }
 
@@ -4549,9 +4549,9 @@ main.case-study-page-new {
 
 .benchmark-ranking__score {
   width: 2.5rem;
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.62rem;
-  color: rgba(245, 240, 235, 0.56);
+  color: rgb(from var(--cream) r g b / 0.56);
   text-align: right;
 }
 
@@ -4573,7 +4573,7 @@ main.case-study-page-new {
 }
 
 .benchmark-system-card h3 {
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 2.8vw, 3rem);
   font-weight: 400;
   line-height: 0.92;
@@ -4596,7 +4596,7 @@ main.case-study-page-new {
 }
 
 .benchmark-diagram span {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4610,7 +4610,7 @@ main.case-study-page-new {
 
 /* Code block for data contract */
 .benchmark-code-block {
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: 8px;
   overflow: hidden;
   background: var(--ink);
@@ -4620,26 +4620,26 @@ main.case-study-page-new {
 .benchmark-code-block__bar {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.1);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.1);
   padding: 0.7rem 1.25rem;
-  background: rgba(26, 23, 20, 0.6);
+  background: rgb(from var(--ink) r g b / 0.6);
 }
 
 .benchmark-code-block__bar span {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(245, 240, 235, 0.45);
+  color: rgb(from var(--cream) r g b / 0.45);
 }
 
 .benchmark-code-block pre {
   margin: 0;
   padding: 1.25rem;
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.82rem;
   line-height: 1.9;
-  color: rgba(245, 240, 235, 0.82);
+  color: rgb(from var(--cream) r g b / 0.82);
   overflow-x: auto;
   tab-size: 2;
 }
@@ -4661,7 +4661,7 @@ main.case-study-page-new {
   padding: 0 0.85rem;
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -4722,11 +4722,11 @@ main.case-study-page-new {
 
 .benchmark-mockup__tab {
   padding: 0.3rem 0.7rem;
-  border: 1px solid rgba(245, 240, 235, 0.14);
+  border: 1px solid rgb(from var(--cream) r g b / 0.14);
   border-radius: 999px;
   background: transparent;
-  color: rgba(245, 240, 235, 0.45);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.45);
+  font-family: var(--font-code);
   font-size: 0.58rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4734,16 +4734,16 @@ main.case-study-page-new {
 
 .benchmark-mockup__tab--active {
   border-color: var(--accent);
-  background: rgba(196, 30, 58, 0.16);
-  color: rgba(245, 240, 235, 0.88);
+  background: rgb(from var(--accent) r g b / 0.16);
+  color: rgb(from var(--cream) r g b / 0.88);
 }
 
 /* Hero mock-data disclaimer */
 .benchmark-hero__mock-notice {
   max-width: 44rem;
   margin: 1rem 0 0;
-  color: rgba(245, 240, 235, 0.48);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.48);
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.04em;
   line-height: 1.6;
@@ -4761,11 +4761,11 @@ main.case-study-page-new {
   align-items: center;
   margin: 0.75rem 0 1.25rem;
   padding: 0.4rem 0.9rem;
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   border-radius: 999px;
-  background: rgba(245, 240, 235, 0.06);
-  color: rgba(245, 240, 235, 0.5);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  background: rgb(from var(--cream) r g b / 0.06);
+  color: rgb(from var(--cream) r g b / 0.5);
+  font-family: var(--font-code);
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -4792,7 +4792,7 @@ main.case-study-page-new {
 }
 
 .benchmark-field-defs dt code {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.8rem;
   color: var(--accent);
 }
@@ -4808,7 +4808,7 @@ main.case-study-page-new {
 .benchmark-connectors-label {
   margin: 0 0 0.75rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4837,7 +4837,7 @@ main.case-study-page-new {
 
 /* Benchmark Dashboard refresh — calmer hierarchy and screenshot-ready proof slots */
 .case-study-page-new--benchmark .data-brief-back {
-  color: rgba(26, 23, 20, 0.62);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .case-study-page-new--benchmark .data-brief-mini-nav {
@@ -4848,19 +4848,19 @@ main.case-study-page-new {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: clamp(0.5rem, 1vw, 0.85rem);
   padding-inline: clamp(0.65rem, 1.2vw, 1rem);
-  border-color: rgba(26, 23, 20, 0.12);
-  background: rgba(245, 240, 235, 0.92);
+  border-color: rgb(from var(--ink) r g b / 0.12);
+  background: rgb(from var(--cream) r g b / 0.92);
 }
 
 .case-study-page-new--benchmark .data-brief-mini-nav a {
   justify-content: center;
   min-width: 0;
-  color: rgba(26, 23, 20, 0.62);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .case-study-page-new--benchmark .data-brief-mini-nav a:hover,
 .case-study-page-new--benchmark .data-brief-mini-nav a:focus-visible {
-  background: rgba(26, 23, 20, 0.06);
+  background: rgb(from var(--ink) r g b / 0.06);
   color: var(--ink);
 }
 
@@ -4870,7 +4870,7 @@ main.case-study-page-new {
   gap: clamp(3rem, 7vw, 7rem);
   padding: calc(var(--header-height) + clamp(4.5rem, 8vw, 8rem))
     clamp(1.25rem, 4vw, 4rem) clamp(5rem, 8vw, 7rem);
-  border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+  border-bottom: 1px solid rgb(from var(--ink) r g b / 0.1);
   background: var(--cream);
   color: var(--ink);
 }
@@ -4896,14 +4896,14 @@ main.case-study-page-new {
 .benchmark-hero__description {
   max-width: 40rem;
   margin-top: 1.1rem;
-  color: rgba(26, 23, 20, 0.68);
+  color: rgb(from var(--ink) r g b / 0.68);
   font-size: 1.02rem;
   line-height: 1.75;
 }
 
 .benchmark-hero__mock-notice {
   max-width: 34rem;
-  color: rgba(26, 23, 20, 0.5);
+  color: rgb(from var(--ink) r g b / 0.5);
 }
 
 .case-study-page-new--benchmark .data-brief-tags {
@@ -4912,30 +4912,30 @@ main.case-study-page-new {
 }
 
 .case-study-page-new--benchmark .data-brief-tags span {
-  border-color: rgba(26, 23, 20, 0.1);
-  background: rgba(26, 23, 20, 0.035);
-  color: rgba(26, 23, 20, 0.62);
+  border-color: rgb(from var(--ink) r g b / 0.1);
+  background: rgb(from var(--ink) r g b / 0.035);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .benchmark-hero__visual figcaption {
-  color: rgba(26, 23, 20, 0.46);
+  color: rgb(from var(--ink) r g b / 0.46);
 }
 
 .benchmark-mockup {
-  border-color: rgba(26, 23, 20, 0.12);
+  border-color: rgb(from var(--ink) r g b / 0.12);
   border-radius: 8px;
   background: var(--cream-light);
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.1);
 }
 
 .benchmark-mockup__bar {
   justify-content: space-between;
-  border-bottom-color: rgba(26, 23, 20, 0.1);
+  border-bottom-color: rgb(from var(--ink) r g b / 0.1);
   padding: 0.85rem 1rem;
 }
 
 .benchmark-mockup__label {
-  color: rgba(26, 23, 20, 0.46);
+  color: rgb(from var(--ink) r g b / 0.46);
 }
 
 .benchmark-mockup__body {
@@ -4944,12 +4944,12 @@ main.case-study-page-new {
 }
 
 .benchmark-metric {
-  border-color: rgba(26, 23, 20, 0.1);
+  border-color: rgb(from var(--ink) r g b / 0.1);
   background: var(--cream);
 }
 
 .benchmark-metric__label {
-  color: rgba(26, 23, 20, 0.45);
+  color: rgb(from var(--ink) r g b / 0.45);
 }
 
 .benchmark-metric__value {
@@ -4958,41 +4958,41 @@ main.case-study-page-new {
 
 .benchmark-mockup__tab {
   border-color: transparent;
-  background: rgba(26, 23, 20, 0.05);
-  color: rgba(26, 23, 20, 0.48);
+  background: rgb(from var(--ink) r g b / 0.05);
+  color: rgb(from var(--ink) r g b / 0.48);
 }
 
 .benchmark-mockup__tab--active {
-  border-color: rgba(26, 23, 20, 0.16);
+  border-color: rgb(from var(--ink) r g b / 0.16);
   background: var(--ink);
   color: var(--cream);
 }
 
 .benchmark-ranking {
-  border-color: rgba(26, 23, 20, 0.1);
+  border-color: rgb(from var(--ink) r g b / 0.1);
   background: var(--cream);
 }
 
 .benchmark-ranking__header {
-  border-bottom-color: rgba(26, 23, 20, 0.09);
-  color: rgba(26, 23, 20, 0.45);
+  border-bottom-color: rgb(from var(--ink) r g b / 0.09);
+  color: rgb(from var(--ink) r g b / 0.45);
 }
 
 .benchmark-ranking__row {
-  border-bottom-color: rgba(26, 23, 20, 0.07);
+  border-bottom-color: rgb(from var(--ink) r g b / 0.07);
 }
 
 .benchmark-ranking__pos,
 .benchmark-ranking__score {
-  color: rgba(26, 23, 20, 0.5);
+  color: rgb(from var(--ink) r g b / 0.5);
 }
 
 .benchmark-ranking__name {
-  color: rgba(26, 23, 20, 0.78);
+  color: rgb(from var(--ink) r g b / 0.78);
 }
 
 .benchmark-ranking__bar-track {
-  background: rgba(26, 23, 20, 0.08);
+  background: rgb(from var(--ink) r g b / 0.08);
 }
 
 .benchmark-section {
@@ -5026,13 +5026,13 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: clamp(2.5rem, 5vw, 4rem) 0;
-  border-top: 1px solid rgba(26, 23, 20, 0.12);
-  border-bottom: 1px solid rgba(26, 23, 20, 0.12);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.12);
+  border-bottom: 1px solid rgb(from var(--ink) r g b / 0.12);
 }
 
 .benchmark-proof-strip div {
   padding: 1.35rem 1.5rem;
-  border-right: 1px solid rgba(26, 23, 20, 0.1);
+  border-right: 1px solid rgb(from var(--ink) r g b / 0.1);
 }
 
 .benchmark-proof-strip div:last-child {
@@ -5042,7 +5042,7 @@ main.case-study-page-new {
 .benchmark-proof-strip strong {
   display: block;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.6rem, 5vw, 4.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -5051,8 +5051,8 @@ main.case-study-page-new {
 .benchmark-proof-strip span {
   display: block;
   margin-top: 0.5rem;
-  color: rgba(26, 23, 20, 0.58);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--ink) r g b / 0.58);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -5062,7 +5062,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   margin-top: 0;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .benchmark-feature-grid .data-brief-card,
@@ -5079,15 +5079,15 @@ main.case-study-page-new {
 
 .benchmark-diagram {
   margin: clamp(2rem, 4vw, 3rem) 0 1px;
-  border-color: rgba(26, 23, 20, 0.1);
+  border-color: rgb(from var(--ink) r g b / 0.1);
   border-radius: 0;
-  background: rgba(26, 23, 20, 0.035);
+  background: rgb(from var(--ink) r g b / 0.035);
 }
 
 .benchmark-system-grid {
   gap: 1px;
   margin-top: 0;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .benchmark-system-card {
@@ -5105,7 +5105,7 @@ main.case-study-page-new {
   grid-template-columns: 1.15fr 0.85fr;
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  background: rgba(245, 240, 235, 0.18);
+  background: rgb(from var(--cream) r g b / 0.18);
 }
 
 .benchmark-shot {
@@ -5126,9 +5126,9 @@ main.case-study-page-new {
   display: grid;
   gap: 1rem;
   min-height: 18rem;
-  border: 1px solid rgba(245, 240, 235, 0.16);
+  border: 1px solid rgb(from var(--cream) r g b / 0.16);
   padding: clamp(1rem, 2vw, 1.35rem);
-  background: rgba(245, 240, 235, 0.04);
+  background: rgb(from var(--cream) r g b / 0.04);
 }
 
 .benchmark-shot:first-child .benchmark-shot__frame {
@@ -5138,7 +5138,7 @@ main.case-study-page-new {
 .benchmark-shot__topline {
   width: 42%;
   height: 0.7rem;
-  background: rgba(245, 240, 235, 0.28);
+  background: rgb(from var(--cream) r g b / 0.28);
 }
 
 .benchmark-shot__grid {
@@ -5149,18 +5149,18 @@ main.case-study-page-new {
 
 .benchmark-shot__grid span {
   min-height: 3.5rem;
-  border: 1px solid rgba(245, 240, 235, 0.12);
-  background: rgba(245, 240, 235, 0.06);
+  border: 1px solid rgb(from var(--cream) r g b / 0.12);
+  background: rgb(from var(--cream) r g b / 0.06);
 }
 
 .benchmark-shot__chart {
   position: relative;
   min-height: 9rem;
   overflow: hidden;
-  border: 1px solid rgba(245, 240, 235, 0.12);
+  border: 1px solid rgb(from var(--cream) r g b / 0.12);
   background:
-    linear-gradient(rgba(245, 240, 235, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 240, 235, 0.06) 1px, transparent 1px);
+    linear-gradient(rgb(from var(--cream) r g b / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(from var(--cream) r g b / 0.06) 1px, transparent 1px);
   background-size:
     100% 33.333%,
     20% 100%;
@@ -5171,7 +5171,7 @@ main.case-study-page-new {
   bottom: 18%;
   width: 28%;
   height: 2px;
-  background: rgba(245, 240, 235, 0.58);
+  background: rgb(from var(--cream) r g b / 0.58);
   transform-origin: left center;
 }
 
@@ -5195,7 +5195,7 @@ main.case-study-page-new {
 .benchmark-shot__copy h3 {
   margin: 0;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.95;
@@ -5205,7 +5205,7 @@ main.case-study-page-new {
 .benchmark-shot__copy p {
   max-width: 32rem;
   margin: 0.65rem 0 0;
-  color: rgba(245, 240, 235, 0.58);
+  color: rgb(from var(--cream) r g b / 0.58);
 }
 
 .benchmark-data-stack {
@@ -5227,7 +5227,7 @@ main.case-study-page-new {
   grid-template-columns: 1fr;
   gap: 1px;
   margin: 0;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .benchmark-field-defs > div {
@@ -5243,7 +5243,7 @@ main.case-study-page-new {
 .benchmark-validation-panel {
   display: grid;
   gap: 1px;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .benchmark-validation-panel code {
@@ -5252,8 +5252,8 @@ main.case-study-page-new {
   min-height: 4.25rem;
   padding: 1rem 1.25rem;
   background: var(--ink);
-  color: rgba(245, 240, 235, 0.84);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.84);
+  font-family: var(--font-code);
   font-size: clamp(0.82rem, 1.6vw, 1rem);
   line-height: 1.4;
 }
@@ -5261,12 +5261,12 @@ main.case-study-page-new {
 .benchmark-safety-list {
   margin: 0;
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   background: var(--cream-light);
 }
 
 .benchmark-safety-list li {
-  color: rgba(26, 23, 20, 0.74);
+  color: rgb(from var(--ink) r g b / 0.74);
 }
 
 .benchmark-safety-list li::before {
@@ -5278,7 +5278,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  background: rgba(245, 240, 235, 0.16);
+  background: rgb(from var(--cream) r g b / 0.16);
 }
 
 .benchmark-result-grid article {
@@ -5290,7 +5290,7 @@ main.case-study-page-new {
 .benchmark-result-grid h3 {
   margin: 0 0 1.5rem;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.9;
@@ -5336,7 +5336,7 @@ main.case-study-page-new {
 
   .benchmark-proof-strip div {
     border-right: 0;
-    border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+    border-bottom: 1px solid rgb(from var(--ink) r g b / 0.1);
   }
 
   .benchmark-proof-strip div:last-child {
@@ -5411,10 +5411,10 @@ main.case-study-page-new {
   max-height: 42rem;
   height: auto;
   object-fit: contain;
-  background: rgba(245, 240, 235, 0.56);
+  background: rgb(from var(--cream) r g b / 0.56);
   border-radius: 6px;
-  border: 1px solid rgba(26, 23, 20, 0.1);
-  box-shadow: 0 2px 16px rgba(26, 23, 20, 0.08);
+  border: 1px solid rgb(from var(--ink) r g b / 0.1);
+  box-shadow: 0 2px 16px rgb(from var(--ink) r g b / 0.08);
 }
 
 .benchmark-screen--wide img {
@@ -5444,7 +5444,7 @@ main.case-study-page-new {
 .benchmark-screen figcaption p {
   margin: 0;
   color: var(--ink-muted);
-  font-family: var(--font-body), 'DM Sans', sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.82rem;
   line-height: 1.55;
   max-width: 48ch;
@@ -5508,14 +5508,14 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(2rem, 5vw, 5rem);
   align-items: start;
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: 8px;
   padding: clamp(1.5rem, 4vw, 3rem);
   background:
     linear-gradient(
       135deg,
       rgba(250, 248, 245, 0.84),
-      rgba(245, 240, 235, 0.96)
+      rgb(from var(--cream) r g b / 0.96)
     ),
     var(--cream);
 }
@@ -5527,14 +5527,14 @@ main.case-study-page-new {
 .website-auditor-problem-copy {
   display: grid;
   gap: 1.15rem;
-  border-left: 1px solid rgba(196, 30, 58, 0.32);
+  border-left: 1px solid rgb(from var(--accent) r g b / 0.32);
   padding-left: clamp(1.25rem, 3vw, 2rem);
 }
 
 .website-auditor-problem-copy p {
   max-width: 45rem;
   margin: 0;
-  color: rgba(26, 23, 20, 0.72);
+  color: rgb(from var(--ink) r g b / 0.72);
   font-size: clamp(1.02rem, 1.5vw, 1.16rem);
   line-height: 1.72;
 }
@@ -5544,7 +5544,7 @@ main.case-study-page-new {
 }
 
 .website-auditor-overview-grid {
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .website-auditor-overview-grid article {
@@ -5564,7 +5564,7 @@ main.case-study-page-new {
   .data-brief-section--light
   .data-brief-result-grid
   p {
-  color: rgba(26, 23, 20, 0.66);
+  color: rgb(from var(--ink) r g b / 0.66);
 }
 
 .website-auditor-evidence-card {
@@ -5581,7 +5581,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .website-auditor-truth-boundary span {
@@ -5592,7 +5592,7 @@ main.case-study-page-new {
   padding: 1.25rem;
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   line-height: 1.55;
@@ -5610,7 +5610,7 @@ main.case-study-page-new {
   width: 1.2rem;
   height: 1.2rem;
   place-items: center;
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: 999px;
   background: var(--cream);
   color: var(--accent);
@@ -5621,7 +5621,7 @@ main.case-study-page-new {
   display: grid;
   gap: 1px;
   margin-top: clamp(1.25rem, 3vw, 2rem);
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .website-auditor-llm-boundary h3 {
@@ -5629,7 +5629,7 @@ main.case-study-page-new {
   padding: clamp(1.25rem, 3vw, 1.75rem);
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.45rem, 4vw, 4.35rem);
   font-weight: 400;
   line-height: 0.92;
@@ -5654,7 +5654,7 @@ main.case-study-page-new {
 .website-auditor-llm-boundary__column h4 {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   line-height: 1.4;
@@ -5692,7 +5692,7 @@ main.case-study-page-new {
   position: relative;
   margin: 0;
   padding-left: 1.25rem;
-  color: rgba(26, 23, 20, 0.72);
+  color: rgb(from var(--ink) r g b / 0.72);
   font-size: clamp(0.96rem, 1.4vw, 1.05rem);
   line-height: 1.6;
 }
@@ -5711,7 +5711,7 @@ main.case-study-page-new {
   width: min(100%, 62rem);
   margin-top: clamp(2.75rem, 5vw, 4rem);
   margin-inline: 0;
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
 }
 
 .website-auditor-finding-card {
@@ -5719,10 +5719,10 @@ main.case-study-page-new {
   gap: 1px;
   width: min(100%, 44rem);
   overflow: hidden;
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: 8px;
-  background: rgba(26, 23, 20, 0.12);
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+  background: rgb(from var(--ink) r g b / 0.12);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.1);
 }
 
 .website-auditor-finding-card__header,
@@ -5733,7 +5733,7 @@ main.case-study-page-new {
     linear-gradient(
       135deg,
       rgba(250, 248, 245, 0.96),
-      rgba(245, 240, 235, 0.92)
+      rgb(from var(--cream) r g b / 0.92)
     ),
     var(--cream-light);
 }
@@ -5752,7 +5752,7 @@ main.case-study-page-new {
 .website-auditor-finding-card__issue span,
 .website-auditor-finding-card__meta dt,
 .website-auditor-finding-card__status span {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.66rem;
   font-style: normal;
   font-weight: 400;
@@ -5762,17 +5762,17 @@ main.case-study-page-new {
 }
 
 .website-auditor-finding-card__header span {
-  border: 1px solid rgba(196, 30, 58, 0.24);
+  border: 1px solid rgb(from var(--accent) r g b / 0.24);
   border-radius: 999px;
   padding: 0.35rem 0.65rem;
-  background: rgba(196, 30, 58, 0.08);
+  background: rgb(from var(--accent) r g b / 0.08);
   color: var(--accent);
 }
 
 .website-auditor-finding-card__header strong,
 .website-auditor-finding-card__issue span,
 .website-auditor-finding-card__meta dt {
-  color: rgba(26, 23, 20, 0.56);
+  color: rgb(from var(--ink) r g b / 0.56);
 }
 
 .website-auditor-finding-card__issue {
@@ -5830,14 +5830,14 @@ main.case-study-page-new {
   gap: clamp(1.5rem, 4vw, 3rem);
   width: min(100%, 62rem);
   margin-top: clamp(2rem, 4vw, 3rem);
-  border-top: 1px solid rgba(26, 23, 20, 0.16);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.16);
   padding-top: clamp(1.5rem, 3vw, 2rem);
 }
 
 .website-auditor-sample-output h3 {
   margin: 0 0 0.85rem;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.4rem, 5vw, 4.5rem);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
@@ -5848,7 +5848,7 @@ main.case-study-page-new {
 .website-auditor-sample-output p {
   max-width: 24rem;
   margin: 0;
-  color: rgba(26, 23, 20, 0.66);
+  color: rgb(from var(--ink) r g b / 0.66);
   line-height: 1.65;
 }
 
@@ -5856,7 +5856,7 @@ main.case-study-page-new {
   display: grid;
   gap: 1px;
   margin: 0;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .website-auditor-sample-output dl > div {
@@ -5869,7 +5869,7 @@ main.case-study-page-new {
 
 .website-auditor-sample-output dt {
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.45;
@@ -5878,7 +5878,7 @@ main.case-study-page-new {
 
 .website-auditor-sample-output dd {
   margin: 0;
-  color: rgba(26, 23, 20, 0.74);
+  color: rgb(from var(--ink) r g b / 0.74);
   line-height: 1.6;
 }
 
@@ -5886,17 +5886,17 @@ main.case-study-page-new {
   display: grid;
   gap: 1rem;
   width: min(100%, 40rem);
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: 8px;
   padding: clamp(1rem, 2vw, 1.35rem);
   background:
     linear-gradient(
       135deg,
       rgba(250, 248, 245, 0.96),
-      rgba(245, 240, 235, 0.9)
+      rgb(from var(--cream) r g b / 0.9)
     ),
     var(--cream-light);
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.1);
 }
 
 .website-auditor-report__topline,
@@ -5910,7 +5910,7 @@ main.case-study-page-new {
 
 .website-auditor-report__topline span {
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 3rem);
   line-height: 0.9;
   text-transform: uppercase;
@@ -5921,7 +5921,7 @@ main.case-study-page-new {
 .website-auditor-report__finding span,
 .website-auditor-report__finding em,
 .website-auditor-report__scores span {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.66rem;
   font-style: normal;
   letter-spacing: 0.08em;
@@ -5930,22 +5930,22 @@ main.case-study-page-new {
 }
 
 .website-auditor-report__topline strong {
-  border: 1px solid rgba(196, 30, 58, 0.24);
+  border: 1px solid rgb(from var(--accent) r g b / 0.24);
   border-radius: 999px;
   padding: 0.35rem 0.65rem;
-  background: rgba(196, 30, 58, 0.08);
+  background: rgb(from var(--accent) r g b / 0.08);
   color: var(--accent);
 }
 
 .website-auditor-report__meta {
-  border-top: 1px solid rgba(26, 23, 20, 0.1);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.1);
   padding-top: 0.85rem;
 }
 
 .website-auditor-report__meta span,
 .website-auditor-report__scores span,
 .website-auditor-report__finding span {
-  color: rgba(26, 23, 20, 0.56);
+  color: rgb(from var(--ink) r g b / 0.56);
 }
 
 .website-auditor-report__scores {
@@ -5953,9 +5953,9 @@ main.case-study-page-new {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1px;
   overflow: hidden;
-  border: 1px solid rgba(26, 23, 20, 0.1);
+  border: 1px solid rgb(from var(--ink) r g b / 0.1);
   border-radius: 8px;
-  background: rgba(26, 23, 20, 0.1);
+  background: rgb(from var(--ink) r g b / 0.1);
 }
 
 .website-auditor-report__scores article {
@@ -5969,7 +5969,7 @@ main.case-study-page-new {
 
 .website-auditor-report__scores strong {
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 3.2rem);
   font-weight: 400;
   line-height: 0.9;
@@ -5978,10 +5978,10 @@ main.case-study-page-new {
 .website-auditor-report__finding {
   display: grid;
   gap: 0.6rem;
-  border: 1px solid rgba(26, 23, 20, 0.1);
+  border: 1px solid rgb(from var(--ink) r g b / 0.1);
   border-radius: 8px;
   padding: 1rem;
-  background: rgba(26, 23, 20, 0.035);
+  background: rgb(from var(--ink) r g b / 0.035);
 }
 
 .website-auditor-report__finding p {
@@ -5993,7 +5993,7 @@ main.case-study-page-new {
 
 .website-auditor-report__finding em {
   width: max-content;
-  border: 1px solid rgba(26, 23, 20, 0.12);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
   border-radius: 999px;
   padding: 0.35rem 0.65rem;
   background: var(--cream);
@@ -6005,7 +6005,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .website-auditor-safety-grid span {
@@ -6015,7 +6015,7 @@ main.case-study-page-new {
   padding: clamp(1.15rem, 2.5vw, 1.5rem);
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   line-height: 1.5;
@@ -6076,7 +6076,7 @@ main.case-study-page-new {
 
   .website-auditor-problem-copy {
     border-left: 0;
-    border-top: 1px solid rgba(196, 30, 58, 0.32);
+    border-top: 1px solid rgb(from var(--accent) r g b / 0.32);
     padding-top: 1.25rem;
     padding-left: 0;
   }
@@ -6110,16 +6110,16 @@ main.case-study-page-new {
 
 /* Raul Portfolio case study — editorial identity system */
 .case-study-page-new--portfolio {
-  --portfolio-ink: #1a1714;
-  --portfolio-cream: #f5f0eb;
+  --portfolio-ink: var(--ink);
+  --portfolio-cream: var(--cream);
   --portfolio-paper: #fbf8f3;
-  --portfolio-line: rgba(26, 23, 20, 0.12);
+  --portfolio-line: rgb(from var(--ink) r g b / 0.12);
   background: var(--portfolio-cream);
   color: var(--portfolio-ink);
 }
 
 .case-study-page-new--portfolio .data-brief-back {
-  color: rgba(26, 23, 20, 0.62);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .case-study-page-new--portfolio .data-brief-back:hover,
@@ -6135,18 +6135,18 @@ main.case-study-page-new {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: clamp(0.45rem, 1vw, 0.75rem);
   border-color: var(--portfolio-line);
-  background: rgba(245, 240, 235, 0.94);
+  background: rgb(from var(--cream) r g b / 0.94);
 }
 
 .case-study-page-new--portfolio .data-brief-mini-nav a {
   justify-content: center;
   min-width: 0;
-  color: rgba(26, 23, 20, 0.62);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .case-study-page-new--portfolio .data-brief-mini-nav a:hover,
 .case-study-page-new--portfolio .data-brief-mini-nav a:focus-visible {
-  background: rgba(26, 23, 20, 0.06);
+  background: rgb(from var(--ink) r g b / 0.06);
   color: var(--portfolio-ink);
 }
 
@@ -6169,7 +6169,7 @@ main.case-study-page-new {
   max-width: 13ch;
   margin: 0;
   color: var(--portfolio-ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(4rem, 8vw, 9rem);
   font-weight: 400;
   letter-spacing: 0;
@@ -6188,7 +6188,7 @@ main.case-study-page-new {
 .portfolio-hero__description {
   max-width: 42rem;
   margin: 1.1rem 0 0;
-  color: rgba(26, 23, 20, 0.68);
+  color: rgb(from var(--ink) r g b / 0.68);
   font-size: 1.02rem;
   line-height: 1.75;
 }
@@ -6199,9 +6199,9 @@ main.case-study-page-new {
 }
 
 .case-study-page-new--portfolio .data-brief-tags span {
-  border-color: rgba(26, 23, 20, 0.1);
-  background: rgba(26, 23, 20, 0.035);
-  color: rgba(26, 23, 20, 0.62);
+  border-color: rgb(from var(--ink) r g b / 0.1);
+  background: rgb(from var(--ink) r g b / 0.035);
+  color: rgb(from var(--ink) r g b / 0.62);
 }
 
 .portfolio-hero__system {
@@ -6209,7 +6209,7 @@ main.case-study-page-new {
   gap: 1px;
   padding: 1px;
   background: var(--portfolio-line);
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.1);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.1);
 }
 
 .portfolio-frame,
@@ -6227,8 +6227,8 @@ main.case-study-page-new {
 
 .portfolio-frame span,
 .portfolio-frame-grid span {
-  color: rgba(26, 23, 20, 0.48);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--ink) r g b / 0.48);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -6237,7 +6237,7 @@ main.case-study-page-new {
 .portfolio-frame strong {
   max-width: 14ch;
   color: var(--portfolio-ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.8rem, 5vw, 5.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -6288,7 +6288,7 @@ main.case-study-page-new {
   max-width: 19ch;
   margin: 0;
   color: inherit;
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(3.4rem, 6vw, 7rem);
   font-weight: 400;
   letter-spacing: 0;
@@ -6298,14 +6298,14 @@ main.case-study-page-new {
 
 .portfolio-section-heading p {
   max-width: min(100%, 68rem);
-  color: rgba(26, 23, 20, 0.66);
+  color: rgb(from var(--ink) r g b / 0.66);
   font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   line-height: 1.7;
 }
 
 .portfolio-section--dark .portfolio-section-heading p,
 .portfolio-section--dark .data-brief-eyebrow {
-  color: rgba(245, 240, 235, 0.66);
+  color: rgb(from var(--cream) r g b / 0.66);
 }
 
 .portfolio-card-grid {
@@ -6330,17 +6330,17 @@ main.case-study-page-new {
 }
 
 .portfolio-section--dark .portfolio-card-grid {
-  background: rgba(245, 240, 235, 0.16);
+  background: rgb(from var(--cream) r g b / 0.16);
 }
 
 .portfolio-section--dark .portfolio-card {
-  background: rgba(245, 240, 235, 0.06);
+  background: rgb(from var(--cream) r g b / 0.06);
 }
 
 .portfolio-card h3 {
   margin: 0;
   color: inherit;
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 3.5vw, 3.8rem);
   font-weight: 400;
   line-height: 0.92;
@@ -6349,12 +6349,12 @@ main.case-study-page-new {
 
 .portfolio-card p {
   margin: 1rem 0 0;
-  color: rgba(26, 23, 20, 0.64);
+  color: rgb(from var(--ink) r g b / 0.64);
   line-height: 1.65;
 }
 
 .portfolio-section--dark .portfolio-card p {
-  color: rgba(245, 240, 235, 0.66);
+  color: rgb(from var(--cream) r g b / 0.66);
 }
 
 .portfolio-two-column {
@@ -6368,7 +6368,7 @@ main.case-study-page-new {
   display: grid;
   gap: 1px;
   margin: 0;
-  background: rgba(245, 240, 235, 0.16);
+  background: rgb(from var(--cream) r g b / 0.16);
 }
 
 .portfolio-layer-list div {
@@ -6376,13 +6376,13 @@ main.case-study-page-new {
   grid-template-columns: minmax(8rem, 0.35fr) 1fr;
   gap: 1rem;
   padding: clamp(1.1rem, 2vw, 1.5rem);
-  background: rgba(245, 240, 235, 0.06);
+  background: rgb(from var(--cream) r g b / 0.06);
 }
 
 .portfolio-layer-list dt,
 .portfolio-wireframe-list span {
-  color: rgba(245, 240, 235, 0.54);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.54);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -6413,12 +6413,12 @@ main.case-study-page-new {
 }
 
 .portfolio-wireframe-list span {
-  color: rgba(26, 23, 20, 0.42);
+  color: rgb(from var(--ink) r g b / 0.42);
 }
 
 .portfolio-wireframe-list strong {
   color: var(--portfolio-ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.95;
@@ -6443,7 +6443,7 @@ main.case-study-page-new {
 .portfolio-links h3 {
   margin: 0 0 1.5rem;
   color: inherit;
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.4rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.9;
@@ -6451,7 +6451,7 @@ main.case-study-page-new {
 }
 
 .case-study-page-new--portfolio .portfolio-section--cream .data-brief-list li {
-  color: rgba(26, 23, 20, 0.72);
+  color: rgb(from var(--ink) r g b / 0.72);
 }
 
 .portfolio-section--outcome .portfolio-card {
@@ -6460,7 +6460,7 @@ main.case-study-page-new {
 
 .portfolio-links {
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  border-top: 1px solid rgba(245, 240, 235, 0.16);
+  border-top: 1px solid rgb(from var(--cream) r g b / 0.16);
   padding-top: clamp(2rem, 4vw, 3rem);
 }
 
@@ -6503,7 +6503,7 @@ main.case-study-page-new {
 /* TerritoryOps Spain — private atlas / internal control console */
 .case-study-page-new--territoryops {
   --territoryops-accent: #b08a5a;
-  --territoryops-grid: rgba(245, 240, 235, 0.09);
+  --territoryops-grid: rgb(from var(--cream) r g b / 0.09);
   background: var(--cream);
 }
 
@@ -6532,7 +6532,7 @@ main.case-study-page-new {
   position: relative;
   min-height: clamp(22rem, 62vw, 34rem);
   overflow: hidden;
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   background:
     linear-gradient(var(--territoryops-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--territoryops-grid) 1px, transparent 1px),
@@ -6553,8 +6553,8 @@ main.case-study-page-new {
   content: '';
   position: absolute;
   inset: 12% 17% 24% 22%;
-  border: 1px solid rgba(245, 240, 235, 0.24);
-  background: rgba(245, 240, 235, 0.035);
+  border: 1px solid rgb(from var(--cream) r g b / 0.24);
+  background: rgb(from var(--cream) r g b / 0.035);
   clip-path: polygon(
     17% 2%,
     43% 8%,
@@ -6606,7 +6606,7 @@ main.case-study-page-new {
   z-index: 3;
   display: grid;
   gap: 0.55rem;
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   padding: 1rem;
   background: rgba(18, 16, 14, 0.88);
   backdrop-filter: blur(12px);
@@ -6615,13 +6615,13 @@ main.case-study-page-new {
 .territoryops-atlas__panel span,
 .territoryops-atlas__panel strong,
 .territoryops-atlas figcaption {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .territoryops-atlas__panel span {
-  color: rgba(245, 240, 235, 0.56);
+  color: rgb(from var(--cream) r g b / 0.56);
   font-size: 0.62rem;
 }
 
@@ -6632,7 +6632,7 @@ main.case-study-page-new {
 }
 
 .territoryops-atlas figcaption {
-  color: rgba(245, 240, 235, 0.58);
+  color: rgb(from var(--cream) r g b / 0.58);
   font-size: 0.65rem;
   line-height: 1.6;
 }
@@ -6644,7 +6644,7 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 1fr);
   gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
 }
 
 .territoryops-decision-card {
@@ -6670,7 +6670,7 @@ main.case-study-page-new {
 
 .territoryops-feature-grid h3 {
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 400;
   line-height: 0.95;
@@ -6688,16 +6688,16 @@ main.case-study-page-new {
 }
 
 .territoryops-heading--inverse p {
-  color: rgba(245, 240, 235, 0.7);
+  color: rgb(from var(--cream) r g b / 0.7);
 }
 
 .territoryops-proof-strip {
-  border-color: rgba(245, 240, 235, 0.18);
-  background: rgba(245, 240, 235, 0.05);
+  border-color: rgb(from var(--cream) r g b / 0.18);
+  background: rgb(from var(--cream) r g b / 0.05);
 }
 
 .territoryops-proof-strip > div {
-  border-color: rgba(245, 240, 235, 0.14);
+  border-color: rgb(from var(--cream) r g b / 0.14);
 }
 
 .territoryops-proof-strip strong {
@@ -6705,7 +6705,7 @@ main.case-study-page-new {
 }
 
 .territoryops-proof-strip span {
-  color: rgba(245, 240, 235, 0.56);
+  color: rgb(from var(--cream) r g b / 0.56);
 }
 
 .territoryops-stack {
@@ -6716,30 +6716,30 @@ main.case-study-page-new {
 }
 
 .territoryops-stack span {
-  border: 1px solid rgba(245, 240, 235, 0.18);
+  border: 1px solid rgb(from var(--cream) r g b / 0.18);
   padding: 0.7rem 0.9rem;
-  color: rgba(245, 240, 235, 0.72);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.72);
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .territoryops-build-grid {
-  background: rgba(245, 240, 235, 0.14);
+  background: rgb(from var(--cream) r g b / 0.14);
 }
 
 .territoryops-build-grid p {
   min-height: 11rem;
   padding: clamp(1.25rem, 3vw, 1.8rem);
-  background: rgba(245, 240, 235, 0.06);
-  color: rgba(245, 240, 235, 0.72);
+  background: rgb(from var(--cream) r g b / 0.06);
+  color: rgb(from var(--cream) r g b / 0.72);
   line-height: 1.7;
 }
 
 .territoryops-inspiration-link {
   margin-top: 1.5rem;
-  border-color: rgba(245, 240, 235, 0.28);
+  border-color: rgb(from var(--cream) r g b / 0.28);
   color: var(--cream);
 }
 
@@ -6749,10 +6749,10 @@ main.case-study-page-new {
 
 .territoryops-product-shot__frame {
   overflow: hidden;
-  border: 1px solid rgba(26, 23, 20, 0.14);
+  border: 1px solid rgb(from var(--ink) r g b / 0.14);
   border-radius: 8px;
   background: #0b1019;
-  box-shadow: 0 1.5rem 4rem rgba(26, 23, 20, 0.12);
+  box-shadow: 0 1.5rem 4rem rgb(from var(--ink) r g b / 0.12);
 }
 
 .territoryops-product-shot__frame img {
@@ -6765,7 +6765,7 @@ main.case-study-page-new {
   max-width: 62rem;
   margin-top: 0.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   line-height: 1.55;
@@ -6774,9 +6774,9 @@ main.case-study-page-new {
 
 .territoryops-console {
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  border: 1px solid rgba(26, 23, 20, 0.2);
+  border: 1px solid rgb(from var(--ink) r g b / 0.2);
   background: #12100e;
-  box-shadow: 0 2rem 5rem rgba(26, 23, 20, 0.12);
+  box-shadow: 0 2rem 5rem rgb(from var(--ink) r g b / 0.12);
   color: var(--cream);
 }
 
@@ -6792,7 +6792,7 @@ main.case-study-page-new {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.12);
   padding: 0.9rem clamp(1rem, 2vw, 1.5rem);
 }
 
@@ -6814,7 +6814,7 @@ main.case-study-page-new {
 }
 
 .territoryops-console__identity strong {
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -6832,7 +6832,7 @@ main.case-study-page-new {
 .territoryops-console__dossier dt,
 .territoryops-console__coordinates,
 .territoryops-console__pipeline > div > span {
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -6847,7 +6847,7 @@ main.case-study-page-new {
 .territoryops-console__dossier p,
 .territoryops-console__dossier dt,
 .territoryops-console__pipeline > div > span {
-  color: rgba(245, 240, 235, 0.48);
+  color: rgb(from var(--cream) r g b / 0.48);
 }
 
 .territoryops-console__monogram {
@@ -6855,7 +6855,7 @@ main.case-study-page-new {
   width: 2.5rem;
   height: 2.5rem;
   place-items: center;
-  border: 1px solid rgba(245, 240, 235, 0.2);
+  border: 1px solid rgb(from var(--cream) r g b / 0.2);
   color: var(--cream) !important;
 }
 
@@ -6873,7 +6873,7 @@ main.case-study-page-new {
 
 .territoryops-console__toolbar {
   min-height: 3.8rem;
-  background: rgba(245, 240, 235, 0.03);
+  background: rgb(from var(--cream) r g b / 0.03);
 }
 
 .territoryops-console__view-switcher {
@@ -6884,9 +6884,9 @@ main.case-study-page-new {
   border: 1px solid transparent;
   padding: 0.65rem 0.85rem;
   background: transparent;
-  color: rgba(245, 240, 235, 0.52);
+  color: rgb(from var(--cream) r g b / 0.52);
   cursor: pointer;
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -6896,9 +6896,9 @@ main.case-study-page-new {
 .territoryops-console__view-switcher button:hover,
 .territoryops-console__view-switcher button:focus-visible,
 .territoryops-console__view-switcher button.is-active {
-  border-color: rgba(245, 240, 235, 0.22);
+  border-color: rgb(from var(--cream) r g b / 0.22);
   outline: none;
-  background: rgba(245, 240, 235, 0.08);
+  background: rgb(from var(--cream) r g b / 0.08);
   color: var(--cream);
 }
 
@@ -6926,7 +6926,7 @@ main.case-study-page-new {
 }
 
 .territoryops-console__queue {
-  border-right: 1px solid rgba(245, 240, 235, 0.12);
+  border-right: 1px solid rgb(from var(--cream) r g b / 0.12);
 }
 
 .territoryops-console__queue > div {
@@ -6940,9 +6940,9 @@ main.case-study-page-new {
   display: grid;
   min-width: 0;
   gap: 0.45rem;
-  border: 1px solid rgba(245, 240, 235, 0.1);
+  border: 1px solid rgb(from var(--cream) r g b / 0.1);
   padding: 1rem;
-  background: rgba(245, 240, 235, 0.025);
+  background: rgb(from var(--cream) r g b / 0.025);
   text-align: left;
   cursor: pointer;
   transition: 160ms ease;
@@ -6978,7 +6978,7 @@ main.case-study-page-new {
 .territoryops-console__viewport {
   min-width: 0;
   overflow: hidden;
-  border-right: 1px solid rgba(245, 240, 235, 0.12);
+  border-right: 1px solid rgb(from var(--cream) r g b / 0.12);
 }
 
 .territoryops-console__map {
@@ -6987,8 +6987,8 @@ main.case-study-page-new {
   min-height: 38rem;
   overflow: hidden;
   background:
-    linear-gradient(rgba(245, 240, 235, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 240, 235, 0.07) 1px, transparent 1px),
+    linear-gradient(rgb(from var(--cream) r g b / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(from var(--cream) r g b / 0.07) 1px, transparent 1px),
     radial-gradient(
       circle at 52% 52%,
       rgba(176, 138, 90, 0.18),
@@ -7008,8 +7008,8 @@ main.case-study-page-new {
   width: 76%;
   height: 80%;
   overflow: visible;
-  fill: rgba(245, 240, 235, 0.035);
-  stroke: rgba(245, 240, 235, 0.16);
+  fill: rgb(from var(--cream) r g b / 0.035);
+  stroke: rgb(from var(--cream) r g b / 0.16);
   stroke-width: 0.4;
 }
 
@@ -7025,8 +7025,8 @@ main.case-study-page-new {
   top: 1.25rem;
   right: 1.25rem;
   z-index: 2;
-  color: rgba(245, 240, 235, 0.45);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.45);
+  font-family: var(--font-code);
   font-size: 0.6rem;
   line-height: 1.6;
   text-align: center;
@@ -7057,8 +7057,8 @@ main.case-study-page-new {
   left: 50%;
   padding: 0.32rem 0.45rem;
   background: rgba(18, 16, 14, 0.86);
-  color: rgba(245, 240, 235, 0.62);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.62);
+  font-family: var(--font-code);
   font-size: 0.52rem;
   letter-spacing: 0.06em;
   opacity: 0;
@@ -7086,7 +7086,7 @@ main.case-study-page-new {
   position: absolute;
   right: 1.25rem;
   bottom: 1.25rem;
-  color: rgba(245, 240, 235, 0.38);
+  color: rgb(from var(--cream) r g b / 0.38);
 }
 
 .territoryops-console__table-wrap {
@@ -7094,7 +7094,7 @@ main.case-study-page-new {
   overflow-x: auto;
   padding: 1.25rem;
   background:
-    linear-gradient(rgba(245, 240, 235, 0.035) 1px, transparent 1px), #151310;
+    linear-gradient(rgb(from var(--cream) r g b / 0.035) 1px, transparent 1px), #151310;
   background-size: 100% 3.5rem;
 }
 
@@ -7106,14 +7106,14 @@ main.case-study-page-new {
 
 .territoryops-console__table th,
 .territoryops-console__table td {
-  border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.12);
   padding: 1rem 0.75rem;
   text-align: left;
 }
 
 .territoryops-console__table th {
-  color: rgba(245, 240, 235, 0.42);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.42);
+  font-family: var(--font-code);
   font-size: 0.56rem;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -7151,7 +7151,7 @@ main.case-study-page-new {
 }
 
 .territoryops-console__table td span {
-  color: rgba(245, 240, 235, 0.4);
+  color: rgb(from var(--cream) r g b / 0.4);
   font-size: 0.62rem;
 }
 
@@ -7166,14 +7166,14 @@ main.case-study-page-new {
 
 .territoryops-console__pipeline > div {
   min-width: 0;
-  border-right: 1px solid rgba(245, 240, 235, 0.1);
+  border-right: 1px solid rgb(from var(--cream) r g b / 0.1);
   padding: 1rem;
 }
 
 .territoryops-console__pipeline > div > span {
   display: block;
   min-height: 2rem;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.1);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.1);
 }
 
 .territoryops-console__pipeline button {
@@ -7181,9 +7181,9 @@ main.case-study-page-new {
   width: 100%;
   gap: 0.5rem;
   margin-top: 0.8rem;
-  border: 1px solid rgba(245, 240, 235, 0.12);
+  border: 1px solid rgb(from var(--cream) r g b / 0.12);
   padding: 0.9rem;
-  background: rgba(245, 240, 235, 0.035);
+  background: rgb(from var(--cream) r g b / 0.035);
   text-align: left;
   cursor: pointer;
   transition: 160ms ease;
@@ -7204,7 +7204,7 @@ main.case-study-page-new {
 
 .territoryops-console__pipeline button small,
 .territoryops-console__pipeline button em {
-  color: rgba(245, 240, 235, 0.44);
+  color: rgb(from var(--cream) r g b / 0.44);
   font-size: 0.58rem;
   font-style: normal;
 }
@@ -7222,7 +7222,7 @@ main.case-study-page-new {
   max-width: 9ch;
   margin: 0 0 2rem;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -7238,7 +7238,7 @@ main.case-study-page-new {
 .territoryops-console__dossier dl div {
   display: grid;
   gap: 0.35rem;
-  border-top: 1px solid rgba(245, 240, 235, 0.1);
+  border-top: 1px solid rgb(from var(--cream) r g b / 0.1);
   padding: 0.85rem 0;
 }
 
@@ -7252,7 +7252,7 @@ main.case-study-page-new {
   height: 0.2rem;
   margin-top: 1.5rem;
   overflow: hidden;
-  background: rgba(245, 240, 235, 0.1);
+  background: rgb(from var(--cream) r g b / 0.1);
 }
 
 .territoryops-console__progress span {
@@ -7267,7 +7267,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   margin-top: 1px;
-  background: rgba(26, 23, 20, 0.14);
+  background: rgb(from var(--ink) r g b / 0.14);
 }
 
 .territoryops-flow article {
@@ -7278,7 +7278,7 @@ main.case-study-page-new {
 
 .territoryops-flow span {
   color: var(--color-0);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
 }
@@ -7286,7 +7286,7 @@ main.case-study-page-new {
 .territoryops-flow h3 {
   margin: clamp(3rem, 7vw, 5rem) 0 0.75rem;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
   line-height: 0.9;
@@ -7304,7 +7304,7 @@ main.case-study-page-new {
   gap: 1px;
   margin: 0;
   padding: 0;
-  background: rgba(26, 23, 20, 0.12);
+  background: rgb(from var(--ink) r g b / 0.12);
   list-style: none;
 }
 
@@ -7322,7 +7322,7 @@ main.case-study-page-new {
   grid-template-columns: minmax(0, 1fr);
   gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  background: rgba(245, 240, 235, 0.14);
+  background: rgb(from var(--cream) r g b / 0.14);
 }
 
 .territoryops-roadmap span {
@@ -7331,17 +7331,17 @@ main.case-study-page-new {
   align-content: space-between;
   gap: 1.5rem;
   padding: 1.25rem;
-  background: rgba(245, 240, 235, 0.06);
+  background: rgb(from var(--cream) r g b / 0.06);
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   line-height: 0.95;
   text-transform: uppercase;
 }
 
 .territoryops-roadmap small {
-  color: rgba(245, 240, 235, 0.42);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.42);
+  font-family: var(--font-code);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
 }
@@ -7440,7 +7440,7 @@ main.case-study-page-new {
     display: grid;
     grid-template-columns: 0.65fr 1fr 1.6fr;
     gap: 1.5rem;
-    border-top: 1px solid rgba(245, 240, 235, 0.12);
+    border-top: 1px solid rgb(from var(--cream) r g b / 0.12);
   }
 
   .territoryops-console__dossier p {
@@ -7498,7 +7498,7 @@ main.case-study-page-new {
   .territoryops-console__queue {
     overflow-x: auto;
     border-right: 0;
-    border-bottom: 1px solid rgba(245, 240, 235, 0.12);
+    border-bottom: 1px solid rgb(from var(--cream) r g b / 0.12);
   }
 
   .territoryops-console__queue > div {
@@ -7664,7 +7664,7 @@ main.case-study-page-new {
   .portfolio-hero__system {
     width: 100%;
     max-width: 100%;
-    box-shadow: 0 1rem 2.25rem rgba(26, 23, 20, 0.08);
+    box-shadow: 0 1rem 2.25rem rgb(from var(--ink) r g b / 0.08);
   }
 
   .data-brief-report__topline,
@@ -7718,7 +7718,7 @@ main.case-study-page-new {
 
   .website-auditor-problem-copy {
     border-left: 0;
-    border-top: 1px solid rgba(196, 30, 58, 0.32);
+    border-top: 1px solid rgb(from var(--accent) r g b / 0.32);
     padding-top: 1.25rem;
     padding-left: 0;
   }
@@ -7804,7 +7804,7 @@ main.case-study-page-new {
   border: 1px solid var(--accent);
   padding: 0.5rem 0.7rem;
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -7827,7 +7827,7 @@ main.case-study-page-new {
 .opstwin-proof-figure figcaption {
   padding: 0 1rem 1rem;
   color: var(--text-secondary);
-  font-family: var(--font-code), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: var(--text-xs);
   line-height: 1.5;
 }
@@ -7839,12 +7839,12 @@ main.case-study-page-new {
 }
 
 .data-brief-section--dark .opstwin-proof-figure {
-  border-color: rgba(245, 240, 235, 0.24);
+  border-color: rgb(from var(--cream) r g b / 0.24);
   background: var(--ink);
 }
 
 .data-brief-section--dark .opstwin-proof-figure figcaption {
-  color: rgba(245, 240, 235, 0.72);
+  color: rgb(from var(--cream) r g b / 0.72);
 }
 
 .opstwin-product-grid,
@@ -7866,7 +7866,7 @@ main.case-study-page-new {
 
 .opstwin-product-grid article > span {
   color: var(--accent);
-  font-family: var(--font-code), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: var(--text-xs);
   letter-spacing: 0.1em;
 }
@@ -7896,7 +7896,7 @@ main.case-study-page-new {
 .opstwin-console {
   display: grid;
   overflow: hidden;
-  border: 1px solid rgba(245, 240, 235, 0.26);
+  border: 1px solid rgb(from var(--cream) r g b / 0.26);
   background: #101610;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.24);
   color: var(--cream);
@@ -7907,10 +7907,10 @@ main.case-study-page-new {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  border-bottom: 1px solid rgba(245, 240, 235, 0.14);
+  border-bottom: 1px solid rgb(from var(--cream) r g b / 0.14);
   padding: 0.85rem 1rem;
-  color: rgba(245, 240, 235, 0.62);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.62);
+  font-family: var(--font-code);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -7924,7 +7924,7 @@ main.case-study-page-new {
 
 .opstwin-console__decision strong {
   color: var(--cream);
-  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: clamp(1rem, 1.7vw, 1.25rem);
   font-weight: 500;
   letter-spacing: 0;
@@ -7936,7 +7936,7 @@ main.case-study-page-new {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-  background: rgba(245, 240, 235, 0.14);
+  background: rgb(from var(--cream) r g b / 0.14);
 }
 
 .opstwin-console__results article {
@@ -7951,8 +7951,8 @@ main.case-study-page-new {
 
 .opstwin-console__results article > span,
 .opstwin-console__results small {
-  color: rgba(245, 240, 235, 0.58);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.58);
+  font-family: var(--font-code);
   font-size: 0.58rem;
   letter-spacing: 0.08em;
   line-height: 1.45;
@@ -7961,7 +7961,7 @@ main.case-study-page-new {
 
 .opstwin-console__results strong {
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.35rem, 4.4vw, 4rem);
   font-weight: 400;
   line-height: 0.85;
@@ -7969,7 +7969,7 @@ main.case-study-page-new {
 
 .opstwin-console__results p {
   margin: 0;
-  color: rgba(245, 240, 235, 0.68);
+  color: rgb(from var(--cream) r g b / 0.68);
   font-size: 0.84rem;
   line-height: 1.5;
 }
@@ -7995,8 +7995,8 @@ main.case-study-page-new {
 .opstwin-console__note {
   margin: 0;
   padding: 0.8rem 1rem;
-  color: rgba(245, 240, 235, 0.52);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  color: rgb(from var(--cream) r g b / 0.52);
+  font-family: var(--font-code);
   font-size: 0.6rem;
   letter-spacing: 0.07em;
   line-height: 1.5;
@@ -8012,14 +8012,14 @@ main.case-study-page-new {
 .opstwin-prose p {
   margin: 0;
   color: var(--ink-muted);
-  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-prose);
   font-size: clamp(1.08rem, 1.65vw, 1.34rem);
   line-height: 1.65;
 }
 
 .opstwin-prose strong {
   color: var(--ink);
-  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-weight: 600;
 }
 
@@ -8029,7 +8029,7 @@ main.case-study-page-new {
 
 .opstwin-prose--inverse p,
 .opstwin-prose--inverse strong {
-  color: rgba(245, 240, 235, 0.76);
+  color: rgb(from var(--cream) r g b / 0.76);
 }
 
 .opstwin-card-grid,
@@ -8045,7 +8045,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.14);
+  background: rgb(from var(--ink) r g b / 0.14);
 }
 
 .opstwin-objective-grid p,
@@ -8068,7 +8068,7 @@ main.case-study-page-new {
 .opstwin-objective-grid span,
 .opstwin-deployment-grid span {
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.1em;
 }
@@ -8076,7 +8076,7 @@ main.case-study-page-new {
 .opstwin-deployment-grid h3 {
   margin: 2.5rem 0 0.85rem;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3.5rem);
   font-weight: 400;
   line-height: 0.9;
@@ -8090,13 +8090,13 @@ main.case-study-page-new {
 }
 
 .opstwin-product-questions {
-  background: rgba(245, 240, 235, 0.16);
+  background: rgb(from var(--cream) r g b / 0.16);
 }
 
 .opstwin-product-questions p {
-  background: rgba(245, 240, 235, 0.06);
+  background: rgb(from var(--cream) r g b / 0.06);
   color: var(--cream);
-  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-prose);
   font-size: clamp(1.08rem, 1.5vw, 1.3rem);
 }
 
@@ -8112,7 +8112,7 @@ main.case-study-page-new {
 .opstwin-card-grid .data-brief-card > span,
 .opstwin-built-grid .data-brief-card > span {
   color: var(--accent);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.1em;
 }
@@ -8123,7 +8123,7 @@ main.case-study-page-new {
 
 .opstwin-built-grid .data-brief-card,
 .opstwin-evidence-grid .data-brief-card {
-  background: rgba(245, 240, 235, 0.08);
+  background: rgb(from var(--cream) r g b / 0.08);
 }
 
 .opstwin-built-grid h3,
@@ -8134,7 +8134,7 @@ main.case-study-page-new {
 .opstwin-built-grid p,
 .opstwin-evidence-grid p {
   margin: 0;
-  color: rgba(245, 240, 235, 0.72);
+  color: rgb(from var(--cream) r g b / 0.72);
   line-height: 1.58;
 }
 
@@ -8147,7 +8147,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.14);
+  background: rgb(from var(--ink) r g b / 0.14);
 }
 
 .opstwin-experience-grid article {
@@ -8159,7 +8159,7 @@ main.case-study-page-new {
   max-width: 15ch;
   margin: 0.7rem 0 1.15rem;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.35rem, 4vw, 4.25rem);
   font-weight: 400;
   line-height: 0.9;
@@ -8184,7 +8184,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  background: rgba(26, 23, 20, 0.14);
+  background: rgb(from var(--ink) r g b / 0.14);
 }
 
 .opstwin-boundary-list p {
@@ -8193,7 +8193,7 @@ main.case-study-page-new {
   padding: 1.2rem;
   background: var(--cream-light);
   color: var(--ink);
-  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-prose);
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   line-height: 1.45;
 }
@@ -8220,12 +8220,12 @@ main.case-study-page-new {
   gap: 0;
   margin: clamp(2.5rem, 5vw, 4rem) 0 0;
   padding: 0;
-  border-top: 1px solid rgba(26, 23, 20, 0.16);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.16);
   list-style: none;
 }
 
 .opstwin-limitations li {
-  border-bottom: 1px solid rgba(26, 23, 20, 0.16);
+  border-bottom: 1px solid rgb(from var(--ink) r g b / 0.16);
   padding: 1.1rem 0 1.1rem 2rem;
   color: var(--ink-muted);
   line-height: 1.6;
@@ -8291,8 +8291,8 @@ main.case-study-page-new {
 /* Shared case-study orientation panel */
 .case-study-page-new .case-study-snapshot {
   padding-block: clamp(4rem, 6vw, 5.75rem);
-  border-top: 1px solid rgba(26, 23, 20, 0.1);
-  border-bottom: 1px solid rgba(26, 23, 20, 0.1);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.1);
+  border-bottom: 1px solid rgb(from var(--ink) r g b / 0.1);
 }
 
 .case-study-snapshot__layout {
@@ -8315,7 +8315,7 @@ main.case-study-page-new {
 .case-study-snapshot__intro h2 {
   max-width: 10ch;
   color: var(--ink);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(3.25rem, 6vw, 6rem);
   font-weight: 400;
   line-height: 0.9;
@@ -8326,7 +8326,7 @@ main.case-study-page-new {
 .case-study-snapshot__description {
   max-width: 34rem;
   color: var(--ink-muted);
-  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-prose);
   font-size: clamp(1rem, 1.35vw, 1.16rem);
   line-height: 1.65;
 }
@@ -8339,7 +8339,7 @@ main.case-study-page-new {
 
 .case-study-snapshot__path > span {
   color: var(--ink-faint);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -8349,7 +8349,7 @@ main.case-study-page-new {
   display: grid;
   margin: 0;
   padding: 0;
-  border-top: 1px solid rgba(26, 23, 20, 0.14);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.14);
   list-style: none;
 }
 
@@ -8360,7 +8360,7 @@ main.case-study-page-new {
   gap: 0.75rem;
   min-height: 2.85rem;
   color: var(--ink-muted);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -8368,7 +8368,7 @@ main.case-study-page-new {
 }
 
 .case-study-snapshot__path li {
-  border-bottom: 1px solid rgba(26, 23, 20, 0.14);
+  border-bottom: 1px solid rgb(from var(--ink) r g b / 0.14);
 }
 
 .case-study-snapshot__path li[aria-current='step'] {
@@ -8378,7 +8378,7 @@ main.case-study-page-new {
   gap: 0.75rem;
   min-height: 2.85rem;
   color: var(--ink);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -8410,7 +8410,7 @@ main.case-study-page-new {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   margin: 0;
-  background: rgba(26, 23, 20, 0.14);
+  background: rgb(from var(--ink) r g b / 0.14);
 }
 
 .case-study-snapshot__facts > div {
@@ -8430,7 +8430,7 @@ main.case-study-page-new {
   gap: 0.6rem;
   margin: 0;
   color: var(--ink-faint);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.64rem;
   letter-spacing: 0.1em;
   line-height: 1.4;
@@ -8445,7 +8445,7 @@ main.case-study-page-new {
   max-width: 42rem;
   margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
   color: var(--ink);
-  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: clamp(1.05rem, 1.65vw, 1.35rem);
   font-weight: 500;
   line-height: 1.35;
@@ -8468,7 +8468,7 @@ main.case-study-page-new {
 .case-study-image-new__caption,
 .case-study-gallery-new__item figcaption {
   color: var(--ink-muted);
-  font-family: var(--font-reading), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-prose);
   font-size: clamp(0.86rem, 1vw, 0.98rem);
   line-height: 1.5;
 }
@@ -8484,7 +8484,7 @@ main.case-study-page-new {
   left: 0;
   z-index: 2;
   padding: clamp(2.75rem, 7vw, 5rem) 1rem 1rem;
-  background: linear-gradient(180deg, transparent, rgba(26, 23, 20, 0.84));
+  background: linear-gradient(180deg, transparent, rgb(from var(--ink) r g b / 0.84));
   color: var(--cream);
   pointer-events: none;
 }
@@ -8492,8 +8492,8 @@ main.case-study-page-new {
 .data-brief-supported-claim {
   margin: -0.25rem -0.25rem 1.5rem;
   padding: 1.25rem;
-  border: 1px solid rgba(26, 23, 20, 0.12);
-  background: rgba(245, 240, 235, 0.72);
+  border: 1px solid rgb(from var(--ink) r g b / 0.12);
+  background: rgb(from var(--cream) r g b / 0.72);
 }
 
 .data-brief-supported-claim > span {
@@ -8522,7 +8522,7 @@ main.case-study-page-new {
 .case-study-next-new {
   display: block;
   padding: clamp(4rem, 7vw, 6.5rem) var(--section-inline-padding);
-  border-top: 1px solid rgba(26, 23, 20, 0.12);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.12);
 }
 
 .case-study-next-new__container {
@@ -8543,7 +8543,7 @@ main.case-study-page-new {
 
 .case-study-next-new__header .case-study-next-new__label {
   color: var(--accent-color, var(--accent));
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
 }
 
@@ -8557,7 +8557,7 @@ main.case-study-page-new {
   display: grid;
   min-width: 0;
   grid-template-columns: minmax(8rem, 0.72fr) minmax(0, 1fr);
-  border-top: 1px solid rgba(26, 23, 20, 0.18);
+  border-top: 1px solid rgb(from var(--ink) r g b / 0.18);
   color: var(--ink);
   text-decoration: none;
   transition:
@@ -8588,7 +8588,7 @@ main.case-study-page-new {
 .case-study-next-new__meta,
 .case-study-next-new__view {
   color: var(--ink-muted);
-  font-family: var(--font-mono), 'Space Mono', monospace;
+  font-family: var(--font-code);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   line-height: 1.45;
@@ -8627,7 +8627,7 @@ main.case-study-page-new {
 }
 
 .case-study-snapshot__facts > div:first-child dt {
-  color: rgba(245, 240, 235, 0.56);
+  color: rgb(from var(--cream) r g b / 0.56);
 }
 
 .case-study-snapshot__facts > div:first-child dt span {
@@ -8637,7 +8637,7 @@ main.case-study-page-new {
 .case-study-snapshot__facts > div:first-child dd {
   max-width: 26ch;
   color: var(--cream);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.25rem, 4vw, 4rem);
   font-weight: 400;
   line-height: 0.95;
@@ -8721,7 +8721,7 @@ main.case-study-page-new {
 
 .blogagent-hero__panel-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   padding-bottom: 1rem;
@@ -8740,7 +8740,7 @@ main.case-study-page-new {
 
 .blogagent-hero__panel-row {
   color: rgba(242, 239, 232, 0.72);
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.7rem;
   gap: 1rem;
   letter-spacing: 0.08em;
@@ -8773,7 +8773,7 @@ main.case-study-page-new {
 .blogagent-copy-stack p,
 .blogagent-lesson p,
 .blogagent-closing p {
-  font-family: var(--font-serif);
+  font-family: var(--font-prose);
   font-size: clamp(1.08rem, 1.35vw, 1.35rem);
   line-height: 1.65;
 }
@@ -8794,7 +8794,7 @@ main.case-study-page-new {
 .blogagent-boundary-grid h3,
 .blogagent-control-grid h3,
 .blogagent-component-grid h3 {
-  font-family: var(--font-sans);
+  font-family: var(--font-ui);
   font-size: clamp(1.25rem, 1.7vw, 1.75rem);
   font-weight: 500;
   letter-spacing: -0.025em;
@@ -8826,7 +8826,7 @@ main.case-study-page-new {
 .blogagent-principle {
   background: var(--blogagent-panel);
   color: #f2efe8;
-  font-family: var(--font-serif);
+  font-family: var(--font-prose);
   font-size: clamp(1.55rem, 3vw, 3.4rem);
   line-height: 1.15;
   margin: clamp(2rem, 5vw, 5rem) 0 0;
@@ -8850,7 +8850,7 @@ main.case-study-page-new {
   border: 1px solid rgba(255, 255, 255, 0.16);
   display: flex;
   flex-direction: column;
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.78rem;
   justify-content: space-between;
   letter-spacing: 0.1em;
@@ -8879,7 +8879,7 @@ main.case-study-page-new {
 .blogagent-component-grid span {
   color: var(--blogagent-muted);
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   margin-bottom: clamp(3rem, 6vw, 6rem);
@@ -8902,7 +8902,7 @@ main.case-study-page-new {
 .blogagent-lesson__label {
   border: 1px solid var(--blogagent-ink);
   display: inline-block;
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.66rem;
   letter-spacing: 0.12em;
   padding: 0.7rem 0.9rem;
@@ -8911,7 +8911,7 @@ main.case-study-page-new {
 
 .blogagent-lesson blockquote {
   border-left: 3px solid var(--blogagent-ink);
-  font-family: var(--font-sans);
+  font-family: var(--font-ui);
   font-size: clamp(1.45rem, 2.6vw, 2.7rem);
   letter-spacing: -0.035em;
   line-height: 1.15;
@@ -8941,7 +8941,7 @@ main.case-study-page-new {
 .blogagent-control-grid li span,
 .blogagent-outcome-grid li span {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   margin-bottom: clamp(3rem, 6vw, 6rem);
@@ -8964,7 +8964,7 @@ main.case-study-page-new {
 }
 
 .blogagent-evaluation-grid p {
-  font-family: var(--font-serif);
+  font-family: var(--font-prose);
   font-size: clamp(1.05rem, 1.3vw, 1.3rem);
   line-height: 1.6;
 }
@@ -8997,7 +8997,7 @@ main.case-study-page-new {
 .blogagent-limitations li::before {
   color: rgba(242, 239, 232, 0.5);
   content: counter(list-item, decimal-leading-zero);
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.65rem;
 }
 
@@ -9008,7 +9008,7 @@ main.case-study-page-new {
 }
 
 .blogagent-closing h2 {
-  font-family: var(--font-sans);
+  font-family: var(--font-ui);
   font-size: clamp(2.8rem, 7vw, 7.5rem);
   font-weight: 500;
   letter-spacing: -0.065em;

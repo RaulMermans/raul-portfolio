@@ -3,25 +3,26 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type {
   CaseStudyHero as CaseStudyHeroType,
-  CaseStudyPresentationFamily,
 } from '@/types/case-study'
+import { getPresentationFamilyForProject } from '@/data/portfolio-experience'
 import { getSiteCopy } from '@/data/site-copy'
 import { type Locale, localizePath } from '@/lib/i18n'
 
 interface CaseStudyHeroProps {
   hero: CaseStudyHeroType
   accentColor?: string
-  presentationFamily: CaseStudyPresentationFamily
+  projectSlug: string
   locale?: Locale
 }
 
 export default function CaseStudyHero({
   hero,
   accentColor,
-  presentationFamily,
+  projectSlug,
   locale = 'en',
 }: CaseStudyHeroProps) {
   const copy = getSiteCopy(locale).caseStudiesUi
+  const presentationFamily = getPresentationFamilyForProject(projectSlug)
 
   return (
     <section

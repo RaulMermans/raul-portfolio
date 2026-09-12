@@ -31,8 +31,26 @@ export type PageFamily = (typeof PAGE_FAMILIES)[number]
 export type PresentationFamily =
   | 'creative-marketing'
   | 'technical-product'
-  | 'hybrid'
 export type LocaleCode = 'es' | 'en'
+
+/** Presentation affects evidence composition only and is derived from discipline. */
+export const PRESENTATION_FAMILY_BY_DISCIPLINE: Record<Discipline, PresentationFamily> = {
+  creative: 'creative-marketing',
+  'data-research': 'technical-product',
+  'business-intelligence': 'technical-product',
+  'ai-automation': 'technical-product',
+  'digital-product': 'technical-product',
+  photography: 'creative-marketing',
+}
+
+export const DISCIPLINE_LABELS: Record<Discipline, Record<LocaleCode, string>> = {
+  creative: { en: 'Creative', es: 'Creativo' },
+  'data-research': { en: 'Data & Research', es: 'Datos e investigación' },
+  'business-intelligence': { en: 'Business Intelligence', es: 'Business Intelligence' },
+  'ai-automation': { en: 'AI & Automation', es: 'IA y automatización' },
+  'digital-product': { en: 'Digital Products', es: 'Productos digitales' },
+  photography: { en: 'Photography / Visual Work', es: 'Fotografía / trabajo visual' },
+}
 
 export type PublicRoute = {
   route: string
@@ -64,7 +82,6 @@ export type ProjectExperience = {
   primaryDiscipline: Discipline
   secondaryCapabilities: readonly string[]
   relatedServices: readonly string[]
-  presentationFamily: PresentationFamily
   accent: string
   year: string
   status: string
@@ -72,24 +89,42 @@ export type ProjectExperience = {
 
 /** The only registry for a project's discipline, commercial relation, and scope. */
 export const PROJECT_EXPERIENCE: readonly ProjectExperience[] = [
-  { slug: 'ai-sports', title: 'AI Sports Campaign', primaryDiscipline: 'creative', secondaryCapabilities: ['Creative operations', 'AI systems'], relatedServices: ['ai-integrations'], presentationFamily: 'creative-marketing', accent: 'var(--color-0)', year: '2025', status: 'Case study' },
-  { slug: 'remoria', title: 'Remoria', primaryDiscipline: 'creative', secondaryCapabilities: ['Brand systems', 'Creative direction'], relatedServices: ['creative-direction'], presentationFamily: 'creative-marketing', accent: 'var(--color-1)', year: '2025', status: 'Case study' },
-  { slug: 'relay', title: 'Relay', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Marketing intelligence', 'Data quality'], relatedServices: ['data-analytics'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Private beta' },
-  { slug: 'opstwin', title: 'OpsTwin', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Simulation', 'Decision support'], relatedServices: ['data-analytics'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Prototype' },
-  { slug: 'searchsignal', title: 'SearchSignal', primaryDiscipline: 'data-research', secondaryCapabilities: ['Information architecture', 'Catalog readiness'], relatedServices: ['data-analytics', 'web-development'], presentationFamily: 'technical-product', accent: 'var(--color-0)', year: '2025', status: 'Demonstrator' },
-  { slug: 'demandos', title: 'DemandOS', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Forecasting', 'Machine learning'], relatedServices: ['data-analytics'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Prototype' },
-  { slug: 'campaign-pulse', title: 'Campaign Pulse', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Marketing analytics', 'Data product'], relatedServices: ['data-analytics'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Prototype' },
-  { slug: 'campaign-sandbox', title: 'Campaign Sandbox', primaryDiscipline: 'creative', secondaryCapabilities: ['Campaign strategy', 'Workflow design'], relatedServices: ['creative-direction', 'ai-integrations'], presentationFamily: 'hybrid', accent: 'var(--accent)', year: '2025', status: 'Case study' },
-  { slug: 'data-brief-ai', title: 'Data Brief AI', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['Reporting', 'Data validation'], relatedServices: ['ai-integrations', 'data-analytics'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Prototype' },
-  { slug: 'website-auditor', title: 'Website Audit Agent', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['UX audit', 'Evaluation'], relatedServices: ['ai-integrations', 'web-development'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Prototype' },
-  { slug: 'benchmark-dashboard', title: 'Benchmark Dashboard', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Benchmarking', 'Dashboards'], relatedServices: ['data-analytics'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Case study' },
-  { slug: 'blogagent', title: 'Blog Agent', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['Content workflow', 'Automation'], relatedServices: ['ai-integrations'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Prototype' },
-  { slug: 'territoryops-spain', title: 'TerritoryOps Spain', primaryDiscipline: 'digital-product', secondaryCapabilities: ['Territory planning', 'Operations'], relatedServices: ['web-development', 'data-analytics'], presentationFamily: 'technical-product', accent: 'var(--accent)', year: '2025', status: 'Prototype' },
-  { slug: 'raul-portfolio', title: 'Raul Mermans Portfolio', primaryDiscipline: 'digital-product', secondaryCapabilities: ['Portfolio architecture', 'Brand systems'], relatedServices: ['web-development', 'creative-direction'], presentationFamily: 'hybrid', accent: 'var(--color-1)', year: '2025', status: 'Live' },
+  { slug: 'ai-sports', title: 'AI Sports Campaign', primaryDiscipline: 'creative', secondaryCapabilities: ['Creative operations', 'AI systems'], relatedServices: ['ai-integrations'], accent: 'var(--color-0)', year: '2025', status: 'Case study' },
+  { slug: 'remoria', title: 'Remoria', primaryDiscipline: 'creative', secondaryCapabilities: ['Brand systems', 'Creative direction'], relatedServices: ['brand-systems'], accent: 'var(--color-1)', year: '2025', status: 'Case study' },
+  { slug: 'relay', title: 'Relay', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Marketing intelligence', 'Data quality'], relatedServices: ['product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Private beta' },
+  { slug: 'opstwin', title: 'OpsTwin', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Simulation', 'Decision support'], relatedServices: ['product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Prototype' },
+  { slug: 'searchsignal', title: 'SearchSignal', primaryDiscipline: 'data-research', secondaryCapabilities: ['Information architecture', 'Catalog readiness'], relatedServices: ['product-prototypes', 'web-development'], accent: 'var(--color-0)', year: '2025', status: 'Demonstrator' },
+  { slug: 'demandos', title: 'DemandOS', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Forecasting', 'Machine learning'], relatedServices: ['product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Prototype' },
+  { slug: 'campaign-pulse', title: 'Campaign Pulse', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Marketing analytics', 'Data product'], relatedServices: ['product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Prototype' },
+  { slug: 'campaign-sandbox', title: 'Campaign Sandbox', primaryDiscipline: 'creative', secondaryCapabilities: ['Campaign strategy', 'Workflow design'], relatedServices: ['creative-automation', 'ai-integrations'], accent: 'var(--accent)', year: '2025', status: 'Case study' },
+  { slug: 'data-brief-ai', title: 'Data Brief AI', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['Reporting', 'Data validation'], relatedServices: ['ai-integrations', 'product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Prototype' },
+  { slug: 'website-auditor', title: 'Website Audit Agent', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['UX audit', 'Evaluation'], relatedServices: ['ai-integrations', 'web-development'], accent: 'var(--accent)', year: '2025', status: 'Prototype' },
+  { slug: 'benchmark-dashboard', title: 'Benchmark Dashboard', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Benchmarking', 'Dashboards'], relatedServices: ['product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Case study' },
+  { slug: 'blogagent', title: 'Blog Agent', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['Content workflow', 'Automation'], relatedServices: ['ai-integrations'], accent: 'var(--accent)', year: '2025', status: 'Prototype' },
+  { slug: 'territoryops-spain', title: 'TerritoryOps Spain', primaryDiscipline: 'digital-product', secondaryCapabilities: ['Territory planning', 'Operations'], relatedServices: ['web-development', 'product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Prototype' },
+  { slug: 'raul-portfolio', title: 'Raul Mermans Portfolio', primaryDiscipline: 'digital-product', secondaryCapabilities: ['Portfolio architecture', 'Brand systems'], relatedServices: ['web-development', 'brand-systems'], accent: 'var(--color-1)', year: '2025', status: 'Live' },
 ] as const
+
+export function getProjectExperience(slug: string) {
+  return PROJECT_EXPERIENCE.find((project) => project.slug === slug)
+}
 
 export function getProjectsForService(serviceSlug: string) {
   return PROJECT_EXPERIENCE.filter((project) => project.relatedServices.includes(serviceSlug))
+}
+
+export function getProjectsForDiscipline(discipline: Discipline) {
+  return PROJECT_EXPERIENCE.filter((project) => project.primaryDiscipline === discipline)
+}
+
+export function getPresentationFamilyForDiscipline(discipline: Discipline) {
+  return PRESENTATION_FAMILY_BY_DISCIPLINE[discipline]
+}
+
+export function getPresentationFamilyForProject(slug: string) {
+  const project = getProjectExperience(slug)
+  if (!project) throw new Error(`Unknown project experience: ${slug}`)
+  return getPresentationFamilyForDiscipline(project.primaryDiscipline)
 }
 
 export const VISUAL_REGRESSION_MATRIX = [

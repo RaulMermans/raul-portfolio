@@ -12,8 +12,8 @@ interface CaseStudyCategoryPageProps {
   categorySlug: CaseStudyCategorySlug
 }
 
-const muted = 'rgba(26, 23, 20, 0.45)'
-const bodyColor = 'rgba(26, 23, 20, 0.72)'
+const muted = 'rgb(from var(--ink) r g b / 0.45)'
+const bodyColor = 'rgb(from var(--ink) r g b / 0.72)'
 
 export default function CaseStudyCategoryPage({ categorySlug }: CaseStudyCategoryPageProps) {
   const pathname = usePathname()

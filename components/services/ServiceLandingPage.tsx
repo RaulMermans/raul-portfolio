@@ -5,7 +5,8 @@ import { PUBLIC_CONTACT_MAILTO } from '@/lib/contact'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 import { localizePath } from '@/lib/i18n'
 import { getCaseStudies } from '@/data/case-studies'
-import type { ServiceLanding } from '@/data/service-landings'
+import { getProjectsForService } from '@/data/portfolio-experience'
+import { getCanonicalServiceSlug, type ServiceLanding } from '@/data/service-landings'
 import styles from './ServiceLandingPage.module.css'
 
 const linkedinUrl = 'https://linkedin.com/in/raulmermans'
@@ -173,9 +174,12 @@ function getServiceSchema(service: ServiceLanding) {
 
 export default function ServiceLandingPage({ service }: ServiceLandingPageProps) {
   const labels = getLabels(service.locale)
-  const relatedStudies = getCaseStudies(service.locale).filter((study) =>
-    service.relatedCaseStudies.includes(study.slug),
+  const caseStudiesBySlug = new Map(
+    getCaseStudies(service.locale).map((study) => [study.slug, study]),
   )
+  const relatedStudies = getProjectsForService(getCanonicalServiceSlug(service))
+    .map((project) => caseStudiesBySlug.get(project.slug))
+    .filter((study): study is NonNullable<typeof study> => Boolean(study))
   const emailHref = `${PUBLIC_CONTACT_MAILTO}?subject=${encodeURIComponent(
     service.locale === 'es'
       ? `Brief creativo: ${service.title}`

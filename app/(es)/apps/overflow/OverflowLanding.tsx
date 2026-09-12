@@ -1,5 +1,7 @@
 'use client'
 
+// @design-override reason: project-native evidence treatment
+
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -23,9 +25,9 @@ const SURFACE_WARM = '#EDE8DF'
 const CTA_DARK = '#2A1210'
 const HERO_GLOW =
   'linear-gradient(180deg, rgba(158, 108, 110, 0.18) 0%, rgba(247, 243, 238, 0) 64%)'
-const BODY_FONT = 'var(--font-body), "DM Sans", system-ui, sans-serif'
-const READING = 'var(--font-reading), "Source Serif 4", Georgia, serif'
-const MONO = 'var(--font-mono), "Space Mono", monospace'
+const BODY_FONT = 'var(--font-ui)'
+const READING = 'var(--font-prose)'
+const MONO = 'var(--font-code)'
 const DEVICE_RATIO = 556 / 272
 const TESTFLIGHT = 'https://testflight.apple.com/join/t7jQjsCx'
 

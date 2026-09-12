@@ -2,35 +2,46 @@
 
 ## Canonical authority
 
-`styles/design-system.css` owns the portfolio foundation. `data/portfolio-experience.ts` owns public route contracts, disciplines, project metadata, service relationships, and the visual-regression matrix. Project-specific colors remain scoped accents and evidence treatments.
+`styles/design-system.css` is the sole portfolio foundation authority. It owns the palette, semantic surfaces, type roles, spacing, radii, controls, and shared alpha/surface treatment. CSS outside that file must consume canonical variables; RGBA values derived from portfolio colors use the corresponding CSS variable rather than repeat a foundation literal.
 
-## Current inventory
+`tailwind.config.js` is an adapter only. Its portfolio aliases reference canonical CSS variables and may not define portfolio colors, font stacks, or competing values. `--ink-faint` is `#6B635A` in the foundation and through the Tailwind alias.
 
-The App Router contains 92 `page.tsx` source entries: Spanish root and English `/en` implementations, plus Spanish compatibility routes. They resolve to 12 canonical public-route patterns across home, about, service detail, case-studies index, case study, apps index/detail, photography, visual work, and utility. `scripts/verify-route-registry.mjs` rejects any new public route outside that registry.
+`data/portfolio-experience.ts` is the canonical project relationship authority. It owns primary disciplines, secondary capabilities, project-to-service relationships, scoped accents, public route contracts, and the protected visual-regression matrix.
 
-The substantial case studies are registered with one primary discipline, optional secondary capabilities, a presentation family, and relevant services. This prevents duplicate taxonomy ownership while allowing an index or service page to retrieve related work.
+## Taxonomy and presentation
 
-## Known, intentional exception
+Every project has one `primaryDiscipline`: Creative, Data & Research, Business Intelligence, AI & Automation, Digital Products, or Photography / Visual Work. The Work index filters and groups directly from that field; secondary capabilities remain contextual tags rather than duplicate entries.
 
-`app/(es)/apps/overflow/OverflowLanding.tsx` is a project-native product evidence surface. It is exempted only when it declares `@design-override reason: project-native evidence treatment`. The exception does not authorize shared navigation, footer, or page-foundation changes.
+The former category URLs remain available as **curated collections**. Their membership is derived from discipline and secondary-capability criteria in `data/case-study-categories.ts`; they no longer hold project records or define a competing primary taxonomy.
 
-The remaining legacy foundation values in the named app, shared-component, and case-study files are content-hash locked migration boundaries. Any edit breaks the design lint until those values are migrated and the audited lock is deliberately updated. A new project-evidence exception remains limited to files beneath `app/(es)/apps/` that declare the required reason; it does not apply to shared surfaces.
+`presentationFamily` is no longer stored per project or case-study payload. Evidence composition derives from primary discipline through `PRESENTATION_FAMILY_BY_DISCIPLINE`: creative and photography use the expressive evidence treatment; the data, intelligence, automation, and product disciplines use the product/system treatment. This is a rendering decision, not a second taxonomy.
 
-## Findings repaired in this pass
+## Service/project relationship authority
 
-- **Foundation violation:** error boundaries used a system/fallback font stack, raw cream/ink palette values, and rounded button corners. They now reference the semantic font, surface, text, border, and square-button tokens.
-- **Foundation violation:** app CTAs and legacy app tiles recreated rounded controls, raw foundation colors, and display-font stacks. The reusable CTA now composes `ui-button`; the retained legacy tiles use approved radius and heading tokens.
-- **Visual-regression risk:** screenshot capture did not assert baselines. The representative desktop and 390px matrix now has native Playwright `toHaveScreenshot` tests.
-- **Documentation/skill divergence:** the root routing contract was previously ignored by Git. The root `AGENTS.md` is now explicitly included and points contributors to the existing experience-system skill chain.
+Projects define `relatedServices` once in `PROJECT_EXPERIENCE`. Service landing pages resolve their related work with `getProjectsForService`, using the locale-independent English service slug supplied by `getCanonicalServiceSlug`. `ServiceLanding` no longer contains `relatedCaseStudies`.
+
+`scripts/verify-project-taxonomy.mjs` verifies that every substantial case study is registered once, every relation points to a real canonical service, every canonical service resolves at least one project, and service data cannot restore a manual related-case list.
+
+## Intentional exceptions
+
+There are no `legacyMigrationHashes`. Shared navigation, heroes, service UI, home UI, visuals, and common chrome are linted directly.
+
+The only source-level exceptions are deliberately narrow evidence or runtime boundaries:
+
+- `app/(es)/apps/overflow/OverflowLanding.tsx` for product-native Overflow evidence.
+- `styles/remoria-brand-system.css` for the Remoria brand-system evidence, including its displayed project type specimen.
+- `app/global-error.tsx` for a self-contained error fallback that must remain legible when the normal stylesheet cannot load.
+
+Each must declare its exact `@design-override` reason. No route or shared component can borrow an evidence exception to alter navigation, the portfolio canvas, or shared controls.
+
+## Shared primitives and visual coverage
+
+The implementation reuses the canonical page intro, section heading, button, surface, media, typography, and control contracts from `styles/design-system.css`. Shared header controls use `--radius-button`; portfolio surfaces use the shared radius scale. Project-native evidence retains its own geometry only inside the intentional evidence boundary.
+
+`tests/playwright/visual-regression.spec.ts` owns the protected desktop and 390px screenshot matrix declared by `VISUAL_REGRESSION_MATRIX`. Snapshots are reviewed, never regenerated automatically. `tests/playwright/experience-invariants.spec.ts` owns the rendered accessibility, mobile, and shared-route invariants.
 
 ## Enforcement
 
-- `npm run verify:route-registry` detects unregistered App Router pages from the canonical route registry.
-- `npm run verify:project-taxonomy` requires every substantial case study to have one approved discipline, a presentation family, and at least one relevant service.
-- `npm run lint:design-system` rejects raw cream/ink/accent palette values, inline non-system font families, and arbitrary Tailwind radii. It permits the one registered project-evidence exception above.
-- `npm run test:experience-guards` proves that raw foundation color, inline custom font, arbitrary rounded control, and unregistered route fixtures fail, while the registered project-evidence exception passes.
-- `npm run verify:experience-system` protects the existing foundation and case-study contracts.
-- `tests/playwright/experience-invariants.spec.ts` verifies rendered route invariants.
-- `tests/playwright/visual-regression.spec.ts` owns deterministic screenshot baselines for the representative matrix.
-
-Run these together with type-check, ESLint, build/export validation, Axe coverage, and the Playwright suite before a frontend change ships.
+- `npm run lint:design-system` rejects raw foundation color values, unsupported font ownership, arbitrary Tailwind colors/radii, noncanonical Tailwind aliases, and non-token shared control radii.
+- `npm run test:experience-guards` proves those rejections, proves correctly scoped product evidence may retain its own color/radius/type treatment, and proves a project route cannot modify global navigation styling through an evidence marker.
+- `npm run verify:route-registry`, `npm run verify:project-taxonomy`, and `npm run verify:experience-system` protect route, relationship, and shared foundation ownership.
