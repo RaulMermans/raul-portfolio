@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { type Locale, localizePath } from '@/lib/i18n'
 import { getCaseStudyEditorial } from '@/data/case-study-editorial'
@@ -29,7 +30,7 @@ export type CommercialCaseStudyContent = {
   systemSummary: string
   systemItems: SystemItem[]
   whyItMatters: string
-  clientRelevance: string
+  clientRelevance: ReactNode
   ctaCopy: string
 }
 

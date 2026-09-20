@@ -43,8 +43,20 @@ const commercialContent: CommercialCaseStudyContent = {
   ],
   whyItMatters:
     'AI image workflows become commercially useful when they are constrained. This system turns open-ended generation into a repeatable creative operation where the team controls what changes, what stays fixed, and how final quality is reviewed.',
-  clientRelevance:
-    'A client-facing version could help marketing, ecommerce, brand, or creative teams explore campaign routes, product styling, casting, and variant generation without losing visual coherence or human approval. The workflow could also extend into video production through tools such as InVideo, helping teams carry project context, creative direction, and visual consistency across multi-scene video content.',
+  clientRelevance: (
+    <>
+      A client-facing version could help marketing, ecommerce, brand, or creative teams explore campaign routes, product styling, casting, and variant generation without losing visual coherence or human approval. The workflow could also extend into video production through tools such as{' '}
+      <a
+        className="case-study-inline-link"
+        href="https://invideo.io/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Invideo agent
+      </a>
+      , helping teams carry project context, creative direction, and visual consistency across multi-scene video content.
+    </>
+  ),
   ctaCopy:
     "If your team has a creative process, internal tool, campaign workflow, or brand system worth extending with AI, send a short brief and I'll help define the clearest system logic.",
 }
@@ -70,8 +82,20 @@ const commercialContentEs: CommercialCaseStudyContent = {
   ],
   whyItMatters:
     'Los flujos de imagen con IA son útiles comercialmente cuando están acotados. Este sistema convierte una generación abierta en una operación creativa repetible donde el equipo controla qué cambia, qué permanece fijo y cómo se revisa la calidad final.',
-  clientRelevance:
-    'Una versión para cliente podría ayudar a equipos de marketing, ecommerce, marca o creatividad a explorar rutas de campaña, estilismo de producto, casting y generación de variantes sin perder coherencia visual ni aprobación humana. El flujo también podría extenderse a la producción de vídeo con herramientas como InVideo, ayudando a mantener el contexto del proyecto, la dirección creativa y la coherencia visual al crear contenido de vídeo con varias escenas.',
+  clientRelevance: (
+    <>
+      Una versión para cliente podría ayudar a equipos de marketing, ecommerce, marca o creatividad a explorar rutas de campaña, estilismo de producto, casting y generación de variantes sin perder coherencia visual ni aprobación humana. El flujo también podría extenderse a la producción de vídeo con herramientas como{' '}
+      <a
+        className="case-study-inline-link"
+        href="https://invideo.io/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Invideo agent
+      </a>
+      , ayudando a mantener el contexto del proyecto, la dirección creativa y la coherencia visual al crear contenido de vídeo con varias escenas.
+    </>
+  ),
   ctaCopy:
     'Si tu equipo tiene un proceso creativo, herramienta interna, flujo de campaña o sistema de marca que merece ampliarse con IA, envía un brief breve y te ayudo a definir la lógica más clara.',
 }
