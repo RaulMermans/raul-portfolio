@@ -71,9 +71,10 @@ export default function CaseStudiesPage() {
     () => new Map(PROJECT_EXPERIENCE.map((project) => [project.slug, project])),
     [],
   )
-  const visibleStudies = caseStudies.filter((study) =>
-    activeDiscipline === 'all'
-      || projectsBySlug.get(study.slug)?.primaryDiscipline === activeDiscipline,
+  const visibleStudies = caseStudies.filter(
+    (study) =>
+      activeDiscipline === 'all' ||
+      projectsBySlug.get(study.slug)?.primaryDiscipline === activeDiscipline,
   )
   const activeLabel = activeDiscipline === 'all'
     ? isSpanish ? 'Todos los trabajos' : 'All work'
