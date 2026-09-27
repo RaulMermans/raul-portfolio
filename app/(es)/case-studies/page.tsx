@@ -67,16 +67,14 @@ export default function CaseStudiesPage() {
   const intro = isSpanish
     ? 'Productos, campañas y sistemas de marca. Cada caso sigue el trabajo desde el contexto hasta las decisiones, pruebas y límites que le dieron forma.'
     : 'Products, campaigns, and brand systems. Each case follows the work from context to the decisions, evidence, and limits that shaped it.'
-  const studiesBySlug = useMemo(
-    () => new Map(caseStudies.map((study) => [study.slug, study])),
-    [caseStudies],
+  const projectsBySlug = useMemo(
+    () => new Map(PROJECT_EXPERIENCE.map((project) => [project.slug, project])),
+    [],
   )
-  const visibleProjects = PROJECT_EXPERIENCE.filter(
-    (project) => activeDiscipline === 'all' || project.primaryDiscipline === activeDiscipline,
+  const visibleStudies = caseStudies.filter((study) =>
+    activeDiscipline === 'all'
+      || projectsBySlug.get(study.slug)?.primaryDiscipline === activeDiscipline,
   )
-  const visibleStudies = visibleProjects
-    .map((project) => studiesBySlug.get(project.slug))
-    .filter((study): study is NonNullable<typeof study> => Boolean(study))
   const activeLabel = activeDiscipline === 'all'
     ? isSpanish ? 'Todos los trabajos' : 'All work'
     : DISCIPLINE_LABELS[activeDiscipline][locale]
