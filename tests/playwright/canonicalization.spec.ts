@@ -33,8 +33,8 @@ test.describe('Canonical document contract', () => {
     await page.goto('/en/case-studies/', { waitUntil: 'domcontentloaded' })
 
     const groups = page.locator('.case-study-gallery-group')
-    await expect(groups).toHaveCount(3)
-    await expect(groups.nth(0).getByRole('heading')).toHaveText('Selected projects')
-    await expect(groups.nth(0).locator('[data-mobile-audit="case-study-card"]')).toHaveCount(4)
+    await expect(groups).toHaveCount(1)
+    await expect(groups.nth(0).getByRole('heading')).toHaveText('All work')
+    await expect(groups.nth(0).locator('[data-mobile-audit="case-study-card"]')).toHaveCount(14)
   })
 })
