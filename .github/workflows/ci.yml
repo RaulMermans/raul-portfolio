@@ -123,7 +123,7 @@ jobs:
       - name: Refresh case-study visual baselines
         if: github.event_name == 'workflow_dispatch' && inputs.refresh_case_study_visual_baselines
         run: >-
-          npm run test:e2e:update -- tests/playwright/visual-regression.spec.ts
+          npx playwright test --update-snapshots=all tests/playwright/visual-regression.spec.ts
           -g 'case-studies is visually stable'
 
       - name: Upload refreshed case-study visual baselines
