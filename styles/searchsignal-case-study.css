@@ -4,7 +4,6 @@
   --signal-line: var(--cream-dark);
   --signal-muted: var(--text-muted);
   --signal-accent: var(--gold);
-  --font-heading: var(--font-display);
   background: var(--signal-light);
   color: var(--text-primary);
 }
@@ -146,7 +145,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-4);
   margin: var(--space-8) 0 0;
-  border-top: 1px solid rgba(245, 240, 235, 0.24);
+  border-top: 1px solid rgb(from var(--cream) r g b / 0.24);
   padding-top: var(--space-5);
 }
 
@@ -173,7 +172,7 @@
 
 .searchsignal-product-visual {
   overflow: hidden;
-  border: 1px solid rgba(245, 240, 235, 0.35);
+  border: 1px solid rgb(from var(--cream) r g b / 0.35);
   background: var(--cream);
   color: var(--ink);
   box-shadow: 1rem 1rem 0 rgba(198, 168, 119, 0.25);
@@ -405,9 +404,9 @@
 
 .searchsignal-record {
   min-width: 0;
-  border: 1px solid rgba(245, 240, 235, 0.32);
+  border: 1px solid rgb(from var(--cream) r g b / 0.32);
   padding: var(--space-4);
-  background: rgba(245, 240, 235, 0.04);
+  background: rgb(from var(--cream) r g b / 0.04);
   font-family: var(--font-code);
   font-size: 0.67rem;
   line-height: 1.6;
@@ -467,8 +466,8 @@
 
 .searchsignal-card-grid--decisions {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-color: rgba(245, 240, 235, 0.25);
-  background: rgba(245, 240, 235, 0.25);
+  border-color: rgb(from var(--cream) r g b / 0.25);
+  background: rgb(from var(--cream) r g b / 0.25);
 }
 
 .searchsignal-card-grid article,
@@ -605,8 +604,8 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   margin-top: var(--section-content-gap);
-  border: 1px solid rgba(245, 240, 235, 0.25);
-  background: rgba(245, 240, 235, 0.25);
+  border: 1px solid rgb(from var(--cream) r g b / 0.25);
+  background: rgb(from var(--cream) r g b / 0.25);
 }
 
 .searchsignal-explainability {
@@ -677,8 +676,8 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  border: 1px solid rgba(245, 240, 235, 0.25);
-  background: rgba(245, 240, 235, 0.25);
+  border: 1px solid rgb(from var(--cream) r g b / 0.25);
+  background: rgb(from var(--cream) r g b / 0.25);
 }
 
 .searchsignal-boundary-grid > article {
@@ -687,7 +686,7 @@
 }
 
 .searchsignal-boundary-grid li {
-  border-color: rgba(245, 240, 235, 0.2);
+  border-color: rgb(from var(--cream) r g b / 0.2);
   color: var(--cream-dark);
 }
 
@@ -735,7 +734,7 @@
 }
 
 .searchsignal-outcome-list li {
-  border-color: rgba(245, 240, 235, 0.2);
+  border-color: rgb(from var(--cream) r g b / 0.2);
   color: var(--cream-dark);
 }
 
@@ -953,7 +952,7 @@
   max-width: 6.75ch;
   margin: 0;
   color: var(--text-primary);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
+  font-family: var(--font-heading);
   font-size: clamp(4.5rem, 7vw, 8rem);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
@@ -1061,7 +1060,7 @@
 .case-study-page-new--searchsignal .searchsignal-final h2 {
   max-width: 14ch;
   color: var(--text-primary);
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
+  font-family: var(--font-heading);
   font-size: var(--case-study-section-heading);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
@@ -1080,7 +1079,7 @@
 
 /* The full case study shares the portfolio's display, reading, and utility font roles. */
 .case-study-page-new--searchsignal :is(h1, h2, h3) {
-  font-family: var(--font-display), 'Bebas Neue', Impact, sans-serif !important;
+  font-family: var(--font-heading);
   font-weight: 400;
   text-transform: uppercase;
 }

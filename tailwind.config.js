@@ -8,22 +8,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cream: '#F5F0EB',
-        'cream-warm': '#EDE6DD',
-        'cream-dark': '#DDD5C8',
-        ink: '#1A1714',
-        'ink-soft': '#3A3530',
-        'ink-muted': '#6B635A',
-        'ink-faint': '#8A827A',
-        accent: '#C41E3A',
-        'gradient-warm': '#FFAA88',
-        'gradient-rose': '#FFB5A0',
-        'gradient-soft': '#E8D0C8',
+        cream: 'var(--cream)',
+        'cream-warm': 'var(--cream-warm)',
+        'cream-dark': 'var(--cream-dark)',
+        ink: 'var(--ink)',
+        'ink-soft': 'var(--ink-soft)',
+        'ink-muted': 'var(--ink-muted)',
+        'ink-faint': 'var(--ink-faint)',
+        accent: 'var(--accent)',
+        'gradient-warm': 'var(--warm)',
+        'gradient-rose': 'var(--rose)',
+        'gradient-soft': 'var(--gradient-soft)',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Impact', 'sans-serif'],
-        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
+        display: ['var(--font-heading)'],
+        body: ['var(--font-ui)'],
+        mono: ['var(--font-code)'],
+        prose: ['var(--font-prose)'],
       },
       spacing: {
         'touch-min': '44px',
@@ -32,4 +33,3 @@ module.exports = {
   },
   plugins: [],
 }
-

@@ -12,7 +12,6 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     id: 'ai-sports',
     accentColor: 'var(--accent)',
     layoutVariant: 'wide',
-    presentationFamily: 'creative-marketing',
     hero: {
       title: 'AI Sports Campaign',
       tagline: 'An Applied AI Campaign System.',
@@ -268,7 +267,6 @@ export const caseStudiesContent: Record<string, CaseStudyContent> = {
     id: 'remoria',
     accentColor: 'var(--gold)',
     layoutVariant: 'default',
-    presentationFamily: 'creative-marketing',
     hero: {
       title: 'Remoria',
       tagline: 'A Fragrance House Etched in Memory',
@@ -445,7 +443,6 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     id: 'ai-sports',
     accentColor: 'var(--accent)',
     layoutVariant: 'wide',
-    presentationFamily: 'creative-marketing',
     hero: {
       title: 'Campaña deportiva con IA',
       tagline: 'Un sistema de campaña con IA aplicado.',
@@ -616,7 +613,6 @@ const caseStudiesContentEs: Record<string, CaseStudyContent> = {
     id: 'remoria',
     accentColor: 'var(--gold)',
     layoutVariant: 'default',
-    presentationFamily: 'creative-marketing',
     hero: {
       title: 'Remoria',
       tagline: 'Una casa de fragancias grabada en la memoria',

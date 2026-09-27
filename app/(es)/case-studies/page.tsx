@@ -5,8 +5,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import { type CSSProperties, useMemo } from 'react'
+import { type CSSProperties, useMemo, useState } from 'react'
 import { getCaseStudies } from '@/data/case-studies'
+import {
+  DISCIPLINES,
+  DISCIPLINE_LABELS,
+  PROJECT_EXPERIENCE,
+  type Discipline,
+} from '@/data/portfolio-experience'
 import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
@@ -54,46 +60,33 @@ export default function CaseStudiesPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const caseStudies = useMemo(() => getCaseStudies(locale), [locale])
+  const [activeDiscipline, setActiveDiscipline] = useState<Discipline | 'all'>('all')
   const schemas = getSchemas(locale)
   const isSpanish = locale === 'es'
   const heading = isSpanish ? 'Casos de estudio' : 'Case Studies'
   const intro = isSpanish
     ? 'Productos, campañas y sistemas de marca. Cada caso sigue el trabajo desde el contexto hasta las decisiones, pruebas y límites que le dieron forma.'
     : 'Products, campaigns, and brand systems. Each case follows the work from context to the decisions, evidence, and limits that shaped it.'
-  const caseStudyGroups = [
-    {
-      id: 'selected',
-      eyebrow: isSpanish ? '01 · Selección' : '01 · Selected',
-      title: isSpanish ? 'Proyectos seleccionados' : 'Selected projects',
-      description: isSpanish
-        ? 'Productos y sistemas con la evidencia más completa.'
-        : 'Products and systems with the clearest evidence trail.',
-      slugs: ['opstwin', 'searchsignal', 'campaign-pulse', 'demandos'],
-    },
-    {
-      id: 'experiments',
-      eyebrow: isSpanish ? '02 · Exploración' : '02 · Exploration',
-      title: isSpanish ? 'Experimentos y sistemas' : 'Experiments and systems',
-      description: isSpanish
-        ? 'Prototipos que exploran flujos de trabajo, datos e imagen.'
-        : 'Prototypes exploring workflows, data, and image-making.',
-      slugs: ['campaign-sandbox', 'data-brief-ai', 'website-auditor', 'benchmark-dashboard', 'ai-sports', 'remoria', 'blogagent'],
-    },
-    {
-      id: 'archive',
-      eyebrow: isSpanish ? '03 · Archivo' : '03 · Archive',
-      title: isSpanish ? 'Archivo y práctica' : 'Archive and practice',
-      description: isSpanish
-        ? 'Proyectos que documentan la evolución de la práctica.'
-        : 'Projects that document the evolution of the practice.',
-      slugs: ['territoryops-spain', 'raul-portfolio', 'relay'],
-    },
-  ].map((group) => ({
-    ...group,
-    studies: group.slugs
-      .map((slug) => caseStudies.find((study) => study.slug === slug))
-      .filter((study): study is (typeof caseStudies)[number] => Boolean(study)),
-  }))
+  const studiesBySlug = useMemo(
+    () => new Map(caseStudies.map((study) => [study.slug, study])),
+    [caseStudies],
+  )
+  const visibleProjects = PROJECT_EXPERIENCE.filter(
+    (project) => activeDiscipline === 'all' || project.primaryDiscipline === activeDiscipline,
+  )
+  const visibleStudies = visibleProjects
+    .map((project) => studiesBySlug.get(project.slug))
+    .filter((study): study is NonNullable<typeof study> => Boolean(study))
+  const activeLabel = activeDiscipline === 'all'
+    ? isSpanish ? 'Todos los trabajos' : 'All work'
+    : DISCIPLINE_LABELS[activeDiscipline][locale]
+  const activeDescription = activeDiscipline === 'all'
+    ? isSpanish
+      ? 'Todos los proyectos se agrupan por su disciplina principal.'
+      : 'Every project is grouped by its primary discipline.'
+    : isSpanish
+      ? `Proyectos cuya disciplina principal es ${activeLabel}.`
+      : `Projects whose primary discipline is ${activeLabel}.`
 
   return (
     <>
@@ -132,17 +125,42 @@ export default function CaseStudiesPage() {
           aria-labelledby="case-studies-heading"
           data-mobile-audit="case-study-grid"
         >
-          {caseStudyGroups.map((group, groupIndex) => (
-            <section key={group.id} className="case-study-gallery-group" aria-labelledby={`case-study-group-${group.id}`}>
-              <header className="case-study-gallery-group__header">
-                <p>{group.eyebrow}</p>
-                <h2 id={`case-study-group-${group.id}`}>{group.title}</h2>
-                <span>{group.description}</span>
-              </header>
-              <div className="case-study-project-grid">
-                {group.studies.map((study, index) => {
+          <div className="case-studies-index__toolbar" aria-label={isSpanish ? 'Filtrar casos por disciplina' : 'Filter case studies by discipline'}>
+            <div className="case-studies-index__filters" role="group">
+              <button
+                type="button"
+                className={`case-studies-index__filter${activeDiscipline === 'all' ? ' is-active' : ''}`}
+                onClick={() => setActiveDiscipline('all')}
+                aria-pressed={activeDiscipline === 'all'}
+              >
+                {isSpanish ? 'Todos' : 'All'}
+              </button>
+              {DISCIPLINES.map((discipline) => (
+                <button
+                  key={discipline}
+                  type="button"
+                  className={`case-studies-index__filter${activeDiscipline === discipline ? ' is-active' : ''}`}
+                  onClick={() => setActiveDiscipline(discipline)}
+                  aria-pressed={activeDiscipline === discipline}
+                >
+                  {DISCIPLINE_LABELS[discipline][locale]}
+                </button>
+              ))}
+            </div>
+            <p className="case-studies-index__count" aria-live="polite">
+              {visibleStudies.length} {isSpanish ? 'proyectos' : 'projects'}
+            </p>
+          </div>
+          <section className="case-study-gallery-group" aria-labelledby="case-study-group-discipline">
+            <header className="case-study-gallery-group__header">
+              <p>{isSpanish ? 'Disciplina principal' : 'Primary discipline'}</p>
+              <h2 id="case-study-group-discipline">{activeLabel}</h2>
+              <span>{activeDescription}</span>
+            </header>
+            <div className="case-study-project-grid">
+              {visibleStudies.map((study, index) => {
               const variant =
-                tileVariants[(study.id + index + groupIndex) % tileVariants.length]
+                tileVariants[(study.id + index) % tileVariants.length]
               const thumbnailStyle = {
                 '--case-study-thumbnail-ratio': `${study.imageWidth} / ${study.imageHeight}`,
               } as CSSProperties
@@ -178,10 +196,9 @@ export default function CaseStudiesPage() {
                   </span>
                 </Link>
               )
-                })}
-              </div>
-            </section>
-          ))}
+              })}
+            </div>
+          </section>
         </section>
       </main>
       <Footer locale={locale} />

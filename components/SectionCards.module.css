@@ -8,7 +8,7 @@
   overflow: clip;
   background:
     radial-gradient(circle at top, rgba(216, 109, 67, 0.08), transparent 34%),
-    linear-gradient(180deg, rgba(245, 240, 235, 0.96) 0%, rgba(239, 231, 222, 0.98) 100%);
+    linear-gradient(180deg, rgb(from var(--cream) r g b / 0.96) 0%, rgba(239, 231, 222, 0.98) 100%);
   padding: var(--space-12) 0 var(--space-10);
 }
 
@@ -20,7 +20,7 @@
 .intro p {
   margin: 0 0 var(--space-3);
   color: var(--accent);
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -29,7 +29,7 @@
 .intro h2 {
   max-width: 14ch;
   margin: 0;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(3.5rem, 7vw, 7rem);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
@@ -64,7 +64,7 @@
   justify-content: center;
   padding: var(--space-3);
   border: 1px solid rgba(23, 19, 16, 0.08);
-  border-radius: 999px;
+  border-radius: var(--radius-button);
   background: rgba(252, 248, 244, 0.8);
   color: rgba(23, 19, 16, 0.7);
   backdrop-filter: blur(18px) saturate(140%);
@@ -133,12 +133,12 @@
 
 .stage::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(245, 240, 235, 0.98) 0%, rgba(245, 240, 235, 0) 100%);
+  background: linear-gradient(90deg, rgb(from var(--cream) r g b / 0.98) 0%, rgb(from var(--cream) r g b / 0) 100%);
 }
 
 .stage::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(245, 240, 235, 0.98) 0%, rgba(245, 240, 235, 0) 100%);
+  background: linear-gradient(270deg, rgb(from var(--cream) r g b / 0.98) 0%, rgb(from var(--cream) r g b / 0) 100%);
 }
 
 .track {
@@ -169,7 +169,7 @@
   grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
   overflow: hidden;
   border: 1px solid rgba(23, 19, 16, 0.08);
-  border-radius: clamp(1.5rem, 2.6vw, 2.25rem);
+  border-radius: var(--radius-lg);
   background:
     radial-gradient(circle at 14% 16%, rgba(255, 255, 255, 0.74), transparent 28%),
     linear-gradient(135deg, rgba(252, 248, 243, 1) 0%, rgba(241, 233, 225, 1) 100%);
@@ -200,7 +200,7 @@
   content: "";
   position: absolute;
   inset: 1px;
-  border-radius: calc(clamp(1.5rem, 2.6vw, 2.25rem) - 1px);
+  border-radius: inherit;
   border: 1px solid rgba(255, 255, 255, 0.42);
   pointer-events: none;
 }
@@ -240,7 +240,7 @@
 
 .index,
 .count {
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.72rem;
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -256,7 +256,7 @@
 
 .eyebrow {
   margin: 0;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -273,7 +273,7 @@
 .title {
   margin: 0;
   max-width: 7ch;
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(4rem, 6vw, 6.5rem);
   line-height: 0.86;
   letter-spacing: -0.035em;
@@ -296,7 +296,7 @@
   gap: var(--space-3);
   width: fit-content;
   margin-top: auto;
-  font-family: var(--font-mono), "Space Mono", monospace;
+  font-family: var(--font-code);
   font-size: 0.74rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -418,7 +418,7 @@
     grid-template-columns: 1fr;
     width: 100%;
     min-height: auto;
-    border-radius: 1.5rem;
+    border-radius: var(--radius-lg);
     box-shadow:
       0 16px 36px rgba(23, 19, 16, 0.1),
       0 28px 64px rgba(23, 19, 16, 0.08),

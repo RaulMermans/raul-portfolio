@@ -187,7 +187,7 @@ export default function RemoriaPage() {
         <CaseStudyHero
           hero={content.hero}
           accentColor={content.accentColor}
-          presentationFamily={content.presentationFamily}
+          projectSlug="remoria"
           locale={locale}
         />
 

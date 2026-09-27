@@ -107,7 +107,7 @@
 .statement {
   max-width: 54rem;
   margin: clamp(2rem, 5vw, 4rem) 0 0 auto;
-  color: rgba(245, 240, 235, 0.88);
+  color: rgb(from var(--cream) r g b / 0.88);
   font-family: var(--font-prose);
   font-size: clamp(1.45rem, 2.6vw, 2.5rem);
   line-height: 1.3;

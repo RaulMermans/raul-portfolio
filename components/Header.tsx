@@ -183,6 +183,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     <>
       <header
         ref={headerRef}
+        data-testid="site-header"
         className={styles.headerBar}
         data-hidden={isHeaderHidden ? 'true' : undefined}
         data-surface={surface}

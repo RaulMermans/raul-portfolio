@@ -12,8 +12,8 @@ export default function AppCtaLink({
 }: AppCtaLinkProps) {
   const className =
     variant === 'primary'
-      ? 'inline-flex items-center justify-center rounded-full border border-transparent bg-[#f5f0eb] px-6 py-3 text-sm font-medium text-[#171411] transition duration-300 hover:-translate-y-0.5 hover:bg-white'
-      : 'inline-flex items-center justify-center rounded-full border border-white/[0.14] bg-white/[0.04] px-6 py-3 text-sm font-medium text-[#f5f0eb] transition duration-300 hover:-translate-y-0.5 hover:border-white/[0.22] hover:bg-white/[0.08]'
+      ? 'ui-button ui-button--primary'
+      : 'ui-button ui-button--inverse'
 
   return (
     <Link

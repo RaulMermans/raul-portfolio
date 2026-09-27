@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test'
 async function expectHeaderState(page: Page, scrollY: number, hidden: boolean) {
   await page.evaluate((top) => window.scrollTo({ top, behavior: 'instant' }), scrollY)
 
-  await expect.poll(async () => page.locator('header').getAttribute('data-hidden')).toBe(hidden ? 'true' : null)
+  await expect.poll(async () => page.getByTestId('site-header').getAttribute('data-hidden')).toBe(hidden ? 'true' : null)
 }
 
 for (const route of ['/', '/en/case-studies/opstwin'] as const) {
@@ -11,7 +11,7 @@ for (const route of ['/', '/en/case-studies/opstwin'] as const) {
     await page.setViewportSize({ width: 1440, height: 900 })
     await page.goto(route, { waitUntil: 'networkidle' })
 
-    await expect(page.locator('header')).not.toHaveAttribute('data-hidden', 'true')
+    await expect(page.getByTestId('site-header')).not.toHaveAttribute('data-hidden', 'true')
     await expectHeaderState(page, 900, true)
     await expectHeaderState(page, 680, false)
     await expectHeaderState(page, 0, false)
@@ -31,5 +31,5 @@ test('the mobile header remains available for its menu and keyboard focus', asyn
 
   await menuButton.click()
   await expect(page.getByRole('dialog', { name: 'Navigation' })).toBeVisible()
-  await expect(page.locator('header')).not.toHaveAttribute('data-hidden', 'true')
+  await expect(page.getByTestId('site-header')).not.toHaveAttribute('data-hidden', 'true')
 })

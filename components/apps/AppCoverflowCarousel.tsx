@@ -53,18 +53,18 @@ export default function AppCoverflowCarousel({ apps }: AppCoverflowCarouselProps
         {Array.from({ length: placeholders }).map((_, i) => (
           <SwiperSlide key={`placeholder-${i}`}>
             <div
-              className="flex h-full flex-col items-center justify-center rounded-[24px] border border-dashed p-8 text-center"
+              className="flex h-full flex-col items-center justify-center rounded-[var(--radius-lg)] border border-dashed p-8 text-center"
               style={{ borderColor: 'var(--cream-dark)', background: 'var(--cream-light)' }}
             >
               <div
-                className="flex h-[100px] w-[100px] items-center justify-center rounded-[24px] border border-dashed text-3xl"
+                className="flex h-[100px] w-[100px] items-center justify-center rounded-[var(--radius-lg)] border border-dashed text-3xl"
                 style={{ borderColor: 'var(--cream-dark)', color: 'var(--cream-darker)' }}
               >
                 +
               </div>
               <p
                 className="mt-6 text-2xl uppercase leading-[0.95]"
-                style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif', color: 'var(--cream-dark)' }}
+                style={{ fontFamily: 'var(--font-heading)', color: 'var(--cream-dark)' }}
               >
                 Coming soon
               </p>
@@ -89,7 +89,7 @@ function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
   return (
     <Link
       href={app.href}
-      className="group relative flex h-full flex-col items-center overflow-hidden rounded-[24px] border p-8 text-center transition-all duration-500"
+      className="group relative flex h-full flex-col items-center overflow-hidden rounded-[var(--radius-lg)] border p-8 text-center transition-all duration-500"
       style={{
         '--tile-accent': app.theme.accent,
         background: 'var(--ink)',
@@ -117,7 +117,7 @@ function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
           />
         ) : (
           <div
-            className="h-[120px] w-[120px] rounded-[28px] transition-transform duration-500 group-hover:scale-110"
+            className="h-[120px] w-[120px] rounded-[var(--radius-lg)] transition-transform duration-500 group-hover:scale-110"
             style={{
               background: `linear-gradient(135deg, ${app.theme.accent}, ${app.theme.accentSoft})`,
               boxShadow: `0 16px 50px rgba(0,0,0,0.4), 0 0 80px ${app.theme.glow}`,
@@ -130,7 +130,7 @@ function AppTileSlide({ app, isActive }: { app: AppEntry; isActive: boolean }) {
       <div className="relative z-10 w-full">
         <h3
           className="min-h-[2lh] text-3xl uppercase leading-[0.95] sm:text-4xl"
-          style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif', color: 'var(--cream)' }}
+          style={{ fontFamily: 'var(--font-heading)', color: 'var(--cream)' }}
         >
           {app.name}
         </h3>

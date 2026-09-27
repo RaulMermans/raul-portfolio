@@ -15,7 +15,7 @@ export default function AppCoverflowSlide({ app, isActive }: AppCoverflowSlidePr
 
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden rounded-[32px] border border-white/10 bg-[#0a0a0a] text-white"
+      className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-white/10 bg-[var(--surface-inverse)] text-white"
       style={cardStyle}
     >
       {/* Header */}
@@ -32,7 +32,7 @@ export default function AppCoverflowSlide({ app, isActive }: AppCoverflowSlidePr
       <div className="flex flex-1 flex-col px-6 pb-2 pt-5 sm:px-8">
         <h3
           className="min-h-[2lh] text-[clamp(2.8rem,6vw,4.2rem)] uppercase leading-[0.9]"
-          style={{ fontFamily: 'var(--font-display), "Bebas Neue", Impact, sans-serif' }}
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           {app.name}
         </h3>
@@ -48,7 +48,7 @@ export default function AppCoverflowSlide({ app, isActive }: AppCoverflowSlidePr
           {app.metrics.map((metric) => (
             <div
               key={metric.label}
-              className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-3"
+              className="rounded-[var(--radius-md)] border border-white/10 bg-white/[0.03] px-3 py-3"
             >
               <p className="text-[0.56rem] uppercase tracking-[0.22em] text-white/[0.38]">{metric.label}</p>
               <p className="mt-1 text-xs font-medium text-white/75">{metric.value}</p>
@@ -66,14 +66,14 @@ export default function AppCoverflowSlide({ app, isActive }: AppCoverflowSlidePr
       <div className="flex gap-3 px-6 py-5 sm:px-8 sm:py-6">
         <Link
           href={app.href}
-          className="inline-flex items-center rounded-full bg-[#f5f0eb] px-5 py-2.5 text-sm font-medium text-[#171411] transition duration-300 hover:-translate-y-0.5 hover:bg-white"
+          className="inline-flex items-center rounded-[var(--radius-button)] bg-[var(--cream)] px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition duration-300 hover:-translate-y-0.5 hover:bg-white"
         >
           Explore {app.name}
         </Link>
         {app.ctas.secondary ? (
           <Link
             href={app.ctas.secondary.href}
-            className="inline-flex items-center rounded-full border border-white/[0.14] bg-white/[0.04] px-5 py-2.5 text-sm text-white/70 transition duration-300 hover:border-white/[0.22] hover:text-white/90"
+            className="inline-flex items-center rounded-[var(--radius-button)] border border-white/[0.14] bg-white/[0.04] px-5 py-2.5 text-sm text-white/70 transition duration-300 hover:border-white/[0.22] hover:text-white/90"
           >
             {app.ctas.secondary.label}
           </Link>

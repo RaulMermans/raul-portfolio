@@ -51,6 +51,18 @@ jobs:
       - name: Verify portfolio experience system
         run: npm run verify:experience-system
 
+      - name: Verify public route registry
+        run: npm run verify:route-registry
+
+      - name: Verify project taxonomy
+        run: npm run verify:project-taxonomy
+
+      - name: Lint portfolio design-system boundaries
+        run: npm run lint:design-system
+
+      - name: Prove experience guards reject drift
+        run: npm run test:experience-guards
+
       - name: Verify canonical HTML contract
         run: npm run verify:canonical
 
