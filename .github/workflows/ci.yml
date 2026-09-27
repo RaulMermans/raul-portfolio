@@ -9,12 +9,6 @@ on:
       - main
       - 'codex/**'
   workflow_dispatch:
-    inputs:
-      refresh_case_study_visual_baselines:
-        description: Refresh only the case-study index desktop/mobile visual baselines and upload them for review
-        required: false
-        type: boolean
-        default: false
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -120,20 +114,5 @@ jobs:
       - name: Generate image derivatives
         run: npm run images:derive
 
-      - name: Refresh case-study visual baselines
-        if: github.event_name == 'workflow_dispatch' && inputs.refresh_case_study_visual_baselines
-        run: >-
-          npx playwright test --update-snapshots=all tests/playwright/visual-regression.spec.ts
-          -g 'case-studies is visually stable'
-
-      - name: Upload refreshed case-study visual baselines
-        if: github.event_name == 'workflow_dispatch' && inputs.refresh_case_study_visual_baselines
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: case-study-visual-baselines
-          path: tests/playwright/visual-regression.spec.ts-snapshots/case-studies-*.png
-          if-no-files-found: error
-
       - name: Run critical Playwright suite
-        if: github.event_name != 'workflow_dispatch' || inputs.refresh_case_study_visual_baselines != true
         run: npm run test:e2e
