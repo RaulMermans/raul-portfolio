@@ -15,7 +15,7 @@ export const siteCopy = {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       menuMeta:
-        'Brands, products, stories, and ventures shaped through culture, business, and practical execution.',
+        'Independent AI systems, products, brands, and ventures shaped by business and creative judgment.',
       menuCta: 'Work with me',
       toggleLabel: 'Language switcher',
       languageShort: {
@@ -25,7 +25,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Brands, products, stories, and ventures across culture, business, storytelling, and technology.',
+        'AI systems, products, brands, and ventures across business, culture, and creative work.',
       work: 'Work',
       services: 'Services',
       resources: 'Resources',
@@ -38,8 +38,8 @@ export const siteCopy = {
         { label: 'Web Development & Digital Experiences', href: '/services/web-development' },
         { label: 'AI Integrations for Creative Systems', href: '/services/ai-integrations' },
         { label: 'Brand Systems & Creative Direction', href: '/services/brand-systems' },
-        { label: 'Data, Research & Intelligence', href: '/services/creative-automation' },
-        { label: 'Digital Products, AI & Prototyping', href: '/services/product-prototypes' },
+        { label: 'Data & Business Intelligence', href: '/services/creative-automation' },
+        { label: 'AI Systems & Digital Products', href: '/services/product-prototypes' },
       ],
       resourceLinks: [
         { label: 'About', href: '/about' },
@@ -52,7 +52,7 @@ export const siteCopy = {
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
       builtBy: 'Designed and built by Raúl Mermans.',
-      availability: 'Open to selected projects and collaborations.',
+      availability: 'Open to ambitious roles, projects, and collaborations.',
     },
     home: {
       schema: {
@@ -68,7 +68,7 @@ export const siteCopy = {
         ariaLabel: 'Raúl Mermans, Entrepreneur and Creator. Building ideas into brands, products, and ventures.',
         headline: 'Building ideas into brands, products, and ventures.',
         summary:
-          'I work across culture, business, storytelling, and technology, creating independently and sharing the process.',
+          'I build AI systems, digital products, and business intelligence tools, alongside brands, ventures, and creative work.',
         primaryCta: 'Explore what I’m building',
         secondaryCta: 'Work with me',
         scrollAria: 'Scroll to explore',
@@ -76,60 +76,22 @@ export const siteCopy = {
       },
       buildingNow: {
         eyebrow: 'What I’m building now',
-        title: 'An independent practice with room to grow.',
+        title: 'AI, business, and a wider creative practice.',
         body:
-          'I build projects across brands, culture, products, and media. I collaborate with founders, share the process, and develop ideas that can stand on their own.',
+          'Independent projects are where I connect technical execution, product thinking, and business judgment. Three areas guide what I build.',
         points: [
-          { title: 'Selected founder collaborations', body: 'Helping early teams clarify what they are making and how it should meet the world.' },
-          { title: 'Public perspectives and cultural analysis', body: 'Sharing observations, references, and working questions in public.' },
-          { title: 'Original products and ventures', body: 'Developing independent concepts that can become useful, lasting businesses.' },
+          { title: 'AI Systems & Products', body: 'Agents, local AI, automation, intelligent workflows, and internal tools with explicit evaluation and review.' },
+          { title: 'Data & Business Intelligence', body: 'Analytics, forecasting, and decision-support systems that turn operational data into signals people can inspect.' },
+          { title: 'Brands, Ventures & Creative Work', body: 'Independent ventures, brand worlds, photography, and visual experiments shaped by culture and commercial context.' },
         ],
       },
       selectedAiSystems: {
-        eyebrow: 'Selected projects',
-        description:
-          'A selection of products and identity work that shows brand judgment, business thinking, and independent execution in practice.',
-        viewCase: 'View case',
-        viewAll: 'View all work',
-        githubCta: 'View GitHub',
-        opportunityLabel: 'Opportunity',
-        roleLabel: 'Role',
-        builtLabel: 'Built',
-        provesLabel: 'Proves',
-        cards: {
-          'campaign-pulse': {
-            label: 'Marketing intelligence',
-            idea: 'A marketing intelligence product designed to turn campaign and audience activity into clearer commercial decisions.',
-            opportunity: 'Make dispersed marketing activity easier to act on.',
-            role: 'Product concept, strategy, and experience design.',
-            built: 'A decision-focused marketing intelligence product.',
-            proves: 'Business thinking can become a tangible operating system.',
-          },
-          remoria: {
-            label: 'Brand world',
-            idea: 'A luxury fragrance identity where visual direction, product story, and brand rules create one coherent world.',
-            opportunity: 'Give a product idea a distinctive, ownable point of view.',
-            role: 'Brand strategy and visual direction.',
-            built: 'An identity system and visual world for a fragrance concept.',
-            proves: 'Taste and systems thinking can make a brand feel real.',
-          },
-          'campaign-sandbox': {
-            label: 'Campaign strategy',
-            idea: 'A new model for how creative teams develop, compare, and strengthen campaign ideas, with human judgment at its centre.',
-            opportunity: 'Give teams a stronger way to move from a brief to a creative direction.',
-            role: 'Product concept, workflow design, and prototyping.',
-            built: 'A workspace for shaping and evaluating campaign routes.',
-            proves: 'Creative workflow design can improve strategic judgment.',
-          },
-          'data-brief-ai': {
-            label: 'Bounded reporting',
-            idea: 'A reporting workflow that turns spreadsheets into grounded business reports without unsupported metrics.',
-            opportunity: 'Make messy data easier to read with confidence.',
-            role: 'Product concept and workflow design.',
-            built: 'A bounded reporting prototype.',
-            proves: 'Clear constraints can make automated analysis more useful.',
-          },
-        },
+        eyebrow: 'Independent work',
+        title: 'Selected systems',
+        description: 'Local AI, evidence workflows, orchestration, and forecasting. Four projects built around specific problems, with architecture, proof, and limits available to inspect.',
+        viewCase: 'Explore the system',
+        viewAll: 'View all case studies',
+        githubCta: 'View technical work on GitHub',
       },
       sectionCards: {
         eyebrow: 'Selected worlds, work, and experiments',
@@ -142,10 +104,10 @@ export const siteCopy = {
           {
             id: 'case-studies',
             index: '01',
-            eyebrow: 'Strategy, marketing, data, and brand thinking',
+            eyebrow: 'AI systems, products, data, and brand thinking',
             title: 'Case Studies',
             description:
-              'Campaigns, marketing intelligence, products, and the brand thinking behind them.',
+              'AI systems, business intelligence, products, and the brand thinking behind them.',
           },
           {
             id: 'apps',
@@ -177,7 +139,7 @@ export const siteCopy = {
         label: 'About me',
         title: 'Building with both business sense and artistic direction.',
         body:
-          'I’m Raul Mermans, an entrepreneur and creator interested in how cultural insight becomes meaningful brands, useful products, and commercially relevant ventures.',
+          'I’m Raul Mermans. I build at the intersection of AI, business, product, and creative work. My background in marketing, brand, and CRM helps me define the problem; code and systems thinking help me turn it into something usable.',
         cta: 'More about me',
       },
       services: {
@@ -206,9 +168,9 @@ export const siteCopy = {
           },
           {
             number: '00-3',
-            title: 'Data, Research & Intelligence',
+            title: 'Data & Business Intelligence',
             titleShort: 'Data',
-            items: ['Marketing analytics', 'Customer and CRM insight', 'Research and data synthesis', 'Reporting and decision support'],
+            items: ['Business intelligence', 'CRM and commercial analytics', 'Operational dashboards', 'Reporting and decision support'],
             description:
               'Research and data tools that make complex information easier to understand and act on.',
             cta: 'Explore service',
@@ -216,11 +178,11 @@ export const siteCopy = {
           },
           {
             number: '00-4',
-            title: 'Digital Products, AI & Prototyping',
+            title: 'AI Systems & Digital Products',
             titleShort: 'Products',
-            items: ['Digital products and internal tools', 'Interactive prototypes', 'AI-assisted workflows', 'Automation and technical experimentation'],
+            items: ['AI agents and internal tools', 'Intelligent workflows', 'Product prototyping', 'Automation and evaluation'],
             description:
-              'Digital products and prototypes that make strategies, workflows, and ideas tangible. AI is used where it improves research, exploration, production, or decision-making without replacing human judgment.',
+              'AI agents, intelligent workflows, and digital products built around clear inputs, tool boundaries, evaluation, and human review.',
             cta: 'Explore service',
             ctaHref: '/en/services/product-prototypes',
           },
@@ -241,7 +203,7 @@ export const siteCopy = {
         subtitle:
           'If there is a promising project taking shape, I’d be glad to hear where it could go.',
         intro: 'You do not need a finished brief. A real opportunity, question, or point of view is enough to begin a conversation.',
-        availability: 'Open to selected projects and collaborations.',
+        availability: 'Open to ambitious roles, projects, and collaborations.',
         location: 'Madrid · Remote · EU',
         linksLabel: 'Direct contact options',
         emailLabel: 'Email',
@@ -342,6 +304,7 @@ export const siteCopy = {
     },
     appsPage: {
       title: 'Tools and prototypes',
+      systemsCta: 'Explore the larger systems',
       intro:
         'Small operational tools, experiments, and product surfaces built to test workflow logic, data structure, and interface behavior.',
     },
@@ -372,7 +335,7 @@ export const siteCopy = {
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú',
       menuMeta:
-        'Marcas, productos, historias y proyectos construidos entre la cultura, el negocio y la ejecución práctica.',
+        'Sistemas propios de IA, productos, marcas y proyectos con criterio de negocio y creativo.',
       menuCta: 'Trabajemos juntos',
       toggleLabel: 'Selector de idioma',
       languageShort: {
@@ -382,7 +345,7 @@ export const siteCopy = {
     },
     footer: {
       tagline:
-        'Marcas, productos, historias y nuevos proyectos entre la cultura, el negocio, la narrativa y la tecnología.',
+        'Sistemas de IA, productos, marcas y proyectos propios entre negocio, cultura y trabajo creativo.',
       work: 'Trabajo',
       services: 'Servicios',
       resources: 'Recursos',
@@ -395,8 +358,8 @@ export const siteCopy = {
         { label: 'Desarrollo Web y Experiencias Digitales', href: '/services/desarrollo-web' },
         { label: 'Integraciones IA para Sistemas Creativos', href: '/services/integraciones-ia' },
         { label: 'Sistemas de Marca y Dirección Creativa', href: '/services/sistemas-de-marca' },
-        { label: 'Datos, Investigación e Inteligencia', href: '/services/automatizacion-creativa' },
-        { label: 'Productos Digitales, IA y Prototipado', href: '/services/prototipos-producto-ia' },
+        { label: 'Datos e inteligencia de negocio', href: '/services/automatizacion-creativa' },
+        { label: 'Sistemas de IA y productos digitales', href: '/services/prototipos-producto-ia' },
       ],
       resourceLinks: [
         { label: 'Sobre mí', href: '/about' },
@@ -409,7 +372,7 @@ export const siteCopy = {
       privacy: 'Política de privacidad',
       terms: 'Términos del servicio',
       builtBy: 'Diseñado y desarrollado por Raúl Mermans.',
-      availability: 'Abierto a proyectos y colaboraciones seleccionadas.',
+      availability: 'Abierto a nuevos retos profesionales, proyectos y colaboraciones.',
     },
     home: {
       schema: {
@@ -425,7 +388,7 @@ export const siteCopy = {
         ariaLabel: 'Raúl Mermans, emprendedor y creador. Convirtiendo ideas en marcas, productos y nuevos proyectos.',
         headline: 'Convirtiendo ideas en marcas, productos y nuevos proyectos.',
         summary:
-          'Trabajo entre la cultura, el negocio, la narrativa y la tecnología, construyendo de forma independiente y compartiendo el proceso.',
+          'Construyo sistemas de IA, productos digitales y herramientas de inteligencia de negocio, junto con marcas, proyectos propios y trabajo creativo.',
         primaryCta: 'Descubre lo que estoy construyendo',
         secondaryCta: 'Trabajemos juntos',
         scrollAria: 'Desplazar para explorar',
@@ -433,60 +396,22 @@ export const siteCopy = {
       },
       buildingNow: {
         eyebrow: 'Lo que estoy construyendo',
-        title: 'Una práctica independiente con espacio para crecer.',
+        title: 'IA, negocio y una práctica creativa más amplia.',
         body:
-          'Construyo proyectos entre marca, cultura, producto y medios. Colaboro con fundadores, comparto el proceso y desarrollo ideas que puedan sostenerse por sí mismas.',
+          'En mis proyectos propios conecto ejecución técnica, pensamiento de producto y criterio de negocio. Tres áreas orientan lo que construyo.',
         points: [
-          { title: 'Colaboraciones seleccionadas con fundadores', body: 'Ayudando a equipos emergentes a aclarar qué están construyendo y cómo puede encontrarse con el mundo.' },
-          { title: 'Perspectivas públicas y análisis cultural', body: 'Compartiendo observaciones, referencias y preguntas de trabajo en público.' },
-          { title: 'Productos y proyectos propios', body: 'Desarrollando conceptos independientes que puedan convertirse en negocios útiles y duraderos.' },
+          { title: 'Sistemas de IA y productos', body: 'Agentes, IA local, automatización, flujos inteligentes y herramientas internas con evaluación y revisión explícitas.' },
+          { title: 'Datos e inteligencia de negocio', body: 'Analítica, previsión y sistemas de apoyo a decisiones que convierten datos operativos en señales revisables.' },
+          { title: 'Marcas, proyectos propios y trabajo creativo', body: 'Proyectos independientes, universos de marca, fotografía y experimentos visuales con contexto cultural y comercial.' },
         ],
       },
       selectedAiSystems: {
-        eyebrow: 'Proyectos seleccionados',
-        description:
-          'Una selección de productos y trabajo de identidad que demuestra criterio de marca, pensamiento de negocio y ejecución independiente.',
-        viewCase: 'Ver caso',
-        viewAll: 'Ver todos los proyectos',
-        githubCta: 'Ver GitHub',
-        opportunityLabel: 'Oportunidad',
-        roleLabel: 'Rol',
-        builtLabel: 'Construido',
-        provesLabel: 'Demuestra',
-        cards: {
-          'campaign-pulse': {
-            label: 'Inteligencia de marketing',
-            idea: 'Un producto de inteligencia de marketing diseñado para convertir la actividad de campañas y audiencias en decisiones comerciales más claras.',
-            opportunity: 'Hacer más accionable una actividad de marketing dispersa.',
-            role: 'Concepto de producto, estrategia y diseño de experiencia.',
-            built: 'Un producto de inteligencia de marketing orientado a decisiones.',
-            proves: 'El pensamiento de negocio puede convertirse en un sistema tangible.',
-          },
-          remoria: {
-            label: 'Universo de marca',
-            idea: 'Una identidad de fragancia de lujo donde la dirección visual, el relato de producto y las reglas de marca crean un mundo coherente.',
-            opportunity: 'Dar a una idea de producto un punto de vista distintivo y propio.',
-            role: 'Estrategia de marca y dirección visual.',
-            built: 'Un sistema de identidad y universo visual para un concepto de fragancia.',
-            proves: 'El gusto y el pensamiento sistémico pueden hacer que una marca se sienta real.',
-          },
-          'campaign-sandbox': {
-            label: 'Estrategia de campaña',
-            idea: 'Un nuevo modelo para que los equipos creativos desarrollen, comparen y fortalezcan ideas de campaña, con el criterio humano en el centro.',
-            opportunity: 'Dar a los equipos una forma más sólida de pasar del brief a una dirección creativa.',
-            role: 'Concepto de producto, diseño de flujo y prototipado.',
-            built: 'Un espacio de trabajo para desarrollar y evaluar rutas de campaña.',
-            proves: 'El diseño de flujos creativos puede mejorar el criterio estratégico.',
-          },
-          'data-brief-ai': {
-            label: 'Reporting acotado',
-            idea: 'Un flujo de reporting que convierte hojas de cálculo en informes fundamentados sin métricas no soportadas.',
-            opportunity: 'Hacer que datos desordenados se lean con más confianza.',
-            role: 'Concepto de producto y diseño de flujo.',
-            built: 'Un prototipo de reporting acotado.',
-            proves: 'Los límites claros pueden hacer más útil el análisis automatizado.',
-          },
-        },
+        eyebrow: 'Trabajo independiente',
+        title: 'Sistemas seleccionados',
+        description: 'IA local, flujos de evidencia, orquestación y previsión. Cuatro proyectos construidos alrededor de problemas concretos, con arquitectura, pruebas y límites para revisar.',
+        viewCase: 'Explorar el sistema',
+        viewAll: 'Ver todos los casos',
+        githubCta: 'Ver trabajo técnico en GitHub',
       },
       sectionCards: {
         eyebrow: 'Mundos, trabajo y experimentos seleccionados',
@@ -499,10 +424,10 @@ export const siteCopy = {
           {
             id: 'case-studies',
             index: '01',
-            eyebrow: 'Estrategia, marketing, datos y pensamiento de marca',
+            eyebrow: 'Sistemas de IA, productos, datos y pensamiento de marca',
             title: 'Casos de estudio',
             description:
-              'Campañas, inteligencia de marketing, productos y el pensamiento de marca que los sostiene.',
+              'Sistemas de IA, inteligencia de negocio, productos y el pensamiento de marca que los sostiene.',
           },
           {
             id: 'apps',
@@ -534,7 +459,7 @@ export const siteCopy = {
         label: 'Sobre mí',
         title: 'Construir entre el sentido de negocio y la dirección artística.',
         body:
-          'Soy Raul Mermans, emprendedor y creador, interesado en cómo la visión cultural se convierte en marcas con significado, productos útiles y proyectos comercialmente relevantes.',
+          'Soy Raul Mermans. Construyo entre IA, negocio, producto y trabajo creativo. Mi experiencia en marketing, marca y CRM me ayuda a definir el problema; el código y el pensamiento sistémico me ayudan a convertirlo en algo útil.',
         cta: 'Leer más',
       },
       services: {
@@ -563,9 +488,9 @@ export const siteCopy = {
           },
           {
             number: '00-3',
-            title: 'Datos, Investigación e Inteligencia',
+            title: 'Datos e inteligencia de negocio',
             titleShort: 'Datos',
-            items: ['Analítica de marketing', 'Insight de cliente y CRM', 'Investigación y síntesis de datos', 'Reporting y apoyo a decisiones'],
+            items: ['Inteligencia de negocio', 'Analítica CRM y comercial', 'Paneles operativos', 'Reporting y apoyo a decisiones'],
             description:
               'Herramientas de investigación y datos que hacen la información compleja más fácil de entender y convertir en acción.',
             cta: 'Ver servicio',
@@ -573,9 +498,9 @@ export const siteCopy = {
           },
           {
             number: '00-4',
-            title: 'Productos Digitales, IA y Prototipado',
+            title: 'Sistemas de IA y productos digitales',
             titleShort: 'Productos',
-            items: ['Productos digitales y herramientas internas', 'Prototipos interactivos', 'Flujos asistidos por IA', 'Automatización y experimentación técnica'],
+            items: ['Agentes de IA y herramientas internas', 'Flujos inteligentes', 'Prototipos de producto', 'Automatización y evaluación'],
             description:
               'Productos digitales y prototipos que vuelven tangibles las estrategias, los flujos y las ideas. La IA se utiliza cuando mejora la investigación, exploración, producción o toma de decisiones sin reemplazar el criterio humano.',
             cta: 'Ver servicio',
@@ -598,7 +523,7 @@ export const siteCopy = {
         subtitle:
           'Si hay un proyecto prometedor tomando forma, me encantará escuchar hasta dónde podría llegar.',
         intro: 'No necesitas un briefing terminado. Una oportunidad, pregunta o punto de vista real basta para empezar una conversación.',
-        availability: 'Abierto a proyectos y colaboraciones seleccionadas.',
+        availability: 'Abierto a nuevos retos profesionales, proyectos y colaboraciones.',
         location: 'Madrid · Remoto · UE',
         linksLabel: 'Opciones de contacto directo',
         emailLabel: 'Email',
@@ -699,6 +624,7 @@ export const siteCopy = {
     },
     appsPage: {
       title: 'Herramientas y prototipos',
+      systemsCta: 'Explorar los sistemas más amplios',
       intro:
         'Pequeñas herramientas, experimentos y superficies de producto creadas para probar lógica de workflow, estructura de datos y comportamiento de interfaz.',
     },

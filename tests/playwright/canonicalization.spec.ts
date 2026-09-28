@@ -34,7 +34,7 @@ test.describe('Canonical document contract', () => {
 
     const groups = page.locator('.case-study-gallery-group')
     await expect(groups).toHaveCount(3)
-    await expect(groups.nth(0).getByRole('heading')).toHaveText('Selected projects')
+    await expect(groups.nth(0).getByRole('heading')).toHaveText('Selected systems')
     await expect(groups.nth(0).locator('[data-mobile-audit="case-study-card"]')).toHaveCount(4)
   })
 })

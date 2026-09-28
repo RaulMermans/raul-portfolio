@@ -8,7 +8,7 @@ const failures = []
 function walk(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const path = join(directory, entry.name)
-    if (entry.isDirectory()) return walk(path)
+    if (entry.isDirectory()) return entry.name.startsWith('_') ? [] : walk(path)
     return entry.name === 'page.tsx' ? [path] : []
   })
 }

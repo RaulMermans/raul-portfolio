@@ -35,11 +35,12 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'Person',
           '@id': `${siteConfig.url}/#person`,
           name: siteConfig.name,
-          jobTitle: 'Brand strategist and creative systems builder',
+          jobTitle: 'Creator and builder of AI systems, products, and ventures',
           description: siteConfig.defaultDescription,
           url: siteConfig.url,
           image: absoluteUrl('/images/about/profile.webp'),
           sameAs: [
+            'https://github.com/RaulMermans',
             'https://www.instagram.com/raulmeermans/',
             'https://linkedin.com/in/raulmermans',
             'https://unsplash.com/@raulmermans',
@@ -50,6 +51,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             addressCountry: 'ES',
           },
           knowsAbout: [
+            'AI agents and local inference',
+            'Digital products',
+            'Business intelligence',
             'Brand strategy',
             'Creative systems',
             'Cultural strategy',
@@ -77,11 +81,12 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'Person',
       '@id': `${siteConfig.url}/#person`,
       name: siteConfig.name,
-      jobTitle: 'Entrepreneur and Creator',
+      jobTitle: 'Creator and builder of AI systems, products, and ventures',
       description: siteConfig.defaultDescription,
       url: siteConfig.url,
       image: absoluteUrl('/images/about/profile.webp'),
       sameAs: [
+        'https://github.com/RaulMermans',
         'https://www.instagram.com/raulmeermans/',
         'https://linkedin.com/in/raulmermans',
         'https://unsplash.com/@raulmermans',
@@ -92,6 +97,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         addressCountry: 'ES',
       },
       knowsAbout: [
+        'AI agents and local inference',
+        'Business intelligence',
         'Entrepreneurship',
         'Brand Strategy',
         'Product Development',
@@ -160,10 +167,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 3,
-          name: 'Data, Research and Intelligence',
-          serviceType: 'Data, research and decision support',
+          name: 'Data and Business Intelligence',
+          serviceType: 'Business intelligence, analytics and decision support',
           description:
-            'Research and data tools that make complex information easier to understand and act on.',
+            'Data workflows, reporting and decision-support tools for commercial and operational questions.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,
@@ -176,10 +183,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         {
           '@type': 'Service',
           position: 4,
-          name: 'Digital Products, AI and Prototyping',
-          serviceType: 'Digital products, AI and prototyping',
+          name: 'AI Systems and Digital Products',
+          serviceType: 'AI agents, intelligent workflows and digital products',
           description:
-            'Digital products and prototypes that make strategies, workflows, and ideas easier to test and use, with AI where it helps.',
+            'AI agents, internal tools and product prototypes with explicit evaluation and human oversight.',
           provider: {
             '@type': 'Person',
             '@id': `${siteConfig.url}/#person`,

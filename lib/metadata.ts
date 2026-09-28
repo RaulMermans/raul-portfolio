@@ -27,9 +27,9 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com',
   locale: 'es_ES',
   twitterHandle: '@raulmermans',
-  defaultTitle: 'Raúl Mermans | Brand strategy, creative systems, and products',
+  defaultTitle: 'Raúl Mermans | AI systems, products, and creative strategy',
   defaultDescription:
-    'Raúl Mermans builds brands, products, and creative systems where business, culture, research, and technology meet.',
+    'Raúl Mermans builds independent AI systems, digital products, and business intelligence tools alongside brands, ventures, and creative work.',
   defaultImage: {
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Portfolio de Raúl Mermans: estrategia creativa, proyectos y tecnología',
@@ -75,14 +75,14 @@ export function localeToOpenGraphLocale(locale: Locale) {
 
 const rootMetadataByLocale = {
   es: {
-    title: 'Raúl Mermans | Estrategia de marca, sistemas creativos y producto',
+    title: 'Raúl Mermans | Sistemas de IA, productos y estrategia creativa',
     description:
-      'Raúl Mermans construye marcas, productos y sistemas creativos entre negocio, cultura, investigación y tecnología.',
+      'Raúl Mermans construye sistemas de IA, productos digitales y herramientas de inteligencia de negocio junto con marcas, proyectos propios y trabajo creativo.',
   },
   en: {
-    title: 'Raúl Mermans | Brand strategy, creative systems, and products',
+    title: 'Raúl Mermans | AI systems, products, and creative strategy',
     description:
-      'Raúl Mermans builds brands, products, and creative systems where business, culture, research, and technology meet.',
+      'Raúl Mermans builds independent AI systems, digital products, and business intelligence tools alongside brands, ventures, and creative work.',
   },
 } satisfies Record<Locale, { title: string; description: string }>
 

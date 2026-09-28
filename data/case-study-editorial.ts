@@ -1,3 +1,4 @@
+import { independentSystems } from '@/data/independent-systems'
 import type { Locale } from '@/lib/i18n'
 
 export type StrategicSnapshot = {
@@ -16,13 +17,15 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
+  'local-ai-coding-agent',
+  'website-auditor',
+  'iris',
+  'demandos',
   'opstwin',
   'searchsignal',
   'campaign-pulse',
-  'demandos',
   'campaign-sandbox',
   'data-brief-ai',
-  'website-auditor',
   'benchmark-dashboard',
   'ai-sports',
   'remoria',
@@ -33,6 +36,18 @@ export const CASE_STUDY_ORDER = [
 ] as const
 
 export const caseStudyEditorial: Record<string, EditorialMeta> = {
+  'local-ai-coding-agent': {
+    category: { en: 'Local AI runtime', es: 'Runtime de IA local' },
+    proofTags: { en: ['24-task corpus', 'Private prototype'], es: ['Corpus de 24 tareas', 'Prototipo privado'] },
+    snapshot: { en: independentSystems['local-ai-coding-agent'].en.snapshot, es: independentSystems['local-ai-coding-agent'].es.snapshot },
+    related: ['iris', 'website-auditor'],
+  },
+  iris: {
+    category: { en: 'Agent orchestration', es: 'Orquestación de agentes' },
+    proofTags: { en: ['Public architecture', 'Synthetic examples'], es: ['Arquitectura pública', 'Ejemplos sintéticos'] },
+    snapshot: { en: independentSystems.iris.en.snapshot, es: independentSystems.iris.es.snapshot },
+    related: ['local-ai-coding-agent', 'website-auditor'],
+  },
   opstwin: {
     category: {
       en: 'Operational simulation',

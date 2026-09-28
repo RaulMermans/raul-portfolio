@@ -3,8 +3,8 @@ import { expect, test } from '@playwright/test'
 const serviceImageByTitle = [
   ['Web Development & Digital Experiences', 'Services_Web_Development.webp'],
   ['Brand Systems & Creative Direction', 'Services_Creative_Direction.webp'],
-  ['Data, Research & Intelligence', 'Services_Automation.webp'],
-  ['Digital Products, AI & Prototyping', 'Services_AI_Agents.webp'],
+  ['Data & Business Intelligence', 'Services_Automation.webp'],
+  ['AI Systems & Digital Products', 'Services_AI_Agents.webp'],
   ['Photography & Visual Direction', 'Services_Photography.webp'],
 ] as const
 
@@ -14,8 +14,8 @@ const serviceLandingLinks = [
     links: [
       ['Web Development & Digital Experiences', '/en/services/web-development'],
       ['Brand Systems & Creative Direction', '/en/services/brand-systems'],
-      ['Data, Research & Intelligence', '/en/services/creative-automation'],
-      ['Digital Products, AI & Prototyping', '/en/services/product-prototypes'],
+      ['Data & Business Intelligence', '/en/services/creative-automation'],
+      ['AI Systems & Digital Products', '/en/services/product-prototypes'],
     ],
   },
   {
@@ -23,8 +23,8 @@ const serviceLandingLinks = [
     links: [
       ['Desarrollo Web y Experiencias Digitales', '/services/desarrollo-web'],
       ['Sistemas de Marca y Dirección Creativa', '/services/sistemas-de-marca'],
-      ['Datos, Investigación e Inteligencia', '/services/automatizacion-creativa'],
-      ['Productos Digitales, IA y Prototipado', '/services/prototipos-producto-ia'],
+      ['Datos e inteligencia de negocio', '/services/automatizacion-creativa'],
+      ['Sistemas de IA y productos digitales', '/services/prototipos-producto-ia'],
     ],
   },
 ] as const

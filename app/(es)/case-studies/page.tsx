@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { type CSSProperties, useMemo, useState } from 'react'
+import { SYSTEM_COLLECTIONS } from '@/data/independent-systems'
 import { getCaseStudies } from '@/data/case-studies'
 import {
   DISCIPLINES,
@@ -29,8 +30,8 @@ function getSchemas(locale: Locale) {
       '@id': `${siteConfig.url}/#case-studies-page`,
       name: isSpanish ? 'Casos de estudio' : 'Case Studies',
       description: isSpanish
-        ? 'Casos de estudio de Raúl Mermans sobre campañas, inteligencia de marketing, productos digitales, marca, dirección visual y herramientas asistidas por IA.'
-        : 'Case studies by Raúl Mermans spanning campaigns, marketing intelligence, digital products, brand thinking, visual direction, and AI-assisted tools.',
+        ? 'Casos de estudio de sistemas propios de IA, inteligencia de negocio, productos digitales y trabajo creativo de Raúl Mermans.'
+        : 'Case studies of independent AI systems, business intelligence, digital products, and creative work by Raúl Mermans.',
       url: absoluteRouteUrl(localizedCaseStudies),
       isPartOf: { '@type': 'WebSite', '@id': `${siteConfig.url}/#website` },
       about: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
@@ -65,8 +66,8 @@ export default function CaseStudiesPage() {
   const isSpanish = locale === 'es'
   const heading = isSpanish ? 'Casos de estudio' : 'Case Studies'
   const intro = isSpanish
-    ? 'Productos, campañas y sistemas de marca. Cada caso sigue el trabajo desde el contexto hasta las decisiones, pruebas y límites que le dieron forma.'
-    : 'Products, campaigns, and brand systems. Each case follows the work from context to the decisions, evidence, and limits that shaped it.'
+    ? 'Sistemas propios de IA, productos de datos y trabajo creativo. Cada caso muestra lo construido, la evidencia disponible y sus límites.'
+    : 'Independent AI systems, data products, and creative work. Each case shows what was built, the available evidence, and its limits.'
   const studiesBySlug = useMemo(
     () => new Map(caseStudies.map((study) => [study.slug, study])),
     [caseStudies],
@@ -80,13 +81,12 @@ export default function CaseStudiesPage() {
   const activeLabel = activeDiscipline === 'all'
     ? isSpanish ? 'Todos los trabajos' : 'All work'
     : DISCIPLINE_LABELS[activeDiscipline][locale]
-  const activeDescription = activeDiscipline === 'all'
-    ? isSpanish
-      ? 'Todos los proyectos se agrupan por su disciplina principal.'
-      : 'Every project is grouped by its primary discipline.'
-    : isSpanish
-      ? `Proyectos cuya disciplina principal es ${activeLabel}.`
-      : `Projects whose primary discipline is ${activeLabel}.`
+  const groups = SYSTEM_COLLECTIONS.map((collection) => ({
+    ...collection,
+    studies: visibleStudies.filter((study) => (collection.slugs as readonly string[]).includes(study.slug))
+      .sort((a, b) => collection.slugs.indexOf(a.slug as never) - collection.slugs.indexOf(b.slug as never)),
+  })).filter((collection) => collection.studies.length > 0)
+
 
   return (
     <>
@@ -151,14 +151,15 @@ export default function CaseStudiesPage() {
               {visibleStudies.length} {isSpanish ? 'proyectos' : 'projects'}
             </p>
           </div>
-          <section className="case-study-gallery-group" aria-labelledby="case-study-group-discipline">
+          {groups.map((group) => (
+          <section key={group.id} className="case-study-gallery-group" aria-labelledby={`case-study-group-${group.id}`} data-project-tier={group.id}>
             <header className="case-study-gallery-group__header">
-              <p>{isSpanish ? 'Disciplina principal' : 'Primary discipline'}</p>
-              <h2 id="case-study-group-discipline">{activeLabel}</h2>
-              <span>{activeDescription}</span>
+              <p>{activeLabel}</p>
+              <h2 id={`case-study-group-${group.id}`}>{group[locale].title}</h2>
+              <span>{group[locale].body}</span>
             </header>
             <div className="case-study-project-grid">
-              {visibleStudies.map((study, index) => {
+              {group.studies.map((study, index) => {
               const variant =
                 tileVariants[(study.id + index) % tileVariants.length]
               const thumbnailStyle = {
@@ -199,6 +200,7 @@ export default function CaseStudiesPage() {
               })}
             </div>
           </section>
+          ))}
         </section>
       </main>
       <Footer locale={locale} />

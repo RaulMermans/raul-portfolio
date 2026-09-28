@@ -192,7 +192,7 @@ const englishLandings: ServiceLanding[] = [
     eyebrow: 'Creative AI Systems',
     description:
       'I design AI integrations that turn creative processes into structured systems: mapped workflows, prompt logic, review criteria, automation layers, and internal tools that help teams move faster without losing taste or brand coherence.',
-    metaTitle: 'AI Integrations for Creative Systems — Raúl Mermans',
+    metaTitle: 'AI Integrations for Creative Systems: Raúl Mermans',
     metaDescription:
       'AI integrations for creative teams, brand workflows, content systems, and campaign execution. Build internal tools and AI workflows with taste, control, and review.',
     keywords: [
@@ -348,141 +348,65 @@ const englishLandings: ServiceLanding[] = [
     locale: 'en',
     href: '/en/services/creative-automation',
     alternateHref: '/services/automatizacion-creativa',
-    title: 'Creative Automation & Internal Tools',
-    eyebrow: 'Creative Operations',
-    description:
-      'I build automation layers and internal tools for creative workflows: content production, research, asset handling, review loops, and team coordination. The goal is cleaner execution without removing human judgment.',
-    metaTitle: 'Creative Automation and Internal Tools — Raúl Mermans',
-    metaDescription:
-      'Automation layers and internal tools for creative workflows, content production, asset handling, research, and team coordination.',
+    title: 'Data & Business Intelligence',
+    eyebrow: 'Data & Decisions',
+
+    description: 'I build reporting workflows, operational dashboards, and decision-support tools that connect business questions to inspectable data. Automation reduces repeat work; people retain judgment.',
+
+    metaTitle: 'Data and Business Intelligence: Raúl Mermans',
+    metaDescription: 'Business intelligence, CRM and commercial analytics, operational dashboards, and reporting workflows with clear data boundaries.',
+
     keywords: [
-      'creative automation',
-      'internal tools for creative teams',
-      'content workflow automation',
-      'creative operations systems',
+      'business intelligence',
+      'CRM analytics',
+      'operational dashboards',
+      'decision support',
     ],
-    tags: ['Tool Connections', 'Production Flows', 'Review Checkpoints'],
-    answer:
-      'Creative automation is the use of structured workflows, connected tools, and AI-assisted systems to reduce repetitive production tasks while keeping creative judgment visible. It helps teams move from manual handoffs and scattered tools to repeatable processes that support better output.',
+    tags: ['Data contracts', 'Analytics', 'Decision support'],
+    answer: 'The work begins with a business decision and the available data. I define metrics, validate inputs, and build reports or interfaces that make signals easier to inspect. Automation supports repeatable collection and reporting, with human review where interpretation matters.',
+
     problems: [
-      {
-        title: 'Manual tool transfers',
-        body: 'Teams repeatedly copy briefs, references, status updates, and content between disconnected tools.',
-      },
-      {
-        title: 'Scattered production context',
-        body: 'Assets, feedback, approvals, and source material are difficult to find or reconcile.',
-      },
-      {
-        title: 'Coordination delays',
-        body: 'Creative work waits on avoidable handoffs, status checks, and repeated administrative steps.',
-      },
-      {
-        title: 'Repetition drains judgment',
-        body: 'Skilled people spend time formatting, routing, and organizing work instead of improving it.',
-      },
-      {
-        title: 'Rigid automation',
-        body: 'Generic automations fail because they ignore exceptions, review, and the way creative teams actually work.',
-      },
+      { title: 'Disconnected sources', body: 'Exports, spreadsheets, and operational records disagree or lose their context.' },
+      { title: 'Unclear metrics', body: 'Teams use different definitions for the same commercial question.' },
+      { title: 'Slow reporting', body: 'Manual preparation delays decisions and makes analysis difficult to repeat.' },
+      { title: 'Weak provenance', body: 'Charts hide data quality, source limits, and assumptions.' },
+      { title: 'Signals without action', body: 'A report needs to clarify what to investigate or decide next.' },
     ],
     deliverables: [
-      {
-        title: 'Automation maps',
-        body: 'A practical model of triggers, actions, decisions, exceptions, owners, and review points.',
-      },
-      {
-        title: 'Trigger and handoff logic',
-        body: 'Reliable movement of information and assets between people, tools, and production stages.',
-      },
-      {
-        title: 'Internal dashboards',
-        body: 'Focused interfaces for monitoring work, reviewing outputs, and acting on the next decision.',
-      },
-      {
-        title: 'Asset and content systems',
-        body: 'Structured flows for briefs, files, metadata, versions, approvals, and final delivery.',
-      },
-      {
-        title: 'Research automations',
-        body: 'Collection and synthesis workflows that preserve sources and prepare material for human interpretation.',
-      },
-      {
-        title: 'Maintenance documentation',
-        body: 'Clear operating notes, ownership, failure cases, and guidance for future changes.',
-      },
+      { title: 'Data and metric contracts', body: 'Sources, definitions, validation rules, and known limits.' },
+      { title: 'Reporting pipelines', body: 'Repeatable preparation and computation from raw data to reports.' },
+      { title: 'Operational dashboards', body: 'Focused views for reviewing signals and deciding what needs attention.' },
+      { title: 'CRM and commercial analysis', body: 'Segmentation, campaign analysis, and customer insight grounded in available records.' },
+      { title: 'Decision-support prototypes', body: 'Scenario and forecasting tools with assumptions visible.' },
+      { title: 'Documentation and handover', body: 'Traceable logic and a practical path for maintaining the workflow.' },
     ],
     useCases: [
-      'Campaign asset coordination',
-      'Content briefing workflows',
-      'Research collection and synthesis',
-      'Creative approval pipelines',
-      'Internal production dashboards',
-      'AI-assisted content operations',
+      'CRM and customer segmentation',
+      'Campaign performance reporting',
+      'Operational dashboards',
+      'Metric and data-quality audits',
+      'Inventory forecasting prototypes',
+      'Commercial decision support',
     ],
     process: [
-      {
-        step: '01',
-        title: 'Identify the repeatable loop',
-        body: 'Find the recurring production cycle, its bottlenecks, and the information it needs to move.',
-      },
-      {
-        step: '02',
-        title: 'Separate automation from judgment',
-        body: 'Define which steps are deterministic and which require context, taste, or approval.',
-      },
-      {
-        step: '03',
-        title: 'Connect tools and handoffs',
-        body: 'Design the triggers, states, exceptions, and interfaces that keep the process understandable.',
-      },
-      {
-        step: '04',
-        title: 'Test and document',
-        body: 'Run representative work through the system, refine edge cases, and prepare the operating guide.',
-      },
+      { step: '01', title: 'Define the decision', body: 'Identify the business question, users, sources, and useful output.' },
+      { step: '02', title: 'Agree metrics and boundaries', body: 'Define calculations, data quality, assumptions, and review ownership.' },
+      { step: '03', title: 'Build the reporting workflow', body: 'Connect preparation, computation, and the interface people will use.' },
+      { step: '04', title: 'Validate and document', body: 'Test representative records, inspect edge cases, and document the logic.' },
     ],
     faqs: [
-      {
-        question: 'What is creative automation?',
-        answer:
-          'Creative automation structures repetitive production and coordination tasks across tools while keeping the decisions that require context, taste, or accountability with people.',
-      },
-      {
-        question: 'What creative tasks should not be automated?',
-        answer:
-          'Direction, sensitive editorial choices, final quality judgment, and decisions with reputational impact should remain clearly owned by people. Automation should prepare and route work, not hide responsibility.',
-      },
-      {
-        question: 'Can you connect existing tools?',
-        answer:
-          'Yes, when those tools expose suitable APIs, webhooks, exports, or other reliable integration points. The design starts from the workflow rather than forcing a specific platform.',
-      },
-      {
-        question: 'Can this work for small teams?',
-        answer:
-          'Yes. Small teams often benefit from focused systems that remove repeated coordination without introducing a large operational platform.',
-      },
-      {
-        question: 'What platforms do you use?',
-        answer:
-          'The choice depends on the required control, volume, and maintenance model. A project may use automation platforms, custom scripts, model APIs, databases, or a lightweight web interface.',
-      },
-      {
-        question: 'How do you keep quality control?',
-        answer:
-          'The workflow includes explicit review states, source visibility, validation rules, and clear failure paths so automation cannot silently become approval.',
-      },
-      {
-        question: 'What does a first project include?',
-        answer:
-          'A focused first project normally includes process mapping, system logic, one working production loop, representative testing, and documentation for the people who will use it.',
-      },
+      { question: 'What data can we start with?', answer: 'Exports, spreadsheets, or approved database sources. The first step is to inspect what the records can support.' },
+      { question: 'Can AI calculate the metrics?', answer: 'Core metrics should be computed and validated deterministically. AI can help explain accepted results with the limitations visible.' },
+      { question: 'Can you connect existing tools?', answer: 'Yes, where suitable APIs, exports, or webhooks are available. Access and integration scope are agreed before implementation.' },
+      { question: 'Can this work for small teams?', answer: 'A focused report or internal dashboard can be enough. The scope follows the decision rather than the size of a platform.' },
+      { question: 'What platforms do you use?', answer: 'The choice depends on data, volume, maintenance, and the existing environment. Python, SQL, a database, or a web interface may form part of the workflow.' },
+      { question: 'How do you keep quality control?', answer: 'Validation rules, source visibility, agreed metric definitions, and review points make errors and assumptions inspectable.' },
+      { question: 'What does a first project include?', answer: 'A defined decision, a source and metric contract, one working reporting flow, representative validation, and documentation.' },
     ],
     cta: {
-      title: 'Have a creative system worth extending?',
-      body: 'Send a short note with the process, tool, workflow, or brand system you want to improve with AI. I’ll review the context and suggest the clearest next step.',
-      emailLabel: 'Send Creative Systems Brief',
+      title: 'Have data that needs a clearer decision?',
+      body: 'Send the business question, available sources, and current reporting process. We can define a focused first system.',
+      emailLabel: 'Discuss a data system',
       linkedinLabel: 'Connect on LinkedIn',
     },
   },
@@ -495,7 +419,7 @@ const englishLandings: ServiceLanding[] = [
     eyebrow: 'Brand Systems',
     description:
       'I translate brand strategy into usable systems: tone rules, creative criteria, prompt structures, review logic, and workflow guidelines that help AI-assisted outputs stay coherent.',
-    metaTitle: 'Brand Systems and Creative Direction for AI-Assisted Work — Raúl Mermans',
+    metaTitle: 'Brand Systems and Creative Direction: Raúl Mermans',
     metaDescription:
       'Brand systems, tone rules, prompt structures, and review criteria for AI-assisted content, campaigns, and visual workflows.',
     keywords: [
@@ -634,11 +558,11 @@ const englishLandings: ServiceLanding[] = [
     locale: 'en',
     href: '/en/services/product-prototypes',
     alternateHref: '/services/prototipos-producto-ia',
-    title: 'AI Product Prototypes & Internal Tools',
+    title: 'AI Systems & Digital Products',
     eyebrow: 'Product Prototyping',
     description:
-      'I design and build lightweight product surfaces, dashboards, and internal tools that make AI workflows usable. The goal is to test system logic quickly before investing in full-scale development.',
-    metaTitle: 'AI Product Prototypes and Internal Tools — Raúl Mermans',
+      'I design and build AI agents, intelligent workflows, and digital products with clear tool boundaries and review points. A focused prototype tests the system before a larger deployment.',
+    metaTitle: 'AI Systems and Digital Products: Raúl Mermans',
     metaDescription:
       'Fast product prototypes, internal tools, dashboards, and AI-powered workflow surfaces for testing service ideas and system logic.',
     keywords: [
@@ -917,7 +841,7 @@ const spanishLandings: ServiceLanding[] = [
     eyebrow: 'Sistemas Creativos con IA',
     description:
       'Diseño integraciones de IA que convierten procesos creativos en sistemas estructurados: flujos mapeados, lógica de prompts, criterios de revisión, capas de automatización y herramientas internas para avanzar más rápido sin perder criterio ni coherencia de marca.',
-    metaTitle: 'Integraciones IA para Sistemas Creativos — Raúl Mermans',
+    metaTitle: 'Integraciones IA para Sistemas Creativos: Raúl Mermans',
     metaDescription:
       'Integraciones de IA para equipos creativos, flujos de marca, sistemas de contenido y ejecución de campañas con criterio, control y revisión.',
     keywords: [
@@ -1073,141 +997,65 @@ const spanishLandings: ServiceLanding[] = [
     locale: 'es',
     href: '/services/automatizacion-creativa',
     alternateHref: '/en/services/creative-automation',
-    title: 'Automatización Creativa y Herramientas Internas',
-    eyebrow: 'Operaciones Creativas',
-    description:
-      'Construyo capas de automatización y herramientas internas para producción de contenido, investigación, gestión de assets, ciclos de revisión y coordinación de equipos. El objetivo es ejecutar mejor sin ocultar el criterio humano.',
-    metaTitle: 'Automatización Creativa y Herramientas Internas — Raúl Mermans',
-    metaDescription:
-      'Capas de automatización y herramientas internas para flujos creativos, producción de contenido, assets, investigación y coordinación de equipos.',
+    title: 'Datos e inteligencia de negocio',
+    eyebrow: 'Datos y decisiones',
+
+    description: 'Construyo flujos de reporting, paneles operativos y herramientas de apoyo a decisiones que conectan preguntas de negocio con datos revisables. La automatización reduce trabajo repetitivo; las personas mantienen el criterio.',
+
+    metaTitle: 'Datos e inteligencia de negocio — Raúl Mermans',
+    metaDescription: 'Inteligencia de negocio, analítica CRM y comercial, paneles operativos y reporting con límites de datos explícitos.',
+
     keywords: [
-      'automatización creativa',
-      'herramientas internas para equipos creativos',
-      'automatización de contenido',
-      'sistemas de operaciones creativas',
+      'inteligencia de negocio',
+      'analítica CRM',
+      'paneles operativos',
+      'apoyo a decisiones',
     ],
-    tags: ['Conexión de Herramientas', 'Flujos de Producción', 'Revisión'],
-    answer:
-      'La automatización creativa utiliza flujos estructurados, herramientas conectadas y sistemas asistidos por IA para reducir tareas repetitivas de producción sin esconder el criterio creativo. Ayuda a pasar de traspasos manuales y herramientas dispersas a procesos repetibles que mejoran la ejecución.',
+    tags: ['Contratos de datos', 'Analítica', 'Apoyo a decisiones'],
+    answer: 'El trabajo empieza por una decisión de negocio y los datos disponibles. Defino métricas, valido entradas y construyo informes o interfaces que permiten revisar señales. La automatización facilita recogida y reporting repetibles, con revisión humana cuando importa la interpretación.',
+
     problems: [
-      {
-        title: 'Traspasos manuales',
-        body: 'El equipo copia briefs, referencias, estados y contenido entre herramientas desconectadas.',
-      },
-      {
-        title: 'Contexto disperso',
-        body: 'Assets, feedback, aprobaciones y fuentes son difíciles de localizar y reconciliar.',
-      },
-      {
-        title: 'Retrasos de coordinación',
-        body: 'El trabajo creativo espera por traspasos, comprobaciones y pasos administrativos evitables.',
-      },
-      {
-        title: 'Repetición sin valor',
-        body: 'Perfiles especializados dedican tiempo a formatear, ordenar y enrutar en vez de mejorar el trabajo.',
-      },
-      {
-        title: 'Automatización rígida',
-        body: 'Los flujos genéricos fallan cuando ignoran excepciones, revisión y la forma real de trabajar del equipo.',
-      },
+      { title: 'Fuentes desconectadas', body: 'Exports, hojas de cálculo y registros operativos discrepan o pierden contexto.' },
+      { title: 'Métricas poco claras', body: 'Los equipos usan definiciones distintas para una misma pregunta comercial.' },
+      { title: 'Reporting lento', body: 'La preparación manual retrasa decisiones y dificulta repetir análisis.' },
+      { title: 'Procedencia débil', body: 'Los gráficos ocultan calidad de datos, límites de fuentes y supuestos.' },
+      { title: 'Señales sin acción', body: 'Un informe debe aclarar qué investigar o decidir a continuación.' },
     ],
     deliverables: [
-      {
-        title: 'Mapas de automatización',
-        body: 'Un modelo práctico de disparadores, acciones, decisiones, excepciones, responsables y revisión.',
-      },
-      {
-        title: 'Lógica de traspasos',
-        body: 'Movimiento fiable de información y assets entre personas, herramientas y fases de producción.',
-      },
-      {
-        title: 'Paneles internos',
-        body: 'Interfaces enfocadas para seguir trabajo, revisar resultados y actuar sobre la siguiente decisión.',
-      },
-      {
-        title: 'Sistemas de assets y contenido',
-        body: 'Flujos estructurados para briefs, archivos, metadatos, versiones, aprobaciones y entrega.',
-      },
-      {
-        title: 'Automatización de investigación',
-        body: 'Recogida y síntesis que conserva fuentes y prepara material para interpretación humana.',
-      },
-      {
-        title: 'Documentación de mantenimiento',
-        body: 'Notas de operación, responsables, casos de fallo y orientación para cambios futuros.',
-      },
+      { title: 'Contratos de datos y métricas', body: 'Fuentes, definiciones, validaciones y límites conocidos.' },
+      { title: 'Pipelines de reporting', body: 'Preparación y cálculo repetibles desde registros hasta informes.' },
+      { title: 'Paneles operativos', body: 'Vistas enfocadas para revisar señales y decidir qué merece atención.' },
+      { title: 'Analítica CRM y comercial', body: 'Segmentación, campañas e insight de cliente fundamentados en registros disponibles.' },
+      { title: 'Prototipos de apoyo a decisiones', body: 'Herramientas de escenarios y previsión con supuestos visibles.' },
+      { title: 'Documentación y entrega', body: 'Lógica trazable y una ruta práctica para mantener el flujo.' },
     ],
     useCases: [
-      'Coordinación de assets de campaña',
-      'Flujos de briefing de contenido',
-      'Recogida y síntesis de investigación',
-      'Circuitos de aprobación creativa',
-      'Paneles internos de producción',
-      'Operaciones de contenido asistidas por IA',
+      'CRM y segmentación de clientes',
+      'Reporting de campañas',
+      'Paneles operativos',
+      'Auditorías de métricas y calidad de datos',
+      'Prototipos de previsión de inventario',
+      'Apoyo a decisiones comerciales',
     ],
     process: [
-      {
-        step: '01',
-        title: 'Identificar el ciclo repetible',
-        body: 'Encontrar el bucle de producción, sus bloqueos y la información que debe moverse.',
-      },
-      {
-        step: '02',
-        title: 'Separar automatización y criterio',
-        body: 'Definir qué pasos son deterministas y cuáles requieren contexto, gusto o aprobación.',
-      },
-      {
-        step: '03',
-        title: 'Conectar herramientas',
-        body: 'Diseñar disparadores, estados, excepciones e interfaces que mantengan el proceso comprensible.',
-      },
-      {
-        step: '04',
-        title: 'Probar y documentar',
-        body: 'Ejecutar trabajo representativo, ajustar casos límite y preparar la guía de uso.',
-      },
+      { step: '01', title: 'Definir la decisión', body: 'Identificar pregunta de negocio, usuarios, fuentes y resultado útil.' },
+      { step: '02', title: 'Acordar métricas y límites', body: 'Definir cálculos, calidad de datos, supuestos y responsables de revisión.' },
+      { step: '03', title: 'Construir el flujo de reporting', body: 'Conectar preparación, cálculo e interfaz de uso.' },
+      { step: '04', title: 'Validar y documentar', body: 'Probar registros representativos, revisar casos límite y documentar la lógica.' },
     ],
     faqs: [
-      {
-        question: '¿Qué es la automatización creativa?',
-        answer:
-          'Estructura tareas repetitivas de producción y coordinación entre herramientas, manteniendo en personas las decisiones que requieren contexto, gusto o responsabilidad.',
-      },
-      {
-        question: '¿Qué tareas creativas no conviene automatizar?',
-        answer:
-          'La dirección, decisiones editoriales sensibles, juicio final de calidad y elecciones con impacto reputacional deben seguir teniendo responsables humanos claros.',
-      },
-      {
-        question: '¿Puedes conectar herramientas existentes?',
-        answer:
-          'Sí, cuando ofrecen APIs, webhooks, exportaciones u otros puntos de integración fiables. El diseño parte del flujo, no de imponer una plataforma.',
-      },
-      {
-        question: '¿Funciona para equipos pequeños?',
-        answer:
-          'Sí. Un equipo pequeño puede beneficiarse especialmente de sistemas enfocados que eliminan coordinación repetida sin añadir una gran plataforma operativa.',
-      },
-      {
-        question: '¿Qué plataformas utilizas?',
-        answer:
-          'Depende del control, volumen y mantenimiento necesarios. Se pueden combinar plataformas de automatización, scripts, APIs, bases de datos e interfaces ligeras.',
-      },
-      {
-        question: '¿Cómo se mantiene el control de calidad?',
-        answer:
-          'El flujo incluye estados de revisión, visibilidad de fuentes, reglas de validación y rutas de fallo para que automatizar nunca equivalga a aprobar.',
-      },
-      {
-        question: '¿Qué incluye un primer proyecto?',
-        answer:
-          'Normalmente incluye mapeo, lógica de sistema, un ciclo funcional, pruebas representativas y documentación para las personas que lo utilizarán.',
-      },
+      { question: '¿Con qué datos podemos empezar?', answer: 'Exports, hojas de cálculo o fuentes de base de datos aprobadas. Primero revisamos qué pueden sostener los registros.' },
+      { question: '¿Puede la IA calcular las métricas?', answer: 'Las métricas centrales deben calcularse y validarse de forma determinista. La IA puede explicar resultados aceptados con sus límites visibles.' },
+      { question: '¿Puedes conectar herramientas existentes?', answer: 'Sí, cuando ofrecen APIs, exports o webhooks adecuados. El acceso y el alcance se acuerdan antes de implementar.' },
+      { question: '¿Sirve para equipos pequeños?', answer: 'Un informe o panel interno enfocado puede ser suficiente. El alcance sigue la decisión, no el tamaño de una plataforma.' },
+      { question: '¿Qué plataformas usas?', answer: 'Depende de datos, volumen, mantenimiento y entorno existente. Python, SQL, una base de datos o una interfaz web pueden formar parte del flujo.' },
+      { question: '¿Cómo mantienes el control de calidad?', answer: 'Validaciones, fuentes visibles, métricas acordadas y puntos de revisión hacen revisables los errores y supuestos.' },
+      { question: '¿Qué incluye un primer proyecto?', answer: 'Una decisión definida, un contrato de fuentes y métricas, un flujo de reporting funcional, validación representativa y documentación.' },
     ],
     cta: {
-      title: '¿Tienes un sistema creativo que merece desarrollarse?',
-      body: 'Envía una nota breve con el proceso, herramienta, flujo o sistema de marca que quieres mejorar con IA. Revisaré el contexto y te propondré el siguiente paso más claro.',
-      emailLabel: 'Enviar brief creativo',
+      title: '¿Necesitas decidir mejor con tus datos?',
+      body: 'Envía la pregunta de negocio, las fuentes disponibles y el proceso actual de reporting. Podemos definir un primer sistema concreto.',
+      emailLabel: 'Hablar de un sistema de datos',
       linkedinLabel: 'Conectar en LinkedIn',
     },
   },
@@ -1220,7 +1068,7 @@ const spanishLandings: ServiceLanding[] = [
     eyebrow: 'Sistemas de Marca',
     description:
       'Traduzco estrategia de marca en sistemas utilizables: reglas de tono, criterios creativos, estructuras de prompts, lógica de revisión y guías de flujo para mantener coherencia en resultados asistidos por IA.',
-    metaTitle: 'Sistemas de Marca y Dirección Creativa para Trabajo con IA — Raúl Mermans',
+    metaTitle: 'Sistemas de Marca y Dirección Creativa: Raúl Mermans',
     metaDescription:
       'Sistemas de marca, reglas de tono, prompts y criterios de revisión para contenido, campañas y flujos visuales asistidos por IA.',
     keywords: [
@@ -1359,11 +1207,11 @@ const spanishLandings: ServiceLanding[] = [
     locale: 'es',
     href: '/services/prototipos-producto-ia',
     alternateHref: '/en/services/product-prototypes',
-    title: 'Prototipos de Producto IA y Herramientas Internas',
+    title: 'Sistemas de IA y productos digitales',
     eyebrow: 'Prototipado de Producto',
     description:
-      'Diseño y construyo superficies de producto, paneles y herramientas internas ligeras que hacen utilizables los flujos con IA. El objetivo es probar la lógica del sistema antes de invertir en desarrollo a escala.',
-    metaTitle: 'Prototipos de Producto IA y Herramientas Internas — Raúl Mermans',
+      'Diseño y construyo agentes de IA, flujos inteligentes y productos digitales con límites claros para las herramientas y puntos de revisión. Un prototipo acotado permite probar el sistema antes de un despliegue mayor.',
+    metaTitle: 'Sistemas de IA y productos digitales: Raúl Mermans',
     metaDescription:
       'Prototipos rápidos, herramientas internas, paneles y superficies de flujo con IA para probar ideas de servicio y lógica de sistema.',
     keywords: [

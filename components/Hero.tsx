@@ -25,7 +25,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
   const name = 'RAÚL'
   const surname = 'MERMANS'
   const handleScrollToWork = () => {
-    const workSection = document.getElementById('building-now')
+    const workSection = document.getElementById('selected-systems')
     if (workSection) {
       workSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -58,7 +58,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
         <div className={styles.ctaGroup}>
           <MagneticButton className={styles.ctaWrapper}>
             <Link
-              href={localizePath('/#building-now', locale)}
+              href={localizePath('/#selected-systems', locale)}
               className={`${styles.cta} ${styles.primary}`}
               data-mobile-audit="hero-cta"
             >

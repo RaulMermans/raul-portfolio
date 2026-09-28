@@ -26,6 +26,14 @@ const routes = [
   ['bi-case-study', '/en/case-studies/opstwin/'],
   ['apps', '/en/apps/'],
   ['photography', '/en/photography/'],
+  ['home-es', '/'],
+  ['about-es', '/about/'],
+  ['case-studies-es', '/case-studies/'],
+  ['apps-es', '/apps/'],
+  ['data-service', '/en/services/creative-automation/'],
+  ['data-service-es', '/services/automatizacion-creativa/'],
+  ['ai-product-service', '/en/services/product-prototypes/'],
+  ['ai-product-service-es', '/services/prototipos-producto-ia/'],
 ] as const
 
 test.describe('Portfolio visual regression', () => {
@@ -40,6 +48,7 @@ test.describe('Portfolio visual regression', () => {
         fullPage: true,
         caret: 'hide',
         maxDiffPixelRatio: 0.01,
+        timeout: 15000,
       })
     })
   }

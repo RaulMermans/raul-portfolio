@@ -1,4 +1,6 @@
 import { expect, test, type Page } from '@playwright/test'
+import { getCaseStudies } from '../../data/case-studies'
+import { SELECTED_SYSTEM_SLUGS } from '../../data/independent-systems'
 
 const FIXED_DATE_ISO = '2026-03-16T10:00:00.000Z'
 
@@ -125,14 +127,14 @@ test.describe('Mobile Regression', () => {
 
     const buildingNow = page.locator('#building-now')
     await buildingNow.scrollIntoViewIfNeeded()
-    await expect(buildingNow.getByRole('heading', { name: 'An independent practice with room to grow.' })).toBeVisible()
-    await expect(buildingNow.getByText('Selected founder collaborations')).toBeVisible()
+    await expect(buildingNow.getByRole('heading', { name: 'AI, business, and a wider creative practice.' })).toBeVisible()
+    await expect(buildingNow.getByText('AI Systems & Products')).toBeVisible()
 
     await preparePage(page, '/')
     const spanishBuildingNow = page.locator('#building-now')
     await spanishBuildingNow.scrollIntoViewIfNeeded()
-    await expect(spanishBuildingNow.getByRole('heading', { name: 'Una práctica independiente con espacio para crecer.' })).toBeVisible()
-    await expect(spanishBuildingNow.getByText('Colaboraciones seleccionadas con fundadores')).toBeVisible()
+    await expect(spanishBuildingNow.getByRole('heading', { name: 'IA, negocio y una práctica creativa más amplia.' })).toBeVisible()
+    await expect(spanishBuildingNow.getByText('Sistemas de IA y productos')).toBeVisible()
   })
 
   test('mobile menu opens as a modal and restores focus when closed', async ({ page }) => {
@@ -238,7 +240,8 @@ test.describe('Mobile Regression', () => {
     expect(initialLayout.cardTop).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
-    expect(initialLayout.frameRatio).toBeCloseTo(1672 / 941, 2)
+    const firstStudy = getCaseStudies('en').find((study) => study.slug === SELECTED_SYSTEM_SLUGS[0])!
+    expect(initialLayout.frameRatio).toBeCloseTo(firstStudy.imageWidth / firstStudy.imageHeight, 2)
     expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
   })
 

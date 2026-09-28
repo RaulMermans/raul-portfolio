@@ -6556,6 +6556,7 @@ a[href^='/']:hover {
 
 .case-studies-index--gallery .ui-page-intro {
   padding-top: 0;
+  padding-bottom: var(--space-3);
 }
 
 /* The collection is the immediate evidence for this index, not a second viewport. */

@@ -31,6 +31,10 @@ assert_absent() {
 
 assert_file out/index.html
 assert_file out/en/index.html
+assert_file out/case-studies/iris/index.html
+assert_file out/en/case-studies/iris/index.html
+assert_file out/case-studies/local-ai-coding-agent/index.html
+assert_file out/en/case-studies/local-ai-coding-agent/index.html
 assert_file out/case-studies/index.html
 assert_file out/en/case-studies/index.html
 assert_file out/case-studies/blogagent/index.html
@@ -51,29 +55,29 @@ assert_file out/services/prototipos-producto-ia/index.html
 assert_file out/services/desarrollo-web/index.html
 
 assert_contains out/en/index.html "Building ideas into brands, products, and ventures."
-assert_contains out/en/index.html "An independent practice with room to grow."
+assert_contains out/en/index.html "AI, business, and a wider creative practice."
 assert_contains out/en/index.html "For collaborations, conversations, and ambitious projects."
 assert_contains out/en/index.html "Direct contact options"
-assert_contains out/en/index.html "Open to selected projects and collaborations"
+assert_contains out/en/index.html "Open to ambitious roles, projects, and collaborations"
 assert_contains out/en/index.html "raulmermans@gmail.com"
 
 assert_contains out/index.html "Convirtiendo ideas en marcas, productos y nuevos proyectos."
 assert_contains out/index.html "Lo que estoy construyendo"
 assert_contains out/index.html "Para colaboraciones, conversaciones y proyectos ambiciosos."
 assert_contains out/index.html "Opciones de contacto directo"
-assert_contains out/index.html "Abierto a proyectos y colaboraciones seleccionadas"
+assert_contains out/index.html "Abierto a nuevos retos profesionales, proyectos y colaboraciones"
 assert_contains out/index.html "raulmermans@gmail.com"
 
 assert_contains out/en/services/ai-integrations/index.html "AI Integrations for Creative Systems"
-assert_contains out/en/services/creative-automation/index.html "Creative Automation"
+assert_contains out/en/services/creative-automation/index.html "Data &amp; Business Intelligence"
 assert_contains out/en/services/brand-systems/index.html "Brand Systems and Creative Direction"
-assert_contains out/en/services/product-prototypes/index.html "AI Product Prototypes"
+assert_contains out/en/services/product-prototypes/index.html "AI Systems &amp; Digital Products"
 assert_contains out/en/services/web-development/index.html "href=\"/services/desarrollo-web/\""
 
 assert_contains out/services/integraciones-ia/index.html "Integraciones IA para Sistemas Creativos"
-assert_contains out/services/automatizacion-creativa/index.html "Automatización Creativa"
+assert_contains out/services/automatizacion-creativa/index.html "Datos e inteligencia de negocio"
 assert_contains out/services/sistemas-de-marca/index.html "Sistemas de Marca y Dirección Creativa"
-assert_contains out/services/prototipos-producto-ia/index.html "Prototipos de Producto IA"
+assert_contains out/services/prototipos-producto-ia/index.html "Sistemas de IA y productos digitales"
 assert_contains out/services/desarrollo-web/index.html "href=\"/en/services/web-development/\""
 
 assert_contains out/en/case-studies/index.html "View case study: AI Sports Campaign"
@@ -127,20 +131,22 @@ function assertCaseStudyLinkOrder(file, localePrefix, slugs) {
 }
 
 const caseStudySlugs = [
-  'opstwin',
+  'local-ai-coding-agent',
+  'website-auditor',
+  'iris',
+  'demandos',
+  'data-brief-ai',
   'searchsignal',
   'campaign-pulse',
-  'demandos',
-  'campaign-sandbox',
-  'data-brief-ai',
-  'website-auditor',
-  'benchmark-dashboard',
-  'ai-sports',
-  'remoria',
+  'opstwin',
+  'relay',
   'blogagent',
+  'remoria',
+  'ai-sports',
+  'campaign-sandbox',
+  'benchmark-dashboard',
   'territoryops-spain',
   'raul-portfolio',
-  'relay',
 ]
 
 assertCaseStudyLinkOrder(

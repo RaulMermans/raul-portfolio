@@ -1,20 +1,22 @@
 import { expect, test } from '@playwright/test'
 
 const caseStudySlugs = [
-  'opstwin',
+  'local-ai-coding-agent',
+  'website-auditor',
+  'iris',
+  'demandos',
+  'data-brief-ai',
   'searchsignal',
   'campaign-pulse',
-  'demandos',
-  'campaign-sandbox',
-  'data-brief-ai',
-  'website-auditor',
-  'benchmark-dashboard',
-  'ai-sports',
-  'remoria',
+  'opstwin',
+  'relay',
   'blogagent',
+  'remoria',
+  'ai-sports',
+  'campaign-sandbox',
+  'benchmark-dashboard',
   'territoryops-spain',
   'raul-portfolio',
-  'relay',
 ] as const
 
 const caseStudyMiniNavSlugs = caseStudySlugs

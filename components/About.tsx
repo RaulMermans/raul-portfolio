@@ -46,7 +46,7 @@ export default function About({ locale = 'en' }: AboutProps) {
           <div ref={imageRef} className="about__image" id="about-image">
             <Image
               src="/images/about/profile.webp"
-              alt="Portrait of Raúl Mermans"
+              alt={locale === 'es' ? 'Retrato de Raúl Mermans' : 'Portrait of Raúl Mermans'}
               fill
               loading="lazy"
               quality={80}
@@ -62,18 +62,7 @@ export default function About({ locale = 'en' }: AboutProps) {
             {copy.title}
           </h2>
           <p className="about__text reveal reveal-delay-2">
-            {locale === 'es' ? (
-              <>
-                Uso el <span className="highlight">código</span> para estructurar el trabajo. Entre estrategia,
-                datos, marca y producto, convierto problemas complejos en resultados que la gente puede entender y
-                llevar a la acción.
-              </>
-            ) : (
-              <>
-                I use <span className="highlight">code</span> to structure the work. Across strategy,
-                data, brand, and product, I turn complex problems into results people can understand and act on.
-              </>
-            )}
+            {copy.body}
           </p>
           
           <Link

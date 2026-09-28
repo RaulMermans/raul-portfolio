@@ -25,20 +25,20 @@ type TimelineItem = {
 
 const pageCopy = {
   en: {
-    heroTag: 'I build the systems behind creative work.',
+    heroTag: 'I build across AI, business, product, and creative work.',
     heroSupport:
-      'I moved through marketing, brand, service, and visual practice. Now I build AI-assisted tools that keep context and judgment in the loop.',
+      'Independent systems are the centre of my practice. Marketing, brand, CRM, and visual work give me the context to build tools that answer real problems.',
     current: ['Base', 'Madrid', 'Origin', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
-        title: 'Commercial systems',
-        body: 'Lifecycle, campaigns, segmentation, and adoption work that made systems answer to real operational constraints.',
+        title: 'Systems that ship',
+        body: 'Local AI Coding Agent: a 24-task evaluation corpus. Website Audit Agent: evidence before synthesis. DemandOS: deterministic forecasting on synthetic data. IRIS: public orchestration architecture with synthetic examples.',
       },
       {
         number: '02',
-        title: 'Systems that ship',
-        body: 'Portfolio projects built as working prototypes: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
+        title: 'Commercial systems',
+        body: 'Lifecycle, campaigns, segmentation, and adoption work that made systems answer to real operational constraints.',
       },
       {
         number: '03',
@@ -64,7 +64,9 @@ const pageCopy = {
         ['Working context', 'CRM, lifecycle, partner programmes, AI adoption'],
         ['Independent work', 'Campaign tools, data products, brand workflows, internal systems'],
         ['Visual practice', 'Photography, album covers, image systems, art direction'],
-        ['Tools', 'Next.js, TypeScript, Python, n8n, Codex, Claude Code, OpenAI workflows'],
+        ['AI systems', 'Local models, Ollama, MCP, tool calling, evaluation'],
+        ['Engineering', 'TypeScript, Python, React, Next.js, SQL, PostgreSQL'],
+        ['Data & automation', 'Forecasting, reporting pipelines, n8n'],
       ],
     },
     geography: {
@@ -216,24 +218,24 @@ const pageCopy = {
       },
     ],
     ctaTitle: <>Let&apos;s make <span className="about-landing__serif">something</span> work.</>,
-    contactMeta: ['Available Q3 2026', 'Madrid · Remote · EU'],
-    githubCta: 'View GitHub',
+    contactMeta: ['Open to roles, projects, and collaborations', 'Madrid · Remote · EU'],
+    githubCta: 'View technical work on GitHub',
   },
   es: {
-    heroTag: 'Construyo los sistemas detrás del trabajo creativo.',
+    heroTag: 'Construyo entre IA, negocio, producto y trabajo creativo.',
     heroSupport:
-      'Pasé de marketing y marca a CRM, retail de lujo y práctica visual. Ahora construyo herramientas con IA que mantienen el contexto y el criterio dentro del proceso.',
+      'Los sistemas propios son el centro de mi práctica. Marketing, marca, CRM y trabajo visual me dan el contexto para construir herramientas que responden a problemas reales.',
     current: ['Base', 'Madrid', 'Origen', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
-        title: 'Sistemas comerciales',
-        body: 'Trabajo de lifecycle, campañas, segmentación y adopción que hacía responder a los sistemas ante restricciones operativas reales.',
+        title: 'Sistemas que se publican',
+        body: 'Local AI Coding Agent: corpus de 24 tareas. Website Audit Agent: evidencia antes de síntesis. DemandOS: previsión determinista con datos sintéticos. IRIS: arquitectura pública de orquestación con ejemplos sintéticos.',
       },
       {
         number: '02',
-        title: 'Sistemas que se publican',
-        body: 'Proyectos construidos como prototipos funcionales: Campaign Pulse, DemandOS, Campaign Sandbox, DataBrief AI, Website Audit Agent.',
+        title: 'Sistemas comerciales',
+        body: 'Trabajo de lifecycle, campañas, segmentación y adopción que hacía responder a los sistemas ante restricciones operativas reales.',
       },
       {
         number: '03',
@@ -259,7 +261,9 @@ const pageCopy = {
         ['Contexto de trabajo', 'CRM, lifecycle, programas de partners, adopción IA'],
         ['Trabajo independiente', 'Herramientas de campaña, productos de datos, workflows de marca, sistemas internos'],
         ['Práctica visual', 'Fotografía, portadas, sistemas de imagen, dirección de arte'],
-        ['Herramientas', 'Next.js, TypeScript, Python, n8n, Codex, Claude Code, workflows OpenAI'],
+        ['Sistemas de IA', 'Modelos locales, Ollama, MCP, herramientas, evaluación'],
+        ['Ingeniería', 'TypeScript, Python, React, Next.js, SQL, PostgreSQL'],
+        ['Datos y automatización', 'Previsión, pipelines de reporting, n8n'],
       ],
     },
     geography: {
@@ -411,8 +415,8 @@ const pageCopy = {
       },
     ],
     ctaTitle: <>Hagamos que <span className="about-landing__serif">algo</span> funcione.</>,
-    contactMeta: ['Disponible T3 2026', 'Madrid · Remoto · UE'],
-    githubCta: 'Ver GitHub',
+    contactMeta: ['Abierto a retos profesionales, proyectos y colaboraciones', 'Madrid · Remoto · UE'],
+    githubCta: 'Ver trabajo técnico en GitHub',
   },
 }
 

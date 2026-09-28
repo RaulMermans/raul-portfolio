@@ -89,6 +89,8 @@ export type ProjectExperience = {
 
 /** The only registry for a project's discipline, commercial relation, and scope. */
 export const PROJECT_EXPERIENCE: readonly ProjectExperience[] = [
+  { slug: 'local-ai-coding-agent', title: 'Local AI Coding Agent', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['Local inference', 'Evaluation', 'Tool calling'], relatedServices: ['ai-integrations', 'product-prototypes'], accent: 'var(--accent)', year: '2026', status: 'Private prototype' },
+  { slug: 'iris', title: 'IRIS', primaryDiscipline: 'ai-automation', secondaryCapabilities: ['Agent orchestration', 'Memory', 'Recovery'], relatedServices: ['ai-integrations', 'product-prototypes'], accent: 'var(--accent)', year: '2026', status: 'Private system / public architecture' },
   { slug: 'ai-sports', title: 'AI Sports Campaign', primaryDiscipline: 'creative', secondaryCapabilities: ['Creative operations', 'AI systems'], relatedServices: ['ai-integrations'], accent: 'var(--color-0)', year: '2025', status: 'Case study' },
   { slug: 'remoria', title: 'Remoria', primaryDiscipline: 'creative', secondaryCapabilities: ['Brand systems', 'Creative direction'], relatedServices: ['brand-systems'], accent: 'var(--color-1)', year: '2025', status: 'Case study' },
   { slug: 'relay', title: 'Relay', primaryDiscipline: 'business-intelligence', secondaryCapabilities: ['Marketing intelligence', 'Data quality'], relatedServices: ['product-prototypes'], accent: 'var(--accent)', year: '2025', status: 'Private beta' },

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getSiteCopy } from '@/data/site-copy'
 import { getApps } from '@/data/apps'
-import { type Locale } from '@/lib/i18n'
+import { type Locale, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { buildPageMetadata } from '@/lib/metadata'
@@ -15,8 +15,8 @@ export function getAppsPageMetadata(locale: Locale = 'en'): Metadata {
   return buildPageMetadata({
     title: isSpanish ? 'Apps y Prototipos' : 'Apps & Prototypes',
     description: isSpanish
-      ? 'Apps y prototipos de Raúl Mermans: TerritoryOps Spain y Overflow.'
-      : 'Apps and prototypes by Raúl Mermans: TerritoryOps Spain and Overflow.',
+      ? 'Herramientas pequeñas, experimentos y prototipos de Raúl Mermans: TerritoryOps Spain y Overflow.'
+      : 'Small operational tools, experiments, and prototypes by Raúl Mermans: TerritoryOps Spain and Overflow.',
     path: '/apps',
     locale,
     image: {
@@ -47,6 +47,7 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
             <div className="ui-page-intro__content">
               <h1 id="apps-title">{copy.title}</h1>
               <p>{copy.intro}</p>
+              <Link className="ui-button" href={localizePath('/case-studies', locale)}>{copy.systemsCta}</Link>
             </div>
 
             <div className={styles.appsGrid}>

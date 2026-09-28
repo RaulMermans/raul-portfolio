@@ -1,0 +1,5 @@
+/* Full-page baselines cover the shell; section baselines isolate their content. */
+[data-testid="site-header"],
+.skip-link {
+  visibility: hidden !important;
+}

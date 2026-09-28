@@ -1,3 +1,4 @@
+import { independentSystems } from '@/data/independent-systems'
 import type { Locale } from '@/lib/i18n'
 import { localizePath, stripLocaleFromPath } from '@/lib/i18n'
 import {
@@ -682,7 +683,20 @@ export function getCaseStudies(locale: Locale): CaseStudy[] {
     CASE_STUDY_ORDER.map((slug, index) => [slug, index])
   )
 
-  return caseStudyEntries[locale]
+  const systems: CaseStudyEntry[] = Object.entries(independentSystems).map(([slug, system], index) => ({
+    id: 15 + index,
+    slug,
+    title: system.title,
+    description: system[locale].summary,
+    status: system[locale].status,
+    image: system.image,
+    imageWidth: 1200,
+    imageHeight: 800,
+    color: 'var(--accent)',
+    ...('repository' in system ? { githubUrl: system.repository } : {}),
+  }))
+
+  return [...caseStudyEntries[locale], ...systems]
     .map(study => {
       const editorial = getCaseStudyEditorial(study.slug)
 
