@@ -20,7 +20,7 @@
     "verify:canonical": "node scripts/verify-canonical-output.mjs",
     "images:derive": "node scripts/generate-image-derivatives.mjs",
     "test:e2e": "playwright test",
-    "test:e2e:update": "playwright test --update-snapshots",
+    "test:e2e:update": "playwright test --update-snapshots=all",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
