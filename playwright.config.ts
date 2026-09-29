@@ -6,9 +6,8 @@ const baseURL = `http://${HOST}:${PORT}`
 
 export default defineConfig({
   testDir: './tests/playwright',
-  // Baselines are deliberately platform-neutral: every protected route uses
-  // repository-local fonts and deterministic visual-regression setup.
-  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
+  // Font metrics and rasterization differ between macOS and the Linux CI runner.
+  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{platform}/{arg}{ext}',
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],

@@ -10,6 +10,11 @@ on:
       - 'codex/**'
   workflow_dispatch:
     inputs:
+      refresh_all_visual_baselines:
+        description: Capture and verify Linux baselines for all protected routes, then upload them for review
+        required: false
+        type: boolean
+        default: false
       refresh_case_study_visual_baselines:
         description: Refresh only the case-study index desktop/mobile visual baselines and upload them for review
         required: false
@@ -30,6 +35,10 @@ jobs:
     env:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
     steps:
+      - name: Keep baseline capture off the deployment branch
+        if: github.event_name == 'workflow_dispatch' && (inputs.refresh_all_visual_baselines || inputs.refresh_case_study_visual_baselines)
+        run: test "${{ github.ref }}" != "refs/heads/main"
+
       - name: Checkout repository
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
@@ -120,8 +129,30 @@ jobs:
       - name: Generate image derivatives
         run: npm run images:derive
 
+      - name: Refresh all Linux visual baselines
+        if: github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines
+        run: >-
+          npm run test:e2e:update -- tests/playwright/visual-regression.spec.ts
+          tests/playwright/positioning-parity.spec.ts --workers=2
+
+      - name: Verify refreshed Linux visual baselines
+        if: github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines
+        run: >-
+          npm run test:e2e -- tests/playwright/visual-regression.spec.ts
+          tests/playwright/positioning-parity.spec.ts --workers=2 --update-snapshots=none
+
+      - name: Upload Linux baseline candidates
+        if: github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: linux-visual-baselines
+          path: |
+            tests/playwright/visual-regression.spec.ts-snapshots/linux/*.png
+            tests/playwright/positioning-parity.spec.ts-snapshots/linux/*.png
+          if-no-files-found: error
+
       - name: Refresh case-study visual baselines
-        if: github.event_name == 'workflow_dispatch' && inputs.refresh_case_study_visual_baselines
+        if: github.event_name == 'workflow_dispatch' && inputs.refresh_case_study_visual_baselines && !inputs.refresh_all_visual_baselines
         run: >-
           npm run test:e2e:update -- tests/playwright/visual-regression.spec.ts
           -g 'case-studies is visually stable'
@@ -131,9 +162,19 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: case-study-visual-baselines
-          path: tests/playwright/visual-regression.spec.ts-snapshots/case-studies-*.png
+          path: tests/playwright/visual-regression.spec.ts-snapshots/linux/case-studies-*.png
           if-no-files-found: error
 
       - name: Run critical Playwright suite
-        if: github.event_name != 'workflow_dispatch' || inputs.refresh_case_study_visual_baselines != true
+        if: github.event_name != 'workflow_dispatch' || (inputs.refresh_case_study_visual_baselines != true && inputs.refresh_all_visual_baselines != true)
         run: npm run test:e2e
+
+      - name: Upload browser failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: browser-failure-diagnostics
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
