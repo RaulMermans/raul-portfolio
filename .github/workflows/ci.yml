@@ -110,6 +110,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
+      PLAYWRIGHT_WEB_SERVER_COMMAND: python3 -m http.server 3000 --bind 127.0.0.1 --directory out
     steps:
       - name: Checkout repository
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -126,8 +127,8 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium webkit
 
-      - name: Generate image derivatives
-        run: npm run images:derive
+      - name: Build browser-test static export
+        run: npm run build
 
       - name: Refresh all Linux visual baselines
         if: github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines
@@ -142,7 +143,7 @@ jobs:
           tests/playwright/positioning-parity.spec.ts --workers=2 --update-snapshots=none
 
       - name: Upload Linux baseline candidates
-        if: github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines
+        if: always() && github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: linux-visual-baselines
