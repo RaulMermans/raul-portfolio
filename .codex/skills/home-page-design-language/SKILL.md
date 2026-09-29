@@ -9,7 +9,7 @@ description: Use the Raúl Mermans home page as the canonical visual reference w
 
 `$portfolio-experience-system` is the public-route entrypoint. It routes landing pages, case studies, media, and interface review to their dedicated contracts. Use this skill as the live visual reference, not as a competing page-architecture system. The home page shows the foundation in practice; it does not require every other route to copy its layout.
 
-Treat the home page as the canonical visual reference. Use `styles/design-system.css` for tokens and `components/Hero.module.css`, `components/HomeNarrative.module.css`, and the rendered home page for the visual baseline.
+Treat the home page as the canonical visual reference. Use `styles/design-system.css` for tokens and `components/Hero.module.css`, `components/SelectedSystems.module.css`, `components/CreativeInfrastructure.module.css`, and the rendered home page for the visual baseline.
 
 ## Visual grammar
 

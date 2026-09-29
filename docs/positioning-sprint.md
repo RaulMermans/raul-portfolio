@@ -39,7 +39,7 @@ Hero headline, fonts, palette, navigation, transitions, section carousel, photog
 - `data/service-landings.ts`: coherent AI/product and data/BI services in both languages, preserving service URLs.
 - `lib/metadata.ts` and `components/StructuredData.tsx`: multidisciplinary positioning in metadata and schema.
 - `styles/globals.css`: one route-scoped adjustment to the case-index reading gap, using an existing spacing token.
-- Legacy `app/es/**` wrappers are preserved under Next's private `app/_legacy-es/**` folder with corrected canonical imports. They generated duplicate routes despite the documented canonical architecture. Hosting redirects remain in `public/.htaccess`; no public navigation points at the private folder.
+- Legacy `app/es/**` wrappers were moved into Next's private `app/_legacy-es/**` folder to stop duplicate routes, then removed during dead-code cleanup after confirming no imports. Hosting redirects remain in `public/.htaccess`; the canonical Spanish routes live under `app/(es)/**`.
 - `scripts/verify-route-registry.mjs`: ignore Next private folders when checking public routes.
 - `scripts/verify-canonical-output.mjs` and `verify-export.sh`: current titles, service labels, availability, new routes, and editorial order.
 - Playwright positioning, layout-shift, parity, canonicalization, mobile, services, and visual-regression tests: localized structure, filters, evidence, alignment, responsive behavior, and current labels. Full-page screenshots allow 15 seconds to stabilize without changing pixel tolerances. Isolated section captures omit fixed shell overlays; full-page baselines cover the shell.
