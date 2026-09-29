@@ -203,7 +203,7 @@ export default function PhotographyPage() {
   const activeCount = categoriesState[activeCategory]?.count || 0
 
   const handleImageLoad = useCallback((src: string) => {
-    setLoadedImages(prev => new Set(prev).add(src))
+    setLoadedImages(prev => prev.has(src) ? prev : new Set(prev).add(src))
   }, [])
 
   // Prefetch adjacent category images when active category changes (desktop only)
@@ -431,6 +431,10 @@ export default function PhotographyPage() {
                   <source srcSet={getPhotoDerivatives(photo, 'avif')} sizes={layout.sizes} type="image/avif" />
                   <source srcSet={getPhotoDerivatives(photo, 'webp')} sizes={layout.sizes} type="image/webp" />
                   <img
+                    ref={(image) => {
+                      // Cached images can finish before React attaches onLoad.
+                      if (image?.complete && image.naturalWidth > 0) handleImageLoad(photo.src)
+                    }}
                     src={photo.src}
                     alt={photo.alt[locale]}
                     width={photo.width}

@@ -11,8 +11,24 @@ async function prepare(page: Page, path: string) {
   }, FIXED_DATE_ISO)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto(path, { waitUntil: 'networkidle' })
+  const isPhotography = path.includes('/photography/')
+  if (isPhotography) {
+    const images = page.locator('.gallery__item img')
+    const count = await images.count()
+    expect(count).toBeGreaterThan(0)
+    await images.evaluateAll((elements) => {
+      for (const element of elements) (element as HTMLImageElement).loading = 'eager'
+    })
+    await expect.poll(() => images.evaluateAll((elements) => elements.every((element) => {
+      const image = element as HTMLImageElement
+      return image.complete && image.naturalWidth > 0
+    }))).toBe(true)
+    await expect(page.locator('.gallery__item.loaded')).toHaveCount(count)
+  }
   await page.addStyleTag({
-    content: '*, *::before, *::after { animation: none !important; transition: none !important; caret-color: transparent !important; }',
+    // Screenshot capture finishes finite reveal animations. Resetting them to
+    // `none` returns gallery cards to their authored initial opacity of zero.
+    content: `*, *::before, *::after { ${isPhotography ? '' : 'animation: none !important;'} transition: none !important; caret-color: transparent !important; }`,
   })
   await page.evaluate(async () => document.fonts?.ready)
 }

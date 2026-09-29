@@ -140,7 +140,8 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines
         run: >-
           npm run test:e2e -- tests/playwright/visual-regression.spec.ts
-          tests/playwright/positioning-parity.spec.ts --workers=2 --update-snapshots=none
+          tests/playwright/positioning-parity.spec.ts tests/playwright/photography-loading.spec.ts
+          --workers=2 --update-snapshots=none
 
       - name: Upload Linux baseline candidates
         if: always() && github.event_name == 'workflow_dispatch' && inputs.refresh_all_visual_baselines

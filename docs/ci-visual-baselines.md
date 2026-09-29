@@ -21,4 +21,6 @@ npm run lint
 npm run test:e2e -- tests/playwright/positioning-parity.spec.ts --workers=1
 ```
 
-Rollback is a revert of the CI repair commits. No application, dependency, or production configuration changes are needed for this baseline ownership fix.
+Rollback is a revert of the CI repair commits. The accompanying photography repair marks images that finished before hydration as loaded. The capture waits for decoded gallery images and lets finite reveal animations finish, preventing blank-gallery baselines. Dependencies, palette, typography, and gallery composition remain as before.
+
+Photography regression checks cover cached reloads and category switching in English and Spanish at desktop and mobile widths. Six local regression and screenshot-comparison checks pass; build, type-check, lint, experience/design-system/route guards, export/canonical checks, and adversarial experience guards also pass.
