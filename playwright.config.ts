@@ -6,6 +6,9 @@ const baseURL = `http://${HOST}:${PORT}`
 
 export default defineConfig({
   testDir: './tests/playwright',
+  // Baselines are deliberately platform-neutral: every protected route uses
+  // repository-local fonts and deterministic visual-regression setup.
+  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
@@ -41,7 +44,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run dev -- --hostname ${HOST} --port ${PORT}`,
+    command: process.env.PLAYWRIGHT_WEB_SERVER_COMMAND ?? `npm run dev -- --hostname ${HOST} --port ${PORT}`,
     url: baseURL,
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,

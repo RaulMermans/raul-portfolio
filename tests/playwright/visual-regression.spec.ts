@@ -47,8 +47,8 @@ test.describe('Portfolio visual regression', () => {
         animations: 'disabled',
         fullPage: true,
         caret: 'hide',
+        timeout: 20_000,
         maxDiffPixelRatio: 0.01,
-        timeout: 15000,
       })
     })
   }

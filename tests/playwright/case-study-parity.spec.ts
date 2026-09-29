@@ -68,7 +68,7 @@ for (const locale of ['es', 'en'] as const) {
     )
   })
 
-  test(`case-study index brings the first project directly after its introduction in ${locale}`, async ({
+  test(`case-study index keeps the filter bar close to the project grid in ${locale}`, async ({
     page,
   }) => {
     const prefix = locale === 'en' ? '/en' : ''
@@ -77,13 +77,13 @@ for (const locale of ['es', 'en'] as const) {
     await page.goto(`${prefix}/case-studies`, { waitUntil: 'domcontentloaded' })
 
     const readingFlow = await page.evaluate(() => {
-      const lede = document.querySelector('.ui-page-intro__content > p:not(.ui-eyebrow)')
+      const toolbar = document.querySelector('.case-studies-index__toolbar')
       const firstGroup = document.querySelector('.case-study-gallery-group')
       const groupHeader = firstGroup?.querySelector('.case-study-gallery-group__header')
       const firstCard = firstGroup?.querySelector('[data-mobile-audit="case-study-card"]')
 
       if (
-        !(lede instanceof HTMLElement) ||
+        !(toolbar instanceof HTMLElement) ||
         !(firstGroup instanceof HTMLElement) ||
         !(groupHeader instanceof HTMLElement) ||
         !(firstCard instanceof HTMLElement)
@@ -92,7 +92,7 @@ for (const locale of ['es', 'en'] as const) {
       }
 
       return {
-        groupGap: firstGroup.getBoundingClientRect().top - lede.getBoundingClientRect().bottom,
+        groupGap: firstGroup.getBoundingClientRect().top - toolbar.getBoundingClientRect().bottom,
         cardGap: firstCard.getBoundingClientRect().top - groupHeader.getBoundingClientRect().bottom,
       }
     })

@@ -63,7 +63,7 @@ for (const locale of ['en', 'es'] as const) {
     }
   })
 
-  test(`home presents four systems and preserves creative paths in ${locale}`, async ({ page }) => {
+  test(`home presents four systems and preserves creative paths in ${locale}`, async ({ page }, testInfo) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto(`${prefix}/`, { waitUntil: 'networkidle' })
     expect(await page.locator('[data-selected-system]').evaluateAll((cards) => cards.map((card) => card.getAttribute('data-selected-system')))).toEqual([...SELECTED_SYSTEM_SLUGS])
@@ -84,7 +84,7 @@ for (const locale of ['en', 'es'] as const) {
     }
     const accessibility = await new AxeBuilder({ page }).include('#selected-systems').analyze()
     expect(accessibility.violations).toEqual([])
-    await expect(page.locator('#selected-systems')).toHaveScreenshot(`selected-systems-${locale}.png`, {
+    await expect(page.locator('#selected-systems')).toHaveScreenshot(`selected-systems-${locale}-${testInfo.project.name}.png`, {
       animations: 'disabled',
       timeout: 15000,
       // Isolated section captures exclude fixed shell overlays; full-page baselines cover the shell.
@@ -99,7 +99,7 @@ for (const locale of ['en', 'es'] as const) {
   })
 
   for (const slug of ['local-ai-coding-agent', 'iris'] as const) {
-    test(`${slug} keeps public evidence boundaries and language equivalence in ${locale}`, async ({ page }) => {
+    test(`${slug} keeps public evidence boundaries and language equivalence in ${locale}`, async ({ page }, testInfo) => {
       await page.emulateMedia({ reducedMotion: 'reduce' })
       const path = `${prefix}/case-studies/${slug}/`
       await page.goto(path, { waitUntil: 'networkidle' })
@@ -121,7 +121,7 @@ for (const locale of ['en', 'es'] as const) {
       expect(dimensions.actual).toBeLessThanOrEqual(dimensions.viewport)
       const accessibility = await new AxeBuilder({ page }).include('main').analyze()
       expect(accessibility.violations).toEqual([])
-      await expect(page).toHaveScreenshot(`${slug}-${locale}.png`, { fullPage: true, animations: 'disabled', timeout: 15000 })
+      await expect(page).toHaveScreenshot(`${slug}-${locale}-${testInfo.project.name}.png`, { fullPage: true, animations: 'disabled', timeout: 15000 })
     })
   }
 

@@ -83,3 +83,9 @@ Rendered verification covers both locales at desktop and mobile widths, with exp
 Forty-six reviewed PNG baselines are saved under `tests/playwright/positioning-parity.spec.ts-snapshots/` and `tests/playwright/visual-regression.spec.ts-snapshots/`. They cover desktop/mobile routes, both locales, and tablet positioning captures. Browser inspection also confirmed language switching, pointer and keyboard hero navigation, readable compact phone heroes, and no console errors on the inspected routes.
 
 No deployment or changes to the separate IRIS/JARVIS-OS repository were made. Local rollback is a revert of the sprint files; the legacy aliases remain preserved in their private folder.
+
+### GitHub integration verification
+
+Merged the newer `origin/main` history, retaining its protected IONOS logs exclusion, CI workflow, and platform-neutral snapshot convention. Preserved the private legacy Spanish wrappers and the sprint's three editorial tiers. Positioning snapshot names explicitly include the project so desktop and mobile captures cannot collide. The reviewed screenshots now follow the merged repository convention.
+
+Post-merge build, type-check, lint, experience/design-system/route/taxonomy guards, and export/canonical checks pass. The affected 138-test browser run had 110 passes, two intentional skips, and 26 failures during an overnight interruption and snapshot-name collision. After correcting the naming, all 26 failed checks pass on rerun; all 11 desktop/tablet positioning checks also pass with snapshot updates disabled. GitHub Linux CI remains the cross-platform check after pushing.
