@@ -131,22 +131,24 @@ function assertCaseStudyLinkOrder(file, localePrefix, slugs) {
 }
 
 const caseStudySlugs = [
+  'campaign-sandbox',
+  'ai-sports',
+  'remoria',
+  'halo-control',
   'local-ai-coding-agent',
   'website-auditor',
   'iris',
-  'demandos',
   'data-brief-ai',
-  'searchsignal',
-  'campaign-pulse',
-  'opstwin',
-  'relay',
   'blogagent',
-  'remoria',
-  'ai-sports',
-  'campaign-sandbox',
-  'benchmark-dashboard',
+  'opstwin',
+  'searchsignal',
   'territoryops-spain',
   'raul-portfolio',
+  'demandos',
+  'bi-notebook-lab',
+  'campaign-pulse',
+  'benchmark-dashboard',
+  'relay',
 ]
 
 assertCaseStudyLinkOrder(
