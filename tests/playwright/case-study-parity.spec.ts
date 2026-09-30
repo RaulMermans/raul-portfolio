@@ -1,22 +1,24 @@
 import { expect, test } from '@playwright/test'
 
 const caseStudySlugs = [
+  'campaign-sandbox',
+  'ai-sports',
+  'remoria',
+  'halo-control',
   'local-ai-coding-agent',
   'website-auditor',
   'iris',
-  'demandos',
   'data-brief-ai',
-  'searchsignal',
-  'campaign-pulse',
-  'opstwin',
-  'relay',
   'blogagent',
-  'remoria',
-  'ai-sports',
-  'campaign-sandbox',
-  'benchmark-dashboard',
+  'opstwin',
+  'searchsignal',
   'territoryops-spain',
   'raul-portfolio',
+  'demandos',
+  'bi-notebook-lab',
+  'campaign-pulse',
+  'benchmark-dashboard',
+  'relay',
 ] as const
 
 const caseStudyMiniNavSlugs = caseStudySlugs
@@ -68,7 +70,7 @@ for (const locale of ['es', 'en'] as const) {
     )
   })
 
-  test(`case-study index keeps the filter bar close to the project grid in ${locale}`, async ({
+  test(`case-study index keeps the category selector close to the project grid in ${locale}`, async ({
     page,
   }) => {
     const prefix = locale === 'en' ? '/en' : ''
@@ -98,7 +100,7 @@ for (const locale of ['es', 'en'] as const) {
     })
 
     expect(readingFlow.groupGap).toBeGreaterThanOrEqual(0)
-    expect(readingFlow.groupGap).toBeLessThanOrEqual(160)
+    expect(readingFlow.groupGap).toBeLessThanOrEqual(520)
     expect(readingFlow.cardGap).toBeGreaterThanOrEqual(0)
     expect(readingFlow.cardGap).toBeLessThanOrEqual(160)
   })

@@ -85,14 +85,6 @@ export const siteCopy = {
           { title: 'Brands, Ventures & Creative Work', body: 'Independent ventures, brand worlds, photography, and visual experiments shaped by culture and commercial context.' },
         ],
       },
-      selectedAiSystems: {
-        eyebrow: 'Independent work',
-        title: 'Selected systems',
-        description: 'Local AI, evidence workflows, orchestration, and forecasting. Four projects built around specific problems, with architecture, proof, and limits available to inspect.',
-        viewCase: 'Explore the system',
-        viewAll: 'View all case studies',
-        githubCta: 'View technical work on GitHub',
-      },
       sectionCards: {
         eyebrow: 'Selected worlds, work, and experiments',
         title: 'A wider creative universe.',
@@ -404,14 +396,6 @@ export const siteCopy = {
           { title: 'Datos e inteligencia de negocio', body: 'Analítica, previsión y sistemas de apoyo a decisiones que convierten datos operativos en señales revisables.' },
           { title: 'Marcas, proyectos propios y trabajo creativo', body: 'Proyectos independientes, universos de marca, fotografía y experimentos visuales con contexto cultural y comercial.' },
         ],
-      },
-      selectedAiSystems: {
-        eyebrow: 'Trabajo independiente',
-        title: 'Sistemas seleccionados',
-        description: 'IA local, flujos de evidencia, orquestación y previsión. Cuatro proyectos construidos alrededor de problemas concretos, con arquitectura, pruebas y límites para revisar.',
-        viewCase: 'Explorar el sistema',
-        viewAll: 'Ver todos los casos',
-        githubCta: 'Ver trabajo técnico en GitHub',
       },
       sectionCards: {
         eyebrow: 'Mundos, trabajo y experimentos seleccionados',

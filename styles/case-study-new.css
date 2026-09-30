@@ -3944,6 +3944,10 @@ main.case-study-page-new {
   max-width: 92rem;
 }
 
+.independent-system-proof {
+  margin-block-start: var(--section-content-gap);
+}
+
 .case-study-page-new--data-brief .data-brief-mini-nav {
   width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 92rem);
   max-width: none;

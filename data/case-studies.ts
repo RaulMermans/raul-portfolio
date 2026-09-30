@@ -690,8 +690,8 @@ export function getCaseStudies(locale: Locale): CaseStudy[] {
     description: system[locale].summary,
     status: system[locale].status,
     image: system.image,
-    imageWidth: 1200,
-    imageHeight: 800,
+    imageWidth: 'imageWidth' in system ? system.imageWidth : 1200,
+    imageHeight: 'imageHeight' in system ? system.imageHeight : 800,
     color: 'var(--accent)',
     ...('repository' in system ? { githubUrl: system.repository } : {}),
   }))

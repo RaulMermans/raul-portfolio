@@ -6,6 +6,7 @@ export const independentSystems = {
     title: 'Local AI Coding Agent',
     image: '/images/case-studies/local-ai-coding-agent/architecture.svg',
     socialImage: '/images/case-studies/local-ai-coding-agent/architecture.png',
+    repository: 'https://github.com/RaulMermans/Open-VS-Code-Agent',
     en: {
       tagline: 'A coding agent for local models.',
       summary: 'An agentic coding runtime for local, open-weight models, built around inspectable tools, bounded context, and human review.',
@@ -51,11 +52,11 @@ export const independentSystems = {
     title: 'IRIS',
     image: '/images/case-studies/iris/architecture.svg',
     socialImage: '/images/case-studies/iris/architecture.png',
-    repository: 'https://github.com/RaulMermans/JARVIS-OS',
+    repository: 'https://github.com/RaulMermans/IRIS-OS',
     en: {
       tagline: 'Personal orchestration for bounded agents.',
       summary: 'A personal agent orchestration system that organizes attention, coordinates specialist work, and governs actions through human oversight.',
-      status: 'Private system. Public architecture showcase with synthetic examples, currently published as JARVIS OS.',
+      status: 'Private system. Public architecture edition with synthetic examples, published as IRIS OS.',
       role: 'Independent system design across attention, agent coordination, memory, action policy, observability, evaluation, and recovery.',
       snapshot: {
         problem: 'Commitments spread across calendar, email, tasks, and projects make it difficult to decide what deserves attention and what can safely be delegated.',
@@ -69,13 +70,13 @@ export const independentSystems = {
         { id: 'architecture', title: 'Specialists share a governed work queue', body: 'Management, research, analysis, planning, critique, lead scoring, CRM, and code roles have distinct responsibilities. The public design separates proposing an action from authorizing it. One router and one action pipeline keep tools, autonomy controls, and trace events under a common policy.' },
         { id: 'memory', title: 'Memory carries provenance', body: 'Working, episodic, semantic, and procedural memory have different lifecycles. Records carry scope, provenance, time, and confidence. Durable memory is proposed for human review; a remembered fact cannot independently turn itself into an urgent task or widen agent permissions.' },
         { id: 'recovery', title: 'Execution needs a separate verification step', body: 'The recovery model distinguishes preparation, execution, verification, safe retry, rollback, and escalation. Expired approvals and stale context stop consequential actions. Evaluation scenarios cover grounding, degraded sources, approval enforcement, injection resistance, and recovery. These are documented evaluation contracts; no pass rate is claimed here.' },
-        { id: 'boundaries', title: 'A public window into a private system', body: 'IRIS is the portfolio name for the project currently published as JARVIS OS. The linked repository is an architecture and engineering showcase: documentation, illustrative contracts, and fully synthetic examples. The full implementation and personal integrations remain private. The public edition does not prove deployment maturity or autonomous operation.' },
+        { id: 'boundaries', title: 'A public window into a private system', body: 'The linked IRIS OS repository is an architecture and engineering showcase: documentation, illustrative contracts, and fully synthetic examples. The full implementation and personal integrations remain private. The public edition does not prove deployment maturity or autonomous operation.' },
       ],
     },
     es: {
       tagline: 'Orquestación personal de agentes con límites claros.',
       summary: 'Un sistema personal de orquestación de agentes que organiza la atención, coordina trabajo especializado y gobierna acciones con supervisión humana.',
-      status: 'Sistema privado. Muestra pública de arquitectura con ejemplos sintéticos, publicada actualmente como JARVIS OS.',
+      status: 'Sistema privado. Edición pública de arquitectura con ejemplos sintéticos, publicada como IRIS OS.',
       role: 'Diseño independiente de atención, coordinación de agentes, memoria, políticas de acción, observabilidad, evaluación y recuperación.',
       snapshot: {
         problem: 'Los compromisos repartidos entre calendario, correo, tareas y proyectos dificultan decidir qué merece atención y qué se puede delegar con seguridad.',
@@ -89,7 +90,111 @@ export const independentSystems = {
         { id: 'architecture', title: 'Especialistas con una cola gobernada', body: 'Gestión, investigación, análisis, planificación, crítica, scoring de leads, CRM y código tienen responsabilidades distintas. El diseño público separa proponer una acción de autorizarla. Un router y un pipeline de acciones mantienen herramientas, autonomía y trazas bajo una política común.' },
         { id: 'memory', title: 'Memoria con procedencia', body: 'Las memorias de trabajo, episódica, semántica y procedural tienen ciclos distintos. Sus registros incluyen alcance, procedencia, fecha y confianza. La memoria duradera se propone para revisión humana; un recuerdo no puede crear urgencia por sí solo ni ampliar permisos.' },
         { id: 'recovery', title: 'Ejecutar exige una verificación aparte', body: 'El modelo distingue preparación, ejecución, verificación, reintento seguro, reversión y escalado. Las aprobaciones caducadas y el contexto obsoleto detienen acciones relevantes. Los escenarios de evaluación cubren fundamentación, fuentes degradadas, permisos, resistencia a inyección y recuperación. Son contratos de evaluación documentados; aquí no se afirma una tasa de éxito.' },
-        { id: 'boundaries', title: 'Una ventana pública a un sistema privado', body: 'IRIS es el nombre del portfolio para el proyecto publicado actualmente como JARVIS OS. El repositorio enlazado muestra arquitectura e ingeniería: documentación, contratos ilustrativos y ejemplos totalmente sintéticos. La implementación completa y las integraciones personales siguen siendo privadas. La edición pública no demuestra madurez de despliegue ni operación autónoma.' },
+        { id: 'boundaries', title: 'Una ventana pública a un sistema privado', body: 'El repositorio IRIS OS muestra arquitectura e ingeniería: documentación, contratos ilustrativos y ejemplos totalmente sintéticos. La implementación completa y las integraciones personales siguen siendo privadas. La edición pública no demuestra madurez de despliegue ni operación autónoma.' },
+      ],
+    },
+  },
+  'halo-control': {
+    title: 'HALO Control',
+    image: '/images/case-studies/halo-control/proof/control-room.png',
+    imageWidth: 1440,
+    imageHeight: 940,
+    socialImage: '/images/case-studies/halo-control/proof/control-room.png',
+    repository: 'https://github.com/RaulMermans/AMD-HALO-Control',
+    en: {
+      tagline: 'One control plane for local AI workloads.',
+      summary: 'A local AI control plane that gives an AMD Halo workstation a model inventory, capability routing, workload authorization, telemetry, and activity history.',
+      status: 'Public architecture edition. Target hardware and real model inference are not yet verified.',
+      role: 'Independent system architecture, control-plane design, and public documentation.',
+      heroAlt: 'Synthetic HALO Control Room showing telemetry, model registry, capability routing, workloads, and recent activity.',
+      heroCaption: 'Public Control Room recreation built from synthetic state. The values are not readings from an AMD Halo workstation.',
+      snapshot: {
+        problem: 'Several local AI workloads share one machine, but separate model endpoints and logs make capability access, resource pressure, and activity hard to inspect together.',
+        system: 'A headless control plane with a model registry, declared capability routing, workload authorization, telemetry, and metadata-only activity history.',
+        proof: 'Public architecture documentation, illustrative TypeScript contracts and routing code, synthetic fixtures, and the Control Room recreation.',
+        value: 'Gives local workloads one explicit place to request a capability and gives the operator one place to inspect the decision and its recorded state.',
+        limitation: 'The public repository omits the private implementation. Real model inference through HALO and operation on target AMD Halo hardware remain unverified.',
+      },
+      chapters: [
+        { id: 'problem', title: 'Shared hardware needs shared rules', body: 'IRIS OS, a coding agent, and media workflows may all ask for local inference on the same workstation. When each workload manages its own endpoint and logs, the operator cannot see who is allowed to use a model, what was routed, or where resource pressure came from.' },
+        { id: 'architecture', title: 'Route by capability, then record the decision', body: 'HALO puts a model registry and deterministic router between workloads and an OpenAI-compatible local runtime. A workload identifies itself, passes an authorization check, and asks for a capability such as coding or vision. An unroutable request returns an explicit error. Registration says what HALO knows about; it does not assert that a model is available.' },
+        { id: 'evidence', title: 'Show the operator what is known', body: 'The Control Room brings model state, routing policy, registered workloads, and recent activity into one read-only view. Telemetry values carry an evidence class, so mocked, local-real, hardware-real, and unavailable signals cannot silently appear as equivalent measurements. The public screenshot uses synthetic fixtures and is labelled as such.' },
+        { id: 'delivery', title: 'Implemented locally, published selectively', body: 'The repository documents an implemented headless control plane, deterministic routing, application authorization, SQLite activity history, a read-only Control Room, and a compute plane limited to registered services. It publishes architecture, illustrative contracts, one small routing demo, and synthetic examples. That public package is not the private runtime.' },
+        { id: 'boundaries', title: 'The hardware claim is still open', body: 'The published status does not verify a real model response through HALO or a run on the AMD Halo target machine. Resource-aware routing is a design goal represented by illustrative code. The case therefore describes the architecture and local implementation status without presenting the synthetic Control Room as operational proof.' },
+      ],
+    },
+    es: {
+      tagline: 'Un plano de control para cargas de IA local.',
+      summary: 'Un plano de control local para una estación AMD Halo con inventario de modelos, enrutamiento por capacidad, autorización de cargas, telemetría e historial de actividad.',
+      status: 'Edición pública de arquitectura. El hardware objetivo y la inferencia real aún no están verificados.',
+      role: 'Arquitectura independiente del sistema, diseño del plano de control y documentación pública.',
+      heroAlt: 'Control Room sintética de HALO con telemetría, registro de modelos, rutas por capacidad, cargas y actividad reciente.',
+      heroCaption: 'Recreación pública de Control Room con estado sintético. Los valores no son lecturas de una estación AMD Halo.',
+      snapshot: {
+        problem: 'Varias cargas de IA comparten una máquina, pero endpoints y registros separados dificultan revisar acceso, presión de recursos y actividad en conjunto.',
+        system: 'Plano de control headless con registro de modelos, rutas declaradas por capacidad, autorización de cargas, telemetría e historial de metadatos.',
+        proof: 'Documentación pública de arquitectura, contratos y router TypeScript ilustrativos, fixtures sintéticos y recreación de Control Room.',
+        value: 'Da a las cargas un punto explícito para solicitar una capacidad y al operador un lugar para revisar la decisión y el estado registrado.',
+        limitation: 'El repositorio público omite la implementación privada. La inferencia real a través de HALO y su ejecución en hardware AMD Halo siguen sin verificarse.',
+      },
+      chapters: [
+        { id: 'problem', title: 'El hardware compartido necesita reglas comunes', body: 'IRIS OS, un agente de programación y flujos de medios pueden solicitar inferencia local en la misma estación. Si cada carga gestiona su endpoint y sus registros, el operador no ve quién puede usar un modelo, qué ruta se eligió o de dónde viene la presión de recursos.' },
+        { id: 'architecture', title: 'Enrutar por capacidad y registrar la decisión', body: 'HALO sitúa un registro de modelos y un router determinista entre las cargas y un runtime local compatible con OpenAI. La carga se identifica, pasa una autorización y solicita una capacidad como programación o visión. Una solicitud sin ruta devuelve un error explícito. Registrar un modelo no demuestra que esté disponible.' },
+        { id: 'evidence', title: 'Mostrar al operador lo que se sabe', body: 'Control Room reúne modelos, reglas de rutas, cargas registradas y actividad reciente en una vista de solo lectura. Cada señal de telemetría indica su clase de evidencia: simulada, local, propia del hardware o no disponible. La captura pública usa fixtures sintéticos y lo declara.' },
+        { id: 'delivery', title: 'Implementado en local, publicado de forma selectiva', body: 'El repositorio documenta un plano de control headless, rutas deterministas, autorización, historial SQLite, Control Room de solo lectura y un plano de cómputo limitado a servicios registrados. Publica arquitectura, contratos ilustrativos, una pequeña demo de rutas y ejemplos sintéticos. Ese paquete no es el runtime privado.' },
+        { id: 'boundaries', title: 'La prueba sobre el hardware sigue pendiente', body: 'El estado publicado no verifica una respuesta real de modelo a través de HALO ni una ejecución en la máquina AMD Halo. Las rutas sensibles a recursos son un objetivo de diseño con código ilustrativo. Por eso el caso explica la arquitectura y el estado local sin presentar Control Room sintética como prueba operativa.' },
+      ],
+    },
+  },
+  'bi-notebook-lab': {
+    title: 'BI Notebook Lab',
+    image: '/images/case-studies/bi-notebook-lab/proof/semantic-model.png',
+    imageWidth: 1400,
+    imageHeight: 748,
+    socialImage: '/images/case-studies/bi-notebook-lab/proof/semantic-model.png',
+    repository: 'https://github.com/RaulMermans/bi-notebook-lab',
+    en: {
+      tagline: 'Learn BI by executing the model.',
+      summary: 'A browser-based notebook for practising data preparation, semantic models, DAX-style measures, filter context, visuals, and executable checkpoints.',
+      status: 'Public V1 learning tool. Local-first in the browser with no account or backend.',
+      role: 'Independent product design and TypeScript implementation of the expression, model, filter, visual, and grading runtimes.',
+      heroAlt: 'BI Notebook Lab semantic model canvas with synthetic retail tables and their relationships.',
+      heroCaption: 'The semantic model connects synthetic retail tables. Relationships affect the calculations learners inspect next.',
+      snapshot: {
+        problem: 'Quick Power BI practice often depends on a desktop installation or shared work machine, while a static chart cannot show why a measure changes under filters.',
+        system: 'A local-first browser lab where data preparation, model relationships, measures, visuals, and tests are executable notebook cells.',
+        proof: 'Public source, synthetic product screenshots, two Playwright journeys, and a published checkpoint of 1,024 passing tests plus 82 of 83 hand-verified DAX cases.',
+        value: 'Lets a learner change the model, run a measure, inspect filter propagation, and test whether the result behaves as expected in one workspace.',
+        limitation: 'A bounded educational subset of Power BI semantics. One documented blank-arithmetic divergence remains; projects live in IndexedDB until exported.',
+      },
+      chapters: [
+        { id: 'problem', title: 'Make the calculation visible', body: 'A learner can make a chart that looks plausible without understanding the semantic model beneath it. The notebook makes the path explicit: dataset, typed Power Query steps, relationships, calculated columns, measures, visuals, and a final test. Each step runs against actual data rather than standing in for a slide.', media: { src: '/images/case-studies/bi-notebook-lab/proof/power-query.png', width: 1400, height: 922, alt: 'Power Query cell showing inspectable applied steps on synthetic retail data.', caption: 'Typed Applied Steps expose each transformation without executing arbitrary M code.' } },
+        { id: 'architecture', title: 'One engine behind every answer', body: 'Calculated columns and measures share a lexer, parser, syntax tree, binder, and evaluator. Visuals, the Context Explorer, and checkpoint grading call the same measure runtime. That keeps the teaching surface tied to the calculations, rather than maintaining a separate result for each screen.' },
+        { id: 'context', title: 'Trace how filters move', body: 'The model supports explicit relationship directions and active or inactive paths. Context Explorer shows how a selected filter propagates through the model and which rows reach a measure. Ambiguous or cyclic paths fail closed, making an uncertain result visible instead of silently choosing a route.', media: { src: '/images/case-studies/bi-notebook-lab/proof/context-explorer.png', width: 1400, height: 1297, alt: 'Context Explorer tracing filters through the model to the rows used by a measure.', caption: 'The same measure runtime powers the visual and this trace of filter context.' } },
+        { id: 'evaluation', title: 'Grade behavior, not the formula string', body: 'Checkpoint rules execute a learner’s model across several filter contexts. Weighted partial credit and required rules make the result specific; a staleness fingerprint stops an old pass from appearing current after edits. The repository reports 1,024 passing unit and integration tests and 82 passing cases in an 83-case hand-verified semantic suite at its published checkpoint.', media: { src: '/images/case-studies/bi-notebook-lab/proof/checkpoint-grading.png', width: 1400, height: 893, alt: 'Checkpoint grading view with per-criterion results for a synthetic practice project.', caption: 'The checkpoint runs the constructed model and measure instead of matching a typed answer.' } },
+        { id: 'boundaries', title: 'A deliberate teaching subset', body: 'The lab models 19 typed Power Query step kinds; it is not a full M or DAX interpreter. A known blank-arithmetic case is explicitly skipped in conformance because its result differs from Power BI. Persistence stays in IndexedDB, with a portable project export for backup. The published performance timings come from Node/V8, not a browser under interface load.' },
+      ],
+    },
+    es: {
+      tagline: 'Aprender BI ejecutando el modelo.',
+      summary: 'Un cuaderno en el navegador para practicar preparación de datos, modelos semánticos, medidas tipo DAX, contexto de filtros, visualizaciones y ejercicios ejecutables.',
+      status: 'Herramienta educativa V1 pública. Local-first en el navegador, sin cuenta ni backend.',
+      role: 'Diseño independiente del producto e implementación TypeScript de los motores de expresiones, modelo, filtros, visualización y evaluación.',
+      heroAlt: 'Lienzo de modelo semántico de BI Notebook Lab con tablas comerciales sintéticas y sus relaciones.',
+      heroCaption: 'El modelo semántico conecta tablas comerciales sintéticas. Sus relaciones afectan los cálculos que el alumno inspecciona después.',
+      snapshot: {
+        problem: 'Practicar Power BI rápidamente suele exigir una instalación de escritorio o un equipo de trabajo compartido, y un gráfico estático no explica por qué cambia una medida al filtrar.',
+        system: 'Laboratorio local-first en el navegador donde preparación, relaciones, medidas, gráficos y pruebas son celdas ejecutables.',
+        proof: 'Código público, capturas con datos sintéticos, dos recorridos Playwright y un punto publicado de 1.024 tests aprobados más 82 de 83 casos DAX verificados manualmente.',
+        value: 'Permite cambiar el modelo, ejecutar una medida, inspeccionar la propagación de filtros y probar el resultado en un mismo espacio.',
+        limitation: 'Subconjunto educativo acotado de Power BI. Persiste una diferencia documentada en aritmética con BLANK; los proyectos viven en IndexedDB hasta su exportación.',
+      },
+      chapters: [
+        { id: 'problem', title: 'Hacer visible el cálculo', body: 'Un alumno puede crear un gráfico plausible sin entender el modelo semántico. El cuaderno explicita la ruta: dataset, pasos Power Query tipados, relaciones, columnas calculadas, medidas, visualizaciones y prueba final. Cada paso se ejecuta sobre datos, no sobre una diapositiva.', media: { src: '/images/case-studies/bi-notebook-lab/proof/power-query.png', width: 1400, height: 922, alt: 'Celda Power Query con pasos aplicados revisables sobre datos comerciales sintéticos.', caption: 'Los pasos tipados muestran cada transformación sin ejecutar código M arbitrario.' } },
+        { id: 'architecture', title: 'Un motor detrás de cada respuesta', body: 'Columnas calculadas y medidas comparten lexer, parser, árbol sintáctico, binder y evaluador. Visualizaciones, Context Explorer y evaluación de ejercicios llaman al mismo runtime de medidas. Así la enseñanza queda conectada al cálculo, sin mantener resultados paralelos para cada pantalla.' },
+        { id: 'context', title: 'Seguir el recorrido de los filtros', body: 'El modelo admite direcciones de relación explícitas y rutas activas o inactivas. Context Explorer muestra cómo se propaga un filtro y qué filas llegan a una medida. Las rutas ambiguas o cíclicas se rechazan para no elegir una respuesta en silencio.', media: { src: '/images/case-studies/bi-notebook-lab/proof/context-explorer.png', width: 1400, height: 1297, alt: 'Context Explorer rastreando filtros hasta las filas utilizadas por una medida.', caption: 'El mismo runtime de medidas alimenta el gráfico y esta traza del contexto de filtros.' } },
+        { id: 'evaluation', title: 'Evaluar comportamiento, no cadenas', body: 'Las reglas ejecutan el modelo del alumno bajo varios contextos de filtro. La puntuación parcial y los criterios obligatorios hacen el resultado específico; una huella de vigencia evita mostrar como actual un aprobado anterior a una edición. El repositorio declara 1.024 tests unitarios y de integración aprobados y 82 casos aprobados en una suite semántica de 83 casos verificados manualmente.', media: { src: '/images/case-studies/bi-notebook-lab/proof/checkpoint-grading.png', width: 1400, height: 893, alt: 'Evaluación de un ejercicio con resultados por criterio en un proyecto sintético.', caption: 'El checkpoint ejecuta el modelo y la medida construidos, sin comparar solo el texto de la respuesta.' } },
+        { id: 'boundaries', title: 'Un subconjunto deliberado para aprender', body: 'El laboratorio modela 19 tipos de pasos Power Query; no es un intérprete completo de M o DAX. Un caso de aritmética con BLANK se excluye de la prueba de conformidad porque difiere de Power BI. Los proyectos se guardan en IndexedDB, con exportación portable. Los tiempos publicados proceden de Node/V8, no de un navegador con la interfaz activa.' },
       ],
     },
   },
@@ -99,12 +204,3 @@ export type IndependentSystemSlug = keyof typeof independentSystems
 export function getIndependentSystem(slug: IndependentSystemSlug, locale: Locale) {
   return { ...independentSystems[slug], ...independentSystems[slug][locale] }
 }
-
-/** Editorial tiers supplement, rather than replace, the canonical discipline taxonomy. */
-export const SYSTEM_COLLECTIONS = [
-  { id: 'selected', slugs: ['local-ai-coding-agent', 'website-auditor', 'iris', 'demandos'], en: { title: 'Selected systems', body: 'Four independent systems: local inference, evidence workflows, agent orchestration, and inventory intelligence.' }, es: { title: 'Sistemas seleccionados', body: 'Cuatro sistemas propios: inferencia local, flujos de evidencia, orquestación de agentes e inteligencia de inventario.' } },
-  { id: 'explorations', slugs: ['data-brief-ai', 'searchsignal', 'campaign-pulse', 'opstwin', 'relay', 'blogagent'], en: { title: 'Experiments & explorations', body: 'Working prototypes and demonstrators with explicit data, evaluation, and deployment boundaries.' }, es: { title: 'Experimentos y exploraciones', body: 'Prototipos funcionales y demostradores con límites explícitos de datos, evaluación y despliegue.' } },
-  { id: 'practice', slugs: ['remoria', 'ai-sports', 'campaign-sandbox', 'benchmark-dashboard', 'territoryops-spain', 'raul-portfolio'], en: { title: 'Archive & practice', body: 'Brand worlds, creative systems, operational tools, and earlier work that inform the wider practice.' }, es: { title: 'Archivo y práctica', body: 'Universos de marca, sistemas creativos, herramientas operativas y trabajo anterior que nutre la práctica.' } },
-] as const
-
-export const SELECTED_SYSTEM_SLUGS = SYSTEM_COLLECTIONS[0].slugs

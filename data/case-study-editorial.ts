@@ -17,12 +17,14 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
+  'halo-control',
   'local-ai-coding-agent',
   'website-auditor',
   'iris',
   'demandos',
   'opstwin',
   'searchsignal',
+  'bi-notebook-lab',
   'campaign-pulse',
   'campaign-sandbox',
   'data-brief-ai',
@@ -36,6 +38,18 @@ export const CASE_STUDY_ORDER = [
 ] as const
 
 export const caseStudyEditorial: Record<string, EditorialMeta> = {
+  'halo-control': {
+    category: { en: 'Local AI infrastructure', es: 'Infraestructura de IA local' },
+    proofTags: { en: ['Public architecture', 'Synthetic Control Room', 'Explicit verification limits'], es: ['Arquitectura pública', 'Control Room sintética', 'Límites de verificación'] },
+    snapshot: { en: independentSystems['halo-control'].en.snapshot, es: independentSystems['halo-control'].es.snapshot },
+    related: ['local-ai-coding-agent', 'iris'],
+  },
+  'bi-notebook-lab': {
+    category: { en: 'BI learning product', es: 'Producto educativo de BI' },
+    proofTags: { en: ['Public V1', 'Executable model', 'Conformance suite'], es: ['V1 pública', 'Modelo ejecutable', 'Suite de conformidad'] },
+    snapshot: { en: independentSystems['bi-notebook-lab'].en.snapshot, es: independentSystems['bi-notebook-lab'].es.snapshot },
+    related: ['benchmark-dashboard', 'data-brief-ai'],
+  },
   'local-ai-coding-agent': {
     category: { en: 'Local AI runtime', es: 'Runtime de IA local' },
     proofTags: { en: ['24-task corpus', 'Private prototype'], es: ['Corpus de 24 tareas', 'Prototipo privado'] },

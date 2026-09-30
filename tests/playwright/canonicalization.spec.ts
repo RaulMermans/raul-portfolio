@@ -29,12 +29,12 @@ test.describe('Canonical document contract', () => {
     await expect(cloneLinks).toHaveCount(0)
   })
 
-  test('case-study hierarchy keeps selected work first', async ({ page }) => {
+  test('case-study hierarchy starts with the creative category', async ({ page }) => {
     await page.goto('/en/case-studies/', { waitUntil: 'domcontentloaded' })
 
     const groups = page.locator('.case-study-gallery-group')
-    await expect(groups).toHaveCount(3)
-    await expect(groups.nth(0).getByRole('heading')).toHaveText('Selected systems')
-    await expect(groups.nth(0).locator('[data-mobile-audit="case-study-card"]')).toHaveCount(4)
+    await expect(groups).toHaveCount(4)
+    await expect(groups.nth(0).getByRole('heading')).toHaveText('Creative Work')
+    await expect(groups.nth(0).locator('[data-mobile-audit="case-study-card"]')).toHaveCount(3)
   })
 })

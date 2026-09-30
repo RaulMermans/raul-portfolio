@@ -60,6 +60,7 @@
   --space-11: 7rem;
   --space-12: 8rem;
   --header-height: 80px;
+  /* Header labels reserve the same navigation space in both locales. */
   --section-padding: var(--space-8);
   --section-padding-mobile: var(--space-6);
   --section-block-padding: clamp(5.5rem, 8vw, 8rem);

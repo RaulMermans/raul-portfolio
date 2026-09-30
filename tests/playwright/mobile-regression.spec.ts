@@ -1,6 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
 import { getCaseStudies } from '../../data/case-studies'
-import { SELECTED_SYSTEM_SLUGS } from '../../data/independent-systems'
 
 const FIXED_DATE_ISO = '2026-03-16T10:00:00.000Z'
 
@@ -240,7 +239,7 @@ test.describe('Mobile Regression', () => {
     expect(initialLayout.cardTop).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
-    const firstStudy = getCaseStudies('en').find((study) => study.slug === SELECTED_SYSTEM_SLUGS[0])!
+    const firstStudy = getCaseStudies('en').find((study) => study.slug === 'campaign-sandbox')!
     expect(initialLayout.frameRatio).toBeCloseTo(firstStudy.imageWidth / firstStudy.imageHeight, 2)
     expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
   })

@@ -2,7 +2,6 @@ import { type Locale, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
-import SelectedSystems from '@/components/SelectedSystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
 import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
@@ -49,7 +48,6 @@ export default function Home({ locale = 'es' }: { locale?: Locale }) {
         <Header locale={locale} />
         <Hero locale={locale} />
         <SectionCards locale={locale} />
-        <SelectedSystems locale={locale} />
         <CreativeInfrastructure locale={locale} />
         <About locale={locale} />
         <Services locale={locale} />

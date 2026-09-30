@@ -151,14 +151,20 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     ...item,
     href: localizePath(item.href, locale),
   }))
-  const desktopMenuItems = menuItems
+  const otherLocale = locale === 'en' ? 'es' : 'en'
+  const otherNav = getSiteCopy(otherLocale).header.nav
+  const desktopMenuItems = menuItems.map((item, index) => ({
+    ...item,
+    otherLabel: otherNav[index].label,
+  }))
   const activePath = pathname || localizePath('/', locale)
-  const isCaseStudiesRoute = activePath.includes('/case-studies')
+  const normalizedPath = activePath.replace(/\/+$/, '') || '/'
+  const isCaseStudiesRoute = normalizedPath.includes('/case-studies')
   const hasDarkCaseStudyHero =
-    activePath.includes('/case-studies/ai-sports') ||
-    activePath.includes('/case-studies/remoria')
-  const isAboutRoute = activePath.includes('/about')
-  const isHomeRoute = activePath === localizePath('/', locale)
+    normalizedPath.includes('/case-studies/ai-sports') ||
+    normalizedPath.includes('/case-studies/remoria')
+  const isAboutRoute = normalizedPath.includes('/about')
+  const isHomeRoute = normalizedPath === localizePath('/', locale)
   const surface = hasDarkCaseStudyHero
     ? 'dark'
     : isCaseStudiesRoute
@@ -174,9 +180,9 @@ export default function Header({ locale = 'en' }: HeaderProps) {
   const isActiveItem = (href: string) => {
     const normalizedHref = href.split('#')[0] || localizePath('/', locale)
     if (normalizedHref === localizePath('/', locale)) {
-      return activePath === normalizedHref
+      return normalizedPath === normalizedHref
     }
-    return activePath === normalizedHref || activePath.startsWith(`${normalizedHref}/`)
+    return normalizedPath === normalizedHref || normalizedPath.startsWith(`${normalizedHref}/`)
   }
 
   return (
@@ -205,7 +211,10 @@ export default function Header({ locale = 'en' }: HeaderProps) {
                 aria-current={isActive ? 'page' : undefined}
                 onClick={(e) => (hash ? handleNavClick(e, hash) : undefined)}
               >
-                <span>{item.label}</span>
+                <span className={styles.navLabel}>
+                  <span>{item.label}</span>
+                  <span className={styles.navLabelReserve} aria-hidden="true">{item.otherLabel}</span>
+                </span>
               </Link>
             )
           })}

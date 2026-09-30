@@ -48,6 +48,7 @@ Title wrapping is intentional. Use `$author-section-headings` when exact visual 
 - Required states: default, hover when hover exists, focus-visible, active where useful, disabled/loading/error when the component supports it. State must remain distinguishable without colour alone.
 - Motion may clarify a change of state or reveal evidence. It must be optional under reduced motion, short, and never required to read or operate the page.
 - The fixed shared header stays visible at the top of a page, hides only after a meaningful downward scroll, and returns on upward scroll. Do not hide it while its mobile menu is open or keyboard focus is within it.
+- The shared header keeps the same surface and navigation positions across locales on equivalent routes. Labels and active language state may change; locale alone does not change its layout or art direction.
 
 ## Media contract
 

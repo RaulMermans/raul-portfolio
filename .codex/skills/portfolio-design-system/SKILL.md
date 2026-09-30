@@ -57,6 +57,7 @@ For public routes, start with `$portfolio-experience-system`. It selects the app
 - Retain visible `:focus-visible` feedback, keyboard behavior, accessible names, and state feedback beyond color alone.
 - Respect reduced motion. Do not add motion that blocks reading, scrolling, or input.
 - The shared fixed header stays visible at the page top, hides only after an intentional downward scroll, and returns on upward scroll. It remains available while its mobile menu is open or keyboard focus is inside it.
+- Equivalent routes keep the header surface and navigation geometry stable when switching between English and Spanish.
 
 ## Mobile contract
 

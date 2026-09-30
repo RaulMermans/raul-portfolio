@@ -6,13 +6,11 @@ import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { type CSSProperties, useMemo, useState } from 'react'
-import { SYSTEM_COLLECTIONS } from '@/data/independent-systems'
 import { getCaseStudies } from '@/data/case-studies'
 import {
-  DISCIPLINES,
-  DISCIPLINE_LABELS,
+  CASE_STUDY_CATEGORIES,
   PROJECT_EXPERIENCE,
-  type Discipline,
+  type CaseStudyCategory,
 } from '@/data/portfolio-experience'
 import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
@@ -61,31 +59,26 @@ export default function CaseStudiesPage() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const caseStudies = useMemo(() => getCaseStudies(locale), [locale])
-  const [activeDiscipline, setActiveDiscipline] = useState<Discipline | 'all'>('all')
+  const [activeCategory, setActiveCategory] = useState<CaseStudyCategory | 'all'>('all')
   const schemas = getSchemas(locale)
   const isSpanish = locale === 'es'
   const heading = isSpanish ? 'Casos de estudio' : 'Case Studies'
   const intro = isSpanish
     ? 'Sistemas propios de IA, productos de datos y trabajo creativo. Cada caso muestra lo construido, la evidencia disponible y sus límites.'
     : 'Independent AI systems, data products, and creative work. Each case shows what was built, the available evidence, and its limits.'
-  const studiesBySlug = useMemo(
-    () => new Map(caseStudies.map((study) => [study.slug, study])),
-    [caseStudies],
+  const categoryBySlug = useMemo(
+    () => new Map(PROJECT_EXPERIENCE.map((project) => [project.slug, project.caseStudyCategory])),
+    [],
   )
-  const visibleProjects = PROJECT_EXPERIENCE.filter(
-    (project) => activeDiscipline === 'all' || project.primaryDiscipline === activeDiscipline,
-  )
-  const visibleStudies = visibleProjects
-    .map((project) => studiesBySlug.get(project.slug))
-    .filter((study): study is NonNullable<typeof study> => Boolean(study))
-  const activeLabel = activeDiscipline === 'all'
-    ? isSpanish ? 'Todos los trabajos' : 'All work'
-    : DISCIPLINE_LABELS[activeDiscipline][locale]
-  const groups = SYSTEM_COLLECTIONS.map((collection) => ({
-    ...collection,
-    studies: visibleStudies.filter((study) => (collection.slugs as readonly string[]).includes(study.slug))
-      .sort((a, b) => collection.slugs.indexOf(a.slug as never) - collection.slugs.indexOf(b.slug as never)),
-  })).filter((collection) => collection.studies.length > 0)
+  const groups = CASE_STUDY_CATEGORIES.map((category, index) => ({
+    ...category,
+    index: String(index + 1).padStart(2, '0'),
+    studies: caseStudies.filter((study) => categoryBySlug.get(study.slug) === category.id),
+  }))
+  const visibleGroups = activeCategory === 'all'
+    ? groups
+    : groups.filter((group) => group.id === activeCategory)
+  const visibleCount = visibleGroups.reduce((count, group) => count + group.studies.length, 0)
 
 
   return (
@@ -125,38 +118,47 @@ export default function CaseStudiesPage() {
           aria-labelledby="case-studies-heading"
           data-mobile-audit="case-study-grid"
         >
-          <div className="case-studies-index__toolbar" aria-label={isSpanish ? 'Filtrar casos por disciplina' : 'Filter case studies by discipline'}>
-            <div className="case-studies-index__filters" role="group">
+          <div className="case-studies-index__toolbar">
+            <p className="case-studies-index__browse-label">{isSpanish ? 'Explorar por área' : 'Browse by practice'}</p>
+            <div className="case-studies-index__browse-meta">
               <button
                 type="button"
-                className={`case-studies-index__filter${activeDiscipline === 'all' ? ' is-active' : ''}`}
-                onClick={() => setActiveDiscipline('all')}
-                aria-pressed={activeDiscipline === 'all'}
+                className="case-studies-index__all"
+                onClick={() => setActiveCategory('all')}
+                aria-pressed={activeCategory === 'all'}
+                aria-controls="case-study-results"
               >
-                {isSpanish ? 'Todos' : 'All'}
+                {isSpanish ? 'Ver todos' : 'View all'}
               </button>
-              {DISCIPLINES.map((discipline) => (
-                <button
-                  key={discipline}
-                  type="button"
-                  className={`case-studies-index__filter${activeDiscipline === discipline ? ' is-active' : ''}`}
-                  onClick={() => setActiveDiscipline(discipline)}
-                  aria-pressed={activeDiscipline === discipline}
-                >
-                  {DISCIPLINE_LABELS[discipline][locale]}
-                </button>
-              ))}
+              <p className="case-studies-index__count" aria-live="polite">
+                {visibleCount} {isSpanish ? 'proyectos' : 'projects'}
+              </p>
             </div>
-            <p className="case-studies-index__count" aria-live="polite">
-              {visibleStudies.length} {isSpanish ? 'proyectos' : 'projects'}
-            </p>
           </div>
-          {groups.map((group) => (
-          <section key={group.id} className="case-study-gallery-group" aria-labelledby={`case-study-group-${group.id}`} data-project-tier={group.id}>
+          <div className="case-studies-index__categories" role="group" aria-label={isSpanish ? 'Categorías de casos de estudio' : 'Case study categories'}>
+            {groups.map((group) => (
+              <button
+                key={group.id}
+                type="button"
+                className={`case-studies-index__category${activeCategory === group.id ? ' is-active' : ''}`}
+                onClick={() => setActiveCategory(group.id)}
+                aria-pressed={activeCategory === group.id}
+                aria-controls="case-study-results"
+                data-category-selector={group.id}
+              >
+                <span className="case-studies-index__category-index">{group.index} / 04</span>
+                <span className="case-studies-index__category-title">{group.label[locale]}</span>
+                <span className="case-studies-index__category-count">{group.studies.length} {isSpanish ? 'proyectos' : 'projects'}</span>
+              </button>
+            ))}
+          </div>
+          <div id="case-study-results" className="case-studies-index__results">
+          {visibleGroups.map((group) => (
+          <section key={group.id} className="case-study-gallery-group" aria-labelledby={`case-study-group-${group.id}`} data-project-category={group.id}>
             <header className="case-study-gallery-group__header">
-              <p>{activeLabel}</p>
-              <h2 id={`case-study-group-${group.id}`}>{group[locale].title}</h2>
-              <span>{group[locale].body}</span>
+              <p>{group.index} / 04</p>
+              <h2 id={`case-study-group-${group.id}`}>{group.label[locale]}</h2>
+              <span>{group.description[locale]}</span>
             </header>
             <div className="case-study-project-grid">
               {group.studies.map((study, index) => {
@@ -201,6 +203,7 @@ export default function CaseStudiesPage() {
             </div>
           </section>
           ))}
+          </div>
         </section>
       </main>
       <Footer locale={locale} />

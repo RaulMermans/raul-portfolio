@@ -84,6 +84,7 @@
 .desktopNav a {
   position: relative;
   display: inline-flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
@@ -100,6 +101,21 @@
   transition:
     color var(--transition-base) var(--ease),
     transform var(--transition-base) var(--ease);
+}
+
+.navLabel {
+  display: grid;
+  grid-template-columns: max-content;
+  width: max-content;
+}
+
+.navLabel > span {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.navLabelReserve {
+  visibility: hidden;
 }
 
 .desktopNav a::before {

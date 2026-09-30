@@ -25,6 +25,30 @@ async function prepare(page: Page, path: string) {
     }))).toBe(true)
     await expect(page.locator('.gallery__item.loaded')).toHaveCount(count)
   }
+  if (path === '/en/case-studies/' || path === '/case-studies/') {
+    // Case-study index thumbnails below the fold are lazy in the live page.
+    // Load them before capturing a full-page baseline so the gallery is visible.
+    const thumbnails = page.locator('#case-study-grid img')
+    if (await thumbnails.count()) {
+      await thumbnails.evaluateAll((images) => {
+        for (const image of images) (image as HTMLImageElement).loading = 'eager'
+      })
+      await expect.poll(() => thumbnails.evaluateAll((images) => images.every((image) => {
+        const element = image as HTMLImageElement
+        return element.complete && element.naturalWidth > 0
+      }))).toBe(true)
+    }
+  }
+  if (path.includes('/bi-notebook-lab/')) {
+    const proofImages = page.locator('.independent-system-proof img')
+    await proofImages.evaluateAll((images) => {
+      for (const image of images) (image as HTMLImageElement).loading = 'eager'
+    })
+    await expect.poll(() => proofImages.evaluateAll((images) => images.every((image) => {
+      const element = image as HTMLImageElement
+      return element.complete && element.naturalWidth > 0
+    }))).toBe(true)
+  }
   await page.addStyleTag({
     // Screenshot capture finishes finite reveal animations. Resetting them to
     // `none` returns gallery cards to their authored initial opacity of zero.
@@ -40,11 +64,15 @@ const routes = [
   ['case-studies', '/en/case-studies/'],
   ['creative-case-study', '/en/case-studies/remoria/'],
   ['bi-case-study', '/en/case-studies/opstwin/'],
+  ['halo-control', '/en/case-studies/halo-control/'],
+  ['bi-notebook-lab', '/en/case-studies/bi-notebook-lab/'],
   ['apps', '/en/apps/'],
   ['photography', '/en/photography/'],
   ['home-es', '/'],
   ['about-es', '/about/'],
   ['case-studies-es', '/case-studies/'],
+  ['halo-control-es', '/case-studies/halo-control/'],
+  ['bi-notebook-lab-es', '/case-studies/bi-notebook-lab/'],
   ['apps-es', '/apps/'],
   ['data-service', '/en/services/creative-automation/'],
   ['data-service-es', '/services/automatizacion-creativa/'],

@@ -40,8 +40,15 @@ export default function IndependentSystemCaseStudy({ slug }: { slug: Independent
             )}
           </div>
           <figure className="ui-media ui-media--contained">
-            <Image src={system.image} alt={spanish ? 'Índice simplificado de los módulos del sistema' : 'Simplified index of system modules'} width={1200} height={800} />
-            <figcaption>{spanish ? 'Módulos de arquitectura. No representa una ejecución real.' : 'Architecture modules. This does not represent a live run.'}</figcaption>
+            <Image
+              src={system.image}
+              alt={'heroAlt' in system ? system.heroAlt : spanish ? 'Índice simplificado de los módulos del sistema' : 'Simplified index of system modules'}
+              width={'imageWidth' in system ? system.imageWidth : 1200}
+              height={'imageHeight' in system ? system.imageHeight : 800}
+              sizes="(max-width: 900px) 100vw, 50vw"
+              loading="eager"
+            />
+            <figcaption>{'heroCaption' in system ? system.heroCaption : spanish ? 'Módulos de arquitectura. No representa una ejecución real.' : 'Architecture modules. This does not represent a live run.'}</figcaption>
           </figure>
         </section>
         <CaseStudyMiniNav items={system.chapters.map((chapter) => [chapter.title, `#${chapter.id}`])} ariaLabel={spanish ? 'Secciones del caso' : 'Case study sections'} />
@@ -54,6 +61,12 @@ export default function IndependentSystemCaseStudy({ slug }: { slug: Independent
                 <h2 id={`${chapter.id}-title`}>{chapter.title}</h2>
                 <p>{chapter.body}</p>
               </div>
+              {'media' in chapter && (
+                <figure className="ui-media ui-media--contained independent-system-proof">
+                  <Image src={chapter.media.src} alt={chapter.media.alt} width={chapter.media.width} height={chapter.media.height} sizes="(max-width: 900px) 100vw, 86rem" />
+                  <figcaption>{chapter.media.caption}</figcaption>
+                </figure>
+              )}
             </div>
           </section>
         ))}
