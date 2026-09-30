@@ -125,7 +125,12 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
+        if: github.event_name != 'workflow_dispatch' || (!inputs.refresh_all_visual_baselines && !inputs.refresh_case_study_visual_baselines)
         run: npx playwright install --with-deps chromium webkit
+
+      - name: Install Chromium for visual baseline capture
+        if: github.event_name == 'workflow_dispatch' && (inputs.refresh_all_visual_baselines || inputs.refresh_case_study_visual_baselines)
+        run: npx playwright install --with-deps chromium
 
       - name: Build browser-test static export
         run: npm run build
