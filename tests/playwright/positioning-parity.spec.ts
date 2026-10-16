@@ -21,7 +21,7 @@ test('canonical content keeps equivalent locale structures and exhaustive case-s
   const projectSlugs = PROJECT_EXPERIENCE.map((project) => project.slug)
   expect(new Set(projectSlugs).size).toBe(projectSlugs.length)
   expect([...projectSlugs].sort()).toEqual(getCaseStudies('en').map((study) => study.slug).sort())
-  expect(CASE_STUDY_CATEGORIES.map((category) => category.id)).toEqual(['creative-work', 'ai-systems', 'software-products', 'data-analytics'])
+  expect(CASE_STUDY_CATEGORIES.map((category) => category.id)).toEqual(['ai-systems', 'software-products', 'data-analytics', 'creative-work'])
   for (const project of PROJECT_EXPERIENCE) {
     expect(CASE_STUDY_CATEGORIES.some((category) => category.id === project.caseStudyCategory)).toBe(true)
   }
@@ -48,14 +48,14 @@ for (const locale of ['en', 'es'] as const) {
       const dimensions = await page.evaluate(() => ({ actual: document.documentElement.scrollWidth, viewport: innerWidth }))
       expect(dimensions.actual).toBeLessThanOrEqual(dimensions.viewport)
       await expect(page.locator('h1')).toBeVisible()
-      if (path === `${prefix}/`) await expect(page.locator('#selected-systems')).toHaveCount(0)
+      if (path === `${prefix}/`) await expect(page.locator('#work [href*="/case-studies/iris"]')).toHaveCount(1)
     }
   })
 
   test(`home routes work into case studies and preserves creative paths in ${locale}`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto(`${prefix}/`, { waitUntil: 'networkidle' })
-    await expect(page.locator('#selected-systems')).toHaveCount(0)
+    await expect(page.locator('#work [href*="/case-studies/iris"]')).toHaveCount(1)
     await expect(page.locator('[data-home-section="hero"] a[href$="#work"]')).toHaveCount(1)
     await expect(page.locator('a[href*="/photography"]').first()).toBeAttached()
     await expect(page.locator('a[href*="/visuals"]').first()).toBeAttached()
@@ -98,6 +98,9 @@ for (const locale of ['en', 'es'] as const) {
           return element.complete && element.naturalWidth > 0
         }))).toBe(true)
       }
+      // The Next.js development indicator appears intermittently during long
+      // screenshot runs and is outside the portfolio's rendered content.
+      await page.addStyleTag({ content: 'nextjs-portal { display: none !important; }' })
       await expect(page).toHaveScreenshot(`${slug}-${locale}-${testInfo.project.name}.png`, { fullPage: true, animations: 'disabled', timeout: 15000 })
     })
   }
@@ -106,7 +109,7 @@ for (const locale of ['en', 'es'] as const) {
     await page.goto(`${prefix}/case-studies/`, { waitUntil: 'networkidle' })
     const selectors = page.locator('.case-studies-index__category')
     await expect(selectors).toHaveCount(4)
-    await expect(page.locator('[data-project-category]')).toHaveCount(4)
+    await expect(page.locator('.case-study-gallery-group')).toHaveCount(1)
     await expect(page.locator('[data-mobile-audit="case-study-card"]')).toHaveCount(PROJECT_EXPERIENCE.length)
     const hrefs = await page.locator('[data-mobile-audit="case-study-card"]').evaluateAll((cards) => cards.map((card) => card.getAttribute('href')))
     expect(new Set(hrefs).size).toBe(PROJECT_EXPERIENCE.length)
@@ -114,11 +117,11 @@ for (const locale of ['en', 'es'] as const) {
       const selector = page.locator(`[data-category-selector="${category}"]`)
       await selector.click()
       await expect(selector).toHaveAttribute('aria-pressed', 'true')
-      await expect(page.locator('[data-project-category]')).toHaveCount(1)
-      await expect(page.locator(`[data-project-category="${category}"] [data-mobile-audit="case-study-card"]`)).toHaveCount(count)
+      await expect(page.locator('.case-study-gallery-group')).toHaveCount(1)
+      await expect(page.locator(`[data-project-category="${category}"][data-mobile-audit="case-study-card"]`)).toHaveCount(count)
     }
     await page.getByRole('button', { name: locale === 'en' ? 'View all' : 'Ver todos' }).click()
-    await expect(page.locator('[data-project-category]')).toHaveCount(4)
+    await expect(page.locator('.case-study-gallery-group')).toHaveCount(1)
     const creativeSelector = page.locator('[data-category-selector="creative-work"]')
     await creativeSelector.focus()
     await page.keyboard.press('Enter')

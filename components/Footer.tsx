@@ -11,20 +11,25 @@ export default function Footer({ locale = 'en' }: FooterProps) {
   const copy = getSiteCopy(locale).footer
   const isSpanish = locale === 'es'
   const topLabel = isSpanish ? 'Volver arriba' : 'Back to top'
-  const externalLabel = isSpanish ? 'Abre en una pestaña nueva' : 'Opens in a new tab'
-  const elsewhereLabel = isSpanish ? 'En otros sitios' : 'Elsewhere'
-  const studioLabel = isSpanish ? 'Estudio' : 'Studio'
-  const studioLinks = [
+  const profileLabel = isSpanish ? 'Perfil y contacto' : 'Profile & contact'
+  const profileLinks = [
     { label: isSpanish ? 'Sobre mí' : 'About', href: '/about' },
     { label: isSpanish ? 'Contacto' : 'Contact', href: '/#contact', hash: '#contact' },
-    { label: isSpanish ? 'Disponibilidad' : 'Availability', href: '/#contact', hash: '#contact' },
   ]
-  const socialLinks = [
-    { label: 'GitHub', href: 'https://github.com/RaulMermans' },
-    { label: 'Instagram', href: 'https://www.instagram.com/raulmeermans/' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/raulmermans' },
-    { label: 'Unsplash', href: 'https://unsplash.com/@raulmermans' },
-    { label: 'X / Twitter', href: 'https://twitter.com/raulmermans' },
+  const workLinks = [
+    { label: isSpanish ? 'Casos de estudio' : 'Case Studies', href: '/case-studies' },
+    { label: 'Apps', href: '/apps' },
+    { label: isSpanish ? 'Fotografía' : 'Photography', href: '/photography' },
+    { label: isSpanish ? 'Visuales' : 'Visuals', href: '/visuals' },
+  ]
+  const capabilityLinks = isSpanish ? [
+    { label: 'Sistemas de IA y producto', href: '/services/prototipos-producto-ia' },
+    { label: 'Datos e inteligencia para la decisión', href: '/services/automatizacion-creativa' },
+    { label: 'Sistemas de marca y creatividad', href: '/services/sistemas-de-marca' },
+  ] : [
+    { label: 'AI Systems & Product', href: '/services/product-prototypes' },
+    { label: 'Data & Decision Intelligence', href: '/services/creative-automation' },
+    { label: 'Brand & Creative Systems', href: '/services/brand-systems' },
   ]
 
   return (
@@ -40,23 +45,10 @@ export default function Footer({ locale = 'en' }: FooterProps) {
 
           <nav className="footer__nav" aria-label={isSpanish ? 'Navegación del pie de página' : 'Footer navigation'}>
             <div className="footer__column">
-              <h2>{elsewhereLabel}</h2>
+              <h2>{copy.work}</h2>
               <ul>
-                {socialLinks.map((item) => (
+                {workLinks.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.label}. ${externalLabel}`}>
-                        {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="footer__column">
-              <h2>{studioLabel}</h2>
-              <ul>
-                {studioLinks.map((item) => (
-                  <li key={item.label}>
                     <Link href={localizePath(item.href, locale)}>{item.label}</Link>
                   </li>
                 ))}
@@ -66,11 +58,24 @@ export default function Footer({ locale = 'en' }: FooterProps) {
             <div className="footer__column">
               <h2>{copy.services}</h2>
               <ul>
-                {copy.serviceLinks.map((item) => (
+                {capabilityLinks.map((item) => (
+                  <li key={item.label}>
+                    <Link href={localizePath(item.href, locale)}>{item.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="footer__column">
+              <h2>{profileLabel}</h2>
+              <ul>
+                {profileLinks.map((item) => (
                   <li key={item.href}>
                     <Link href={localizePath(item.href, locale)}>{item.label}</Link>
                   </li>
                 ))}
+                <li><a href="https://github.com/RaulMermans" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+                <li><a href="https://linkedin.com/in/raulmermans" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
               </ul>
             </div>
           </nav>

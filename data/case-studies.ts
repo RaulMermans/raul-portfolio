@@ -696,7 +696,14 @@ export function getCaseStudies(locale: Locale): CaseStudy[] {
     ...('repository' in system ? { githubUrl: system.repository } : {}),
   }))
 
-  return [...caseStudyEntries[locale], ...systems]
+  // Independent systems own their public summaries; editorial entries own the
+  // wider archive. Merge by slug so a project cannot appear twice in the index.
+  const studiesBySlug = new Map<string, CaseStudyEntry>(
+    caseStudyEntries[locale].map((study) => [study.slug, study])
+  )
+  for (const system of systems) studiesBySlug.set(system.slug, system)
+
+  return [...studiesBySlug.values()]
     .map(study => {
       const editorial = getCaseStudyEditorial(study.slug)
 

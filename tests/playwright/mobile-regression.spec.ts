@@ -87,8 +87,8 @@ test.describe('Mobile Regression', () => {
     await expect(heading).toBeVisible()
     await expect(heading).toHaveCSS('font-family', /bebasNeue|Bebas Neue|Impact/i)
     await expect(heroCtas).toHaveCount(2)
-    await expect(hero.getByRole('link', { name: 'Explore what I’m building' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: 'Work with me' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'Explore selected systems' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'About me' })).toBeVisible()
     await expect(hero.getByRole('link', { name: /GitHub/i })).toHaveCount(0)
 
   })
@@ -104,8 +104,8 @@ test.describe('Mobile Regression', () => {
     await expect(heading).toBeVisible()
     await expect(heading).toHaveCSS('font-family', /bebasNeue|Bebas Neue|Impact/i)
     expect(await heading.getAttribute('class')).not.toMatch(/\breveal\b/)
-    await expect(hero.getByRole('link', { name: 'Explore what I’m building' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: 'Work with me' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'Explore selected systems' })).toBeVisible()
+    await expect(hero.getByRole('link', { name: 'About me' })).toBeVisible()
   })
 
   test('shared mobile defaults keep body copy readable and the document within the viewport', async ({ page }) => {
@@ -126,14 +126,14 @@ test.describe('Mobile Regression', () => {
 
     const buildingNow = page.locator('#building-now')
     await buildingNow.scrollIntoViewIfNeeded()
-    await expect(buildingNow.getByRole('heading', { name: 'AI, business, and a wider creative practice.' })).toBeVisible()
-    await expect(buildingNow.getByText('AI Systems & Products')).toBeVisible()
+    await expect(buildingNow.getByRole('heading', { name: 'From the problem to the system.' })).toBeVisible()
+    await expect(buildingNow.getByText('AI Systems & Product')).toBeVisible()
 
     await preparePage(page, '/')
     const spanishBuildingNow = page.locator('#building-now')
     await spanishBuildingNow.scrollIntoViewIfNeeded()
-    await expect(spanishBuildingNow.getByRole('heading', { name: 'IA, negocio y una práctica creativa más amplia.' })).toBeVisible()
-    await expect(spanishBuildingNow.getByText('Sistemas de IA y productos')).toBeVisible()
+    await expect(spanishBuildingNow.getByRole('heading', { name: 'Del problema al sistema.' })).toBeVisible()
+    await expect(spanishBuildingNow.getByText('Sistemas de IA y producto')).toBeVisible()
   })
 
   test('mobile menu opens as a modal and restores focus when closed', async ({ page }) => {
@@ -164,7 +164,7 @@ test.describe('Mobile Regression', () => {
   test('homepage section cards are direct, aligned links on mobile', async ({ page }) => {
     await preparePage(page, '/en/')
 
-    const workSection = page.locator('[data-home-section="work"]')
+    const workSection = page.locator('[data-home-section="creative-universe"]')
     await workSection.scrollIntoViewIfNeeded()
     const cardList = workSection.locator('[data-mobile-audit="section-card-list"]')
     const cards = cardList.getByRole('link')
@@ -186,7 +186,7 @@ test.describe('Mobile Regression', () => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await preparePage(page, '/en/')
 
-    const workSection = page.locator('[data-home-section="work"]')
+    const workSection = page.locator('[data-home-section="creative-universe"]')
     await workSection.scrollIntoViewIfNeeded()
 
     await expect(workSection.getByRole('button', { name: /Next section:/ })).toBeVisible()
@@ -239,7 +239,7 @@ test.describe('Mobile Regression', () => {
     expect(initialLayout.cardTop).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
-    const firstStudy = getCaseStudies('en').find((study) => study.slug === 'campaign-sandbox')!
+    const firstStudy = getCaseStudies('en')[0]
     expect(initialLayout.frameRatio).toBeCloseTo(firstStudy.imageWidth / firstStudy.imageHeight, 2)
     expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
   })

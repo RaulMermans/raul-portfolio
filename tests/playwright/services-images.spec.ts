@@ -1,30 +1,26 @@
 import { expect, test } from '@playwright/test'
 
 const serviceImageByTitle = [
-  ['Web Development & Digital Experiences', 'Services_Web_Development.webp'],
-  ['Brand Systems & Creative Direction', 'Services_Creative_Direction.webp'],
-  ['Data & Business Intelligence', 'Services_Automation.webp'],
-  ['AI Systems & Digital Products', 'Services_AI_Agents.webp'],
-  ['Photography & Visual Direction', 'Services_Photography.webp'],
+  ['AI Systems & Product', 'Services_AI_Agents.webp'],
+  ['Data & Decision Intelligence', 'Services_Automation.webp'],
+  ['Brand & Creative Systems', 'Services_Creative_Direction.webp'],
 ] as const
 
 const serviceLandingLinks = [
   {
     path: '/en/',
     links: [
-      ['Web Development & Digital Experiences', '/en/services/web-development'],
-      ['Brand Systems & Creative Direction', '/en/services/brand-systems'],
-      ['Data & Business Intelligence', '/en/services/creative-automation'],
-      ['AI Systems & Digital Products', '/en/services/product-prototypes'],
+      ['AI Systems & Product', '/en/services/product-prototypes'],
+      ['Data & Decision Intelligence', '/en/services/creative-automation'],
+      ['Brand & Creative Systems', '/en/services/brand-systems'],
     ],
   },
   {
     path: '/',
     links: [
-      ['Desarrollo Web y Experiencias Digitales', '/services/desarrollo-web'],
-      ['Sistemas de Marca y Dirección Creativa', '/services/sistemas-de-marca'],
-      ['Datos e inteligencia de negocio', '/services/automatizacion-creativa'],
-      ['Sistemas de IA y productos digitales', '/services/prototipos-producto-ia'],
+      ['Sistemas de IA y producto', '/services/prototipos-producto-ia'],
+      ['Datos e inteligencia para la decisión', '/services/automatizacion-creativa'],
+      ['Sistemas de marca y creatividad', '/services/sistemas-de-marca'],
     ],
   },
 ] as const
@@ -33,7 +29,7 @@ test('services pair each topic with its own illustration', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
   await page.goto('/en/', { waitUntil: 'networkidle' })
 
-  const services = page.locator('#services .service')
+  const services = page.locator('#capabilities .service')
   await expect(services).toHaveCount(serviceImageByTitle.length)
 
   for (const [title, image] of serviceImageByTitle) {
@@ -48,7 +44,7 @@ for (const locale of serviceLandingLinks) {
     await page.setViewportSize({ width: 1280, height: 900 })
     await page.goto(locale.path, { waitUntil: 'networkidle' })
 
-    const services = page.locator('#services .service')
+    const services = page.locator('#capabilities .service')
     for (const [title, href] of locale.links) {
       const service = services.filter({ hasText: title })
       await expect(service).toHaveCount(1)

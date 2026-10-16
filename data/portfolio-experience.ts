@@ -35,10 +35,10 @@ export type LocaleCode = 'es' | 'en'
 
 /** Browsing groups for the case-study index; separate from project disciplines. */
 export const CASE_STUDY_CATEGORIES = [
-  { id: 'creative-work', label: { en: 'Creative Work', es: 'Trabajo creativo' }, description: { en: 'Brands, campaigns, and visual ideas in context.', es: 'Marcas, campañas e ideas visuales en contexto.' } },
   { id: 'ai-systems', label: { en: 'AI Systems & Agents', es: 'Sistemas y agentes de IA' }, description: { en: 'Bounded agents, local AI, and evidence-led workflows.', es: 'Agentes acotados, IA local y flujos basados en evidencia.' } },
   { id: 'software-products', label: { en: 'Software & Products', es: 'Software y productos' }, description: { en: 'Tools and digital products built around real tasks.', es: 'Herramientas y productos digitales para tareas concretas.' } },
   { id: 'data-analytics', label: { en: 'Data Analytics', es: 'Análisis de datos' }, description: { en: 'Models, reporting, and decision-support systems.', es: 'Modelos, informes y sistemas de apoyo a decisiones.' } },
+  { id: 'creative-work', label: { en: 'Creative Work', es: 'Trabajo creativo' }, description: { en: 'Brands, campaigns, and visual ideas in context.', es: 'Marcas, campañas e ideas visuales en contexto.' } },
 ] as const
 
 export type CaseStudyCategory = (typeof CASE_STUDY_CATEGORIES)[number]['id']

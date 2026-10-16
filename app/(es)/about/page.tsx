@@ -25,25 +25,25 @@ type TimelineItem = {
 
 const pageCopy = {
   en: {
-    heroTag: 'I build across AI, business, product, and creative work.',
+    heroTag: 'I build across AI, product, data and creative systems.',
     heroSupport:
-      'Independent systems are the centre of my practice. Marketing, brand, CRM, and visual work give me the context to build tools that answer real problems.',
+      'From business and marketing to AI, data and product. I build systems that turn complex decisions into usable tools.',
     current: ['Base', 'Madrid', 'Origin', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
         title: 'Systems that ship',
-        body: 'Local AI Coding Agent: a 24-task evaluation corpus. Website Audit Agent: evidence before synthesis. DemandOS: deterministic forecasting on synthetic data. IRIS: public orchestration architecture with synthetic examples.',
+        body: 'IRIS: governed agent orchestration and attention. HALO Control: local AI infrastructure. Local AI Coding Agent: bounded orchestration with a 24-task read-only corpus. DemandOS: deterministic forecasting on synthetic data.',
       },
       {
         number: '02',
-        title: 'Commercial systems',
-        body: 'Lifecycle, campaigns, segmentation, and adoption work that made systems answer to real operational constraints.',
+        title: 'Commercial context',
+        body: 'CRM, lifecycle, segmentation, partner programmes, commercial operations and AI adoption made systems answer to real constraints.',
       },
       {
         number: '03',
-        title: 'Taste as interface',
-        body: 'Photography, visual studies, luxury references, and brand systems used as the judgment layer around technical tools.',
+        title: 'Creative judgment',
+        body: 'Photography, visual systems, brand strategy and art direction sharpen how technical systems communicate and feel.',
       },
     ],
     aboutEyebrow: 'About',
@@ -51,18 +51,18 @@ const pageCopy = {
     lede:
       'Operational taste means knowing what to structure, what to leave editable, and when people need to decide.',
     body: [
-      'Málaga is the origin. Madrid sharpened the practice through IE University, marketing, CRM, and commercial teams.',
-      'Orlando changed how I read service. Commercial systems added the pressure of lifecycle work, segmentation, partners, and scale.',
-      'The portfolio turns that thinking into campaign tools, data products, brand systems, and visual studies.',
+      'I started in business, marketing and brand. Work in CRM, lifecycle and commercial teams taught me to understand customers, operations and constraints.',
+      'My practice moved through data and automation into software and AI systems. I now build across local inference, agentic workflows, machine learning, data products and internal tools.',
+      'Brand and visual practice remain a judgment layer: how a system communicates, how an interface feels and how an idea becomes coherent.',
     ],
     operatingProfile: {
       title: 'Operating profile',
       items: [
         ['Base', 'Madrid'],
         ['Origin', 'Málaga'],
-        ['Education', 'BBA Marketing, IE University'],
-        ['Working context', 'CRM, lifecycle, partner programmes, AI adoption'],
-        ['Independent work', 'Campaign tools, data products, brand workflows, internal systems'],
+        ['Education', 'IE University · BBA / Marketing (completed); UAX · current postgraduate studies in Big Data'],
+        ['Working context', 'AI, data, automation, internal products and commercial workflows'],
+        ['Independent work', 'AI systems, data products, simulations and internal tools'],
         ['Visual practice', 'Photography, album covers, image systems, art direction'],
         ['AI systems', 'Local models, Ollama, MCP, tool calling, evaluation'],
         ['Engineering', 'TypeScript, Python, React, Next.js, SQL, PostgreSQL'],
@@ -165,9 +165,9 @@ const pageCopy = {
       {
         date: '06',
         title: 'Now — building the loop',
-        org: 'Tools · brand workflows · visual practice',
+        org: 'AI systems · data products · internal tools',
         desc:
-          'Building the loop between workflow logic, interface design, brand memory, data boundaries, and human review.',
+          'Building the loop between business decisions, data, agentic workflows, usable interfaces, verification and human review.',
         tags: ['Systems', 'Interface', 'Taste'],
       },
     ] satisfies TimelineItem[],
@@ -222,25 +222,25 @@ const pageCopy = {
     githubCta: 'View technical work on GitHub',
   },
   es: {
-    heroTag: 'Construyo entre IA, negocio, producto y trabajo creativo.',
+    heroTag: 'Construyo entre IA, producto, datos y sistemas creativos.',
     heroSupport:
-      'Los sistemas propios son el centro de mi práctica. Marketing, marca, CRM y trabajo visual me dan el contexto para construir herramientas que responden a problemas reales.',
+      'Del negocio y el marketing a la IA, los datos y el producto. Construyo sistemas que convierten decisiones complejas en herramientas útiles.',
     current: ['Base', 'Madrid', 'Origen', 'Málaga', 'IE University · BBA Marketing'],
     proof: [
       {
         number: '01',
         title: 'Sistemas que se publican',
-        body: 'Local AI Coding Agent: corpus de 24 tareas. Website Audit Agent: evidencia antes de síntesis. DemandOS: previsión determinista con datos sintéticos. IRIS: arquitectura pública de orquestación con ejemplos sintéticos.',
+        body: 'IRIS: orquestación gobernada de agentes y atención. HALO Control: infraestructura de IA local. Local AI Coding Agent: orquestación acotada con un corpus de 24 tareas de lectura. DemandOS: previsión determinista con datos sintéticos.',
       },
       {
         number: '02',
-        title: 'Sistemas comerciales',
-        body: 'Trabajo de lifecycle, campañas, segmentación y adopción que hacía responder a los sistemas ante restricciones operativas reales.',
+        title: 'Contexto comercial',
+        body: 'CRM, lifecycle, segmentación, programas de partners, operaciones comerciales y adopción de IA dieron al trabajo restricciones reales.',
       },
       {
         number: '03',
-        title: 'El gusto como interfaz',
-        body: 'Fotografía, estudios visuales, referencias de lujo y sistemas de marca como capa de criterio alrededor de herramientas técnicas.',
+        title: 'Criterio creativo',
+        body: 'Fotografía, sistemas visuales, estrategia de marca y dirección de arte afinan cómo se comunican y se sienten los sistemas técnicos.',
       },
     ],
     aboutEyebrow: 'Sobre mí',
@@ -248,18 +248,18 @@ const pageCopy = {
     lede:
       'El gusto operativo consiste en saber qué estructurar, qué dejar editable y cuándo una persona debe decidir.',
     body: [
-      'Málaga es el origen. Madrid afinó la práctica con IE University, marketing, CRM y equipos comerciales.',
-      'Orlando cambió cómo leo el servicio. Los sistemas comerciales añadieron la presión de lifecycle, segmentación, partners y escala.',
-      'El portfolio convierte ese pensamiento en herramientas de campaña, productos de datos, sistemas de marca y estudios visuales.',
+      'Empecé en negocio, marketing y marca. El trabajo en CRM, lifecycle y equipos comerciales me enseñó a entender clientes, operaciones y restricciones.',
+      'Mi práctica pasó por datos y automatización hasta llegar al software y los sistemas de IA. Hoy construyo con inferencia local, flujos agénticos, aprendizaje automático, productos de datos y herramientas internas.',
+      'La marca y la práctica visual siguen aportando criterio: cómo comunica un sistema, cómo se siente una interfaz y cómo cobra coherencia una idea.',
     ],
     operatingProfile: {
       title: 'Perfil operativo',
       items: [
         ['Base', 'Madrid'],
         ['Origen', 'Málaga'],
-        ['Formación', 'BBA Marketing, IE University'],
-        ['Contexto de trabajo', 'CRM, lifecycle, programas de partners, adopción IA'],
-        ['Trabajo independiente', 'Herramientas de campaña, productos de datos, workflows de marca, sistemas internos'],
+        ['Formación', 'IE University · BBA / Marketing (finalizado); UAX · estudios de posgrado actuales en Big Data'],
+        ['Contexto de trabajo', 'IA, datos, automatización, productos internos y flujos comerciales'],
+        ['Trabajo independiente', 'Sistemas de IA, productos de datos, simulaciones y herramientas internas'],
         ['Práctica visual', 'Fotografía, portadas, sistemas de imagen, dirección de arte'],
         ['Sistemas de IA', 'Modelos locales, Ollama, MCP, herramientas, evaluación'],
         ['Ingeniería', 'TypeScript, Python, React, Next.js, SQL, PostgreSQL'],
@@ -362,9 +362,9 @@ const pageCopy = {
       {
         date: '06',
         title: 'Ahora — construir el loop',
-        org: 'Herramientas · workflows de marca · práctica visual',
+        org: 'Sistemas de IA · productos de datos · herramientas internas',
         desc:
-          'Construir el loop entre lógica de workflow, diseño de interfaz, memoria de marca, límites de datos y revisión humana.',
+          'Conectar decisiones de negocio, datos, flujos agénticos, interfaces útiles, verificación y revisión humana.',
         tags: ['Sistemas', 'Interfaz', 'Gusto'],
       },
     ] satisfies TimelineItem[],

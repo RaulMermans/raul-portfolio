@@ -17,21 +17,15 @@ type ServiceImage = {
 
 const serviceImages: Record<string, ServiceImage> = {
   '00-1': {
-    src: '/images/services/Services_Web_Development.webp',
+    src: '/images/services/Services_AI_Agents.webp',
   },
   '00-2': {
-    src: '/images/services/Services_Creative_Direction.webp',
-  },
-  '00-3': {
     src: '/images/services/Services_Automation.webp',
     fit: 'contain',
     backgroundColor: '#050505',
   },
-  '00-4': {
-    src: '/images/services/Services_AI_Agents.webp',
-  },
-  '00-5': {
-    src: '/images/services/Services_Photography.webp',
+  '00-3': {
+    src: '/images/services/Services_Creative_Direction.webp',
   },
 }
 
@@ -42,7 +36,7 @@ export default function Services({ locale = 'en' }: ServicesProps) {
     image: serviceImages[item.number],
   }))
   return (
-    <section id="services" className="services" aria-labelledby="services-title">
+    <section id="capabilities" className="services" aria-labelledby="services-title">
       <div className="services__header">
         <h2 id="services-title" className="services__title">
           {copy.title}
@@ -81,7 +75,7 @@ export default function Services({ locale = 'en' }: ServicesProps) {
                 <div className="service__image">
                   <Image
                     src={service.image.src}
-                    alt={`${service.title} service illustration`}
+                    alt={`${service.title} illustration`}
                     width={300}
                     height={225}
                     quality={80}

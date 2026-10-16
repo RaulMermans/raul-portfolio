@@ -29,12 +29,12 @@ test.describe('Canonical document contract', () => {
     await expect(cloneLinks).toHaveCount(0)
   })
 
-  test('case-study hierarchy starts with the creative category', async ({ page }) => {
+  test('case-study hierarchy starts with the selected AI systems', async ({ page }) => {
     await page.goto('/en/case-studies/', { waitUntil: 'domcontentloaded' })
 
     const groups = page.locator('.case-study-gallery-group')
-    await expect(groups).toHaveCount(4)
-    await expect(groups.nth(0).getByRole('heading')).toHaveText('Creative Work')
-    await expect(groups.nth(0).locator('[data-mobile-audit="case-study-card"]')).toHaveCount(3)
+    await expect(groups).toHaveCount(1)
+    await expect(groups.nth(0).getByRole('heading')).toHaveText('Selected systems and archive')
+    await expect(groups.nth(0).locator('[data-mobile-audit="case-study-card"]').first()).toHaveAttribute('href', '/en/case-studies/iris/')
   })
 })

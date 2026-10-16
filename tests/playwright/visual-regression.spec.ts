@@ -24,6 +24,9 @@ async function prepare(page: Page, path: string) {
       return image.complete && image.naturalWidth > 0
     }))).toBe(true)
     await expect(page.locator('.gallery__item.loaded')).toHaveCount(count)
+    // Keep the fixed category bar at its initial position during Playwright's
+    // full-page capture; viewport resizing can otherwise stretch its backdrop.
+    await page.addStyleTag({ content: '.bottom-bar { position: absolute !important; }' })
   }
   if (path === '/en/case-studies/' || path === '/case-studies/') {
     // Case-study index thumbnails below the fold are lazy in the live page.

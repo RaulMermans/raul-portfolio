@@ -54,27 +54,27 @@ assert_file out/services/sistemas-de-marca/index.html
 assert_file out/services/prototipos-producto-ia/index.html
 assert_file out/services/desarrollo-web/index.html
 
-assert_contains out/en/index.html "Building ideas into brands, products, and ventures."
-assert_contains out/en/index.html "AI, business, and a wider creative practice."
-assert_contains out/en/index.html "For collaborations, conversations, and ambitious projects."
+assert_contains out/en/index.html "Turning complex problems into intelligent systems people can use."
+assert_contains out/en/index.html "Built to solve real problems."
+assert_contains out/en/index.html "Building something ambitious?"
 assert_contains out/en/index.html "Direct contact options"
 assert_contains out/en/index.html "Open to ambitious roles, projects, and collaborations"
 assert_contains out/en/index.html "raulmermans@gmail.com"
 
-assert_contains out/index.html "Convirtiendo ideas en marcas, productos y nuevos proyectos."
-assert_contains out/index.html "Lo que estoy construyendo"
-assert_contains out/index.html "Para colaboraciones, conversaciones y proyectos ambiciosos."
+assert_contains out/index.html "Convierto problemas complejos en sistemas inteligentes que las personas pueden usar."
+assert_contains out/index.html "Construidos para resolver problemas reales."
+assert_contains out/index.html "¿Construimos algo ambicioso?"
 assert_contains out/index.html "Opciones de contacto directo"
 assert_contains out/index.html "Abierto a nuevos retos profesionales, proyectos y colaboraciones"
 assert_contains out/index.html "raulmermans@gmail.com"
 
-assert_contains out/en/services/ai-integrations/index.html "AI Integrations for Creative Systems"
+assert_contains out/en/services/ai-integrations/index.html "AI Systems &amp; Workflow Design"
 assert_contains out/en/services/creative-automation/index.html "Data &amp; Business Intelligence"
 assert_contains out/en/services/brand-systems/index.html "Brand Systems and Creative Direction"
 assert_contains out/en/services/product-prototypes/index.html "AI Systems &amp; Digital Products"
 assert_contains out/en/services/web-development/index.html "href=\"/services/desarrollo-web/\""
 
-assert_contains out/services/integraciones-ia/index.html "Integraciones IA para Sistemas Creativos"
+assert_contains out/services/integraciones-ia/index.html "Sistemas de IA y diseño de flujos"
 assert_contains out/services/automatizacion-creativa/index.html "Datos e inteligencia de negocio"
 assert_contains out/services/sistemas-de-marca/index.html "Sistemas de Marca y Dirección Creativa"
 assert_contains out/services/prototipos-producto-ia/index.html "Sistemas de IA y productos digitales"
@@ -83,6 +83,15 @@ assert_contains out/services/desarrollo-web/index.html "href=\"/en/services/web-
 assert_contains out/en/case-studies/index.html "View case study: AI Sports Campaign"
 assert_contains out/en/case-studies/index.html "View case study: BlogAgent"
 assert_contains out/en/case-studies/index.html "View case study: Relay"
+assert_contains out/en/case-studies/index.html "View case study: IRIS"
+assert_contains out/en/case-studies/index.html "View case study: Local AI Coding Agent"
+assert_contains out/en/case-studies/index.html "View case study: HALO Control"
+assert_contains out/en/case-studies/index.html "View case study: DemandOS"
+assert_contains out/en/case-studies/index.html "View case study: OpsTwin"
+assert_contains out/en/case-studies/index.html "View case study: SearchSignal"
+assert_contains out/en/case-studies/index.html "View case study: DataBrief AI"
+assert_contains out/en/case-studies/index.html "View case study: Website Audit Agent"
+assert_contains out/en/case-studies/index.html "View case study: Campaign Sandbox"
 assert_contains out/case-studies/index.html "Ver caso de estudio: Campaña deportiva con IA"
 assert_contains out/case-studies/index.html "Ver caso de estudio: BlogAgent"
 assert_contains out/case-studies/index.html "Ver caso de estudio: Relay"
@@ -131,24 +140,24 @@ function assertCaseStudyLinkOrder(file, localePrefix, slugs) {
 }
 
 const caseStudySlugs = [
-  'campaign-sandbox',
-  'ai-sports',
-  'remoria',
-  'halo-control',
-  'local-ai-coding-agent',
-  'website-auditor',
   'iris',
-  'data-brief-ai',
-  'blogagent',
+  'local-ai-coding-agent',
+  'halo-control',
+  'demandos',
   'opstwin',
   'searchsignal',
-  'territoryops-spain',
-  'raul-portfolio',
-  'demandos',
-  'bi-notebook-lab',
+  'data-brief-ai',
+  'relay',
+  'website-auditor',
+  'campaign-sandbox',
   'campaign-pulse',
   'benchmark-dashboard',
-  'relay',
+  'blogagent',
+  'territoryops-spain',
+  'ai-sports',
+  'remoria',
+  'raul-portfolio',
+  'bi-notebook-lab',
 ]
 
 assertCaseStudyLinkOrder(

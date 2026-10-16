@@ -3,9 +3,9 @@ import HomePage from '@/components/HomePage'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Raul Mermans | AI systems, products, and creative strategy',
+  title: 'Raúl Mermans | AI Systems, Product & Data',
   description:
-    'Raul Mermans builds independent AI systems, digital products, and business intelligence tools alongside brands, ventures, and creative work.',
+    'Raúl Mermans builds AI systems, data products and decision-support tools with business judgment, technical execution and creative direction.',
   path: '/',
   locale: 'en',
   image: {
@@ -13,11 +13,11 @@ export const metadata: Metadata = buildPageMetadata({
     alt: 'Raúl Mermans portfolio',
   },
   keywords: [
-    'entrepreneur',
-    'creator',
-    'brand building',
+    'AI systems',
+    'agentic systems',
+    'decision intelligence',
     'product development',
-    'ventures',
+    'creative strategy',
   ],
   absoluteTitle: true,
 })

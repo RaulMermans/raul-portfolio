@@ -75,10 +75,10 @@ export default function CaseStudiesPage() {
     index: String(index + 1).padStart(2, '0'),
     studies: caseStudies.filter((study) => categoryBySlug.get(study.slug) === category.id),
   }))
-  const visibleGroups = activeCategory === 'all'
-    ? groups
-    : groups.filter((group) => group.id === activeCategory)
-  const visibleCount = visibleGroups.reduce((count, group) => count + group.studies.length, 0)
+  const visibleStudies = activeCategory === 'all'
+    ? caseStudies
+    : caseStudies.filter((study) => categoryBySlug.get(study.slug) === activeCategory)
+  const visibleCount = visibleStudies.length
 
 
   return (
@@ -153,15 +153,14 @@ export default function CaseStudiesPage() {
             ))}
           </div>
           <div id="case-study-results" className="case-studies-index__results">
-          {visibleGroups.map((group) => (
-          <section key={group.id} className="case-study-gallery-group" aria-labelledby={`case-study-group-${group.id}`} data-project-category={group.id}>
+          <section className="case-study-gallery-group" aria-labelledby="case-study-grid-title">
             <header className="case-study-gallery-group__header">
-              <p>{group.index} / 04</p>
-              <h2 id={`case-study-group-${group.id}`}>{group.label[locale]}</h2>
-              <span>{group.description[locale]}</span>
+              <p>{isSpanish ? '01 / Trabajo' : '01 / Work'}</p>
+              <h2 id="case-study-grid-title">{activeCategory === 'all' ? (isSpanish ? 'Sistemas seleccionados y archivo' : 'Selected systems and archive') : CASE_STUDY_CATEGORIES.find((category) => category.id === activeCategory)?.label[locale]}</h2>
+              <span>{isSpanish ? 'Ordenados por la evidencia que aportan al perfil.' : 'Ordered by the evidence each project brings to the profile.'}</span>
             </header>
             <div className="case-study-project-grid">
-              {group.studies.map((study, index) => {
+              {visibleStudies.map((study, index) => {
               const variant =
                 tileVariants[(study.id + index) % tileVariants.length]
               const thumbnailStyle = {
@@ -180,6 +179,7 @@ export default function CaseStudiesPage() {
                       : `View case study: ${study.title}`
                   }
                   data-mobile-audit="case-study-card"
+                  data-project-category={categoryBySlug.get(study.slug)}
                 >
                   <span className="case-study-project-tile__frame">
                     <Image
@@ -202,7 +202,6 @@ export default function CaseStudiesPage() {
               })}
             </div>
           </section>
-          ))}
           </div>
         </section>
       </main>
