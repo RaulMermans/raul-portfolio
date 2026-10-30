@@ -14,7 +14,7 @@ const nextConfig = {
     root: __dirname,
   },
   images: {
-    // IONOS receives pre-generated assets; no runtime image server is available.
+    // Static hosts receive pre-generated assets; no runtime image server is available.
     unoptimized: true,
     qualities: [75, 80, 82, 84, 85, 88, 90],
     dangerouslyAllowSVG: false,
