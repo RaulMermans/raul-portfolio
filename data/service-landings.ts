@@ -188,13 +188,13 @@ const englishLandings: ServiceLanding[] = [
     locale: 'en',
     href: '/en/services/ai-integrations',
     alternateHref: '/services/integraciones-ia',
-    title: 'AI Integrations for Creative Systems',
-    eyebrow: 'Creative AI Systems',
+    title: 'AI Systems & Workflow Design',
+    eyebrow: 'AI Systems',
     description:
-      'I design AI integrations that turn creative processes into structured systems: mapped workflows, prompt logic, review criteria, automation layers, and internal tools that help teams move faster without losing taste or brand coherence.',
-    metaTitle: 'AI Integrations for Creative Systems: Raúl Mermans',
+      'I design bounded AI systems and workflows around real tasks: mapped inputs, tool boundaries, evaluation, human approval and interfaces people can use. Creative processes are one application of this wider practice.',
+    metaTitle: 'AI Systems and Workflow Design: Raúl Mermans',
     metaDescription:
-      'AI integrations for creative teams, brand workflows, content systems, and campaign execution. Build internal tools and AI workflows with taste, control, and review.',
+      'AI systems, agentic workflows and internal tools with evaluation, governance and human review.',
     keywords: [
       'AI integrations for creative teams',
       'creative AI systems',
@@ -837,13 +837,13 @@ const spanishLandings: ServiceLanding[] = [
     locale: 'es',
     href: '/services/integraciones-ia',
     alternateHref: '/en/services/ai-integrations',
-    title: 'Integraciones IA para Sistemas Creativos',
-    eyebrow: 'Sistemas Creativos con IA',
+    title: 'Sistemas de IA y diseño de flujos',
+    eyebrow: 'Sistemas de IA',
     description:
-      'Diseño integraciones de IA que convierten procesos creativos en sistemas estructurados: flujos mapeados, lógica de prompts, criterios de revisión, capas de automatización y herramientas internas para avanzar más rápido sin perder criterio ni coherencia de marca.',
-    metaTitle: 'Integraciones IA para Sistemas Creativos: Raúl Mermans',
+      'Diseño sistemas de IA y flujos acotados para tareas reales: entradas definidas, límites de herramientas, evaluación, aprobación humana e interfaces útiles. Los procesos creativos son una aplicación de esta práctica más amplia.',
+    metaTitle: 'Sistemas de IA y diseño de flujos: Raúl Mermans',
     metaDescription:
-      'Integraciones de IA para equipos creativos, flujos de marca, sistemas de contenido y ejecución de campañas con criterio, control y revisión.',
+      'Sistemas de IA, flujos agénticos y herramientas internas con evaluación, gobierno y revisión humana.',
     keywords: [
       'integraciones IA para equipos creativos',
       'sistemas creativos con IA',

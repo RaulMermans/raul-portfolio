@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
     url: '/images/sections/case-studies-bg.webp',
     alt: 'Case studies by Raúl Mermans',
   },
-  keywords: ['case studies', 'creative strategy', 'marketing intelligence', 'digital products', 'creative direction', 'AI-assisted tools'],
+  keywords: ['case studies', 'AI systems', 'data products', 'machine learning', 'decision intelligence', 'creative systems'],
 })
 
 export default function EnglishCaseStudiesLayout({

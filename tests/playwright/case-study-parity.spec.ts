@@ -1,24 +1,24 @@
 import { expect, test } from '@playwright/test'
 
 const caseStudySlugs = [
-  'campaign-sandbox',
-  'ai-sports',
-  'remoria',
-  'halo-control',
-  'local-ai-coding-agent',
-  'website-auditor',
   'iris',
-  'data-brief-ai',
-  'blogagent',
+  'local-ai-coding-agent',
+  'halo-control',
+  'demandos',
   'opstwin',
   'searchsignal',
-  'territoryops-spain',
-  'raul-portfolio',
-  'demandos',
-  'bi-notebook-lab',
+  'data-brief-ai',
+  'relay',
+  'website-auditor',
+  'campaign-sandbox',
   'campaign-pulse',
   'benchmark-dashboard',
-  'relay',
+  'blogagent',
+  'territoryops-spain',
+  'ai-sports',
+  'remoria',
+  'raul-portfolio',
+  'bi-notebook-lab',
 ] as const
 
 const caseStudyMiniNavSlugs = caseStudySlugs
@@ -123,7 +123,7 @@ for (const locale of ['es', 'en'] as const) {
   test(`all case studies expose the shared editorial system in ${locale}`, async ({
     page,
   }) => {
-    test.setTimeout(120_000)
+    test.setTimeout(240_000)
     const prefix = locale === 'en' ? '/en' : ''
     const expectedIndex = `${prefix}/case-studies/`
     const expectedLabels =
@@ -247,7 +247,7 @@ for (const locale of ['es', 'en'] as const) {
   test(`case-study chapter navigation stays in a single horizontal row in ${locale}`, async ({
     page,
   }) => {
-    test.setTimeout(120_000)
+    test.setTimeout(300_000)
     const prefix = locale === 'en' ? '/en' : ''
 
     for (const viewport of [

@@ -4,6 +4,8 @@ import { join } from 'node:path'
 const root = process.cwd()
 const experience = readFileSync(join(root, 'data/portfolio-experience.ts'), 'utf8')
 const editorial = readFileSync(join(root, 'data/case-study-editorial.ts'), 'utf8')
+const caseStudies = readFileSync(join(root, 'data/case-studies.ts'), 'utf8')
+const independentSystems = readFileSync(join(root, 'data/independent-systems.ts'), 'utf8')
 const services = readFileSync(join(root, 'data/service-landings.ts'), 'utf8')
 const failures = []
 
@@ -11,6 +13,17 @@ const orderBlock = editorial.match(/CASE_STUDY_ORDER\s*=\s*\[([\s\S]*?)\]\s+as c
 if (!orderBlock) throw new Error('Could not read CASE_STUDY_ORDER.')
 
 const caseStudySlugs = [...orderBlock[1].matchAll(/'([^']+)'/g)].map((match) => match[1])
+const featuredOrder = ['iris', 'local-ai-coding-agent', 'halo-control', 'demandos', 'opstwin', 'searchsignal', 'data-brief-ai', 'relay', 'website-auditor', 'campaign-sandbox']
+if (featuredOrder.some((slug, index) => caseStudySlugs[index] !== slug)) {
+  failures.push('CASE_STUDY_ORDER must lead with the ten selected systems in strategic order')
+}
+const listedSlugs = new Set([
+  ...[...caseStudies.matchAll(/\bslug:\s*'([^']+)'/g)].map((match) => match[1]),
+  ...[...independentSystems.matchAll(/^  (?:'([^']+)'|(iris)):\s*\{/gm)].map((match) => match[1] ?? match[2]),
+])
+for (const slug of caseStudySlugs) {
+  if (!listedSlugs.has(slug)) failures.push(`${slug} is ordered but has no case-study entry`)
+}
 const projectBlock = experience.match(/PROJECT_EXPERIENCE[^=]*=\s*\[([\s\S]*?)\]\s+as const/)
 if (!projectBlock) throw new Error('Could not read PROJECT_EXPERIENCE.')
 

@@ -433,7 +433,10 @@ export default function PhotographyPage() {
                   <img
                     ref={(image) => {
                       // Cached images can finish before React attaches onLoad.
-                      if (image?.complete && image.naturalWidth > 0) handleImageLoad(photo.src)
+                      // Defer the state update until after React commits the ref.
+                      if (image?.complete && image.naturalWidth > 0 && !loadedImages.has(photo.src)) {
+                        queueMicrotask(() => handleImageLoad(photo.src))
+                      }
                     }}
                     src={photo.src}
                     alt={photo.alt[locale]}

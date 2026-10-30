@@ -17,24 +17,24 @@ type EditorialMeta = {
 }
 
 export const CASE_STUDY_ORDER = [
-  'halo-control',
-  'local-ai-coding-agent',
-  'website-auditor',
   'iris',
+  'local-ai-coding-agent',
+  'halo-control',
   'demandos',
   'opstwin',
   'searchsignal',
-  'bi-notebook-lab',
-  'campaign-pulse',
-  'campaign-sandbox',
   'data-brief-ai',
+  'relay',
+  'website-auditor',
+  'campaign-sandbox',
+  'campaign-pulse',
   'benchmark-dashboard',
-  'ai-sports',
-  'remoria',
   'blogagent',
   'territoryops-spain',
+  'ai-sports',
+  'remoria',
   'raul-portfolio',
-  'relay',
+  'bi-notebook-lab',
 ] as const
 
 export const caseStudyEditorial: Record<string, EditorialMeta> = {

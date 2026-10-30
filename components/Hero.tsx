@@ -68,7 +68,7 @@ export default function Hero({ locale = 'en' }: HeroProps) {
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={20}>
             <Link
-              href={localizePath('/#contact', locale)}
+              href={localizePath('/about', locale)}
               className={`${styles.cta} ${styles.secondary}`}
               data-mobile-audit="hero-cta"
             >

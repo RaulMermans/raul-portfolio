@@ -2,6 +2,7 @@ import { type Locale, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
+import SelectedSystems from '@/components/SelectedSystems'
 import CreativeInfrastructure from '@/components/CreativeInfrastructure'
 import SectionCards from '@/components/SectionCards'
 import About from '@/components/About'
@@ -16,15 +17,15 @@ import { absoluteRouteUrl } from '@/lib/metadata'
 
 const homeCopy = {
   es: {
-    name: 'Raúl Mermans | Sistemas de IA, productos y estrategia creativa',
+    name: 'Raúl Mermans | Sistemas de IA, Producto y Datos',
     description:
-      'Raúl Mermans construye sistemas de IA, productos digitales y herramientas de inteligencia de negocio junto con marcas, proyectos propios y trabajo creativo.',
+      'Raúl Mermans construye sistemas de IA, productos de datos y herramientas de apoyo a decisiones con criterio de negocio y creativo.',
     inLanguage: 'es-ES',
   },
   en: {
-    name: 'Raul Mermans | AI systems, products, and creative strategy',
+    name: 'Raúl Mermans | AI Systems, Product & Data',
     description:
-      'Raul Mermans builds independent AI systems, digital products, and business intelligence tools alongside brands, ventures, and creative work.',
+      'Raúl Mermans builds AI systems, data products and decision-support tools with business and creative judgment.',
     inLanguage: 'en-US',
   },
 } satisfies Record<Locale, { name: string; description: string; inLanguage: string }>
@@ -47,8 +48,9 @@ export default function Home({ locale = 'es' }: { locale?: Locale }) {
         />
         <Header locale={locale} />
         <Hero locale={locale} />
-        <SectionCards locale={locale} />
+        <SelectedSystems locale={locale} />
         <CreativeInfrastructure locale={locale} />
+        <SectionCards locale={locale} />
         <About locale={locale} />
         <Services locale={locale} />
         <Contact locale={locale} />
