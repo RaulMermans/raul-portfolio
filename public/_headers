@@ -5,3 +5,10 @@
 # Photography and other public images keep stable URLs across releases.
 /images/*
   Cache-Control: public, max-age=86400
+
+# Keep the Pages hostnames out of search results during staging and after cutover.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
