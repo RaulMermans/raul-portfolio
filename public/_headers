@@ -1,0 +1,7 @@
+# Next.js fingerprints these assets, so long browser caching is safe.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Photography and other public images keep stable URLs across releases.
+/images/*
+  Cache-Control: public, max-age=86400

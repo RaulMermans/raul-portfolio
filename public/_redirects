@@ -1,0 +1,4 @@
+# Legacy Spanish URLs use the default-language routes.
+/es / 301
+/es/ / 301
+/es/* /:splat 301
