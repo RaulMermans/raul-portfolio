@@ -5,11 +5,8 @@ import { useEffect } from 'react'
 export default function HomeEffects() {
   useEffect(() => {
     const root = document.documentElement
-    const body = document.body
     root.classList.add('homepage')
-    body.style.overflowY = 'auto'
     root.style.scrollSnapType = 'none'
-    body.style.scrollSnapType = 'none'
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let revealObserver: IntersectionObserver | null = null
@@ -74,7 +71,6 @@ export default function HomeEffects() {
       sectionObserver.disconnect()
       root.classList.remove('homepage')
       root.style.scrollSnapType = 'none'
-      body.style.scrollSnapType = 'none'
     }
   }, [])
 
