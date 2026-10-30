@@ -1,6 +1,6 @@
 # Cloudflare Pages migration runbook
 
-Status: staging preparation. No production DNS, domain registration, IONOS contract, or live deployment settings have been changed.
+Status, 30 October 2026: Cloudflare Pages Free project `raul-portfolio` is connected to `RaulMermans/raul-portfolio` through Git integration. The initial `main` build is deployed at `https://raul-portfolio.pages.dev`; the migration branch is being validated as a preview. No production DNS, domain registration, IONOS contract, or live deployment settings have been changed.
 
 ## Compatibility assessment
 
@@ -35,8 +35,8 @@ Public DNS cannot enumerate every subdomain, custom DKIM selector, verification 
 
 ## Staging and deployment setup
 
-1. In Cloudflare, create a **Pages Git integration** project on the Free plan using `RaulMermans/raul-portfolio`. Keep repository access limited to this repository and the two already authorized repositories. Choose `main` as the production branch and enable preview deployments for the migration branch. Do not attach either production hostname yet. Record the project name and initial deployment SHA.
-2. Set the build command to `npm run build && npm run verify:export && npm run verify:canonical && npm run verify:cloudflare-pages`, output directory to `out`, and environment variable `NODE_VERSION=22` for production and preview builds. The repo's `npm ci` and image generation run through its `prebuild` script. Cloudflare builds and deploys on Git pushes; GitHub Actions continues to run independent quality checks and the existing IONOS deployment. No Cloudflare API token or GitHub deployment action is needed.
+1. The **Pages Git integration** project `raul-portfolio` uses `RaulMermans/raul-portfolio` on the Free plan. GitHub app access is limited to this repository and the two repositories previously authorized. `main` is the production branch; the migration branch uses preview deployments. Neither production hostname is attached.
+2. The build command is `npm run build && npm run verify:export && npm run verify:canonical && if test -f scripts/verify-cloudflare-pages-export.mjs; then npm run verify:cloudflare-pages; fi`, with output directory `out` and environment variable `NODE_VERSION=22`. The conditional keeps current `main` deployable until this branch merges; the Pages asset gate runs for the migration branch and later `main` commits. Cloudflare installs dependencies from the lockfile and the repo's `prebuild` script generates images. Cloudflare builds and deploys on Git pushes; GitHub Actions continues to run independent quality checks and the existing IONOS deployment. No Cloudflare API token or GitHub deployment action is needed.
 3. Test the branch preview at `<branch>.<project>.pages.dev`, confirm its commit SHA in the Cloudflare deployment details, and check its `X-Robots-Tag: noindex` header. A successful Cloudflare build only proves its own build command passed; review the GitHub CI checks before merging or promoting a commit. Protect `main` with required CI checks if repository settings and plan allow it, so Cloudflare's automatic production-branch builds only follow reviewed, verified merges.
 4. Keep Pages custom domains disconnected during staging. The Pages production `*.pages.dev` deployment may exist from `main`, but it does not change the live IONOS domain. Complete the staging acceptance checks before asking for the production DNS cutover.
 
