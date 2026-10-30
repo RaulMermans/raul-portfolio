@@ -121,6 +121,29 @@ test.describe('Mobile Regression', () => {
     expect(metrics.documentWidth).toBeLessThanOrEqual(metrics.viewportWidth)
   })
 
+  test('the home page has one document scroll through the footer in both locales', async ({ page }) => {
+    for (const path of ['/', '/en/']) {
+      await preparePage(page, path)
+
+      const scrolling = await page.evaluate(() => ({
+        scroller: document.scrollingElement?.tagName,
+        bodyOverflowY: getComputedStyle(document.body).overflowY,
+        documentHeight: document.documentElement.scrollHeight,
+        viewportHeight: window.innerHeight,
+      }))
+
+      expect(scrolling.scroller).toBe('HTML')
+      expect(scrolling.bodyOverflowY).toBe('visible')
+      expect(scrolling.documentHeight).toBeGreaterThan(scrolling.viewportHeight)
+
+      await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }))
+      await expect.poll(() => page.evaluate(() => {
+        const footer = document.querySelector('footer')
+        return footer ? Math.abs(footer.getBoundingClientRect().bottom - window.innerHeight) : Infinity
+      })).toBeLessThan(2)
+    }
+  })
+
   test('the Building now section is prominent and localized', async ({ page }) => {
     await preparePage(page, '/en/')
 
