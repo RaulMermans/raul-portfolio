@@ -12,9 +12,9 @@ Next.js 16 requires Node 20.9 or newer. This migration declares Node 22 in `.nvm
 
 `public/_redirects` replaces the Apache `/es` rules. `public/_headers` gives fingerprinted Next.js assets long browser caching and images a one-day lifetime; HTML uses Pages' revalidation behavior. It also adds `X-Robots-Tag: noindex` only on `*.pages.dev` hostnames, including the production project hostname and deployment URLs, so staging does not create an indexable copy. [Pages recognizes a top-level `404.html`](https://developers.cloudflare.com/pages/configuration/serving-pages/) as a custom not-found response. [Preview deployments get `X-Robots-Tag: noindex` by default](https://developers.cloudflare.com/pages/configuration/preview-deployments/); confirm that header on the staging URL. The production project `*.pages.dev` hostname should be redirected to the canonical domain after cutover.
 
-## DNS inventory, 29 October 2026
+## DNS and account inventory, 30 October 2026
 
-Read-only public queries showed IONOS authoritative nameservers: `ns1018.ui-dns.biz`, `ns1019.ui-dns.com`, `ns1035.ui-dns.de`, and `ns1071.ui-dns.org`. TTL was 3600 seconds for the listed web and mail records. Record values may change; repeat the inventory immediately before cutover.
+Read-only public queries and the IONOS dashboard showed IONOS authoritative nameservers: `ns1018.ui-dns.biz`, `ns1019.ui-dns.com`, `ns1035.ui-dns.de`, and `ns1071.ui-dns.org`. The dashboard listed 14 DNS records, with TTL 3600 seconds on the visible records. Record values may change; repeat the inventory immediately before cutover.
 
 | Name / type | Observed value | Migration treatment |
 | --- | --- | --- |
@@ -22,12 +22,17 @@ Read-only public queries showed IONOS authoritative nameservers: `ns1018.ui-dns.
 | `@` AAAA | `2001:8d8:100f:f000::200` | Current IONOS website; replace with the Pages setup at cutover. |
 | `www` A / AAAA | Same as apex | Current IONOS website; replace with Pages custom-domain CNAME at cutover. |
 | `@` MX | Priority 10: `mx00.ionos.de`, `mx01.ionos.de` | Preserve unchanged; indicates IONOS mail routing. Verify actual mailbox and contract in IONOS. |
-| `@` TXT | IONOS SPF includes `_spf-eu.ionos.com`; Google site verification also present | Preserve both exact values from IONOS DNS export. |
+| `@` TXT | IONOS SPF includes `_spf-eu.ionos.com`; Google site verification also present | Preserve both exact values from the IONOS record table. |
 | `autodiscover` CNAME | `adsredir.ionos.info` | Preserve for IONOS mail clients. |
 | `s1-ionos._domainkey`, `s2-ionos._domainkey` CNAME | `s1.dkim.ionos.com`, `s2.dkim.ionos.com` | Preserve both for IONOS DKIM. |
+| `s42582890._domainkey` CNAME | `s42582890.dkim.ionos.com` | Additional IONOS DKIM selector found in the account; preserve it. |
+| `_domainconnect` CNAME | `_domainconnect.ionos.com` | IONOS Domain Connect integration; review before replacing authoritative DNS. |
+| `_dep_ws_mutex` TXT | IONOS webhosting value, deliberately omitted here | Copy the exact value from IONOS during cutover planning; assess whether it is still needed after web hosting is retired. |
 | `_dmarc` TXT, `@` CAA, `@` DS, `@` SRV | No answer in the queried public DNS | Recheck in IONOS and at the parent zone; absence here is not proof of a complete zone inventory. |
 
-Public DNS cannot enumerate every subdomain, custom DKIM selector, verification record, SRV record, or private integration. Before any nameserver change, export the complete IONOS zone, review every record and service in the IONOS account, check DNSSEC/DS at the registrar, and compare the exported zone against Cloudflare's imported zone. Do not publish a partial zone. The current contact address in the site is Gmail, but the MX/SPF/DKIM records still show IONOS mail configuration; do not infer that IONOS email is unused.
+The IONOS subdomain screen listed no separately managed subdomains, but DNS has `www` and service records. No DNS export control was visible in the standard dashboard. Before any nameserver change, save the complete current record table and exact values securely, review every record and service, check DNSSEC/DS at the registrar, and compare the saved zone against Cloudflare's imported zone. Do not publish a partial zone. The current contact address in the site is Gmail, but the MX/SPF/DKIM records still show IONOS mail configuration. The email overview opened a mailbox creation screen rather than a conclusive mailbox and forwarding inventory; verify mail usage before changing or retiring any IONOS service.
+
+The IONOS dashboard identifies `raulmermans.com` as an **additional domain within the IONOS Hosting Plus contract**, attached to its webspace, with an assigned SSL certificate and automatic domain renewal. This is a direct contract dependency: do not cancel Hosting Plus until IONOS confirms how to retain the domain registration and any mail service independently. Account billing and cancellation settings were left unchanged.
 
 ## Hosting and DNS choice
 
@@ -46,7 +51,7 @@ Record pass/fail and URL for each check: Spanish and English home, about, case s
 
 ## Production cutover — approval required
 
-1. Confirm staging and the IONOS website are healthy. Save an IONOS DNS export, the current nameserver list, web A/AAAA values, and the last working IONOS deployment SHA. Confirm IONOS hosting, domain, email, and any SSL product are separate or bundled before changing a contract.
+1. Confirm staging and the IONOS website are healthy. Save the complete IONOS DNS record table or an account export, the current nameserver list, web A/AAAA values, and the last working IONOS deployment SHA. Confirm how the additional domain and any email or SSL service can be retained independently of Hosting Plus before changing a contract.
 2. In Cloudflare, add the zone on the Free plan. Replicate **all** IONOS records first: MX, SPF, DKIM, autodiscover, Google verification, any other TXT/CAA/SRV/subdomain records, and mail-related settings. Keep mail records DNS-only where applicable. If IONOS DNSSEC has a DS at the registrar, plan its removal or replacement for Cloudflare's keys before changing nameservers; validate DNSSEC resolution afterward. Do not copy an old DS to new nameservers.
 3. Confirm the release branch's GitHub CI and Cloudflare build pass. Verify the Pages production `raul-portfolio.pages.dev` deployment SHA, routes, 404, and visual parity with IONOS before routing the public domain to it. Do not merge the migration PR into `main` as part of the DNS cutover.
 4. In the Pages project, add `www.raulmermans.com` and `raulmermans.com` as custom domains. Check domain validation and HTTPS certificate status. Pages creates the required CNAMEs for an active Cloudflare zone. Review any CAA restrictions before certificate issuance.
@@ -62,6 +67,6 @@ Before nameserver cutover, leave the domain on IONOS if Pages fails; the live si
 
 ## Cost reduction after a stable cutover
 
-Cloudflare Pages Free hosting is expected to be €0/month within its limits; domain renewal remains at IONOS. IONOS email service and any other domain-dependent products may still cost money. Actual charges and contract dependencies require the IONOS invoice and product list; no current spend is assumed.
+Cloudflare Pages Free hosting is expected to be €0/month within its limits; domain renewal remains at IONOS. IONOS email service and any other domain-dependent products may still cost money. The domain is an additional item within Hosting Plus, so the achievable saving depends on IONOS offering a safe way to separate registration from web hosting. Review the current contract and invoices privately before deciding on a change; no IONOS product has been cancelled or downgraded.
 
 After at least 24–48 hours of healthy site and mail service, review each IONOS line item: keep domain registration; retain email hosting if mailboxes, forwarding, or autodiscover rely on it; consider cancelling web hosting only if its cancellation cannot affect the domain, DNS management, mail, or bundled discounts; review separate SSL, site-builder, backup, and add-on products individually. Do not cancel or downgrade anything without explicit approval and verified billing consequences.
