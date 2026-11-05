@@ -12,6 +12,20 @@ async function prepare(page: Page, path: string) {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto(path, { waitUntil: 'networkidle' })
   const isPhotography = path.includes('/photography/')
+  if (path === '/en/' || path === '/') {
+    // Full-page screenshots do not scroll through the mobile card list, so
+    // eager-load its images before capturing the sections below the fold.
+    const mobileCardImages = page.locator('[data-mobile-audit="section-card-list"] img')
+    if (await mobileCardImages.count()) {
+      await mobileCardImages.evaluateAll((images) => {
+        for (const image of images) (image as HTMLImageElement).loading = 'eager'
+      })
+      await expect.poll(() => mobileCardImages.evaluateAll((images) => images.every((image) => {
+        const element = image as HTMLImageElement
+        return element.complete && element.naturalWidth > 0
+      }))).toBe(true)
+    }
+  }
   if (isPhotography) {
     const images = page.locator('.gallery__item img')
     const count = await images.count()
