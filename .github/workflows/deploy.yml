@@ -37,7 +37,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -110,14 +110,14 @@ jobs:
             return 1
           }
 
-          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Building ideas into brands, products, and ventures."
-          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Convirtiendo ideas en marcas, productos y nuevos proyectos."
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Turning complex problems into intelligent systems people can use."
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Convierto problemas complejos en sistemas inteligentes que las personas pueden usar."
           verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "Campaign Sandbox"
           verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Campaign Sandbox"
-          verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "reviewer veto before publication"
-          verify_copy "https://www.raulmermans.com/case-studies/blogagent/" /tmp/blogagent-es.html "poder de veto antes de publicar"
-          verify_copy "https://www.raulmermans.com/en/services/ai-integrations/" /tmp/service-ai-en.html "AI Integrations for Creative Systems"
-          verify_copy "https://www.raulmermans.com/services/integraciones-ia/" /tmp/service-ai-es.html "Integraciones IA para Sistemas Creativos"
+          verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "reviewer veto, and final validation."
+          verify_copy "https://www.raulmermans.com/case-studies/blogagent/" /tmp/blogagent-es.html "veto y validación final."
+          verify_copy "https://www.raulmermans.com/en/services/ai-integrations/" /tmp/service-ai-en.html "Workflow Design"
+          verify_copy "https://www.raulmermans.com/services/integraciones-ia/" /tmp/service-ai-es.html "Sistemas de IA y diseño de flujos"
 
           ! grep -Fq "href=\"/es/" /tmp/raul-es.html
           ! grep -Fq "Request an AI Workflow Audit" /tmp/raul-en.html

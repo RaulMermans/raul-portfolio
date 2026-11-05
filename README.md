@@ -78,11 +78,16 @@ Optional GitHub Secrets:
 The deployment mirror removes stale generated files so the document root matches
 the verified static export.
 
+Cloudflare Pages Git deployment, staging checks, DNS cutover, and
+rollback are documented in [the migration runbook](docs/cloudflare-pages-migration.md).
+The IONOS deployment remains active until the new hosting path is approved.
+
 ## Canonical architecture
 
 - Spanish is the canonical default: `/about/`, `/case-studies/`, and related routes.
 - English equivalents live below `/en/`.
-- Historical `/es/*` URLs are redirected at the IONOS layer by `public/.htaccess`.
+- Historical `/es/*` URLs use `public/.htaccess` on IONOS and `public/_redirects`
+  on Cloudflare Pages.
 - Each localized page emits its own server-rendered `lang`, canonical URL,
   `en-US`, `es-ES`, and `x-default` alternates.
 - The document schema begins with stable Person and WebSite entities; page-level

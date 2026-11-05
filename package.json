@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "verify:export": "bash scripts/verify-export.sh",
+    "verify:cloudflare-pages": "node scripts/verify-cloudflare-pages-export.mjs",
     "verify:experience-system": "node scripts/verify-portfolio-system.mjs",
     "verify:route-registry": "node scripts/verify-route-registry.mjs",
     "verify:project-taxonomy": "node scripts/verify-project-taxonomy.mjs",
@@ -53,7 +54,7 @@
     "typescript": "^5.2.2"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=22 <23",
+    "npm": ">=10.0.0"
   }
 }

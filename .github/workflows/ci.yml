@@ -45,7 +45,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -62,6 +62,9 @@ jobs:
 
       - name: Verify export output
         run: npm run verify:export
+
+      - name: Verify Cloudflare Pages Free asset limits
+        run: npm run verify:cloudflare-pages
 
       - name: Verify portfolio experience system
         run: npm run verify:experience-system
@@ -107,7 +110,7 @@ jobs:
   critical-e2e:
     name: Critical browser and accessibility checks
     needs: quality
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       NEXT_PUBLIC_SITE_URL: https://www.raulmermans.com
       PLAYWRIGHT_WEB_SERVER_COMMAND: python3 -m http.server 3000 --bind 127.0.0.1 --directory out
@@ -118,7 +121,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies

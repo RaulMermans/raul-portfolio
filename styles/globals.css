@@ -508,6 +508,11 @@ html.homepage {
   scroll-snap-type: none;
 }
 
+html.homepage body {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
 html.homepage .hero,
 html.homepage .section-card,
 html.homepage .about,
