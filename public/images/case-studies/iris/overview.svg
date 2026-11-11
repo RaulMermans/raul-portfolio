@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title description">
+  <title id="title">IRIS governed workflow</title>
+  <desc id="description">Signals pass through attention, a shared work queue, specialist proposals, authorization, and an action trace.</desc>
+  <rect width="1200" height="720" fill="#EEE8DE"/>
+  <path d="M42 42h1116v636H42z" fill="none" stroke="#D8D2CB" stroke-width="2"/>
+  <text x="84" y="103" fill="#C41E3A" font-family="monospace" font-size="20" letter-spacing="4">PUBLIC ARCHITECTURE / IRIS</text>
+  <text x="84" y="169" fill="#1A1714" font-family="Arial,sans-serif" font-size="48" font-weight="700">Attention becomes governed action.</text>
+  <path d="M84 206h1032" stroke="#1A1714" stroke-width="2"/>
+  <g font-family="monospace" font-size="18" letter-spacing="2" fill="#5B544D">
+    <text x="84" y="256">01 / INTAKE</text>
+    <text x="360" y="256">02 / PRIORITISE</text>
+    <text x="636" y="256">03 / PROPOSE</text>
+    <text x="912" y="256">04 / GOVERN</text>
+  </g>
+  <g fill="#FAF8F5" stroke="#D8D2CB" stroke-width="2">
+    <rect x="84" y="278" width="228" height="154"/>
+    <rect x="360" y="278" width="228" height="154"/>
+    <rect x="636" y="278" width="228" height="154"/>
+    <rect x="912" y="278" width="204" height="154"/>
+  </g>
+  <g fill="#1A1714" font-family="Arial,sans-serif" font-size="29" font-weight="700">
+    <text x="108" y="340">Signals</text>
+    <text x="384" y="340">Attention</text>
+    <text x="660" y="340">Work queue</text>
+    <text x="936" y="340">Proposals</text>
+  </g>
+  <g fill="#5B544D" font-family="Arial,sans-serif" font-size="19">
+    <text x="108" y="385">Sources and context</text>
+    <text x="384" y="385">Evidence and priority</text>
+    <text x="660" y="385">Bounded specialists</text>
+    <text x="936" y="385">No silent execution</text>
+  </g>
+  <g stroke="#C41E3A" stroke-width="4" fill="none">
+    <path d="M318 355h34m-10-10 10 10-10 10"/>
+    <path d="M594 355h34m-10-10 10 10-10 10"/>
+    <path d="M870 355h34m-10-10 10 10-10 10"/>
+  </g>
+  <path d="M84 492h1032v132H84z" fill="#1A1714"/>
+  <text x="112" y="540" fill="#FFB5A0" font-family="monospace" font-size="18" letter-spacing="3">CONTROL BOUNDARY</text>
+  <text x="112" y="586" fill="#FAF8F5" font-family="Arial,sans-serif" font-size="29" font-weight="700">Authorization → action pipeline → trace</text>
+  <text x="1116" y="661" text-anchor="end" fill="#5B544D" font-family="monospace" font-size="16">ILLUSTRATIVE PUBLIC MODEL</text>
+</svg>

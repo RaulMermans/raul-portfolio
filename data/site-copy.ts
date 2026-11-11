@@ -74,6 +74,21 @@ export const siteCopy = {
         scrollAria: 'Scroll to explore',
         scrollLabel: 'Explore',
       },
+      selectedSystems: {
+        eyebrow: 'Selected Systems',
+        title: 'Built to solve real problems.',
+        support: 'Working prototypes and inspectable evidence across AI systems, local inference, decision intelligence, machine learning, simulation and product architecture.',
+        cta: 'View case study',
+        all: 'Explore all case studies',
+        projects: {
+          iris: { discipline: 'Agentic systems', description: 'Personal AI operating system for evidence-backed attention, bounded specialists and governed actions.', proof: 'Public architecture · Private system' },
+          'local-ai-coding-agent': { discipline: 'Local AI', description: 'Local open-weight coding agent built around bounded context, tool use, verification and evaluation.', proof: '24-task read-only corpus · Private prototype' },
+          'halo-control': { discipline: 'AI infrastructure', description: 'Local AI control plane for model inventory, capability routing, workload governance and observability.', proof: 'Public architecture · Hardware unverified' },
+          demandos: { discipline: 'Machine learning', description: 'Deterministic forecasting, stockout risk and human-reviewed replenishment planning.', proof: 'Synthetic data · Prototype' },
+          opstwin: { discipline: 'Simulation', description: 'Operational simulation workspace for comparing workflow and staffing interventions before a live pilot.', proof: 'Live prototype · Bounded model' },
+          searchsignal: { discipline: 'Search systems', description: 'Inspectable ecommerce catalog-readiness and retrieval-quality framework.', proof: 'Synthetic demonstrator' },
+        },
+      },
       buildingNow: {
         eyebrow: 'What I’m building now',
         title: 'AI, business, and a wider creative practice.',
@@ -385,6 +400,21 @@ export const siteCopy = {
         secondaryCta: 'Trabajemos juntos',
         scrollAria: 'Desplazar para explorar',
         scrollLabel: 'Explorar',
+      },
+      selectedSystems: {
+        eyebrow: 'Sistemas seleccionados',
+        title: 'Construidos para resolver problemas reales.',
+        support: 'Prototipos funcionales y evidencia revisable en sistemas de IA, inferencia local, inteligencia para la decisión, aprendizaje automático, simulación y arquitectura de producto.',
+        cta: 'Ver caso de estudio',
+        all: 'Explorar todos los casos',
+        projects: {
+          iris: { discipline: 'Sistemas agénticos', description: 'Sistema operativo personal de IA para gestionar la atención con evidencia, especialistas acotados y acciones gobernadas.', proof: 'Arquitectura pública · Sistema privado' },
+          'local-ai-coding-agent': { discipline: 'IA local', description: 'Agente de programación con modelos locales de pesos abiertos, contexto acotado, herramientas, verificación y evaluación.', proof: 'Corpus de 24 tareas de lectura · Prototipo privado' },
+          'halo-control': { discipline: 'Infraestructura de IA', description: 'Plano de control local para inventario de modelos, capacidades, gobierno de cargas y observabilidad.', proof: 'Arquitectura pública · Hardware sin verificar' },
+          demandos: { discipline: 'Aprendizaje automático', description: 'Previsión determinista de demanda, riesgo de rotura de stock y planificación de reposición revisada por personas.', proof: 'Datos sintéticos · Prototipo' },
+          opstwin: { discipline: 'Simulación', description: 'Espacio de simulación operativa para comparar cambios de flujo y plantilla antes de un piloto real.', proof: 'Prototipo desplegado · Modelo acotado' },
+          searchsignal: { discipline: 'Sistemas de búsqueda', description: 'Marco revisable de preparación de catálogos ecommerce y calidad de recuperación.', proof: 'Demostrador sintético' },
+        },
       },
       buildingNow: {
         eyebrow: 'Lo que estoy construyendo',

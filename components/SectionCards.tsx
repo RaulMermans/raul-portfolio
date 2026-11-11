@@ -304,7 +304,7 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
   }
 
   return (
-    <section id="work" className={styles.container} data-home-section="work">
+    <section id="creative-universe" className={styles.container} data-home-section="creative-universe">
       <header className={styles.intro}>
         <p>{copy.eyebrow}</p>
         <h2>{copy.title}</h2>
