@@ -25,6 +25,7 @@ export default function Header({ locale = 'en' }: HeaderProps) {
   const menuRef = useRef<HTMLDivElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
   const scrollLockRef = useRef<{ scrollY: number; bodyOverflow: string; bodyPosition: string; bodyTop: string; bodyWidth: string; htmlOverflow: string } | null>(null)
+  const pendingAnchorRef = useRef<HTMLElement | null>(null)
   const menuDialogId = useId()
   const menuTitleId = useId()
 
@@ -80,6 +81,15 @@ export default function Header({ locale = 'en' }: HeaderProps) {
         body.style.top = lock.bodyTop
         body.style.width = lock.bodyWidth
         window.scrollTo({ top: lock.scrollY, behavior: 'auto' })
+
+        const target = pendingAnchorRef.current
+        pendingAnchorRef.current = null
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' })
+          target.setAttribute('tabindex', '-1')
+          target.focus({ preventScroll: true })
+          target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true })
+        }
       }
     }
   }, [isMenuOpen, closeMenu])
@@ -133,14 +143,16 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     if (
       hash.length > 1 &&
       hash.startsWith('#') &&
-      window.location.pathname === localizePath('/', locale)
+      (window.location.pathname.replace(/\/+$/, '') || '/') === localizePath('/', locale)
     ) {
       e.preventDefault()
       const target = document.querySelector(hash)
-      if (target) {
+      if (target instanceof HTMLElement && isMenuOpen) {
+        pendingAnchorRef.current = target
+      } else if (target instanceof HTMLElement) {
         target.scrollIntoView({ behavior: 'smooth' })
         target.setAttribute('tabindex', '-1')
-        ;(target as HTMLElement).focus()
+        target.focus({ preventScroll: true })
         target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true })
       }
     }

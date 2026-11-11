@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getCaseStudies } from '@/data/case-studies'
 import { getSiteCopy } from '@/data/site-copy'
 import { type Locale, localizePath } from '@/lib/i18n'
@@ -12,6 +13,15 @@ const selectedSlugs = [
   'opstwin',
   'searchsignal',
 ] as const
+
+const previews = {
+  iris: { src: '/images/case-studies/iris/overview.svg', width: 1200, height: 720, diagram: true },
+  'local-ai-coding-agent': { src: '/images/case-studies/local-ai-coding-agent/overview.svg', width: 1200, height: 720, diagram: true },
+  'halo-control': { src: '/images/case-studies/halo-control/proof/control-room.png', width: 1440, height: 940, diagram: false },
+  demandos: { src: '/images/case-studies/demandos/05-inventory-risk.png', width: 1440, height: 900, diagram: false },
+  opstwin: { src: '/images/case-studies/opstwin/proof/guided-result.png', width: 1168, height: 680, diagram: false },
+  searchsignal: { src: '/images/case-studies/searchsignal/thumb.svg', width: 1200, height: 800, diagram: true },
+} as const
 
 export default function SelectedSystems({ locale = 'en' }: { locale?: Locale }) {
   const copy = getSiteCopy(locale).home.selectedSystems
@@ -31,6 +41,7 @@ export default function SelectedSystems({ locale = 'en' }: { locale?: Locale }) 
             const study = bySlug.get(slug)
             if (!study) return null
             const detail = copy.projects[slug]
+            const preview = previews[slug]
 
             return (
               <Link key={slug} href={study.href} className={styles.card} aria-label={`${copy.cta}: ${study.title}`}>
@@ -39,6 +50,9 @@ export default function SelectedSystems({ locale = 'en' }: { locale?: Locale }) 
                   <span>{detail.discipline}</span>
                 </span>
                 <span className={styles.name}>{study.title}</span>
+                <span className={`${styles.preview}${preview.diagram ? ` ${styles.previewDiagram}` : ''}`} aria-hidden="true">
+                  <Image src={preview.src} alt="" width={preview.width} height={preview.height} sizes="(max-width: 649px) 100vw, (max-width: 999px) 50vw, 33vw" loading="lazy" />
+                </span>
                 <span className={styles.description}>{detail.description}</span>
                 <span className={styles.bottomline}>
                   <span>{detail.proof}</span>

@@ -33,3 +33,21 @@ test('the mobile header remains available for its menu and keyboard focus', asyn
   await expect(page.getByRole('dialog', { name: 'Navigation' })).toBeVisible()
   await expect(page.getByTestId('site-header')).not.toHaveAttribute('data-hidden', 'true')
 })
+
+for (const route of ['/', '/en/'] as const) {
+  test(`the mobile contact link reaches its section on ${route}`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto(route, { waitUntil: 'networkidle' })
+
+    await page.getByRole('button', { name: /open menu|abrir menú/i }).click()
+    const menu = page.getByRole('dialog')
+    await menu.locator('a[href$="#contact"]').last().click()
+
+    await expect(menu).toBeHidden()
+    await expect(page.locator('#contact')).toBeFocused()
+    await expect.poll(() => page.locator('#contact').evaluate((element) => {
+      const bounds = element.getBoundingClientRect()
+      return bounds.top < window.innerHeight && bounds.bottom > 0
+    })).toBe(true)
+  })
+}

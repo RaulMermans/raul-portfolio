@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import { type CSSProperties, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { getCaseStudies } from '@/data/case-studies'
 import {
   CASE_STUDY_CATEGORIES,
@@ -15,7 +15,6 @@ import {
 import { type Locale, getLocaleFromPath, localizePath } from '@/lib/i18n'
 import { absoluteRouteUrl, siteConfig } from '@/lib/metadata'
 
-const tileVariants = ['portrait', 'landscape', 'square', 'tall'] as const
 function getSchemas(locale: Locale) {
   const isSpanish = locale === 'es'
   const localizedHome = localizePath('/', locale)
@@ -161,18 +160,11 @@ export default function CaseStudiesPage() {
             </header>
             <div className="case-study-project-grid">
               {visibleStudies.map((study, index) => {
-              const variant =
-                tileVariants[(study.id + index) % tileVariants.length]
-              const thumbnailStyle = {
-                '--case-study-thumbnail-ratio': `${study.imageWidth} / ${study.imageHeight}`,
-              } as CSSProperties
-
               return (
                 <Link
                   key={study.href}
                   href={study.href}
-                  className={`case-study-project-tile case-study-project-tile--${variant}`}
-                  style={thumbnailStyle}
+                  className="case-study-project-tile"
                   aria-label={
                     isSpanish
                       ? `Ver caso de estudio: ${study.title}`
@@ -187,15 +179,18 @@ export default function CaseStudiesPage() {
                       alt=""
                       width={study.imageWidth}
                       height={study.imageHeight}
-                      sizes="(max-width: 560px) 50vw, (max-width: 980px) 34vw, 50vw"
+                      sizes="(max-width: 560px) 100vw, (max-width: 980px) 50vw, 33vw"
                       className="case-study-project-tile__image"
                       priority={index < 2}
                     />
                   </span>
                   <span className="case-study-project-tile__caption">
+                    <span className="case-study-project-tile__eyebrow">{CASE_STUDY_CATEGORIES.find((category) => category.id === categoryBySlug.get(study.slug))?.label[locale]}</span>
                     <span className="case-study-project-tile__title">
                       {study.title}
                     </span>
+                    <span className="case-study-project-tile__description">{study.description}</span>
+                    <span className="case-study-project-tile__action">{isSpanish ? 'Ver caso' : 'View case study'} ↗</span>
                   </span>
                 </Link>
               )
