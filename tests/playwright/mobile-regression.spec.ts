@@ -1,5 +1,4 @@
 import { expect, test, type Page } from '@playwright/test'
-import { getCaseStudies } from '../../data/case-studies'
 
 const FIXED_DATE_ISO = '2026-03-16T10:00:00.000Z'
 
@@ -217,7 +216,7 @@ test.describe('Mobile Regression', () => {
     await expect(workSection.locator('[data-mobile-audit="section-card-list"]')).toBeHidden()
   })
 
-  test('case studies landing is a thumbnail-led gallery on mobile', async ({ page }) => {
+  test('case studies landing keeps evidence cards readable on mobile', async ({ page }) => {
     await preparePage(page, '/en/case-studies/')
 
     await expect(page.getByRole('heading', { level: 1, name: 'Case Studies' })).toHaveCSS(
@@ -229,8 +228,10 @@ test.describe('Mobile Regression', () => {
     const firstCard = grid.locator('[data-mobile-audit="case-study-card"]').first()
 
     await expect(firstCard).toBeVisible()
+    await expect(firstCard.locator('.case-study-project-tile__eyebrow')).toBeVisible()
     await expect(firstCard.locator('.case-study-project-tile__title')).toBeVisible()
-    await expect(firstCard.locator('.case-study-project-tile__description')).toHaveCount(0)
+    await expect(firstCard.locator('.case-study-project-tile__description')).toBeVisible()
+    await expect(firstCard.locator('.case-study-project-tile__action')).toBeVisible()
     await expect(firstCard.locator('.case-study-project-tile__meta')).toHaveCount(0)
 
     const initialLayout = await page.evaluate(() => {
@@ -262,8 +263,7 @@ test.describe('Mobile Regression', () => {
     expect(initialLayout.cardTop).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
-    const firstStudy = getCaseStudies('en')[0]
-    expect(initialLayout.frameRatio).toBeCloseTo(firstStudy.imageWidth / firstStudy.imageHeight, 2)
+    expect(initialLayout.frameRatio).toBeCloseTo(3 / 2, 2)
     expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
   })
 

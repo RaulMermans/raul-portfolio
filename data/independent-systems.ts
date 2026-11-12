@@ -4,7 +4,9 @@ import type { Locale } from '@/lib/i18n'
 export const independentSystems = {
   'local-ai-coding-agent': {
     title: 'Local AI Coding Agent',
-    image: '/images/case-studies/local-ai-coding-agent/architecture.svg',
+    image: '/images/case-studies/local-ai-coding-agent/overview.svg',
+    imageWidth: 1200,
+    imageHeight: 720,
     socialImage: '/images/case-studies/local-ai-coding-agent/architecture.png',
     repository: 'https://github.com/RaulMermans/Open-VS-Code-Agent',
     en: {
@@ -12,6 +14,8 @@ export const independentSystems = {
       summary: 'An agentic coding runtime for local, open-weight models, built around inspectable tools, bounded context, and human review.',
       status: 'Private local prototype. Selected architecture and evaluation scope shown.',
       role: 'Independent architecture and TypeScript implementation: agent core, model gateway, context compiler, tool loop, permissions, and evaluation.',
+      heroAlt: 'Public architecture diagram of repository context, a local model gateway, tool use, permissions, and verification.',
+      heroCaption: 'Illustrative public model of the bounded coding loop; it does not show a live model run.',
       snapshot: {
         problem: 'Local coding models need more than a chat interface to inspect a repository, gather evidence, and recover from unproductive tool calls.',
         system: 'An editor-independent TypeScript runtime with a local model gateway, bounded context, repository tools, permission checks, and controlled repair.',
@@ -32,6 +36,8 @@ export const independentSystems = {
       summary: 'Un runtime de programación con agentes para modelos locales de pesos abiertos, con herramientas revisables, contexto acotado y supervisión humana.',
       status: 'Prototipo local privado. Arquitectura seleccionada y alcance de evaluación públicos.',
       role: 'Arquitectura e implementación independiente en TypeScript: núcleo del agente, gateway de modelos, compilador de contexto, herramientas, permisos y evaluación.',
+      heroAlt: 'Diagrama público del contexto del repositorio, gateway del modelo local, herramientas, permisos y verificación.',
+      heroCaption: 'Modelo público ilustrativo del bucle de programación acotado; no muestra una ejecución real del modelo.',
       snapshot: {
         problem: 'Los modelos locales necesitan más que un chat para inspeccionar repositorios, reunir evidencia y recuperarse de llamadas a herramientas sin progreso.',
         system: 'Runtime TypeScript independiente del editor con gateway local, contexto acotado, herramientas de repositorio, permisos y reparación controlada.',
@@ -50,7 +56,9 @@ export const independentSystems = {
   },
   iris: {
     title: 'IRIS',
-    image: '/images/case-studies/iris/architecture.svg',
+    image: '/images/case-studies/iris/overview.svg',
+    imageWidth: 1200,
+    imageHeight: 720,
     socialImage: '/images/case-studies/iris/architecture.png',
     repository: 'https://github.com/RaulMermans/IRIS-OS',
     en: {
@@ -58,6 +66,8 @@ export const independentSystems = {
       summary: 'A personal agent orchestration system that organizes attention, coordinates specialist work, and governs actions through human oversight.',
       status: 'Private system. Public architecture edition with synthetic examples, published as IRIS OS.',
       role: 'Independent system design across attention, agent coordination, memory, action policy, observability, evaluation, and recovery.',
+      heroAlt: 'Public IRIS architecture diagram from signals and attention through a work queue, proposals, authorization, and trace.',
+      heroCaption: 'Illustrative public model of the governed workflow; private data and runtime are not shown.',
       snapshot: {
         problem: 'Commitments spread across calendar, email, tasks, and projects make it difficult to decide what deserves attention and what can safely be delegated.',
         system: 'An evidence-backed attention pipeline feeds a prioritized work queue and bounded specialists. Action proposals pass through policy, approval, execution, and verification.',
@@ -78,6 +88,8 @@ export const independentSystems = {
       summary: 'Un sistema personal de orquestación de agentes que organiza la atención, coordina trabajo especializado y gobierna acciones con supervisión humana.',
       status: 'Sistema privado. Edición pública de arquitectura con ejemplos sintéticos, publicada como IRIS OS.',
       role: 'Diseño independiente de atención, coordinación de agentes, memoria, políticas de acción, observabilidad, evaluación y recuperación.',
+      heroAlt: 'Diagrama público de IRIS: señales, atención, cola de trabajo, propuestas, autorización y trazas.',
+      heroCaption: 'Modelo público ilustrativo del flujo gobernado; no muestra datos ni el runtime privados.',
       snapshot: {
         problem: 'Los compromisos repartidos entre calendario, correo, tareas y proyectos dificultan decidir qué merece atención y qué se puede delegar con seguridad.',
         system: 'Un pipeline de atención basado en evidencia alimenta una cola priorizada y especialistas acotados. Las propuestas pasan por política, aprobación, ejecución y verificación.',
