@@ -1,8 +1,38 @@
-# Raul Mermans Portfolio
+<div align="center">
 
-This repository contains the source code for Raul Mermans' personal
-portfolio: a Next.js-based portfolio system for case studies, creative
-strategy, brand systems, and AI/product work.
+# RAÚL MERMANS — PORTFOLIO
+
+**Engineering, product thinking, and visual storytelling in one place.**
+
+A bilingual, editorial portfolio for applied AI systems, software products, and creative work — designed and built with Next.js.
+
+[![Explore site](https://img.shields.io/badge/EXPLORE_THE_SITE-raulmermans.com-111827?style=for-the-badge&logo=vercel&logoColor=white)](https://www.raulmermans.com/en/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
+<img src="public/images/case-studies/raul-portfolio/thumb/thumb.webp" alt="Visual preview from the Raúl Mermans portfolio case study" width="780" />
+
+<sub>Project preview from the portfolio's own visual assets.</sub>
+
+**[Live portfolio](https://www.raulmermans.com/en/)** · **[Case studies](https://www.raulmermans.com/en/case-studies/)** · **[Visual work](https://www.raulmermans.com/en/visuals/)** · **[Architecture](docs/PORTFOLIO_EXPERIENCE_SYSTEM.md)**
+
+</div>
+
+---
+
+## At a glance
+
+| Experience | Engineering | Delivery |
+|:--|:--|:--|
+| Spanish / English routes, editorial case studies, photography and visual archive | Next.js 16, React 19, TypeScript, custom design system | Static export, CI verification, accessible end-to-end testing, SFTP deployment |
+
+This is the source behind my personal website. It is **a working portfolio system, not a starter template**: project narratives, localized content, responsive media, metadata, and deployment checks live in one repository.
+
+The engineering challenge is to make an expressive, image-heavy experience work as reliable, statically hosted software — with explicit route contracts, responsive image derivatives, and automated checks before release.
+
+**Scope:** Source code is MIT-licensed; creative assets, copy, photography, and personal identity work remain separately protected. See [License](#license) and [Asset Usage](#asset-usage).
+
+---
 
 ## Tech Stack
 
