@@ -608,12 +608,6 @@ export default function CampaignSandboxPage() {
           data-presentation-family="technical-product"
         >
           <div className="data-brief-hero__content">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="campaign-sandbox-title" className="data-brief-hero__title">

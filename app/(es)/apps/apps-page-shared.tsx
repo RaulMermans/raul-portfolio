@@ -45,6 +45,7 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
         <section className={`ui-page-intro ${styles.indexIntro}`} aria-labelledby="apps-title">
           <div className={`ui-page-intro__container ${styles.indexIntroContent}`}>
             <div className="ui-page-intro__content">
+              <p className="ui-eyebrow">{isSpanish ? 'Archivo / herramientas' : 'Archive / tools'}</p>
               <h1 id="apps-title">{copy.title}</h1>
               <p>{copy.intro}</p>
               <Link className="ui-button" href={localizePath('/case-studies', locale)}>{copy.systemsCta}</Link>
@@ -56,7 +57,6 @@ export function AppsPageView({ locale = 'en' }: AppsPageProps) {
                 <Link key={app.slug} href={app.href} className={styles.appCard}>
                   <span className={styles.appCardMeta}>
                     <span>{app.slug === 'territoryops-spain' ? (isSpanish ? 'Herramienta de workflow' : 'Workflow tool') : (isSpanish ? 'Prototipo móvil' : 'Mobile prototype')}</span>
-                    <span>→</span>
                   </span>
                   {app.icon && (
                     <span className={styles.appIcon}>

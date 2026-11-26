@@ -35,7 +35,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'Person',
           '@id': `${siteConfig.url}/#person`,
           name: siteConfig.name,
-          jobTitle: 'Creator and builder of AI systems, products, and ventures',
+          jobTitle: 'AI systems and product builder',
           description: siteConfig.defaultDescription,
           url: siteConfig.url,
           image: absoluteUrl('/images/about/profile.webp'),
@@ -52,15 +52,14 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           },
           knowsAbout: [
             'AI agents and local inference',
-            'Digital products',
-            'Business intelligence',
+            'Agentic systems and evaluation',
+            'Data products and decision intelligence',
             'Brand strategy',
             'Creative systems',
-            'Cultural strategy',
-            'Product thinking',
+            'Product development',
             'Creative direction',
-            'Research and data',
-            'Technology and AI-assisted systems',
+            'Machine learning and forecasting',
+            'Simulation and workflow architecture',
           ],
         },
         {
@@ -81,7 +80,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'Person',
       '@id': `${siteConfig.url}/#person`,
       name: siteConfig.name,
-      jobTitle: 'Creator and builder of AI systems, products, and ventures',
+      jobTitle: 'AI systems and product builder',
       description: siteConfig.defaultDescription,
       url: siteConfig.url,
       image: absoluteUrl('/images/about/profile.webp'),
@@ -98,14 +97,13 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       },
       knowsAbout: [
         'AI agents and local inference',
-        'Business intelligence',
-        'Entrepreneurship',
+        'Agentic systems and evaluation',
+        'Data products and decision intelligence',
         'Brand Strategy',
         'Product Development',
-        'Storytelling',
+        'Machine learning and forecasting',
         'Creative Direction',
-        'Cultural Research',
-        'Technology and Experimentation',
+        'Local AI and workflow architecture',
       ],
       ...data,
     }
@@ -126,93 +124,29 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       ...data,
     }
   } else if (type === 'Service') {
+    const isSpanish = data?.inLanguage === 'es-ES'
+    const capabilities = isSpanish ? [
+      ['Sistemas de IA y producto', 'Sistemas agénticos, herramientas internas y prototipos con evaluación y revisión humana.'],
+      ['Datos e inteligencia para la decisión', 'Previsión, simulación y analítica operativa para decisiones revisables.'],
+      ['Sistemas de marca y creatividad', 'Estrategia, narrativa y dirección visual para productos e ideas coherentes.'],
+    ] : [
+      ['AI Systems & Product', 'Agentic systems, internal tools and prototypes with evaluation and human review.'],
+      ['Data & Decision Intelligence', 'Forecasting, simulation and operational analytics for inspectable decisions.'],
+      ['Brand & Creative Systems', 'Strategy, narrative and visual direction for coherent products and ideas.'],
+    ]
     jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      '@id': `${siteConfig.url}/#services`,
-      name: 'Services by Raúl Mermans',
-      itemListElement: [
-        {
-          '@type': 'Service',
-          position: 1,
-          name: 'Creative Strategy and Marketing',
-          serviceType: 'Creative and marketing strategy',
-          description:
-            'Strategy connecting business objectives, audience insight, cultural context, and creative execution.',
-          provider: {
-            '@type': 'Person',
-            '@id': `${siteConfig.url}/#person`,
-          },
-          areaServed: {
-            '@type': 'Country',
-            name: 'Spain',
-          },
-        },
-        {
-          '@type': 'Service',
-          position: 2,
-          name: 'Brand Systems and Creative Direction',
-          serviceType: 'Brand systems and creative direction',
-          description:
-            'Brand and creative systems that make ideas recognisable, coherent, and culturally relevant across campaigns, content, and digital experiences.',
-          provider: {
-            '@type': 'Person',
-            '@id': `${siteConfig.url}/#person`,
-          },
-          areaServed: {
-            '@type': 'Country',
-            name: 'Spain',
-          },
-        },
-        {
-          '@type': 'Service',
-          position: 3,
-          name: 'Data and Business Intelligence',
-          serviceType: 'Business intelligence, analytics and decision support',
-          description:
-            'Data workflows, reporting and decision-support tools for commercial and operational questions.',
-          provider: {
-            '@type': 'Person',
-            '@id': `${siteConfig.url}/#person`,
-          },
-          areaServed: {
-            '@type': 'Country',
-            name: 'Spain',
-          },
-        },
-        {
-          '@type': 'Service',
-          position: 4,
-          name: 'AI Systems and Digital Products',
-          serviceType: 'AI agents, intelligent workflows and digital products',
-          description:
-            'AI agents, internal tools and product prototypes with explicit evaluation and human oversight.',
-          provider: {
-            '@type': 'Person',
-            '@id': `${siteConfig.url}/#person`,
-          },
-          areaServed: {
-            '@type': 'Country',
-            name: 'Spain',
-          },
-        },
-        {
-          '@type': 'Service',
-          position: 5,
-        name: 'Photography and Visual Direction',
-          serviceType: 'Photography, Image Systems, and Visual Research',
-          description:
-            'Photography and image-making as a supporting visual practice for composition, cultural reading, and brand judgment.',
-          provider: {
-            '@type': 'Person',
-            '@id': `${siteConfig.url}/#person`,
-          },
-          areaServed: {
-            '@type': 'Country',
-            name: 'Spain',
-          },
-        },
-      ],
+      '@id': `${siteConfig.url}/#capabilities`,
+      name: isSpanish ? 'Capacidades de Raúl Mermans' : 'Capabilities of Raúl Mermans',
+      itemListElement: capabilities.map(([name, description], index) => ({
+        '@type': 'Service',
+        position: index + 1,
+        name,
+        description,
+        provider: { '@type': 'Person', '@id': `${siteConfig.url}/#person` },
+        areaServed: { '@type': 'Country', name: 'Spain' },
+      })),
       ...data,
     }
   } else if (type === 'Portfolio') {

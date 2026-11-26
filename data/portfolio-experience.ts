@@ -35,10 +35,10 @@ export type LocaleCode = 'es' | 'en'
 
 /** Browsing groups for the case-study index; separate from project disciplines. */
 export const CASE_STUDY_CATEGORIES = [
-  { id: 'creative-work', label: { en: 'Creative Work', es: 'Trabajo creativo' }, description: { en: 'Brands, campaigns, and visual ideas in context.', es: 'Marcas, campañas e ideas visuales en contexto.' } },
   { id: 'ai-systems', label: { en: 'AI Systems & Agents', es: 'Sistemas y agentes de IA' }, description: { en: 'Bounded agents, local AI, and evidence-led workflows.', es: 'Agentes acotados, IA local y flujos basados en evidencia.' } },
   { id: 'software-products', label: { en: 'Software & Products', es: 'Software y productos' }, description: { en: 'Tools and digital products built around real tasks.', es: 'Herramientas y productos digitales para tareas concretas.' } },
   { id: 'data-analytics', label: { en: 'Data Analytics', es: 'Análisis de datos' }, description: { en: 'Models, reporting, and decision-support systems.', es: 'Modelos, informes y sistemas de apoyo a decisiones.' } },
+  { id: 'creative-work', label: { en: 'Creative Work', es: 'Trabajo creativo' }, description: { en: 'Brands, campaigns, and visual ideas in context.', es: 'Marcas, campañas e ideas visuales en contexto.' } },
 ] as const
 
 export type CaseStudyCategory = (typeof CASE_STUDY_CATEGORIES)[number]['id']
@@ -73,6 +73,8 @@ export type PublicRoute = {
 /** Route patterns intentionally cover dynamic leaves without duplicating each locale. */
 export const PUBLIC_ROUTE_REGISTRY: readonly PublicRoute[] = [
   { route: '/', locales: ['es', 'en'], pageFamily: 'home', mobileRequired: true, visualRegressionRequired: true },
+  { route: '/technical', locales: ['es', 'en'], pageFamily: 'case-studies-index', mobileRequired: true, visualRegressionRequired: true },
+  { route: '/creative', locales: ['es', 'en'], pageFamily: 'visual-work', mobileRequired: true, visualRegressionRequired: true },
   { route: '/about', locales: ['es', 'en'], pageFamily: 'about', mobileRequired: true, visualRegressionRequired: true },
   { route: '/services/[slug]', locales: ['es', 'en'], pageFamily: 'service-detail', mobileRequired: true, visualRegressionRequired: true },
   { route: '/case-studies', locales: ['es', 'en'], pageFamily: 'case-studies-index', mobileRequired: true, visualRegressionRequired: true },
@@ -80,6 +82,7 @@ export const PUBLIC_ROUTE_REGISTRY: readonly PublicRoute[] = [
   { route: '/apps', locales: ['es', 'en'], pageFamily: 'apps-index', mobileRequired: true, visualRegressionRequired: true },
   { route: '/apps/[slug]', locales: ['es', 'en'], pageFamily: 'app-detail', mobileRequired: true, visualRegressionRequired: true },
   { route: '/photography', locales: ['es', 'en'], pageFamily: 'photography', mobileRequired: true, visualRegressionRequired: true },
+  { route: '/photography/[series]', locales: ['es', 'en'], pageFamily: 'photography', mobileRequired: true, visualRegressionRequired: true },
   { route: '/visuals', locales: ['es', 'en'], pageFamily: 'visual-work', mobileRequired: true, visualRegressionRequired: true },
   { route: '/privacy', locales: ['es', 'en'], pageFamily: 'utility', mobileRequired: true, visualRegressionRequired: false },
   { route: '/terms', locales: ['es', 'en'], pageFamily: 'utility', mobileRequired: true, visualRegressionRequired: false },

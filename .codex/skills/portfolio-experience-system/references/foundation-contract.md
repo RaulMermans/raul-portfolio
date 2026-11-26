@@ -6,23 +6,29 @@ Use this reference after `$portfolio-experience-system` has routed a public rout
 
 | Role | Token and treatment | Use |
 | --- | --- | --- |
-| Canvas | `--surface-page` (warm cream) | Default page canvas. |
+| Canvas | `--surface-page` (off-white paper) | Default page canvas. |
 | Inverse punctuation | `--surface-inverse` (ink) | A deliberate change of pace, result, quote, or evidence moment. Never a second default theme. |
 | Primary reading | `--text-primary` | Headings, body copy, controls, and essential information. |
 | Secondary reading | `--text-secondary` | Supporting copy only when contrast passes on the rendered surface. |
-| Signal | `--accent` | Focus, key action, and limited portfolio signal. A case study may add one scoped local accent. |
-| Display | `--font-heading`, uppercase, `--heading-line-height`, `--tracking-tight` | H1 to H3 only. |
+| Signal | `--accent` for accessible text and focus; `--accent-visual` for large copper marks | Limited portfolio signal. A case study may add one scoped local accent. |
+| Page title | `--font-title`, regular, natural casing | H1 only. |
+| Section heading | `--font-section`, regular, natural casing | H2. |
+| Smaller heading | `--font-heading`, restrained sans serif | H3 and supporting display. |
 | Utility | `--font-ui` | Interface text, short descriptions, navigation. |
 | Label | `--font-code`, `--text-xs`, `--tracking-wider`, uppercase | Eyebrows, metadata labels, counters, controls. |
 | Reading prose | `--font-prose`, `--text-base`, `--prose-line-height`, `--prose-measure` | Explanatory paragraphs and editorial narrative. |
 
 The bounded scale is `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`. Do not synthesize intermediate one-off scales. Use `--text-hero` for a page H1, `--case-study-section-heading` for a full case study's primary chapter H2s, `--text-3xl` for other major H2s, and `--text-xl` or `--text-2xl` for H3s according to importance. Reserve the smaller scale for interface content.
 
-Font assets are a shared foundation, not a page-level art-direction choice. `components/SiteDocument.tsx` loads the approved local Bebas Neue, DM Sans, Space Mono, and Source Serif 4 files; retain that source and fallback order unless the user explicitly changes it. Essential first-viewport content must render readable before any motion begins.
+The current type and section scale is deliberately more compact than the original archive mockup. Keep display titles and opening screens within the bounded tokens, with enough first-viewport space to reveal the next chapter on a phone.
+
+On paper, use `--accent` for readable copper text and text selection. Reserve `--accent-visual` for large marks that meet the display contrast threshold. Use `--text-muted` for secondary labels instead of reducing the opacity of essential text.
+
+The user chose Instrument Serif for H1 and H2 display headings, replacing the previous Source Serif 4 H1 and Arial H2. Source Serif 4 remains for reading copy, Arial for interface and H3 headings, and Courier New for labels. `styles/design-system.css` is the active font source and `components/SiteDocument.tsx` serves the local serif assets. Essential first-viewport content must render readable before any motion begins.
 
 ## Page and section geometry
 
-- A page intro uses `.ui-page-intro` and its container. It contains an eyebrow, a visible H1, and one compact supporting paragraph. A local image is optional only when it proves the subject.
+- A standard page intro uses `.ui-page-intro` and its container. Technical, creative, and About instead share `.portfolio-intro`: a centered H1 alone on the primary paper surface, with context and evidence directly below. Both words use the regular Instrument Serif display face, with the second word larger. Keep the complete words visible at phone widths. A local image in other intros is optional only when it proves the subject.
 - A normal chapter uses `.ui-section > .ui-section__container`. Its heading block uses `.ui-section-heading`: eyebrow, H2, then supporting copy when the next content needs orientation.
 - Use `--section-inline-padding`, `--section-block-padding`, `--section-block-padding-compact`, `--section-content-max`, `--section-copy-max`, `--section-heading-gap`, and `--section-content-gap`. Do not add competing route-wide gutters or containers.
 - Use the spacing scale `--space-1` through `--space-12`. `--space-3` to `--space-5` handles local label, title, and copy relationships. `--space-6` to `--space-8` separates content groups. Section changes use the section tokens, not improvised margins.
@@ -47,8 +53,10 @@ Title wrapping is intentional. Use `$author-section-headings` when exact visual 
 - Use cards only for comparable units a reader may compare, select, or revisit. Do not place every paragraph in a card, nest cards, or use cards as the only way to create hierarchy.
 - Required states: default, hover when hover exists, focus-visible, active where useful, disabled/loading/error when the component supports it. State must remain distinguishable without colour alone.
 - Motion may clarify a change of state or reveal evidence. It must be optional under reduced motion, short, and never required to read or operate the page.
-- The fixed shared header stays visible at the top of a page, hides only after a meaningful downward scroll, and returns on upward scroll. Do not hide it while its mobile menu is open or keyboard focus is within it.
-- The shared header keeps the same surface and navigation positions across locales on equivalent routes. Labels and active language state may change; locale alone does not change its layout or art direction.
+- The fixed editorial masthead uses the full name Raúl Mermans as its serif home link, a compact text Back link on interior routes, and language choices. It uses the primary paper surface on every route, hides on a meaningful downward scroll, and returns on upward scroll or keyboard focus. Back returns to the nearest portfolio index, and the masthead keeps the same geometry across locales. Photo essays retain the same compact Back link in their opening spread and a return link at the end. The former four-link navigation and mobile menu must not return.
+- The shared footer name and reading copy align at the top of the same desktop row, then stack without overlap on a phone. Keep its text and adjacent footer metadata fully visible without horizontal clipping.
+- Visual Studies keeps its carousel arrows inside the image frame and its caption below the image. Small metadata remains readable at the shared `--text-xs` size or larger, including on phones. An opened visual work must still display the work itself on a phone.
+- Action labels name the destination without decorative arrow glyphs. Retain arrows only for directional controls and explanatory diagrams.
 
 ## Media contract
 

@@ -22,9 +22,6 @@ export default function AppCard({
       <div>
         <div className={styles.header}>
           <span className={styles.label}>{label}</span>
-          <span className={styles.arrow} aria-hidden="true">
-            →
-          </span>
         </div>
 
         <div className={styles.content}>

@@ -125,15 +125,12 @@ export default function NotFoundExperience() {
           >
             <Link href={localizePath('/', locale)} className="btn">
               <span>{copy.home}</span>
-              <span className="btn__arrow">→</span>
             </Link>
             <Link href={localizePath('/case-studies', locale)} className="btn">
               <span>{copy.caseStudies}</span>
-              <span className="btn__arrow">→</span>
             </Link>
             <Link href={localizePath('/apps/overflow', locale)} className="btn">
               <span>Overflow</span>
-              <span className="btn__arrow">→</span>
             </Link>
           </div>
         </div>

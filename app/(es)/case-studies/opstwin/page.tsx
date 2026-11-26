@@ -27,7 +27,6 @@ type ProofImage = {
 }
 
 type Copy = {
-  back: string
   eyebrow: string
   subtitle: string
   description: string
@@ -124,7 +123,6 @@ const proofImages = {
 
 const copy: Record<Locale, Copy> = {
   en: {
-    back: 'Case studies',
     eyebrow: 'Operational simulation / Decision support',
     subtitle: 'Test a staffing or workflow change before applying it to a live service operation.',
     description:
@@ -265,7 +263,6 @@ const copy: Record<Locale, Copy> = {
     },
   },
   es: {
-    back: 'Casos de estudio',
     eyebrow: 'Simulación operativa / Apoyo a decisiones',
     subtitle: 'Prueba un cambio de plantilla o de flujo antes de aplicarlo en una operación de servicio real.',
     description:
@@ -471,9 +468,6 @@ export default function OpsTwinPage() {
           data-presentation-family="technical-product"
         >
           <div className="data-brief-hero__content">
-            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
-              ← {content.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{content.eyebrow}</p>
             <h1 id="opstwin-title" className="data-brief-hero__title">OpsTwin</h1>
@@ -482,10 +476,10 @@ export default function OpsTwinPage() {
             <p className="opstwin-status">{content.status}</p>
             <div className="data-brief-actions" aria-label={content.linksLabel}>
               <a href={liveDemoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
-                {content.live} <span aria-hidden="true">↗</span>
+                {content.live}
               </a>
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
-                {content.github} <span aria-hidden="true">↗</span>
+                {content.github}
               </a>
             </div>
             <div className="data-brief-tags" aria-label={content.stackLabel}>
@@ -587,12 +581,12 @@ export default function OpsTwinPage() {
             </div>
             <div className="data-brief-actions">
               <a href={liveDemoUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
-                {content.final.live} <span aria-hidden="true">↗</span>
+                {content.final.live}
               </a>
               <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
-                {content.final.github} <span aria-hidden="true">↗</span>
+                {content.final.github}
               </a>
-              <Link href={localizePath('/case-studies', locale)} className="data-brief-button">{content.final.back} →</Link>
+              <Link href={localizePath('/case-studies', locale)} className="data-brief-button">{content.final.back}</Link>
             </div>
           </div>
         </section>

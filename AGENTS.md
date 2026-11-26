@@ -15,6 +15,8 @@ A frontend task is not complete based on source inspection alone. It needs rende
 
 Foundation changes (fonts, palette, controls, navigation, spacing, gutters, responsive model, or shared shell) also require updates to the canonical CSS, the relevant skill/reference, tests, and visual baselines.
 
+When new portfolio photographs are supplied, use `$portfolio-image-triage` to curate and document the batch, then `$portfolio-image-conversion` for selected public assets.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

@@ -21,13 +21,6 @@
   border-bottom: 1px solid var(--border-light);
 }
 
-.heroNavigation {
-  position: absolute;
-  top: calc(var(--header-height) + var(--space-4));
-  right: 0;
-  left: 0;
-}
-
 .heroGrid {
   display: grid;
   gap: var(--space-8);
@@ -43,7 +36,6 @@
   min-width: 0;
 }
 
-.back,
 .primaryAction,
 .secondaryAction {
   display: inline-flex;
@@ -54,23 +46,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-}
-
-.back {
-  gap: var(--space-2);
-  color: inherit;
-}
-
-.back:hover,
-.back:focus-visible {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: var(--space-2);
-}
-
-.back:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: var(--space-2);
 }
 
 .caseStudyLabel,
@@ -255,7 +230,13 @@
 
 .sectionInverse .eyebrow,
 .sectionInverse .panelLabel {
-  color: var(--accent);
+  color: var(--cream);
+}
+
+.sectionInverse .principleList span,
+.sectionInverse .stateList span,
+.sectionInverse .proofGrid strong {
+  color: var(--cream);
 }
 
 .prose p,

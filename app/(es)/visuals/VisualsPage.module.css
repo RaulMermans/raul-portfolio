@@ -9,6 +9,7 @@
 }
 
 .vignette {
+  display: none;
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -17,6 +18,7 @@
 }
 
 .scanlines {
+  display: none;
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -26,6 +28,7 @@
 }
 
 .lightLeak {
+  display: none;
   position: fixed;
   top: -30%;
   right: -15%;
@@ -38,6 +41,7 @@
 }
 
 .lightLeakTwo {
+  display: none;
   position: fixed;
   bottom: -35%;
   left: -20%;
@@ -50,6 +54,7 @@
 }
 
 .filmBurn {
+  display: none;
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -70,8 +75,8 @@
 
 .container {
   display: grid;
-  grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.95fr);
-  gap: 0;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: clamp(var(--space-7), 5vw, var(--space-10));
   min-height: calc(100vh - var(--header-height));
   min-height: calc(100dvh - var(--header-height));
   max-width: 1600px;
@@ -91,8 +96,7 @@
   height: fit-content;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 24rem;
-  padding-right: clamp(1.75rem, 2.6vw, 3rem);
+  max-width: 28rem;
 }
 
 .label {
@@ -101,8 +105,8 @@
   gap: 1.25rem;
   margin-bottom: 2rem;
   font-family: var(--font-code);
-  font-size: 0.5rem;
-  letter-spacing: 0.6em;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--ink-faint);
 }
@@ -116,9 +120,10 @@
 .title {
   margin: 0 0 2rem;
   font-family: var(--font-heading);
-  font-size: clamp(4rem, 10vw, 8rem);
+  font-size: clamp(3.5rem, 7vw, 6.25rem);
   line-height: 0.9;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--ink);
 }
@@ -127,21 +132,21 @@
   width: 60px;
   height: 3px;
   margin-bottom: 2rem;
-  background: linear-gradient(90deg, var(--warm), var(--rose));
+  background: var(--accent-visual);
 }
 
 .description {
-  max-width: 18rem;
+  max-width: 24rem;
   margin: 0 0 3rem;
-  font-size: 0.95rem;
-  line-height: 1.8;
+  font-size: var(--text-base);
+  line-height: var(--body-line-height);
   color: var(--ink-muted);
 }
 
 .year {
   font-family: var(--font-code);
-  font-size: 0.45rem;
-  letter-spacing: 0.5em;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
   color: var(--ink-faint);
 }
 
@@ -149,19 +154,16 @@
   position: relative;
   width: 100%;
   max-width: 42rem;
-  aspect-ratio: 1;
+  gap: var(--space-4);
   margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   touch-action: pan-y pinch-zoom;
 }
 
 .cardContainer {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: inherit;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,6 +220,11 @@
   cursor: pointer;
 }
 
+.card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
 .cardImageWrapper {
   position: relative;
   width: 100%;
@@ -266,7 +273,7 @@
 .cardIndex {
   margin: 0 0 0.75rem;
   font-family: var(--font-code);
-  font-size: 0.5rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.4em;
   color: rgba(255, 255, 255, 0.58);
 }
@@ -284,7 +291,7 @@
 .cardMeta {
   margin: 0 0 1.25rem;
   font-family: var(--font-code);
-  font-size: 0.55rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.25em;
   color: rgba(255, 255, 255, 0.72);
 }
@@ -297,9 +304,9 @@
   gap: 0.75rem;
   padding: 0.85rem 1.35rem;
   border: 1px solid rgba(255, 255, 255, 0.26);
-  border-radius: 999px;
+  border-radius: var(--radius-button);
   font-family: var(--font-code);
-  font-size: 0.55rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--cream);
@@ -324,28 +331,41 @@
 .navButton {
   position: absolute;
   top: 50%;
+  z-index: 2;
   transform: translateY(-50%);
   display: inline-flex;
   width: 52px;
   height: 52px;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid rgb(from var(--ink) r g b / 0.14);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
+  border: var(--border-dark);
+  border-radius: var(--radius-button);
+  background: var(--surface-page);
   color: var(--ink);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 12px 24px rgb(from var(--ink) r g b / 0.12);
-  transition: transform 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease), opacity 0.35s var(--ease);
-  z-index: 2;
+  transition: background var(--transition-base) var(--ease), color var(--transition-base) var(--ease);
 }
 
-.navButtonPrev {
-  left: max(1rem, calc(env(safe-area-inset-left) + 0.5rem));
+.navButtonPrev { left: var(--space-4); }
+.navButtonNext { right: var(--space-4); }
+
+.cardCaption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: 0;
+  font: var(--text-xs)/1.4 var(--font-code);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
-.navButtonNext {
-  right: max(1rem, calc(env(safe-area-inset-right) + 0.5rem));
+.cardCaption h2 {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.cardCaption span:last-child {
+  white-space: nowrap;
 }
 
 .navButton:disabled {
@@ -390,17 +410,6 @@
     background: var(--ink);
     color: var(--cream);
     border-color: var(--ink);
-    transform: translateY(-50%) scale(1.08);
-  }
-
-  .navButtonPrev:hover:not(:disabled) .navArrow,
-  .navButtonPrev:focus-visible:not(:disabled) .navArrow {
-    transform: translateX(-2px);
-  }
-
-  .navButtonNext:hover:not(:disabled) .navArrow,
-  .navButtonNext:focus-visible:not(:disabled) .navArrow {
-    transform: translateX(2px);
   }
 }
 
@@ -501,7 +510,7 @@
   left: 0;
   bottom: -2.5rem;
   font-family: var(--font-code);
-  font-size: 0.55rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.4em;
   color: rgba(255, 255, 255, 0.42);
 }
@@ -548,7 +557,7 @@
   gap: 1.25rem;
   margin-bottom: 2rem;
   font-family: var(--font-code);
-  font-size: 0.5rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -573,7 +582,7 @@
 .exhibitionSubtitle {
   margin: 0 0 2rem;
   font-family: var(--font-code);
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.2em;
   color: var(--ink-muted);
 }
@@ -604,14 +613,14 @@
 
 .exhibitionLabel {
   font-family: var(--font-code);
-  font-size: 0.45rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
 
 .exhibitionValue {
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   line-height: 1.7;
   color: var(--ink-soft);
 }
@@ -625,7 +634,7 @@
 .exhibitionNoteLabel {
   margin-bottom: 0.85rem;
   font-family: var(--font-code);
-  font-size: 0.45rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -661,7 +670,7 @@
   background: transparent;
   color: var(--ink-muted);
   font-family: var(--font-code);
-  font-size: 0.55rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   transition: color 0.35s var(--ease), background 0.35s var(--ease);
@@ -699,13 +708,12 @@
 
 @media (max-width: 1200px) {
   .container {
-    grid-template-columns: minmax(16rem, 0.88fr) minmax(0, 1.72fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
     padding-top: calc(var(--header-height) + env(safe-area-inset-top) + 3rem);
   }
 
   .intro {
-    max-width: 22rem;
-    padding-right: 2.25rem;
+    max-width: 28rem;
   }
 }
 
@@ -730,9 +738,7 @@
   }
 
   .cardDisplay {
-    aspect-ratio: auto;
     max-width: none;
-    min-height: clamp(30rem, 68vh, 42rem);
   }
 
   .exhibition {
@@ -747,10 +753,25 @@
 @media (max-width: 900px) {
   .exhibition {
     grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 42svh) minmax(0, 1fr);
   }
 
   .exhibitionImagePanel {
-    display: none;
+    padding: var(--space-4);
+  }
+
+  .exhibitionImageWrap,
+  .exhibitionPicture,
+  .exhibitionImage {
+    max-height: calc(42svh - 2 * var(--space-4));
+  }
+
+  .exhibitionCounter {
+    bottom: var(--space-2);
+    left: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    background: var(--surface-inverse);
+    color: var(--cream-light);
   }
 
   .exhibitionScroll {
@@ -798,11 +819,11 @@
   }
 
   .cardDisplay {
-    min-height: auto;
+    gap: var(--space-3);
   }
 
   .cardContainer {
-    min-height: clamp(26rem, 62vh, 34rem);
+    min-height: 0;
   }
 
   .card {
@@ -810,16 +831,7 @@
     aspect-ratio: 1;
   }
 
-  .cardOverlay,
-  .cardContent {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .cardOverlay {
-    padding: var(--space-4);
-    background: linear-gradient(180deg, rgb(from var(--ink) r g b / 0.08) 0%, rgb(from var(--ink) r g b / 0.12) 42%, rgb(from var(--ink) r g b / 0.9) 100%);
-  }
+  .cardOverlay { display: none; }
 
   .cardTitle {
     font-size: clamp(1.7rem, 8vw, 2.4rem);
@@ -827,7 +839,7 @@
 
   .cardMeta {
     margin-bottom: var(--space-3);
-    font-size: 0.6rem;
+    font-size: var(--text-xs);
   }
 
   .cardButton {
@@ -838,6 +850,10 @@
     width: 48px;
     height: 48px;
   }
+
+  .navButtonPrev { left: var(--space-3); }
+  .navButtonNext { right: var(--space-3); }
+  .cardCaption { flex-direction: column; gap: 0; font-size: var(--text-xs); }
 
   .exhibitionScroll {
     padding:

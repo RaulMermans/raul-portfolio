@@ -312,10 +312,6 @@
   transition: width 0.3s var(--ease), opacity 0.3s var(--ease);
 }
 
-.ctaArrow {
-  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
-}
-
 .imageWrapper {
   position: relative;
   min-height: 100%;
@@ -366,11 +362,6 @@
     opacity: 0.72;
   }
 
-  .card:hover .ctaArrow,
-  .card:focus-visible .ctaArrow {
-    transform: translateX(4px) translateY(-1px);
-    color: var(--section-accent);
-  }
 }
 
 @media (max-width: 1280px) {
@@ -475,7 +466,6 @@
   .slide,
   .card,
   .ctaLine,
-  .ctaArrow,
   .imageWrapper img,
   .imageWrapper [data-nimg] {
     transition-duration: 0.01ms !important;

@@ -38,7 +38,6 @@ export default function Contact({ locale = 'en' }: ContactProps) {
             <a href={PUBLIC_CONTACT_MAILTO} className="contact-direct__link">
               <span>{copy.emailLabel}</span>
               <strong>{PUBLIC_CONTACT_EMAIL}</strong>
-              <span aria-hidden="true">→</span>
             </a>
             <a
               href={LINKEDIN_URL}
@@ -48,7 +47,6 @@ export default function Contact({ locale = 'en' }: ContactProps) {
             >
               <span>{copy.linkedinLabel}</span>
               <strong>Raúl Mermans</strong>
-              <span aria-hidden="true">↗</span>
             </a>
             <a
               href={INSTAGRAM_URL}
@@ -58,7 +56,6 @@ export default function Contact({ locale = 'en' }: ContactProps) {
             >
               <span>{copy.instagramLabel}</span>
               <strong>@raulmeermans</strong>
-              <span aria-hidden="true">↗</span>
             </a>
             <a
               href={GITHUB_URL}
@@ -68,7 +65,6 @@ export default function Contact({ locale = 'en' }: ContactProps) {
             >
               <span>{copy.githubLabel}</span>
               <strong>RaulMermans</strong>
-              <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>

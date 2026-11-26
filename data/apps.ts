@@ -73,7 +73,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       shortDescription:
         'A local-first internal control console for tracking real estate opportunities across Spain through map, table, and pipeline views.',
       cardDescription:
-        'Private atlas and operational console for managing locations, status, follow-up, and deal stage without backend overhead.',
+        'Track locations, follow-ups, and deal stages in map, table, and pipeline views.',
       heroStatement:
         'Turn scattered location research into a structured map, table, and pipeline workflow built for deliberate operational decisions.',
       status: 'Internal tool',
@@ -172,7 +172,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       shortDescription:
         'Overflow is a calm performance journal for iPhone. Track workouts, build routines, and measure progress in one focused place.',
       cardDescription:
-        'Frictionless workout logging, routine planning, and progress tracking designed with restraint and intention.',
+        'Log workouts, plan routines, and track progress in a private beta for iPhone.',
       heroStatement:
         'Train with quiet confidence. Overflow replaces noisy fitness apps with a calm, considered journal that respects your focus.',
       status: 'Featured app',
@@ -270,7 +270,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       shortDescription:
         'Una consola interna local-first para controlar oportunidades inmobiliarias en España mediante mapa, tabla y pipeline.',
       cardDescription:
-        'Atlas privado y consola operativa para gestionar ubicaciones, estados, seguimientos y fases sin infraestructura de backend.',
+        'Sigue ubicaciones, próximos contactos y fases de cada operación en vistas de mapa, tabla y pipeline.',
       heroStatement:
         'Convierte investigación dispersa de ubicaciones en un flujo estructurado de mapa, tabla y pipeline para decisiones operativas deliberadas.',
       status: 'Herramienta interna',
@@ -369,7 +369,7 @@ const localizedApps: Record<Locale, LocalizedAppEntry[]> = {
       shortDescription:
         'Overflow es un diario de entrenamiento para iPhone. Registra sesiones, crea rutinas y mide tu progreso en un mismo lugar.',
       cardDescription:
-        'Registro de entrenamiento sin fricción, planificación de rutinas y seguimiento de progreso diseñados con contención e intención.',
+        'Registra entrenamientos, planifica rutinas y sigue tu progreso en una beta privada para iPhone.',
       heroStatement:
         'Entrena con claridad. Overflow sustituye las apps de fitness ruidosas por un diario pensado para respetar tu foco.',
       status: 'App destacada',

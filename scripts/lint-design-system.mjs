@@ -4,13 +4,13 @@ import { join } from 'node:path'
 const root = process.cwd()
 const roots = ['app', 'components', 'styles']
 const permittedFontFamilies = new Set([
-  'var(--font-heading)', 'var(--font-ui)', 'var(--font-code)', 'var(--font-prose)',
+  'var(--font-title)', 'var(--font-section)', 'var(--font-heading)', 'var(--font-ui)', 'var(--font-code)', 'var(--font-prose)',
 ])
 const foundationHex = /#(?:f5f0eb|1a1714|c41e3a|6b635a)\b/gi
 const foundationRgb = /rgba?\(\s*(?:245\s*,\s*240\s*,\s*235|26\s*,\s*23\s*,\s*20|196\s*,\s*30\s*,\s*58|107\s*,\s*99\s*,\s*90)\b/gi
 const arbitraryTailwindRadius = /\brounded-\[(?!var\(--radius-)[^\]]+\]/g
 const arbitraryTailwindColor = /\b(?:bg|text|border|fill|stroke)-\[#[0-9a-f]{3,8}\]/gi
-const permittedCssFonts = /^(?:var\(--font-(?:heading|ui|code|prose)\)(?:\s*!important)?|inherit)$/
+const permittedCssFonts = /^(?:var\(--font-(?:title|section|heading|ui|code|prose)\)(?:\s*!important)?|inherit)$/
 const permittedControlRadii = /^(?:0|inherit|var\(--radius-button\))$/
 const projectEvidenceOverrides = new Map([
   ['app/(es)/apps/overflow/OverflowLanding.tsx', 'project-native evidence treatment'],

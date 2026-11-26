@@ -4,13 +4,15 @@ Use the smallest structure that tells the truth about the work. A section is opt
 
 ## Home
 
-1. **Page statement:** Who Raúl is and the kind of work he builds.
-2. **Selected work:** A small, legible route into case studies, apps, visuals, or photography.
-3. **Operating perspective:** How strategy, systems, visual judgement, and technology relate.
-4. **Services or collaborations:** What a visitor can engage Raúl for, expressed as concrete work rather than capability clouds.
-5. **Contact:** A direct invitation with a realistic next action.
+1. **Brand:** Raúl's name as the sole, large page title.
+2. **Three choices:** Matching square cards for technical work, creative work, and About Me, each named by a single title. They form one row on desktop and a horizontal strip on narrower screens.
+3. **About:** The third card uses Raúl's portrait and links to the full profile.
+
+The home gateway uses the shared inverse surface and has no shared header or footer. The technical path groups software, AI systems, data products, and case studies by evidence and task; the separate apps route holds product listings. The creative path edits photography, visual studies, and brand work as collections. Both destination routes retain the minimal home-and-language masthead and shared typography.
 
 The home page is the visual reference, not a layout every other page must clone.
+
+The technical, creative, and About destinations begin with a centered, image-free title on the primary paper surface. Their work and profile content begin in the next block; do not put a deck, image, or metadata back into those three entry screens.
 
 ## Case-study index
 
@@ -33,12 +35,11 @@ Vary image aspect ratios only when the variation comes from the work. Keep capti
 
 ## About
 
-1. **Identity:** Name, current practice, and a concise position.
+1. **Identity:** A centered “Sobre mí” / “About me” title, followed by the portrait and a concise position below the opening screen.
 2. **Evidence of practice:** A few concrete signals, not a wall of credentials.
 3. **Context:** Geography, timeline, or working history only where it explains the current work.
 4. **Operating model:** How Raúl approaches a decision, workflow, interface, and review.
-5. **Routes into the work:** Selected case studies, apps, visuals, or photography.
-6. **Contact:** A human, low-friction next step.
+5. **Contact:** A human, low-friction next step. The shared navigation carries routes into the work.
 
 The page may be personal, but it should still give a visitor an editorial reading path. Avoid turning it into a dashboard of tags, timelines, stats, and cards at once.
 
@@ -60,6 +61,8 @@ Screens are evidence. Do not make a generic product-marketing hero with a floati
 4. **Continuation:** Another body of work or contact.
 
 The visual work can be more immersive, but headers, labels, reading copy, media captions, controls, and the footer remain part of the shared portfolio system.
+
+Each selected photographic series reads as an edited magazine story: a cover that suits its lead image, a sequence of uncropped pairs, isolated portraits, and wide images, and a visual route into the next series. Keep every selected photograph in order and its colors intact. Do not interrupt the sequence with editorial text or captions.
 
 ## Quiet utility pages
 

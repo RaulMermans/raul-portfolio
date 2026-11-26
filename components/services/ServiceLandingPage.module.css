@@ -16,9 +16,7 @@
   padding-top: calc(var(--header-height) + clamp(5rem, 10vw, 9rem));
   padding-bottom: clamp(4rem, 8vw, 7rem);
   border-bottom: 1px solid rgb(from var(--ink) r g b / 0.16);
-  background:
-    radial-gradient(circle at 82% 18%, rgba(216, 109, 67, 0.16), transparent 30%),
-    linear-gradient(180deg, rgba(252, 248, 244, 0.98), var(--cream));
+  background: var(--surface-page);
 }
 
 .heroInner,
@@ -43,8 +41,8 @@
   flex-wrap: wrap;
   gap: 0.65rem;
   margin-bottom: clamp(3.5rem, 7vw, 6rem);
-  color: rgb(from var(--ink) r g b / 0.5);
-  font-size: 0.67rem;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
   letter-spacing: 0.2em;
 }
 
@@ -69,15 +67,16 @@
 .sectionLabel {
   margin: 0 0 1.25rem;
   color: var(--accent);
-  font-size: 0.68rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.28em;
 }
 
 .title {
-  max-width: 11ch;
+  max-width: 12ch;
   margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(4.5rem, 10vw, 10.5rem);
+  font-size: clamp(4rem, 7vw, 8.5rem);
+  font-weight: 800;
   line-height: 0.84;
   letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
@@ -93,6 +92,7 @@
   max-width: 42rem;
   margin: 0;
   color: rgb(from var(--ink) r g b / 0.75);
+  font-family: var(--font-prose);
   font-size: clamp(1.05rem, 1.35vw, 1.25rem);
   line-height: 1.7;
 }
@@ -106,9 +106,9 @@
 .tag {
   padding: 0.65rem 0.8rem;
   border: 1px solid rgb(from var(--ink) r g b / 0.18);
-  border-radius: 999px;
-  color: rgb(from var(--ink) r g b / 0.66);
-  font-size: 0.62rem;
+  border-radius: var(--radius-button);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
   letter-spacing: 0.14em;
 }
 
@@ -126,7 +126,7 @@
   justify-content: center;
   gap: 0.65rem;
   font-family: var(--font-code);
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
@@ -454,8 +454,13 @@
 .proofMeta {
   min-block-size: 2lh;
   color: var(--accent);
-  font-size: 0.64rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.2em;
+}
+
+.proofCard:hover .proofMeta,
+.proofCard:focus-visible .proofMeta {
+  color: var(--accent-inverse);
 }
 
 .proofDescription {

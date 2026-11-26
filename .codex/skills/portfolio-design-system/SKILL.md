@@ -28,13 +28,13 @@ For public routes, start with `$portfolio-experience-system`. It selects the app
 
 ### Type and hierarchy
 
-- Use `--font-heading` for display headings, `--font-ui` for interface/body text, `--font-code` for labels and controls, and `--font-prose` for editorial reading copy.
-- The portfolio display direction is bold, condensed Bebas Neue in uppercase. Keep Source Serif for editorial reading copy only. Do not replace the display face with a serif without an explicit request.
-- Typography is a locked shared foundation: `components/SiteDocument.tsx` must load the approved local Bebas Neue, DM Sans, Space Mono, and Source Serif 4 assets. Do not substitute a web font, fallback, or new family without an explicit user decision and a rendered desktop-and-mobile verification.
+- Use `--font-title` for page H1s, `--font-section` for H2s, `--font-heading` for H3s and smaller display text, `--font-ui` for interface/body text, `--font-code` for labels and controls, and `--font-prose` for editorial reading copy.
+- The page H1 and section H2 use the locally hosted Instrument Serif at regular weight and natural casing. Reading copy uses Source Serif 4, H3s and interface text use Arial, and small labels use Courier New.
+- Typography is a locked shared foundation in `styles/design-system.css`. The user's editorial HTML reference explicitly changed the active families. `components/SiteDocument.tsx` retains the former local font registrations for legacy assets; do not introduce another family without an explicit user decision and rendered desktop and mobile verification.
 - Preserve semantic order: one page H1, then sequential H2/H3 sections. Do not use heading tags for visual size alone.
 - Use the shared type scale: `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, and `--text-hero`.
 - Full case-study chapter H2s use `--case-study-section-heading`, a deliberately smaller shared scale than a page-level major H2. Keep body copy at `--text-base` or larger on mobile.
-- Use `--heading-line-height`, `--tracking-tight`, and uppercase display treatment for portfolio headings unless the component has an intentional local contract.
+- Use the shared heading rhythm. H1/H2 display in natural case; H3 and smaller sans serif display headings may use uppercase where it clarifies hierarchy.
 - Keep headings readable: use `text-wrap: balance`; author visual lines per locale when an exact line count is required. Do not force breaks with viewport-dependent hacks.
 
 ### Meaning and reading flow
@@ -56,8 +56,8 @@ For public routes, start with `$portfolio-experience-system`. It selects the app
 - Keep every interactive target at least `--touch-min` (44px) on mobile.
 - Retain visible `:focus-visible` feedback, keyboard behavior, accessible names, and state feedback beyond color alone.
 - Respect reduced motion. Do not add motion that blocks reading, scrolling, or input.
-- The shared fixed header stays visible at the page top, hides only after an intentional downward scroll, and returns on upward scroll. It remains available while its mobile menu is open or keyboard focus is inside it.
-- Equivalent routes keep the header surface and navigation geometry stable when switching between English and Spanish.
+- The shared fixed masthead contains the home link, a Back link on interior routes, and language choices, at desktop and mobile widths. It hides when scrolling down and returns when scrolling up or focusing a link. Back points to the nearest index; photo essays include the same control in their opening spread. The four-link navigation and mobile menu have been removed at the user's request.
+- Equivalent routes keep the masthead surface and link geometry stable when switching between English and Spanish.
 
 ## Mobile contract
 
@@ -66,8 +66,7 @@ Check 390px first, plus 360px or 320px when content is dense.
 - Keep the document width at or below the viewport width; do not mask overflow as the only fix.
 - Keep body text at least 16px; never reduce the root size to make a layout fit.
 - Prefer a single column, natural card height, wrapped copy, `minmax(0, 1fr)`, and `min-width: 0` over fixed widths.
-- Ensure fixed headers, menus, filters, and scroll targets account for the header and safe-area insets.
-- Make modal menus scrollable, focus-contained, dismissible with Escape, and safe from background scrolling.
+- Ensure the fixed masthead, filters, and scroll targets account for its height and safe-area insets.
 
 ## Change gate
 
@@ -86,4 +85,4 @@ Before finishing, inspect the diff and answer:
 
 For every visual change, use `$verify-rendered-ui`; add `$mobile-first-ui` for responsive work, `$align-card-grids` for repeated cards, and `$author-section-headings` for authored heading lines.
 
-Run the smallest relevant repository scripts. For mobile, exercise navigation, primary CTAs, filters/forms, modal behavior, and a representative case-study route. Capture screenshots and measure overflow with `documentElement.scrollWidth <= innerWidth`. If runtime verification is blocked, report the exact blocker and do not claim visual completion.
+Run the smallest relevant repository scripts. For mobile, exercise the home and language links, primary CTAs, filters/forms, and a representative case-study route. Capture screenshots and measure overflow with `documentElement.scrollWidth <= innerWidth`. If runtime verification is blocked, report the exact blocker and do not claim visual completion.

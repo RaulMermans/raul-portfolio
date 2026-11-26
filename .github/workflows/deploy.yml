@@ -110,8 +110,8 @@ jobs:
             return 1
           }
 
-          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Building ideas into brands, products, and ventures."
-          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Convirtiendo ideas en marcas, productos y nuevos proyectos."
+          verify_copy "https://www.raulmermans.com/en/" /tmp/raul-en.html "Everything is"
+          verify_copy "https://www.raulmermans.com/" /tmp/raul-es.html "Todo es"
           verify_copy "https://www.raulmermans.com/en/case-studies/" /tmp/cases-en.html "Campaign Sandbox"
           verify_copy "https://www.raulmermans.com/case-studies/" /tmp/cases-es.html "Campaign Sandbox"
           verify_copy "https://www.raulmermans.com/en/case-studies/blogagent/" /tmp/blogagent-en.html "reviewer veto before publication"

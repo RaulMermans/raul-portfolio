@@ -1,13 +1,12 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { getIndependentSystem, type IndependentSystemSlug } from '@/data/independent-systems'
 import { getPresentationFamilyForProject } from '@/data/portfolio-experience'
-import { getLocaleFromPath, localizePath } from '@/lib/i18n'
+import { getLocaleFromPath } from '@/lib/i18n'
 import { useCaseStudySetup } from '@/hooks'
 import CaseStudyMiniNav from './CaseStudyMiniNav'
 import CaseStudyNext from './CaseStudyNext'
@@ -26,7 +25,6 @@ export default function IndependentSystemCaseStudy({ slug }: { slug: Independent
       <main id="main-content" className="case-study-page-new case-study-page-new--data-brief">
         <section className="data-brief-hero" data-case-study-hero data-presentation-family={getPresentationFamilyForProject(slug)} aria-labelledby="system-title">
           <div className="data-brief-hero__content">
-            <Link className="data-brief-back" href={localizePath('/case-studies', locale)}>{spanish ? 'Volver a casos de estudio' : 'Back to case studies'}</Link>
             <CaseStudyHeroLabel locale={locale} />
             <h1 id="system-title" className="data-brief-hero__title">{system.title}</h1>
             <p className="data-brief-hero__subtitle">{system.tagline}</p>

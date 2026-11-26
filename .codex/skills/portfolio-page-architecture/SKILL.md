@@ -18,7 +18,7 @@ Every public landing answers these questions in this order, with the lightest cr
 3. What proof, work, or material answers that claim?
 4. What is the next useful path?
 
-Use a visible intro: eyebrow, H1, and compact lede. Do not hide the only H1 just because the page leads with imagery. A gallery may be the primary evidence, but not the page's only introduction.
+Use a visible H1. Technical, creative, and About use the shared title-only `.portfolio-intro`, with their explanation and evidence immediately below it. Other landings use an eyebrow and compact lede when those help orient the reader. Do not hide the only H1 just because the page leads with imagery.
 
 The page can be visually calm or image-led. It still uses the shared type roles, gutters, chapter rhythm, control geometry, focus state, and mobile rules. A different composition is not permission for a different visual system.
 

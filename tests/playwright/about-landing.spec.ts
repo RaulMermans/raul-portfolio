@@ -1,49 +1,37 @@
 import { expect, test } from '@playwright/test'
 
 const locales = [
-  { path: '/en/about/', title: 'RAÚL MERMANS' },
-  { path: '/about/', title: 'RAÚL MERMANS' },
+  { path: '/en/about/', title: 'About me', story: 'The work changed. The questions stayed.', first: 'Learning the business side.', last: 'Bringing the pieces together.', method: 'A useful system leaves room for judgment.', removed: 'One practice, different forms.' },
+  { path: '/about/', title: 'Sobre mí', story: 'Cambió el trabajo. Las preguntas siguieron.', first: 'Aprender el lado del negocio.', last: 'Juntar las piezas.', method: 'Un sistema útil deja espacio para el criterio.', removed: 'Una práctica, distintas formas.' },
 ] as const
 
 for (const locale of locales) {
-  test(`About retains the clean landing in ${locale.path}`, async ({ page }, testInfo) => {
+  test(`About tells a scrollable story in ${locale.path}`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 960 })
     await page.goto(locale.path, { waitUntil: 'networkidle' })
 
-    const hero = page.locator('.about-landing__hero')
-    await expect(hero).toBeVisible()
-    await expect(hero.getByRole('heading', { name: locale.title })).toBeVisible()
-    const nameSegments = hero.locator('.about-landing__clip > span')
-    await expect(nameSegments).toHaveCount(2)
-    await expect(nameSegments.first()).toHaveCSS('transform', 'none')
-    await expect(hero.locator('.about-landing__portrait img')).toBeVisible()
-    await expect(page.locator('.about-landing__proof-card')).toHaveCount(3)
-    await expect(page.locator('.about-operating-profile')).toBeVisible()
-    await expect(page.locator('.about-timeline__node')).toHaveCount(6)
+    await expect(page.getByRole('heading', { level: 1, name: locale.title })).toBeVisible()
+    await expect(page.getByRole('img', { name: /Raúl Mermans (con|holding)/ })).toBeVisible()
+    await page.getByRole('link', { name: /Keep reading|Seguir leyendo/ }).click()
+    await expect(page.getByRole('heading', { name: locale.story })).toBeVisible()
 
-    await expect(page.locator('.about-vocabulary')).toHaveCount(0)
-    await expect(page.locator('.about-proof-links')).toHaveCount(0)
+    const chapters = page.locator('[data-about-chapter]')
+    await expect(chapters).toHaveCount(6)
+    await expect(chapters.first().getByRole('heading', { name: locale.first })).toBeVisible()
+    await chapters.last().scrollIntoViewIfNeeded()
+    await expect(chapters.last().getByRole('heading', { name: locale.last })).toBeVisible()
 
-    const dimensions = await page.evaluate(() => ({
-      viewport: window.innerWidth,
-      document: document.documentElement.scrollWidth,
-    }))
+    await expect(page.getByRole('heading', { name: locale.removed })).toHaveCount(0)
+    await expect(page.getByRole('heading', { name: locale.method })).toBeVisible()
+    await expect(page.locator('main').getByRole('link', { name: 'LinkedIn' })).toBeVisible()
+  })
+
+  test(`About stays readable on mobile in ${locale.path}`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto(locale.path, { waitUntil: 'networkidle' })
+    await expect(page.getByRole('img', { name: /Raúl Mermans (con|holding)/ })).toBeVisible()
+    await expect(page.locator('[data-about-chapter]')).toHaveCount(6)
+    const dimensions = await page.evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth }))
     expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport)
-
-    await hero.screenshot({ path: testInfo.outputPath(`about-${locale.path.includes('/en/') ? 'en' : 'es'}.png`) })
   })
 }
-
-test('About stays within the mobile viewport', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('/en/about/', { waitUntil: 'networkidle' })
-
-  await expect(page.locator('.about-landing__hero')).toBeVisible()
-  await expect(page.locator('.about-landing__proof-card')).toHaveCount(3)
-
-  const dimensions = await page.evaluate(() => ({
-    viewport: window.innerWidth,
-    document: document.documentElement.scrollWidth,
-  }))
-  expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport)
-})

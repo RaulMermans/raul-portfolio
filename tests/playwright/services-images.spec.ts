@@ -1,58 +1,32 @@
 import { expect, test } from '@playwright/test'
 
-const serviceImageByTitle = [
-  ['Web Development & Digital Experiences', 'Services_Web_Development.webp'],
-  ['Brand Systems & Creative Direction', 'Services_Creative_Direction.webp'],
-  ['Data & Business Intelligence', 'Services_Automation.webp'],
-  ['AI Systems & Digital Products', 'Services_AI_Agents.webp'],
-  ['Photography & Visual Direction', 'Services_Photography.webp'],
-] as const
-
 const serviceLandingLinks = [
   {
-    path: '/en/',
+    path: '/en/technical/',
     links: [
-      ['Web Development & Digital Experiences', '/en/services/web-development'],
-      ['Brand Systems & Creative Direction', '/en/services/brand-systems'],
-      ['Data & Business Intelligence', '/en/services/creative-automation'],
-      ['AI Systems & Digital Products', '/en/services/product-prototypes'],
+      ['AI Systems & Product', '/en/services/product-prototypes'],
+      ['Data & Decision Intelligence', '/en/services/creative-automation'],
+      ['Brand & Creative Systems', '/en/services/brand-systems'],
     ],
   },
   {
-    path: '/',
+    path: '/technical/',
     links: [
-      ['Desarrollo Web y Experiencias Digitales', '/services/desarrollo-web'],
-      ['Sistemas de Marca y Dirección Creativa', '/services/sistemas-de-marca'],
-      ['Datos e inteligencia de negocio', '/services/automatizacion-creativa'],
-      ['Sistemas de IA y productos digitales', '/services/prototipos-producto-ia'],
+      ['Sistemas de IA y producto', '/services/prototipos-producto-ia'],
+      ['Datos e inteligencia para la decisión', '/services/automatizacion-creativa'],
+      ['Sistemas de marca y creatividad', '/services/sistemas-de-marca'],
     ],
   },
 ] as const
 
-test('services pair each topic with its own illustration', async ({ page }) => {
-  await page.setViewportSize({ width: 1280, height: 900 })
-  await page.goto('/en/', { waitUntil: 'networkidle' })
-
-  const services = page.locator('#services .service')
-  await expect(services).toHaveCount(serviceImageByTitle.length)
-
-  for (const [title, image] of serviceImageByTitle) {
-    const service = services.filter({ hasText: title })
-    await expect(service).toHaveCount(1)
-    await expect(service.locator('img')).toHaveAttribute('src', new RegExp(image))
-  }
-})
-
 for (const locale of serviceLandingLinks) {
-  test(`services link to their landing pages in ${locale.path}`, async ({ page }) => {
+  test(`footer capabilities link to their landing pages in ${locale.path}`, async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })
     await page.goto(locale.path, { waitUntil: 'networkidle' })
 
-    const services = page.locator('#services .service')
+    const capabilities = page.locator('footer .footer__column').nth(1)
     for (const [title, href] of locale.links) {
-      const service = services.filter({ hasText: title })
-      await expect(service).toHaveCount(1)
-      await expect(service.locator('.service__cta')).toHaveAttribute('href', `${href}/`)
+      await expect(capabilities.getByRole('link', { name: title })).toHaveAttribute('href', `${href}/`)
     }
   })
 }

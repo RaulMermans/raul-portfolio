@@ -1,53 +1,54 @@
 import { expect, test, type Page } from '@playwright/test'
 
-async function expectHeaderState(page: Page, scrollY: number, hidden: boolean) {
+async function scrollTo(page: Page, scrollY: number) {
   await page.evaluate((top) => window.scrollTo({ top, behavior: 'instant' }), scrollY)
-
-  await expect.poll(async () => page.getByTestId('site-header').getAttribute('data-hidden')).toBe(hidden ? 'true' : null)
 }
 
-for (const route of ['/', '/en/case-studies/opstwin'] as const) {
-  test(`the header hides downwards and returns upwards on ${route}`, async ({ page }) => {
+async function expectHeaderState(page: Page, hidden: boolean) {
+  const header = page.getByTestId('site-header')
+  await expect(header).toHaveAttribute('data-hidden', String(hidden))
+  await expect(header.locator('a')).toHaveCount(4)
+  if (hidden) {
+    await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().bottom)).toBeLessThanOrEqual(0)
+  } else {
+    await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().bottom)).toBeGreaterThan(0)
+  }
+}
+
+for (const route of ['/en/technical/', '/en/case-studies/opstwin'] as const) {
+  test(`the minimal masthead hides down and returns up on ${route}`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })
     await page.goto(route, { waitUntil: 'networkidle' })
-
-    await expect(page.getByTestId('site-header')).not.toHaveAttribute('data-hidden', 'true')
-    await expectHeaderState(page, 900, true)
-    await expectHeaderState(page, 680, false)
-    await expectHeaderState(page, 0, false)
+    await scrollTo(page, 900)
+    await expectHeaderState(page, true)
+    await scrollTo(page, 680)
+    await expectHeaderState(page, false)
+    await expect(page.getByTestId('site-back-link')).toBeInViewport()
+    await scrollTo(page, 0)
+    await expectHeaderState(page, false)
   })
 }
 
-test('the mobile header remains available for its menu and keyboard focus', async ({ page }) => {
+test('the mobile masthead returns when a hidden link receives focus', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/en/case-studies/opstwin', { waitUntil: 'networkidle' })
-
-  await expectHeaderState(page, 900, true)
-  await expectHeaderState(page, 680, false)
-
-  const menuButton = page.getByRole('button', { name: 'Open menu' })
-  await menuButton.focus()
-  await expectHeaderState(page, 1200, false)
-
-  await menuButton.click()
-  await expect(page.getByRole('dialog', { name: 'Navigation' })).toBeVisible()
-  await expect(page.getByTestId('site-header')).not.toHaveAttribute('data-hidden', 'true')
+  await scrollTo(page, 900)
+  await expectHeaderState(page, true)
+  await expect(page.getByTestId('site-header').getByRole('button')).toHaveCount(0)
+  await page.getByTestId('site-header').getByRole('link', { name: 'Home' }).focus()
+  await expectHeaderState(page, false)
+  await expect(page.locator(':focus-visible')).toHaveCount(1)
 })
 
-for (const route of ['/', '/en/'] as const) {
-  test(`the mobile contact link reaches its section on ${route}`, async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 })
-    await page.goto(route, { waitUntil: 'networkidle' })
-
-    await page.getByRole('button', { name: /open menu|abrir menú/i }).click()
-    const menu = page.getByRole('dialog')
-    await menu.locator('a[href$="#contact"]').last().click()
-
-    await expect(menu).toBeHidden()
-    await expect(page.locator('#contact')).toBeFocused()
-    await expect.poll(() => page.locator('#contact').evaluate((element) => {
-      const bounds = element.getBoundingClientRect()
-      return bounds.top < window.innerHeight && bounds.bottom > 0
-    })).toBe(true)
+for (const { path, destination } of [
+  { path: '/visuals/', destination: '/creative/' },
+  { path: '/photography/morocco/', destination: '/photography/' },
+  { path: '/case-studies/iris/', destination: '/technical/' },
+  { path: '/case-studies/remoria/', destination: '/creative/' },
+  { path: '/en/about/', destination: '/en/' },
+] as const) {
+  test(`back link on ${path} returns to its parent`, async ({ page }) => {
+    await page.goto(path, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByTestId('site-back-link')).toHaveAttribute('href', destination)
   })
 }

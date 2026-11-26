@@ -3,16 +3,16 @@ import HomePage from '@/components/HomePage'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Raúl Mermans | Sistemas de IA, productos y estrategia creativa',
+  title: 'Raúl Mermans | Portfolio técnico y creativo',
   description:
-    'Raúl Mermans construye sistemas de IA, productos digitales y herramientas de inteligencia de negocio junto con marcas, proyectos propios y trabajo creativo.',
+    'Conoce a Raúl Mermans y elige entre su portfolio técnico de software, IA y datos, o su portfolio creativo de fotografía e identidad visual.',
   path: '/',
   locale: 'es',
   image: {
-    url: '/images/sections/case-studies-bg.webp',
-    alt: 'Portfolio de Raúl Mermans',
+    url: '/images/photography/landscape/Landscape18.webp',
+    alt: 'Velero en un mar brumoso al atardecer, fotografiado por Raúl Mermans',
   },
-  keywords: ['estrategia de marca', 'dirección creativa', 'productos digitales', 'sistemas creativos'],
+  keywords: ['Raúl Mermans', 'portfolio técnico', 'portfolio creativo', 'sistemas de IA', 'fotografía'],
   absoluteTitle: true,
 })
 

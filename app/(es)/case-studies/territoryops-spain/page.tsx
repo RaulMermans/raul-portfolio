@@ -182,7 +182,6 @@ const commercialContent: Record<'en' | 'es', CommercialCaseStudyContent> = {
 
 const content = {
   en: {
-    back: '← Case Studies',
     heroEyebrow: 'Territorial intelligence / Local-first decision support',
     heroTitle: 'TerritoryOps Spain',
     heroSubtitle:
@@ -378,7 +377,6 @@ const content = {
     githubLabel: 'View GitHub',
   },
   es: {
-    back: '← Casos de estudio',
     heroEyebrow: 'Inteligencia territorial / Decisión local-first',
     heroTitle: 'TerritoryOps Spain',
     heroSubtitle:
@@ -597,12 +595,6 @@ export default function TerritoryOpsSpainPage() {
           data-presentation-family="technical-product"
         >
           <div className="benchmark-hero__content">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.heroEyebrow}</p>
             <h1 id="territoryops-title" className="benchmark-hero__title">

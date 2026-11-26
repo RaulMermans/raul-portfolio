@@ -58,7 +58,7 @@ const englishLandings: ServiceLanding[] = [
     title: 'Web Development & Digital Experiences',
     eyebrow: 'Web Development',
     description:
-      'I design and build websites, landing pages, and digital experiences with clear structure, responsive components, accessible interaction, and a path to conversion.',
+      'I design and build accessible websites and landing pages with clear content, responsive layouts, and an obvious next step.',
     metaTitle: 'Web Development and Digital Experiences: Raúl Mermans',
     metaDescription:
       'Web development for brand sites, landing pages, and digital experiences. Build clear, responsive, accessible websites with strong structure and conversion paths.',
@@ -188,13 +188,13 @@ const englishLandings: ServiceLanding[] = [
     locale: 'en',
     href: '/en/services/ai-integrations',
     alternateHref: '/services/integraciones-ia',
-    title: 'AI Integrations for Creative Systems',
-    eyebrow: 'Creative AI Systems',
+    title: 'AI Systems & Workflow Design',
+    eyebrow: 'AI Systems',
     description:
-      'I design AI integrations that turn creative processes into structured systems: mapped workflows, prompt logic, review criteria, automation layers, and internal tools that help teams move faster without losing taste or brand coherence.',
-    metaTitle: 'AI Integrations for Creative Systems: Raúl Mermans',
+      'I design AI workflows for specific tasks, with clear inputs, tool limits, evaluation, and human approval where it matters.',
+    metaTitle: 'AI Systems and Workflow Design: Raúl Mermans',
     metaDescription:
-      'AI integrations for creative teams, brand workflows, content systems, and campaign execution. Build internal tools and AI workflows with taste, control, and review.',
+      'AI systems, agentic workflows and internal tools with evaluation, governance and human review.',
     keywords: [
       'AI integrations for creative teams',
       'creative AI systems',
@@ -351,7 +351,7 @@ const englishLandings: ServiceLanding[] = [
     title: 'Data & Business Intelligence',
     eyebrow: 'Data & Decisions',
 
-    description: 'I build reporting workflows, operational dashboards, and decision-support tools that connect business questions to inspectable data. Automation reduces repeat work; people retain judgment.',
+    description: 'I build reporting workflows and dashboards that answer specific business questions. Automation handles repeat work; people review the result.',
 
     metaTitle: 'Data and Business Intelligence: Raúl Mermans',
     metaDescription: 'Business intelligence, CRM and commercial analytics, operational dashboards, and reporting workflows with clear data boundaries.',
@@ -418,7 +418,7 @@ const englishLandings: ServiceLanding[] = [
     title: 'Brand Systems & Creative Direction',
     eyebrow: 'Brand Systems',
     description:
-      'I translate brand strategy into usable systems: tone rules, creative criteria, prompt structures, review logic, and workflow guidelines that help AI-assisted outputs stay coherent.',
+      'I turn brand strategy into rules teams can use: voice, visual criteria, prompts, and review steps for AI-assisted work.',
     metaTitle: 'Brand Systems and Creative Direction: Raúl Mermans',
     metaDescription:
       'Brand systems, tone rules, prompt structures, and review criteria for AI-assisted content, campaigns, and visual workflows.',
@@ -561,7 +561,7 @@ const englishLandings: ServiceLanding[] = [
     title: 'AI Systems & Digital Products',
     eyebrow: 'Product Prototyping',
     description:
-      'I design and build AI agents, intelligent workflows, and digital products with clear tool boundaries and review points. A focused prototype tests the system before a larger deployment.',
+      'I prototype AI agents and digital tools with defined tasks, tool limits, and review points. The prototype tests the workflow before a larger build.',
     metaTitle: 'AI Systems and Digital Products: Raúl Mermans',
     metaDescription:
       'Fast product prototypes, internal tools, dashboards, and AI-powered workflow surfaces for testing service ideas and system logic.',
@@ -707,7 +707,7 @@ const spanishLandings: ServiceLanding[] = [
     title: 'Desarrollo Web y Experiencias Digitales',
     eyebrow: 'Desarrollo Web',
     description:
-      'Diseño y construyo webs, landing pages y experiencias digitales con estructura clara, componentes responsive, interacción accesible y un camino de conversión definido.',
+      'Diseño y construyo webs y páginas de campaña accesibles, con contenido claro, diseños adaptables y un siguiente paso evidente.',
     metaTitle: 'Desarrollo Web y Experiencias Digitales: Raúl Mermans',
     metaDescription:
       'Desarrollo web para sitios de marca, landing pages y experiencias digitales. Webs claras, responsive y accesibles con estructura y caminos de conversión.',
@@ -837,13 +837,13 @@ const spanishLandings: ServiceLanding[] = [
     locale: 'es',
     href: '/services/integraciones-ia',
     alternateHref: '/en/services/ai-integrations',
-    title: 'Integraciones IA para Sistemas Creativos',
-    eyebrow: 'Sistemas Creativos con IA',
+    title: 'Sistemas de IA y diseño de flujos',
+    eyebrow: 'Sistemas de IA',
     description:
-      'Diseño integraciones de IA que convierten procesos creativos en sistemas estructurados: flujos mapeados, lógica de prompts, criterios de revisión, capas de automatización y herramientas internas para avanzar más rápido sin perder criterio ni coherencia de marca.',
-    metaTitle: 'Integraciones IA para Sistemas Creativos: Raúl Mermans',
+      'Diseño flujos de IA para tareas concretas, con entradas claras, límites para las herramientas, evaluación y aprobación humana cuando hace falta.',
+    metaTitle: 'Sistemas de IA y diseño de flujos: Raúl Mermans',
     metaDescription:
-      'Integraciones de IA para equipos creativos, flujos de marca, sistemas de contenido y ejecución de campañas con criterio, control y revisión.',
+      'Sistemas de IA, flujos agénticos y herramientas internas con evaluación, gobierno y revisión humana.',
     keywords: [
       'integraciones IA para equipos creativos',
       'sistemas creativos con IA',
@@ -1000,7 +1000,7 @@ const spanishLandings: ServiceLanding[] = [
     title: 'Datos e inteligencia de negocio',
     eyebrow: 'Datos y decisiones',
 
-    description: 'Construyo flujos de reporting, paneles operativos y herramientas de apoyo a decisiones que conectan preguntas de negocio con datos revisables. La automatización reduce trabajo repetitivo; las personas mantienen el criterio.',
+    description: 'Construyo flujos de informes y paneles que responden preguntas concretas de negocio. La automatización asume tareas repetitivas; las personas revisan el resultado.',
 
     metaTitle: 'Datos e inteligencia de negocio — Raúl Mermans',
     metaDescription: 'Inteligencia de negocio, analítica CRM y comercial, paneles operativos y reporting con límites de datos explícitos.',
@@ -1067,7 +1067,7 @@ const spanishLandings: ServiceLanding[] = [
     title: 'Sistemas de Marca y Dirección Creativa',
     eyebrow: 'Sistemas de Marca',
     description:
-      'Traduzco estrategia de marca en sistemas utilizables: reglas de tono, criterios creativos, estructuras de prompts, lógica de revisión y guías de flujo para mantener coherencia en resultados asistidos por IA.',
+      'Convierto la estrategia de marca en reglas que un equipo puede usar: voz, criterios visuales, prompts y pasos de revisión para trabajo asistido por IA.',
     metaTitle: 'Sistemas de Marca y Dirección Creativa: Raúl Mermans',
     metaDescription:
       'Sistemas de marca, reglas de tono, prompts y criterios de revisión para contenido, campañas y flujos visuales asistidos por IA.',
@@ -1210,7 +1210,7 @@ const spanishLandings: ServiceLanding[] = [
     title: 'Sistemas de IA y productos digitales',
     eyebrow: 'Prototipado de Producto',
     description:
-      'Diseño y construyo agentes de IA, flujos inteligentes y productos digitales con límites claros para las herramientas y puntos de revisión. Un prototipo acotado permite probar el sistema antes de un despliegue mayor.',
+      'Prototipo agentes de IA y herramientas digitales con tareas definidas, límites para las herramientas y puntos de revisión. El prototipo prueba el flujo antes de una construcción mayor.',
     metaTitle: 'Sistemas de IA y productos digitales: Raúl Mermans',
     metaDescription:
       'Prototipos rápidos, herramientas internas, paneles y superficies de flujo con IA para probar ideas de servicio y lógica de sistema.',

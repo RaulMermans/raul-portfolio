@@ -22,6 +22,8 @@ function forbidText(relativePath, text) {
 
 const designSystem = 'styles/design-system.css'
 const requiredTokens = [
+  '--font-title:',
+  '--font-section:',
   '--font-heading:',
   '--font-ui:',
   '--font-code:',
@@ -108,7 +110,6 @@ forbidText(caseStudyHero, "window.addEventListener('scroll'")
 for (const contractAttribute of [
   'data-case-study-hero',
   'data-presentation-family={presentationFamily}',
-  'data-case-study-hero-back',
   'data-case-study-hero-label',
   'data-case-study-hero-tagline',
 ]) {
@@ -173,11 +174,13 @@ for (const selector of [
 }
 
 const photographyPage = 'app/(es)/photography/page.tsx'
-requireText(photographyPage, 'className="gallery photography-page"')
-requireText(photographyPage, 'className="ui-page-intro photography-intro"')
-requireText(photographyPage, '<h1 id="photography-title">')
+requireText(photographyPage, '<PhotographyIndex locale="es" />')
 forbidText(photographyPage, '<h1 className="visually-hidden">')
 forbidText(photographyPage, '<div className="grain" aria-hidden="true"></div>')
+const photographyExperience = 'components/PhotographyExperience.tsx'
+requireText(photographyExperience, 'data-photography-index')
+requireText(photographyExperience, 'PHOTOGRAPHY_SERIES.map')
+requireText(photographyExperience, 'data-series-image')
 
 const appsIndex = 'app/(es)/apps/apps-page-shared.tsx'
 requireText(appsIndex, "import styles from './AppsPages.module.css'")

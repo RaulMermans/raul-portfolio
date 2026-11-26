@@ -7,6 +7,7 @@ import { getLocaleFromPath, localizePath } from '@/lib/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyRepositoryProof from '@/components/case-studies/CaseStudyRepositoryProof'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import {
   CaseStudyHeroLabel,
@@ -149,7 +150,6 @@ const commercialContentEs: CommercialCaseStudyContent = {
 
 const content = {
   en: {
-    back: 'Back to Case Studies',
     eyebrow: 'AI Systems / Analytics Workflow',
     heroTitle: 'DataBrief AI',
     heroSubtitle:
@@ -159,8 +159,8 @@ const content = {
     heroFigcaption:
       'Representative report preview showing supported metrics and explicit caveats.',
     heroFigAriaLabel: 'Report output preview',
-    heroCTA: 'View Prototype →',
-    heroCTAGithub: 'View GitHub →',
+    heroCTA: 'View Prototype',
+    heroCTAGithub: 'View GitHub',
     heroCTAHow: 'View System Logic',
     tags: [
       'Bounded AI',
@@ -340,8 +340,8 @@ const content = {
       'Output quality depends on detectable column roles and dataset structure.',
       'Dedicated campaign-performance routing is a future domain extension.',
     ],
-    resultCTADemo: 'View Prototype →',
-    resultCTAGithub: 'View GitHub →',
+    resultCTADemo: 'View Prototype',
+    resultCTAGithub: 'View GitHub',
     resultCTAArch: 'View Architecture',
     report: {
       title: 'Analysis Report',
@@ -377,7 +377,6 @@ const content = {
     },
   },
   es: {
-    back: 'Volver a casos',
     eyebrow: 'Sistemas de IA / Flujo de análisis',
     heroTitle: 'DataBrief AI',
     heroSubtitle:
@@ -387,8 +386,8 @@ const content = {
     heroFigcaption:
       'Vista previa representativa del informe con métricas soportadas y avisos explícitos.',
     heroFigAriaLabel: 'Vista previa del informe generado',
-    heroCTA: 'Demo en vivo →',
-    heroCTAGithub: 'GitHub →',
+    heroCTA: 'Demo en vivo',
+    heroCTAGithub: 'GitHub',
     heroCTAHow: 'Cómo funciona',
     tags: [
       'IA acotada',
@@ -571,8 +570,8 @@ const content = {
       'La calidad de los resultados depende de los roles de columna detectables y la estructura del dataset.',
       'El enrutamiento específico para rendimiento de campañas es una extensión de dominio futura.',
     ],
-    resultCTADemo: 'Abrir la demo →',
-    resultCTAGithub: 'Ver en GitHub →',
+    resultCTADemo: 'Abrir la demo',
+    resultCTAGithub: 'Ver en GitHub',
     resultCTAArch: 'Ver arquitectura',
     report: {
       title: 'Informe de análisis',
@@ -723,12 +722,6 @@ export default function DataBriefAiPage() {
           data-presentation-family="technical-product"
         >
           <div className="data-brief-hero__content">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="data-brief-title" className="data-brief-hero__title">
@@ -854,6 +847,15 @@ export default function DataBriefAiPage() {
                 </article>
               ))}
             </div>
+            <CaseStudyRepositoryProof
+              locale={locale}
+              src="/images/case-studies/data-brief-ai/proof/analysis-plan.webp"
+              width={1400}
+              height={873}
+              alt={locale === 'es' ? 'Plan de análisis de Data Brief AI con KPI, preguntas, transformaciones y comprobaciones' : 'Data Brief AI analysis plan with KPIs, questions, transformations, and checks'}
+              caption={locale === 'es' ? 'El plan acota las preguntas y transformaciones antes de generar el informe. Ejemplo del repositorio.' : 'The plan bounds questions and transformations before report generation. Repository example.'}
+              source="https://github.com/RaulMermans/DataBrief-AI/blob/main/docs/screenshots/analysis-plan.png"
+            />
           </div>
         </section>
 
@@ -868,11 +870,16 @@ export default function DataBriefAiPage() {
               <h2 id="data-brief-output">{t.outputH2}</h2>
               <p>{t.outputP}</p>
             </div>
-            <div className="data-brief-output-showcase">
-              <figure className="data-brief-output-main">
-                <ReportMockup text={t.report} />
-                <figcaption>{t.outputMainFigcaption}</figcaption>
-              </figure>
+            <div className="data-brief-output-showcase data-brief-output-showcase--evidence">
+              <CaseStudyRepositoryProof
+                locale={locale}
+                src="/images/case-studies/data-brief-ai/proof/report-overview.webp"
+                width={1400}
+                height={1022}
+                alt={locale === 'es' ? 'Informe de Data Brief AI con estado de ejecución, confianza y métricas vinculadas a artefactos' : 'Data Brief AI report with execution status, confidence, and metrics linked to artifacts'}
+                caption={locale === 'es' ? 'El informe expone estado, nivel de confianza y origen de cada métrica. Ejemplo del repositorio.' : 'The report exposes status, confidence, and the source of each metric. Repository example.'}
+                source="https://github.com/RaulMermans/DataBrief-AI/blob/main/docs/screenshots/report-overview.png"
+              />
               <div className="data-brief-output-list">
                 {t.outputPreviews.map(preview => (
                   <article key={preview.label}>

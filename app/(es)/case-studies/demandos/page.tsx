@@ -615,12 +615,6 @@ export default function DemandOsPage() {
           data-presentation-family="technical-product"
         >
           <div className="data-brief-hero__content">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              ← {copy.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">
               Machine Learning / Inventory Intelligence

@@ -21,7 +21,7 @@ test('canonical content keeps equivalent locale structures and exhaustive case-s
   const projectSlugs = PROJECT_EXPERIENCE.map((project) => project.slug)
   expect(new Set(projectSlugs).size).toBe(projectSlugs.length)
   expect([...projectSlugs].sort()).toEqual(getCaseStudies('en').map((study) => study.slug).sort())
-  expect(CASE_STUDY_CATEGORIES.map((category) => category.id)).toEqual(['creative-work', 'ai-systems', 'software-products', 'data-analytics'])
+  expect(CASE_STUDY_CATEGORIES.map((category) => category.id)).toEqual(['ai-systems', 'software-products', 'data-analytics', 'creative-work'])
   for (const project of PROJECT_EXPERIENCE) {
     expect(CASE_STUDY_CATEGORIES.some((category) => category.id === project.caseStudyCategory)).toBe(true)
   }
@@ -48,25 +48,27 @@ for (const locale of ['en', 'es'] as const) {
       const dimensions = await page.evaluate(() => ({ actual: document.documentElement.scrollWidth, viewport: innerWidth }))
       expect(dimensions.actual).toBeLessThanOrEqual(dimensions.viewport)
       await expect(page.locator('h1')).toBeVisible()
-      if (path === `${prefix}/`) await expect(page.locator('#selected-systems')).toHaveCount(0)
+      if (path === `${prefix}/`) {
+        await expect(page.locator(`main a[href="${prefix}/technical/"]`)).toHaveCount(1)
+        await expect(page.locator(`main a[href="${prefix}/creative/"]`)).toHaveCount(1)
+      }
     }
   })
 
-  test(`home routes work into case studies and preserves creative paths in ${locale}`, async ({ page }) => {
+  test(`home leads to distinct technical and creative portfolios in ${locale}`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto(`${prefix}/`, { waitUntil: 'networkidle' })
-    await expect(page.locator('#selected-systems')).toHaveCount(0)
-    await expect(page.locator('[data-home-section="hero"] a[href$="#work"]')).toHaveCount(1)
-    await expect(page.locator('a[href*="/photography"]').first()).toBeAttached()
-    await expect(page.locator('a[href*="/visuals"]').first()).toBeAttached()
+    await expect(page.locator(`main a[href="${prefix}/technical/"]`)).toHaveCount(1)
+    await expect(page.locator(`main a[href="${prefix}/creative/"]`)).toHaveCount(1)
+    await expect(page.getByTestId('site-header')).toHaveCount(0)
     await expect(page.locator('body')).not.toContainText(/Q3 2026|T3 2026/)
-    const accessibility = await new AxeBuilder({ page }).include('[data-home-section="work"]').analyze()
+    const accessibility = await new AxeBuilder({ page }).include('main').analyze()
     expect(accessibility.violations).toEqual([])
-    await page.locator('[data-home-section="hero"] a[href$="#work"]').click()
-    await expect.poll(async () => page.evaluate(() => {
-      const work = document.querySelector('#work')!.getBoundingClientRect()
-      return work.top < innerHeight && work.bottom > 0
-    })).toBe(true)
+    await page.locator(`main a[href="${prefix}/technical/"]`).click()
+    await expect(page.locator('a[href*="/case-studies/iris/"]').first()).toBeAttached()
+    await page.goto(`${prefix}/creative/`, { waitUntil: 'networkidle' })
+    await expect(page.locator('a[href*="/photography/morocco/"]')).toHaveCount(1)
+    await expect(page.locator('main a[href*="/visuals/"]')).toHaveCount(1)
   })
 
   for (const slug of ['local-ai-coding-agent', 'iris', 'halo-control', 'bi-notebook-lab'] as const) {
@@ -77,7 +79,11 @@ for (const locale of ['en', 'es'] as const) {
       await expect(page.locator('h1')).toHaveText(independentSystems[slug].title)
       const tagline = await page.locator('.data-brief-hero__subtitle').boundingBox()
       expect(tagline!.height).toBeLessThanOrEqual(page.viewportSize()!.height * 0.35)
-      await expect(page.locator(`main a[href="${independentSystems[slug].repository}"]`)).toHaveCount(1)
+      if ('repository' in independentSystems[slug]) {
+        await expect(page.locator(`main a[href="${independentSystems[slug].repository}"]`)).toHaveCount(1)
+      } else {
+        await expect(page.locator('main .data-brief-hero .data-brief-actions a')).toHaveCount(0)
+      }
       await expect(page.locator('.case-study-snapshot')).toHaveCount(1)
       await expect(page.locator('[data-case-study-mini-nav] a')).toHaveCount(5)
       await expect(page.locator('#boundaries')).toBeAttached()
@@ -98,15 +104,18 @@ for (const locale of ['en', 'es'] as const) {
           return element.complete && element.naturalWidth > 0
         }))).toBe(true)
       }
+      // The Next.js development indicator appears intermittently during long
+      // screenshot runs and is outside the portfolio's rendered content.
+      await page.addStyleTag({ content: 'nextjs-portal { display: none !important; }' })
       await expect(page).toHaveScreenshot(`${slug}-${locale}-${testInfo.project.name}.png`, { fullPage: true, animations: 'disabled', timeout: 15000 })
     })
   }
 
-  test(`case index classifies every project and selects square categories in ${locale}`, async ({ page }) => {
+  test(`case index classifies every project and keeps categories readable in ${locale}`, async ({ page }) => {
     await page.goto(`${prefix}/case-studies/`, { waitUntil: 'networkidle' })
     const selectors = page.locator('.case-studies-index__category')
     await expect(selectors).toHaveCount(4)
-    await expect(page.locator('[data-project-category]')).toHaveCount(4)
+    await expect(page.locator('.case-study-gallery-group')).toHaveCount(1)
     await expect(page.locator('[data-mobile-audit="case-study-card"]')).toHaveCount(PROJECT_EXPERIENCE.length)
     const hrefs = await page.locator('[data-mobile-audit="case-study-card"]').evaluateAll((cards) => cards.map((card) => card.getAttribute('href')))
     expect(new Set(hrefs).size).toBe(PROJECT_EXPERIENCE.length)
@@ -114,11 +123,11 @@ for (const locale of ['en', 'es'] as const) {
       const selector = page.locator(`[data-category-selector="${category}"]`)
       await selector.click()
       await expect(selector).toHaveAttribute('aria-pressed', 'true')
-      await expect(page.locator('[data-project-category]')).toHaveCount(1)
-      await expect(page.locator(`[data-project-category="${category}"] [data-mobile-audit="case-study-card"]`)).toHaveCount(count)
+      await expect(page.locator('.case-study-gallery-group')).toHaveCount(1)
+      await expect(page.locator(`[data-project-category="${category}"][data-mobile-audit="case-study-card"]`)).toHaveCount(count)
     }
     await page.getByRole('button', { name: locale === 'en' ? 'View all' : 'Ver todos' }).click()
-    await expect(page.locator('[data-project-category]')).toHaveCount(4)
+    await expect(page.locator('.case-study-gallery-group')).toHaveCount(1)
     const creativeSelector = page.locator('[data-category-selector="creative-work"]')
     await creativeSelector.focus()
     await page.keyboard.press('Enter')
@@ -131,10 +140,13 @@ for (const locale of ['en', 'es'] as const) {
     await page.setViewportSize({ width: 360, height: 780 })
     const narrowWidth = await page.evaluate(() => ({ actual: document.documentElement.scrollWidth, viewport: innerWidth }))
     expect(narrowWidth.actual).toBeLessThanOrEqual(narrowWidth.viewport)
-    const squareSizes = await selectors.evaluateAll((buttons) => buttons.map((button) => {
+    const categoryMetrics = await selectors.evaluateAll((buttons) => buttons.map((button) => {
       const bounds = button.getBoundingClientRect()
-      return Math.abs(bounds.width - bounds.height)
+      return { height: bounds.height, textFits: button.scrollWidth <= button.clientWidth }
     }))
-    for (const difference of squareSizes) expect(difference).toBeLessThanOrEqual(1)
+    for (const category of categoryMetrics) {
+      expect(category.height).toBeGreaterThanOrEqual(44)
+      expect(category.textFits).toBe(true)
+    }
   })
 }

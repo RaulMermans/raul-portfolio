@@ -46,15 +46,14 @@ const shared = {
 
 const content = {
   en: {
-    back: '← Case Studies',
     eyebrow: 'Marketing intelligence / Data product',
     title: 'Campaign Pulse',
     subtitle: 'Local-first marketing intelligence command center.',
     description:
       'Campaign Pulse turns newsletter, campaign, audience, target, and CSV export data into adapter-validated diagnostics, audience pressure signals, target-aware performance reads, and monthly operating reports.',
     status: 'Portfolio-ready / local-first prototype',
-    demo: 'View live demo →',
-    github: 'View GitHub →',
+    demo: 'View live demo',
+    github: 'View GitHub',
     visualCaption:
       'Overview mission-control using synthetic Demo JSON. No customer data is shown.',
     nav: [
@@ -301,15 +300,14 @@ const content = {
     ],
   },
   es: {
-    back: '← Casos de estudio',
     eyebrow: 'Inteligencia de marketing / Producto de datos',
     title: 'Campaign Pulse',
     subtitle: 'Centro de mando local-first para inteligencia de marketing.',
     description:
       'Campaign Pulse convierte datos de newsletters, campañas, audiencias, objetivos y exportaciones CSV en diagnósticos validados por adaptadores, señales de presión, lecturas frente a objetivos e informes operativos mensuales.',
     status: 'Listo para portfolio / prototipo local-first',
-    demo: 'Ver demo en vivo →',
-    github: 'Ver GitHub →',
+    demo: 'Ver demo en vivo',
+    github: 'Ver GitHub',
     visualCaption:
       'Mission-control con datos Demo JSON sintéticos. No se muestran datos de clientes.',
     nav: [
@@ -582,12 +580,6 @@ export default function CampaignPulsePage() {
           data-presentation-family="technical-product"
         >
           <div className="campaign-pulse-hero__copy">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="campaign-pulse-title">{t.title}</h1>
@@ -824,7 +816,7 @@ export default function CampaignPulsePage() {
               <p className="campaign-pulse-reference">
                 {t.reference}{' '}
                 <a href={workflowReferenceUrl} target="_blank" rel="noreferrer">
-                  awesome-vibe-coding ↗
+                  awesome-vibe-coding
                 </a>
               </p>
             </div>

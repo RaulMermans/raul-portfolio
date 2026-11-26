@@ -6,9 +6,8 @@
 
 .indexIntro {
   display: grid;
-  justify-items: center;
-  padding-top: calc(var(--header-height) + var(--section-block-padding));
-  text-align: center;
+  justify-items: stretch;
+  text-align: left;
 }
 
 .indexIntroContent {
@@ -17,29 +16,31 @@
 
 .indexIntroContent h1 {
   max-width: 12ch;
-  margin-inline: auto;
 }
 
 .indexIntroContent > p {
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .appsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16.25rem), 1fr));
-  gap: 1px;
-  width: min(100%, 70rem);
-  margin-top: var(--section-content-gap);
-  background: var(--cream-dark);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  width: 100%;
+  margin-top: var(--space-9);
+  border-top: var(--border-dark);
+  background: transparent;
 }
 
 .appCard {
   display: grid;
-  min-block-size: 18.125rem;
-  align-content: start;
-  gap: var(--space-6);
-  padding: clamp(1.375rem, 3vw, 2rem);
-  background: var(--surface-raised);
+  grid-template-columns: minmax(0, 0.35fr) minmax(0, 1fr) auto;
+  min-block-size: 12rem;
+  align-items: center;
+  gap: var(--space-7);
+  padding: var(--space-6) 0;
+  border-bottom: var(--border-light);
+  background: transparent;
   color: inherit;
   text-decoration: none;
   transition:
@@ -50,7 +51,7 @@
 
 .appCard:hover {
   background: var(--surface-muted);
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .appCard:focus-visible {
@@ -74,9 +75,7 @@
 }
 
 .appIcon {
-  display: block;
-  width: 3.5rem;
-  height: 3.5rem;
+  display: none;
   overflow: clip;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-raised);
@@ -94,12 +93,12 @@
 }
 
 .appCardTitle {
-  min-block-size: var(--card-heading-block);
+  min-block-size: 0;
   margin: 0;
   color: var(--text-primary);
   font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  font-weight: 400;
+  font-size: clamp(3.5rem, 7vw, 8rem);
+  font-weight: 800;
   letter-spacing: var(--tracking-tight);
   line-height: var(--heading-line-height);
   text-transform: uppercase;
@@ -113,8 +112,8 @@
 }
 
 .appCardStage {
-  align-self: end;
-  margin-top: auto;
+  align-self: center;
+  margin-top: 0;
   color: var(--accent);
   font-family: var(--font-code);
   font-size: var(--text-xs);
@@ -165,11 +164,13 @@
 
 .detailHeroGrid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--section-content-gap);
   margin-top: var(--space-5);
 }
 
 .detailCopy {
+  min-width: 0;
   max-width: 42rem;
 }
 
@@ -192,7 +193,7 @@
   align-items: center;
   padding-inline: var(--space-4);
   border: var(--border-light);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   background: var(--surface-raised);
   color: var(--text-muted);
   font-family: var(--font-code);
@@ -208,7 +209,7 @@
   color: var(--text-primary);
   font-family: var(--font-heading);
   font-size: var(--text-hero);
-  font-weight: 400;
+  font-weight: 800;
   letter-spacing: var(--tracking-tight);
   line-height: var(--heading-line-height);
   text-transform: uppercase;
@@ -461,7 +462,25 @@
 
 @media (max-width: 47.99rem) {
   .indexIntro {
-    padding-top: calc(var(--header-height) + var(--space-8));
+    padding-top: calc(var(--header-height) + var(--space-7));
+  }
+
+  .indexIntroContent h1 {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .appCard {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    min-block-size: 0;
+  }
+
+  .appCardTitle { font-size: clamp(3rem, 12vw, 5rem); }
+
+  .detailTitle {
+    max-width: none;
+    font-size: clamp(1.8rem, 7.7vw, 3.75rem);
+    overflow-wrap: anywhere;
   }
 
   .appCard,

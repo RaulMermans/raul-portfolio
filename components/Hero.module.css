@@ -197,16 +197,6 @@
   color: var(--cream);
 }
 
-.ctaArrow {
-  display: inline-block;
-  transition: transform 0.4s var(--ease);
-}
-
-.cta:hover .ctaArrow,
-.cta:focus-visible .ctaArrow {
-  transform: translateX(4px);
-}
-
 .scrollButton {
   position: absolute;
   left: 50%;

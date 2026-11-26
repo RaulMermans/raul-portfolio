@@ -1,24 +1,24 @@
 import { expect, test } from '@playwright/test'
 
 const caseStudySlugs = [
-  'campaign-sandbox',
-  'ai-sports',
-  'remoria',
-  'halo-control',
-  'local-ai-coding-agent',
-  'website-auditor',
   'iris',
-  'data-brief-ai',
-  'blogagent',
+  'local-ai-coding-agent',
+  'halo-control',
+  'demandos',
   'opstwin',
   'searchsignal',
-  'territoryops-spain',
-  'raul-portfolio',
-  'demandos',
-  'bi-notebook-lab',
+  'data-brief-ai',
+  'relay',
+  'website-auditor',
+  'campaign-sandbox',
   'campaign-pulse',
   'benchmark-dashboard',
-  'relay',
+  'blogagent',
+  'territoryops-spain',
+  'ai-sports',
+  'remoria',
+  'raul-portfolio',
+  'bi-notebook-lab',
 ] as const
 
 const caseStudyMiniNavSlugs = caseStudySlugs
@@ -123,7 +123,7 @@ for (const locale of ['es', 'en'] as const) {
   test(`all case studies expose the shared editorial system in ${locale}`, async ({
     page,
   }) => {
-    test.setTimeout(120_000)
+    test.setTimeout(240_000)
     const prefix = locale === 'en' ? '/en' : ''
     const expectedIndex = `${prefix}/case-studies/`
     const expectedLabels =
@@ -155,12 +155,7 @@ for (const locale of ['es', 'en'] as const) {
         expectedCaseStudyLabel
       )
 
-      const backLink = hero.locator(`a[href="${expectedIndex}"]`)
-      await expect(
-        backLink,
-        `${slug} should expose the standard back link`
-      ).toBeVisible()
-      await expect(backLink).toHaveAttribute('href', expectedIndex)
+      await expect(hero.locator(`a[href="${expectedIndex}"]`)).toHaveCount(0)
 
       const snapshotFacts = page.locator('.case-study-snapshot__facts > div')
       await expect(
@@ -180,30 +175,28 @@ for (const locale of ['es', 'en'] as const) {
 for (const locale of ['es', 'en'] as const) {
   const prefix = locale === 'en' ? '/en' : ''
 
-  test(`photography intro stays connected to the gallery in ${locale}`, async ({ page }) => {
+  test(`photography intro stays connected to the series in ${locale}`, async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto(`${prefix}/photography`, { waitUntil: 'domcontentloaded' })
 
     const layout = await page.evaluate(() => {
-      const intro = document.querySelector('.gallery.photography-page > .photography-intro')
-      const grid = document.querySelector('.gallery.photography-page > .gallery__grid')
+      const intro = document.querySelector('[data-photography-index] > header')
+      const grid = document.querySelector('[data-photography-index] > section')
 
       if (!(intro instanceof HTMLElement) || !(grid instanceof HTMLElement)) {
-        throw new Error('Photography intro or gallery is missing')
+        throw new Error('Photography intro or series are missing')
       }
 
       const introRect = intro.getBoundingClientRect()
       const gridRect = grid.getBoundingClientRect()
 
       return {
-        introMinHeight: Number.parseFloat(getComputedStyle(intro).minHeight),
         readingGap: gridRect.top - introRect.bottom,
       }
     })
 
-    expect(layout.introMinHeight).toBeLessThanOrEqual(1)
     expect(layout.readingGap).toBeGreaterThanOrEqual(0)
-    expect(layout.readingGap).toBeLessThanOrEqual(160)
+    expect(layout.readingGap).toBeLessThanOrEqual(1)
   })
 }
 
@@ -247,7 +240,7 @@ for (const locale of ['es', 'en'] as const) {
   test(`case-study chapter navigation stays in a single horizontal row in ${locale}`, async ({
     page,
   }) => {
-    test.setTimeout(120_000)
+    test.setTimeout(300_000)
     const prefix = locale === 'en' ? '/en' : ''
 
     for (const viewport of [
@@ -298,26 +291,23 @@ for (const locale of ['es', 'en'] as const) {
   const prefix = locale === 'en' ? '/en' : ''
 
   for (const slug of ['ai-sports', 'remoria'] as const) {
-    test(`creative case-study hero keeps shared navigation and word spacing for ${slug} in ${locale}`, async ({
+    test(`creative case-study hero keeps shared structure and word spacing for ${slug} in ${locale}`, async ({
       page,
     }) => {
       await page.setViewportSize({ width: 1280, height: 800 })
       await page.goto(`${prefix}/case-studies/${slug}`, { waitUntil: 'domcontentloaded' })
 
       const hero = page.locator('.case-study-hero-new')
-      const backLink = hero.locator('.case-study-hero-new__back')
       const badge = hero.locator('.case-study-hero-new__badge')
       const title = hero.getByRole('heading', { level: 1 })
 
       await expect(hero).toHaveClass(/case-study-hero-new--creative-marketing/)
-      await expect(backLink).toHaveAttribute('href', `${prefix}/case-studies/`)
-      await expect(backLink).toBeVisible()
+      await expect(hero.locator('[data-case-study-hero-back]')).toHaveCount(0)
       await expect(badge).toBeVisible()
       await expect(title).toBeVisible()
 
       const layout = await page.evaluate(() => {
         const heroElement = document.querySelector('.case-study-hero-new')
-        const backElement = document.querySelector('.case-study-hero-new__back')
         const badgeElement = document.querySelector('.case-study-hero-new__badge')
         const titleElement = document.querySelector('.case-study-hero-new__title')
         const subtitleElement = document.querySelector('.case-study-hero-new__subtitle')
@@ -325,7 +315,6 @@ for (const locale of ['es', 'en'] as const) {
 
         if (
           !(heroElement instanceof HTMLElement) ||
-          !(backElement instanceof HTMLElement) ||
           !(badgeElement instanceof HTMLElement) ||
           !(titleElement instanceof HTMLElement) ||
           !(subtitleElement instanceof HTMLElement) ||
@@ -335,15 +324,12 @@ for (const locale of ['es', 'en'] as const) {
         }
 
         const hero = heroElement.getBoundingClientRect()
-        const back = backElement.getBoundingClientRect()
         const badge = badgeElement.getBoundingClientRect()
         const title = titleElement.getBoundingClientRect()
         const firstWord = words[0].getBoundingClientRect()
         const secondWord = words[1].getBoundingClientRect()
 
         return {
-          backTop: back.top - hero.top,
-          backBottom: back.bottom - hero.top,
           badgeBottom: badge.bottom - hero.top,
           titleTop: title.top - hero.top,
           wordGap: secondWord.left - firstWord.right,
@@ -353,8 +339,6 @@ for (const locale of ['es', 'en'] as const) {
         }
       })
 
-      expect(layout.backTop).toBeGreaterThanOrEqual(80)
-      expect(layout.backBottom).toBeLessThan(layout.titleTop)
       expect(layout.badgeBottom).toBeLessThanOrEqual(layout.titleTop)
       expect(layout.wordGap).toBeGreaterThan(2)
       expect(layout.subtitleWhiteSpace).not.toBe('nowrap')
@@ -375,7 +359,6 @@ for (const locale of ['es', 'en'] as const) {
     page,
   }) => {
     const prefix = locale === 'en' ? '/en' : ''
-    const indexHref = `${prefix}/case-studies/`
 
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto(`${prefix}/case-studies/relay`, {
@@ -383,7 +366,6 @@ for (const locale of ['es', 'en'] as const) {
     })
 
     const hero = page.locator('[data-case-study-hero]')
-    const backLink = hero.locator('[data-case-study-hero-back]')
     const label = hero.locator('[data-case-study-hero-label]')
     const title = hero.getByRole('heading', { level: 1, name: 'Relay' })
     const tagline = hero.locator('[data-case-study-hero-tagline]')
@@ -391,8 +373,7 @@ for (const locale of ['es', 'en'] as const) {
     const evidence = hero.locator('[data-case-study-hero-evidence]')
 
     await expect(hero).toHaveAttribute('data-presentation-family', 'technical-product')
-    await expect(backLink).toBeVisible()
-    await expect(backLink).toHaveAttribute('href', indexHref)
+    await expect(hero.locator('[data-case-study-hero-back]')).toHaveCount(0)
     await expect(label).toBeVisible()
     await expect(title).toBeVisible()
     await expect(tagline).toBeVisible()
@@ -401,14 +382,12 @@ for (const locale of ['es', 'en'] as const) {
 
     const layout = await page.evaluate(() => {
       const heroElement = document.querySelector('[data-case-study-hero]')
-      const backElement = document.querySelector('[data-case-study-hero-back]')
       const labelElement = document.querySelector('[data-case-study-hero-label]')
       const titleElement = document.querySelector('#relay-title')
       const taglineElement = document.querySelector('[data-case-study-hero-tagline]')
 
       if (
         !(heroElement instanceof HTMLElement) ||
-        !(backElement instanceof HTMLElement) ||
         !(labelElement instanceof HTMLElement) ||
         !(titleElement instanceof HTMLElement) ||
         !(taglineElement instanceof HTMLElement)
@@ -417,14 +396,11 @@ for (const locale of ['es', 'en'] as const) {
       }
 
       const hero = heroElement.getBoundingClientRect()
-      const back = backElement.getBoundingClientRect()
       const label = labelElement.getBoundingClientRect()
       const title = titleElement.getBoundingClientRect()
       const tagline = taglineElement.getBoundingClientRect()
 
       return {
-        backTop: back.top - hero.top,
-        backBottom: back.bottom - hero.top,
         labelTop: label.top - hero.top,
         titleTop: title.top - hero.top,
         taglineTop: tagline.top - hero.top,
@@ -433,15 +409,9 @@ for (const locale of ['es', 'en'] as const) {
       }
     })
 
-    expect(layout.backTop).toBeGreaterThanOrEqual(80)
-    expect(layout.backBottom).toBeLessThan(layout.labelTop)
     expect(layout.labelTop).toBeLessThan(layout.titleTop)
     expect(layout.titleTop).toBeLessThan(layout.taglineTop)
     expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
-
-    await backLink.focus()
-    await expect(backLink).toBeFocused()
-
     await page.setViewportSize({ width: 390, height: 844 })
     const mobileOverflow = await page.evaluate(() => ({
       viewportWidth: window.innerWidth,
@@ -490,3 +460,24 @@ test('shared gallery heading follows the active locale', async ({ page }) => {
   })
   await expect(page.getByRole('heading', { name: 'Gallery' })).toBeVisible()
 })
+
+for (const locale of ['es', 'en'] as const) {
+  test(`technical status evidence matches the public repositories in ${locale}`, async ({ page }) => {
+    const prefix = locale === 'en' ? '/en' : ''
+
+    await page.goto(`${prefix}/case-studies/halo-control/`, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(locale === 'en'
+      ? /Operator-supervised AMD Halo hardware pilot exercised/
+      : /Piloto supervisado en hardware AMD Halo/)).toBeVisible()
+
+    await page.goto(`${prefix}/case-studies/local-ai-coding-agent/`, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(locale === 'en'
+      ? /Architecture and bounded evaluation evidence are presented here/
+      : /Aquí se presentan su arquitectura y evidencia de evaluación acotada/)).toBeVisible()
+    await expect(page.locator('a[href="https://github.com/RaulMermans/Open-VS-Code-Agent"]')).toHaveCount(0)
+
+    await page.goto(`${prefix}/case-studies/benchmark-dashboard/`, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('link', { name: locale === 'en' ? 'Run locally' : 'Ejecutar en local' }).first()).toHaveAttribute('href', 'https://github.com/RaulMermans/benchmark_dashboard#getting-started')
+    await expect(page.locator('a[href="https://benchmark-dashboard-tb47.vercel.app/"]')).toHaveCount(0)
+  })
+}

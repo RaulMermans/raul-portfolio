@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyRepositoryProof from '@/components/case-studies/CaseStudyRepositoryProof'
 import { CaseStudySnapshot } from '@/components/case-studies/CommercialCaseStudySections'
 import { getSiteCopy } from '@/data/site-copy'
 import { useCaseStudySetup } from '@/hooks'
@@ -336,18 +337,6 @@ export default function RelayCaseStudyPage() {
           data-case-study-hero
           data-presentation-family={presentationFamily}
         >
-          <div className={styles.heroNavigation}>
-            <div className={styles.container}>
-              <Link
-                href={localizePath('/case-studies', locale)}
-                className={styles.back}
-                data-case-study-hero-back
-              >
-                <span aria-hidden="true">←</span>
-                <span>{uiCopy.backToCaseStudies}</span>
-              </Link>
-            </div>
-          </div>
           <div className={styles.container}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
@@ -363,7 +352,7 @@ export default function RelayCaseStudyPage() {
                 <div className={styles.heroMeta} data-case-study-hero-meta>
                   <p className={styles.status}>{content.status}</p>
                   <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.primaryAction}>
-                    {content.github} <span aria-hidden="true">↗</span>
+                    {content.github}
                   </a>
                 </div>
                 <div className={styles.tags} aria-label={content.stackLabel}>
@@ -421,6 +410,15 @@ export default function RelayCaseStudyPage() {
           <ol className={styles.systemFlow}>
             {content.system.steps.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span>{step}</li>)}
           </ol>
+          <CaseStudyRepositoryProof
+            locale={locale}
+            src="/images/case-studies/relay/proof/onboarding-synthetic.webp"
+            width={1512}
+            height={827}
+            alt={locale === 'es' ? 'Estado inicial de Relay antes de importar datos de Meta, Google y Shopify' : 'Relay starting state before importing Meta, Google, and Shopify data'}
+            caption={locale === 'es' ? 'El espacio de trabajo empieza vacío y muestra qué fuentes faltan antes de presentar resultados. Captura con espacio sintético.' : 'The workspace starts empty and names the missing sources before showing results. Synthetic workspace capture.'}
+            source="https://github.com/RaulMermans/Relay/blob/main/docs/assets/screenshots/onboarding-synthetic.png"
+          />
         </Section>
 
         <Section id="data-health" {...content.health} inverse>
@@ -435,6 +433,15 @@ export default function RelayCaseStudyPage() {
               <div className={styles.stateList}>{content.health.states.map((state, index) => <p key={state}><span>{String(index + 1).padStart(2, '0')}</span>{state}</p>)}</div>
             </div>
           </div>
+          <CaseStudyRepositoryProof
+            locale={locale}
+            src="/images/case-studies/relay/proof/data-sources-synthetic.webp"
+            width={1280}
+            height={720}
+            alt={locale === 'es' ? 'Pantalla de Relay para elegir periodo y cargar CSV de tres fuentes' : 'Relay screen for choosing a reporting period and uploading CSV files from three sources'}
+            caption={locale === 'es' ? 'La carga manual de CSV y el periodo de análisis quedan explícitos; no hay sincronización automática. Captura con datos sintéticos.' : 'Manual CSV upload and the reporting period are explicit; automatic sync is not active. Synthetic data capture.'}
+            source="https://github.com/RaulMermans/Relay/blob/main/docs/assets/screenshots/data-sources-synthetic.png"
+          />
         </Section>
 
         <Section id="intelligence" {...content.intelligence}>
@@ -471,8 +478,8 @@ export default function RelayCaseStudyPage() {
             <h2 id="relay-final-heading">{content.final.title}</h2>
             <p>{content.final.description}</p>
             <div className={styles.finalActions}>
-              <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.primaryAction}>{content.final.github} <span aria-hidden="true">↗</span></a>
-              <Link href={localizePath('/case-studies', locale)} className={styles.secondaryAction}>{content.final.back} <span aria-hidden="true">→</span></Link>
+              <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.primaryAction}>{content.final.github}</a>
+              <Link href={localizePath('/case-studies', locale)} className={styles.secondaryAction}>{content.final.back}</Link>
             </div>
           </div>
         </section>

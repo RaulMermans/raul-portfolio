@@ -48,17 +48,6 @@
   text-transform: uppercase;
 }
 
-.arrow {
-  color: var(--text-muted);
-  font-size: var(--text-md);
-  line-height: var(--touch-min);
-  transition: transform var(--transition-base) var(--ease);
-}
-
-.card:hover .arrow {
-  transform: translateX(var(--space-2));
-}
-
 .content {
   display: grid;
   gap: var(--space-3);

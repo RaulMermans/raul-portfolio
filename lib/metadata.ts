@@ -27,23 +27,24 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.raulmermans.com',
   locale: 'es_ES',
   twitterHandle: '@raulmermans',
-  defaultTitle: 'Raúl Mermans | AI systems, products, and creative strategy',
+  defaultTitle: 'Raúl Mermans | AI Systems, Product & Data',
   defaultDescription:
-    'Raúl Mermans builds independent AI systems, digital products, and business intelligence tools alongside brands, ventures, and creative work.',
+    'Raúl Mermans builds AI systems, data products and decision-support tools with business judgment, technical execution and creative direction.',
   defaultImage: {
     url: '/images/sections/case-studies-bg.webp',
-    alt: 'Portfolio de Raúl Mermans: estrategia creativa, proyectos y tecnología',
+    alt: 'Portfolio de Raúl Mermans: sistemas de IA, producto y datos',
   },
 } as const
 
 export const defaultKeywords = [
   'Raúl Mermans',
-  'entrepreneur',
-  'creator',
-  'brand building',
+  'AI systems',
+  'agentic systems',
+  'local AI',
+  'data products',
+  'decision intelligence',
   'product development',
-  'ventures',
-  'storytelling',
+  'brand strategy',
   'Raúl Mermans Madrid',
 ]
 
@@ -75,14 +76,14 @@ export function localeToOpenGraphLocale(locale: Locale) {
 
 const rootMetadataByLocale = {
   es: {
-    title: 'Raúl Mermans | Sistemas de IA, productos y estrategia creativa',
+    title: 'Raúl Mermans | Sistemas de IA, Producto y Datos',
     description:
-      'Raúl Mermans construye sistemas de IA, productos digitales y herramientas de inteligencia de negocio junto con marcas, proyectos propios y trabajo creativo.',
+      'Raúl Mermans construye sistemas de IA, productos de datos y herramientas de apoyo a decisiones con criterio de negocio, ejecución técnica y dirección creativa.',
   },
   en: {
-    title: 'Raúl Mermans | AI systems, products, and creative strategy',
+    title: 'Raúl Mermans | AI Systems, Product & Data',
     description:
-      'Raúl Mermans builds independent AI systems, digital products, and business intelligence tools alongside brands, ventures, and creative work.',
+      'Raúl Mermans builds AI systems, data products and decision-support tools with business judgment, technical execution and creative direction.',
   },
 } satisfies Record<Locale, { title: string; description: string }>
 

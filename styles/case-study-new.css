@@ -155,42 +155,6 @@ main.case-study-page-new {
   margin: 0 auto;
 }
 
-.case-study-hero-new__navigation {
-  position: absolute;
-  z-index: 3;
-  top: calc(var(--header-height) + var(--space-4));
-  right: 0;
-  left: 0;
-  padding-inline: var(--section-inline-padding);
-}
-
-.case-study-hero-new__back {
-  display: inline-flex;
-  min-height: var(--touch-min);
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--cream-light);
-  font-family: var(--font-code);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wider);
-  line-height: 1.2;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.case-study-hero-new__back:hover,
-.case-study-hero-new__back:focus-visible {
-  color: var(--cream-light);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: var(--space-2);
-}
-
-.case-study-hero-new__back:focus-visible {
-  outline: 2px solid var(--accent-color, var(--accent));
-  outline-offset: var(--space-2);
-}
-
 .case-study-hero-new__badge {
   margin: 0 0 var(--space-4);
   color: var(--cream-light);
@@ -204,13 +168,13 @@ main.case-study-page-new {
 
 .case-study-hero-new__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
+  font-size: clamp(5rem, 10vw, 12rem);
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--tracking-tight);
   color: white;
   margin: 0 0 var(--space-4);
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 .case-study-hero-new__tagline {
@@ -527,7 +491,7 @@ main.case-study-page-new {
   width: 100%;
   overflow: hidden;
   background: var(--cream-dark, #ddd5c8);
-  border-radius: 8px;
+  border-radius: 0;
   min-height: auto;
   /* Removed fixed height - let aspect-ratio handle sizing */
   display: flex;
@@ -546,7 +510,7 @@ main.case-study-page-new {
 }
 
 .case-study-image-new--clickable:hover {
-  transform: scale(1.02);
+  transform: none;
 }
 
 .case-study-image-new__img {
@@ -620,7 +584,7 @@ main.case-study-page-new {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background: rgba(0, 0, 0, 0.05);
-  border-radius: 50px;
+  border-radius: 0;
   font-size: 0.875rem;
   color: var(--ink, var(--ink));
   font-weight: 500;
@@ -629,7 +593,7 @@ main.case-study-page-new {
 
 .case-study-approach__tool:hover {
   background: rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .case-study-approach__system {
@@ -652,7 +616,7 @@ main.case-study-page-new {
 .case-study-approach__system-item {
   padding: var(--case-study-space-sm);
   background: rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
+  border-radius: 0;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -1306,8 +1270,7 @@ main.case-study-page-new {
   }
 
   .case-study-hero-new__title {
-    font-size: clamp(2rem, 8vw, 2.5rem);
-    /* Better scaling */
+    font-size: clamp(3.8rem, 13vw, 6rem);
   }
 
   /* Ensure text is readable on mobile */
@@ -1411,7 +1374,6 @@ main.case-study-page-new {
   max-width: 54rem;
 }
 
-.data-brief-back,
 .data-brief-eyebrow,
 .data-brief-card__file,
 .data-brief-button,
@@ -1420,21 +1382,6 @@ main.case-study-page-new {
   font-family: var(--font-code);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.data-brief-back {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  color: rgb(from var(--cream) r g b / 0.72);
-  font-size: 0.72rem;
-  text-decoration: none;
-}
-
-.data-brief-back:hover,
-.data-brief-back:focus-visible {
-  color: var(--cream);
 }
 
 .data-brief-eyebrow {
@@ -1538,8 +1485,7 @@ main.case-study-page-new {
 }
 
 .data-brief-button:focus-visible,
-.data-brief-text-link:focus-visible,
-.data-brief-back:focus-visible {
+.data-brief-text-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
@@ -2423,10 +2369,6 @@ main.case-study-page-new {
   max-width: 58rem;
 }
 
-.data-brief-back {
-  margin-bottom: clamp(1.25rem, 2vw, 2rem);
-}
-
 .data-brief-hero__title {
   max-width: 8ch;
   font-size: clamp(5rem, 10vw, 10.5rem);
@@ -2452,7 +2394,7 @@ main.case-study-page-new {
 
 .data-brief-hero__visual figcaption {
   margin-top: 0.8rem;
-  color: rgb(from var(--cream) r g b / 0.62);
+  color: var(--cream);
   font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
@@ -3282,7 +3224,7 @@ main.case-study-page-new {
 }
 
 .campaign-pulse-flow span {
-  color: rgb(from var(--cream) r g b / 0.5);
+  color: var(--cream);
   font-family: var(--font-code);
   font-size: 0.66rem;
 }
@@ -3401,6 +3343,8 @@ main.case-study-page-new {
 
 .campaign-pulse-reference a {
   color: var(--cream);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .campaign-pulse-limitations {
@@ -3561,6 +3505,18 @@ main.case-study-page-new {
   margin-inline: auto;
 }
 
+.case-study-page-new--campaign-pulse .data-brief-section--closing {
+  background: var(--ink);
+}
+
+.case-study-page-new--campaign-pulse .data-brief-section--closing :is(.data-brief-eyebrow, p) {
+  color: var(--cream);
+}
+
+.case-study-page-new--campaign-pulse .data-brief-section--closing .data-brief-button:not(.data-brief-button--primary) {
+  color: var(--cream);
+}
+
 .campaign-pulse-hero {
   min-height: auto;
   grid-template-columns: minmax(0, 0.9fr) minmax(23rem, 0.84fr);
@@ -3578,15 +3534,6 @@ main.case-study-page-new {
   width: 100%;
   max-width: 57rem;
   justify-items: start;
-}
-
-.campaign-pulse-hero .data-brief-back {
-  color: var(--ink-muted);
-}
-
-.campaign-pulse-hero .data-brief-back:hover,
-.campaign-pulse-hero .data-brief-back:focus-visible {
-  color: var(--ink);
 }
 
 .campaign-pulse-hero h1 {
@@ -3816,6 +3763,7 @@ main.case-study-page-new {
 .campaign-pulse-outcome-grid article {
   min-width: 0;
   min-height: 16rem;
+  background: rgb(from var(--cream) r g b / 0.08);
 }
 
 .case-study-page-new--campaign-pulse
@@ -3930,15 +3878,6 @@ main.case-study-page-new {
   padding-inline: clamp(1.25rem, 3vw, 3rem);
 }
 
-.case-study-page-new--data-brief .data-brief-back {
-  color: rgb(from var(--ink) r g b / 0.62);
-}
-
-.case-study-page-new--data-brief .data-brief-back:hover,
-.case-study-page-new--data-brief .data-brief-back:focus-visible {
-  color: var(--ink);
-}
-
 .case-study-page-new--data-brief .data-brief-section__container {
   width: 100%;
   max-width: 92rem;
@@ -4012,7 +3951,7 @@ main.case-study-page-new {
 }
 
 .case-study-page-new--data-brief .data-brief-hero__visual figcaption {
-  color: rgb(from var(--ink) r g b / 0.46);
+  color: var(--ink-muted);
 }
 
 .case-study-page-new--data-brief .data-brief-tags {
@@ -4071,7 +4010,7 @@ main.case-study-page-new {
 
 .data-brief-refusal-card span,
 .data-brief-principle-card span {
-  color: rgb(from var(--ink) r g b / 0.54);
+  color: var(--ink-muted);
   font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -4179,6 +4118,24 @@ main.case-study-page-new {
   gap: 1px;
   margin-top: clamp(2.75rem, 5vw, 4rem);
   background: rgb(from var(--ink) r g b / 0.12);
+}
+
+.data-brief-output-showcase--evidence {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.data-brief-output-showcase--evidence .case-study-repository-proof {
+  margin-block-start: 0;
+}
+
+.data-brief-output-showcase--evidence .data-brief-output-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 720px) {
+  .data-brief-output-showcase--evidence .data-brief-output-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .data-brief-output-main,
@@ -4650,7 +4607,7 @@ main.case-study-page-new {
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgb(from var(--cream) r g b / 0.45);
+  color: var(--cream);
 }
 
 .benchmark-code-block pre {
@@ -4856,10 +4813,6 @@ main.case-study-page-new {
 }
 
 /* Benchmark Dashboard refresh — calmer hierarchy and screenshot-ready proof slots */
-.case-study-page-new--benchmark .data-brief-back {
-  color: rgb(from var(--ink) r g b / 0.62);
-}
-
 .case-study-page-new--benchmark .data-brief-mini-nav {
   width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 92rem);
   max-width: none;
@@ -4923,7 +4876,7 @@ main.case-study-page-new {
 
 .benchmark-hero__mock-notice {
   max-width: 34rem;
-  color: rgb(from var(--ink) r g b / 0.5);
+  color: var(--ink-muted);
 }
 
 .case-study-page-new--benchmark .data-brief-tags {
@@ -4938,7 +4891,7 @@ main.case-study-page-new {
 }
 
 .benchmark-hero__visual figcaption {
-  color: rgb(from var(--ink) r g b / 0.46);
+  color: var(--ink-muted);
 }
 
 .benchmark-mockup {
@@ -5071,7 +5024,7 @@ main.case-study-page-new {
 .benchmark-proof-strip span {
   display: block;
   margin-top: 0.5rem;
-  color: rgb(from var(--ink) r g b / 0.58);
+  color: var(--ink-muted);
   font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
@@ -6132,18 +6085,9 @@ main.case-study-page-new {
 .case-study-page-new--portfolio {
   --portfolio-ink: var(--ink);
   --portfolio-cream: var(--cream);
-  --portfolio-paper: #fbf8f3;
+  --portfolio-paper: var(--cream-light);
   --portfolio-line: rgb(from var(--ink) r g b / 0.12);
   background: var(--portfolio-cream);
-  color: var(--portfolio-ink);
-}
-
-.case-study-page-new--portfolio .data-brief-back {
-  color: rgb(from var(--ink) r g b / 0.62);
-}
-
-.case-study-page-new--portfolio .data-brief-back:hover,
-.case-study-page-new--portfolio .data-brief-back:focus-visible {
   color: var(--portfolio-ink);
 }
 
@@ -6247,7 +6191,7 @@ main.case-study-page-new {
 
 .portfolio-frame span,
 .portfolio-frame-grid span {
-  color: rgb(from var(--ink) r g b / 0.48);
+  color: var(--ink-muted);
   font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -6401,7 +6345,7 @@ main.case-study-page-new {
 
 .portfolio-layer-list dt,
 .portfolio-wireframe-list span {
-  color: rgb(from var(--cream) r g b / 0.54);
+  color: var(--cream);
   font-family: var(--font-code);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -6433,7 +6377,7 @@ main.case-study-page-new {
 }
 
 .portfolio-wireframe-list span {
-  color: rgb(from var(--ink) r g b / 0.42);
+  color: var(--ink-muted);
 }
 
 .portfolio-wireframe-list strong {
@@ -7224,7 +7168,7 @@ main.case-study-page-new {
 
 .territoryops-console__pipeline button small,
 .territoryops-console__pipeline button em {
-  color: rgb(from var(--cream) r g b / 0.44);
+  color: var(--cream);
   font-size: 0.58rem;
   font-style: normal;
 }
@@ -7297,7 +7241,7 @@ main.case-study-page-new {
 }
 
 .territoryops-flow span {
-  color: var(--color-0);
+  color: var(--ink-muted);
   font-family: var(--font-code);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
@@ -7360,7 +7304,7 @@ main.case-study-page-new {
 }
 
 .territoryops-roadmap small {
-  color: rgb(from var(--cream) r g b / 0.42);
+  color: var(--cream);
   font-family: var(--font-code);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
@@ -7777,7 +7721,6 @@ main.case-study-page-new {
   color: var(--text-primary);
 }
 
-.opstwin-hero .data-brief-back,
 .opstwin-hero .data-brief-hero__subtitle,
 .opstwin-hero .data-brief-hero__title {
   color: var(--text-primary);
@@ -8360,7 +8303,7 @@ main.case-study-page-new {
 .case-study-snapshot__path > span {
   color: var(--ink-faint);
   font-family: var(--font-code);
-  font-size: 0.62rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -8381,7 +8324,7 @@ main.case-study-page-new {
   min-height: 2.85rem;
   color: var(--ink-muted);
   font-family: var(--font-code);
-  font-size: 0.68rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
@@ -8399,7 +8342,7 @@ main.case-study-page-new {
   min-height: 2.85rem;
   color: var(--ink);
   font-family: var(--font-code);
-  font-size: 0.68rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -8562,9 +8505,9 @@ main.case-study-page-new {
 }
 
 .case-study-next-new__header .case-study-next-new__label {
-  color: var(--accent-color, var(--accent));
+  color: var(--ink-muted);
   font-family: var(--font-code);
-  font-size: 0.68rem;
+  font-size: var(--text-xs);
 }
 
 .case-study-next-new__grid {
@@ -8609,7 +8552,7 @@ main.case-study-page-new {
 .case-study-next-new__view {
   color: var(--ink-muted);
   font-family: var(--font-code);
-  font-size: 0.62rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.08em;
   line-height: 1.45;
   text-transform: uppercase;
@@ -8708,7 +8651,7 @@ main.case-study-page-new {
 
 .case-study-page-new--blogagent {
   --blogagent-ink: #12110f;
-  --blogagent-muted: #706b63;
+  --blogagent-muted: #5b5750;
   --blogagent-line: rgba(18, 17, 15, 0.16);
   --blogagent-panel: #181715;
   --blogagent-accent: #d7ff54;
@@ -8775,6 +8718,15 @@ main.case-study-page-new {
 
 .blogagent-hero__panel-row strong.is-valid {
   color: var(--blogagent-accent);
+}
+
+.blogagent-hero__panel > small {
+  display: block;
+  margin-block-start: var(--space-4);
+  color: rgba(242, 239, 232, 0.72);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  line-height: 1.5;
 }
 
 .blogagent-reading-grid {
@@ -9138,17 +9090,6 @@ nav.case-study-mini-nav[data-case-study-mini-nav]
   min-block-size: var(--case-study-hero-min-height);
 }
 
-.case-study-page-new [data-case-study-hero] .data-brief-back,
-.case-study-page-new [data-case-study-hero] .case-study-hero-new__back,
-.case-study-page-new [data-case-study-hero] .back {
-  min-block-size: var(--touch-min);
-  font-family: var(--font-code);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wider);
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
 .case-study-hero-foundation__label {
   margin: var(--space-5) 0 0;
   color: var(--ink);
@@ -9174,7 +9115,7 @@ nav.case-study-mini-nav[data-case-study-mini-nav]
   max-inline-size: 12ch;
   margin: var(--space-3) 0 0;
   color: inherit;
-  font-family: var(--font-heading) !important;
+  font-family: var(--font-title) !important;
   font-size: var(--text-hero) !important;
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
@@ -9278,6 +9219,21 @@ nav.case-study-mini-nav[data-case-study-mini-nav] a:focus-visible {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: var(--space-2);
+}
+
+.case-study-repository-proof {
+  margin-block-start: var(--space-8);
+}
+
+.case-study-repository-proof figcaption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.case-study-repository-proof figcaption a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 @media (max-width: 720px) {

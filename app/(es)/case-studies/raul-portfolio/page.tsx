@@ -82,14 +82,13 @@ const commercialContentEs: CommercialCaseStudyContent = {
 
 const content = {
   en: {
-    back: '← Case Studies',
     eyebrow: 'Brand Systems / Digital Identity / Portfolio Architecture',
     heroSubtitle:
       'A personal brand system for strategy, AI/product case studies, photography, and visual experimentation.',
     heroDescription:
       'This portfolio was built as a digital identity system: a structured environment for presenting brand strategy, cultural storytelling, AI/product work, photography, and visual experimentation through an editorial lens.',
-    liveCta: 'View Prototype →',
-    githubCta: 'View GitHub →',
+    liveCta: 'View Prototype',
+    githubCta: 'View GitHub',
     linksLabel: 'Project links',
     tagsLabel: 'Project tags',
     systemLabel: 'Portfolio system diagram',
@@ -185,14 +184,13 @@ const content = {
     linksH2: 'Explore the system.',
   },
   es: {
-    back: '← Casos de estudio',
     eyebrow: 'Sistemas de marca / Identidad digital / Arquitectura de portafolio',
     heroSubtitle:
       'Un sistema de marca personal para estrategia, casos de IA/producto, fotografía y experimentación visual.',
     heroDescription:
       'Este portafolio fue construido como un sistema de identidad digital: un entorno estructurado para presentar estrategia de marca, relato cultural, trabajo de IA/producto, fotografía y experimentación visual desde una mirada editorial.',
-    liveCta: 'Visitar sitio en vivo →',
-    githubCta: 'Ver repositorio en GitHub →',
+    liveCta: 'Visitar sitio en vivo',
+    githubCta: 'Ver repositorio en GitHub',
     linksLabel: 'Enlaces del proyecto',
     tagsLabel: 'Etiquetas del proyecto',
     systemLabel: 'Diagrama del sistema de portafolio',
@@ -308,9 +306,6 @@ export default function RaulPortfolioPage() {
           data-presentation-family="hybrid"
         >
           <div className="portfolio-hero__content">
-            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="portfolio-title" className="portfolio-hero__title">
