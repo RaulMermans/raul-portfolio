@@ -15,7 +15,7 @@ for (const [locale, path, technical, creative] of [
     await expect(page.getByRole('link', { name: locale === 'English' ? 'About me' : 'Sobre mí' })).toBeVisible()
     await expect(page.locator(`#work a[href="${technical}"]`)).toHaveCount(1)
     await expect(page.locator(`#work a[href="${creative}"]`)).toHaveCount(1)
-    await expect(page.locator('main p')).toHaveCount(0)
+    await expect(page.locator('#gateway-scroll-hint')).toHaveText(locale === 'English' ? 'Swipe to explore ↔' : 'Desliza para explorar ↔')
     await expect(page.locator('main h1')).toHaveText('Raúl Mermans')
     await expect(page.locator('main h2')).toHaveCount(3)
     await expect(page.getByRole('heading', { level: 2, name: locale === 'English' ? 'About me' : 'Sobre mí' })).toBeVisible()

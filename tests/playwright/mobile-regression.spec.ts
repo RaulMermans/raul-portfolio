@@ -281,7 +281,7 @@ test.describe('Mobile Regression', () => {
   test('visuals surface only navigates on horizontal intent', async ({ page }) => {
     await preparePage(page, '/en/visuals/')
 
-    const readTitle = async () => page.locator('[data-mobile-audit="visual-card"] h2').innerText()
+    const readTitle = async () => page.locator('[data-mobile-audit="visual-caption"] h2').innerText()
 
     const firstTitle = await readTitle()
 
@@ -295,7 +295,7 @@ test.describe('Mobile Regression', () => {
   test('visuals surface ignores diagonal downward swipes so page scroll can win', async ({ page }) => {
     await preparePage(page, '/en/visuals/')
 
-    const readTitle = async () => page.locator('[data-mobile-audit="visual-card"] h2').innerText()
+    const readTitle = async () => page.locator('[data-mobile-audit="visual-caption"] h2').innerText()
     const firstTitle = await readTitle()
 
     await swipeSurface(page, -96, 84)

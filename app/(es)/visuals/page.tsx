@@ -676,7 +676,7 @@ export default function VisualsPage() {
               </button>
             </div>
 
-            <div className={styles.cardCaption} aria-live="polite">
+            <div className={styles.cardCaption} aria-live="polite" data-mobile-audit="visual-caption">
               <h2>{currentWork.title}</h2>
               <span>{String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}</span>
             </div>
