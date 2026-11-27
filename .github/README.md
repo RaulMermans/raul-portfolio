@@ -14,15 +14,15 @@ The portfolio brings together:
 - A modular project architecture for repeatable case-study pages
 - Photography and visual work
 - A bilingual, editorial-style personal brand presence
-- A static deployment workflow through GitHub Actions and IONOS
+- A static deployment through Cloudflare Pages Git integration
 
 ## Tech Stack
 
-- **Framework:** Next.js 14
+- **Framework:** Next.js 16
 - **Language:** TypeScript
 - **Styling:** CSS Modules and global CSS
 - **Animation / Interaction:** Framer Motion, Lenis, Swiper
-- **Deployment:** GitHub Actions → IONOS
+- **Deployment:** GitHub → Cloudflare Pages
 - **Output:** Static export
 
 ## Project Structure
@@ -62,7 +62,7 @@ The portfolio includes image-led sections for photography, visuals, AI-generated
 
 ### Static-first deployment
 
-The site is optimized for static deployment. Changes pushed to the configured `main` branch trigger the GitHub Actions deployment workflow and refresh the IONOS-hosted website.
+The site is optimized for static deployment. Pushes to `main` trigger Cloudflare Pages to build and publish the `out/` directory. GitHub Actions runs independent quality checks.
 
 ## Local Development
 
@@ -101,28 +101,7 @@ npm run build
 
 This portfolio deploys from pushes to `main`.
 
-The GitHub Actions workflow type-checks, lints, builds the static Next.js export, verifies the expected homepage copy, uploads tracked files to IONOS, and checks the live English and Spanish HTML after deployment.
-
-Deployment credentials are stored in GitHub Secrets and are not committed to the repository.
-
-Required GitHub Secrets:
-
-```txt
-SFTP_HOST
-SFTP_USER
-SFTP_PASSWORD
-SFTP_REMOTE_PATH
-```
-
-Optional GitHub Secrets:
-
-```txt
-SFTP_PORT
-```
-
-`SFTP_PORT` defaults to `22`. `SFTP_REMOTE_PATH` must be the document root serving `www.raulmermans.com`; the workflow intentionally has no `/` fallback. The SFTP action removes only files tracked by its remote hash manifest, so manually created remote files are left untouched.
-
-Local/private deployment helper scripts are intentionally ignored.
+Cloudflare Pages builds the static Next.js export from `main`. The build verifies export output, canonical URLs, and Pages asset limits. IONOS is retained for domain registration only after DNS cutover; see [the migration runbook](../docs/cloudflare-pages-migration.md).
 
 ## Environment Variables
 

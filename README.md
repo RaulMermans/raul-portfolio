@@ -52,42 +52,19 @@ The project is configured for static export via `next.config.js`.
 
 ## Deployment
 
-This portfolio deploys from successful CI runs for pushes to `main`.
+Cloudflare Pages builds the static export from pushes to `main` through its
+GitHub integration. Its build command verifies the export, canonical URLs, and
+Pages asset limits before publishing `out/`. GitHub Actions runs independent
+type, lint, build, and browser checks. IONOS remains the domain registrar.
 
-The GitHub Actions workflow builds the static Next.js export and uploads the
-generated `out/` directory to the configured IONOS destination via SFTP. CI
-runs type checks, lint, static-export checks, canonical-output checks, and the
-critical Playwright/a11y suite before deployment is eligible to start.
-
-Deployment credentials are stored in GitHub Secrets and are not committed to
-the repository.
-
-Required GitHub Secrets:
-
-- `SFTP_HOST`
-- `SFTP_USER`
-- `SFTP_PASSWORD`
-- `SFTP_REMOTE_PATH`
-
-Optional GitHub Secrets:
-
-- `SFTP_PORT` (defaults to `22`)
-
-`SFTP_REMOTE_PATH` must point to the document root that serves
-`https://www.raulmermans.com/`. The workflow intentionally has no `/` fallback.
-The deployment mirror removes stale generated files so the document root matches
-the verified static export.
-
-Cloudflare Pages Git deployment, staging checks, DNS cutover, and
-rollback are documented in [the migration runbook](docs/cloudflare-pages-migration.md).
-The IONOS deployment remains active until the new hosting path is approved.
+Domain cutover and rollback are documented in
+[the migration runbook](docs/cloudflare-pages-migration.md).
 
 ## Canonical architecture
 
 - Spanish is the canonical default: `/about/`, `/case-studies/`, and related routes.
 - English equivalents live below `/en/`.
-- Historical `/es/*` URLs use `public/.htaccess` on IONOS and `public/_redirects`
-  on Cloudflare Pages.
+- Historical `/es/*` URLs use `public/_redirects` on Cloudflare Pages.
 - Each localized page emits its own server-rendered `lang`, canonical URL,
   `en-US`, `es-ES`, and `x-default` alternates.
 - The document schema begins with stable Person and WebSite entities; page-level
