@@ -127,6 +127,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Disable unavailable Microsoft apt feed
+        run: |
+          for source in /etc/apt/sources.list.d/*; do
+            if grep -q 'packages.microsoft.com/ubuntu/24.04/prod' "$source"; then
+              sudo mv "$source" "/tmp/$(basename "$source")"
+            fi
+          done
+
       - name: Install Playwright browsers
         if: github.event_name != 'workflow_dispatch' || (!inputs.refresh_all_visual_baselines && !inputs.refresh_case_study_visual_baselines)
         run: npx playwright install --with-deps chromium webkit
