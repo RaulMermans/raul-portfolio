@@ -1,5 +1,13 @@
 # Cloudflare Pages migration runbook
 
+## Cutover status, 27 November 2026
+
+Cloudflare Pages project `raul-portfolio` now uses `main` as its production branch with automatic Git deployments enabled. The `raulmermans.com` Cloudflare Free zone has been created, but IONOS nameservers are still authoritative. Cloudflare assigned `coen.ns.cloudflare.com` and `iris.ns.cloudflare.com`.
+
+Cloudflare's automatic scan imported 10 common records. The three IONOS DKIM CNAMEs from the inventory below were added manually. MX, SPF, Google verification, autodiscover, and `_domainconnect` were retained; mail and service CNAMEs are DNS only. The imported web A/AAAA records still point to IONOS and must be replaced with Pages routing before nameserver cutover. The `_dep_ws_mutex` value and any records added since the last IONOS inventory still need comparison in the IONOS dashboard. Confirm DNSSEC/DS there before changing nameservers. The registrar login currently requires the account password. Do not mark the DNS cutover complete until this check, Pages custom-domain validation, and public HTTPS tests pass.
+
+The GitHub Actions IONOS SFTP deployment workflow is removed in the current migration change. GitHub CI remains independent; Cloudflare Pages publishes from `main`. The old hosting contract is retained during observation and must not be cancelled without checking domain-registration and email dependencies.
+
 Status, 30 October 2026: Cloudflare Pages Free project `raul-portfolio` is connected to `RaulMermans/raul-portfolio` through Git integration. Its production branch is `codex/cloudflare-production`; `codex/cloudflare-pages-migration` is a preview branch. The initial `main` build was deployed before the production branch changed. No production DNS, domain registration, IONOS contract, or live deployment settings have been changed.
 
 ## Compatibility assessment
