@@ -45,10 +45,10 @@ for (const [file, lang, canonical] of routes) {
   requireText(file, 'hrefLang="x-default" href="https://www.raulmermans.com/')
 }
 
-requireText('out/index.html', '<title>Raúl Mermans | Sistemas de IA, Producto y Datos</title>')
-requireText('out/index.html', 'Raúl Mermans construye sistemas de IA, productos de datos')
-requireText('out/en/index.html', '<title>Raúl Mermans | AI Systems, Product &amp; Data</title>')
-requireText('out/en/index.html', 'Raúl Mermans builds AI systems, data products')
+requireText('out/index.html', '<title>Raúl Mermans | Portfolio técnico y creativo</title>')
+requireText('out/index.html', 'Conoce a Raúl Mermans y elige entre su portfolio técnico')
+requireText('out/en/index.html', '<title>Raúl Mermans | Technical and Creative Portfolio</title>')
+requireText('out/en/index.html', 'Meet Raúl Mermans and choose a technical portfolio')
 
 forbidText('out/index.html', 'href="/es/')
 forbidText('out/en/index.html', 'href="/es/')

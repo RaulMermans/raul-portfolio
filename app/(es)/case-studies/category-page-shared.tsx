@@ -73,7 +73,6 @@ export default function CaseStudyCategoryPage({ categorySlug }: CaseStudyCategor
                           : locale === 'es'
                             ? 'Próximamente'
                             : 'Coming soon'}
-                        {project.href ? <span aria-hidden="true">→</span> : null}
                       </span>
                     </div>
                   </>
@@ -108,7 +107,7 @@ export default function CaseStudyCategoryPage({ categorySlug }: CaseStudyCategor
                 href={localizePath('/case-studies', locale)}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid currentColor', paddingBottom: '0.25rem' }}
               >
-                {locale === 'es' ? 'Ver todos los casos →' : 'View all case studies →'}
+                {locale === 'es' ? 'Ver todos los casos' : 'View all case studies'}
               </Link>
             </div>
           )}

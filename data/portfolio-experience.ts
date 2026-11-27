@@ -73,6 +73,8 @@ export type PublicRoute = {
 /** Route patterns intentionally cover dynamic leaves without duplicating each locale. */
 export const PUBLIC_ROUTE_REGISTRY: readonly PublicRoute[] = [
   { route: '/', locales: ['es', 'en'], pageFamily: 'home', mobileRequired: true, visualRegressionRequired: true },
+  { route: '/technical', locales: ['es', 'en'], pageFamily: 'case-studies-index', mobileRequired: true, visualRegressionRequired: true },
+  { route: '/creative', locales: ['es', 'en'], pageFamily: 'visual-work', mobileRequired: true, visualRegressionRequired: true },
   { route: '/about', locales: ['es', 'en'], pageFamily: 'about', mobileRequired: true, visualRegressionRequired: true },
   { route: '/services/[slug]', locales: ['es', 'en'], pageFamily: 'service-detail', mobileRequired: true, visualRegressionRequired: true },
   { route: '/case-studies', locales: ['es', 'en'], pageFamily: 'case-studies-index', mobileRequired: true, visualRegressionRequired: true },
@@ -80,6 +82,7 @@ export const PUBLIC_ROUTE_REGISTRY: readonly PublicRoute[] = [
   { route: '/apps', locales: ['es', 'en'], pageFamily: 'apps-index', mobileRequired: true, visualRegressionRequired: true },
   { route: '/apps/[slug]', locales: ['es', 'en'], pageFamily: 'app-detail', mobileRequired: true, visualRegressionRequired: true },
   { route: '/photography', locales: ['es', 'en'], pageFamily: 'photography', mobileRequired: true, visualRegressionRequired: true },
+  { route: '/photography/[series]', locales: ['es', 'en'], pageFamily: 'photography', mobileRequired: true, visualRegressionRequired: true },
   { route: '/visuals', locales: ['es', 'en'], pageFamily: 'visual-work', mobileRequired: true, visualRegressionRequired: true },
   { route: '/privacy', locales: ['es', 'en'], pageFamily: 'utility', mobileRequired: true, visualRegressionRequired: false },
   { route: '/terms', locales: ['es', 'en'], pageFamily: 'utility', mobileRequired: true, visualRegressionRequired: false },

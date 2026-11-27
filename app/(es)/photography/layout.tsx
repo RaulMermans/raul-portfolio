@@ -5,12 +5,12 @@ import { absoluteRouteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'Fotografía',
   description:
-    'Fotografía de Raúl Mermans, mostrando el criterio visual, la composición y la contención que sostienen su trabajo más amplio en sistemas de IA y dirección creativa.',
+    'Fotografía de Raúl Mermans, editada en series completas sobre Marruecos, la costa y momentos encontrados a pie.',
   path: '/photography',
   locale: 'es',
   image: {
-    url: '/images/sections/photography-bg.webp',
-    alt: 'Galería de fotografía de Raúl Mermans',
+    url: '/images/photography/landscape/Landscape7.webp',
+    alt: 'Dunas fotografiadas por Raúl Mermans',
   },
   keywords: ['portfolio de fotografía', 'fotografía editorial', 'fotografía de marca'],
 })
@@ -28,7 +28,7 @@ export default function PhotographyLayout({
           '@id': `${siteConfig.url}/#photography-page-es`,
           name: 'Fotografía de Raúl Mermans',
           description:
-            'Fotografía de Raúl Mermans, mostrando el criterio visual, la composición y la contención que sostienen su trabajo más amplio en sistemas de IA y dirección creativa.',
+            'Fotografía de Raúl Mermans, editada en series completas sobre Marruecos, la costa y momentos encontrados a pie.',
           url: absoluteRouteUrl('/photography'),
         }}
       />

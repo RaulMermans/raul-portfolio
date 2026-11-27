@@ -9,12 +9,12 @@ description: Use the Raúl Mermans home page as the canonical visual reference w
 
 `$portfolio-experience-system` is the public-route entrypoint. It routes landing pages, case studies, media, and interface review to their dedicated contracts. Use this skill as the live visual reference, not as a competing page-architecture system. The home page shows the foundation in practice; it does not require every other route to copy its layout.
 
-Treat the home page as the canonical visual reference. Use `styles/design-system.css` for tokens and `components/Hero.module.css`, `components/SelectedSystems.module.css`, `components/CreativeInfrastructure.module.css`, and the rendered home page for the visual baseline.
+Use `styles/design-system.css` for tokens and `components/PortfolioGateway.module.css` and the rendered home page for the gateway baseline. The home page is a dark choice screen: Raúl's name in large display type above three equal square cards for technical work, creative work, and About Me. The cards share one row on desktop and form a horizontally scrolling, snapping strip on narrower screens. A fine pointer may give the hovered card restrained tilt and image parallax; touch and reduced-motion users get a stable card. Keep the canvas solid ink and show each thumbnail in its original colors, with a local gradient only behind its title. Visible text is limited to the name and those titles. It omits the shared header and footer; destination routes retain them.
 
 ## Visual grammar
 
-- Use warm cream as the default canvas and ink as the default reading color. Use inverse ink sections as deliberate punctuation, not a second page identity.
-- Use `--font-heading` for display headings. Set it in uppercase with tight tracking and compact line-height. Do not introduce another display font.
+- Use warm cream as the default canvas and ink as the default reading color on content routes. The home gateway uses the canonical inverse ink surface as its full-page canvas.
+- Use `--font-title` for the page H1 and `--font-section` for H2s, both in Instrument Serif regular with natural casing. Use `--font-heading` for smaller supporting headings.
 - Use `--font-code` for eyebrows, labels, metadata, controls, counters, and technical notation. Keep it compact and letter-spaced.
 - Use `--font-prose` for editorial reading copy and `--font-ui` for utility or interface copy.
 - Use `--section-inline-padding`, `--section-block-padding`, and `--section-content-max` for page geometry. Do not introduce competing containers or arbitrary side padding.

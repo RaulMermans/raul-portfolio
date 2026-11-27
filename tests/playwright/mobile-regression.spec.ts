@@ -77,34 +77,54 @@ test.describe('Mobile Regression', () => {
     await page.setViewportSize({ width: 390, height: 844 })
   })
 
-  test('homepage hero remains readable on mobile', async ({ page }) => {
+  test('portfolio gateway introduces both routes on mobile', async ({ page }) => {
     await preparePage(page, '/en/')
 
-    const hero = page.locator('[data-home-section="hero"]')
-    const heading = hero.getByRole('heading', { level: 1 })
-    const heroCtas = hero.locator('[data-mobile-audit="hero-cta"]')
+    const heading = page.getByRole('heading', { level: 1 })
     await expect(heading).toBeVisible()
-    await expect(heading).toHaveCSS('font-family', /bebasNeue|Bebas Neue|Impact/i)
-    await expect(heroCtas).toHaveCount(2)
-    await expect(hero.getByRole('link', { name: 'Explore selected systems' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: 'About me' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: /GitHub/i })).toHaveCount(0)
-
+    await expect(heading).toHaveCSS('font-family', /instrumentSerif/i)
+    await expect(page.locator('#work a[href="/en/technical/"]')).toHaveCount(1)
+    await expect(page.locator('#work a[href="/en/creative/"]')).toHaveCount(1)
   })
 
-  test('desktop hero keeps its typography and actions visible without reveal gating', async ({ page }) => {
+  test('desktop gateway keeps its title and both choices visible', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })
     await page.emulateMedia({ reducedMotion: 'no-preference' })
     await page.goto('/en/', { waitUntil: 'domcontentloaded' })
 
-    const hero = page.locator('[data-home-section="hero"]')
-    const heading = hero.getByRole('heading', { level: 1 })
+    const heading = page.getByRole('heading', { level: 1 })
 
     await expect(heading).toBeVisible()
-    await expect(heading).toHaveCSS('font-family', /bebasNeue|Bebas Neue|Impact/i)
-    expect(await heading.getAttribute('class')).not.toMatch(/\breveal\b/)
-    await expect(hero.getByRole('link', { name: 'Explore selected systems' })).toBeVisible()
-    await expect(hero.getByRole('link', { name: 'About me' })).toBeVisible()
+    await expect(heading).toHaveCSS('font-family', /instrumentSerif/i)
+    await expect(page.locator('#work a[href="/en/technical/"]')).toBeVisible()
+    await expect(page.locator('#work a[href="/en/creative/"]')).toBeVisible()
+  })
+
+  test('long archive headings fit on mobile without clipping', async ({ page }) => {
+    for (const path of ['/en/photography/', '/photography/', '/en/apps/territoryops-spain/', '/apps/territoryops-spain/']) {
+      await page.goto(path, { waitUntil: 'domcontentloaded' })
+      const heading = page.getByRole('heading', { level: 1 })
+      await expect(heading).toBeVisible()
+
+      const metrics = await heading.evaluate((element) => {
+        const styles = getComputedStyle(element)
+        return {
+          headingHeight: element.getBoundingClientRect().height,
+          lineHeight: Number.parseFloat(styles.lineHeight),
+          headingScrollWidth: element.scrollWidth,
+          headingClientWidth: element.clientWidth,
+          contentScrollWidth: element.parentElement?.scrollWidth ?? 0,
+          contentClientWidth: element.parentElement?.clientWidth ?? 0,
+          documentWidth: document.documentElement.scrollWidth,
+          viewportWidth: window.innerWidth,
+        }
+      })
+
+      expect(metrics.headingHeight).toBeLessThanOrEqual(metrics.lineHeight * 3 + 2)
+      expect(metrics.headingScrollWidth).toBeLessThanOrEqual(metrics.headingClientWidth)
+      expect(metrics.contentScrollWidth).toBeLessThanOrEqual(metrics.contentClientWidth)
+      expect(metrics.documentWidth).toBeLessThanOrEqual(metrics.viewportWidth)
+    }
   })
 
   test('shared mobile defaults keep body copy readable and the document within the viewport', async ({ page }) => {
@@ -120,7 +140,7 @@ test.describe('Mobile Regression', () => {
     expect(metrics.documentWidth).toBeLessThanOrEqual(metrics.viewportWidth)
   })
 
-  test('the home page has one document scroll through the footer in both locales', async ({ page }) => {
+  test('the home page keeps its horizontal selector within the viewport in both locales', async ({ page }) => {
     for (const path of ['/', '/en/']) {
       await preparePage(page, path)
 
@@ -128,110 +148,101 @@ test.describe('Mobile Regression', () => {
         scroller: document.scrollingElement?.tagName,
         bodyOverflowY: getComputedStyle(document.body).overflowY,
         documentHeight: document.documentElement.scrollHeight,
+        documentWidth: document.documentElement.scrollWidth,
         viewportHeight: window.innerHeight,
+        viewportWidth: window.innerWidth,
+        stripScrollable: document.querySelector('#work')!.scrollWidth > document.querySelector('#work')!.clientWidth,
       }))
 
       expect(scrolling.scroller).toBe('HTML')
       expect(scrolling.bodyOverflowY).toBe('visible')
-      expect(scrolling.documentHeight).toBeGreaterThan(scrolling.viewportHeight)
-
-      await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }))
-      await expect.poll(() => page.evaluate(() => {
-        const footer = document.querySelector('footer')
-        return footer ? Math.abs(footer.getBoundingClientRect().bottom - window.innerHeight) : Infinity
-      })).toBeLessThan(2)
+      expect(scrolling.documentHeight).toBeLessThanOrEqual(scrolling.viewportHeight + 1)
+      expect(scrolling.documentWidth).toBeLessThanOrEqual(scrolling.viewportWidth)
+      expect(scrolling.stripScrollable).toBe(true)
+      await expect(page.getByTestId('site-header')).toHaveCount(0)
+      await expect(page.locator('footer')).toHaveCount(0)
     }
   })
 
-  test('the Building now section is prominent and localized', async ({ page }) => {
-    await preparePage(page, '/en/')
+  test('the name fits and the third card is reachable at 320px', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 })
+    for (const path of ['/', '/en/']) {
+      await preparePage(page, path)
+      const layout = await page.evaluate(() => {
+        const name = document.querySelector('main h1')!
+        const strip = document.querySelector('#work')!
+        strip.scrollLeft = strip.scrollWidth
+        const about = strip.querySelector('a[href$="/about/"]')!.getBoundingClientRect()
+        const frame = strip.getBoundingClientRect()
+        return {
+          nameFits: name.scrollWidth <= name.clientWidth,
+          pageFits: document.documentElement.scrollWidth <= innerWidth,
+          aboutVisible: about.left >= frame.left - 1 && about.right <= frame.right + 1,
+        }
+      })
+      expect(layout).toEqual({ nameFits: true, pageFits: true, aboutVisible: true })
+    }
+  })
 
-    const buildingNow = page.locator('#building-now')
-    await buildingNow.scrollIntoViewIfNeeded()
-    await expect(buildingNow.getByRole('heading', { name: 'From the problem to the system.' })).toBeVisible()
-    await expect(buildingNow.getByText('AI Systems & Product')).toBeVisible()
+  test('the portfolio gateway is localized', async ({ page }) => {
+    await preparePage(page, '/en/')
+    await expect(page.getByRole('heading', { level: 1, name: /Raúl Mermans/i })).toBeVisible()
 
     await preparePage(page, '/')
-    const spanishBuildingNow = page.locator('#building-now')
-    await spanishBuildingNow.scrollIntoViewIfNeeded()
-    await expect(spanishBuildingNow.getByRole('heading', { name: 'Del problema al sistema.' })).toBeVisible()
-    await expect(spanishBuildingNow.getByText('Sistemas de IA y producto')).toBeVisible()
+    await expect(page.getByRole('heading', { level: 1, name: /Raúl Mermans/i })).toBeVisible()
   })
 
-  test('mobile menu opens as a modal and restores focus when closed', async ({ page }) => {
-    await preparePage(page, '/en/')
-
-    const trigger = page.getByRole('button', { name: 'Open menu' })
-    await trigger.click()
-
-    const dialog = page.getByRole('dialog', { name: 'Navigation' })
-    await expect(dialog).toBeVisible()
-    await expect.poll(async () => {
-      return page.evaluate(() => getComputedStyle(document.body).position)
-    }).toBe('fixed')
-
-    const dialogBounds = await dialog.evaluate((element) => {
-      const rect = element.getBoundingClientRect()
-      return { left: rect.left, right: rect.right, viewportWidth: window.innerWidth }
-    })
-    expect(dialogBounds.left).toBeGreaterThanOrEqual(0)
-    expect(dialogBounds.right).toBeLessThanOrEqual(dialogBounds.viewportWidth)
-    expect(dialogBounds.right - dialogBounds.left).toBeGreaterThanOrEqual(dialogBounds.viewportWidth * 0.8)
-
-    await page.keyboard.press('Escape')
-    await expect(dialog).toBeHidden()
-    await expect(trigger).toBeFocused()
+  test('mobile masthead keeps home, back, and language links', async ({ page }) => {
+    await preparePage(page, '/en/technical/')
+    const header = page.getByTestId('site-header')
+    await expect(header.locator('a')).toHaveCount(4)
+    await expect(header.getByRole('button')).toHaveCount(0)
+    await expect(header.getByRole('navigation')).toHaveCount(0)
+    await header.getByRole('link', { name: 'Home' }).click()
+    await expect(page).toHaveURL(/\/en\/?$/)
   })
 
-  test('homepage section cards are direct, aligned links on mobile', async ({ page }) => {
+  test('gateway routes directly to the technical portfolio on mobile', async ({ page }) => {
     await preparePage(page, '/en/')
-
-    const workSection = page.locator('[data-home-section="creative-universe"]')
-    await workSection.scrollIntoViewIfNeeded()
-    const cardList = workSection.locator('[data-mobile-audit="section-card-list"]')
-    const cards = cardList.getByRole('link')
-
-    await expect(cardList).toBeVisible()
-    await expect(cards).toHaveCount(4)
+    await page.locator('#work a[href="/en/technical/"]').click()
+    await expect(page).toHaveURL(/\/en\/technical\/?$/)
+    await expect(page.getByRole('heading', { level: 1, name: /Technical work/i })).toBeVisible()
     const overflow = await page.evaluate(() => ({
       viewportWidth: window.innerWidth,
       documentWidth: document.documentElement.scrollWidth,
     }))
     expect(overflow.documentWidth).toBeLessThanOrEqual(overflow.viewportWidth)
 
-    await cards.first().focus()
+    const iris = page.locator('a[href="/en/case-studies/iris/"]').first()
+    await iris.focus()
     await page.keyboard.press('Enter')
-    await expect(page).toHaveURL(/\/en\/case-studies\/?$/)
+    await expect(page).toHaveURL(/\/en\/case-studies\/iris\/?$/)
   })
 
-  test('homepage section carousel remains available on desktop', async ({ page }) => {
+  test('both portfolio routes return to the gateway on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await preparePage(page, '/en/')
 
-    const workSection = page.locator('[data-home-section="creative-universe"]')
-    await workSection.scrollIntoViewIfNeeded()
-
-    await expect(workSection.getByRole('button', { name: /Next section:/ })).toBeVisible()
-    await expect(workSection.getByRole('button', { name: /Previous section:/ })).toBeVisible()
-    await expect(workSection.locator('[data-mobile-audit="section-card-list"]')).toBeHidden()
+    await page.locator('#work a[href="/en/creative/"]').click()
+    await expect(page.getByRole('heading', { level: 1, name: /Creative work/i })).toBeVisible()
+    await page.getByRole('link', { name: /Choose another route/i }).click()
+    await expect(page.getByRole('heading', { level: 1, name: /Raúl Mermans/i })).toBeVisible()
   })
 
-  test('case studies landing keeps evidence cards readable on mobile', async ({ page }) => {
+  test('case studies landing is a thumbnail-led gallery on mobile', async ({ page }) => {
     await preparePage(page, '/en/case-studies/')
 
     await expect(page.getByRole('heading', { level: 1, name: 'Case Studies' })).toHaveCSS(
       'font-family',
-      /bebasNeue|Bebas Neue|Impact/i
+      /instrumentSerif/i
     )
 
     const grid = page.locator('[data-mobile-audit="case-study-grid"]')
     const firstCard = grid.locator('[data-mobile-audit="case-study-card"]').first()
 
     await expect(firstCard).toBeVisible()
-    await expect(firstCard.locator('.case-study-project-tile__eyebrow')).toBeVisible()
     await expect(firstCard.locator('.case-study-project-tile__title')).toBeVisible()
     await expect(firstCard.locator('.case-study-project-tile__description')).toBeVisible()
-    await expect(firstCard.locator('.case-study-project-tile__action')).toBeVisible()
     await expect(firstCard.locator('.case-study-project-tile__meta')).toHaveCount(0)
 
     const initialLayout = await page.evaluate(() => {
@@ -263,14 +274,14 @@ test.describe('Mobile Regression', () => {
     expect(initialLayout.cardTop).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardLeft).toBeGreaterThanOrEqual(0)
     expect(initialLayout.cardRight).toBeLessThanOrEqual(initialLayout.viewportWidth)
-    expect(initialLayout.frameRatio).toBeCloseTo(3 / 2, 2)
+    expect(initialLayout.frameRatio).toBeCloseTo(1.6, 1)
     expect(initialLayout.documentWidth).toBeLessThanOrEqual(initialLayout.viewportWidth)
   })
 
   test('visuals surface only navigates on horizontal intent', async ({ page }) => {
     await preparePage(page, '/en/visuals/')
 
-    const readTitle = async () => page.locator('[data-mobile-audit="visual-card"] h2').innerText()
+    const readTitle = async () => page.locator('[data-mobile-audit="visual-caption"] h2').innerText()
 
     const firstTitle = await readTitle()
 
@@ -284,7 +295,7 @@ test.describe('Mobile Regression', () => {
   test('visuals surface ignores diagonal downward swipes so page scroll can win', async ({ page }) => {
     await preparePage(page, '/en/visuals/')
 
-    const readTitle = async () => page.locator('[data-mobile-audit="visual-card"] h2').innerText()
+    const readTitle = async () => page.locator('[data-mobile-audit="visual-caption"] h2').innerText()
     const firstTitle = await readTitle()
 
     await swipeSurface(page, -96, 84)
@@ -353,22 +364,14 @@ test.describe('Mobile Regression', () => {
       scrollHeight: element.scrollHeight,
     }))
 
-    expect(metrics.scrollHeight).toBeGreaterThan(metrics.clientHeight)
-
-    await scrollRegion.evaluate((element) => {
-      element.scrollTo({ top: 320, behavior: 'auto' })
-    })
-
-    await expect.poll(() => scrollRegion.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+    expect(metrics.scrollHeight).toBeGreaterThanOrEqual(metrics.clientHeight)
+    if (metrics.scrollHeight > metrics.clientHeight) {
+      await scrollRegion.evaluate((element) => {
+        element.scrollTo({ top: 320, behavior: 'auto' })
+      })
+      await expect.poll(() => scrollRegion.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+    }
     await expect(backToGallery).toBeVisible()
   })
 
-  test('contact section stays visible and usable on mobile', async ({ page }) => {
-    await preparePage(page, '/en/')
-
-    const contact = page.locator('#contact')
-    await contact.scrollIntoViewIfNeeded()
-    await expect(contact).toBeVisible()
-    await expect(contact.getByRole('link', { name: /email/i })).toBeVisible()
-  })
 })

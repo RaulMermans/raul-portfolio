@@ -74,20 +74,17 @@ export default function Footer({ locale = 'en' }: FooterProps) {
                     <Link href={localizePath(item.href, locale)}>{item.label}</Link>
                   </li>
                 ))}
-                <li><a href="https://github.com/RaulMermans" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
-                <li><a href="https://linkedin.com/in/raulmermans" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+                <li><a href="https://github.com/RaulMermans" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://linkedin.com/in/raulmermans" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
               </ul>
             </div>
           </nav>
         </div>
 
         <div className="footer__bottom">
-          <div className="footer__name-lockup" aria-label={`Raúl Mermans ${currentYear}`}>
+          <div className="footer__name-lockup" aria-label="Raúl Mermans">
             <span>Raúl</span>
-            <span>
-              Mermans
-              <sup>©{currentYear}</sup>
-            </span>
+            <span>Mermans</span>
           </div>
 
           <div className="footer__meta">
@@ -102,6 +99,7 @@ export default function Footer({ locale = 'en' }: FooterProps) {
               <Link href={localizePath('/privacy', locale)}>{copy.privacy}</Link>
               <Link href={localizePath('/terms', locale)}>{copy.terms}</Link>
             </div>
+            <small className="footer__year">© {currentYear} Raúl Mermans</small>
           </div>
         </div>
       </div>

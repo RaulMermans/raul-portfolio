@@ -28,8 +28,8 @@ Do not skip a routed skill because a route has local CSS. Local CSS is an implem
 
 ## Non-negotiable foundation
 
-- The portfolio owns the reading system: warm cream or deliberate ink punctuation, Bebas Neue display type, DM Sans utility text, Space Mono labels, and Source Serif editorial copy.
-- The font foundation is locked to the local assets loaded by `components/SiteDocument.tsx`; a change to family, source, or fallback order requires the user's explicit decision plus rendered desktop and mobile checks. Motion may never make the first viewport's name, H1, summary, or primary actions temporarily unreadable.
+- The portfolio owns the editorial archive reading system: warm paper, deep ink, restrained copper, Instrument Serif H1/H2 display headings, Source Serif 4 reading copy, Arial interface and H3 headings, and Courier New labels.
+- The user chose a sharper, calmer serif for both page and section headings. The shared masthead home link shows the full name in that serif, without a monogram. `components/SiteDocument.tsx` supplies the local Instrument Serif asset; `styles/design-system.css` sets the active families. A further change to family or source requires the user's explicit decision plus rendered desktop and mobile checks. Motion may never make the first viewport's name, H1, summary, or primary actions temporarily unreadable.
 - Every page has one visible, semantic H1. A page announces its subject before presenting a dense gallery, product visual, or navigation choice.
 - Every major section has an orienting H2, followed by the smallest amount of context needed to understand its content. H3s name evidence within that chapter.
 - Use shared section, content-width, type, border, surface, spacing, and control tokens. A raw value is acceptable only for a genuinely local, evidence-specific need that cannot be expressed semantically.

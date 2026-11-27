@@ -1,0 +1,83 @@
+.gateway {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding: var(--space-6) var(--section-inline-padding) var(--space-7);
+  background-color: var(--surface-inverse);
+  color: var(--cream-light);
+  text-align: center;
+}
+
+.name { margin: 0; font: 800 clamp(3rem, 7vw, 6.5rem)/.86 var(--font-heading); letter-spacing: var(--tracking-tight); text-transform: uppercase; }
+
+.selection {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  min-height: 0;
+  width: 100%;
+  max-width: 74rem;
+  margin: var(--space-7) auto 0;
+  padding: 0;
+  overflow: visible;
+}
+.scrollHint { display: none; }
+.choiceCard {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: var(--space-5);
+  border: 1px solid var(--cream-dark);
+  color: var(--cream-light);
+  text-align: left;
+  text-decoration: none;
+  isolation: isolate;
+}
+.choiceCard::before, .choiceCard::after { content: ''; position: absolute; inset: 0; pointer-events: none; }
+.choiceCard::before { z-index: -2; background-position: center; background-size: cover; transition: transform var(--transition-slow) var(--ease); }
+.technical::before { background-image: url('/images/case-studies/relay/cover-editorial.webp'); }
+.creative::before { background-image: url('/images/photography/landscape/Landscape7.webp'); }
+.choiceCard::after { z-index: -1; background: linear-gradient(180deg, transparent 55%, rgb(0 0 0 / .12) 72%, rgb(0 0 0 / .78)); }
+.choiceCard h2 { margin: 0; font: 800 clamp(2rem, 3.6vw, 4rem)/.82 var(--font-heading); letter-spacing: var(--tracking-tight); text-transform: uppercase; text-wrap: balance; }
+.choiceCard:hover, .choiceCard:focus-visible { border-color: var(--accent-inverse); }
+.choiceCard:hover::before, .choiceCard:focus-visible::before { transform: scale(1.035); }
+.choiceCard:focus-visible { outline: 3px solid var(--accent-inverse); outline-offset: 4px; }
+
+.aboutImage { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.aboutImage img { object-fit: cover; object-position: center 39%; transition: transform var(--transition-slow) var(--ease); }
+.about:hover img, .about:focus-visible img { transform: scale(1.035); }
+
+@media (max-width: 1023px) {
+  .selection {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .selection::-webkit-scrollbar { display: none; }
+  .choiceCard { flex: 0 0 min(68vw, 28rem); scroll-snap-align: start; }
+  .scrollHint { display: flex; justify-content: center; gap: var(--space-2); margin: var(--space-4) 0 0; color: var(--cream-light); font: var(--text-xs)/1 var(--font-code); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+}
+@media (max-width: 767px) {
+  .gateway { padding-block: var(--space-5) var(--space-7); }
+  .name { font-size: clamp(2.65rem, 10vw, 3.6rem); }
+  .selection { margin-top: var(--space-6); }
+  .choiceCard { flex-basis: min(68vw, 20rem); padding: var(--space-4); }
+  .choiceCard h2 { font-size: clamp(2rem, 8vw, 3.25rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .choiceCard::before, .aboutImage img { transition: none; }
+  .choiceCard:hover::before, .about:hover img { transform: none; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .choiceCard { transition: transform var(--transition-slow) var(--ease), border-color var(--transition-base) var(--ease); }
+  .choiceCard:hover { transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-3px); }
+  .choiceCard:hover::before { transform: scale(1.06) translate3d(var(--image-x, 0px), var(--image-y, 0px), 0); }
+  .about:hover img { transform: scale(1.06) translate3d(var(--image-x, 0px), var(--image-y, 0px), 0); }
+}

@@ -20,6 +20,7 @@
     "test:experience-guards": "node scripts/test-experience-guards.mjs",
     "verify:canonical": "node scripts/verify-canonical-output.mjs",
     "images:derive": "node scripts/generate-image-derivatives.mjs",
+    "images:convert": "node scripts/convert-image.mjs",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots=all",
     "analyze": "ANALYZE=true next build"

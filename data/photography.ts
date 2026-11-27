@@ -77,7 +77,6 @@ const streetMeta = [
   [13, 2080, 3120],
   [14, 2043, 3065],
   [15, 2892, 1928],
-  [16, 2044, 2965],
   [17, 2080, 2730],
   [18, 2080, 3120],
   [19, 2914, 1943],
@@ -137,4 +136,73 @@ export const PHOTOGRAPHY_IMAGES = {
   landscape: buildPhotos('landscape', 'landscape', 'Landscape', landscapeMeta),
   architecture: buildPhotos('architecture', 'architecture', 'Arquitecture', architectureMeta),
   street: buildPhotos('street', 'street', 'Street', streetMeta),
-} satisfies Record<PhotographyCategory, PhotographyPhoto[]>
+  golden: [
+    {
+      src: '/images/photography/golden/DSCF9773.webp',
+      alt: { en: 'A fisherman silhouetted against a gold sky and the sea.', es: 'Un pescador recortado contra el cielo dorado y el mar.' },
+      category: 'landscape', width: 2049, height: 3073,
+    },
+    {
+      src: '/images/photography/golden/DSCF9772.webp',
+      alt: { en: 'The low sun reflected across the water beyond a dark shore.', es: 'El sol bajo reflejado en el agua tras una orilla oscura.' },
+      category: 'landscape', width: 2036, height: 3054,
+    },
+    {
+      src: '/images/photography/golden/DSCF9785.webp',
+      alt: { en: 'Sunlight scattered across small waves.', es: 'La luz del sol dispersa sobre las olas pequeñas.' },
+      category: 'landscape', width: 2080, height: 3120,
+    },
+    {
+      src: '/images/photography/golden/DSCF9775.webp',
+      alt: { en: 'A cargo ship on the horizon beneath a fading peach sky.', es: 'Un carguero en el horizonte bajo un cielo color melocotón.' },
+      category: 'landscape', width: 2400, height: 1600,
+    },
+    {
+      src: '/images/photography/golden/DSCF9853.webp',
+      alt: { en: 'The last sunlight behind a mountain, reflected on the sea beyond dark shoreline rocks.', es: 'La última luz tras una montaña se refleja en el mar, más allá de las rocas oscuras de la orilla.' },
+      category: 'landscape', width: 2400, height: 1600,
+    },
+  ],
+  coast: [
+    {
+      src: '/images/photography/coast/DSCF9844.webp',
+      alt: { en: 'Two sailboats on calm water beneath a clouded sky.', es: 'Dos veleros sobre el agua en calma bajo un cielo nublado.' },
+      category: 'landscape', width: 2019, height: 3028,
+    },
+    {
+      src: '/images/photography/coast/DSCF9754.webp',
+      alt: { en: 'A cruise ship and smaller boats in the harbour.', es: 'Un crucero y varios barcos pequeños en el puerto.' },
+      category: 'landscape', width: 2400, height: 1600,
+    },
+    {
+      src: '/images/photography/coast/DSCF9838.webp',
+      alt: { en: 'A ship in port, framed by masts and waterfront buildings.', es: 'Un barco en el puerto, entre mástiles y edificios del paseo marítimo.' },
+      category: 'landscape', width: 2080, height: 3120,
+    },
+    {
+      src: '/images/photography/coast/DSCF9810.webp',
+      alt: { en: 'Two fishmongers working at a seafood counter.', es: 'Dos pescaderos trabajando en un puesto de pescado.' },
+      category: 'street', width: 2080, height: 3120,
+    },
+    {
+      src: '/images/photography/coast/DSCF9857.webp',
+      alt: { en: 'A pale rock face beside still water under a pastel evening sky.', es: 'Una pared de roca clara junto al agua en calma bajo un cielo pastel al atardecer.' },
+      category: 'landscape', width: 1946, height: 2919,
+    },
+    {
+      src: '/images/photography/coast/DSCF9860.webp',
+      alt: { en: 'A lone sailboat on a calm sea beneath a wide, muted evening sky.', es: 'Un velero solitario sobre el mar en calma bajo un amplio cielo de atardecer.' },
+      category: 'landscape', width: 2400, height: 1600,
+    },
+    {
+      src: '/images/photography/coast/DSCF9861.webp',
+      alt: { en: 'A small motorboat crosses still water at dusk, leaving a narrow wake.', es: 'Una pequeña lancha cruza el agua en calma al anochecer y deja una estela estrecha.' },
+      category: 'landscape', width: 2400, height: 1600,
+    },
+    {
+      src: '/images/photography/coast/DSCF9849.webp',
+      alt: { en: 'A sunlit coastal rock above the sea, with the horizon beyond.', es: 'Una roca costera iluminada por el sol sobre el mar, con el horizonte al fondo.' },
+      category: 'landscape', width: 1880, height: 2820,
+    },
+  ],
+} satisfies Record<PhotographyCategory | 'golden' | 'coast', PhotographyPhoto[]>

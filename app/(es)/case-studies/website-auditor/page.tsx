@@ -75,14 +75,13 @@ const commercialContentEs: CommercialCaseStudyContent = {
 
 const content = {
   en: {
-    back: 'Back to Case Studies',
     eyebrow: 'AI Systems / Audit Workflow',
     heroTitle: 'Website Audit Agent',
     heroSubtitle:
       'An evidence-backed website audit workflow that turns public websites into structured UX, SEO, performance, content, and prospect-intelligence reports.',
     heroDescription:
       'The goal was to turn website review from subjective opinion into a repeatable evidence workflow, while keeping AI useful but bounded.',
-    heroCTAGithub: 'View GitHub →',
+    heroCTAGithub: 'View GitHub',
     heroCTAHow: 'View System Logic',
     heroFigcaption: 'Representative preview. Not a live audit result.',
     heroFigAriaLabel: 'Website Audit Agent representative report preview',
@@ -285,7 +284,7 @@ const content = {
       'AI synthesis depends on accepted findings.',
       'Future work includes evals, model comparison, observability, and real audit examples.',
     ],
-    resultCTAGithub: 'View GitHub →',
+    resultCTAGithub: 'View GitHub',
     resultCTAWorkflow: 'View System Logic',
     report: {
       title: 'Website Audit Agent',
@@ -306,14 +305,13 @@ const content = {
     },
   },
   es: {
-    back: 'Volver a casos',
     eyebrow: 'Sistemas de IA / Flujo de auditoría',
     heroTitle: 'Website Audit Agent',
     heroSubtitle:
       'Un flujo de auditoría web basado en evidencia que convierte sitios públicos en informes estructurados de UX, SEO, rendimiento, contenido e inteligencia comercial.',
     heroDescription:
       'El objetivo era convertir la revisión web —normalmente subjetiva— en un flujo repetible basado en evidencia, manteniendo la IA útil pero acotada.',
-    heroCTAGithub: 'Ver GitHub →',
+    heroCTAGithub: 'Ver GitHub',
     heroCTAHow: 'Cómo funciona',
     heroFigcaption: 'Vista representativa. No es un resultado de auditoría en vivo.',
     heroFigAriaLabel: 'Vista representativa del informe de Website Audit Agent',
@@ -516,7 +514,7 @@ const content = {
       'La síntesis IA depende de hallazgos aceptados.',
       'El trabajo futuro incluye evals, comparación de modelos, observabilidad y ejemplos reales de auditoría.',
     ],
-    resultCTAGithub: 'Ver GitHub →',
+    resultCTAGithub: 'Ver GitHub',
     resultCTAWorkflow: 'Revisar flujo',
     report: {
       title: 'Website Audit Agent',
@@ -632,9 +630,6 @@ export default function WebsiteAuditorPage() {
           data-presentation-family="technical-product"
         >
           <div className="data-brief-hero__content">
-            <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="website-auditor-title" className="data-brief-hero__title">

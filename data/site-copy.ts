@@ -52,7 +52,7 @@ export const siteCopy = {
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
       builtBy: 'Designed and built by Raúl Mermans.',
-      availability: 'Open to ambitious roles, projects, and collaborations.',
+      availability: 'Open to AI and product roles, selected projects, and collaborations.',
     },
     home: {
       schema: {
@@ -178,7 +178,7 @@ export const siteCopy = {
         subtitle:
           'Open to AI, product and technology roles, selected projects, and collaborations where business context, technical execution and strong product judgment matter.',
         intro: 'Roles, products, projects and collaborations. A clear challenge or promising idea is enough to start a conversation.',
-        availability: 'Open to ambitious roles, projects, and collaborations.',
+        availability: 'Open to AI and product roles, selected projects, and collaborations.',
         location: 'Madrid · Remote · EU',
         linksLabel: 'Direct contact options',
         emailLabel: 'Email',
@@ -261,7 +261,7 @@ export const siteCopy = {
       pageEyebrow: 'Strategy · Creativity · Data · Technology',
       pageTitle: 'Case Studies',
       pageDescription:
-        'Selected work across campaigns, marketing intelligence, digital products, brand thinking, visual direction, and AI-assisted tools. Each project addresses a specific problem, audience, or opportunity.',
+        'Selected AI, data, product, and creative projects. Each case study explains the problem, the work, and the evidence available.',
       viewProject: 'View Project',
       overview: 'Overview',
       challenge: 'The Challenge',
@@ -279,9 +279,9 @@ export const siteCopy = {
     },
     appsPage: {
       title: 'Tools and prototypes',
-      systemsCta: 'Explore the larger systems',
+      systemsCta: 'View case studies',
       intro:
-        'Small operational tools, experiments, and product surfaces built to test workflow logic, data structure, and interface behavior.',
+        'Tools for managing locations and logging workouts. Each prototype shows a focused task, its interface, and its current stage.',
     },
     appDetailUi: {
       breadcrumbLabel: 'Apps',
@@ -347,7 +347,7 @@ export const siteCopy = {
       privacy: 'Política de privacidad',
       terms: 'Términos del servicio',
       builtBy: 'Diseñado y desarrollado por Raúl Mermans.',
-      availability: 'Abierto a nuevos retos profesionales, proyectos y colaboraciones.',
+      availability: 'Disponible para puestos en IA y producto, proyectos seleccionados y colaboraciones.',
     },
     home: {
       schema: {
@@ -473,7 +473,7 @@ export const siteCopy = {
         subtitle:
           'Abierto a puestos de IA, producto y tecnología, proyectos seleccionados y colaboraciones donde importen el contexto de negocio, la ejecución técnica y el criterio de producto.',
         intro: 'Puestos, productos, proyectos y colaboraciones. Un reto claro o una buena idea bastan para empezar a hablar.',
-        availability: 'Abierto a nuevos retos profesionales, proyectos y colaboraciones.',
+        availability: 'Disponible para puestos en IA y producto, proyectos seleccionados y colaboraciones.',
         location: 'Madrid · Remoto · UE',
         linksLabel: 'Opciones de contacto directo',
         emailLabel: 'Email',
@@ -556,7 +556,7 @@ export const siteCopy = {
       pageEyebrow: 'Estrategia · Creatividad · Datos · Tecnología',
       pageTitle: 'Casos de estudio',
       pageDescription:
-        'Trabajo seleccionado de campañas, inteligencia de marketing, productos digitales, marca, dirección visual y herramientas asistidas por IA, construido alrededor de un problema, una audiencia o una oportunidad concreta.',
+        'Proyectos seleccionados de IA, datos, producto y creatividad. Cada caso explica el problema, el trabajo realizado y las pruebas disponibles.',
       viewProject: 'Ver proyecto',
       overview: 'Resumen',
       challenge: 'El reto',
@@ -574,9 +574,9 @@ export const siteCopy = {
     },
     appsPage: {
       title: 'Herramientas y prototipos',
-      systemsCta: 'Explorar los sistemas más amplios',
+      systemsCta: 'Ver casos de estudio',
       intro:
-        'Pequeñas herramientas, experimentos y superficies de producto creadas para probar lógica de workflow, estructura de datos y comportamiento de interfaz.',
+        'Herramientas para gestionar ubicaciones y registrar entrenamientos. Cada prototipo muestra una tarea concreta, su interfaz y su estado actual.',
     },
     appDetailUi: {
       breadcrumbLabel: 'Apps',

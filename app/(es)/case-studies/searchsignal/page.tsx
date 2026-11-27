@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CaseStudyMiniNav from '@/components/case-studies/CaseStudyMiniNav'
 import CaseStudyNext from '@/components/case-studies/CaseStudyNext'
+import CaseStudyRepositoryProof from '@/components/case-studies/CaseStudyRepositoryProof'
 import {
   CaseStudyHeroLabel,
   CaseStudySnapshot,
@@ -16,7 +17,6 @@ const liveUrl = 'https://search-signal.vercel.app'
 const githubUrl = 'https://github.com/RaulMermans/SearchSignal'
 
 type Copy = {
-  back: string
   eyebrow: string
   subtitle: string
   description: string
@@ -43,7 +43,6 @@ type Copy = {
 
 const copy: Record<Locale, Copy> = {
   en: {
-    back: 'Case studies',
     eyebrow: 'Ecommerce search / Product systems',
     subtitle: 'Search quality starts before search.',
     description: 'SearchSignal is an inspectable catalog-readiness framework for finding the product-data issues that shape ecommerce search before a customer enters a query.',
@@ -68,7 +67,6 @@ const copy: Record<Locale, Copy> = {
     final: { title: 'Better search begins with better information.', description: 'SearchSignal treats search quality as a systems problem before it becomes a ranking problem.', live: 'Open live demonstrator', github: 'View GitHub repository', back: 'Back to case studies' },
   },
   es: {
-    back: 'Casos de estudio',
     eyebrow: 'Búsqueda ecommerce / Sistemas de producto',
     subtitle: 'La calidad de búsqueda empieza antes de buscar.',
     description: 'SearchSignal es un framework inspeccionable de preparación de catálogo que detecta los problemas de datos que condicionan la búsqueda ecommerce antes de que una persona escriba una consulta.',
@@ -125,9 +123,6 @@ export default function SearchSignalPage() {
         data-presentation-family="technical-product"
       >
         <div className="data-brief-hero__content">
-          <Link href={localizePath('/case-studies', locale)} className="data-brief-back">
-            {content.back}
-          </Link>
           <CaseStudyHeroLabel locale={locale} />
           <p className="data-brief-eyebrow">{content.eyebrow}</p>
           <h1 id="searchsignal-title" className="data-brief-hero__title" aria-label="SearchSignal">
@@ -138,10 +133,10 @@ export default function SearchSignalPage() {
           <p className="searchsignal-status"><i></i>{content.status}</p>
           <div className="data-brief-actions" aria-label={content.linksLabel}>
             <a href={liveUrl} target="_blank" rel="noreferrer" className="data-brief-button data-brief-button--primary">
-              {content.live} <span aria-hidden="true">↗</span>
+              {content.live}
             </a>
             <a href={githubUrl} target="_blank" rel="noreferrer" className="data-brief-button">
-              {content.github} <span aria-hidden="true">↗</span>
+              {content.github}
             </a>
           </div>
           <dl className="data-brief-hero__facts searchsignal-meta">
@@ -158,8 +153,8 @@ export default function SearchSignalPage() {
   <Section id="premise" {...content.premise}><div className="searchsignal-premise"><p>{content.premise.body}</p><RecordVisual /></div></Section>
   <Section id="problem" {...content.problem}><div className="searchsignal-prose"><p>{content.problem.body}</p></div><div className="searchsignal-card-grid searchsignal-card-grid--three">{content.problem.cards.map(([title, description], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p></article>)}</div></Section>
   <Section id="insight" {...content.insight} dark><div className="searchsignal-insight"><p>{content.insight.body}</p><blockquote>{content.insight.question}</blockquote></div></Section>
-  <Section id="system" {...content.system}><div className="searchsignal-prose"><p>{content.system.body}</p></div><PipelineVisual steps={content.system.steps} /></Section>
-  <Section id="experience" {...content.experience}><div className="searchsignal-prose"><p>{content.experience.body}</p></div><div className="searchsignal-experience-grid">{content.experience.surfaces.map(([title, description], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p></article>)}</div></Section>
+  <Section id="system" {...content.system}><div className="searchsignal-prose"><p>{content.system.body}</p></div><PipelineVisual steps={content.system.steps} /><CaseStudyRepositoryProof locale={locale} src="/images/case-studies/searchsignal/proof/catalog-readiness.webp" width={1400} height={863} alt={locale === 'es' ? 'Consola de SearchSignal con indexación bloqueada, hallazgos y puntuación por dimensión' : 'SearchSignal console with blocked indexing, findings, and dimension scores'} caption={locale === 'es' ? 'Una falta de evidencia sobre precio impide indexar el lote; las demás dimensiones siguen visibles. Datos sintéticos.' : 'Missing price evidence blocks batch indexing while the other dimensions stay visible. Synthetic data.'} source="https://github.com/RaulMermans/SearchSignal/blob/main/docs/assets/screenshots/catalog-readiness.png" /></Section>
+  <Section id="experience" {...content.experience}><div className="searchsignal-prose"><p>{content.experience.body}</p></div><div className="searchsignal-experience-grid">{content.experience.surfaces.map(([title, description], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p></article>)}</div><CaseStudyRepositoryProof locale={locale} src="/images/case-studies/searchsignal/proof/hybrid-retrieval.webp" width={1400} height={943} alt={locale === 'es' ? 'Resultados de búsqueda híbrida para productos ficticios con filtros y evidencia de coincidencia' : 'Hybrid search results for fictional products with filters and match evidence'} caption={locale === 'es' ? 'La demo compara resultados de búsqueda híbrida con filtros y evidencia de coincidencia sobre un catálogo ficticio.' : 'The demo pairs hybrid results with filters and match evidence from a fictional catalog.'} source="https://github.com/RaulMermans/SearchSignal/blob/main/docs/assets/screenshots/hybrid-retrieval.png" /></Section>
   <Section id="explainability" {...content.explainability}><div className="searchsignal-explainability"><div className="searchsignal-prose"><p>{content.explainability.body}</p></div><ul>{content.explainability.points.map(point => <li key={point}>{point}</li>)}</ul></div></Section>
   <Section id="decisions" {...content.decisions}><div className="searchsignal-card-grid searchsignal-card-grid--decisions">{content.decisions.items.map(([title, description], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p></article>)}</div></Section>
   <Section id="architecture" {...content.architecture}><div className="searchsignal-prose"><p>{content.architecture.body}</p></div><div className="searchsignal-architecture">{content.architecture.packages.map(([title, description], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}</div></Section>
@@ -167,5 +162,5 @@ export default function SearchSignalPage() {
   <Section id="quality" {...content.quality}><div className="searchsignal-prose"><p>{content.quality.body}</p></div><div className="searchsignal-quality-grid">{content.quality.checks.map(([value, label]) => <article key={label}><strong>{value}</strong><span>{label}</span></article>)}</div></Section>
   <Section id="outcome" {...content.outcome} dark><div className="searchsignal-prose searchsignal-prose--inverse"><p>{content.outcome.body}</p></div><ul className="searchsignal-outcome-list">{content.outcome.points.map(point => <li key={point}>{point}</li>)}</ul></Section>
   <Section id="next" {...content.next}><ol className="searchsignal-next-list">{content.next.items.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, '0')}</span>{item}</li>)}</ol></Section>
-  <section className="searchsignal-final ui-section" aria-labelledby="searchsignal-final-heading"><div className="searchsignal-container ui-section__container"><p className="ui-eyebrow">SearchSignal</p><h2 id="searchsignal-final-heading">{content.final.title}</h2><p>{content.final.description}</p><div className="searchsignal-actions"><a href={liveUrl} target="_blank" rel="noreferrer" className="ui-button">{content.final.live} <span aria-hidden="true">↗</span></a><a href={githubUrl} target="_blank" rel="noreferrer" className="searchsignal-actions__secondary">{content.final.github} <span aria-hidden="true">↗</span></a><Link href={localizePath('/case-studies', locale)} className="searchsignal-actions__secondary">{content.final.back} →</Link></div></div></section></main><CaseStudyNext currentHref="/case-studies/searchsignal" locale={locale} accentColor="var(--color-0)" /><Footer locale={locale} /></>
+  <section className="searchsignal-final ui-section" aria-labelledby="searchsignal-final-heading"><div className="searchsignal-container ui-section__container"><p className="ui-eyebrow">SearchSignal</p><h2 id="searchsignal-final-heading">{content.final.title}</h2><p>{content.final.description}</p><div className="searchsignal-actions"><a href={liveUrl} target="_blank" rel="noreferrer" className="ui-button">{content.final.live}</a><a href={githubUrl} target="_blank" rel="noreferrer" className="searchsignal-actions__secondary">{content.final.github}</a><Link href={localizePath('/case-studies', locale)} className="searchsignal-actions__secondary">{content.final.back}</Link></div></div></section></main><CaseStudyNext currentHref="/case-studies/searchsignal" locale={locale} accentColor="var(--color-0)" /><Footer locale={locale} /></>
 }

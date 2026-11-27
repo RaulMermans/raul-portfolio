@@ -41,6 +41,23 @@ assert_file out/case-studies/blogagent/index.html
 assert_file out/en/case-studies/blogagent/index.html
 assert_file out/case-studies/relay/index.html
 assert_file out/en/case-studies/relay/index.html
+assert_file out/photography/index.html
+assert_file out/en/photography/index.html
+
+for series in morocco the-waterline; do
+  assert_file "out/photography/$series/index.html"
+  assert_file "out/en/photography/$series/index.html"
+  assert_contains out/photography/index.html "href=\"/photography/$series/\""
+  assert_contains out/en/photography/index.html "href=\"/en/photography/$series/\""
+done
+
+for file in out/photography/on-foot/index.html out/en/photography/on-foot/index.html; do
+  if test -e "$file"; then
+    echo "Withdrawn series still exported: $file"
+    exit 1
+  fi
+done
+assert_absent out/sitemap.xml "/photography/on-foot"
 
 assert_file out/en/services/ai-integrations/index.html
 assert_file out/en/services/creative-automation/index.html
@@ -54,19 +71,15 @@ assert_file out/services/sistemas-de-marca/index.html
 assert_file out/services/prototipos-producto-ia/index.html
 assert_file out/services/desarrollo-web/index.html
 
-assert_contains out/en/index.html "Turning complex problems into intelligent systems people can use."
-assert_contains out/en/index.html "Built to solve real problems."
-assert_contains out/en/index.html "Building something ambitious?"
-assert_contains out/en/index.html "Direct contact options"
-assert_contains out/en/index.html "Open to ambitious roles, projects, and collaborations"
-assert_contains out/en/index.html "raulmermans@gmail.com"
+assert_contains out/en/index.html "Raúl Mermans"
+assert_contains out/en/index.html "Technical"
+assert_contains out/en/index.html "Creative"
+assert_contains out/en/index.html "About me"
 
-assert_contains out/index.html "Convierto problemas complejos en sistemas inteligentes que las personas pueden usar."
-assert_contains out/index.html "Construidos para resolver problemas reales."
-assert_contains out/index.html "¿Construimos algo ambicioso?"
-assert_contains out/index.html "Opciones de contacto directo"
-assert_contains out/index.html "Abierto a nuevos retos profesionales, proyectos y colaboraciones"
-assert_contains out/index.html "raulmermans@gmail.com"
+assert_contains out/index.html "Raúl Mermans"
+assert_contains out/index.html "Técnico"
+assert_contains out/index.html "Creativo"
+assert_contains out/index.html "Sobre mí"
 
 assert_contains out/en/services/ai-integrations/index.html "AI Systems &amp; Workflow Design"
 assert_contains out/en/services/creative-automation/index.html "Data &amp; Business Intelligence"

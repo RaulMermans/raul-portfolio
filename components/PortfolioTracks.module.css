@@ -1,0 +1,146 @@
+.technical, .creative { color: var(--text-primary); background: var(--surface-page); }
+.eyebrow { margin: 0; font: var(--text-xs) var(--font-code); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+.railHint { display: none; }
+.technical h1, .technical h2, .technical h3, .technical h4, .creative h1, .creative h2, .creative h3 { font-family: var(--font-heading); letter-spacing: var(--tracking-tight); text-transform: uppercase; }
+.technical a, .creative a { color: inherit; }
+.visualText a { display: inline-flex; min-height: var(--touch-min); align-items: center; border-bottom: 1px solid currentColor; font: var(--text-xs) var(--font-code); letter-spacing: var(--tracking-wide); text-decoration: none; text-transform: uppercase; }
+.techFeatured, .techArchive { padding: var(--space-8) var(--section-inline-padding); }
+.sectionIntro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--space-5); align-items: end; margin-bottom: var(--space-6); }
+.sectionIntro > .eyebrow { grid-column: 1 / -1; }
+.sectionIntro h2, .magazineHeading h2 { margin: 0; font-size: clamp(3.5rem, 6vw, 7rem); line-height: .87; }
+.sectionIntro > p:not(.eyebrow), .magazineHeading > p:not(.eyebrow) { max-width: 45ch; margin: 0; font: var(--text-md)/var(--prose-line-height) var(--font-prose); }
+.featuredGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); }
+.featuredCard { display: flex; flex-direction: column; min-width: 0; background: var(--surface-muted); text-decoration: none; }
+.featuredImage { position: relative; aspect-ratio: 1.32; background: var(--ink); overflow: hidden; }
+.featuredImage img { object-fit: cover; transition: transform .5s ease; }
+.featuredCard:hover img, .featuredCard:focus-visible img { transform: scale(1.04); }
+.featuredText { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: var(--space-4); }
+.featuredText h3 { margin: var(--space-4) 0 var(--space-3); font-size: clamp(2.5rem, 3.6vw, 4.8rem); line-height: .9; overflow-wrap: anywhere; }
+.featuredText p { margin: 0 0 var(--space-5); font: var(--text-base)/var(--prose-line-height) var(--font-prose); }
+.featuredText .featuredDecision { margin-bottom: var(--space-3); font-size: var(--text-md); line-height: 1.35; }
+.featuredText .featuredDescription { color: var(--text-secondary); }
+.featuredText > span:last-child, .seriesCaption > span:last-child, .identityCard > div:last-child > span:last-child { margin-top: auto; padding-top: var(--space-3); border-top: 1px solid currentColor; font: var(--text-xs) var(--font-code); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+.techArchive { background: var(--surface-muted); }
+.techGroup { margin-top: var(--space-7); }
+.groupHeading { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); padding-bottom: var(--space-3); border-bottom: var(--border-dark); }
+.groupHeading h3 { margin: 0; font-size: clamp(2rem, 3vw, 3.5rem); line-height: 1; }
+.groupHeading span { font: var(--text-xs) var(--font-code); }
+.techList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--space-5); }
+.techRow { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: var(--space-4); align-items: center; min-height: 10rem; padding: var(--space-3) 0; border-bottom: var(--border-dark); text-decoration: none; }
+.techRow:hover, .techRow:focus-visible { color: var(--accent); }
+.rowImage { position: relative; width: 7rem; aspect-ratio: 1.2; background: var(--ink); overflow: hidden; }
+.rowImage img { object-fit: cover; }
+.rowCopy { min-width: 0; }
+.rowCopy h4 { margin: 0 0 var(--space-2); font-size: clamp(1.5rem, 2vw, 2.3rem); line-height: .96; overflow-wrap: anywhere; }
+.rowCopy p { display: -webkit-box; margin: 0 0 var(--space-2); overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font: var(--text-sm)/1.4 var(--font-prose); }
+.rowCopy div { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font: var(--text-xs)/1.3 var(--font-code); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+.trackExit { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); padding: var(--space-6) var(--section-inline-padding); border-top: var(--border-dark); }
+.trackExit a { min-height: var(--touch-min); font: var(--text-xs) var(--font-code); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+.creativeContents { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4) var(--space-7); padding: var(--space-8) var(--section-inline-padding); border-bottom: var(--border-dark); }
+.creativeContents > .eyebrow { grid-column: 1 / -1; }
+.creativeContents h2 { max-width: 9ch; margin: 0; font-size: clamp(4rem, 7vw, 8rem); line-height: .85; }
+.creativeContents > div { align-self: end; border-top: var(--border-dark); }
+.creativeContents > div a { display: block; min-height: var(--touch-min); padding: var(--space-3) 0; border-bottom: var(--border-dark); font: var(--text-md) var(--font-ui); text-decoration: none; }
+.seriesSection, .identitySection { padding: var(--space-8) var(--section-inline-padding); }
+.magazineHeading { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: var(--space-4) var(--space-7); align-items: end; margin-bottom: var(--space-7); }
+.magazineHeading > .eyebrow { grid-column: 1 / -1; }
+.seriesGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-5); }
+.seriesCard { grid-column: span 4; min-width: 0; text-decoration: none; }
+.seriesCard:first-child { grid-column: span 6; }
+.seriesCard:nth-child(2) { grid-column: span 6; }
+.seriesImage { position: relative; aspect-ratio: .92; overflow: hidden; background: var(--cream-dark); }
+.seriesCard:first-child .seriesImage, .seriesCard:nth-child(2) .seriesImage { aspect-ratio: 1.15; }
+.seriesImage img { object-fit: cover; transition: transform .5s ease; }
+.seriesCard:hover img, .seriesCard:focus-visible img { transform: scale(1.035); }
+.seriesCaption { display: flex; flex-direction: column; align-items: flex-start; min-height: 15rem; padding: var(--space-4) 0; border-top: var(--border-dark); }
+.seriesCaption h3 { margin: var(--space-3) 0; font-size: clamp(2.5rem, 4vw, 5rem); line-height: .9; }
+.seriesCaption p { margin: 0 0 var(--space-4); font: var(--text-base)/var(--prose-line-height) var(--font-prose); }
+.visualSection { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; min-height: 0; padding: 0; background: var(--surface-inverse); color: var(--cream-light); }
+.visualImage { min-width: 0; }
+.visualImage img { display: block; width: 100%; height: auto; object-fit: contain; }
+.visualText { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: var(--space-7) var(--section-inline-padding); }
+.visualText h2 { margin: var(--space-5) 0; font-size: clamp(3.7rem, 6vw, 7rem); line-height: .88; }
+.visualText > p:not(.eyebrow) { max-width: 34ch; margin: 0 0 var(--space-6); font: var(--text-md)/var(--prose-line-height) var(--font-prose); }
+.identityGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+.identityCard { display: flex; flex-direction: column; min-width: 0; text-decoration: none; }
+.identityImage { position: relative; aspect-ratio: 1.1; overflow: hidden; background: var(--cream-dark); }
+.identityImage img { object-fit: cover; transition: transform .5s ease; }
+.identityCard:hover img, .identityCard:focus-visible img { transform: scale(1.035); }
+.identityCard > div:last-child { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: var(--space-4) 0; border-top: var(--border-dark); }
+.identityCard h3 { margin: var(--space-3) 0; font-size: clamp(2.5rem, 3.5vw, 4.5rem); line-height: .9; }
+.identityCard p { margin: 0 0 var(--space-5); font: var(--text-base)/var(--prose-line-height) var(--font-prose); }
+@media (max-width: 900px) {
+  .visualSection { display: flex; flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 767px) {
+  .techFeatured, .techArchive, .seriesSection, .identitySection { padding-block: var(--space-7); }
+  .sectionIntro, .magazineHeading, .creativeContents { display: block; }
+  .sectionIntro h2, .magazineHeading h2, .creativeContents h2 { margin: var(--space-3) 0; font-size: clamp(2.9rem, 10.5vw, 5rem); }
+  .sectionIntro > p:not(.eyebrow), .magazineHeading > p:not(.eyebrow) { font-size: var(--text-base); }
+  .featuredGrid, .techList, .identityGrid { grid-template-columns: 1fr; }
+  .featuredImage { aspect-ratio: 1.45; }
+  .featuredText h3, .identityCard h3 { font-size: clamp(2.7rem, 10vw, 4rem); }
+  .techRow { grid-template-columns: 5rem minmax(0, 1fr); gap: var(--space-3); min-height: 8rem; }
+  .rowImage { width: 5rem; }
+  .rowCopy h4 { font-size: var(--text-lg); }
+  .rowCopy p { font-size: var(--text-sm); }
+  .rowCopy div { font-size: var(--text-xs); }
+  .creativeContents { padding-block: var(--space-7); }
+  .creativeContents > div { margin-top: var(--space-5); }
+  .seriesGrid { display: block; }
+  .seriesCard { display: block; margin-bottom: var(--space-6); }
+  .seriesImage, .seriesCard:first-child .seriesImage, .seriesCard:nth-child(2) .seriesImage { aspect-ratio: 1.1; }
+  .seriesCaption { min-height: 0; }
+  .seriesCaption h3 { font-size: clamp(3rem, 11vw, 4.5rem); }
+  .visualText { padding-block: var(--space-7); }
+  .visualText h2 { font-size: clamp(3rem, 11vw, 5rem); }
+  .visualText > p:not(.eyebrow) { font-size: var(--text-base); }
+  .identityImage { aspect-ratio: 1.3; }
+}
+@media (prefers-reduced-motion: reduce) { .featuredImage img, .seriesImage img, .identityImage img { transition: none; } }
+
+/* Each chapter advances vertically; its work moves in a horizontal, snap-aligned rail. */
+.featuredGrid, .techList, .seriesGrid, .identityGrid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(64vw, 48rem);
+  grid-template-columns: none;
+  gap: var(--space-4);
+  width: calc(100% + var(--section-inline-padding));
+  padding-right: var(--section-inline-padding);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.featuredGrid:focus-visible, .techList:focus-visible, .seriesGrid:focus-visible, .identityGrid:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.featuredCard, .techRow, .seriesCard, .identityCard { scroll-snap-align: start; }
+.featuredImage { aspect-ratio: 1.55; }
+.featuredText h3 { font-size: clamp(2.75rem, 4.8vw, 5.25rem); }
+.techList { margin-top: var(--space-4); }
+.techRow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 0;
+  padding: 0 0 var(--space-5);
+  border-top: var(--border-dark);
+}
+.rowImage { width: 100%; aspect-ratio: 1.8; margin-top: var(--space-3); }
+.rowCopy { display: flex; flex: 1; flex-direction: column; padding-top: var(--space-3); }
+.rowCopy h4 { font-size: clamp(2.6rem, 4.4vw, 4.8rem); }
+.rowCopy p { max-width: 43ch; }
+.rowCopy div { margin-top: auto; padding-top: var(--space-4); }
+.seriesCard, .seriesCard:first-child, .seriesCard:nth-child(2) { grid-column: auto; margin-bottom: 0; }
+.seriesImage, .seriesCard:first-child .seriesImage, .seriesCard:nth-child(2) .seriesImage { aspect-ratio: 1.55; }
+.seriesCaption { min-height: 11rem; }
+.identityImage { aspect-ratio: 1.55; }
+.identityCard > div:last-child { min-height: 15rem; }
+@media (max-width: 767px) {
+  .featuredGrid, .techList, .seriesGrid, .identityGrid { grid-auto-columns: 82vw; gap: var(--space-3); }
+  .featuredGrid, .seriesGrid { grid-auto-columns: 76vw; }
+  .railHint { display: flex; justify-content: flex-end; gap: var(--space-2); margin: var(--space-3) 0 0; font: var(--text-xs)/1 var(--font-code); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  .featuredText h3, .rowCopy h4, .seriesCaption h3, .identityCard h3 { font-size: clamp(2.3rem, 9vw, 3.6rem); }
+  .featuredImage, .rowImage, .seriesImage, .seriesCard:first-child .seriesImage, .seriesCard:nth-child(2) .seriesImage, .identityImage { aspect-ratio: 1.12; }
+}

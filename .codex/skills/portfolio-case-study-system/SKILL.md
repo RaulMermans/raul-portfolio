@@ -15,7 +15,7 @@ Read [references/case-study-contracts.md](references/case-study-contracts.md), t
 
 ## Shared rules
 
-- Every full case-study route must render the foundation in this order: a `data-case-study-hero` with the return link, shared case-study label, H1, purpose/tagline and presentation-family marker; `CaseStudyMiniNav`; `CaseStudySnapshot`; project-specific evidence chapters; `CaseStudyNext`. Use `CaseStudyHero` for image-led creative work and `CaseStudyHeroLabel` for product-led heroes. Do not recreate this anatomy locally.
+- Every full case-study route must render the foundation in this order: a `data-case-study-hero` with the shared case-study label, H1, purpose/tagline and presentation-family marker; `CaseStudyMiniNav`; `CaseStudySnapshot`; project-specific evidence chapters; `CaseStudyNext`. Do not add a return-to-index link in the hero. Use `CaseStudyHero` for image-led creative work and `CaseStudyHeroLabel` for product-led heroes. Do not recreate this anatomy locally.
 - The first viewport identifies the project, its purpose, the work performed, and the case-study context before a reader has to interpret an image.
 - Keep a consistent case-study spine: context, decision/problem, evidence/process, value or outcome, limitation/boundary, and next work. Name each chapter in the project’s own language.
 - Make claimed results traceable. Label prototype work, directional evidence, simulated data, and unmeasured outcomes honestly. Do not manufacture metrics, testimonials, user counts, or adoption claims.

@@ -77,7 +77,7 @@ export default function CaseStudyNext({
                 <strong className="case-study-next-new__title">
                   {study.title}
                 </strong>
-                <span className="case-study-next-new__view">{viewLabel} →</span>
+                <span className="case-study-next-new__view">{viewLabel}</span>
               </span>
             </Link>
           ))}

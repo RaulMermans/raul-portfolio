@@ -5,12 +5,12 @@ import { absoluteRouteUrl, buildPageMetadata, siteConfig } from '@/lib/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'Photography',
   description:
-    'Photography by Raúl Mermans, showcasing the visual judgment, composition, and restraint that support his broader AI systems and creative work.',
+    'Photography by Raúl Mermans, edited into complete series on Morocco, the coast, and moments found on foot.',
   path: '/photography',
   locale: 'en',
   image: {
-    url: '/images/sections/photography-bg.webp',
-    alt: 'Photography gallery by Raúl Mermans',
+    url: '/images/photography/landscape/Landscape7.webp',
+    alt: 'Sand dunes photographed by Raúl Mermans',
   },
   keywords: ['photography portfolio', 'editorial photography', 'brand photography'],
 })
@@ -28,7 +28,7 @@ export default function EnglishPhotographyLayout({
           '@id': `${siteConfig.url}/#photography-page-en`,
           name: 'Photography by Raúl Mermans',
           description:
-            'Photography by Raúl Mermans, showcasing the visual judgment, composition, and restraint that support his broader AI systems and creative work.',
+            'Photography by Raúl Mermans, edited into complete series on Morocco, the coast, and moments found on foot.',
           url: absoluteRouteUrl('/en/photography'),
         }}
       />

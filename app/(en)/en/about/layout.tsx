@@ -4,7 +4,7 @@ import { buildPageMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'About',
   description:
-    'Raúl Mermans builds across AI, product, data and creative systems, with a business and marketing foundation and current Big Data studies.',
+    'Raúl Mermans works across business, product, and applied engineering. He builds AI systems and tools that can be tested.',
   path: '/about',
   locale: 'en',
   image: {

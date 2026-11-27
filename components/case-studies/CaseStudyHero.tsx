@@ -1,12 +1,11 @@
 'use client'
 import Image from 'next/image'
-import Link from 'next/link'
 import type {
   CaseStudyHero as CaseStudyHeroType,
 } from '@/types/case-study'
 import { getPresentationFamilyForProject } from '@/data/portfolio-experience'
 import { getSiteCopy } from '@/data/site-copy'
-import { type Locale, localizePath } from '@/lib/i18n'
+import { type Locale } from '@/lib/i18n'
 
 interface CaseStudyHeroProps {
   hero: CaseStudyHeroType
@@ -45,18 +44,6 @@ export default function CaseStudyHero({
             className="case-study-hero-new__img"
           />
           <div className="case-study-hero-new__overlay"></div>
-        </div>
-      </div>
-      <div className="case-study-hero-new__navigation">
-        <div className="case-study-hero-new__container">
-          <Link
-            href={localizePath('/case-studies', locale)}
-            className="case-study-hero-new__back"
-            data-case-study-hero-back
-          >
-            <span aria-hidden="true">←</span>
-            <span>{copy.backToCaseStudies}</span>
-          </Link>
         </div>
       </div>
       <div className="case-study-hero-new__content">

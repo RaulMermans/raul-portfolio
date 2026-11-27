@@ -190,7 +190,7 @@ export default function CaseStudiesPage() {
                       {study.title}
                     </span>
                     <span className="case-study-project-tile__description">{study.description}</span>
-                    <span className="case-study-project-tile__action">{isSpanish ? 'Ver caso' : 'View case study'} ↗</span>
+                    <span className="case-study-project-tile__action">{isSpanish ? 'Ver caso' : 'View case study'}</span>
                   </span>
                 </Link>
               )

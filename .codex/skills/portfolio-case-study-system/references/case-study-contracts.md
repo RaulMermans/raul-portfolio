@@ -16,7 +16,7 @@ Metadata may sit after the hero or beside the introduction. It must not displace
 
 ## Enforceable foundation
 
-Every full route must expose one `data-case-study-hero` with a valid `data-presentation-family`, return link, visible shared case-study label, H1, and purpose/tagline. The hero is followed by the shared `CaseStudyMiniNav` and exactly one `CaseStudySnapshot` with Problem, System, Proof, Value, and Limitation facts. It ends with `CaseStudyNext`.
+Every full route must expose one `data-case-study-hero` with a valid `data-presentation-family`, visible shared case-study label, H1, and purpose/tagline. The hero has no return-to-index link. It is followed by the shared `CaseStudyMiniNav` and exactly one `CaseStudySnapshot` with Problem, System, Proof, Value, and Limitation facts. It ends with `CaseStudyNext`.
 
 The first three elements are not project-level design choices. Technical, creative, and hybrid work may change only the evidence composition, image mood, proof modules, and accent treatment around that foundation. Register the project in `data/case-study-editorial.ts`; its snapshot and related work must be real, project-specific, and localized.
 
@@ -26,7 +26,7 @@ When a full case study needs in-page chapter links, render them with `CaseStudyM
 
 ## Internal presentation family
 
-Record one internal presentation family for every full case study: `technical-product`, `creative-marketing`, or `hybrid`. This classification chooses the evidence treatment, not the navigation or reading foundation. All families keep the return link in the same hero position, then the case-study label, H1, tagline, and compact metadata in the same order. The family may vary the proof sequence, media treatment, and image mood only when that difference helps the reader understand the work. A technical case may place an evidence model beside this shared introduction, but it must not replace it with a local hero system.
+Record one internal presentation family for every full case study: `technical-product`, `creative-marketing`, or `hybrid`. This classification chooses the evidence treatment, not the navigation or reading foundation. All families keep the case-study label, H1, tagline, and compact metadata in the same order. The family may vary the proof sequence, media treatment, and image mood only when that difference helps the reader understand the work. A technical case may place an evidence model beside this shared introduction, but it must not replace it with a local hero system.
 
 ## Technical and product case study
 

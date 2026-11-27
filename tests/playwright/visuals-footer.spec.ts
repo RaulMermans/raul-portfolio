@@ -60,7 +60,7 @@ test('the root prevents elastic scrolling past the footer', async ({ page }) => 
   ).toBe('none')
 })
 
-for (const route of ['/', '/case-studies', '/about', '/privacy', '/en'] as const) {
+for (const route of ['/technical', '/case-studies', '/about', '/privacy', '/en/creative'] as const) {
   test(`footer ends the document on ${route}`, async ({ page }) => {
     await page.setViewportSize({ width: 2048, height: 855 })
     await page.goto(route, { waitUntil: 'networkidle' })

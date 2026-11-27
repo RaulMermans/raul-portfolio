@@ -56,13 +56,13 @@ export default function SelectedSystems({ locale = 'en' }: { locale?: Locale }) 
                 <span className={styles.description}>{detail.description}</span>
                 <span className={styles.bottomline}>
                   <span>{detail.proof}</span>
-                  <span>{copy.cta} ↗</span>
+                  <span>{copy.cta}</span>
                 </span>
               </Link>
             )
           })}
         </div>
-        <Link className={styles.all} href={localizePath('/case-studies', locale)}>{copy.all} ↗</Link>
+        <Link className={styles.all} href={localizePath('/case-studies', locale)}>{copy.all}</Link>
       </div>
     </section>
   )

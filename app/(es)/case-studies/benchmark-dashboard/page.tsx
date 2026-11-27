@@ -16,8 +16,8 @@ import {
   type CommercialCaseStudyContent,
 } from '@/components/case-studies/CommercialCaseStudySections'
 
-const demoUrl = 'https://benchmark-dashboard-tb47.vercel.app/'
 const githubUrl = 'https://github.com/RaulMermans/benchmark_dashboard'
+const setupUrl = `${githubUrl}#getting-started`
 
 const commercialContent: CommercialCaseStudyContent = {
   snapshot: [
@@ -35,16 +35,16 @@ const commercialContent: CommercialCaseStudyContent = {
     {
       label: 'Stack',
       value:
-        'React, Vite, source_monthly contract, canonical benchmark pipeline, local forecast engine, synthetic data, Vercel',
+        'React, Vite, source_monthly contract, canonical benchmark pipeline, local forecast engine, synthetic data',
     },
     {
       label: 'Status',
-      value: 'Live demo and GitHub available; public-safe synthetic data only',
+      value: 'Public repository and local demo; synthetic data only',
     },
   ],
   links: [
-    { label: 'View Prototype', href: demoUrl, external: true },
     { label: 'View GitHub', href: githubUrl, external: true },
+    { label: 'Run locally', href: setupUrl, external: true },
   ],
   businessContext:
     'Competitive analysis often lives in disconnected spreadsheets, screenshots, and one-off decks. The same questions repeat: who is gaining share, who is more efficient, which players are improving, and what may happen next.',
@@ -101,17 +101,17 @@ const commercialContentEs: CommercialCaseStudyContent = {
     {
       label: 'Stack',
       value:
-        'React, Vite, contrato source_monthly, pipeline benchmark, forecast local, datos sintéticos y Vercel',
+        'React, Vite, contrato source_monthly, pipeline benchmark, forecast local y datos sintéticos',
     },
     {
       label: 'Estado',
       value:
-        'Demo en vivo y GitHub disponibles; solo datos sintéticos seguros para publicar',
+        'Repositorio público y demo local; solo datos sintéticos',
     },
   ],
   links: [
-    { label: 'Ver prototipo', href: demoUrl, external: true },
     { label: 'Ver GitHub', href: githubUrl, external: true },
+    { label: 'Ejecutar en local', href: setupUrl, external: true },
   ],
   businessContext:
     'El análisis competitivo suele vivir en hojas de cálculo, capturas y decks aislados. Las mismas preguntas se repiten: quién gana cuota, quién es más eficiente, qué players mejoran y qué podría pasar después.',
@@ -178,7 +178,6 @@ const dataContract = `{
 
 const content = {
   en: {
-    back: '← Case Studies',
     heroEyebrow: 'Data product / Raw-data benchmark intelligence engine',
     heroTitle: 'Benchmark Intelligence Engine',
     heroSubtitle:
@@ -187,8 +186,8 @@ const content = {
       'A public-safe benchmark intelligence dashboard that turns five years of synthetic monthly revenue and traffic observations into tracked market-share analysis, rankings, monetization diagnostics, period aggregation, and local scenario forecasts. The system starts from 480 raw monthly rows, then generates the intelligence layer in code: benchmark rows, shares, ranks, efficiency metrics, growth metrics, and forecast scenarios.',
     heroMockNotice:
       'Demo mode only: synthetic companies, synthetic values, public-safe labels, and no real company, client, logo, or private source data.',
-    heroCTA: 'View Live Demo →',
-    heroCTASecondary: 'View GitHub →',
+    heroCTA: 'View GitHub',
+    heroCTASecondary: 'Run locally',
     heroFigcaption:
       'Executive summary generated from five years of raw synthetic monthly data. Synthetic demo data only.',
     heroFigAriaLabel:
@@ -406,8 +405,8 @@ const content = {
     ],
     safetyBullets: [
       'No actual company performance data, competitor datasets, private client records, credentials, or private API URLs.',
-      'The public demo uses the local statistical engine by default; no Python service, model weights, backend, or paid API are required.',
-      'TimesFM remains optional infrastructure only and is not how the public demo is positioned.',
+      'The local demo uses the statistical engine by default; no Python service, model weights, backend, or paid API are required.',
+      'TimesFM remains optional infrastructure and is not needed to run the local demo.',
     ],
     resultEyebrow: 'Result',
     resultH2: 'A public-safe benchmark engine',
@@ -430,7 +429,6 @@ const content = {
       'A repeatable intelligence pipeline turns source data into the chart layer.',
   },
   es: {
-    back: '← Casos de estudio',
     heroEyebrow: 'Producto de datos / Motor benchmark desde datos raw',
     heroTitle: 'Benchmark Intelligence Engine',
     heroSubtitle:
@@ -439,8 +437,8 @@ const content = {
       'Un dashboard público de inteligencia benchmark que convierte cinco años de observaciones mensuales sintéticas de revenue y tráfico en análisis de cuota del set benchmark, rankings, diagnóstico de monetización, agregación por periodo y forecasts locales de escenario. El sistema empieza con 480 filas mensuales raw y genera en código la capa de inteligencia: filas benchmark, cuotas, rankings, métricas de eficiencia, crecimiento y escenarios de forecast.',
     heroMockNotice:
       'Solo en modo demo: compañías sintéticas, valores sintéticos y etiquetas públicas; sin datos reales de compañías, clientes, logos ni fuentes privadas.',
-    heroCTA: 'Ver la demo pública →',
-    heroCTASecondary: 'Ver el repositorio →',
+    heroCTA: 'Ver GitHub',
+    heroCTASecondary: 'Ejecutar en local',
     heroFigcaption:
       'Resumen ejecutivo generado desde cinco años de datos mensuales raw sintéticos. Solo datos sintéticos.',
     heroFigAriaLabel:
@@ -658,8 +656,8 @@ const content = {
     ],
     safetyBullets: [
       'Sin datos reales de compañías, competidores reales, datos privados de clientes, credenciales ni URLs privadas.',
-      'La demo pública usa por defecto un motor estadístico local; no requiere Python, pesos de modelo, backend ni API de pago.',
-      'TimesFM queda como infraestructura opcional y no es el posicionamiento de la demo pública.',
+      'La demo local usa por defecto un motor estadístico; no requiere Python, pesos de modelo, backend ni API de pago.',
+      'TimesFM queda como infraestructura opcional y no es necesario para ejecutar la demo local.',
     ],
     resultEyebrow: 'Resultado',
     resultH2:
@@ -707,12 +705,6 @@ export default function BenchmarkDashboardPage() {
           data-presentation-family="technical-product"
         >
           <div className="benchmark-hero__content">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.heroEyebrow}</p>
             <h1 id="benchmark-title" className="benchmark-hero__title">
@@ -728,7 +720,7 @@ export default function BenchmarkDashboardPage() {
               }
             >
               <a
-                href={demoUrl}
+                href={githubUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="data-brief-button data-brief-button--primary"
@@ -736,7 +728,7 @@ export default function BenchmarkDashboardPage() {
                 {t.heroCTA}
               </a>
               <a
-                href={githubUrl}
+                href={setupUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="data-brief-button"
@@ -993,7 +985,7 @@ export default function BenchmarkDashboardPage() {
             </div>
             <div className="data-brief-actions">
               <a
-                href={demoUrl}
+                href={githubUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="data-brief-button data-brief-button--primary"
@@ -1001,7 +993,7 @@ export default function BenchmarkDashboardPage() {
                 {t.heroCTA}
               </a>
               <a
-                href={githubUrl}
+                href={setupUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="data-brief-button"

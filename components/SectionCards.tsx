@@ -420,9 +420,6 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
                       <span className={styles.cta}>
                         <span>{copy.viewLabel}</span>
                         <span className={styles.ctaLine} aria-hidden="true" />
-                        <span className={styles.ctaArrow} aria-hidden="true">
-                          ↗
-                        </span>
                       </span>
                     </div>
 
@@ -487,9 +484,6 @@ export default function SectionCards({ locale = 'en' }: SectionCardsProps) {
                 <span className={styles.cta}>
                   <span>{copy.viewLabel}</span>
                   <span className={styles.ctaLine} aria-hidden="true" />
-                  <span className={styles.ctaArrow} aria-hidden="true">
-                    ↗
-                  </span>
                 </span>
               </div>
 

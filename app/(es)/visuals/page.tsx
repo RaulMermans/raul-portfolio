@@ -30,7 +30,7 @@ const visualsCopy = {
     label: 'Archive',
     title: 'Visual Studies',
     description:
-      'Image worlds, brand atmospheres, and visual experiments exploring how taste, restraint, and system rules translate into campaign surfaces.',
+      'Album covers, poster concepts, and visual experiments. Each study tests how image, type, and restraint shape a distinct mood.',
     seeProject: 'See project',
     previousProject: 'Previous project',
     nextProject: 'Next project',
@@ -49,7 +49,7 @@ const visualsCopy = {
     label: 'Archivo',
     title: 'Estudios visuales',
     description:
-      'Mundos visuales, atmósferas de marca y experimentos que exploran cómo el gusto, la contención y las reglas de sistema se traducen en superficies de campaña.',
+      'Portadas de discos, carteles y experimentos visuales. Cada estudio prueba cómo la imagen, la tipografía y la contención crean una atmósfera propia.',
     seeProject: 'Ver proyecto',
     previousProject: 'Proyecto anterior',
     nextProject: 'Proyecto siguiente',
@@ -611,12 +611,21 @@ export default function VisualsPage() {
                 <article
                   className={styles.card}
                   data-mobile-audit="visual-card"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${copy.seeProject}: ${currentWork.title}`}
                   onClick={(event) => {
                     if (suppressCardClickRef.current) {
                       suppressCardClickRef.current = false
                       return
                     }
                     openExhibition(currentIndex, event.currentTarget)
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      openExhibition(currentIndex, event.currentTarget)
+                    }
                   }}
                 >
                   <div className={styles.cardImageWrapper}>
@@ -637,40 +646,41 @@ export default function VisualsPage() {
                         <p className={styles.cardIndex}>
                           {String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}
                         </p>
-                        <h2 className={styles.cardTitle}>{currentWork.title}</h2>
+                        <span className={styles.cardTitle}>{currentWork.title}</span>
                         <p className={styles.cardMeta}>{currentWork.year} — {currentWork.type}</p>
                         <span className={styles.cardButton}>
                           <span>{copy.seeProject}</span>
-                          <span aria-hidden="true">→</span>
                         </span>
                       </div>
                     </div>
                   </div>
                 </article>
               </div>
+              <button
+                type="button"
+                className={`${styles.navButton} ${styles.navButtonPrev}`}
+                onClick={goToPrevious}
+                disabled={currentIndex === 0 || isAnimating}
+                aria-label={copy.previousProject}
+              >
+                <span className={styles.navArrow}>←</span>
+              </button>
+              <button
+                type="button"
+                className={`${styles.navButton} ${styles.navButtonNext}`}
+                onClick={goToNext}
+                disabled={currentIndex === works.length - 1 || isAnimating}
+                aria-label={copy.nextProject}
+              >
+                <span className={styles.navArrow}>→</span>
+              </button>
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              type="button"
-              className={`${styles.navButton} ${styles.navButtonPrev}`}
-              onClick={goToPrevious}
-              disabled={currentIndex === 0 || isAnimating}
-              aria-label={copy.previousProject}
-            >
-              <span className={styles.navArrow}>←</span>
-            </button>
-            <button
-              type="button"
-              className={`${styles.navButton} ${styles.navButtonNext}`}
-              onClick={goToNext}
-              disabled={currentIndex === works.length - 1 || isAnimating}
-              aria-label={copy.nextProject}
-            >
-              <span className={styles.navArrow}>→</span>
-            </button>
-
+            <div className={styles.cardCaption} aria-live="polite" data-mobile-audit="visual-caption">
+              <h2>{currentWork.title}</h2>
+              <span>{String(currentIndex + 1).padStart(2, '0')} / {String(works.length).padStart(2, '0')}</span>
             </div>
+          </div>
         </div>
       </main>
 

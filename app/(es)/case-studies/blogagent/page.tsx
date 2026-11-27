@@ -45,6 +45,7 @@ const content = {
       ['06', 'final_contract', 'pass'],
     ],
     outputStatus: 'Output: copy-ready draft / human review pending',
+    panelDisclosure: 'Illustrative workflow state, not a captured production run.',
     nav: [
       ['Problem', '#problem'],
       ['Goal', '#goal'],
@@ -240,6 +241,7 @@ const content = {
     ],
     outputStatus:
       'Salida: borrador listo para copiar / revisión humana pendiente',
+    panelDisclosure: 'Estado ilustrativo del flujo; no es una ejecución de producción capturada.',
     nav: [
       ['Problema', '#problem'],
       ['Objetivo', '#goal'],
@@ -428,12 +430,6 @@ export default function BlogAgentPage() {
           data-presentation-family="technical-product"
         >
           <div className="data-brief-hero__content">
-            <Link
-              href={localizePath('/case-studies', locale)}
-              className="data-brief-back"
-            >
-              {t.back}
-            </Link>
             <CaseStudyHeroLabel locale={locale} />
             <p className="data-brief-eyebrow">{t.eyebrow}</p>
             <h1 id="blogagent-title" className="data-brief-hero__title">
@@ -474,6 +470,7 @@ export default function BlogAgentPage() {
               </div>
             ))}
             <p>{t.outputStatus}</p>
+            <small>{t.panelDisclosure}</small>
           </aside>
         </section>
 

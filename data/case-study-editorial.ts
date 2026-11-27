@@ -40,7 +40,7 @@ export const CASE_STUDY_ORDER = [
 export const caseStudyEditorial: Record<string, EditorialMeta> = {
   'halo-control': {
     category: { en: 'Local AI infrastructure', es: 'Infraestructura de IA local' },
-    proofTags: { en: ['Public architecture', 'Synthetic Control Room', 'Explicit verification limits'], es: ['Arquitectura pública', 'Control Room sintética', 'Límites de verificación'] },
+    proofTags: { en: ['Public architecture', 'Synthetic Control Room', 'Physical pilot record'], es: ['Arquitectura pública', 'Control Room sintética', 'Registro del piloto físico'] },
     snapshot: { en: independentSystems['halo-control'].en.snapshot, es: independentSystems['halo-control'].es.snapshot },
     related: ['local-ai-coding-agent', 'iris'],
   },
@@ -102,8 +102,8 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
   searchsignal: {
     category: { en: 'Ecommerce Search', es: 'Búsqueda ecommerce' },
     proofTags: {
-      en: ['Live demonstrator', 'Public repository', 'Catalog rules'],
-      es: ['Demostrador en vivo', 'Repositorio público', 'Reglas de catálogo'],
+      en: ['Live demonstrator', 'Repository screenshots', 'Catalog rules'],
+      es: ['Demostrador en vivo', 'Capturas del repositorio', 'Reglas de catálogo'],
     },
     snapshot: {
       en: {
@@ -112,7 +112,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'An inspectable catalog-readiness framework that normalizes product records, exposes gaps, and keeps keyword, semantic, and hybrid search tied to canonical data.',
         proof:
-          'A deployed synthetic demonstrator, public repository, product-state illustrations, explicit readiness checks, and documented product decisions.',
+          'A deployed synthetic demonstrator, public repository screenshots of blocked readiness and hybrid retrieval, explicit checks, and documented product decisions.',
         value:
           'Helps ecommerce teams treat search quality as a catalog and information-architecture decision before it becomes a ranking problem.',
         limitation:
@@ -124,7 +124,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'Un marco inspeccionable de readiness de catálogo que normaliza fichas, muestra gaps y vincula búsqueda por keyword, semántica e híbrida con datos canónicos.',
         proof:
-          'Un demostrador sintético desplegado, repositorio público, ilustraciones de estados de producto, comprobaciones de readiness y decisiones documentadas.',
+          'Demostrador sintético desplegado, capturas públicas de indexación bloqueada y búsqueda híbrida, comprobaciones explícitas y decisiones documentadas.',
         value:
           'Ayuda a equipos ecommerce a tratar la calidad de búsqueda como una decisión de catálogo y arquitectura de información antes de convertirla en problema de ranking.',
         limitation:
@@ -238,8 +238,8 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
   'data-brief-ai': {
     category: { en: 'Bounded AI', es: 'IA acotada' },
     proofTags: {
-      en: ['Live demo', 'GitHub', 'Export'],
-      es: ['Demo', 'GitHub', 'Exportación'],
+      en: ['Live demo', 'Repository screenshots', 'Export'],
+      es: ['Demo', 'Capturas del repositorio', 'Exportación'],
     },
     snapshot: {
       en: {
@@ -248,7 +248,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'A bounded reporting pipeline for dataset profiling, controlled Python execution, evaluation, caveats, and grounded export.',
         proof:
-          'Live prototype, public GitHub repository, representative report surfaces, generated code, charts, and exportable artifacts.',
+          'Live prototype, public repository screenshots of the analysis plan and grounded report, generated code, charts, and exportable artifacts.',
         value:
           'Makes AI-assisted analysis faster without allowing unsupported conclusions to pass as business facts.',
         limitation:
@@ -260,7 +260,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'Un pipeline acotado de perfilado, ejecución Python controlada, evaluación, advertencias y exportación fundamentada.',
         proof:
-          'Prototipo en vivo, repositorio público, superficies de informe, código generado, gráficos y artefactos exportables.',
+          'Prototipo en vivo, capturas públicas del plan y del informe fundamentado, código generado, gráficos y artefactos exportables.',
         value:
           'Acelera el análisis asistido por IA sin permitir que conclusiones no soportadas pasen por hechos de negocio.',
         limitation:
@@ -282,7 +282,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'A public-URL capture pipeline with evidence storage, deterministic scoring, bounded synthesis, and private report assembly.',
         proof:
-          'Public GitHub repository, anonymized report preview, evidence labels, workflow diagrams, and documented system boundaries.',
+          'Public GitHub repository, illustrative report preview, evidence labels, workflow diagrams, and documented system boundaries.',
         value:
           'Creates faster, repeatable website diagnostics while preserving the difference between what was measured, observed, and inferred.',
         limitation:
@@ -294,7 +294,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'Un pipeline de captura de URL pública con almacenamiento de evidencia, scoring determinista, síntesis acotada e informe privado.',
         proof:
-          'Repositorio público, vista de informe anonimizada, etiquetas de evidencia, diagramas y límites documentados.',
+          'Repositorio público, vista ilustrativa del informe, etiquetas de evidencia, diagramas y límites documentados.',
         value:
           'Crea diagnósticos web más rápidos y repetibles preservando la diferencia entre medición, observación e inferencia.',
         limitation:
@@ -442,8 +442,8 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
   relay: {
     category: { en: 'Marketing Intelligence', es: 'Inteligencia de marketing' },
     proofTags: {
-      en: ['Private beta', 'Automated verification', 'Synthetic data'],
-      es: ['Beta privada', 'Verificación automatizada', 'Datos sintéticos'],
+      en: ['Private beta', 'Repository screenshots', 'Synthetic data'],
+      es: ['Beta privada', 'Capturas del repositorio', 'Datos sintéticos'],
     },
     snapshot: {
       en: {
@@ -452,7 +452,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'A deterministic workspace that maps Meta Ads, Google Ads, and Shopify exports into canonical facts, data-health checks, KPI logic, and explainable reporting.',
         proof:
-          'A protected V1 with automated test coverage, browser verification, public repository evidence, and a controlled synthetic multi-source workspace.',
+          'A protected V1 with automated tests, browser verification, and public screenshots of onboarding and manual source intake in a synthetic workspace.',
         value:
           'Makes the route from source export to client report easier to inspect without pretending platform-attributed and commerce revenue are interchangeable.',
         limitation:
@@ -464,7 +464,7 @@ export const caseStudyEditorial: Record<string, EditorialMeta> = {
         system:
           'Un espacio determinista que convierte exportaciones de Meta Ads, Google Ads y Shopify en hechos canónicos, controles de Data Health, lógica KPI y reporting explicable.',
         proof:
-          'Una V1 protegida con cobertura de tests automatizados, verificación en navegador, evidencia del repositorio público y un espacio controlado con múltiples fuentes sintéticas.',
+          'V1 protegida con tests y verificación en navegador, más capturas públicas del inicio y la carga manual de fuentes en un espacio sintético.',
         value:
           'Hace más inspeccionable el camino de exportación a informe de cliente sin fingir que ingresos de plataforma e ingresos de comercio son intercambiables.',
         limitation:

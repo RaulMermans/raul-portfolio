@@ -4,12 +4,21 @@ import { expect, test } from '@playwright/test'
 const criticalRoutes = [
   '/',
   '/en/',
+  '/technical/',
+  '/en/technical/',
+  '/creative/',
+  '/en/creative/',
   '/about/',
   '/en/about/',
   '/case-studies/',
   '/en/case-studies/',
   '/case-studies/opstwin/',
   '/photography/',
+  '/en/photography/',
+  '/photography/morocco/',
+  '/en/photography/morocco/',
+  '/photography/golden/',
+  '/en/photography/golden/',
   '/visuals/',
   '/services/integraciones-ia/',
 ]
@@ -35,4 +44,14 @@ test.describe('Accessibility', () => {
       ).toEqual([])
     })
   }
+
+  test('service proof text remains readable on hover', async ({ page }) => {
+    await page.goto('/services/integraciones-ia/', { waitUntil: 'domcontentloaded' })
+    const proofCard = page.locator('a[class*="proofCard"]').first()
+    await expect(proofCard).toBeVisible()
+    await proofCard.hover()
+
+    const results = await new AxeBuilder({ page }).include('a[class*="proofCard"]').analyze()
+    expect(results.violations.filter(({ id }) => id === 'color-contrast')).toEqual([])
+  })
 })

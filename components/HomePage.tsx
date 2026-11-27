@@ -1,31 +1,21 @@
 import { type Locale, localizePath } from '@/lib/i18n'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import Hero from '@/components/Hero'
-import SelectedSystems from '@/components/SelectedSystems'
-import CreativeInfrastructure from '@/components/CreativeInfrastructure'
-import SectionCards from '@/components/SectionCards'
-import About from '@/components/About'
-import Services from '@/components/Services'
-import Contact from '@/components/Contact'
+import PortfolioGateway from '@/components/PortfolioGateway'
 import ErrorBoundary from '@/components/ErrorBoundary'
-import BackToTop from '@/components/BackToTop'
-import HomeEffects from '@/components/HomeEffects'
 import StructuredData from '@/components/StructuredData'
 import { absoluteRouteUrl } from '@/lib/metadata'
 
 
 const homeCopy = {
   es: {
-    name: 'Raúl Mermans | Sistemas de IA, Producto y Datos',
+    name: 'Raúl Mermans | Portfolio técnico y creativo',
     description:
-      'Raúl Mermans construye sistemas de IA, productos de datos y herramientas de apoyo a decisiones con criterio de negocio y creativo.',
+      'Conoce a Raúl Mermans y explora dos recorridos: sistemas, software y datos; fotografía, identidad y trabajo visual.',
     inLanguage: 'es-ES',
   },
   en: {
-    name: 'Raúl Mermans | AI Systems, Product & Data',
+    name: 'Raúl Mermans | Technical and Creative Portfolio',
     description:
-      'Raúl Mermans builds AI systems, data products and decision-support tools with business and creative judgment.',
+      'Meet Raúl Mermans and choose between technical work in software, AI and data, or creative work in photography and visual identity.',
     inLanguage: 'en-US',
   },
 } satisfies Record<Locale, { name: string; description: string; inLanguage: string }>
@@ -35,7 +25,7 @@ export default function Home({ locale = 'es' }: { locale?: Locale }) {
 
   return (
     <ErrorBoundary>
-      <main id="main-content">
+      <main id="main-content" className="home-editorial">
         <StructuredData
           type="WebPage"
           data={{
@@ -46,17 +36,7 @@ export default function Home({ locale = 'es' }: { locale?: Locale }) {
             inLanguage: copy.inLanguage,
           }}
         />
-        <Header locale={locale} />
-        <Hero locale={locale} />
-        <SelectedSystems locale={locale} />
-        <CreativeInfrastructure locale={locale} />
-        <SectionCards locale={locale} />
-        <About locale={locale} />
-        <Services locale={locale} />
-        <Contact locale={locale} />
-        <Footer locale={locale} />
-        <BackToTop />
-        <HomeEffects />
+        <PortfolioGateway locale={locale} />
       </main>
     </ErrorBoundary>
   )

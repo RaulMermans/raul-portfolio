@@ -226,7 +226,7 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
                 <div className={styles.actions}>
                   <a href={emailHref} className={styles.button}>
                     {service.cta.emailLabel}
-                    <span aria-hidden="true">↗</span>
+
                   </a>
                   <a
                     href={linkedinUrl}
@@ -235,7 +235,7 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
                     className={`${styles.button} ${styles.buttonSecondary}`}
                   >
                     {service.cta.linkedinLabel}
-                    <span aria-hidden="true">↗</span>
+
                   </a>
                   <a href="#related-proof" className={styles.textLink}>
                     {labels.relatedCaseStudies}
@@ -279,7 +279,7 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
                 <span>{service.flagshipOffer.followUp}</span>
                 <a href={emailHref} className={styles.button}>
                   {service.flagshipOffer.ctaLabel}
-                  <span aria-hidden="true">↗</span>
+
                 </a>
               </div>
             </div>
@@ -413,7 +413,7 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
               <div className={styles.actions}>
                 <a href={emailHref} className={styles.button}>
                   {service.cta.emailLabel}
-                  <span aria-hidden="true">↗</span>
+
                 </a>
                 <a
                   href={linkedinUrl}
@@ -422,7 +422,7 @@ export default function ServiceLandingPage({ service }: ServiceLandingPageProps)
                   className={`${styles.button} ${styles.buttonSecondary}`}
                 >
                   {service.cta.linkedinLabel}
-                  <span aria-hidden="true">↗</span>
+
                 </a>
               </div>
             </div>

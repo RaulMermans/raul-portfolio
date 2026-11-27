@@ -939,15 +939,6 @@
   color: var(--text-primary);
 }
 
-.case-study-page-new--searchsignal .data-brief-back {
-  color: var(--text-muted);
-}
-
-.case-study-page-new--searchsignal .data-brief-back:hover,
-.case-study-page-new--searchsignal .data-brief-back:focus-visible {
-  color: var(--text-primary);
-}
-
 .case-study-page-new--searchsignal .data-brief-hero__title {
   max-width: 6.75ch;
   margin: 0;
@@ -963,6 +954,17 @@
 
 .case-study-page-new--searchsignal .data-brief-hero__title > span {
   display: block;
+  color: var(--text-primary);
+}
+
+.case-study-page-new--searchsignal .searchsignal-record :is(span, p, em),
+.case-study-page-new--searchsignal .searchsignal-record p b {
+  color: var(--cream);
+}
+
+.case-study-page-new--searchsignal .searchsignal-boundary-grid > article > p,
+.case-study-page-new--searchsignal .searchsignal-next-list span {
+  color: var(--text-primary);
 }
 
 .case-study-page-new--searchsignal .data-brief-hero__subtitle {

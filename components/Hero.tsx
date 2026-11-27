@@ -63,7 +63,6 @@ export default function Hero({ locale = 'en' }: HeroProps) {
               data-mobile-audit="hero-cta"
             >
               <span>{copy.primaryCta}</span>
-              <span className={styles.ctaArrow}>→</span>
             </Link>
           </MagneticButton>
           <MagneticButton className={styles.ctaWrapper} intensity={20}>
@@ -73,7 +72,6 @@ export default function Hero({ locale = 'en' }: HeroProps) {
               data-mobile-audit="hero-cta"
             >
               <span>{copy.secondaryCta}</span>
-              <span className={styles.ctaArrow}>→</span>
             </Link>
           </MagneticButton>
         </div>

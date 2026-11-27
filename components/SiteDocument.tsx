@@ -37,7 +37,15 @@ const spaceMono = localFont({
 
 const sourceSerif4 = localFont({
   src: '../app/fonts/source-serif-4-400-600.woff2',
+  weight: '400 600',
   variable: '--font-reading',
+  display: 'swap',
+})
+
+const instrumentSerif = localFont({
+  src: '../app/fonts/instrument-serif-regular.ttf',
+  weight: '400',
+  variable: '--font-display-serif',
   display: 'swap',
 })
 
@@ -51,7 +59,7 @@ export default function SiteDocument({
   return (
     <html
       lang={locale}
-      className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable}`}
+      className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${sourceSerif4.variable} ${instrumentSerif.variable}`}
     >
       <body>
         <SkipLink locale={locale} />

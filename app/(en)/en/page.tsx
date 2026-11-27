@@ -3,21 +3,20 @@ import HomePage from '@/components/HomePage'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Raúl Mermans | AI Systems, Product & Data',
+  title: 'Raúl Mermans | Technical and Creative Portfolio',
   description:
-    'Raúl Mermans builds AI systems, data products and decision-support tools with business judgment, technical execution and creative direction.',
+    'Meet Raúl Mermans and choose a technical portfolio of software, AI and data, or a creative portfolio of photography and visual identity.',
   path: '/',
   locale: 'en',
   image: {
-    url: '/images/sections/case-studies-bg.webp',
-    alt: 'Raúl Mermans portfolio',
+    url: '/images/photography/landscape/Landscape18.webp',
+    alt: 'A sailing ship on a hazy sea at dusk, photographed by Raúl Mermans',
   },
   keywords: [
     'AI systems',
-    'agentic systems',
-    'decision intelligence',
-    'product development',
-    'creative strategy',
+    'technical portfolio',
+    'creative portfolio',
+    'photography',
   ],
   absoluteTitle: true,
 })

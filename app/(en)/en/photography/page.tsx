@@ -1,5 +1,5 @@
-import PhotographyPage from '../../../(es)/photography/page'
+import { PhotographyIndex } from '@/components/PhotographyExperience'
 
 export default function EnglishPhotographyPage() {
-  return <PhotographyPage />
+  return <PhotographyIndex locale="en" />
 }
